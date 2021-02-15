@@ -2,9 +2,9 @@
 
 const Homey = require('homey');
 const googleTTS = require('google-tts-api');
-const fetch = require('node-fetch');
+//const fetch = require('node-fetch');
 
-const path = require('path');
+//const path = require('path');
 
 const GoogleFunctions = require('./lib/googleFunction');
 
@@ -16,13 +16,13 @@ class GoogleTTStoURLApp extends Homey.App {
   async onInit() {
     this.log('MyApp has been initialized');
     
-    const dest = path.resolve(__dirname, 'userdata', 'test.mp3');
+    // const dest = path.resolve(__dirname, 'userdata', 'test.mp3');
 
-    var r = await GoogleFunctions.downloadFile('https://translate.google.com/translate_tts?ie=UTF-8&q=Hallo&tl=nl-NL&total=1&idx=0&textlen=5&client=tw-ob&prev=input&ttsspeed=1', dest);
+    // var r = await GoogleFunctions.downloadFile('https://translate.google.com/translate_tts?ie=UTF-8&q=Hallo&tl=nl-NL&total=1&idx=0&textlen=5&client=tw-ob&prev=input&ttsspeed=1', dest);
     
-    console.log('r');
+    // console.log('r');
     
-    console.log(r);
+    // console.log(r);
     
     // const myImage = new Homey.Image(); //await this.homey.images.createImage();
 

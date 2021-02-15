@@ -1,6 +1,6 @@
 {
   "id": "nl.qluster-it.googleTTStoURL",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "compatibility": ">=1.5.0",
   "sdk": 2,
   "brandColor": "#971700",
@@ -20,15 +20,15 @@
     "large": "/assets/images/large.png",
     "small": "/assets/images/small.png"
   },
-  "source":"https://bitbucket.org/QlusterIT/nl.qluster-it.googlettstourl/",
+  "source": "https://bitbucket.org/QlusterIT/nl.qluster-it.googlettstourl/",
   "author": {
     "name": "Arie J. Godschalk",
     "email": "arie@qluster-it.nl"
   },
-  "flow":{
-    "triggers": [      
+  "flow": {
+    "triggers": [
       {
-        "id": "url_trigger",        
+        "id": "url_trigger",
         "title": {
           "en": "Url triggered"
         },
@@ -49,13 +49,13 @@
             "name": "device",
             "type": "device",
             "filter": "driver_id=googletts"
-          }        
-        ]        
+          }
+        ]
       }
     ],
-    "actions" : [
+    "actions": [
       {
-        "id": "start_googletts",        
+        "id": "start_googletts",
         "title": {
           "en": "Start Google TTS"
         },
@@ -75,10 +75,10 @@
               "en": "Text"
             }
           }
-        ]        
+        ]
       },
       {
-        "id": "start_googletts_slow",        
+        "id": "start_googletts_slow",
         "title": {
           "en": "Start Google TTS"
         },
@@ -98,18 +98,16 @@
               "en": "Text"
             }
           }
-        ]        
+        ]
       }
     ]
-    
   },
-  "drivers": [    
+  "drivers": [
     {
       "id": "googletts",
       "name": {
         "en": "Google TTS device",
         "nl": "Google TTS apparaat"
-        
       },
       "class": "other",
       "capabilities": [],
@@ -136,7 +134,7 @@
       "settings": [
         {
           "id": "languagecode",
-          "type": "dropdown",          
+          "type": "dropdown",
           "label": {
             "en": "Language"
           },
@@ -144,7 +142,7 @@
           "hint": {
             "en": "Choose the language for this device"
           },
-          "values": [              
+          "values": [
             {
               "id": "en-GB",
               "name": "en-GB",
@@ -229,7 +227,7 @@
               "id": "sv-SV",
               "name": "sv-SV",
               "label": {
-                "en": "Swedish (SV)",                
+                "en": "Swedish (SV)",
                 "nl": "Zweeds (SV)"
               }
             },
@@ -237,8 +235,8 @@
               "id": "no-NO",
               "name": "no-NO",
               "label": {
-                "en": "Norwegian (NO)",                
-                "nl": "Noorweegs (NO)"
+                "en": "Norwegian (NO)",
+                "nl": "Noors (NO)"
               }
             }
           ]
