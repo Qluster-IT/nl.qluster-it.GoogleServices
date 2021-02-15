@@ -11,14 +11,37 @@
             function onHomeyReady(Homey) {
                 var save = document.getElementById('save');
                 var cloudJSON = document.getElementById('cloudJSON');
+                var defaultCloudVoice = document.getElementById('defaultCloudVoice');
                 Homey.ready();
                 save.onclick = function() {
-                    Homey.alert(cloudJSON.value);
                     Homey.set('CloudJSON', cloudJSON.value);
+                    Homey.set('DefaultCloudVoice', defaultCloudVoice.children[defaultCloudVoice.selectedIndex].value);
                 }
                 Homey.get('CloudJSON', function(err, v) {
                     cloudJSON.value = err ? '' : v;
-                });                
+                });
+                
+                getVoices();
+                
+                function getVoices() {
+
+                    Homey.api( 'get', '/getVoices', function(err, result) {
+                    for (let i = 0; i < defaultCloudVoice.children.length; i++) {
+                        const element = defaultCloudVoice.children[i];
+                        defaultCloudVoice.removeChild(element);
+                        i--;                        
+                    } 
+                    for (let i = 0; i < result.length; i++) {
+                        const voice = result[i];
+                        var option = document.createElement('option');
+                        option.value = JSON.stringify(voice);
+                        option.innerText = voice.name + ' (' + voice.ssmlGender + ')';
+                        defaultCloudVoice.appendChild(option);
+                
+                    }
+                });
+                }
+
             }
 
         </script>
@@ -29,8 +52,11 @@
 
         <h2>Google Cloud Service Account JSON</h2>
         <textarea id="cloudJSON" type="text" columns="40" rows="10" style="width:100%;"></textarea>
+        
+        <h2>Google Cloud Default Voice</h2>
+        <select id="defaultCloudVoice" style="display: inline-block;width:100%;"></select>
 
-        <button id="save" onclick="">Save</button>
+        <button id="save">Save</button>
 
 </body>
 </html>

@@ -25,6 +25,22 @@ class GoogleTTStoURLApp extends Homey.App {
   async onInit() {
     this.log('MyApp has been initialized');
     
+    Homey.ManagerSettings.on('set', (function(settingName) {
+      if(settingName=='CloudJSON') {
+          this.setCloudJSON();
+      } else if(settingName=='DefaultCloudVoice') {
+        this.setDefaultCloudVoice();
+    }
+    }).bind(this));
+    await this.setCloudJSON();
+    await this.setDefaultCloudVoice();
+    
+    TtsServer.init({client: this.client});
+    var voices  = await TtsServer.getVoices();
+    console.log(voices);
+
+
+
     const url_trigger = new Homey.FlowCardTriggerDevice('url_trigger'); // this.homey.flow.getDeviceTriggerCard('url_trigger');
     this.Triggers.cloudurlTrigger.Card = url_trigger;
     url_trigger
@@ -66,23 +82,25 @@ class GoogleTTStoURLApp extends Homey.App {
                   var settings =  args.device.getSettings();
                   var languagecode = settings && settings.languagecode ? settings.languagecode : 'en-GB';
                   var ip = (await Homey.ManagerCloud.getLocalAddress()).split(':')[0];
-                  var url = 'http://' +ip + ':47333/tts/' +languagecode + '/' + escape(args.text);// googleTTS.getAudioUrl(args.text, { lang:languagecode, slow: start.slow });
+                  //var url = 'http://' +ip + ':47333/tts/' + this.setDefaultCloudVoice +languagecode + '/' + escape(args.text);// googleTTS.getAudioUrl(args.text, { lang:languagecode, slow: start.slow });
+                  var url = 'http://' +ip + ':47333/tts/' + escape(args.text);// googleTTS.getAudioUrl(args.text, { lang:languagecode, slow: start.slow });
                   return this.Triggers.cloudurlTrigger.Card.trigger(args.device, {url:url} );
               } catch (error) { console.log('Error: ' + error); }
               return false;
           }).bind(this));
 
-    Homey.ManagerSettings.on('set', (function(settingName) {
-      if(settingName=='CloudJSON') {
-          this.setCloudJSON();
-      }
-    }).bind(this));
-    await this.setCloudJSON();
     
-    TtsServer.init({client: this.client});
 
     
     //await this.speak({text: 'test'});
+  }
+  
+  async setDefaultCloudVoice() {
+    var voice = await Homey.ManagerSettings.get('DefaultCloudVoice');
+    var voices = await TtsServer.getVoices();
+    var r;
+    if(voices) r = _.find(voices=>voices.name==voice);
+    TtsServer.DefaultCloudVoice = r;    
   }
 
   async setCloudJSON() {
