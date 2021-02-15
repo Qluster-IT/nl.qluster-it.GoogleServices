@@ -2,6 +2,13 @@
 
 const Homey = require('homey');
 const googleTTS = require('google-tts-api');
+const fs = require('fs');
+const path = require('path');
+const util = require('util');
+const textToSpeech = require('@google-cloud/text-to-speech');
+    
+var TtsServer = require('./lib/tts-server')
+
 //const fetch = require('node-fetch');
 
 //const path = require('path');
@@ -12,18 +19,25 @@ const googleTTS = require('google-tts-api');
 class GoogleTTStoURLApp extends Homey.App {
   Triggers ={
     urlTrigger:{List:[], Card:null},
+    cloudurlTrigger:{List:[], Card:null}
   };
-  
+
   async onInit() {
     this.log('MyApp has been initialized');
-    this.setOAuth2Init();
     
     const url_trigger = new Homey.FlowCardTriggerDevice('url_trigger'); // this.homey.flow.getDeviceTriggerCard('url_trigger');
-    this.Triggers.urlTrigger.Card = url_trigger;
+    this.Triggers.cloudurlTrigger.Card = url_trigger;
     url_trigger
     .register()
     .registerRunListener( async ( args, state ) => {  return true; });
     
+    const cloudurl_trigger = new Homey.FlowCardTriggerDevice('cloudurl_trigger'); // this.homey.flow.getDeviceTriggerCard('url_trigger');
+    this.Triggers.cloudurlTrigger.Card = cloudurl_trigger;
+    cloudurl_trigger
+    .register()
+    .registerRunListener( async ( args, state ) => {  return true; });
+    
+
     var starts = [
       {id:'start_googletts', slow:false},
       {id:'start_googletts_slow', slow:true}
@@ -38,13 +52,48 @@ class GoogleTTStoURLApp extends Homey.App {
                   var settings =  args.device.getSettings();
                   var languagecode = settings && settings.languagecode ? settings.languagecode : 'en-GB';
                   var url = googleTTS.getAudioUrl(args.text, { lang:languagecode, slow: start.slow });
-                  return this.Triggers.urlTrigger.Card.trigger(args.device, {url:url} );
+                  return this.Triggers.cloudurlTrigger.Card.trigger(args.device, {url:url} );
+              } catch (error) { console.log('Error: ' + error); }
+              return false;
+          }).bind(this));
+    }
+
+
+    const start_googlettscloudAction = new Homey.FlowCardAction('start_googlecloudtts');//this.homey.flow.getActionCard('start_googletts');
+      start_googlettscloudAction.register().registerRunListener(( async ( args, state ) => { //async
+              try {
+                  if(!args.device || !args.text) return false;
+                  var settings =  args.device.getSettings();
+                  var languagecode = settings && settings.languagecode ? settings.languagecode : 'en-GB';
+                  var ip = (await Homey.ManagerCloud.getLocalAddress()).split(':')[0];
+                  var url = 'http://' +ip + ':47333/tts/' +languagecode + '/' + escape(args.text);// googleTTS.getAudioUrl(args.text, { lang:languagecode, slow: start.slow });
+                  return this.Triggers.cloudurlTrigger.Card.trigger(args.device, {url:url} );
               } catch (error) { console.log('Error: ' + error); }
               return false;
           }).bind(this));
 
-    }
+    Homey.ManagerSettings.on('set', (function(settingName) {
+      if(settingName=='CloudJSON') {
+          this.setCloudJSON();
+      }
+    }).bind(this));
+    await this.setCloudJSON();
+    
+    TtsServer.init({client: this.client});
+
+    
+    //await this.speak({text: 'test'});
   }
+
+  async setCloudJSON() {
+    var json = await Homey.ManagerSettings.get('CloudJSON');
+    this.credentials = JSON.parse(json);
+    if(this.credentials)this.client = new textToSpeech.TextToSpeechClient({credentials:this.credentials});
+    else this.client = null;
+    TtsServer.client = this.client;
+    
+  }
+
 }
 
 module.exports = GoogleTTStoURLApp;
