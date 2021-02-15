@@ -1,0 +1,13 @@
+{
+  "name": "nl.qluster-it.googleTTStoURL",
+  "version": "0.0.1",
+  "main": "app.js",
+  "devDependencies": {
+    "homey": "^2.9.7"
+  },
+  "dependencies": {
+    "google-tts-api": "^2.0.1",
+    "node-fetch": "^2.6.1",
+    "uuid": "^8.3.2"
+  }
+}

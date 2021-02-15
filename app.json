@@ -1,0 +1,247 @@
+{
+  "id": "nl.qluster-it.googleTTStoURL",
+  "version": "0.2.0",
+  "compatibility": ">=1.5.0",
+  "sdk": 2,
+  "name": {
+    "en": "Google Text-To-Speech to URL",
+    "nl": "Google Tekst-Naar-Spraak naar URL"
+  },
+  "description": {
+    "en": "Play Google Text-To-Speech on any device that accepts an URL for sound.",
+    "nl": "Speel Google Tekst-Naar-Spraak op enig apparaat die een URL accepteert voor geluid."
+  },
+  "category": [
+    "tools"
+  ],
+  "permissions": [],
+  "images": {
+    "large": "/assets/images/large.png",
+    "small": "/assets/images/small.png"
+  },
+  "author": {
+    "name": "Arie J. Godschalk",
+    "email": "arie@qluster-it.nl"
+  },
+  "flow":{
+    "triggers": [      
+      {
+        "id": "url_trigger",        
+        "title": {
+          "en": "Url triggered"
+        },
+        "titleFormatted": {
+          "en": "Url triggered"
+        },
+        "tokens": [
+          {
+            "name": "url",
+            "type": "string",
+            "title": {
+              "en": "Url"
+            }
+          }
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=googletts"
+          }        
+        ]        
+      }
+    ],
+    "actions" : [
+      {
+        "id": "start_googletts",        
+        "title": {
+          "en": "Start Google TTS"
+        },
+        "titleFormatted": {
+          "en": "Start Google TTS for [[text]]"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=googletts"
+          },
+          {
+            "name": "text",
+            "type": "text",
+            "placeholder": {
+              "en": "Text"
+            }
+          }
+        ]        
+      },
+      {
+        "id": "start_googletts_slow",        
+        "title": {
+          "en": "Start Google TTS"
+        },
+        "titleFormatted": {
+          "en": "Start Google TTS for [[text]] at slow speed"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=googletts"
+          },
+          {
+            "name": "text",
+            "type": "text",
+            "placeholder": {
+              "en": "Text"
+            }
+          }
+        ]        
+      }
+    ]
+    
+  },
+  "drivers": [    
+    {
+      "id": "googletts",
+      "name": {
+        "en": "Google TTS device",
+        "nl": "Google TTS apparaat"
+        
+      },
+      "class": "other",
+      "capabilities": [],
+      "images": {
+        "large": "/drivers/googletts/assets/images/large.png",
+        "small": "/drivers/googletts/assets/images/small.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_my_devices"
+          },
+          "options": {
+            "singular": true
+          }
+        },
+        {
+          "id": "add_my_devices",
+          "template": "add_devices"
+        }
+      ],
+      "settings": [
+        {
+          "id": "languagecode",
+          "type": "dropdown",          
+          "label": {
+            "en": "Language"
+          },
+          "value": "en-GB",
+          "hint": {
+            "en": "Choose the language for this device"
+          },
+          "values": [              
+            {
+              "id": "en-GB",
+              "name": "en-GB",
+              "label": {
+                "en": "English (GB)",
+                "nl": "Engels (GB)"
+              }
+            },
+            {
+              "id": "en-US",
+              "name": "en-US",
+              "label": {
+                "en": "English (US)",
+                "nl": "Engels (US)"
+              }
+            },
+            {
+              "id": "nl-NL",
+              "name": "nl-NL",
+              "label": {
+                "en": "Dutch (NL)",
+                "nl": "Nederlands (NL)"
+              }
+            },
+            {
+              "id": "nl-BE",
+              "name": "nl-BE",
+              "label": {
+                "en": "Dutch (BE)",
+                "nl": "Nederlands (BE)"
+              }
+            },
+            {
+              "id": "de-DE",
+              "name": "de-DE",
+              "label": {
+                "en": "German (DE)",
+                "nl": "Duits (DE)"
+              }
+            },
+            {
+              "id": "de-LU",
+              "name": "de-LU",
+              "label": {
+                "en": "German (LU)",
+                "nl": "Duits (LU)"
+              }
+            },
+            {
+              "id": "fr-FR",
+              "name": "fr-FR",
+              "label": {
+                "en": "French (FR)",
+                "nl": "Frans (FR)"
+              }
+            },
+            {
+              "id": "fr-BE",
+              "name": "fr-BE",
+              "label": {
+                "en": "French (BE)",
+                "nl": "Frans (BE)"
+              }
+            },
+            {
+              "id": "es-ES",
+              "name": "es-ES",
+              "label": {
+                "en": "Spanish (ES)",
+                "nl": "Spaans (ES)"
+              }
+            },
+            {
+              "id": "it-IT",
+              "name": "it-IT",
+              "label": {
+                "en": "Italian (IT)",
+                "nl": "Italiaans (IT)"
+              }
+            },
+            {
+              "id": "sv-SV",
+              "name": "sv-SV",
+              "label": {
+                "en": "Swedish (SV)",                
+                "nl": "Zweeds (SV)"
+              }
+            },
+            {
+              "id": "no-NO",
+              "name": "no-NO",
+              "label": {
+                "en": "Norwegian (NO)",                
+                "nl": "Noorweegs (NO)"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
