@@ -3,13 +3,14 @@
   "version": "0.2.0",
   "compatibility": ">=1.5.0",
   "sdk": 2,
+  "brandColor": "#971700",
   "name": {
     "en": "Google Text-To-Speech to URL",
     "nl": "Google Tekst-Naar-Spraak naar URL"
   },
   "description": {
     "en": "Play Google Text-To-Speech on any device that accepts an URL for sound.",
-    "nl": "Speel Google Tekst-Naar-Spraak op enig apparaat die een URL accepteert voor geluid."
+    "nl": "Speel Google Tekst-Naar-Spraak op elk apparaat die een URL accepteert voor geluid."
   },
   "category": [
     "tools"
@@ -19,6 +20,7 @@
     "large": "/assets/images/large.png",
     "small": "/assets/images/small.png"
   },
+  "source":"https://bitbucket.org/QlusterIT/nl.qluster-it.googlettstourl/",
   "author": {
     "name": "Arie J. Godschalk",
     "email": "arie@qluster-it.nl"
