@@ -1,6 +1,6 @@
 {
   "id": "nl.qluster-it.GoogleServices",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "compatibility": ">=1.5.0",
   "sdk": 2,
   "brandColor": "#971700",
@@ -175,9 +175,9 @@
             "placeholder": {
               "en": "Speed"
             },
-            "min":0.25,
-            "max":4.0,
-            "step":0.01
+            "min": 0.25,
+            "max": 4,
+            "step": 0.01
           }
         ]
       },
@@ -208,9 +208,9 @@
             "placeholder": {
               "en": "Speed"
             },
-            "min":0.25,
-            "max":4.0,
-            "step":0.01
+            "min": 0.25,
+            "max": 4,
+            "step": 0.01
           },
           {
             "name": "pitch",
@@ -218,9 +218,9 @@
             "placeholder": {
               "en": "Speed"
             },
-            "min":-20.00,
-            "max":20.0,
-            "step":0.1            
+            "min": -20,
+            "max": 20,
+            "step": 0.1
           }
         ]
       }
@@ -404,7 +404,7 @@
             "nl": "Stem"
           },
           "hint": {
-            "en": "Choose the voice for this device", 
+            "en": "Choose the voice for this device",
             "nl": "Kies de stem voor dit apparaat"
           },
           "values": [
@@ -415,7 +415,7 @@
                 "en": "Default voice",
                 "nl": "Standaard stem"
               }
-            }            
+            }
           ]
         },
         {
@@ -425,17 +425,17 @@
             "en": "Speed",
             "nl": "Snelheid"
           },
-          "min":0.25,
-          "max":4.0,
-          "step":0.01
+          "min": 0.25,
+          "max": 4,
+          "step": 0.01
         },
         {
           "id": "pitch",
           "type": "number",
           "label": "Pitch",
-          "min":-20.00,
-          "max":20.0,
-          "step":0.1            
+          "min": -20,
+          "max": 20,
+          "step": 0.1
         }
       ]
     }
