@@ -91,8 +91,6 @@ class GoogleTTStoURLApp extends Homey.App {
                   if(!args.device || !args.text) return false;
                   var url = await TtsServer.getUrl({args});
                   console.log('start_googlettscloudAction.registerRunListener url: ' + url);
-                  //var url = 'http://' +ip + ':47333/tts/' + this.setDefaultCloudVoice +languagecode + '/' + escape(args.text);// googleTTS.getAudioUrl(args.text, { lang:languagecode, slow: start.slow });
-                  //var url = 'http://' +ip + ':47333/tts/' + escape(args.text);// googleTTS.getAudioUrl(args.text, { lang:languagecode, slow: start.slow });
                   return this.Triggers.cloudurlTrigger.Card.trigger(args.device, {url:url} );
 
               } catch (error) { console.log('Error: ' + error); }
