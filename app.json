@@ -1,6 +1,6 @@
 {
   "id": "nl.qluster-it.GoogleServices",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "compatibility": ">=1.5.0",
   "sdk": 2,
   "brandColor": "#971700",
@@ -9,8 +9,8 @@
     "nl": "Google Services"
   },
   "description": {
-    "en": "Use Google Services like the new Text-to-Speech or YouTube.",
-    "nl": "Gebruik Google Services zoals de nieuwe Tekst-naar-Spraak of YouTube."
+    "en": "Use Google Services like the (new) Text-to-Speech or YouTube.",
+    "nl": "Gebruik Google Services zoals de (nieuwe) Tekst-naar-Spraak of YouTube."
   },
   "category": [
     "tools"
@@ -82,7 +82,7 @@
       {
         "id": "start_googletts",
         "title": {
-          "en": "Start Google TTS"
+          "en": "Start Google TTS (max 200)"
         },
         "titleFormatted": {
           "en": "Start Google TTS for [[text]]"
@@ -124,7 +124,8 @@
             }
           }
         ]
-      },{
+      },
+      {
         "id": "start_googlecloudtts",
         "title": {
           "en": "Start Google Cloud TTS"
@@ -144,6 +145,83 @@
             "placeholder": {
               "en": "Text"
             }
+          }
+        ]
+      },
+      {
+        "id": "start_googlecloudtts_speed",
+        "title": {
+          "en": "Start Google Cloud TTS"
+        },
+        "titleFormatted": {
+          "en": "Start Google Cloud TTS for [[text]] at speed [[speakingRate]]"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=googlecloudtts"
+          },
+          {
+            "name": "text",
+            "type": "text",
+            "placeholder": {
+              "en": "Text"
+            }
+          },
+          {
+            "name": "speakingRate",
+            "type": "range",
+            "placeholder": {
+              "en": "Speed"
+            },
+            "min":0.25,
+            "max":4.0,
+            "step":0.01
+          }
+        ]
+      },
+      {
+        "id": "start_googlecloudtts_speed_pitch",
+        "title": {
+          "en": "Start Google Cloud TTS"
+        },
+        "titleFormatted": {
+          "en": "Start Google Cloud TTS for [[text]] at speed [[speakingRate]] with pitch [[pitch]]"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=googlecloudtts"
+          },
+          {
+            "name": "text",
+            "type": "text",
+            "placeholder": {
+              "en": "Text"
+            }
+          },
+          {
+            "name": "speakingRate",
+            "type": "range",
+            "placeholder": {
+              "en": "Speed"
+            },
+            "min":0.25,
+            "max":4.0,
+            "step":0.01
+          },
+          {
+            "name": "pitch",
+            "type": "range",
+            "placeholder": {
+              "en": "Speed"
+            },
+            "min":-20.00,
+            "max":20.0,
+            "step":0.1
+            
           }
         ]
       }
@@ -337,103 +415,7 @@
                 "en": "Default language",
                 "nl": "Standaard taal"
               }
-            },
-            {
-              "id": "en-GB",
-              "name": "en-GB",
-              "label": {
-                "en": "English (GB)",
-                "nl": "Engels (GB)"
-              }
-            },
-            {
-              "id": "en-US",
-              "name": "en-US",
-              "label": {
-                "en": "English (US)",
-                "nl": "Engels (US)"
-              }
-            },
-            {
-              "id": "nl-NL",
-              "name": "nl-NL",
-              "label": {
-                "en": "Dutch (NL)",
-                "nl": "Nederlands (NL)"
-              }
-            },
-            {
-              "id": "nl-BE",
-              "name": "nl-BE",
-              "label": {
-                "en": "Dutch (BE)",
-                "nl": "Nederlands (BE)"
-              }
-            },
-            {
-              "id": "de-DE",
-              "name": "de-DE",
-              "label": {
-                "en": "German (DE)",
-                "nl": "Duits (DE)"
-              }
-            },
-            {
-              "id": "de-LU",
-              "name": "de-LU",
-              "label": {
-                "en": "German (LU)",
-                "nl": "Duits (LU)"
-              }
-            },
-            {
-              "id": "fr-FR",
-              "name": "fr-FR",
-              "label": {
-                "en": "French (FR)",
-                "nl": "Frans (FR)"
-              }
-            },
-            {
-              "id": "fr-BE",
-              "name": "fr-BE",
-              "label": {
-                "en": "French (BE)",
-                "nl": "Frans (BE)"
-              }
-            },
-            {
-              "id": "es-ES",
-              "name": "es-ES",
-              "label": {
-                "en": "Spanish (ES)",
-                "nl": "Spaans (ES)"
-              }
-            },
-            {
-              "id": "it-IT",
-              "name": "it-IT",
-              "label": {
-                "en": "Italian (IT)",
-                "nl": "Italiaans (IT)"
-              }
-            },
-            {
-              "id": "sv-SV",
-              "name": "sv-SV",
-              "label": {
-                "en": "Swedish (SV)",
-                "nl": "Zweeds (SV)"
-              }
-            },
-            {
-              "id": "no-NO",
-              "name": "no-NO",
-              "label": {
-                "en": "Norwegian (NO)",
-                "nl": "Noors (NO)"
-              }
-            }
+            }            
           ]
         }
       ]

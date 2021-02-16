@@ -1,5 +1,5 @@
 'use strict';
-
+const _ = require('lodash');
 const Homey = require('homey');
 const googleTTS = require('google-tts-api');
 const fs = require('fs');
@@ -30,14 +30,16 @@ class GoogleTTStoURLApp extends Homey.App {
           this.setCloudJSON();
       } else if(settingName=='DefaultCloudVoice') {
         this.setDefaultCloudVoice();
-    }
+      // } else if(settingName=='DefaultCloudLanguageCode') {
+      //   this.setDefaultCloudLanguageCode();
+      }
     }).bind(this));
     await this.setCloudJSON();
-    await this.setDefaultCloudVoice();
+    await this.setDefaultCloudVoice();   
+    //await this.setDefaultCloudLanguageCode();
+
+    TtsServer.init({client: this.client, homey: Homey});
     
-    TtsServer.init({client: this.client});
-    var voices  = await TtsServer.getVoices();
-    console.log(voices);
 
 
 
@@ -74,32 +76,49 @@ class GoogleTTStoURLApp extends Homey.App {
           }).bind(this));
     }
 
+    var startsClouds = [
+      {id:'start_googlecloudtts'},
+      {id:'start_googlecloudtts_speed'},
+      {id:'start_googlecloudtts_speed_pitch'}
+    ];
 
-    const start_googlettscloudAction = new Homey.FlowCardAction('start_googlecloudtts');//this.homey.flow.getActionCard('start_googletts');
+    for (let i = 0; i < startsClouds.length; i++) {
+      const start = startsClouds[i];
+      
+      const start_googlettscloudAction = new Homey.FlowCardAction(start.id);//this.homey.flow.getActionCard('start_googletts');
       start_googlettscloudAction.register().registerRunListener(( async ( args, state ) => { //async
               try {
                   if(!args.device || !args.text) return false;
-                  var settings =  args.device.getSettings();
-                  var languagecode = settings && settings.languagecode ? settings.languagecode : 'en-GB';
-                  var ip = (await Homey.ManagerCloud.getLocalAddress()).split(':')[0];
+                  var url = await TtsServer.getUrl({args});
+                  console.log('start_googlettscloudAction.registerRunListener url: ' + url);
                   //var url = 'http://' +ip + ':47333/tts/' + this.setDefaultCloudVoice +languagecode + '/' + escape(args.text);// googleTTS.getAudioUrl(args.text, { lang:languagecode, slow: start.slow });
-                  var url = 'http://' +ip + ':47333/tts/' + escape(args.text);// googleTTS.getAudioUrl(args.text, { lang:languagecode, slow: start.slow });
+                  //var url = 'http://' +ip + ':47333/tts/' + escape(args.text);// googleTTS.getAudioUrl(args.text, { lang:languagecode, slow: start.slow });
                   return this.Triggers.cloudurlTrigger.Card.trigger(args.device, {url:url} );
+
               } catch (error) { console.log('Error: ' + error); }
               return false;
           }).bind(this));
 
+    }
     
 
     
     //await this.speak({text: 'test'});
   }
   
+  
+  // async setDefaultCloudLanguageCode() {
+  //   var lg = (await Homey.ManagerSettings.get('DefaultCloudLanguageCode')) || Homey.__('language');
+  //   console.log('setDefaultCloudLanguageCode lg: ' + lg);
+  //   TtsServer.DefaultCloudLanguageCode = lg;
+  // }
+
   async setDefaultCloudVoice() {
     var voice = await Homey.ManagerSettings.get('DefaultCloudVoice');
+    if(voice) voice = JSON.parse(voice);
     var voices = await TtsServer.getVoices();
     var r;
-    if(voices) r = _.find(voices=>voices.name==voice);
+    if(voices && voice) r = _.find(voices, v=>v.name==voice.name);
     TtsServer.DefaultCloudVoice = r;    
   }
 
