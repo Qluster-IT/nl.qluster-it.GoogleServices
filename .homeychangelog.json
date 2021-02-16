@@ -5,4 +5,8 @@
   "1.1.0": {
     "en": "Google Cloud Added, and everything that cames with it."
   }
+  ,
+  "1.1.1": {
+    "en": "SSML coding is accepted now, like: <speak>Here are <say-as interpret-as=\"characters\">SSML</say-as> samples.<break time=\"3s\" />. And continue</speak>"
+  }
 }
