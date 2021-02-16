@@ -9,8 +9,8 @@
     "nl": "Google Services"
   },
   "description": {
-    "en": "Use Google Services like the (new) Text-to-Speech or YouTube.",
-    "nl": "Gebruik Google Services zoals de (nieuwe) Tekst-naar-Spraak of YouTube."
+    "en": "Use Google Services like the (new) Text-to-Speech with a lott of voices and options.",
+    "nl": "Gebruik Google Services zoals de (nieuwe) Tekst-naar-Spraak met veel stemmen en mogelijkheden."
   },
   "category": [
     "tools"
@@ -220,8 +220,7 @@
             },
             "min":-20.00,
             "max":20.0,
-            "step":0.1
-            
+            "step":0.1            
           }
         ]
       }
@@ -398,25 +397,45 @@
       ],
       "settings": [
         {
-          "id": "languagecode",
+          "id": "voice",
           "type": "dropdown",
           "label": {
-            "en": "Language"
+            "en": "Voice",
+            "nl": "Stem"
           },
-          "value": "en-GB",
           "hint": {
-            "en": "Choose the language for this device"
+            "en": "Choose the voice for this device", 
+            "nl": "Kies de stem voor dit apparaat"
           },
           "values": [
             {
               "id": "default",
               "name": "Default",
               "label": {
-                "en": "Default language",
-                "nl": "Standaard taal"
+                "en": "Default voice",
+                "nl": "Standaard stem"
               }
             }            
           ]
+        },
+        {
+          "id": "speakingRate",
+          "type": "number",
+          "label": {
+            "en": "Speed",
+            "nl": "Snelheid"
+          },
+          "min":0.25,
+          "max":4.0,
+          "step":0.01
+        },
+        {
+          "id": "pitch",
+          "type": "number",
+          "label": "Pitch",
+          "min":-20.00,
+          "max":20.0,
+          "step":0.1            
         }
       ]
     }

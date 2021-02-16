@@ -98,21 +98,34 @@
     </head>
 
     <body ng-controller="UPnPPlayerAppController as upnp">        
-            <textarea id="debug" type="text" columns="40" rows="5" style="width:100%;"></textarea>
+            <textarea id="debug" type="text" columns="40" rows="5" style="width:100%;display: none;" ></textarea>
             <br/>
             <br/>
         
         <h2>Google Cloud Service Account JSON</h2>
-        <textarea id="cloudJSON" type="text" columns="40" rows="10" style="width:100%;"></textarea>
+        <textarea id="cloudJSON" type="text" columns="40" rows="10" style="width:100%;" placeholder="{
+  'type': 'service_account',
+  'project_id': '',
+  'private_key_id': '',
+  'private_key': '-----BEGIN PRIVATE KEY-----\\n-----END PRIVATE KEY-----\n',
+  'client_email': '',
+  'client_id': '',
+  'auth_uri': 'https://accounts.google.com/o/oauth2/auth',
+  'token_uri': 'https://oauth2.googleapis.com/token',
+  'auth_provider_x509_cert_url': 'https://www.googleapis.com/oauth2/v1/certs',
+  'client_x509_cert_url': ''
+}
+          "></textarea>
         <br/>
-
+<!-- 
         <h2>Google Cloud Default Language Code</h2>
         <select id="defaultCloudLanguageCode" style="display: inline-block;width:100%;"></select>
-        <br/>
+        <br/> -->
 
         <h2>Google Cloud Default Voice</h2>
         <select id="defaultCloudVoice" style="display: inline-block;width:100%;"></select>
 
+        <br/>
         <button id="save">Save</button>
 
 </body>
