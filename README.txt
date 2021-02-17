@@ -1,7 +1,7 @@
 Create a device per room and/or for the whole home.
 Start a speech flow for that device and it will trigger a flow with an URL.
 
-This works great with other Apps like Sonos (Play URL), Samsung Smart TV (Laung Browser with the URL), Sonois Say (Url) and IFTTT.
+This works great with other Apps like Sonos (Play URL), Samsung Smart TV (Laung Browser with the URL), Sonos Say (Url) and IFTTT.
 
 Create a House device that triggers all applicable devices to say "Dinner is ready!" or just a device for the main room to say "The doorbell is ringing".
 You can add "devices" as many times as you would like, each with its own trigger.
