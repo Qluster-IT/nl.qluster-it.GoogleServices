@@ -10,5 +10,8 @@
   },
   "1.1.3": {
     "en": "Fixes and added duration as tokens to flowactions for Sonos Say"
+  },
+  "1.1.4": {
+    "en": "Fixed Settingsscreen so no restart of app is necessary"
   }
 }
