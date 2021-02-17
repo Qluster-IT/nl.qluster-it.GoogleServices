@@ -44,16 +44,16 @@ class GoogleTTStoURLApp extends Homey.App {
 
 
     const url_trigger = new Homey.FlowCardTriggerDevice('url_trigger'); // this.homey.flow.getDeviceTriggerCard('url_trigger');
-    this.Triggers.cloudurlTrigger.Card = url_trigger;
+    this.Triggers.urlTrigger.Card = url_trigger;
     url_trigger
     .register()
-    .registerRunListener( async ( args, state ) => {  return true; });
+    .registerRunListener( async ( args, state ) => {  console.log('url_trigger.registerRunListener'); console.log(args); return true; });
     
     const cloudurl_trigger = new Homey.FlowCardTriggerDevice('cloudurl_trigger'); // this.homey.flow.getDeviceTriggerCard('url_trigger');
     this.Triggers.cloudurlTrigger.Card = cloudurl_trigger;
     cloudurl_trigger
     .register()
-    .registerRunListener( async ( args, state ) => {  return true; });
+    .registerRunListener( async ( args, state ) => { console.log('cloudurl_trigger.registerRunListener'); console.log(args);  return true; });
     
 
     var starts = [
@@ -70,7 +70,7 @@ class GoogleTTStoURLApp extends Homey.App {
                   var settings =  args.device.getSettings();
                   var languagecode = settings && settings.languagecode ? settings.languagecode : 'en-GB';
                   var url = googleTTS.getAudioUrl(args.text, { lang:languagecode, slow: start.slow });
-                  return this.Triggers.cloudurlTrigger.Card.trigger(args.device, {url:url} );
+                  return this.Triggers.urlTrigger.Card.trigger(args.device, {url:url} );
               } catch (error) { console.log('Error: ' + error); }
               return false;
           }).bind(this));
@@ -89,9 +89,13 @@ class GoogleTTStoURLApp extends Homey.App {
       start_googlettscloudAction.register().registerRunListener(( async ( args, state ) => { //async
               try {
                   if(!args.device || !args.text) return false;
+                  console.log('start_googlettscloudAction.registerRunListener args: ');
+                  console.log(args);
                   var url = await TtsServer.getUrl({args});
-                  console.log('start_googlettscloudAction.registerRunListener url: ' + url);
-                  return this.Triggers.cloudurlTrigger.Card.trigger(args.device, {url:url} );
+                  console.log('start_googlettscloudAction.registerRunListener url: ' + url.url);
+                  console.log(url);
+                  console.log({url:url.url, text:args.text, duration :url.duration });
+                  return this.Triggers.cloudurlTrigger.Card.trigger(args.device, {url:url.url, text:args.text, duration :url.duration } );
 
               } catch (error) { console.log('Error: ' + error); }
               return false;

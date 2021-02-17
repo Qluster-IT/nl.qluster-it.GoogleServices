@@ -83,17 +83,17 @@
             }
           },
           {
-            "name": "duration",
-            "type": "number",
-            "title": {
-              "en": "Duration"
-            }
-          },
-          {
             "name": "text",
             "type": "string",
             "title": {
               "en": "Text"
+            }
+          },
+          {
+            "name": "duration",
+            "type": "number",
+            "title": {
+              "en": "Duration"
             }
           }
         ],
