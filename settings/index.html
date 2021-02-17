@@ -16,11 +16,16 @@
                 var defaultCloudVoice = document.getElementById('defaultCloudVoice');
                 //var defaultCloudLanguageCode = document.getElementById('defaultCloudLanguageCode');
                 Homey.ready();
-                save.onclick = function() {
-                    Homey.set('CloudJSON', cloudJSON.value);
-                    Homey.set('DefaultCloudVoice', defaultCloudVoice.children[defaultCloudVoice.selectedIndex].value);
-                    //Homey.set('DefaultCloudLanguageCode', defaultCloudLanguageCode.children[defaultCloudLanguageCode.selectedIndex].value);
-                    Homey.alert('Saved');
+                save.onclick = async function() {
+                    try {                        
+                        await Homey.set('CloudJSON', cloudJSON.value);
+                        await Homey.set('DefaultCloudVoice', defaultCloudVoice.selectedIndex>0 && defaultCloudVoice.children.length>defaultCloudVoice.selectedIndex ? defaultCloudVoice.children[defaultCloudVoice.selectedIndex].value : null);                        
+                        //await Homey.set('DefaultCloudLanguageCode', defaultCloudLanguageCode.children[defaultCloudLanguageCode.selectedIndex].value);
+                        Homey.alert('Saved');
+                        getVoices();
+                    } catch (error) {
+                        Homey.alert('Error while saving: ' + error);
+                    }
                 }
                 Homey.get('CloudJSON', function(err, v) {
                     cloudJSON.value = err ? '' : v;
@@ -73,15 +78,15 @@
                         }
                         Homey.get('DefaultCloudVoice', function(err, defaultVoice) {
                             try {
-                                if(!defaultVoice) return;
-                                defaultVoice = JSON.parse(defaultVoice);
-                                for (let i = 0; i < result.length; i++) {
+                                //if(!defaultVoice) return;
+                                defaultVoice = defaultVoice ? JSON.parse(defaultVoice) : null;
+                                if(result && result.length>0)for (let i = 0; i < result.length; i++) {
                                     const voice = result[i];
                                     var option = document.createElement('option');
                                     var val = JSON.stringify(voice);
                                     option.value = val;
                                     option.innerText = voice.name + ' (' + voice.ssmlGender + ')';
-                                    if(voice.name==defaultVoice.name) option.selected = true;
+                                    if(defaultVoice && voice.name==defaultVoice.name) option.selected = true;
                                     defaultCloudVoice.appendChild(option);                            
                                 }
                                 

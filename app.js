@@ -16,7 +16,7 @@ var TtsServer = require('./lib/tts-server')
 //const GoogleFunctions = require('./lib/googleFunction');
 
 
-class GoogleTTStoURLApp extends Homey.App {
+class GoogleServicesApp extends Homey.App {
   Triggers ={
     urlTrigger:{List:[], Card:null},
     cloudurlTrigger:{List:[], Card:null}
@@ -29,7 +29,7 @@ class GoogleTTStoURLApp extends Homey.App {
       if(settingName=='CloudJSON') {
           this.setCloudJSON();
       } else if(settingName=='DefaultCloudVoice') {
-        this.setDefaultCloudVoice();
+          this.setDefaultCloudVoice();
       // } else if(settingName=='DefaultCloudLanguageCode') {
       //   this.setDefaultCloudLanguageCode();
       }
@@ -126,7 +126,7 @@ class GoogleTTStoURLApp extends Homey.App {
 
   async setCloudJSON() {
     var json = await Homey.ManagerSettings.get('CloudJSON');
-    this.credentials = JSON.parse(json);
+    this.credentials = json ? JSON.parse(json) : null;
     if(this.credentials)this.client = new textToSpeech.TextToSpeechClient({credentials:this.credentials});
     else this.client = null;
     TtsServer.client = this.client;
@@ -135,4 +135,4 @@ class GoogleTTStoURLApp extends Homey.App {
 
 }
 
-module.exports = GoogleTTStoURLApp;
+module.exports = GoogleServicesApp;
