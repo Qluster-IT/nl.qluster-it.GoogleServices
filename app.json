@@ -3,14 +3,14 @@
   "version": "1.1.4",
   "compatibility": ">=1.5.0",
   "sdk": 2,
-  "brandColor": "#971700",
+  "brandColor": "#8DB000",
   "name": {
     "en": "Google Services",
     "nl": "Google Services"
   },
   "description": {
-    "en": "Use Google Services like the (new) Text-to-Speech with a lott of voices and options.",
-    "nl": "Gebruik Google Services zoals de (nieuwe) Tekst-naar-Spraak met veel stemmen en mogelijkheden."
+    "en": "Setup your favorite Google voice for your speakers",
+    "nl": "Stel je favoriete Google stem in voor je speakers"
   },
   "category": [
     "tools"
@@ -21,6 +21,10 @@
     "small": "/assets/images/small.png"
   },
   "source": "https://bitbucket.org/QlusterIT/nl.qluster-it.googleservices/",
+  "bugs": {
+    "url": "https://bitbucket.org/QlusterIT/nl.qluster-it.googleservices/issues"
+  },
+  "homeyCommunityTopicId": 43257,
   "author": {
     "name": "Arie J. Godschalk",
     "email": "arie@qluster-it.nl"
