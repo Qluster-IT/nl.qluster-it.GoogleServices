@@ -1,12 +1,15 @@
 {
-  "name": "nl.qluster-it.googleTTStoURL",
+  "name": "nl.qluster-it.GoogleServices",
   "version": "0.0.1",
   "main": "app.js",
   "devDependencies": {
     "homey": "^2.9.7"
   },
   "dependencies": {
+    "@google-cloud/text-to-speech": "^3.1.3",
     "google-tts-api": "^2.0.1",
+    "lodash": "^4.17.20",
+    "music-metadata": "^7.7.0",
     "node-fetch": "^2.6.1",
     "uuid": "^8.3.2"
   }
