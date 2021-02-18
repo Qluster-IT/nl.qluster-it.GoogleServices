@@ -16,7 +16,7 @@
                 var defaultCloudVoice = document.getElementById('defaultCloudVoice');
                 //var defaultCloudLanguageCode = document.getElementById('defaultCloudLanguageCode');
                 Homey.ready();
-                save.onclick = async function() {
+                save.addEventListener('click', async function (e) {
                     try {                        
                         await Homey.set('CloudJSON', cloudJSON.value);
                         await Homey.set('DefaultCloudVoice', defaultCloudVoice.selectedIndex>0 && defaultCloudVoice.children.length>defaultCloudVoice.selectedIndex ? defaultCloudVoice.children[defaultCloudVoice.selectedIndex].value : null);                        
@@ -26,7 +26,7 @@
                     } catch (error) {
                         Homey.alert('Error while saving: ' + error);
                     }
-                }
+                });
                 Homey.get('CloudJSON', function(err, v) {
                     cloudJSON.value = err ? '' : v;
                 });
