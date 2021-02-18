@@ -76,7 +76,7 @@
                             defaultCloudVoice.removeChild(element);
                             i--;                        
                         }
-                        Homey.get('DefaultCloudVoice', function(err, defaultVoice) {
+                        if(!err) Homey.get('DefaultCloudVoice', function(err, defaultVoice) {
                             try {
                                 //if(!defaultVoice) return;
                                 defaultVoice = defaultVoice ? JSON.parse(defaultVoice) : null;
