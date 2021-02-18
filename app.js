@@ -7,6 +7,8 @@ const path = require('path');
 const util = require('util');
 const textToSpeech = require('@google-cloud/text-to-speech');
     
+const {Defer} = require('./lib/proto');
+
 var TtsServer = require('./lib/tts-server')
 
 //const fetch = require('node-fetch');
@@ -65,14 +67,15 @@ class GoogleServicesApp extends Homey.App {
       const start_googlettsAction = new Homey.FlowCardAction(start.id);//this.homey.flow.getActionCard('start_googletts');
       start_googlettsAction.register().registerRunListener(( ( args, state ) => { //async
               try {
+                var defer = new Defer();
                   if(!args.device || !args.text) return false;
                   if(args.text.length>200) return  new Error("Max 200 characters");
                   var settings =  args.device.getSettings();
                   var languagecode = settings && settings.languagecode ? settings.languagecode : 'en-GB';
                   var url = googleTTS.getAudioUrl(args.text, { lang:languagecode, slow: start.slow });
                   return this.Triggers.urlTrigger.Card.trigger(args.device, {url:url} );
-              } catch (error) { console.log('Error: ' + error); }
-              return false;
+              } catch (error) { console.log('Error: ' + error); defer.resolve('An error occured'); }
+              return defer.promise;
           }).bind(this));
     }
 
@@ -86,19 +89,23 @@ class GoogleServicesApp extends Homey.App {
       const start = startsClouds[i];
       
       const start_googlettscloudAction = new Homey.FlowCardAction(start.id);//this.homey.flow.getActionCard('start_googletts');
-      start_googlettscloudAction.register().registerRunListener(( async ( args, state ) => { //async
+      start_googlettscloudAction.register().registerRunListener(( ( args, state ) => { //async
               try {
+                var defer = new Defer();
                   if(!args.device || !args.text) return false;
                   console.log('start_googlettscloudAction.registerRunListener args: ');
                   console.log(args);
-                  var url = await TtsServer.getUrl({args});
-                  console.log('start_googlettscloudAction.registerRunListener url: ' + url.url);
-                  console.log(url);
-                  console.log({url:url.url, text:args.text, duration :url.duration });
-                  return this.Triggers.cloudurlTrigger.Card.trigger(args.device, {url:url.url, text:args.text, duration :url.duration } );
-
-              } catch (error) { console.log('Error: ' + error); }
-              return false;
+                  TtsServer.getUrl({args}).then(url=> {
+                    console.log('start_googlettscloudAction.registerRunListener url: ' + url.url);
+                    console.log(url);
+                    console.log({url:url.url, text:args.text, duration :url.duration });
+                    defer.resolve(!!this.Triggers.cloudurlTrigger.Card.trigger(args.device, {url:url.url, text:args.text, duration :url.duration } ));
+                  }).catch(err=>{defer.reject('Did you configure the JSON in the settingspage?');});
+              } catch (error) { 
+                console.log('Error: ' + error);
+                defer.reject('Did you configure the JSON in the settingspage?');
+              }
+              return defer.promise;
           }).bind(this));
 
     }

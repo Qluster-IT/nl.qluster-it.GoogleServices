@@ -8,22 +8,15 @@ You can set Pitch and Speed per device (will be overruled by flows with pitch an
 SSML coding is accepted now, like: <speak>Here are <say-as interpret-as=\"characters\">SSML</say-as> samples.<break time=\"3s\" />. And continue</speak>
 https://cloud.google.com/text-to-speech/docs/ssml
 
-
 The audio is streamed through Homey, so the device eventually playing the mp3 file should be in the same network and have access.
 The last 100 transcripts are stored in Homey's Memory for speed and less requests to Google Cloud.
-
-
-Create a device per room and/or for the whole home.
-Start a speech flow for that device and it will trigger a flow with an URL.
-
-This works great with other Apps like Sonos (Play URL), Samsung Smart TV (Laung Browser with the URL), Sonos Say (Url) and IFTTT.
 
 Create a House device that triggers all applicable devices to say "Dinner is ready!" or just a device for the main room to say "The doorbell is ringing".
 You can add "devices" as many times as you would like, each with its own trigger.
 
+This works great with other Apps like Sonos (Play URL), Samsung Smart TV (Laung Browser with the URL), Sonos Say (Url) and IFTTT.
 
 
-There are also Google Cloud devices, using the newest Google Cloud Services.
 For this you wil need to generate your own Google Cloud Service Account at
 https://cloud.google.com/text-to-speech/docs/libraries#setting_up_authentication
 and fill-in the JSON in the settings.
