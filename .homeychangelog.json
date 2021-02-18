@@ -16,5 +16,11 @@
   },
   "1.2.0": {
     "en": "Ready for the world to speak to"
+  },
+  "1.2.1": {
+    "en": "Bugfixed"
+  },
+  "1.2.2": {
+    "en": "Settings work on phone"
   }
 }
