@@ -26,7 +26,7 @@ class GoogleCloudTTSDriver extends Homey.Driver
             {
                 "languagecode": "default",
                 "speakingRate" : 1,
-                "pitch" : 0// Homey.__('languagecode') || 'en-GB'
+                "pitch" : 0
             }
         });
 

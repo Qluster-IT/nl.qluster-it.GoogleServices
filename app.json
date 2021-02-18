@@ -51,14 +51,16 @@
             "name": "duration",
             "type": "number",
             "title": {
-              "en": "Duration"
+              "en": "Duration",
+              "nl":"Duur"
             }
           },
           {
             "name": "text",
             "type": "string",
             "title": {
-              "en": "Text"
+              "en": "Text",
+              "nl": "Tekst"
             }
           }
         ],
@@ -90,14 +92,16 @@
             "name": "text",
             "type": "string",
             "title": {
-              "en": "Text"
+              "en": "Text",
+              "nl": "Tekst"
             }
           },
           {
             "name": "duration",
             "type": "number",
             "title": {
-              "en": "Duration"
+              "en": "Duration",
+              "nl": "Duur"
             }
           }
         ],
@@ -114,10 +118,12 @@
       {
         "id": "start_googletts",
         "title": {
-          "en": "Start Google TTS (max 200)"
+          "en": "Start TTS",
+          "nl": "Begin TTS"
         },
         "titleFormatted": {
-          "en": "Start Google TTS for [[text]]"
+          "en": "Start saying [[text]]",
+          "nl": "Begin te zeggen [[text]]"
         },
         "args": [
           {
@@ -129,7 +135,8 @@
             "name": "text",
             "type": "text",
             "placeholder": {
-              "en": "Text"
+              "en": "Text",
+              "nl": "Tekst"
             }
           }
         ]
@@ -137,10 +144,12 @@
       {
         "id": "start_googletts_slow",
         "title": {
-          "en": "Start Google TTS"
+          "en": "Start TTS slow speed",
+          "nl": "Begin TTS langzame snelheid"
         },
         "titleFormatted": {
-          "en": "Start Google TTS for [[text]] at slow speed"
+          "en": "Start saying [[text]] slow speed",
+          "nl": "Begin te zeggen [[text]] langzame snelheid"
         },
         "args": [
           {
@@ -152,7 +161,8 @@
             "name": "text",
             "type": "text",
             "placeholder": {
-              "en": "Text"
+              "en": "Text",
+              "nl": "Tekst"
             }
           }
         ]
@@ -160,10 +170,12 @@
       {
         "id": "start_googlecloudtts",
         "title": {
-          "en": "Start Google Cloud TTS"
+          "en": "Start TTS",
+          "nl": "Begin TTS"
         },
         "titleFormatted": {
-          "en": "Start Google Cloud TTS for [[text]]"
+          "en": "Start saying [[text]]",
+          "nl": "Begin te zeggen [[text]]"
         },
         "args": [
           {
@@ -175,7 +187,8 @@
             "name": "text",
             "type": "text",
             "placeholder": {
-              "en": "Text"
+              "en": "Text",
+              "nl": "Tekst"
             }
           }
         ]
@@ -183,10 +196,12 @@
       {
         "id": "start_googlecloudtts_speed",
         "title": {
-          "en": "Start Google Cloud TTS"
+          "en": "Start TTS at speed",
+          "nl": "Begin TTS op snelheid"
         },
         "titleFormatted": {
-          "en": "Start Google Cloud TTS for [[text]] at speed [[speakingRate]]"
+          "en": "Start saying [[text]] speed [[speakingRate]]",
+          "nl": "Begin te zeggen [[text]] snelheid [[speakingRate]]"
         },
         "args": [
           {
@@ -198,14 +213,16 @@
             "name": "text",
             "type": "text",
             "placeholder": {
-              "en": "Text"
+              "en": "Text",
+              "nl": "Tekst"
             }
           },
           {
             "name": "speakingRate",
             "type": "range",
             "placeholder": {
-              "en": "Speed"
+              "en": "Speed",
+              "nl": "Snelheid"
             },
             "min": 0.25,
             "max": 4,
@@ -216,10 +233,11 @@
       {
         "id": "start_googlecloudtts_speed_pitch",
         "title": {
-          "en": "Start Google Cloud TTS"
+          "en": "Start TTS at speed with pitch"
         },
         "titleFormatted": {
-          "en": "Start Google Cloud TTS for [[text]] at speed [[speakingRate]] with pitch [[pitch]]"
+          "en": "Start saying for [[text]] speed [[speakingRate]] pitch [[pitch]]",
+          "nl": "Begin te zeggen [[text]] snelheid [[speakingRate]] toonhoogte [[pitch]]"
         },
         "args": [
           {
@@ -231,14 +249,16 @@
             "name": "text",
             "type": "text",
             "placeholder": {
-              "en": "Text"
+              "en": "Text",
+              "nl": "Tekst"
             }
           },
           {
             "name": "speakingRate",
             "type": "range",
             "placeholder": {
-              "en": "Speed"
+              "en": "Speed",
+              "nl": "Snelheid"
             },
             "min": 0.25,
             "max": 4,
@@ -248,7 +268,8 @@
             "name": "pitch",
             "type": "range",
             "placeholder": {
-              "en": "Speed"
+              "en": "Pitch",
+              "nl": "Toonhoogte"
             },
             "min": -20,
             "max": 20,
@@ -262,8 +283,8 @@
     {
       "id": "googletts",
       "name": {
-        "en": "Google TTS device",
-        "nl": "Google TTS apparaat"
+        "en": "Text-To-Speech (Non-Cloud)",
+        "nl": "Tekst-Naar-Spraak (Non-Cloud)"
       },
       "class": "other",
       "capabilities": [],
@@ -402,8 +423,8 @@
     {
       "id": "googlecloudtts",
       "name": {
-        "en": "Google Cloud TTS device",
-        "nl": "Google Cloud TTS apparaat"
+        "en": "Text-To-Speech",
+        "nl": "Tekst-Naar-Spraak"
       },
       "class": "other",
       "capabilities": [],
