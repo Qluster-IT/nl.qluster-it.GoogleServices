@@ -28,5 +28,8 @@
   },
   "1.2.4": {
     "en": "smaller in size (MB)"
+  },
+  "1.3.0": {
+    "en": "Added finished trigger (you can use it to for example shutdown Sonos Repeat)"
   }
 }
