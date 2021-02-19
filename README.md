@@ -1,5 +1,5 @@
 Use the newest Google Cloud Services, starting with the new Text-to-Speech.
-
+Useable with each device that thakes an URL.
 
 Cloud devices:
 All languages that Google supports, are supported, because the settings are build from live data, so when a new language becames available, it will be for this App also.
@@ -8,7 +8,7 @@ You can set Pitch and Speed per device (will be overruled by flows with pitch an
 SSML coding is accepted now, like: <speak>Here are <say-as interpret-as=\"characters\">SSML</say-as> samples.<break time=\"3s\" />. And continue</speak>
 https://cloud.google.com/text-to-speech/docs/ssml
 
-The audio is streamed through Homey, so the device eventually playing the mp3 file should be in the same network and have access.
+You get a URL for the audio that will be streamed through Homey, so the device eventually playing the mp3 file should be in the same network and have access.
 The last 100 transcripts are stored in Homey's Memory for speed and less requests to Google Cloud.
 
 Create a House device that triggers all applicable devices to say "Dinner is ready!" or just a device for the main room to say "The doorbell is ringing".

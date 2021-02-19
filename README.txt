@@ -1,11 +1,12 @@
 Use the newest Google Cloud Services, starting with the new Text-to-Speech.
+Useable with each device that thakes an URL.
 
 All languages that Google supports, are supported.
 Currently you can only set the Voice in the settings, but it will be setable per device in the near future.
 You can set Pitch and Speed per device (will be overruled by flows with pitch and/or speed).
 SSML coding is accepted now, like: <speak>Here are <say-as interpret-as=\"characters\">SSML</say-as> samples.<break time=\"3s\" />. And continue</speak>
 
-The audio is streamed through Homey, so the device eventually playing the mp3 file should be in the same network and have access.
+You get a URL for the audio that will be streamed through Homey, so the device eventually playing the mp3 file should be in the same network and have access.
 
 Create a House device that triggers all applicable devices to say "Dinner is ready!" or just a device for the main room to say "The doorbell is ringing".
 You can add "devices" as many times as you would like, each with its own trigger.
