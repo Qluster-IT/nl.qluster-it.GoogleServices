@@ -37,5 +37,8 @@
   },
   "1.4.0": {
     "en": "Added Get URL as conditions so the url and duration are available in the Then part of the same flow"
+  },
+  "1.4.1": {
+    "en": "Added conditions with waiting for speech to complete"
   }
 }
