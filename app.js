@@ -97,6 +97,8 @@ class GoogleServicesApp extends Homey.App {
                   console.log('start_googlettscloudAction.registerRunListener args: ');
                   TtsServer.getUrl({args}).then(url=> {
                     console.log('start_googlettscloudAction.registerRunListener url: ' + url.url);
+                    args.device.setCapabilityValue('device_url', url.url);
+                    args.device.setCapabilityValue('device_duration', url.duration);                    
                     var triggered = !!this.Triggers.cloudurlTrigger.Card.trigger(args.device, {url:url.url, text:args.text, duration :url.duration } );
                     if(triggered) this.SetFinishedTimer(args.device, {url:url.url, text:args.text, duration :url.duration });
                     else this.ClearFinishedTimer(args.device);
