@@ -31,5 +31,8 @@
   },
   "1.3.0": {
     "en": "Added finished trigger (you can use it to for example shutdown Sonos Repeat)"
+  },
+  "1.3.2": {
+    "en": "Added url and duration as capability so its available as tokens"
   }
 }
