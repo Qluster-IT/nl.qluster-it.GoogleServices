@@ -1,6 +1,6 @@
 {
   "id": "nl.qluster-it.GoogleServices",
-  "version": "1.3.1",
+  "version": "1.3.2",
   "compatibility": ">=1.5.0",
   "sdk": 2,
   "brandColor": "#8DB000",
@@ -319,7 +319,7 @@
         ]
       }
     ]
-  },  
+  },
   "capabilities": {
     "device_url": {
       "type": "string",
@@ -491,7 +491,10 @@
         "nl": "Tekst-Naar-Spraak"
       },
       "class": "other",
-      "capabilities": ["device_url", "device_duration"],
+      "capabilities": [
+        "device_url",
+        "device_duration"
+      ],
       "images": {
         "large": "/drivers/googlecloudtts/assets/images/large.png",
         "small": "/drivers/googlecloudtts/assets/images/small.png"
