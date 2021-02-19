@@ -1,4 +1,5 @@
 Use the newest Google Cloud Services, starting with the new Text-to-Speech.
+Useable with each device that thakes an URL.
 
 All languages that Google supports, are supported.
 Currently you can only set the Voice in the settings, but it will be setable per device in the near future.

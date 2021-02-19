@@ -1,5 +1,5 @@
 Use the newest Google Cloud Services, starting with the new Text-to-Speech.
-
+Useable with each device that thakes an URL.
 
 Cloud devices:
 All languages that Google supports, are supported, because the settings are build from live data, so when a new language becames available, it will be for this App also.
