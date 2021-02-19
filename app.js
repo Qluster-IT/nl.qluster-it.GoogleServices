@@ -146,7 +146,7 @@ class GoogleServicesApp extends Homey.App {
                     all.then(()=> {
                       defer.resolve();
                     }).catch((err)=> {
-                      defer.reject(err);
+                      defer.reject();
                     });
                   }).catch(err=>{defer.reject('Did you configure the JSON in the settingspage?');});
               } catch (error) { 
