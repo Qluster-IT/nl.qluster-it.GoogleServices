@@ -85,7 +85,6 @@ class GoogleServicesApp extends Homey.App {
       {id:'start_googlecloudtts_speed'},
       {id:'start_googlecloudtts_speed_pitch'}
     ];
-
     for (let i = 0; i < startsClouds.length; i++) {
       const start = startsClouds[i];
       
@@ -110,7 +109,42 @@ class GoogleServicesApp extends Homey.App {
               }
               return defer.promise;
           }).bind(this));
+    }
+    var conditionClouds = [
+      {id:'condition_googlecloudtts'},
+      {id:'condition_googlecloudtts_speed'},
+      {id:'condition_googlecloudtts_speed_pitch'}
+    ];
+    for (let i = 0; i < conditionClouds.length; i++) {
+      const condition = conditionClouds[i];      
+      const condition_googlettscloudAction = new Homey.FlowCardCondition(condition.id);//this.homey.flow.getConditionCard('start_googletts');
+      condition_googlettscloudAction.register().registerRunListener(( ( args, state ) => { //async
+              try {
+                var defer = new Defer();
+                  if(!args.device || !args.text) return false;
+                  console.log('condition_googlettscloudAction.registerRunListener args: ');
+                  TtsServer.getUrl({args}).then(url=> {
+                    console.log('condition_googlettscloudAction.registerRunListener url: ' + url.url);
+                    var promises = [];
+                    
+                    var p1 = args.device.setCapabilityValue('device_url', url.url);
+                    var p2 = args.device.setCapabilityValue('device_duration', url.duration);
+                    promises.push(p1);
+                    promises.push(p2);
+                    var all = Promise.all(promises);
 
+                    all.then(()=> {
+                      defer.resolve();
+                    }).catch((err)=> {
+                      defer.reject(err);
+                    });                    
+                  }).catch(err=>{defer.reject('Did you configure the JSON in the settingspage?');});
+              } catch (error) { 
+                console.log('Error: ' + error);
+                defer.reject('Did you configure the JSON in the settingspage?');
+              }
+              return defer.promise;
+          }).bind(this));
     }
 
     var starts = [

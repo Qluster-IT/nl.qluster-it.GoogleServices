@@ -155,6 +155,118 @@
         ]
       }
     ],
+    "conditions":[
+      {
+        "id": "condition_googlecloudtts",
+        "title": {
+          "en": "Start TTS",
+          "nl": "Begin TTS"
+        },
+        "titleFormatted": {
+          "en": "Start saying [[text]]",
+          "nl": "Begin te zeggen [[text]]"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=googlecloudtts"
+          },
+          {
+            "name": "text",
+            "type": "text",
+            "placeholder": {
+              "en": "Text",
+              "nl": "Tekst"
+            }
+          }
+        ]
+      },
+      {
+        "id": "condition_googlecloudtts_speed",
+        "title": {
+          "en": "Start TTS at speed",
+          "nl": "Begin TTS op snelheid"
+        },
+        "titleFormatted": {
+          "en": "Start saying [[text]] speed [[speakingRate]]",
+          "nl": "Begin te zeggen [[text]] snelheid [[speakingRate]]"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=googlecloudtts"
+          },
+          {
+            "name": "text",
+            "type": "text",
+            "placeholder": {
+              "en": "Text",
+              "nl": "Tekst"
+            }
+          },
+          {
+            "name": "speakingRate",
+            "type": "range",
+            "placeholder": {
+              "en": "Speed",
+              "nl": "Snelheid"
+            },
+            "min": 0.25,
+            "max": 4,
+            "step": 0.01
+          }
+        ]
+      },
+      {
+        "id": "condition_googlecloudtts_speed_pitch",
+        "title": {
+          "en": "Start TTS at speed with pitch"
+        },
+        "titleFormatted": {
+          "en": "Start saying for [[text]] speed [[speakingRate]] pitch [[pitch]]",
+          "nl": "Begin te zeggen [[text]] snelheid [[speakingRate]] toonhoogte [[pitch]]"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=googlecloudtts"
+          },
+          {
+            "name": "text",
+            "type": "text",
+            "placeholder": {
+              "en": "Text",
+              "nl": "Tekst"
+            }
+          },
+          {
+            "name": "speakingRate",
+            "type": "range",
+            "placeholder": {
+              "en": "Speed",
+              "nl": "Snelheid"
+            },
+            "min": 0.25,
+            "max": 4,
+            "step": 0.01
+          },
+          {
+            "name": "pitch",
+            "type": "range",
+            "placeholder": {
+              "en": "Pitch",
+              "nl": "Toonhoogte"
+            },
+            "min": -20,
+            "max": 20,
+            "step": 0.1
+          }
+        ]
+      }
+    ],
     "actions": [
       {
         "id": "start_googletts",
