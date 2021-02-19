@@ -2,6 +2,35 @@
 
 https://cloud.google.com/text-to-speech/docs/libraries#client-libraries-install-nodejs
 
+//Settingg voice
+
+{
+          "id": "voice",
+          "type": "dropdown",
+          "label": {
+            "en": "Voice",
+            "nl": "Stem"
+          },
+          "hint": {
+            "en": "Choose the voice for this device",
+            "nl": "Kies de stem voor dit apparaat"
+          },
+          "values": [
+            {
+              "id": "default",
+              "name": "Default",
+              "label": {
+                "en": "Default voice",
+                "nl": "Standaard stem"
+              }
+            },
+            
+          ]
+        },
+
+
+
+
 
 
 

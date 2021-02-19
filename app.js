@@ -21,7 +21,8 @@ var TtsServer = require('./lib/tts-server')
 class GoogleServicesApp extends Homey.App {
   Triggers ={
     urlTrigger:{List:[], Card:null},
-    cloudurlTrigger:{List:[], Card:null}
+    cloudurlTrigger:{List:[], Card:null},
+    finished_trigger:{List:[], Card:null}
   };
 
   async onInit() {
@@ -94,12 +95,12 @@ class GoogleServicesApp extends Homey.App {
                 var defer = new Defer();
                   if(!args.device || !args.text) return false;
                   console.log('start_googlettscloudAction.registerRunListener args: ');
-                  console.log(args);
                   TtsServer.getUrl({args}).then(url=> {
                     console.log('start_googlettscloudAction.registerRunListener url: ' + url.url);
-                    console.log(url);
-                    console.log({url:url.url, text:args.text, duration :url.duration });
-                    defer.resolve(!!this.Triggers.cloudurlTrigger.Card.trigger(args.device, {url:url.url, text:args.text, duration :url.duration } ));
+                    var triggered = !!this.Triggers.cloudurlTrigger.Card.trigger(args.device, {url:url.url, text:args.text, duration :url.duration } );
+                    if(triggered) this.SetFinishedTimer(args.device, {url:url.url, text:args.text, duration :url.duration });
+                    else this.ClearFinishedTimer(args.device);
+                    defer.resolve(triggered);
                   }).catch(err=>{defer.reject('Did you configure the JSON in the settingspage?');});
               } catch (error) { 
                 console.log('Error: ' + error);
@@ -109,12 +110,33 @@ class GoogleServicesApp extends Homey.App {
           }).bind(this));
 
     }
-    
 
-    
-    //await this.speak({text: 'test'});
+    var starts = [
+      {id:'finished_trigger'}
+    ];
+    for (let i = 0; i < starts.length; i++) {
+        const start = starts[i];        
+        const trigger =  new Homey.FlowCardTriggerDevice(start.id);//this.homey.flow.getDeviceTriggerCard(start.id);
+        this.Triggers[start.id].Card = trigger;
+        trigger.register().registerRunListener(( args, state ) => {  
+            console.log( start.id + '.registerRunListener (args, state)');         
+            console.log(args);
+            console.log(state);
+            return Promise.resolve( args.id && args.id.id && state.id && state.id.id && args.id.id === state.id.id );        
+        });
+    }
   }
   
+  SetFinishedTimer(device, tokens) {
+    this.ClearFinishedTimer(device);
+    var delay = device.getSetting('delay');
+    device.finishedTimer = setTimeout((()=> {            
+        this.Triggers.finished_trigger.Card.trigger(device, tokens);
+    }).bind(this), tokens.duration + (delay || 1000));
+  }
+  ClearFinishedTimer(device) {    
+    if(device.finishedTimer) clearTimeout(device.finishedTimer);
+  }
   
   // async setDefaultCloudLanguageCode() {
   //   var lg = (await Homey.ManagerSettings.get('DefaultCloudLanguageCode')) || Homey.__('language');

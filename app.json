@@ -112,6 +112,47 @@
             "filter": "driver_id=googlecloudtts"
           }
         ]
+      },
+      {
+        "id": "finished_trigger",        
+        "title": {
+          "en": "Finished"
+        },
+        "titleFormatted": {
+          "en": "Finished"
+        },
+        "tokens": [
+          {
+            "name": "url",
+            "type": "string",
+            "title": {
+              "en": "Url"
+            }
+          },
+          {
+            "name": "text",
+            "type": "string",
+            "title": {
+              "en": "Text",
+              "nl": "Tekst"
+            }
+          },
+          {
+            "name": "duration",
+            "type": "number",
+            "title": {
+              "en": "Duration",
+              "nl": "Duur"
+            }
+          }
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=googlecloudtts"
+          }        
+        ]        
       }
     ],
     "actions": [
@@ -449,28 +490,7 @@
         }
       ],
       "settings": [
-        {
-          "id": "voice",
-          "type": "dropdown",
-          "label": {
-            "en": "Voice",
-            "nl": "Stem"
-          },
-          "hint": {
-            "en": "Choose the voice for this device",
-            "nl": "Kies de stem voor dit apparaat"
-          },
-          "values": [
-            {
-              "id": "default",
-              "name": "Default",
-              "label": {
-                "en": "Default voice",
-                "nl": "Standaard stem"
-              }
-            }
-          ]
-        },
+        
         {
           "id": "speakingRate",
           "type": "number",
@@ -489,6 +509,19 @@
           "min": -20,
           "max": 20,
           "step": 0.1
+        },
+        {
+          "id": "delay",
+          "type": "number",
+          "label": {
+            "en": "Delay for each file to (finish) playing in ms",            
+            "nl": "Vertraging voor elk bestand om te (eindige) spelen in ms"
+          },
+          "value": 1000,
+          "hint": {
+            "en": "Extra waiting time before (finishing) playing the next file",
+            "nl": "Extra wachttijd voor het (eindigevan het ) spelen van het bestand"
+          }
         }
       ]
     }
