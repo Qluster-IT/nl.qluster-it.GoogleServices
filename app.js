@@ -113,7 +113,10 @@ class GoogleServicesApp extends Homey.App {
     var conditionClouds = [
       {id:'condition_googlecloudtts'},
       {id:'condition_googlecloudtts_speed'},
-      {id:'condition_googlecloudtts_speed_pitch'}
+      {id:'condition_googlecloudtts_speed_pitch'},
+      {id:'condition_say_googlecloudtts', wait: true},
+      {id:'condition_say_googlecloudtts_speed', wait: true},
+      {id:'condition_say_googlecloudtts_speed_pitch', wait: true}
     ];
     for (let i = 0; i < conditionClouds.length; i++) {
       const condition = conditionClouds[i];      
@@ -131,13 +134,20 @@ class GoogleServicesApp extends Homey.App {
                     var p2 = args.device.setCapabilityValue('device_duration', url.duration);
                     promises.push(p1);
                     promises.push(p2);
-                    var all = Promise.all(promises);
+                    
 
+                    if(condition.wait) {
+                      var triggered = !!this.Triggers.cloudurlTrigger.Card.trigger(args.device, {url:url.url, text:args.text, duration :url.duration } );
+                      if(triggered) promises.push(this.SetFinishedTimer(args.device, {url:url.url, text:args.text, duration :url.duration }));
+                      else this.ClearFinishedTimer(args.device);                      
+                    }
+                   
+                    var all = Promise.all(promises);                   
                     all.then(()=> {
                       defer.resolve();
                     }).catch((err)=> {
                       defer.reject(err);
-                    });                    
+                    });
                   }).catch(err=>{defer.reject('Did you configure the JSON in the settingspage?');});
               } catch (error) { 
                 console.log('Error: ' + error);
@@ -164,11 +174,13 @@ class GoogleServicesApp extends Homey.App {
   }
   
   SetFinishedTimer(device, tokens) {
+    var defer = new Defer();
     this.ClearFinishedTimer(device);
     var delay = device.getSetting('delay');
-    device.finishedTimer = setTimeout((()=> {            
-        this.Triggers.finished_trigger.Card.trigger(device, tokens);
+    device.finishedTimer = setTimeout((()=> {        
+        defer.resolve(!!this.Triggers.finished_trigger.Card.trigger(device, tokens));
     }).bind(this), tokens.duration + (delay || 1000));
+    return defer.promise;
   }
   ClearFinishedTimer(device) {    
     if(device.finishedTimer) clearTimeout(device.finishedTimer);
