@@ -13,7 +13,7 @@ The last 100 transcripts are stored in Homey's Memory for speed and less request
 
 Create a House device that triggers all applicable devices to say "Dinner is ready!" or just a device for the main room to say "The doorbell is ringing".
 You can add "devices" as many times as you would like, each with its own trigger.
-Conditions are also available!
+Conditions are also available! You can let a flow wait in de condition till speech is finished before turning to the Then part of the flow.
 
 This works great with other Apps like Sonos (Play URL), Samsung Smart TV (Laung Browser with the URL), Sonos Say (Url) and IFTTT.
 

@@ -139,7 +139,7 @@ class GoogleServicesApp extends Homey.App {
                     if(condition.wait) {
                       var triggered = !!this.Triggers.cloudurlTrigger.Card.trigger(args.device, {url:url.url, text:args.text, duration :url.duration } );
                       if(triggered) promises.push(this.SetFinishedTimer(args.device, {url:url.url, text:args.text, duration :url.duration }));
-                      else this.ClearFinishedTimer(args.device);                      
+                      else this.ClearFinishedTimer(args.device);
                     }
                    
                     var all = Promise.all(promises);                   
