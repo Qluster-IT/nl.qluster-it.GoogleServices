@@ -40,5 +40,8 @@
   },
   "1.4.1": {
     "en": "Added conditions with waiting for speech to complete"
+  },
+  "1.4.2": {
+    "en": "Bugfixed"
   }
 }

@@ -114,9 +114,9 @@ class GoogleServicesApp extends Homey.App {
       {id:'condition_googlecloudtts'},
       {id:'condition_googlecloudtts_speed'},
       {id:'condition_googlecloudtts_speed_pitch'},
-      {id:'condition_say_googlecloudtts', wait: true},
-      {id:'condition_say_googlecloudtts_speed', wait: true},
-      {id:'condition_say_googlecloudtts_speed_pitch', wait: true}
+      {id:'condition_say_googlecloudtts', triggerAndWait: true},
+      {id:'condition_say_googlecloudtts_speed', triggerAndWait: true},
+      {id:'condition_say_googlecloudtts_speed_pitch', triggerAndWait: true}
     ];
     for (let i = 0; i < conditionClouds.length; i++) {
       const condition = conditionClouds[i];      
@@ -124,7 +124,7 @@ class GoogleServicesApp extends Homey.App {
       condition_googlettscloudAction.register().registerRunListener(( ( args, state ) => { //async
               try {
                 var defer = new Defer();
-                  if(!args.device || !args.text) return false;
+                  if(!args.device || !args.text) return Promise.resolve(false);
                   console.log('condition_googlettscloudAction.registerRunListener args: ');
                   TtsServer.getUrl({args}).then(url=> {
                     console.log('condition_googlettscloudAction.registerRunListener url: ' + url.url);
@@ -136,17 +136,17 @@ class GoogleServicesApp extends Homey.App {
                     promises.push(p2);
                     
 
-                    if(condition.wait) {
+                    if(condition.triggerAndWait) {
                       var triggered = !!this.Triggers.cloudurlTrigger.Card.trigger(args.device, {url:url.url, text:args.text, duration :url.duration } );
                       if(triggered) promises.push(this.SetFinishedTimer(args.device, {url:url.url, text:args.text, duration :url.duration }));
-                      else this.ClearFinishedTimer(args.device);                      
+                      else this.ClearFinishedTimer(args.device);
                     }
                    
                     var all = Promise.all(promises);                   
                     all.then(()=> {
                       defer.resolve();
                     }).catch((err)=> {
-                      defer.reject(err);
+                      defer.reject();
                     });
                   }).catch(err=>{defer.reject('Did you configure the JSON in the settingspage?');});
               } catch (error) { 
