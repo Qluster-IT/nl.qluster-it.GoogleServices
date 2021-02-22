@@ -9,7 +9,7 @@ SSML coding is accepted now, like: <speak>Here are <say-as interpret-as=\"charac
 https://cloud.google.com/text-to-speech/docs/ssml
 
 You get a URL for the audio that will be streamed through Homey, so the device eventually playing the mp3 file should be in the same network and have access.
-The last 100 transcripts are stored in Homey's Memory for speed and less requests to Google Cloud.
+The last 100 transcripts are stored in Homey's Memory for speed and less requests to Google Cloud (restart of app or Homey means reset of memory).
 
 Create a House device that triggers all applicable devices to say "Dinner is ready!" or just a device for the main room to say "The doorbell is ringing".
 You can add "devices" as many times as you would like, each with its own trigger.
