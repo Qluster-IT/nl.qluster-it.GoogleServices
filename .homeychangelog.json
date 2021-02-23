@@ -43,5 +43,8 @@
   },
   "1.4.2": {
     "en": "Bugfixed"
+  },
+  "1.4.3": {
+    "en": "condition returns true if succesfull"
   }
 }
