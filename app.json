@@ -376,6 +376,141 @@
             "step": 0.1
           }
         ]
+      },
+      {        
+        "id": "condition_translate",
+        "title": {
+          "en": "Translate",
+          "nl": "Vertaal"
+        },
+        "titleFormatted": {
+          "en": "Translate [[translate]] into [[targetlanguagecode]]",
+          "nl": "Vertaal [[translate]] naar [[targetlanguagecode]]"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=translate"
+          },
+          {
+            "name": "translate",
+            "type": "text",
+            "title": {
+              "en": "Translate",
+              "nl": "Vertaal"
+            }
+          },
+          {
+            "name": "targetlanguagecode",
+            "type": "dropdown",
+            "title": {
+              "en": "Translate",
+              "nl": "Vertaal"
+            },
+            "hint": {
+              "en": "Choose the language for this device"
+            },
+            "values": [
+              {
+                "id": "en-GB",
+                "name": "en-GB",
+                "label": {
+                  "en": "English (GB)",
+                  "nl": "Engels (GB)"
+                }
+              },
+              {
+                "id": "en-US",
+                "name": "en-US",
+                "label": {
+                  "en": "English (US)",
+                  "nl": "Engels (US)"
+                }
+              },
+              {
+                "id": "nl-NL",
+                "name": "nl-NL",
+                "label": {
+                  "en": "Dutch (NL)",
+                  "nl": "Nederlands (NL)"
+                }
+              },
+              {
+                "id": "nl-BE",
+                "name": "nl-BE",
+                "label": {
+                  "en": "Dutch (BE)",
+                  "nl": "Nederlands (BE)"
+                }
+              },
+              {
+                "id": "de-DE",
+                "name": "de-DE",
+                "label": {
+                  "en": "German (DE)",
+                  "nl": "Duits (DE)"
+                }
+              },
+              {
+                "id": "de-LU",
+                "name": "de-LU",
+                "label": {
+                  "en": "German (LU)",
+                  "nl": "Duits (LU)"
+                }
+              },
+              {
+                "id": "fr-FR",
+                "name": "fr-FR",
+                "label": {
+                  "en": "French (FR)",
+                  "nl": "Frans (FR)"
+                }
+              },
+              {
+                "id": "fr-BE",
+                "name": "fr-BE",
+                "label": {
+                  "en": "French (BE)",
+                  "nl": "Frans (BE)"
+                }
+              },
+              {
+                "id": "es-ES",
+                "name": "es-ES",
+                "label": {
+                  "en": "Spanish (ES)",
+                  "nl": "Spaans (ES)"
+                }
+              },
+              {
+                "id": "it-IT",
+                "name": "it-IT",
+                "label": {
+                  "en": "Italian (IT)",
+                  "nl": "Italiaans (IT)"
+                }
+              },
+              {
+                "id": "sv-SV",
+                "name": "sv-SV",
+                "label": {
+                  "en": "Swedish (SV)",
+                  "nl": "Zweeds (SV)"
+                }
+              },
+              {
+                "id": "no-NO",
+                "name": "no-NO",
+                "label": {
+                  "en": "Norwegian (NO)",
+                  "nl": "Noors (NO)"
+                }
+              }
+            ]
+          }
+        ]      
       }
     ],
     "actions": [
@@ -559,6 +694,28 @@
       "title": {
         "en": "Duration",
         "nl": "Tijdsduur"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icon.svg"
+    },
+    "device_translate": {
+      "type": "string",
+      "title": {
+        "en": "To translate",
+        "nl": "Te vertalen"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icon.svg"
+    },
+    "device_translation": {
+      "type": "string",
+      "title": {
+        "en": "Translation",
+        "nl": "Vertaling"
       },
       "getable": true,
       "setable": false,
@@ -759,12 +916,14 @@
           "id": "speakingRate",
           "type": "number",
           "label": {
-            "en": "Speed",
-            "nl": "Snelheid"
+            "en": "Speed %",
+            "nl": "Snelheid %"
           },
           "min": 0.25,
           "max": 4,
-          "step": 0.01
+          "step": 0.01,          
+          "labelMultiplier": 100,
+          "labelDecimals": 0
         },
         {
           "id": "pitch",
@@ -788,6 +947,150 @@
           }
         }
       ]
+    },
+    {
+      "id": "translate",
+      "name": {
+        "en": "Google Translate",
+        "nl": "Google Vertaal"
+      },
+      "class": "other",
+      "capabilities": [
+        "device_translate",
+        "device_translation"
+      ],
+      "images": {
+        "large": "/drivers/translate/assets/images/large.png",
+        "small": "/drivers/translate/assets/images/small.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_my_devices"
+          },
+          "options": {
+            "singular": true
+          }
+        },
+        {
+          "id": "add_my_devices",
+          "template": "add_devices"
+        }
+      ],      
+      "settings": [
+        {
+          "id": "languagecode",
+          "type": "dropdown",
+          "label": {
+            "en": "Language"
+          },
+          "value": "en-GB",
+          "hint": {
+            "en": "Choose the language for this device"
+          },
+          "values": [
+            {
+              "id": "en-GB",
+              "name": "en-GB",
+              "label": {
+                "en": "English (GB)",
+                "nl": "Engels (GB)"
+              }
+            },
+            {
+              "id": "en-US",
+              "name": "en-US",
+              "label": {
+                "en": "English (US)",
+                "nl": "Engels (US)"
+              }
+            },
+            {
+              "id": "nl-NL",
+              "name": "nl-NL",
+              "label": {
+                "en": "Dutch (NL)",
+                "nl": "Nederlands (NL)"
+              }
+            },
+            {
+              "id": "nl-BE",
+              "name": "nl-BE",
+              "label": {
+                "en": "Dutch (BE)",
+                "nl": "Nederlands (BE)"
+              }
+            },
+            {
+              "id": "de-DE",
+              "name": "de-DE",
+              "label": {
+                "en": "German (DE)",
+                "nl": "Duits (DE)"
+              }
+            },
+            {
+              "id": "de-LU",
+              "name": "de-LU",
+              "label": {
+                "en": "German (LU)",
+                "nl": "Duits (LU)"
+              }
+            },
+            {
+              "id": "fr-FR",
+              "name": "fr-FR",
+              "label": {
+                "en": "French (FR)",
+                "nl": "Frans (FR)"
+              }
+            },
+            {
+              "id": "fr-BE",
+              "name": "fr-BE",
+              "label": {
+                "en": "French (BE)",
+                "nl": "Frans (BE)"
+              }
+            },
+            {
+              "id": "es-ES",
+              "name": "es-ES",
+              "label": {
+                "en": "Spanish (ES)",
+                "nl": "Spaans (ES)"
+              }
+            },
+            {
+              "id": "it-IT",
+              "name": "it-IT",
+              "label": {
+                "en": "Italian (IT)",
+                "nl": "Italiaans (IT)"
+              }
+            },
+            {
+              "id": "sv-SV",
+              "name": "sv-SV",
+              "label": {
+                "en": "Swedish (SV)",
+                "nl": "Zweeds (SV)"
+              }
+            },
+            {
+              "id": "no-NO",
+              "name": "no-NO",
+              "label": {
+                "en": "Norwegian (NO)",
+                "nl": "Noors (NO)"
+              }
+            }
+          ]
+        }
+      ]
+      
     }
   ]
 }

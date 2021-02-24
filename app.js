@@ -42,6 +42,13 @@ class GoogleServicesApp extends Homey.App {
     //await this.setDefaultCloudLanguageCode();
 
     TtsServer.init({client: this.client, homey: Homey});
+
+    // var translateDriver = await Homey.ManagerDrivers.getDriver("translate");
+    // var a = translateDriver.ready();
+    // console.log(a);
+    // translateDriver.ready().then(()=> {
+    //   this.credentialsUpdated();
+    // });
     
 
 
@@ -204,11 +211,18 @@ class GoogleServicesApp extends Homey.App {
   async setCloudJSON() {
     var json = await Homey.ManagerSettings.get('CloudJSON');
     this.credentials = json ? JSON.parse(json) : null;
-    if(this.credentials)this.client = new textToSpeech.TextToSpeechClient({credentials:this.credentials});
-    else this.client = null;
+    if(this.credentials){
+      this.client = new textToSpeech.TextToSpeechClient({credentials:this.credentials});
+    }
+    else {
+      this.client = null;
+    }
     TtsServer.client = this.client;
-    
+    //await this.credentialsUpdated();
   }
+  // async credentialsUpdated() {
+  //   this.emit('credentialsUpdated', this.credentials); 
+  // }
 
 }
 
