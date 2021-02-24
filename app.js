@@ -43,13 +43,6 @@ class GoogleServicesApp extends Homey.App {
 
     TtsServer.init({client: this.client, homey: Homey});
 
-    // var translateDriver = await Homey.ManagerDrivers.getDriver("translate");
-    // var a = translateDriver.ready();
-    // console.log(a);
-    // translateDriver.ready().then(()=> {
-    //   this.credentialsUpdated();
-    // });
-    
 
 
 
@@ -73,95 +66,121 @@ class GoogleServicesApp extends Homey.App {
     for (let i = 0; i < starts.length; i++) {
       const start = starts[i];        
       const start_googlettsAction = new Homey.FlowCardAction(start.id);//this.homey.flow.getActionCard('start_googletts');
-      start_googlettsAction.register().registerRunListener(( ( args, state ) => { //async
-              try {
-                var defer = new Defer();
-                  if(!args.device || !args.text) return false;
-                  if(args.text.length>200) return  new Error("Max 200 characters");
-                  var settings =  args.device.getSettings();
-                  var languagecode = settings && settings.languagecode ? settings.languagecode : 'en-GB';
-                  var url = googleTTS.getAudioUrl(args.text, { lang:languagecode, slow: start.slow });
-                  return this.Triggers.urlTrigger.Card.trigger(args.device, {url:url} );
-              } catch (error) { console.log('Error: ' + error); defer.resolve('An error occured'); }
-              return defer.promise;
-          }).bind(this));
+      start_googlettsAction.register().registerRunListener(( ( args, state ) => { //async              
+        var defer = new Defer();
+        try {
+          if(!args.device || !args.text) return false;
+          if(args.text.length>200) return  new Error("Max 200 characters");
+          var settings =  args.device.getSettings();
+          var languagecode = settings && settings.languagecode ? settings.languagecode : 'en-GB';
+          var url = googleTTS.getAudioUrl(args.text, { lang:languagecode, slow: start.slow });
+          return this.Triggers.urlTrigger.Card.trigger(args.device, {url:url} );
+        } catch (error) { console.log('Error: ' + error); defer.resolve('An error occured'); }
+          return defer.promise;
+      }).bind(this));
     }
 
-    var startsClouds = [
+    var actions = [
       {id:'start_googlecloudtts'},
       {id:'start_googlecloudtts_speed'},
-      {id:'start_googlecloudtts_speed_pitch'}
+      {id:'start_googlecloudtts_speed_pitch'},
+      {id:'start_googlecloudtts_voice', voice:true },
+      {id:'start_googlecloudtts_voice_speed', voice:true },
+      {id:'start_googlecloudtts_voice_speed_pitch', voice:true }
     ];
-    for (let i = 0; i < startsClouds.length; i++) {
-      const start = startsClouds[i];
+    for (let i = 0; i < actions.length; i++) {
+      const action = actions[i];
       
-      const start_googlettscloudAction = new Homey.FlowCardAction(start.id);//this.homey.flow.getActionCard('start_googletts');
-      start_googlettscloudAction.register().registerRunListener(( ( args, state ) => { //async
-              try {
-                var defer = new Defer();
-                  if(!args.device || !args.text) return false;
-                  console.log('start_googlettscloudAction.registerRunListener args: ');
-                  TtsServer.getUrl({args}).then(url=> {
-                    console.log('start_googlettscloudAction.registerRunListener url: ' + url.url);
-                    args.device.setCapabilityValue('device_url', url.url);
-                    args.device.setCapabilityValue('device_duration', url.duration);                    
-                    var triggered = !!this.Triggers.cloudurlTrigger.Card.trigger(args.device, {url:url.url, text:args.text, duration :url.duration } );
-                    if(triggered) this.SetFinishedTimer(args.device, {url:url.url, text:args.text, duration :url.duration });
-                    else this.ClearFinishedTimer(args.device);
-                    defer.resolve(triggered);
-                  }).catch(err=>{defer.reject('Did you configure the JSON in the settingspage?');});
-              } catch (error) { 
-                console.log('Error: ' + error);
-                defer.reject('Did you configure the JSON in the settingspage?');
-              }
-              return defer.promise;
-          }).bind(this));
+      const actionCard = new Homey.FlowCardAction(action.id);//this.homey.flow.getActionCard('start_googletts');
+      actionCard.register().registerRunListener(( ( args, state ) => { //async
+        var defer = new Defer();
+        try {
+            if(!args.device || !args.text) return false;
+            console.log('start_googlettscloudAction.registerRunListener args: ');
+            TtsServer.getUrl({args, voice : args.voice }).then(url=> {
+              console.log('start_googlettscloudAction.registerRunListener url: ' + url.url);
+              args.device.setCapabilityValue('device_url', url.url);
+              args.device.setCapabilityValue('device_duration', url.duration);                    
+              var triggered = !!this.Triggers.cloudurlTrigger.Card.trigger(args.device, {url:url.url, text:args.text, duration :url.duration } );
+              if(triggered) this.SetFinishedTimer(args.device, {url:url.url, text:args.text, duration :url.duration });
+              else this.ClearFinishedTimer(args.device);
+              defer.resolve(triggered);
+            }).catch(err=>{defer.reject('Did you configure the JSON in the settingspage?');});
+        } catch (error) { 
+          console.log('Error: ' + error);
+          defer.reject('Did you configure the JSON in the settingspage?');
+        }
+        return defer.promise;
+      }).bind(this));      
+      if(action.voice) addVoiceToCard.call(this, action,actionCard);
     }
+
     var conditionClouds = [
       {id:'condition_googlecloudtts'},
       {id:'condition_googlecloudtts_speed'},
       {id:'condition_googlecloudtts_speed_pitch'},
       {id:'condition_say_googlecloudtts', triggerAndWait: true},
       {id:'condition_say_googlecloudtts_speed', triggerAndWait: true},
-      {id:'condition_say_googlecloudtts_speed_pitch', triggerAndWait: true}
+      {id:'condition_say_googlecloudtts_speed_pitch', triggerAndWait: true},      
+      {id:'condition_say_googlecloudtts_voice', triggerAndWait: true, voice:true},
+      {id:'condition_say_googlecloudtts_voice_speed', triggerAndWait: true, voice:true},
+      {id:'condition_say_googlecloudtts_voice_speed_pitch', triggerAndWait: true, voice:true}
     ];
     for (let i = 0; i < conditionClouds.length; i++) {
       const condition = conditionClouds[i];      
-      const condition_googlettscloudAction = new Homey.FlowCardCondition(condition.id);//this.homey.flow.getConditionCard('start_googletts');
-      condition_googlettscloudAction.register().registerRunListener(( ( args, state ) => { //async
-              try {
-                var defer = new Defer();
-                  if(!args.device || !args.text) return Promise.resolve(false);
-                  console.log('condition_googlettscloudAction.registerRunListener args: ');
-                  TtsServer.getUrl({args}).then(url=> {
-                    console.log('condition_googlettscloudAction.registerRunListener url: ' + url.url);
-                    var promises = [];
-                    
-                    var p1 = args.device.setCapabilityValue('device_url', url.url);
-                    var p2 = args.device.setCapabilityValue('device_duration', url.duration);
-                    promises.push(p1);
-                    promises.push(p2);
-                    
+      const conditionCard = new Homey.FlowCardCondition(condition.id);//this.homey.flow.getConditionCard('start_googletts');
+      conditionCard.register().registerRunListener(( ( args, state ) => { //async
+        var defer = new Defer();
+        try {
+          if(!args.device || !args.text) return Promise.resolve(false);
+          console.log('condition_googlettscloudAction.registerRunListener args: ');
+          console.log(args);
+          TtsServer.getUrl({args, voice : args.voice}).then(url=> {
+            var promises = [];
+            
+            var p1 = args.device.setCapabilityValue('device_url', url.url);
+            var p2 = args.device.setCapabilityValue('device_duration', url.duration);
+            promises.push(p1);
+            promises.push(p2);
+            
 
-                    if(condition.triggerAndWait) {
-                      var triggered = !!this.Triggers.cloudurlTrigger.Card.trigger(args.device, {url:url.url, text:args.text, duration :url.duration } );
-                      if(triggered) promises.push(this.SetFinishedTimer(args.device, {url:url.url, text:args.text, duration :url.duration }));
-                      else this.ClearFinishedTimer(args.device);
-                    }
-                   
-                    var all = Promise.all(promises);                   
-                    all.then(()=> {
-                      defer.resolve(true);
-                    }).catch((err)=> {
-                      defer.reject();
-                    });
-                  }).catch(err=>{defer.reject('Did you configure the JSON in the settingspage?');});
-              } catch (error) { 
-                console.log('Error: ' + error);
-                defer.reject('Did you configure the JSON in the settingspage?');
-              }
-              return defer.promise;
-          }).bind(this));
+            if(condition.triggerAndWait) {
+              var triggered = !!this.Triggers.cloudurlTrigger.Card.trigger(args.device, {url:url.url, text:args.text, duration :url.duration } );
+              if(triggered) promises.push(this.SetFinishedTimer(args.device, {url:url.url, text:args.text, duration :url.duration }));
+              else this.ClearFinishedTimer(args.device);
+            }
+            
+            var all = Promise.all(promises);                   
+            all.then(()=> {
+              defer.resolve(true);
+            }).catch((err)=> {
+              defer.reject();
+            });
+          }).catch(err=>{defer.reject('Did you configure the JSON in the settingspage?');});
+        } catch (error) { 
+          console.log('Error: ' + error);
+          defer.reject('Did you configure the JSON in the settingspage?');
+        }
+        return defer.promise;
+      }).bind(this));
+      if(condition.voice) addVoiceToCard.call(this, condition, conditionCard);
+    }
+
+    function addVoiceToCard(condition, conditionCard) {
+      conditionCard.getArgument('voice').registerAutocompleteListener((( query, args) => {
+        var defer = new Defer();
+        try { this.log(condition.id + '.language.registerAutocompleteListener(query, state)');            
+          TtsServer.getVoices().then(list=> {
+            if(query) list = list.filter(x=>x.name.toLowerCase().indexOf(query.toLowerCase())>-1)
+            var r = list.map(x=> { return { id:x.name, name:x.name + ' (' + x.ssmlGender + ')', gender:x.ssmlGender, languagecode:x.languageCodes[0] }});
+            defer.resolve(r) ;
+          });    
+        } catch (error) { 
+          this.log(condition.id + '.language.registerAutocompleteListener error: ' + error);
+          defer.resolve([]);
+        }
+      return defer.promise;
+      }).bind(this)) ;
     }
 
     var starts = [

@@ -4,6 +4,7 @@ const Homey = require('homey');
 const { v4: uuidv4 } = require('uuid');
 const {TranslationServiceClient} = require('@google-cloud/translate');
 
+const {Defer} = require('./../../lib/proto');
 const projectId = 'projects/homeyman';
     
 
@@ -31,16 +32,19 @@ class GoogleTranslateDriver extends Homey.Driver
             const condition = conditions[i];      
             const conditionCard = new Homey.FlowCardCondition(condition.id);
             conditionCard.register().registerRunListener(( ( args, state ) => {
+                console.log(condition.id + '.registerRunListener args: ');
+                var defer = new Defer();
                 try {
-                    console.log(condition.id + '.registerRunListener args: ');
-                    var defer = new Defer();
                     if(!args.device || !args.translate || !args.targetlanguagecode) return Promise.resolve(false);
                     var promises = [];
                     promises.push(args.device.setCapabilityValue('device_translate', args.translate));
                             
-                    this.translate("Hallo", args.device.getSetting('languagecode'), args.targetlanguagecode).then(([translation])=> {
-                        if(!translation || translation.translatedText) return Promise.reject("Could not translate");
-                        promises.push(args.device.setCapabilityValue('device_translation', translation.translatedText));
+                    this.translate(args.translate, args.device.getSetting('languagecode'), args.targetlanguagecode).then((translation)=> {
+                        if(!translation) {
+                            defer.reject("Could not translate");
+                            return;
+                        }
+                        promises.push(args.device.setCapabilityValue('device_translation', translation));
 
                         // if(condition.triggerAndWait) {
                         //     var triggered = !!this.Triggers.cloudurlTrigger.Card.trigger(args.device, {url:url.url, text:args.text, duration :url.duration } );
@@ -54,9 +58,9 @@ class GoogleTranslateDriver extends Homey.Driver
                         }).catch((err)=> {
                             defer.reject();
                         });
-                    }).catch(err=>{defer.reject('Did you configure the JSON in the settingspage?');});
+                    }).catch(err=>{console.log('err: ' + error);defer.reject('Did you configure the JSON in the settingspage?');});
                 } catch (error) { 
-                    console.log('Error: ' + error);
+                    console.log('error: ' + error);
                     defer.reject('Did you configure the JSON in the settingspage?');
                 }
                 return defer.promise;
@@ -98,9 +102,10 @@ class GoogleTranslateDriver extends Homey.Driver
     }
     async translate(text, source, target) {        
         const [translation] = await this.translateClient.translateText({ contents:[text], sourceLanguageCode:source, targetLanguageCode:target, parent: projectId});
-        console.log(`Text: ${text}`);
-        console.log(`Translation: ${translation}`);
-        console.log(translation);
+        // console.log(`Text: ${text}`);
+        // console.log(`Translation: ${translation}`);
+        // console.log(translation);
+        return translation && translation.translations && translation.translations.length>0 ? translation.translations[0].translatedText : null;
       }
 
 }

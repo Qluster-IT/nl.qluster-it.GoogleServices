@@ -1,6 +1,6 @@
 {
   "id": "nl.qluster-it.GoogleServices",
-  "version": "1.4.3",
+  "version": "1.6.0",
   "compatibility": ">=1.5.0",
   "sdk": 2,
   "brandColor": "#8DB000",
@@ -9,8 +9,8 @@
     "nl": "Google Services"
   },
   "description": {
-    "en": "Setup your favorite Google voice for your speakers",
-    "nl": "Stel je favoriete Google stem in voor je speakers"
+    "en": "Setup your favorite Google (translate) voice for your speakers",
+    "nl": "Stel je favoriete Google (vertaal) stem in voor je speakers"
   },
   "category": [
     "tools"
@@ -31,47 +31,6 @@
   },
   "flow": {
     "triggers": [
-      {
-        "id": "url_trigger",
-        "title": {
-          "en": "Url triggered"
-        },
-        "titleFormatted": {
-          "en": "Url triggered"
-        },
-        "tokens": [
-          {
-            "name": "url",
-            "type": "string",
-            "title": {
-              "en": "Url"
-            }
-          },
-          {
-            "name": "duration",
-            "type": "number",
-            "title": {
-              "en": "Duration",
-              "nl": "Tijdsduur"
-            }
-          },
-          {
-            "name": "text",
-            "type": "string",
-            "title": {
-              "en": "Text",
-              "nl": "Tekst"
-            }
-          }
-        ],
-        "args": [
-          {
-            "name": "device",
-            "type": "device",
-            "filter": "driver_id=googletts"
-          }
-        ]
-      },
       {
         "id": "cloudurl_trigger",
         "title": {
@@ -107,8 +66,8 @@
         ],
         "args": [
           {
-            "name": "device",
             "type": "device",
+            "name": "device",
             "filter": "driver_id=googlecloudtts"
           }
         ]
@@ -148,9 +107,47 @@
         ],
         "args": [
           {
-            "name": "device",
             "type": "device",
+            "name": "device",
             "filter": "driver_id=googlecloudtts"
+          }
+        ]
+      },
+      {
+        "id": "url_trigger",
+        "title": {
+          "en": "Url triggered"
+        },
+        "tokens": [
+          {
+            "name": "url",
+            "type": "string",
+            "title": {
+              "en": "Url"
+            }
+          },
+          {
+            "name": "duration",
+            "type": "number",
+            "title": {
+              "en": "Duration",
+              "nl": "Tijdsduur"
+            }
+          },
+          {
+            "name": "text",
+            "type": "string",
+            "title": {
+              "en": "Text",
+              "nl": "Tekst"
+            }
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=googletts"
           }
         ]
       }
@@ -168,8 +165,8 @@
         },
         "args": [
           {
-            "name": "device",
             "type": "device",
+            "name": "device",
             "filter": "driver_id=googlecloudtts"
           },
           {
@@ -194,8 +191,8 @@
         },
         "args": [
           {
-            "name": "device",
             "type": "device",
+            "name": "device",
             "filter": "driver_id=googlecloudtts"
           },
           {
@@ -231,8 +228,8 @@
         },
         "args": [
           {
-            "name": "device",
             "type": "device",
+            "name": "device",
             "filter": "driver_id=googlecloudtts"
           },
           {
@@ -279,8 +276,8 @@
         },
         "args": [
           {
-            "name": "device",
             "type": "device",
+            "name": "device",
             "filter": "driver_id=googlecloudtts"
           },
           {
@@ -305,8 +302,8 @@
         },
         "args": [
           {
-            "name": "device",
             "type": "device",
+            "name": "device",
             "filter": "driver_id=googlecloudtts"
           },
           {
@@ -341,8 +338,8 @@
         },
         "args": [
           {
-            "name": "device",
             "type": "device",
+            "name": "device",
             "filter": "driver_id=googlecloudtts"
           },
           {
@@ -377,7 +374,141 @@
           }
         ]
       },
-      {        
+      {
+        "id": "condition_say_googlecloudtts_voice",
+        "title": {
+          "en": "Start TTS",
+          "nl": "Begin TTS"
+        },
+        "titleFormatted": {
+          "en": "Start saying [[text]] in [[voice]] and finish",
+          "nl": "Begin te zeggen [[text]] in [[voice]] en voltooi"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=googlecloudtts"
+          },
+          {
+            "name": "text",
+            "type": "text",
+            "placeholder": {
+              "en": "Text",
+              "nl": "Tekst"
+            }
+          },
+          {
+            "name": "voice",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "Language",
+              "nl": "Taal"
+            }
+          }
+        ]
+      },
+      {
+        "id": "condition_say_googlecloudtts_voice_speed",
+        "title": {
+          "en": "Start TTS at speed",
+          "nl": "Begin TTS op snelheid"
+        },
+        "titleFormatted": {
+          "en": "Start saying [[text]] in [[voice]] speed [[speakingRate]] and finish",
+          "nl": "Begin te zeggen [[text]] in [[voice]] snelheid [[speakingRate]] en voltooi"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=googlecloudtts"
+          },
+          {
+            "name": "text",
+            "type": "text",
+            "placeholder": {
+              "en": "Text",
+              "nl": "Tekst"
+            }
+          },
+          {
+            "name": "voice",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "Language",
+              "nl": "Taal"
+            }
+          },
+          {
+            "name": "speakingRate",
+            "type": "range",
+            "placeholder": {
+              "en": "Speed",
+              "nl": "Snelheid"
+            },
+            "min": 0.25,
+            "max": 4,
+            "step": 0.01
+          }
+        ]
+      },
+      {
+        "id": "condition_say_googlecloudtts_voice_speed_pitch",
+        "title": {
+          "en": "Start TTS at speed with pitch"
+        },
+        "titleFormatted": {
+          "en": "Start saying for [[text]] in [[voice]] speed [[speakingRate]] pitch [[pitch]] and finish",
+          "nl": "Begin te zeggen [[text]] in [[voice]] snelheid [[speakingRate]] toonhoogte [[pitch]] en voltooi"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=googlecloudtts"
+          },
+          {
+            "name": "text",
+            "type": "text",
+            "placeholder": {
+              "en": "Text",
+              "nl": "Tekst"
+            }
+          },
+          {
+            "name": "voice",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "Language",
+              "nl": "Taal"
+            }
+          },
+          {
+            "name": "speakingRate",
+            "type": "range",
+            "placeholder": {
+              "en": "Speed",
+              "nl": "Snelheid"
+            },
+            "min": 0.25,
+            "max": 4,
+            "step": 0.01
+          },
+          {
+            "name": "pitch",
+            "type": "range",
+            "placeholder": {
+              "en": "Pitch",
+              "nl": "Toonhoogte"
+            },
+            "min": -20,
+            "max": 20,
+            "step": 0.1
+          }
+        ]
+      },
+      {
         "id": "condition_translate",
         "title": {
           "en": "Translate",
@@ -389,8 +520,8 @@
         },
         "args": [
           {
-            "name": "device",
             "type": "device",
+            "name": "device",
             "filter": "driver_id=translate"
           },
           {
@@ -510,62 +641,10 @@
               }
             ]
           }
-        ]      
+        ]
       }
     ],
     "actions": [
-      {
-        "id": "start_googletts",
-        "title": {
-          "en": "Start TTS",
-          "nl": "Begin TTS"
-        },
-        "titleFormatted": {
-          "en": "Start saying [[text]]",
-          "nl": "Begin te zeggen [[text]]"
-        },
-        "args": [
-          {
-            "name": "device",
-            "type": "device",
-            "filter": "driver_id=googletts"
-          },
-          {
-            "name": "text",
-            "type": "text",
-            "placeholder": {
-              "en": "Text",
-              "nl": "Tekst"
-            }
-          }
-        ]
-      },
-      {
-        "id": "start_googletts_slow",
-        "title": {
-          "en": "Start TTS slow speed",
-          "nl": "Begin TTS langzame snelheid"
-        },
-        "titleFormatted": {
-          "en": "Start saying [[text]] slow speed",
-          "nl": "Begin te zeggen [[text]] langzame snelheid"
-        },
-        "args": [
-          {
-            "name": "device",
-            "type": "device",
-            "filter": "driver_id=googletts"
-          },
-          {
-            "name": "text",
-            "type": "text",
-            "placeholder": {
-              "en": "Text",
-              "nl": "Tekst"
-            }
-          }
-        ]
-      },
       {
         "id": "start_googlecloudtts",
         "title": {
@@ -578,8 +657,8 @@
         },
         "args": [
           {
-            "name": "device",
             "type": "device",
+            "name": "device",
             "filter": "driver_id=googlecloudtts"
           },
           {
@@ -604,8 +683,8 @@
         },
         "args": [
           {
-            "name": "device",
             "type": "device",
+            "name": "device",
             "filter": "driver_id=googlecloudtts"
           },
           {
@@ -632,7 +711,8 @@
       {
         "id": "start_googlecloudtts_speed_pitch",
         "title": {
-          "en": "Start TTS at speed with pitch"
+          "en": "Start TTS at speed with pitch",
+          "nl": "Begin TTS op snelheid met toonhoogte"
         },
         "titleFormatted": {
           "en": "Start saying for [[text]] speed [[speakingRate]] pitch [[pitch]]",
@@ -640,8 +720,8 @@
         },
         "args": [
           {
-            "name": "device",
             "type": "device",
+            "name": "device",
             "filter": "driver_id=googlecloudtts"
           },
           {
@@ -675,55 +755,281 @@
             "step": 0.1
           }
         ]
+      },
+      {
+        "id": "start_googlecloudtts_voice",
+        "title": {
+          "en": "Start TTS with voice",
+          "nl": "Begin TTS"
+        },
+        "titleFormatted": {
+          "en": "Start saying [[text]] in [[voice]]",
+          "nl": "Begin te zeggen [[text]] in [[voice]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=googlecloudtts"
+          },
+          {
+            "name": "text",
+            "type": "text",
+            "placeholder": {
+              "en": "Text",
+              "nl": "Tekst"
+            }
+          },
+          {
+            "name": "voice",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "Language",
+              "nl": "Taal"
+            }
+          }
+        ]
+      },
+      {
+        "id": "start_googlecloudtts_voice_speed",
+        "title": {
+          "en": "Start TTS with voice at speed",
+          "nl": "Begin TTS met stem op snelheid"
+        },
+        "titleFormatted": {
+          "en": "Start saying [[text]] in [[voice]] speed [[speakingRate]]",
+          "nl": "Begin te zeggen [[text]] in [[voice]] snelheid [[speakingRate]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=googlecloudtts"
+          },
+          {
+            "name": "text",
+            "type": "text",
+            "placeholder": {
+              "en": "Text",
+              "nl": "Tekst"
+            }
+          },
+          {
+            "name": "voice",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "Language",
+              "nl": "Taal"
+            }
+          },
+          {
+            "name": "speakingRate",
+            "type": "range",
+            "placeholder": {
+              "en": "Speed",
+              "nl": "Snelheid"
+            },
+            "min": 0.25,
+            "max": 4,
+            "step": 0.01
+          }
+        ]
+      },
+      {
+        "id": "start_googlecloudtts_voice_speed_pitch",
+        "title": {
+          "en": "Start TTS with voice at speed with pitch",
+          "nl": "Begin TTS met stem op snelheid met toonhoogte"
+        },
+        "titleFormatted": {
+          "en": "Start saying for [[text]] in [[voice]] speed [[speakingRate]] pitch [[pitch]]",
+          "nl": "Begin te zeggen [[text]] in [[voice]] snelheid [[speakingRate]] toonhoogte [[pitch]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=googlecloudtts"
+          },
+          {
+            "name": "text",
+            "type": "text",
+            "placeholder": {
+              "en": "Text",
+              "nl": "Tekst"
+            }
+          },
+          {
+            "name": "voice",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "Language",
+              "nl": "Taal"
+            }
+          },
+          {
+            "name": "speakingRate",
+            "type": "range",
+            "placeholder": {
+              "en": "Speed",
+              "nl": "Snelheid"
+            },
+            "min": 0.25,
+            "max": 4,
+            "step": 0.01
+          },
+          {
+            "name": "pitch",
+            "type": "range",
+            "placeholder": {
+              "en": "Pitch",
+              "nl": "Toonhoogte"
+            },
+            "min": -20,
+            "max": 20,
+            "step": 0.1
+          }
+        ]
+      },
+      {
+        "id": "start_googletts",
+        "title": {
+          "en": "Start TTS",
+          "nl": "Begin TTS"
+        },
+        "titleFormatted": {
+          "en": "Start saying [[text]]",
+          "nl": "Begin te zeggen [[text]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=googletts"
+          },
+          {
+            "name": "text",
+            "type": "text",
+            "placeholder": {
+              "en": "Text",
+              "nl": "Tekst"
+            }
+          }
+        ]
+      },
+      {
+        "id": "start_googletts_slow",
+        "title": {
+          "en": "Start TTS slow speed",
+          "nl": "Begin TTS langzame snelheid"
+        },
+        "titleFormatted": {
+          "en": "Start saying [[text]] slow speed",
+          "nl": "Begin te zeggen [[text]] langzame snelheid"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=googletts"
+          },
+          {
+            "name": "text",
+            "type": "text",
+            "placeholder": {
+              "en": "Text",
+              "nl": "Tekst"
+            }
+          }
+        ]
       }
     ]
   },
-  "capabilities": {
-    "device_url": {
-      "type": "string",
-      "title": {
-        "en": "Url"
-      },
-      "getable": true,
-      "setable": false,
-      "uiComponent": "sensor",
-      "icon": "/assets/icon.svg"
-    },
-    "device_duration": {
-      "type": "number",
-      "title": {
-        "en": "Duration",
-        "nl": "Tijdsduur"
-      },
-      "getable": true,
-      "setable": false,
-      "uiComponent": "sensor",
-      "icon": "/assets/icon.svg"
-    },
-    "device_translate": {
-      "type": "string",
-      "title": {
-        "en": "To translate",
-        "nl": "Te vertalen"
-      },
-      "getable": true,
-      "setable": false,
-      "uiComponent": "sensor",
-      "icon": "/assets/icon.svg"
-    },
-    "device_translation": {
-      "type": "string",
-      "title": {
-        "en": "Translation",
-        "nl": "Vertaling"
-      },
-      "getable": true,
-      "setable": false,
-      "uiComponent": "sensor",
-      "icon": "/assets/icon.svg"
-    }
-  },
   "drivers": [
+    {
+      "id": "googlecloudtts",
+      "name": {
+        "en": "Text-To-Speech",
+        "nl": "Tekst-Naar-Spraak"
+      },
+      "class": "other",
+      "capabilities": [
+        "device_url",
+        "device_duration"
+      ],
+      "images": {
+        "large": "/drivers/googlecloudtts/assets/images/large.png",
+        "small": "/drivers/googlecloudtts/assets/images/small.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_my_devices"
+          },
+          "options": {
+            "singular": true
+          }
+        },
+        {
+          "id": "add_my_devices",
+          "template": "add_devices"
+        }
+      ],
+      "repair": [
+        {
+          "id": "fix_list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "done_fix_my_devices"
+          },
+          "options": {
+            "singular": true
+          }
+        },
+        {
+          "id": "done_fix_my_devices",
+          "template": "done"
+        }
+      ],
+      "settings": [
+        {
+          "id": "speakingRate",
+          "type": "number",
+          "label": {
+            "en": "Speed %",
+            "nl": "Snelheid %"
+          },
+          "min": 0.25,
+          "max": 4,
+          "step": 0.01,
+          "labelMultiplier": 100,
+          "labelDecimals": 0
+        },
+        {
+          "id": "pitch",
+          "type": "number",
+          "label": "Pitch",
+          "min": -20,
+          "max": 20,
+          "step": 0.1
+        },
+        {
+          "id": "delay",
+          "type": "number",
+          "label": {
+            "en": "Delay for each file to (finish) playing in ms",
+            "nl": "Vertraging voor elk bestand om te (eindige) spelen in ms"
+          },
+          "value": 1000,
+          "hint": {
+            "en": "Extra waiting time before (finishing) playing the next file",
+            "nl": "Extra wachttijd voor het (eindigevan het ) spelen van het bestand"
+          }
+        }
+      ]
+    },
     {
       "id": "googletts",
       "name": {
@@ -865,90 +1171,6 @@
       ]
     },
     {
-      "id": "googlecloudtts",
-      "name": {
-        "en": "Text-To-Speech",
-        "nl": "Tekst-Naar-Spraak"
-      },
-      "class": "other",
-      "capabilities": [
-        "device_url",
-        "device_duration"
-      ],
-      "images": {
-        "large": "/drivers/googlecloudtts/assets/images/large.png",
-        "small": "/drivers/googlecloudtts/assets/images/small.png"
-      },
-      "pair": [
-        {
-          "id": "list_devices",
-          "template": "list_devices",
-          "navigation": {
-            "next": "add_my_devices"
-          },
-          "options": {
-            "singular": true
-          }
-        },
-        {
-          "id": "add_my_devices",
-          "template": "add_devices"
-        }
-      ],
-      "repair": [
-        {
-          "id": "fix_list_devices",
-          "template": "list_devices",
-          "navigation": {
-            "next": "done_fix_my_devices"
-          },
-          "options": {
-            "singular": true
-          }
-        },
-        {
-          "id": "done_fix_my_devices",
-          "template": "done"
-        }
-      ],
-      "settings": [
-        {
-          "id": "speakingRate",
-          "type": "number",
-          "label": {
-            "en": "Speed %",
-            "nl": "Snelheid %"
-          },
-          "min": 0.25,
-          "max": 4,
-          "step": 0.01,          
-          "labelMultiplier": 100,
-          "labelDecimals": 0
-        },
-        {
-          "id": "pitch",
-          "type": "number",
-          "label": "Pitch",
-          "min": -20,
-          "max": 20,
-          "step": 0.1
-        },
-        {
-          "id": "delay",
-          "type": "number",
-          "label": {
-            "en": "Delay for each file to (finish) playing in ms",
-            "nl": "Vertraging voor elk bestand om te (eindige) spelen in ms"
-          },
-          "value": 1000,
-          "hint": {
-            "en": "Extra waiting time before (finishing) playing the next file",
-            "nl": "Extra wachttijd voor het (eindigevan het ) spelen van het bestand"
-          }
-        }
-      ]
-    },
-    {
       "id": "translate",
       "name": {
         "en": "Google Translate",
@@ -978,7 +1200,7 @@
           "id": "add_my_devices",
           "template": "add_devices"
         }
-      ],      
+      ],
       "settings": [
         {
           "id": "languagecode",
@@ -1090,7 +1312,51 @@
           ]
         }
       ]
-      
     }
-  ]
+  ],
+  "capabilities": {
+    "device_duration": {
+      "type": "number",
+      "title": {
+        "en": "Duration",
+        "nl": "Tijdsduur"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icon.svg"
+    },
+    "device_translate": {
+      "type": "string",
+      "title": {
+        "en": "To translate",
+        "nl": "Te vertalen"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icon.svg"
+    },
+    "device_translation": {
+      "type": "string",
+      "title": {
+        "en": "Translation",
+        "nl": "Vertaling"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icon.svg"
+    },
+    "device_url": {
+      "type": "string",
+      "title": {
+        "en": "Url"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icon.svg"
+    }
+  }
 }

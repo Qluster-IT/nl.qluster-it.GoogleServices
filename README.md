@@ -1,4 +1,12 @@
-Use the newest Google Cloud Services, starting with the new Text-to-Speech.
+Use the newest Google Cloud Services, starting with the new Text-to-Speech and Translate.
+
+
+Translate
+U can make a Google Translate device and use it as a condition to translate, of which the transalation will be available as a tokenvalue of the device.
+
+For this you will need https://cloud.google.com/translate/docs/setup#api
+
+Text-To-Speech
 Useable with each device that thakes an URL.
 
 Cloud devices:

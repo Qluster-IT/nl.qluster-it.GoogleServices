@@ -1,0 +1,10 @@
+{
+    "type": "string",
+    "title": {
+      "en": "Url"
+    },
+    "getable": true,
+    "setable": false,
+    "uiComponent": "sensor",
+    "icon": "/assets/icon.svg"
+  }
