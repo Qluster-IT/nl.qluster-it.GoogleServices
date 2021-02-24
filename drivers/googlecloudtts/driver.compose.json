@@ -1,0 +1,84 @@
+{
+    "id": "googlecloudtts",
+    "name": {
+      "en": "Text-To-Speech",
+      "nl": "Tekst-Naar-Spraak"
+    },
+    "class": "other",
+    "capabilities": [
+      "device_url",
+      "device_duration"
+    ],
+    "images": {
+      "large": "{{driverAssetsPath}}/images/large.png",
+      "small": "{{driverAssetsPath}}/images/small.png"
+    },
+    "pair": [
+      {
+        "id": "list_devices",
+        "template": "list_devices",
+        "navigation": {
+          "next": "add_my_devices"
+        },
+        "options": {
+          "singular": true
+        }
+      },
+      {
+        "id": "add_my_devices",
+        "template": "add_devices"
+      }
+    ],
+    "repair": [
+      {
+        "id": "fix_list_devices",
+        "template": "list_devices",
+        "navigation": {
+          "next": "done_fix_my_devices"
+        },
+        "options": {
+          "singular": true
+        }
+      },
+      {
+        "id": "done_fix_my_devices",
+        "template": "done"
+      }
+    ],
+    "settings": [
+      {
+        "id": "speakingRate",
+        "type": "number",
+        "label": {
+          "en": "Speed %",
+          "nl": "Snelheid %"
+        },
+        "min": 0.25,
+        "max": 4,
+        "step": 0.01,          
+        "labelMultiplier": 100,
+        "labelDecimals": 0
+      },
+      {
+        "id": "pitch",
+        "type": "number",
+        "label": "Pitch",
+        "min": -20,
+        "max": 20,
+        "step": 0.1
+      },
+      {
+        "id": "delay",
+        "type": "number",
+        "label": {
+          "en": "Delay for each file to (finish) playing in ms",
+          "nl": "Vertraging voor elk bestand om te (eindige) spelen in ms"
+        },
+        "value": 1000,
+        "hint": {
+          "en": "Extra waiting time before (finishing) playing the next file",
+          "nl": "Extra wachttijd voor het (eindigevan het ) spelen van het bestand"
+        }
+      }
+    ]
+  }

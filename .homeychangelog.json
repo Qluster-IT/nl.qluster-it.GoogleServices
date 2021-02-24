@@ -43,5 +43,11 @@
   },
   "1.4.2": {
     "en": "Bugfixed"
+  },
+  "1.4.3": {
+    "en": "condition returns true if succesfull"
+  },
+  "1.6.0": {
+    "en": "Google Cloud Translate added as device with a condition card"
   }
 }

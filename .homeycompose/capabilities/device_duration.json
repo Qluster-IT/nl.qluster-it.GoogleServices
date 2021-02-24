@@ -1,0 +1,11 @@
+{
+  "type": "number",
+  "title": {
+    "en": "Duration",
+    "nl": "Tijdsduur"
+  },
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "icon": "/assets/icon.svg"
+}
