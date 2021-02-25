@@ -1,6 +1,6 @@
 {
   "id": "nl.qluster-it.GoogleServices",
-  "version": "1.6.1",
+  "version": "1.6.2",
   "compatibility": ">=1.5.0",
   "sdk": 2,
   "brandColor": "#8DB000",
@@ -760,7 +760,7 @@
         "id": "start_googlecloudtts_voice",
         "title": {
           "en": "Start TTS with voice",
-          "nl": "Begin TTS"
+          "nl": "Begin TTS met stem"
         },
         "titleFormatted": {
           "en": "Start saying [[text]] in [[voice]]",

@@ -52,5 +52,8 @@
   },
   "1.6.1": {
     "en": "Added projectname to settings"
+  },
+  "1.6.2": {
+    "en": "Fix flow title uniqueness"
   }
 }
