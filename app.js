@@ -105,10 +105,10 @@ class GoogleServicesApp extends Homey.App {
               if(triggered) this.SetFinishedTimer(args.device, {url:url.url, text:args.text, duration :url.duration });
               else this.ClearFinishedTimer(args.device);
               defer.resolve(triggered);
-            }).catch(err=>{defer.reject('Did you configure the JSON in the settingspage?');});
+            }).catch(err=>{ console.log('err'); console.log(err); defer.reject('Did you configure the JSON and Voice in the settingspage?');});
         } catch (error) { 
           console.log('Error: ' + error);
-          defer.reject('Did you configure the JSON in the settingspage?');
+          defer.reject('Did you configure the JSON and Voice in the settingspage?');
         }
         return defer.promise;
       }).bind(this));      
@@ -156,10 +156,10 @@ class GoogleServicesApp extends Homey.App {
             }).catch((err)=> {
               defer.reject();
             });
-          }).catch(err=>{defer.reject('Did you configure the JSON in the settingspage?');});
+          }).catch(err=>{defer.reject('Did you configure the JSON and Voice in the settingspage?');});
         } catch (error) { 
           console.log('Error: ' + error);
-          defer.reject('Did you configure the JSON in the settingspage?');
+          defer.reject('Did you configure the JSON and Voice in the settingspage?');
         }
         return defer.promise;
       }).bind(this));

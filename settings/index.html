@@ -1,10 +1,20 @@
 <!doctype html>
-<html ng-app="uPnPPlayerApp">
-    <head>                
+<html>
+    <head>
+        <style>
+            h2 {
+                margin-top:20px;
+                margin-bottom:3px;
+            }
+        </style>
         <script type="text/javascript" src="/homey.js" data-origin="settings"></script>
            
         <script type="text/javascript"> 
             var debug; 
+            var saveButton;// = document.getElementById('save');
+            var cloudJSON;// = document.getElementById('cloudJSON');
+            var defaultCloudVoice ;//= document.getElementById('defaultCloudVoice');
+            var cloudProject ;
             function l(s)  {
                 if(!debug) debug = document.getElementById('debug');
                 if(debug) debug.value+='\r\n' + (s!==undefined && s!==null ? s.toString() : 'undefined');
@@ -17,6 +27,7 @@
                     var promises = [];
                     promises.push(Homey.set('CloudJSON', cloudJSON.value));
                     promises.push(Homey.set('DefaultCloudVoice', defaultCloudVoice.selectedIndex>0 && defaultCloudVoice.children.length>defaultCloudVoice.selectedIndex ? defaultCloudVoice.children[defaultCloudVoice.selectedIndex].value : null));
+                    promises.push(Homey.set('CloudProject', cloudProject.value));
                     // Promise.all(promises).then(x=> {
                     //     getVoices();
                     // }).catch(x=> {
@@ -101,9 +112,10 @@
                 //Homey.alert('ready');
                 try {
                     
-                    var save = document.getElementById('save');
-                    var cloudJSON = document.getElementById('cloudJSON');
-                    var defaultCloudVoice = document.getElementById('defaultCloudVoice');
+                    saveButton = document.getElementById('save');
+                    cloudJSON = document.getElementById('cloudJSON');
+                    defaultCloudVoice = document.getElementById('defaultCloudVoice');
+                    cloudProject = document.getElementById('cloudProject');
                     //var defaultCloudLanguageCode = document.getElementById('defaultCloudLanguageCode');
                     Homey.ready();
                     // save.addEventListener('click', function (e) {
@@ -111,6 +123,9 @@
                     // });
                     Homey.get('CloudJSON', function(err, v) {
                         cloudJSON.value = err ? '' : v;
+                    });
+                    Homey.get('CloudProject', function(err, v) {
+                        cloudProject.value = err ? '' : v;
                     });
                     
                     getVoices();
@@ -149,7 +164,12 @@
 
         <h2>Google Cloud Default Voice</h2>
         <select id="defaultCloudVoice" style="display: inline-block;width:100%;"></select>
+        <br/>
 
+        <h2>Google Cloud Project</h2>
+        <input type="text" id="cloudProject" style="display: inline-block;width:100%;" placeholder="Projectname" />
+        <div style="display: inline-block;width:100%;">Enter the Projectname. Case Sensitive!</div>
+        <br/>
         <br/><br/>
         <input type="button" id="save" onclick="save()" value="Save"/>
 

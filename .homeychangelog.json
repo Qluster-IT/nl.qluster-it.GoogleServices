@@ -49,5 +49,8 @@
   },
   "1.6.0": {
     "en": "Google Cloud Translate added as device with a condition card"
+  },
+  "1.6.1": {
+    "en": "Added projectname to settings"
   }
 }

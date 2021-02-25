@@ -5,7 +5,7 @@ const { v4: uuidv4 } = require('uuid');
 const {TranslationServiceClient} = require('@google-cloud/translate');
 
 const {Defer} = require('./../../lib/proto');
-const projectId = 'projects/homeyman';
+var projectId = 'projects/';
     
 
 class GoogleTranslateDriver extends Homey.Driver
@@ -18,8 +18,12 @@ class GoogleTranslateDriver extends Homey.Driver
             if(settingName=='CloudJSON') {
                 this.setCloudJSON();
             }
+            if(settingName=='CloudProject') {
+                this.setCloudProject();
+            }
         }).bind(this));
         await this.setCloudJSON();
+        await this.setCloudProject();
         // this.on("credentialsUpdated", (credentials)=> {
         //     console.log("on.credentialsUpdated");
         //     console.log(credentials);
@@ -58,10 +62,10 @@ class GoogleTranslateDriver extends Homey.Driver
                         }).catch((err)=> {
                             defer.reject();
                         });
-                    }).catch(err=>{console.log('err: ' + error);defer.reject('Did you configure the JSON in the settingspage?');});
+                    }).catch(err=>{console.log('err: ' + err);defer.reject('Did you configure the JSON and Project in the settingspage?');});
                 } catch (error) { 
                     console.log('error: ' + error);
-                    defer.reject('Did you configure the JSON in the settingspage?');
+                    defer.reject('Did you configure the JSON and Project in the settingspage?');
                 }
                 return defer.promise;
             }).bind(this));
@@ -99,6 +103,11 @@ class GoogleTranslateDriver extends Homey.Driver
         else {
           this.translateClient = null;
         }
+    }
+    
+    async setCloudProject() {
+        var project = await Homey.ManagerSettings.get('CloudProject');
+        projectId = 'projects/' +project;
     }
     async translate(text, source, target) {        
         const [translation] = await this.translateClient.translateText({ contents:[text], sourceLanguageCode:source, targetLanguageCode:target, parent: projectId});
