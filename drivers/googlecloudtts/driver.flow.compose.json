@@ -484,7 +484,7 @@
             "id": "start_googlecloudtts_voice",
             "title": {
                 "en": "Start TTS with voice",
-                "nl": "Begin TTS"
+                "nl": "Begin TTS met stem"
             },
             "titleFormatted": {
                 "en": "Start saying [[text]] in [[voice]]",
