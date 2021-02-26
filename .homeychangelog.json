@@ -57,6 +57,6 @@
     "en": "Fix flow title uniqueness"
   },
   "1.6.3": {
-    "en": "Added notification if Google response with a error (like Bandwidtch excausted, meaning quota reached)"
+    "en": "Added notification if Google response with a error (like Bandwidth excausted, meaning quota reached)"
   }
 }
