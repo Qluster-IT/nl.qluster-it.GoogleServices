@@ -4,7 +4,7 @@ Translate
 U can make a Google Translate device and use it as action or a condition to translate, of which the transalation will be available as a tokenvalue of the device.
 
 Text-To-Speech
-Useable with each device that takes an URL.
+Useable with any device that takes an URL.
 
 All languages that Google supports, are supported.
 Set voice in settings or overwrite it in a flow.

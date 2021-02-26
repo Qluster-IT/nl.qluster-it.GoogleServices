@@ -13,7 +13,7 @@ class GoogleTranslateDriver extends Homey.Driver
     async onInit()
     {
         this.log('GoogleTranslateDriver has been initialized');
-
+        
         Homey.ManagerSettings.on('set', (function(settingName) {
             if(settingName=='CloudJSON') {
                 this.setCloudJSON();
@@ -64,7 +64,7 @@ class GoogleTranslateDriver extends Homey.Driver
                         });
                     }).catch(err=>{console.log('err: ' + err);defer.reject('Did you configure the JSON and Project in the settingspage?');});
                 } catch (error) { 
-                    console.log('error: ' + error);
+                    console.log(condition.id + '.registerRunListener error: ' + error);
                     defer.reject('Did you configure the JSON and Project in the settingspage?');
                 }
                 return defer.promise;

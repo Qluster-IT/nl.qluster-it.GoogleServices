@@ -9,7 +9,7 @@ For this you will need https://cloud.google.com/translate/docs/setup#api and ent
 
 
 Text-To-Speech
-Useable with each device that thakes an URL.
+Useable with any device that thakes an URL.
 
 Cloud devices:
 All languages that Google supports, are supported, because the settings are build from live data, so when a new language becames available, it will be for this App also.
@@ -55,5 +55,4 @@ Swedish (SV)
 Norwegian (NO)
 
 
-Working on playing this on Homey itself.
-
+For playing it on Homey itself, see Media Url Converter.
