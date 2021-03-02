@@ -61,5 +61,8 @@
   },
   "1.6.4": {
     "en": "added word example to setting JSON placeholder"
+  },
+  "1.6.5": {
+    "en": "Flow arg title fixed"
   }
 }
