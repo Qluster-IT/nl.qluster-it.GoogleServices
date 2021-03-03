@@ -1,6 +1,6 @@
 {
   "id": "nl.qluster-it.GoogleServices",
-  "version": "1.6.5",
+  "version": "1.6.6",
   "compatibility": ">=1.5.0",
   "sdk": 2,
   "brandColor": "#8DB000",
@@ -19,6 +19,13 @@
   "images": {
     "large": "/assets/images/large.png",
     "small": "/assets/images/small.png"
+  },
+  "contributing": {
+    "donate": {
+      "paypal": {
+        "username": "paypal.me/QlusterIT"
+      }
+    }
   },
   "source": "https://bitbucket.org/QlusterIT/nl.qluster-it.googleservices/",
   "bugs": {
