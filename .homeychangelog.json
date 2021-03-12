@@ -64,5 +64,11 @@
   },
   "1.6.5": {
     "en": "Flow arg title fixed"
+  },
+  "1.6.6": {
+    "en": "Improved json"
+  },
+  "1.7.1": {
+    "en": "Added Volume Gain and Device Profile to CloudTTS device settings"
   }
 }
