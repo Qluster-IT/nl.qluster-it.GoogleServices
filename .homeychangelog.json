@@ -70,5 +70,8 @@
   },
   "1.7.1": {
     "en": "Added Volume Gain and Device Profile to CloudTTS device settings"
+  },
+  "1.7.2": {
+    "en": "Added Volume Gain and Device Profile to CloudTTS device settings"
   }
 }
