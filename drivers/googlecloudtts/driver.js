@@ -31,8 +31,11 @@ class GoogleCloudTTSDriver extends Homey.Driver
             settings:
             {
                 "languagecode": "default",
+                "delay" : 1000,
                 "speakingRate" : 1,
-                "pitch" : 0
+                "pitch" : 0,
+                "deviceprofile" : "undefined",
+                "volumeGainDb" : 0
             }
         });
 
