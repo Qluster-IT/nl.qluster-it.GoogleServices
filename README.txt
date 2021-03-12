@@ -8,7 +8,7 @@ Useable with any device that takes an URL.
 
 All languages that Google supports, are supported.
 Set voice in settings or overwrite it in a flow.
-You can set Pitch and Speed per device (will be overruled by flows with pitch and/or speed).
+You can set Pitch, Speed, Volume Gain and Device Profile per device (will be overruled by flows with pitch and/or speed).
 SSML coding is accepted now, like: <speak>Here are <say-as interpret-as=\"characters\">SSML</say-as> samples.<break time=\"3s\" />. And continue</speak>
 
 

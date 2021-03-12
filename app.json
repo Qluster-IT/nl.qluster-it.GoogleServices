@@ -1,6 +1,6 @@
 {
   "id": "nl.qluster-it.GoogleServices",
-  "version": "1.6.6",
+  "version": "1.7.1",
   "compatibility": ">=1.5.0",
   "sdk": 2,
   "brandColor": "#8DB000",
@@ -1033,6 +1033,85 @@
           "hint": {
             "en": "Extra waiting time before (finishing) playing the next file",
             "nl": "Extra wachttijd voor het (eindigevan het ) spelen van het bestand"
+          }
+        },
+        {
+          "id": "deviceprofile",
+          "type": "dropdown",
+          "label": {
+            "en": "Device Profile"
+          },
+          "hint": {
+            "en": "Select an 'audio effect' profile that is applied on (post synthesized) text to speech.\r\n"
+          },
+          "values": [
+            {
+              "id": "wearable-class-device",
+              "name": "wearable-class-device",
+              "label": {
+                "en": "Smart watches and other wearables, like Apple Watch, Wear OS watch (wearable-class-device)"
+              }
+            },
+            {
+              "id": "handset-class-device",
+              "name": "handset-class-device",
+              "label": {
+                "en": "Smartphones, like Google Pixel, Samsung Galaxy, Apple iPhone (handset-class-device)"
+              }
+            },
+            {
+              "id": "headphone-class-device",
+              "name": "headphone-class-device",
+              "label": {
+                "en": "Earbuds or headphones for audio playback, like Sennheiser headphones (headphone-class-device)"
+              }
+            },
+            {
+              "id": "small-bluetooth-speaker-class-device",
+              "name": "small-bluetooth-speaker-class-device",
+              "label": {
+                "en": "Small home speakers, like Google Home Mini (small-bluetooth-speaker-class-device)"
+              }
+            },
+            {
+              "id": "medium-bluetooth-speaker-class-device",
+              "name": "medium-bluetooth-speaker-class-device",
+              "label": {
+                "en": "Smart home speakers, like Google Home (medium-bluetooth-speaker-class-device)"
+              }
+            },
+            {
+              "id": "large-home-entertainment-class-device",
+              "name": "large-home-entertainment-class-device",
+              "label": {
+                "en": "Home entertainment systems or smart TVs, like Google Home Max, LG TV (large-home-entertainment-class-device)"
+              }
+            },
+            {
+              "id": "large-automotive-class-device",
+              "name": "large-automotive-class-device",
+              "label": {
+                "en": "Car speakers (large-automotive-class-device)"
+              }
+            },
+            {
+              "id": "telephony-class-application",
+              "name": "telephony-class-application",
+              "label": {
+                "en": "Interactive Voice Response (IVR) systems (telephony-class-application)"
+              }
+            }
+          ]
+        },
+        {
+          "id": "volumeGainDb",
+          "type": "number",
+          "label": "Volume Gain (Db)",
+          "min": -96,
+          "max": 16,
+          "step": 0.1,
+          "hint": {
+            "en": "Increase the volume with this amount of Db.\r\nStrongly recommend not to exceed +10 (dB) as there's usually no effective increase in loudness for any value greater than that."
           }
         }
       ]
