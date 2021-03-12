@@ -84,7 +84,8 @@
         "id": "deviceprofile",
         "type": "dropdown",
         "label": {
-          "en": "Device Profile"
+          "en": "Device Profile",          
+          "nl": "Apparaat profiel"
         },
         "hint": {
           "en": "Select an 'audio effect' profile that is applied on (post synthesized) text to speech.",
@@ -168,12 +169,16 @@
       {
         "id": "volumeGainDb",
         "type": "number",
-        "label": "Volume Gain (Db)",
+        "label": {
+          "en": "Volume Gain (dB)",
+          "nl": "Volume versterker (dB)"
+        },
         "min": -96,
         "max": 16,
         "step": 0.1,        
         "hint": {
-          "en": "Increase the volume with this amount of Db.\r\nStrongly recommend not to exceed +10 (dB) as there's usually no effective increase in loudness for any value greater than that."
+          "en": "Increase the volume of the audio with this amount of dB.\r\nStrongly recommend not to exceed +10 (dB) as there's usually no effective increase in loudness for any value greater than that.",
+          "nl": "Verhoog het volume van het de audiomet deze hoeveelheid in dB. \r\nSterk advies om niet hoger dan +10 (dB) te gaan, mede omdat er doorgaans geen effect meer is in luidheid hoger dan dat."
         }
       }
 
