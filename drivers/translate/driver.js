@@ -14,7 +14,7 @@ class GoogleTranslateDriver extends Homey.Driver
     {
         this.log('GoogleTranslateDriver has been initialized');
         
-        Homey.ManagerSettings.on('set', (function(settingName) {
+        this.homey.settings.on('set', (function(settingName) {
             if(settingName=='CloudJSON') {
                 this.setCloudJSON();
             }
@@ -34,8 +34,8 @@ class GoogleTranslateDriver extends Homey.Driver
         ];
         for (let i = 0; i < conditions.length; i++) {
             const condition = conditions[i];      
-            const conditionCard = new Homey.FlowCardCondition(condition.id);
-            conditionCard.register().registerRunListener(( ( args, state ) => {
+            const conditionCard = this.homey.flow.getConditionCard(condition.id);
+            conditionCard.registerRunListener(( ( args, state ) => {
                 console.log(condition.id + '.registerRunListener args: ');
                 var defer = new Defer();
                 try {
@@ -73,14 +73,14 @@ class GoogleTranslateDriver extends Homey.Driver
     }
 
 
-    onPairListDevices(data, callback) {
-        this.onPairListDevicesAsync(data).then(function(l) { callback(null, l); });
+    // onPairListDevices(data, callback) {
+    //     this.onPairListDevicesAsync(data).then(function(l) { callback(null, l); });
 
-    }
+    // }
 
-    async onPairListDevicesAsync(data)
+    async onPairListDevices(data)
     {
-        return Promise.resolve({
+        return {
             "name": 'Google Translate',
             data:
             {
@@ -88,14 +88,14 @@ class GoogleTranslateDriver extends Homey.Driver
             },
             settings:
             {
-                "languagecode": Homey.__('languagecode') || 'en-GB'
+                "languagecode": this.homey.__('languagecode') || 'en-GB'
             }
-        });
+        };
 
     }   
 
     async setCloudJSON() {
-        var json = await Homey.ManagerSettings.get('CloudJSON');
+        var json = await this.homey.settings.get('CloudJSON');
         this.credentials = json ? JSON.parse(json) : null;
         if(this.credentials){
           this.translateClient  = new TranslationServiceClient({credentials:this.credentials});
@@ -106,7 +106,7 @@ class GoogleTranslateDriver extends Homey.Driver
     }
     
     async setCloudProject() {
-        var project = await Homey.ManagerSettings.get('CloudProject');
+        var project = await this.homey.settings.get('CloudProject');
         projectId = 'projects/' +project;
     }
     async translate(text, source, target) {        

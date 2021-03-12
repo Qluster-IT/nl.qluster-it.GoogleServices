@@ -28,7 +28,7 @@ class GoogleServicesApp extends Homey.App {
   async onInit() {
     this.log('MyApp has been initialized');
     
-    Homey.ManagerSettings.on('set', (function(settingName) {
+    this.homey.settings.on('set', (function(settingName) {
       if(settingName=='CloudJSON') {
           this.setCloudJSON();
       } else if(settingName=='DefaultCloudVoice') {
@@ -46,16 +46,14 @@ class GoogleServicesApp extends Homey.App {
 
 
 
-    const url_trigger = new Homey.FlowCardTriggerDevice('url_trigger'); // this.homey.flow.getDeviceTriggerCard('url_trigger');
+    const url_trigger = this.homey.flow.getDeviceTriggerCard('url_trigger');
     this.Triggers.urlTrigger.Card = url_trigger;
     url_trigger
-    .register()
     .registerRunListener( async ( args, state ) => {  console.log('url_trigger.registerRunListener'); console.log(args); return true; });
     
-    const cloudurl_trigger = new Homey.FlowCardTriggerDevice('cloudurl_trigger'); // this.homey.flow.getDeviceTriggerCard('url_trigger');
+    const cloudurl_trigger = this.homey.flow.getDeviceTriggerCard('cloudurl_trigger');
     this.Triggers.cloudurlTrigger.Card = cloudurl_trigger;
     cloudurl_trigger
-    .register()
     .registerRunListener( async ( args, state ) => { console.log('cloudurl_trigger.registerRunListener'); console.log(args);  return true; });
     
 
@@ -65,8 +63,8 @@ class GoogleServicesApp extends Homey.App {
     ];
     for (let i = 0; i < starts.length; i++) {
       const start = starts[i];        
-      const start_googlettsAction = new Homey.FlowCardAction(start.id);//this.homey.flow.getActionCard('start_googletts');
-      start_googlettsAction.register().registerRunListener(( ( args, state ) => { //async              
+      const start_googlettsAction = this.homey.flow.getActionCard(start.id);
+      start_googlettsAction.registerRunListener(( ( args, state ) => { //async              
         var defer = new Defer();
         try {
           if(!args.device || !args.text) return false;
@@ -91,8 +89,8 @@ class GoogleServicesApp extends Homey.App {
     for (let i = 0; i < actions.length; i++) {
       const action = actions[i];
       
-      const actionCard = new Homey.FlowCardAction(action.id);//this.homey.flow.getActionCard('start_googletts');
-      actionCard.register().registerRunListener(( ( args, state ) => { //async
+      const actionCard = this.homey.flow.getActionCard(action.id);
+      actionCard.registerRunListener(( ( args, state ) => { //async
         var defer = new Defer();
         try {
             if(!args.device || !args.text) return false;
@@ -128,8 +126,8 @@ class GoogleServicesApp extends Homey.App {
     ];
     for (let i = 0; i < conditionClouds.length; i++) {
       const condition = conditionClouds[i];      
-      const conditionCard = new Homey.FlowCardCondition(condition.id);//this.homey.flow.getConditionCard('start_googletts');
-      conditionCard.register().registerRunListener(( ( args, state ) => { //async
+      const conditionCard = this.homey.flow.getConditionCard(condition.id);
+      conditionCard.registerRunListener(( ( args, state ) => { //async
         var defer = new Defer();
         try {
           if(!args.device || !args.text) return Promise.resolve(false);
@@ -188,9 +186,9 @@ class GoogleServicesApp extends Homey.App {
     ];
     for (let i = 0; i < starts.length; i++) {
         const start = starts[i];        
-        const trigger =  new Homey.FlowCardTriggerDevice(start.id);//this.homey.flow.getDeviceTriggerCard(start.id);
+        const trigger =  this.homey.flow.getDeviceTriggerCard(start.id);
         this.Triggers[start.id].Card = trigger;
-        trigger.register().registerRunListener(( args, state ) => {  
+        trigger.registerRunListener(( args, state ) => {  
             console.log( start.id + '.registerRunListener (args, state)');         
             console.log(args);
             console.log(state);
@@ -213,13 +211,13 @@ class GoogleServicesApp extends Homey.App {
   }
   
   // async setDefaultCloudLanguageCode() {
-  //   var lg = (await Homey.ManagerSettings.get('DefaultCloudLanguageCode')) || Homey.__('language');
+  //   var lg = (await this.homey.settings.get('DefaultCloudLanguageCode')) || this.homey.__('language');
   //   console.log('setDefaultCloudLanguageCode lg: ' + lg);
   //   TtsServer.DefaultCloudLanguageCode = lg;
   // }
 
   async setDefaultCloudVoice() {
-    var voice = await Homey.ManagerSettings.get('DefaultCloudVoice');
+    var voice = await this.homey.settings.get('DefaultCloudVoice');
     if(voice) voice = JSON.parse(voice);
     var voices = await TtsServer.getVoices();
     var r;
@@ -228,7 +226,7 @@ class GoogleServicesApp extends Homey.App {
   }
 
   async setCloudJSON() {
-    var json = await Homey.ManagerSettings.get('CloudJSON');
+    var json = await this.homey.settings.get('CloudJSON');
     this.credentials = json ? JSON.parse(json) : null;
     if(this.credentials){
       this.client = new textToSpeech.TextToSpeechClient({credentials:this.credentials});

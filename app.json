@@ -1,8 +1,8 @@
 {
   "id": "nl.qluster-it.GoogleServices",
-  "version": "1.7.3",
-  "compatibility": ">=1.5.0",
-  "sdk": 2,
+  "version": "1.7.4",
+  "compatibility": ">=5.0.0",
+  "sdk": 3,
   "brandColor": "#8DB000",
   "name": {
     "en": "Google Services",
@@ -35,6 +35,12 @@
   "author": {
     "name": "Arie J. Godschalk",
     "email": "arie@qluster-it.nl"
+  },
+  "api": {
+    "getVoices": {
+      "method": "get",
+      "path": "/getVoices"
+    }
   },
   "flow": {
     "triggers": [
