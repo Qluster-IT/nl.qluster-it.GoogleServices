@@ -43,7 +43,7 @@ https://cloud.google.com/text-to-speech/docs/libraries#client-libraries-install-
     
     // console.log(r);
     
-    // const myImage = new Homey.Image(); //await this.homey.images.createImage();
+    // const myImage = await this.homey.images.createImage();
 
     // myImage.setStream((async (stream) => {
     //     const res = await fetch('https://translate.google.com/translate_tts?ie=UTF-8&q=Hallo&tl=nl-NL&total=1&idx=0&textlen=5&client=tw-ob&prev=input&ttsspeed=1');

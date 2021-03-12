@@ -10,13 +10,10 @@ class GoogleTTSDriver extends Homey.Driver
         this.log('GoogleTTSDriver has been initialized');        
 
     }
-    onPairListDevices(data, callback) {
-        this.onPairListDevicesAsync().then(function(l) { callback(null, l); });
-
-    }
-    async onPairListDevicesAsync()
+    
+    async onPairListDevices()
     {
-        return Promise.resolve({
+        return {
             "name": 'Google TTS device',
             data:
             {
@@ -24,9 +21,9 @@ class GoogleTTSDriver extends Homey.Driver
             },
             settings:
             {
-                "languagecode": Homey.__('languagecode') || 'en-GB'
+                "languagecode": this.homey.__('languagecode') || 'en-GB'
             }
-        });
+        };
 
     }
 

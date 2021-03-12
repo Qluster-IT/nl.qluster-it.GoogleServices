@@ -10,19 +10,12 @@ class GoogleCloudTTSDriver extends Homey.Driver
         this.log('GoogleCloudTTSDriver has been initialized');        
 
     }
-    onPairListDevices(data, callback) {
-        this.onPairListDevicesAsync(data).then(function(l) { callback(null, l); });
 
-    }
-    onRepairListDevices(data, callback) {
-        this.onPairListDevicesAsync(data).then(function(l) { callback(null, l); });
-
-    }
-    async onPairListDevicesAsync(data)
+    async onPairListDevices(data)
     {
         //console.log('onPairListDevicesAsync');
         //console.log(data);
-        return Promise.resolve({
+        return {
             "name": 'Google Cloud TTS device',
             data:
             {
@@ -37,7 +30,7 @@ class GoogleCloudTTSDriver extends Homey.Driver
                 "deviceprofile" : "undefined",
                 "volumeGainDb" : 0
             }
-        });
+        };
 
     }
 
