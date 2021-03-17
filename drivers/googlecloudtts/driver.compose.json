@@ -200,7 +200,7 @@
         "id": "suffixpause",
         "type": "number",
         "label": {
-          "en": "Suffix Pause (ms",
+          "en": "Suffix Pause (ms)",
           "nl": "Pauze achteraf (ms)"
         },
         "hint": {

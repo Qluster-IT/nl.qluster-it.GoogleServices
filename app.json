@@ -1,6 +1,6 @@
 {
   "id": "nl.qluster-it.GoogleServices",
-  "version": "1.7.4",
+  "version": "1.7.6",
   "compatibility": ">=5.0.0",
   "sdk": 3,
   "brandColor": "#8DB000",
@@ -1154,14 +1154,14 @@
             "nl": "Voeg een pauze toe (in milliseconde) aan het begin van iedere spraakuitvoer van dit apparaat."
           },
           "min": 0,
-          "max": 100000,
+          "max": 60000,
           "step": 1
         },
         {
           "id": "suffixpause",
           "type": "number",
           "label": {
-            "en": "Suffix Pause (ms",
+            "en": "Suffix Pause (ms)",
             "nl": "Pauze achteraf (ms)"
           },
           "hint": {
@@ -1169,7 +1169,7 @@
             "nl": "Voeg een pauze toe (in milliseconde) aan het einde van iedere spraakuitvoer van dit apparaat."
           },
           "min": 0,
-          "max": 100000,
+          "max": 60000,
           "step": 1
         }
       ]

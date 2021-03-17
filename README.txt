@@ -11,6 +11,8 @@ Set voice in settings or overwrite it in a flow.
 You can set Pitch, Speed, Volume Gain and Device Profile per device (will be overruled by flows with pitch and/or speed).
 SSML coding is accepted now, like: <speak>Here are <say-as interpret-as=\"characters\">SSML</say-as> samples.<break time=\"3s\" />. And continue</speak>
 
+Also you can add a prefix and/or suffix pause in the device settings, which is particularly useful for Chromecast users:
+A pause added the beginning will separate the notification sound and the actual speech.
 
 Create a House device that triggers all applicable devices to say "Dinner is ready!" or just a device for the main room to say "The doorbell is ringing".
 You can add "devices" as many times as you would like, each with its own trigger.
