@@ -1141,6 +1141,36 @@
             "en": "Increase the volume of the audio with this amount of dB.\r\nStrongly recommend not to exceed +10 (dB) as there's usually no effective increase in loudness for any value greater than that.",
             "nl": "Verhoog het volume van het de audiomet deze hoeveelheid in dB. \r\nSterk advies om niet hoger dan +10 (dB) te gaan, mede omdat er doorgaans geen effect meer is in luidheid hoger dan dat."
           }
+        },
+        {
+          "id": "prefixpause",
+          "type": "number",
+          "label": {
+            "en": "Prefix Pause (Seconds)",
+            "nl": "Pauze vooraf (seconde)"
+          },
+          "hint": {
+            "en": "Adds a pause (in seconds) to the beginning of each speech output of this device.",
+            "nl": "Voegt een pauze toe (in seconde) aan het begin van iedere spraakuitvoer van dit apparaat."
+          },
+          "min": 0,
+          "max": 65535,
+          "step": 0.1
+        },
+        {
+          "id": "suffixpause",
+          "type": "number",
+          "label": {
+            "en": "Suffix Pause (Seconds",
+            "nl": "Pauze achteraf (seconde)"
+          },
+          "hint": {
+            "en": "Adds a pause (in seconds) to the end of each speech output of this device.",
+            "nl": "Voegt een pauze toe (in seconde) aan het einde van iedere spraakuitvoer van dit apparaat."
+          },
+          "min": 0,
+          "max": 65535,
+          "step": 0.1
         }
       ]
     },

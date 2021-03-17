@@ -28,7 +28,9 @@ class GoogleCloudTTSDriver extends Homey.Driver
                 "speakingRate" : 1,
                 "pitch" : 0,
                 "deviceprofile" : "undefined",
-                "volumeGainDb" : 0
+                "volumeGainDb" : 0,
+                "prefixpause" : 0,
+                "suffixpause" : 0
             }
         };
 
