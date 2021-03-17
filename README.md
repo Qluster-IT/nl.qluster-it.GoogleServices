@@ -19,6 +19,9 @@ You can set Pitch, Speed, Volume Gain and Device Profile per device (will be ove
 SSML coding is accepted now, like: <speak>Here are <say-as interpret-as=\"characters\">SSML</say-as> samples.<break time=\"3s\" />. And continue</speak>
 https://cloud.google.com/text-to-speech/docs/ssml
 
+Also you can add a prefix and/or suffix pause in the device settings, which is particularly useful for Chromecast users:
+A pause added the beginning will separate the notification sound and the actual speech.
+
 You get a URL for the audio that will be streamed through Homey, so the device eventually playing the mp3 file should be in the same network and have access.
 The last 100 transcripts are stored in Homey's Memory for speed and less requests to Google Cloud (restart of app or Homey means reset of memory).
 

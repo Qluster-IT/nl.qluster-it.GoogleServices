@@ -26,6 +26,7 @@ class GoogleServicesApp extends Homey.App {
   };
 
   async onInit() {
+    if (process.env.DEBUG === '1') require('inspector').open(9222, '0.0.0.0', true);
     this.log('MyApp has been initialized');
     
     this.homey.settings.on('set', (function(settingName) {
@@ -227,11 +228,21 @@ class GoogleServicesApp extends Homey.App {
 
   async setCloudJSON() {
     var json = await this.homey.settings.get('CloudJSON');
-    this.credentials = json ? JSON.parse(json) : null;
+    try {      
+      this.credentials = json && json!='' ? JSON.parse(json) : null;
+    } catch (error) {
+      this.credentials = null;
+      this.homey.notifications.createNotification({excerpt : "Error while setting Google Cloud JSON: " + error });      
+    }
     if(this.credentials){
-      this.client = new textToSpeech.TextToSpeechClient({credentials:this.credentials});
+      try {        
+        this.client = new textToSpeech.TextToSpeechClient({credentials:this.credentials});
+      } catch (error) {        
+        this.homey.notifications.createNotification({excerpt : "Error while setting Google Cloud Client: " + error });    
+      }
     }
     else {
+      
       this.client = null;
     }
     TtsServer.client = this.client;

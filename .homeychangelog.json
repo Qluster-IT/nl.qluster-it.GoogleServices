@@ -79,5 +79,8 @@
   },
   "1.7.4": {
     "en": "Added Volume Gain and Device Profile to CloudTTS device settings and SDK3"
+  },
+  "1.7.6": {
+    "en": "Added prefix and suffix pause to TTS Device settings, particularly useful for Chromecast users"
   }
 }
