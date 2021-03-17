@@ -26,6 +26,7 @@ class GoogleServicesApp extends Homey.App {
   };
 
   async onInit() {
+    if (process.env.DEBUG === '1') require('inspector').open(9222, '0.0.0.0', true);
     this.log('MyApp has been initialized');
     
     this.homey.settings.on('set', (function(settingName) {
