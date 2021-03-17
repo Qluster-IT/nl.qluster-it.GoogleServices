@@ -23,7 +23,7 @@ This works great with other Apps like Sonos (Play Audio Clip), Samsung Smart TV 
 
 See the community topic for explanation on how to get the necessary free Google Cloud Service Account (JSON file).
 
-There is the also old Google TTS device, with a max. 200 characters and limited options.
+There is also an old Google TTS device, with a max. 200 characters and limited options.
 
 
 For playing it on Homey itself, see Media Url Converter.
