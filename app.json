@@ -1,6 +1,6 @@
 {
   "id": "nl.qluster-it.GoogleServices",
-  "version": "1.7.9",
+  "version": "1.8.0",
   "compatibility": ">=5.0.0",
   "sdk": 3,
   "brandColor": "#8DB000",
@@ -13,7 +13,7 @@
     "nl": "Stel je favoriete Google (vertaal) stem in voor je speakers"
   },
   "category": [
-    "tools"
+    "music"
   ],
   "permissions": [],
   "images": {
