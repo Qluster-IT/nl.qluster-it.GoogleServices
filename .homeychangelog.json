@@ -93,6 +93,6 @@
     "en": "Updated readme"
   },
   "1.8.0": {
-    "en": "Added setting for using <speak> element default"
+    "en": "Added device-setting for adding <speak> by default to speechoutput, so you won't need to anymore"
   }
 }
