@@ -220,6 +220,19 @@
         "max": 60000,
         "step": 1,
         "value" : 0
+      },
+      {
+        "id": "defaultspeak",
+        "type": "checkbox",
+        "label": {
+          "en": "Use <speak> element by default",
+          "nl": "Gebruik standaard het <speak> element"
+        },
+        "hint": {
+          "en": "If true, it will automatically insert the necessary start and end <speak> elements in speechoutput.",
+          "nl": "Indien waar, zal het automatisch de nodige begin en einde <speak> elementen toevoegen aan spraakuitvoer."          
+        },
+        "value" : false
       }
 
     ]

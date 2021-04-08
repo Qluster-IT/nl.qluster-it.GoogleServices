@@ -93,6 +93,6 @@
     "en": "Updated readme"
   },
   "1.8.0": {
-    "en": "Updated category"
+    "en": "Added setting for using <speak> element default"
   }
 }
