@@ -225,12 +225,12 @@
         "id": "defaultspeak",
         "type": "checkbox",
         "label": {
-          "en": "Use <speak> element by default",
-          "nl": "Gebruik standaard het <speak> element"
+          "en": "Always use SSML",
+          "nl": "Gebruik altijd SSML"
         },
         "hint": {
           "en": "If true, it will automatically insert the necessary start and end <speak> elements in speechoutput.",
-          "nl": "Indien waar, zal het automatisch de nodige begin en einde <speak> elementen toevoegen aan spraakuitvoer."          
+          "nl": "Indien waar, zal het automatisch de benodige begin en einde <speak> elementen toevoegen aan spraakuitvoer."          
         },
         "value" : false
       }

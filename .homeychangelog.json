@@ -94,5 +94,8 @@
   },
   "1.8.0": {
     "en": "Added device-setting for adding <speak> by default to speechoutput, so you won't need to anymore"
+  },
+  "1.8.1": {
+    "en": "Added device-setting for always using SSML, so you wont need to write the <speak> element"
   }
 }
