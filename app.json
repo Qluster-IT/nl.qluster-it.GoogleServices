@@ -1,6 +1,6 @@
 {
   "id": "nl.qluster-it.GoogleServices",
-  "version": "1.8.2",
+  "version": "1.8.3",
   "compatibility": ">=5.0.0",
   "sdk": 3,
   "brandColor": "#8DB000",
@@ -464,6 +464,56 @@
         ]
       },
       {
+        "id": "condition_say_googlecloudtts_voice_volume",
+        "title": {
+          "en": "Start TTS",
+          "nl": "Begin TTS"
+        },
+        "titleFormatted": {
+          "en": "Start saying [[text]] in [[voice]] at volume [[volumeGainDb]] and finish",
+          "nl": "Begin te zeggen [[text]] in [[voice]] op volume [[volumeGainDb]] en voltooi"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=googlecloudtts"
+          },
+          {
+            "name": "text",
+            "type": "text",
+            "placeholder": {
+              "en": "Text",
+              "nl": "Tekst"
+            }
+          },
+          {
+            "name": "voice",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "Language",
+              "nl": "Taal"
+            }
+          },
+          {
+            "name": "volumeGainDb",
+            "type": "range",
+            "placeholder": {
+              "en": "Volume Gain (dB)",
+              "nl": "Volume versterker (dB)"
+            },
+            "min": -96,
+            "max": 16,
+            "step": 0.1,
+            "hint": {
+              "en": "Increase the volume of the speech-output with this amount of decibel (dB).\r\nStrongly recommend not to exceed +10 (dB) as there's usually no effective increase in loudness for any value greater than that.",
+              "nl": "Verhoog het volume van de spraakuitvoer met deze hoeveelheid in decibel (dB). \r\nSterk advies om niet hoger dan +10 (dB) te gaan, mede omdat er doorgaans geen effect meer is in luidheid hoger dan dat."
+            },
+            "value": 0
+          }
+        ]
+      },
+      {
         "id": "condition_say_googlecloudtts_voice_speed",
         "title": {
           "en": "Start TTS at speed",
@@ -884,6 +934,56 @@
               "en": "Language",
               "nl": "Taal"
             }
+          }
+        ]
+      },
+      {
+        "id": "start_googlecloudtts_voice_volume",
+        "title": {
+          "en": "Start TTS with voice at volume",
+          "nl": "Begin TTS met stem op volume"
+        },
+        "titleFormatted": {
+          "en": "Start saying [[text]] in [[voice]] at volume [[volumeGainDb]]",
+          "nl": "Begin te zeggen [[text]] in [[voice]] op volume [[volumeGainDb]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=googlecloudtts"
+          },
+          {
+            "name": "text",
+            "type": "text",
+            "placeholder": {
+              "en": "Text",
+              "nl": "Tekst"
+            }
+          },
+          {
+            "name": "voice",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "Language",
+              "nl": "Taal"
+            }
+          },
+          {
+            "name": "volumeGainDb",
+            "type": "range",
+            "placeholder": {
+              "en": "Volume Gain (dB)",
+              "nl": "Volume versterker (dB)"
+            },
+            "min": -96,
+            "max": 16,
+            "step": 0.1,
+            "hint": {
+              "en": "Increase the volume of the speech-output with this amount of decibel (dB).\r\nStrongly recommend not to exceed +10 (dB) as there's usually no effective increase in loudness for any value greater than that.",
+              "nl": "Verhoog het volume van de spraakuitvoer met deze hoeveelheid in decibel (dB). \r\nSterk advies om niet hoger dan +10 (dB) te gaan, mede omdat er doorgaans geen effect meer is in luidheid hoger dan dat."
+            },
+            "value": 0
           }
         ]
       },
