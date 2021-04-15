@@ -103,5 +103,14 @@
   },
   "1.8.3": {
     "en": "Added volume-gain (including voice/language) to flowcards"
+  },
+  "1.8.4": {
+    "en": "Fixed debugging issue"
+  },
+  "1.8.7": {
+    "en": "Fixes"
+  },
+  "1.8.8": {
+    "en": "Fixes App startup"
   }
 }
