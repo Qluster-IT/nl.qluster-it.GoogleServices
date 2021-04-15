@@ -15,6 +15,7 @@
             var cloudJSON;// = document.getElementById('cloudJSON');
             var defaultCloudVoice ;//= document.getElementById('defaultCloudVoice');
             var cloudProject ;
+            var cloudApiKey;
             function l(s)  {
                 if(!debug) debug = document.getElementById('debug');
                 if(debug) debug.value+='\r\n' + (s!==undefined && s!==null ? s.toString() : 'undefined');
@@ -28,6 +29,7 @@
                     promises.push(Homey.set('CloudJSON', cloudJSON.value));
                     promises.push(Homey.set('DefaultCloudVoice', defaultCloudVoice.selectedIndex>0 && defaultCloudVoice.children.length>defaultCloudVoice.selectedIndex ? defaultCloudVoice.children[defaultCloudVoice.selectedIndex].value : null));
                     promises.push(Homey.set('CloudProject', cloudProject.value));
+                    promises.push(Homey.set('CloudApiKey', cloudApiKey.value));
                     // Promise.all(promises).then(x=> {
                     //     getVoices();
                     // }).catch(x=> {
@@ -38,6 +40,7 @@
                     }, 1000);
                         Homey.alert('Saved');
                     //await Homey.set('DefaultCloudLanguageCode', defaultCloudLanguageCode.children[defaultCloudLanguageCode.selectedIndex].value);                            
+
                 } catch (error) {
                     Homey.alert('Error while saving: ' + error);
                 }
@@ -116,6 +119,7 @@
                     cloudJSON = document.getElementById('cloudJSON');
                     defaultCloudVoice = document.getElementById('defaultCloudVoice');
                     cloudProject = document.getElementById('cloudProject');
+                    cloudApiKey = document.getElementById('cloudApiKey');
                     //var defaultCloudLanguageCode = document.getElementById('defaultCloudLanguageCode');
                     Homey.ready();
                     // save.addEventListener('click', function (e) {
@@ -126,6 +130,9 @@
                     });
                     Homey.get('CloudProject', function(err, v) {
                         cloudProject.value = err ? '' : v;
+                    });
+                    Homey.get('CloudApiKey', function(err, v) {
+                        cloudApiKey.value = err ? '' : v;
                     });
                     
                     getVoices();
@@ -166,11 +173,18 @@
         <select id="defaultCloudVoice" style="display: inline-block;width:100%;"></select>
         <br/>
 
-        <h2>Google Cloud Project</h2>
+        <h2>Google Cloud Project (for Translate)</h2>
         <input type="text" id="cloudProject" style="display: inline-block;width:100%;" placeholder="Projectname" />
         <div style="display: inline-block;width:100%;">Enter the Projectname. Case Sensitive!</div>
         <br/>
         <br/><br/>
+
+        <h2>Google API Key (for YouTube)</h2>
+        <input type="text" id="cloudApiKey" style="display: inline-block;width:100%;" placeholder="API Key" />
+        <div style="display: inline-block;width:100%;">Enter the API Key.</div>
+        <br/>
+        <br/>
+
         <input type="button" id="save" onclick="save()" value="Save"/>
 
 </body>

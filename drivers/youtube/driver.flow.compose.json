@@ -1,0 +1,61 @@
+{
+    "triggers": [
+        {
+            "id": "youtube_trigger",
+            "title": {
+                "en": "YouTube triggered"
+            },
+            "titleFormatted": {
+                "en": "YouTube triggered"
+            },
+            "tokens": [
+                {
+                    "name": "id",
+                    "type": "string",
+                    "title": {
+                        "en": "YouTube ID"
+                    }
+                },
+                {
+                    "name": "link",
+                    "type": "string",
+                    "title": {
+                        "en": "YouTube link"
+                    }
+                },
+                {
+                    "name": "text",
+                    "type": "string",
+                    "title": {
+                        "en": "Searched text",
+                        "nl": "Gezochte tekst"
+                    }
+                }
+            ],
+            "args": []
+        }
+    ],    
+    "actions": [
+        {
+            "id": "youtube_search",
+            "title": {
+                "en": "Search within YouTube",
+                "nl": "Doorzoek YouTube"
+            },
+            "titleFormatted": {
+                "en": "Search [[text]]",
+                "nl": "Zoek [[text]]"
+            },
+            "args": [
+                {
+                    "name": "text",
+                    "type": "text",
+                    "placeholder": {
+                        "en": "Text",
+                        "nl": "Tekst"
+                    }
+                }
+            ]
+        }
+    ]
+}

@@ -112,5 +112,8 @@
   },
   "1.8.8": {
     "en": "Fixes App startup"
+  },
+  "1.8.9": {
+    "en": "Added a YouTube device for searching YouTube"
   }
 }
