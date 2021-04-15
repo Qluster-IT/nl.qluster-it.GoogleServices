@@ -88,5 +88,20 @@
   },
   "1.7.8": {
     "en": "changed Readme"
+  },
+  "1.7.9": {
+    "en": "Updated readme"
+  },
+  "1.8.0": {
+    "en": "Added device-setting for adding <speak> by default to speechoutput, so you won't need to anymore"
+  },
+  "1.8.1": {
+    "en": "Added device-setting for always using SSML, so you wont need to write the <speak> element"
+  },
+  "1.8.2": {
+    "en": "Added volume-gain to flowcards"
+  },
+  "1.8.3": {
+    "en": "Added volume-gain (including voice/language) to flowcards"
   }
 }

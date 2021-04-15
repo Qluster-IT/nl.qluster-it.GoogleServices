@@ -81,9 +81,11 @@ class GoogleServicesApp extends Homey.App {
 
     var actions = [
       {id:'start_googlecloudtts'},
+      {id:'start_googlecloudtts_volume'},
       {id:'start_googlecloudtts_speed'},
       {id:'start_googlecloudtts_speed_pitch'},
       {id:'start_googlecloudtts_voice', voice:true },
+      {id:'start_googlecloudtts_voice_volume', voice:true },
       {id:'start_googlecloudtts_voice_speed', voice:true },
       {id:'start_googlecloudtts_voice_speed_pitch', voice:true }
     ];
@@ -119,9 +121,11 @@ class GoogleServicesApp extends Homey.App {
       {id:'condition_googlecloudtts_speed'},
       {id:'condition_googlecloudtts_speed_pitch'},
       {id:'condition_say_googlecloudtts', triggerAndWait: true},
+      {id:'condition_say_googlecloudtts_volume', triggerAndWait: true},
       {id:'condition_say_googlecloudtts_speed', triggerAndWait: true},
       {id:'condition_say_googlecloudtts_speed_pitch', triggerAndWait: true},      
       {id:'condition_say_googlecloudtts_voice', triggerAndWait: true, voice:true},
+      {id:'condition_say_googlecloudtts_voice_volume', triggerAndWait: true, voice:true},
       {id:'condition_say_googlecloudtts_voice_speed', triggerAndWait: true, voice:true},
       {id:'condition_say_googlecloudtts_voice_speed_pitch', triggerAndWait: true, voice:true}
     ];
