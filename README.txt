@@ -6,6 +6,9 @@ U can create a Google Translate device and use it as action or a condition to tr
 Text-To-Speech
 Useable with any device that takes an URL.
 
+YouTube
+Search YouTube and play it on YouTube or any device that takes an URL.
+
 All languages that Google supports, are supported.
 Set voice in settings or overwrite it in a flow.
 You can set Pitch, Speed, Volume Gain and Device Profile per device (will be overruled by flows with pitch and/or speed).
