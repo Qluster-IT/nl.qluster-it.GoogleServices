@@ -30,7 +30,7 @@ class GoogleTranslateDriver extends Homey.Driver
         // });
 
         var conditions = [
-            {id:'condition_translate', triggerAndWait: true}
+            {id:'condition_translate'}
         ];
         for (let i = 0; i < conditions.length; i++) {
             const condition = conditions[i];      
@@ -50,15 +50,10 @@ class GoogleTranslateDriver extends Homey.Driver
                         }
                         promises.push(args.device.setCapabilityValue('device_translation', translation));
 
-                        // if(condition.triggerAndWait) {
-                        //     var triggered = !!this.Triggers.cloudurlTrigger.Card.trigger(args.device, {url:url.url, text:args.text, duration :url.duration } );
-                        //     if(triggered) promises.push(this.SetFinishedTimer(args.device, {url:url.url, text:args.text, duration :url.duration }));
-                        //     else this.ClearFinishedTimer(args.device);
-                        // }            
-
                         var all = Promise.all(promises);                   
                         all.then(()=> {
                             defer.resolve(true);
+                            //defer.resolve({text:args.translate, translation:translation});
                         }).catch((err)=> {
                             defer.reject();
                         });
@@ -70,6 +65,49 @@ class GoogleTranslateDriver extends Homey.Driver
                 return defer.promise;
             }).bind(this));
         }
+    
+
+    var actions = [
+        {id:'action_translate'},        
+        {id:'action_translate_af', af:true}
+    ];
+    for (let i = 0; i < actions.length; i++) {
+        const action = actions[i];      
+        const actionCard = this.homey.flow.getActionCard(action.id);
+        actionCard.registerRunListener(( ( args, state ) => {
+            console.log(action.id + '.registerRunListener args: ');
+            var defer = new Defer();
+            try {
+                if(!args.device || !args.translate) return Promise.resolve(false);
+                var promises = [];
+                promises.push(args.device.setCapabilityValue('device_translate', args.translate));
+
+                const targetlanguagecode = args.targetlanguagecode || args.device.getSetting('defaulttargetlanguagecode');
+                if(!targetlanguagecode) defer.reject("Targetlanguagecode not set.");
+                const sourcelanguagecode = args.device.getSetting('languagecode');
+                if(!sourcelanguagecode) defer.reject("Sourcelanguagecode not set.");
+                this.translate(args.translate, sourcelanguagecode, targetlanguagecode).then((translation)=> {
+                    if(!translation) {
+                        defer.reject("Could not translate");
+                        return;
+                    }
+                    promises.push(args.device.setCapabilityValue('device_translation', translation));
+
+                    var all = Promise.all(promises);                   
+                    all.then(()=> {
+                        //defer.resolve(true);
+                        defer.resolve(action.af ? {text:args.translate, translation:translation, sourcelanguagecode: sourcelanguagecode, targetlanguagecode: targetlanguagecode } : true);
+                    }).catch((err)=> {
+                        defer.reject();
+                    });
+                }).catch(err=>{console.log('err: ' + err);defer.reject('Did you configure the JSON and Project in the settingspage?');});
+            } catch (error) { 
+                console.log(action.id + '.registerRunListener error: ' + error);
+                defer.reject('Did you configure the JSON and Project in the settingspage?');
+            }
+            return defer.promise;
+        }).bind(this));
+    }
     }
 
 
@@ -88,7 +126,8 @@ class GoogleTranslateDriver extends Homey.Driver
             },
             settings:
             {
-                "languagecode": this.homey.__('languagecode') || 'en-GB'
+                "languagecode": this.homey.__('languagecode') || 'en-GB',                
+                "defaulttargetlanguagecode": 'en-GB'
             }
         };
 
@@ -111,9 +150,6 @@ class GoogleTranslateDriver extends Homey.Driver
     }
     async translate(text, source, target) {        
         const [translation] = await this.translateClient.translateText({ contents:[text], sourceLanguageCode:source, targetLanguageCode:target, parent: projectId});
-        // console.log(`Text: ${text}`);
-        // console.log(`Translation: ${translation}`);
-        // console.log(translation);
         return translation && translation.translations && translation.translations.length>0 ? translation.translations[0].translatedText : null;
       }
 

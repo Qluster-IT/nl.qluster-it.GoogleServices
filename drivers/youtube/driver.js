@@ -21,7 +21,8 @@ class YouTubeDriver extends Homey.Driver
 
 
         var actions = [
-          {id:'youtube_search'}
+          {id:'youtube_search'},          
+          {id:'youtube_search_af', af:true}
         ];
         for (let i = 0; i < actions.length; i++) {
           const action = actions[i];
@@ -42,7 +43,7 @@ class YouTubeDriver extends Homey.Driver
                   if(result) {
                     this.log(result);
                     this.Triggers.youtubetrigger.Card.trigger(args.device, {id:result.id, link:result.link, text:args.text } );
-                    defer.resolve(true);
+                    defer.resolve(action.af? {id:result.id, link:result.link, text:args.text } : true);
                   } else defer.reject('Nothing found.');
                   
                   // args.device.results = results;

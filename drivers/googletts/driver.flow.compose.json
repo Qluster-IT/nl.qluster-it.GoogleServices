@@ -80,6 +80,83 @@
             }
           }
         ]
+      },
+      {
+        "id": "start_googletts_af",
+        "title": {
+          "en": "Start TTS",
+          "nl": "Begin TTS"
+        },
+        "titleFormatted": {
+          "en": "Start saying [[text]]",
+          "nl": "Begin te zeggen [[text]]"
+        },
+        "args": [
+          
+          {
+            "name": "text",
+            "type": "text",
+            "placeholder": {
+              "en": "Text",
+              "nl": "Tekst"
+            }
+          }
+        ],        
+        "tokens": [
+          {
+            "name": "url",
+            "type": "string",
+            "title": {
+              "en": "Url"
+            }
+          },
+          {
+            "name": "text",
+            "type": "string",
+            "title": {
+              "en": "Text",
+              "nl": "Tekst"
+            }
+          }
+        ]
+      },
+      {
+        "id": "start_googletts_slow_af",
+        "title": {
+          "en": "Start TTS slow speed",
+          "nl": "Begin TTS langzame snelheid"
+        },
+        "titleFormatted": {
+          "en": "Start saying [[text]] slow speed",
+          "nl": "Begin te zeggen [[text]] langzame snelheid"
+        },
+        "args": [          
+          {
+            "name": "text",
+            "type": "text",
+            "placeholder": {
+              "en": "Text",
+              "nl": "Tekst"
+            }
+          }
+        ],        
+        "tokens": [
+          {
+            "name": "url",
+            "type": "string",
+            "title": {
+              "en": "Url"
+            }
+          },
+          {
+            "name": "text",
+            "type": "string",
+            "title": {
+              "en": "Text",
+              "nl": "Tekst"
+            }
+          }
+        ]
       }
     ]
 }
