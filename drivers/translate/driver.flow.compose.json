@@ -12,14 +12,13 @@
           "en": "Translate [[translate]] into [[targetlanguagecode]]",
           "nl": "Vertaal [[translate]] naar [[targetlanguagecode]]"
         },
-        "args": [
-          
+        "args": [          
           {
             "name": "translate",
             "type": "text",
             "title": {
-              "en": "Translate",
-              "nl": "Vertaal"
+              "en": "Text to translate",
+              "nl": "Tekst om te vertalen"
             }
           },
           {
@@ -30,7 +29,7 @@
               "nl": "Vertaal"
             },
             "hint": {
-              "en": "Choose the language for this device"
+              "en": "The language to translate into"
             },
             "values": [
               {
@@ -135,5 +134,409 @@
       }
     ],
     "actions": [
+      {
+        "id": "action_translate",
+        "title": {
+          "en": "Translate",
+          "nl": "Vertaal"
+        },
+        "titleFormatted": {
+          "en": "Translate [[translate]] into [[targetlanguagecode]]",
+          "nl": "Vertaal [[translate]] naar [[targetlanguagecode]]"
+        },
+        "args": [
+          {
+            "name": "translate",
+            "type": "text",
+            "title": {
+              "en": "Text to translate",
+              "nl": "Tekst om te vertalen"
+            }
+          },
+          {
+            "name": "targetlanguagecode",
+            "type": "dropdown",
+            "title": {
+              "en": "Translate",
+              "nl": "Vertaal"
+            },
+            "hint": {
+              "en": "The language to translate into"
+            },
+            "values": [
+              {
+                "id": "en-GB",
+                "name": "en-GB",
+                "label": {
+                  "en": "English (GB)",
+                  "nl": "Engels (GB)"
+                }
+              },
+              {
+                "id": "en-US",
+                "name": "en-US",
+                "label": {
+                  "en": "English (US)",
+                  "nl": "Engels (US)"
+                }
+              },
+              {
+                "id": "nl-NL",
+                "name": "nl-NL",
+                "label": {
+                  "en": "Dutch (NL)",
+                  "nl": "Nederlands (NL)"
+                }
+              },
+              {
+                "id": "nl-BE",
+                "name": "nl-BE",
+                "label": {
+                  "en": "Dutch (BE)",
+                  "nl": "Nederlands (BE)"
+                }
+              },
+              {
+                "id": "de-DE",
+                "name": "de-DE",
+                "label": {
+                  "en": "German (DE)",
+                  "nl": "Duits (DE)"
+                }
+              },
+              {
+                "id": "de-LU",
+                "name": "de-LU",
+                "label": {
+                  "en": "German (LU)",
+                  "nl": "Duits (LU)"
+                }
+              },
+              {
+                "id": "fr-FR",
+                "name": "fr-FR",
+                "label": {
+                  "en": "French (FR)",
+                  "nl": "Frans (FR)"
+                }
+              },
+              {
+                "id": "fr-BE",
+                "name": "fr-BE",
+                "label": {
+                  "en": "French (BE)",
+                  "nl": "Frans (BE)"
+                }
+              },
+              {
+                "id": "es-ES",
+                "name": "es-ES",
+                "label": {
+                  "en": "Spanish (ES)",
+                  "nl": "Spaans (ES)"
+                }
+              },
+              {
+                "id": "it-IT",
+                "name": "it-IT",
+                "label": {
+                  "en": "Italian (IT)",
+                  "nl": "Italiaans (IT)"
+                }
+              },
+              {
+                "id": "sv-SV",
+                "name": "sv-SV",
+                "label": {
+                  "en": "Swedish (SV)",
+                  "nl": "Zweeds (SV)"
+                }
+              },
+              {
+                "id": "no-NO",
+                "name": "no-NO",
+                "label": {
+                  "en": "Norwegian (NO)",
+                  "nl": "Noors (NO)"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "action_translate_af",
+        "title": {
+          "en": "Translate",
+          "nl": "Vertaal"
+        },
+        "titleFormatted": {
+          "en": "Translate [[translate]] from [[sourcelanguagecode]] into [[targetlanguagecode]]",
+          "nl": "Vertaal [[translate]] van [[sourcelanguagecode]] naar [[targetlanguagecode]]"
+        },
+        "args": [
+          {
+            "name": "translate",
+            "type": "text",
+            "title": {
+              "en": "Text to translate",
+              "nl": "Tekst om te vertalen"
+            }
+          },
+          {
+            "name": "sourcelanguagecode",
+            "type": "dropdown",
+            "required":false,
+            "title": {
+              "en": "Source Language",
+              "nl": "Bron taal"
+            },
+            "hint": {
+              "en": "The language to translate from"
+            },
+            "values": [
+              {
+                "id": "en-GB",
+                "name": "en-GB",
+                "label": {
+                  "en": "English (GB)",
+                  "nl": "Engels (GB)"
+                }
+              },
+              {
+                "id": "en-US",
+                "name": "en-US",
+                "label": {
+                  "en": "English (US)",
+                  "nl": "Engels (US)"
+                }
+              },
+              {
+                "id": "nl-NL",
+                "name": "nl-NL",
+                "label": {
+                  "en": "Dutch (NL)",
+                  "nl": "Nederlands (NL)"
+                }
+              },
+              {
+                "id": "nl-BE",
+                "name": "nl-BE",
+                "label": {
+                  "en": "Dutch (BE)",
+                  "nl": "Nederlands (BE)"
+                }
+              },
+              {
+                "id": "de-DE",
+                "name": "de-DE",
+                "label": {
+                  "en": "German (DE)",
+                  "nl": "Duits (DE)"
+                }
+              },
+              {
+                "id": "de-LU",
+                "name": "de-LU",
+                "label": {
+                  "en": "German (LU)",
+                  "nl": "Duits (LU)"
+                }
+              },
+              {
+                "id": "fr-FR",
+                "name": "fr-FR",
+                "label": {
+                  "en": "French (FR)",
+                  "nl": "Frans (FR)"
+                }
+              },
+              {
+                "id": "fr-BE",
+                "name": "fr-BE",
+                "label": {
+                  "en": "French (BE)",
+                  "nl": "Frans (BE)"
+                }
+              },
+              {
+                "id": "es-ES",
+                "name": "es-ES",
+                "label": {
+                  "en": "Spanish (ES)",
+                  "nl": "Spaans (ES)"
+                }
+              },
+              {
+                "id": "it-IT",
+                "name": "it-IT",
+                "label": {
+                  "en": "Italian (IT)",
+                  "nl": "Italiaans (IT)"
+                }
+              },
+              {
+                "id": "sv-SV",
+                "name": "sv-SV",
+                "label": {
+                  "en": "Swedish (SV)",
+                  "nl": "Zweeds (SV)"
+                }
+              },
+              {
+                "id": "no-NO",
+                "name": "no-NO",
+                "label": {
+                  "en": "Norwegian (NO)",
+                  "nl": "Noors (NO)"
+                }
+              }
+            ]
+          },
+          {
+            "name": "targetlanguagecode",
+            "type": "dropdown",
+            "required":false,
+            "title": {
+              "en": "Target Language",
+              "nl": "Doel taal"
+            },
+            "hint": {
+              "en": "The language to translate into"
+            },
+            "values": [
+              {
+                "id": "en-GB",
+                "name": "en-GB",
+                "label": {
+                  "en": "English (GB)",
+                  "nl": "Engels (GB)"
+                }
+              },
+              {
+                "id": "en-US",
+                "name": "en-US",
+                "label": {
+                  "en": "English (US)",
+                  "nl": "Engels (US)"
+                }
+              },
+              {
+                "id": "nl-NL",
+                "name": "nl-NL",
+                "label": {
+                  "en": "Dutch (NL)",
+                  "nl": "Nederlands (NL)"
+                }
+              },
+              {
+                "id": "nl-BE",
+                "name": "nl-BE",
+                "label": {
+                  "en": "Dutch (BE)",
+                  "nl": "Nederlands (BE)"
+                }
+              },
+              {
+                "id": "de-DE",
+                "name": "de-DE",
+                "label": {
+                  "en": "German (DE)",
+                  "nl": "Duits (DE)"
+                }
+              },
+              {
+                "id": "de-LU",
+                "name": "de-LU",
+                "label": {
+                  "en": "German (LU)",
+                  "nl": "Duits (LU)"
+                }
+              },
+              {
+                "id": "fr-FR",
+                "name": "fr-FR",
+                "label": {
+                  "en": "French (FR)",
+                  "nl": "Frans (FR)"
+                }
+              },
+              {
+                "id": "fr-BE",
+                "name": "fr-BE",
+                "label": {
+                  "en": "French (BE)",
+                  "nl": "Frans (BE)"
+                }
+              },
+              {
+                "id": "es-ES",
+                "name": "es-ES",
+                "label": {
+                  "en": "Spanish (ES)",
+                  "nl": "Spaans (ES)"
+                }
+              },
+              {
+                "id": "it-IT",
+                "name": "it-IT",
+                "label": {
+                  "en": "Italian (IT)",
+                  "nl": "Italiaans (IT)"
+                }
+              },
+              {
+                "id": "sv-SV",
+                "name": "sv-SV",
+                "label": {
+                  "en": "Swedish (SV)",
+                  "nl": "Zweeds (SV)"
+                }
+              },
+              {
+                "id": "no-NO",
+                "name": "no-NO",
+                "label": {
+                  "en": "Norwegian (NO)",
+                  "nl": "Noors (NO)"
+                }
+              }
+            ]
+          }
+        ],      
+        "tokens": [
+          {
+            "name": "text",
+            "type": "string",
+            "title": {
+              "en": "Text to translate",
+              "nl": "Tekst om te vertalen"
+            }
+          },
+          {
+            "name": "translation",
+            "type": "string",
+            "title": {
+              "en": "Vertaling"
+            }
+          },
+          {
+            "name": "sourcelanguagecode",
+            "type": "string",
+            "title": {
+              "en": "Text",
+              "nl": "Tekst"
+            }
+          },
+          {
+            "name": "targetlanguagecode",
+            "type": "string",
+            "title": {
+              "en": "Text",
+              "nl": "Tekst"
+            }
+          }
+        ]
+      }
     ]
 }

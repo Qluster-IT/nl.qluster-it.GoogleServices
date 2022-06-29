@@ -1,7 +1,7 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "nl.qluster-it.GoogleServices",
-  "version": "1.9.2",
+  "version": "1.9.7",
   "compatibility": ">=5.0.0",
   "sdk": 3,
   "brandColor": "#8DB000",
@@ -429,7 +429,7 @@
           "en": "Start TTS at speed with pitch"
         },
         "titleFormatted": {
-          "en": "Start saying for [[text]] speed [[speakingRate]] pitch [[pitch]] and finish",
+          "en": "Start saying [[text]] speed [[speakingRate]] pitch [[pitch]] and finish",
           "nl": "Begin te zeggen [[text]] snelheid [[speakingRate]] toonhoogte [[pitch]] en voltooi"
         },
         "args": [
@@ -605,7 +605,7 @@
           "en": "Start TTS at speed with pitch"
         },
         "titleFormatted": {
-          "en": "Start saying for [[text]] in [[voice]] speed [[speakingRate]] pitch [[pitch]] and finish",
+          "en": "Start saying [[text]] in [[voice]] speed [[speakingRate]] pitch [[pitch]] and finish",
           "nl": "Begin te zeggen [[text]] in [[voice]] snelheid [[speakingRate]] toonhoogte [[pitch]] en voltooi"
         },
         "args": [
@@ -674,8 +674,8 @@
             "name": "translate",
             "type": "text",
             "title": {
-              "en": "Translate",
-              "nl": "Vertaal"
+              "en": "Text to translate",
+              "nl": "Tekst om te vertalen"
             }
           },
           {
@@ -686,7 +686,7 @@
               "nl": "Vertaal"
             },
             "hint": {
-              "en": "Choose the language for this device"
+              "en": "The language to translate into"
             },
             "values": [
               {
@@ -903,7 +903,7 @@
           "nl": "Begin TTS op snelheid met toonhoogte"
         },
         "titleFormatted": {
-          "en": "Start saying for [[text]] speed [[speakingRate]] pitch [[pitch]]",
+          "en": "Start saying [[text]] speed [[speakingRate]] pitch [[pitch]]",
           "nl": "Begin te zeggen [[text]] snelheid [[speakingRate]] toonhoogte [[pitch]]"
         },
         "args": [
@@ -1080,7 +1080,7 @@
           "nl": "Begin TTS met stem op snelheid met toonhoogte"
         },
         "titleFormatted": {
-          "en": "Start saying for [[text]] in [[voice]] speed [[speakingRate]] pitch [[pitch]]",
+          "en": "Start saying [[text]] in [[voice]] speed [[speakingRate]] pitch [[pitch]]",
           "nl": "Begin te zeggen [[text]] in [[voice]] snelheid [[speakingRate]] toonhoogte [[pitch]]"
         },
         "args": [
@@ -1126,6 +1126,90 @@
             "min": -20,
             "max": 20,
             "step": 0.1
+          }
+        ]
+      },
+      {
+        "id": "start_googlecloudtts_voice_speed_pitch_af",
+        "title": {
+          "en": "Start TTS with voice at speed with pitch",
+          "nl": "Begin TTS met stem op snelheid met toonhoogte"
+        },
+        "titleFormatted": {
+          "en": "Start saying [[text]] in [[voice]] speed [[speakingRate]] pitch [[pitch]]",
+          "nl": "Begin te zeggen [[text]] in [[voice]] snelheid [[speakingRate]] toonhoogte [[pitch]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=googlecloudtts"
+          },
+          {
+            "name": "text",
+            "type": "text",
+            "placeholder": {
+              "en": "Text",
+              "nl": "Tekst"
+            }
+          },
+          {
+            "name": "voice",
+            "required": false,
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "Voice",
+              "nl": "Stem"
+            }
+          },
+          {
+            "name": "speakingRate",
+            "required": false,
+            "type": "range",
+            "placeholder": {
+              "en": "Speed",
+              "nl": "Snelheid"
+            },
+            "min": 0.25,
+            "max": 4,
+            "step": 0.01
+          },
+          {
+            "name": "pitch",
+            "required": false,
+            "type": "range",
+            "placeholder": {
+              "en": "Pitch",
+              "nl": "Toonhoogte"
+            },
+            "min": -20,
+            "max": 20,
+            "step": 0.1
+          }
+        ],
+        "tokens": [
+          {
+            "name": "url",
+            "type": "string",
+            "title": {
+              "en": "Url"
+            }
+          },
+          {
+            "name": "text",
+            "type": "string",
+            "title": {
+              "en": "Text",
+              "nl": "Tekst"
+            }
+          },
+          {
+            "name": "duration",
+            "type": "number",
+            "title": {
+              "en": "Duration",
+              "nl": "Tijdsduur"
+            }
           }
         ]
       },
@@ -1182,6 +1266,506 @@
         ]
       },
       {
+        "id": "start_googletts_af",
+        "title": {
+          "en": "Start TTS",
+          "nl": "Begin TTS"
+        },
+        "titleFormatted": {
+          "en": "Start saying [[text]]",
+          "nl": "Begin te zeggen [[text]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=googletts"
+          },
+          {
+            "name": "text",
+            "type": "text",
+            "placeholder": {
+              "en": "Text",
+              "nl": "Tekst"
+            }
+          }
+        ],
+        "tokens": [
+          {
+            "name": "url",
+            "type": "string",
+            "title": {
+              "en": "Url"
+            }
+          },
+          {
+            "name": "text",
+            "type": "string",
+            "title": {
+              "en": "Text",
+              "nl": "Tekst"
+            }
+          }
+        ]
+      },
+      {
+        "id": "start_googletts_slow_af",
+        "title": {
+          "en": "Start TTS slow speed",
+          "nl": "Begin TTS langzame snelheid"
+        },
+        "titleFormatted": {
+          "en": "Start saying [[text]] slow speed",
+          "nl": "Begin te zeggen [[text]] langzame snelheid"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=googletts"
+          },
+          {
+            "name": "text",
+            "type": "text",
+            "placeholder": {
+              "en": "Text",
+              "nl": "Tekst"
+            }
+          }
+        ],
+        "tokens": [
+          {
+            "name": "url",
+            "type": "string",
+            "title": {
+              "en": "Url"
+            }
+          },
+          {
+            "name": "text",
+            "type": "string",
+            "title": {
+              "en": "Text",
+              "nl": "Tekst"
+            }
+          }
+        ]
+      },
+      {
+        "id": "action_translate",
+        "title": {
+          "en": "Translate",
+          "nl": "Vertaal"
+        },
+        "titleFormatted": {
+          "en": "Translate [[translate]] into [[targetlanguagecode]]",
+          "nl": "Vertaal [[translate]] naar [[targetlanguagecode]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=translate"
+          },
+          {
+            "name": "translate",
+            "type": "text",
+            "title": {
+              "en": "Text to translate",
+              "nl": "Tekst om te vertalen"
+            }
+          },
+          {
+            "name": "targetlanguagecode",
+            "type": "dropdown",
+            "title": {
+              "en": "Translate",
+              "nl": "Vertaal"
+            },
+            "hint": {
+              "en": "The language to translate into"
+            },
+            "values": [
+              {
+                "id": "en-GB",
+                "name": "en-GB",
+                "label": {
+                  "en": "English (GB)",
+                  "nl": "Engels (GB)"
+                }
+              },
+              {
+                "id": "en-US",
+                "name": "en-US",
+                "label": {
+                  "en": "English (US)",
+                  "nl": "Engels (US)"
+                }
+              },
+              {
+                "id": "nl-NL",
+                "name": "nl-NL",
+                "label": {
+                  "en": "Dutch (NL)",
+                  "nl": "Nederlands (NL)"
+                }
+              },
+              {
+                "id": "nl-BE",
+                "name": "nl-BE",
+                "label": {
+                  "en": "Dutch (BE)",
+                  "nl": "Nederlands (BE)"
+                }
+              },
+              {
+                "id": "de-DE",
+                "name": "de-DE",
+                "label": {
+                  "en": "German (DE)",
+                  "nl": "Duits (DE)"
+                }
+              },
+              {
+                "id": "de-LU",
+                "name": "de-LU",
+                "label": {
+                  "en": "German (LU)",
+                  "nl": "Duits (LU)"
+                }
+              },
+              {
+                "id": "fr-FR",
+                "name": "fr-FR",
+                "label": {
+                  "en": "French (FR)",
+                  "nl": "Frans (FR)"
+                }
+              },
+              {
+                "id": "fr-BE",
+                "name": "fr-BE",
+                "label": {
+                  "en": "French (BE)",
+                  "nl": "Frans (BE)"
+                }
+              },
+              {
+                "id": "es-ES",
+                "name": "es-ES",
+                "label": {
+                  "en": "Spanish (ES)",
+                  "nl": "Spaans (ES)"
+                }
+              },
+              {
+                "id": "it-IT",
+                "name": "it-IT",
+                "label": {
+                  "en": "Italian (IT)",
+                  "nl": "Italiaans (IT)"
+                }
+              },
+              {
+                "id": "sv-SV",
+                "name": "sv-SV",
+                "label": {
+                  "en": "Swedish (SV)",
+                  "nl": "Zweeds (SV)"
+                }
+              },
+              {
+                "id": "no-NO",
+                "name": "no-NO",
+                "label": {
+                  "en": "Norwegian (NO)",
+                  "nl": "Noors (NO)"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "action_translate_af",
+        "title": {
+          "en": "Translate",
+          "nl": "Vertaal"
+        },
+        "titleFormatted": {
+          "en": "Translate [[translate]] from [[sourcelanguagecode]] into [[targetlanguagecode]]",
+          "nl": "Vertaal [[translate]] van [[sourcelanguagecode]] naar [[targetlanguagecode]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=translate"
+          },
+          {
+            "name": "translate",
+            "type": "text",
+            "title": {
+              "en": "Text to translate",
+              "nl": "Tekst om te vertalen"
+            }
+          },
+          {
+            "name": "sourcelanguagecode",
+            "type": "dropdown",
+            "required": false,
+            "title": {
+              "en": "Source Language",
+              "nl": "Bron taal"
+            },
+            "hint": {
+              "en": "The language to translate from"
+            },
+            "values": [
+              {
+                "id": "en-GB",
+                "name": "en-GB",
+                "label": {
+                  "en": "English (GB)",
+                  "nl": "Engels (GB)"
+                }
+              },
+              {
+                "id": "en-US",
+                "name": "en-US",
+                "label": {
+                  "en": "English (US)",
+                  "nl": "Engels (US)"
+                }
+              },
+              {
+                "id": "nl-NL",
+                "name": "nl-NL",
+                "label": {
+                  "en": "Dutch (NL)",
+                  "nl": "Nederlands (NL)"
+                }
+              },
+              {
+                "id": "nl-BE",
+                "name": "nl-BE",
+                "label": {
+                  "en": "Dutch (BE)",
+                  "nl": "Nederlands (BE)"
+                }
+              },
+              {
+                "id": "de-DE",
+                "name": "de-DE",
+                "label": {
+                  "en": "German (DE)",
+                  "nl": "Duits (DE)"
+                }
+              },
+              {
+                "id": "de-LU",
+                "name": "de-LU",
+                "label": {
+                  "en": "German (LU)",
+                  "nl": "Duits (LU)"
+                }
+              },
+              {
+                "id": "fr-FR",
+                "name": "fr-FR",
+                "label": {
+                  "en": "French (FR)",
+                  "nl": "Frans (FR)"
+                }
+              },
+              {
+                "id": "fr-BE",
+                "name": "fr-BE",
+                "label": {
+                  "en": "French (BE)",
+                  "nl": "Frans (BE)"
+                }
+              },
+              {
+                "id": "es-ES",
+                "name": "es-ES",
+                "label": {
+                  "en": "Spanish (ES)",
+                  "nl": "Spaans (ES)"
+                }
+              },
+              {
+                "id": "it-IT",
+                "name": "it-IT",
+                "label": {
+                  "en": "Italian (IT)",
+                  "nl": "Italiaans (IT)"
+                }
+              },
+              {
+                "id": "sv-SV",
+                "name": "sv-SV",
+                "label": {
+                  "en": "Swedish (SV)",
+                  "nl": "Zweeds (SV)"
+                }
+              },
+              {
+                "id": "no-NO",
+                "name": "no-NO",
+                "label": {
+                  "en": "Norwegian (NO)",
+                  "nl": "Noors (NO)"
+                }
+              }
+            ]
+          },
+          {
+            "name": "targetlanguagecode",
+            "type": "dropdown",
+            "required": false,
+            "title": {
+              "en": "Target Language",
+              "nl": "Doel taal"
+            },
+            "hint": {
+              "en": "The language to translate into"
+            },
+            "values": [
+              {
+                "id": "en-GB",
+                "name": "en-GB",
+                "label": {
+                  "en": "English (GB)",
+                  "nl": "Engels (GB)"
+                }
+              },
+              {
+                "id": "en-US",
+                "name": "en-US",
+                "label": {
+                  "en": "English (US)",
+                  "nl": "Engels (US)"
+                }
+              },
+              {
+                "id": "nl-NL",
+                "name": "nl-NL",
+                "label": {
+                  "en": "Dutch (NL)",
+                  "nl": "Nederlands (NL)"
+                }
+              },
+              {
+                "id": "nl-BE",
+                "name": "nl-BE",
+                "label": {
+                  "en": "Dutch (BE)",
+                  "nl": "Nederlands (BE)"
+                }
+              },
+              {
+                "id": "de-DE",
+                "name": "de-DE",
+                "label": {
+                  "en": "German (DE)",
+                  "nl": "Duits (DE)"
+                }
+              },
+              {
+                "id": "de-LU",
+                "name": "de-LU",
+                "label": {
+                  "en": "German (LU)",
+                  "nl": "Duits (LU)"
+                }
+              },
+              {
+                "id": "fr-FR",
+                "name": "fr-FR",
+                "label": {
+                  "en": "French (FR)",
+                  "nl": "Frans (FR)"
+                }
+              },
+              {
+                "id": "fr-BE",
+                "name": "fr-BE",
+                "label": {
+                  "en": "French (BE)",
+                  "nl": "Frans (BE)"
+                }
+              },
+              {
+                "id": "es-ES",
+                "name": "es-ES",
+                "label": {
+                  "en": "Spanish (ES)",
+                  "nl": "Spaans (ES)"
+                }
+              },
+              {
+                "id": "it-IT",
+                "name": "it-IT",
+                "label": {
+                  "en": "Italian (IT)",
+                  "nl": "Italiaans (IT)"
+                }
+              },
+              {
+                "id": "sv-SV",
+                "name": "sv-SV",
+                "label": {
+                  "en": "Swedish (SV)",
+                  "nl": "Zweeds (SV)"
+                }
+              },
+              {
+                "id": "no-NO",
+                "name": "no-NO",
+                "label": {
+                  "en": "Norwegian (NO)",
+                  "nl": "Noors (NO)"
+                }
+              }
+            ]
+          }
+        ],
+        "tokens": [
+          {
+            "name": "text",
+            "type": "string",
+            "title": {
+              "en": "Text to translate",
+              "nl": "Tekst om te vertalen"
+            }
+          },
+          {
+            "name": "translation",
+            "type": "string",
+            "title": {
+              "en": "Vertaling"
+            }
+          },
+          {
+            "name": "sourcelanguagecode",
+            "type": "string",
+            "title": {
+              "en": "Text",
+              "nl": "Tekst"
+            }
+          },
+          {
+            "name": "targetlanguagecode",
+            "type": "string",
+            "title": {
+              "en": "Text",
+              "nl": "Tekst"
+            }
+          }
+        ]
+      },
+      {
         "id": "youtube_search",
         "title": {
           "en": "Search within YouTube",
@@ -1203,6 +1787,56 @@
             "placeholder": {
               "en": "Text",
               "nl": "Tekst"
+            }
+          }
+        ]
+      },
+      {
+        "id": "youtube_search_af",
+        "title": {
+          "en": "Search within YouTube",
+          "nl": "Doorzoek YouTube"
+        },
+        "titleFormatted": {
+          "en": "Search [[text]]",
+          "nl": "Zoek [[text]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=youtube"
+          },
+          {
+            "name": "text",
+            "type": "text",
+            "placeholder": {
+              "en": "Text",
+              "nl": "Tekst"
+            }
+          }
+        ],
+        "tokens": [
+          {
+            "name": "id",
+            "type": "string",
+            "title": {
+              "en": "YouTube ID"
+            }
+          },
+          {
+            "name": "link",
+            "type": "string",
+            "title": {
+              "en": "YouTube link"
+            }
+          },
+          {
+            "name": "text",
+            "type": "string",
+            "title": {
+              "en": "Searched text",
+              "nl": "Gezochte tekst"
             }
           }
         ]
@@ -1629,6 +2263,115 @@
           "value": "en-GB",
           "hint": {
             "en": "Choose the language for this device"
+          },
+          "values": [
+            {
+              "id": "en-GB",
+              "name": "en-GB",
+              "label": {
+                "en": "English (GB)",
+                "nl": "Engels (GB)"
+              }
+            },
+            {
+              "id": "en-US",
+              "name": "en-US",
+              "label": {
+                "en": "English (US)",
+                "nl": "Engels (US)"
+              }
+            },
+            {
+              "id": "nl-NL",
+              "name": "nl-NL",
+              "label": {
+                "en": "Dutch (NL)",
+                "nl": "Nederlands (NL)"
+              }
+            },
+            {
+              "id": "nl-BE",
+              "name": "nl-BE",
+              "label": {
+                "en": "Dutch (BE)",
+                "nl": "Nederlands (BE)"
+              }
+            },
+            {
+              "id": "de-DE",
+              "name": "de-DE",
+              "label": {
+                "en": "German (DE)",
+                "nl": "Duits (DE)"
+              }
+            },
+            {
+              "id": "de-LU",
+              "name": "de-LU",
+              "label": {
+                "en": "German (LU)",
+                "nl": "Duits (LU)"
+              }
+            },
+            {
+              "id": "fr-FR",
+              "name": "fr-FR",
+              "label": {
+                "en": "French (FR)",
+                "nl": "Frans (FR)"
+              }
+            },
+            {
+              "id": "fr-BE",
+              "name": "fr-BE",
+              "label": {
+                "en": "French (BE)",
+                "nl": "Frans (BE)"
+              }
+            },
+            {
+              "id": "es-ES",
+              "name": "es-ES",
+              "label": {
+                "en": "Spanish (ES)",
+                "nl": "Spaans (ES)"
+              }
+            },
+            {
+              "id": "it-IT",
+              "name": "it-IT",
+              "label": {
+                "en": "Italian (IT)",
+                "nl": "Italiaans (IT)"
+              }
+            },
+            {
+              "id": "sv-SV",
+              "name": "sv-SV",
+              "label": {
+                "en": "Swedish (SV)",
+                "nl": "Zweeds (SV)"
+              }
+            },
+            {
+              "id": "no-NO",
+              "name": "no-NO",
+              "label": {
+                "en": "Norwegian (NO)",
+                "nl": "Noors (NO)"
+              }
+            }
+          ]
+        },
+        {
+          "id": "defaulttargetlanguagecode",
+          "type": "dropdown",
+          "label": {
+            "en": "Default TargetLanguage"
+          },
+          "value": "en-GB",
+          "hint": {
+            "en": "Choose the default target language for this device"
           },
           "values": [
             {

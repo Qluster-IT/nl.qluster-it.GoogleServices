@@ -124,5 +124,8 @@
   },
   "1.9.2": {
     "en": "Bug fixed"
+  },
+  "1.9.7": {
+    "en": "Advanced Flows supported: Then cards with tokens are added."
   }
 }

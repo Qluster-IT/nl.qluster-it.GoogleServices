@@ -64,7 +64,9 @@ class GoogleServicesApp extends Homey.App {
 
       var starts = [
         {id:'start_googletts', slow:false},
-        {id:'start_googletts_slow', slow:true}
+        {id:'start_googletts_slow', slow:true},        
+        {id:'start_googletts_af', slow:false, af:true},
+        {id:'start_googletts_slow_af', slow:true, af:true}
       ];
       for (let i = 0; i < starts.length; i++) {
         const start = starts[i];        
@@ -77,7 +79,8 @@ class GoogleServicesApp extends Homey.App {
             var settings =  args.device.getSettings();
             var languagecode = settings && settings.languagecode ? settings.languagecode : 'en-GB';
             var url = googleTTS.getAudioUrl(args.text, { lang:languagecode, slow: start.slow });
-            return this.Triggers.urlTrigger.Card.trigger(args.device, {url:url} );
+            this.Triggers.urlTrigger.Card.trigger(args.device, {url:url} );
+            defer.resolve(start.af ? {url:url, text:args.text} : true);
           } catch (error) { console.log('Error: ' + error); defer.resolve('An error occured'); }
             return defer.promise;
         }).bind(this));
@@ -91,7 +94,8 @@ class GoogleServicesApp extends Homey.App {
         {id:'start_googlecloudtts_voice', voice:true },
         {id:'start_googlecloudtts_voice_volume', voice:true },
         {id:'start_googlecloudtts_voice_speed', voice:true },
-        {id:'start_googlecloudtts_voice_speed_pitch', voice:true }
+        {id:'start_googlecloudtts_voice_speed_pitch', voice:true },
+        {id:'start_googlecloudtts_voice_speed_pitch_af', voice:true, af:true }
       ];
       for (let i = 0; i < actions.length; i++) {
         const action = actions[i];
@@ -109,7 +113,8 @@ class GoogleServicesApp extends Homey.App {
                 var triggered = !!this.Triggers.cloudurlTrigger.Card.trigger(args.device, {url:url.url, text:args.text, duration :url.duration } );
                 if(triggered) this.SetFinishedTimer(args.device, {url:url.url, text:args.text, duration :url.duration });
                 else this.ClearFinishedTimer(args.device);
-                defer.resolve(triggered);
+                //defer.resolve(triggered);
+                defer.resolve(action.af ? {url:url.url, text:args.text, duration :url.duration } : true);
               }).catch(err=>{ console.log('err'); console.log(err); defer.reject('Did you configure the JSON and Voice in the settingspage?');});
           } catch (error) { 
             console.log('Error: ' + error);

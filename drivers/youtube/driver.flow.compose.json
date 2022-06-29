@@ -56,6 +56,51 @@
                     }
                 }
             ]
+        },
+        {
+            "id": "youtube_search_af",
+            "title": {
+                "en": "Search within YouTube",
+                "nl": "Doorzoek YouTube"
+            },
+            "titleFormatted": {
+                "en": "Search [[text]]",
+                "nl": "Zoek [[text]]"
+            },
+            "args": [
+                {
+                    "name": "text",
+                    "type": "text",
+                    "placeholder": {
+                        "en": "Text",
+                        "nl": "Tekst"
+                    }
+                }
+            ],
+            "tokens": [
+                {
+                    "name": "id",
+                    "type": "string",
+                    "title": {
+                        "en": "YouTube ID"
+                    }
+                },
+                {
+                    "name": "link",
+                    "type": "string",
+                    "title": {
+                        "en": "YouTube link"
+                    }
+                },
+                {
+                    "name": "text",
+                    "type": "string",
+                    "title": {
+                        "en": "Searched text",
+                        "nl": "Gezochte tekst"
+                    }
+                }
+            ]
         }
     ]
 }
