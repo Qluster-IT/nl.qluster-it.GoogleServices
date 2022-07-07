@@ -79,7 +79,7 @@ class GoogleServicesApp extends Homey.App {
             var settings =  args.device.getSettings();
             var languagecode = settings && settings.languagecode ? settings.languagecode : 'en-GB';
             var url = googleTTS.getAudioUrl(args.text, { lang:languagecode, slow: start.slow });
-            this.Triggers.urlTrigger.Card.trigger(args.device, {url:url} );
+            this.Triggers.urlTrigger.Card.trigger(args.device, {url:url, text:args.text} );
             defer.resolve(start.af ? {url:url, text:args.text} : true);
           } catch (error) { console.log('Error: ' + error); defer.resolve('An error occured'); }
             return defer.promise;
@@ -108,6 +108,7 @@ class GoogleServicesApp extends Homey.App {
               console.log('start_googlettscloudAction.registerRunListener args: ');
               TtsServer.getUrl({args, voice : args.voice }).then(url=> {
                 console.log('start_googlettscloudAction.registerRunListener url: ' + url.url);
+                if(url.duration===undefined) url.duration=-1;
                 args.device.setCapabilityValue('device_url', url.url);
                 args.device.setCapabilityValue('device_duration', url.duration);                    
                 var triggered = !!this.Triggers.cloudurlTrigger.Card.trigger(args.device, {url:url.url, text:args.text, duration :url.duration } );

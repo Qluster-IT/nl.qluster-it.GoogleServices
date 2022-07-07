@@ -12,15 +12,7 @@
             "title": {
               "en": "Url"
             }
-          },
-          {
-            "name": "duration",
-            "type": "number",
-            "title": {
-              "en": "Duration",
-              "nl": "Tijdsduur"
-            }
-          },
+          },          
           {
             "name": "text",
             "type": "string",
