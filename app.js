@@ -151,6 +151,7 @@ class GoogleServicesApp extends Homey.App {
             TtsServer.getUrl({args, voice : args.voice}).then(url=> {
               var promises = [];
               
+              if(url.duration===undefined) url.duration=-1;
               var p1 = args.device.setCapabilityValue('device_url', url.url);
               var p2 = args.device.setCapabilityValue('device_duration', url.duration);
               promises.push(p1);
