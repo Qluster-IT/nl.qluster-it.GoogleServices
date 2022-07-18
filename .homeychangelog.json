@@ -130,5 +130,8 @@
   },
   "1.9.9": {
     "en": "Bug fixed tokens."
+  },
+  "1.9.10": {
+    "en": "Bug fixed missing capabilities for older devices."
   }
 }
