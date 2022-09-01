@@ -1,7 +1,7 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "nl.qluster-it.GoogleServices",
-  "version": "1.9.10",
+  "version": "1.9.12",
   "compatibility": ">=5.0.0",
   "sdk": 3,
   "brandColor": "#8DB000",
@@ -12,6 +12,16 @@
   "description": {
     "en": "Setup your favorite Google (translate) voice for your speakers",
     "nl": "Stel je favoriete Google (vertaal) stem in voor je speakers"
+  },
+  "tags": {
+    "en": [
+      "speech",
+      "url"
+    ],
+    "nl": [
+      "spraak",
+      "url"
+    ]
   },
   "category": [
     "music"

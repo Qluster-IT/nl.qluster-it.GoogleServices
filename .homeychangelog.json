@@ -133,5 +133,11 @@
   },
   "1.9.10": {
     "en": "Bug fixed missing capabilities for older devices."
+  },
+  "1.9.11": {
+    "en": "Improved Store tags."
+  },
+  "1.9.12": {
+    "en": "Improved Error handling."
   }
 }

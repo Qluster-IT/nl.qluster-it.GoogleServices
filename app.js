@@ -72,13 +72,13 @@ class GoogleServicesApp extends Homey.App {
         const start = starts[i];        
         const start_googlettsAction = this.homey.flow.getActionCard(start.id);
         start_googlettsAction.registerRunListener(( ( args, state ) => { //async              
-          var defer = new Defer();
+          const defer = new Defer();
           try {
             if(!args.device || !args.text) return false;
             if(args.text.length>200) return  new Error("Max 200 characters");
-            var settings =  args.device.getSettings();
-            var languagecode = settings && settings.languagecode ? settings.languagecode : 'en-GB';
-            var url = googleTTS.getAudioUrl(args.text, { lang:languagecode, slow: start.slow });
+            const settings =  args.device.getSettings();
+            const languagecode = settings && settings.languagecode ? settings.languagecode : 'en-GB';
+            const url = googleTTS.getAudioUrl(args.text, { lang:languagecode, slow: start.slow });
             this.Triggers.urlTrigger.Card.trigger(args.device, {url:url, text:args.text} );
             defer.resolve(start.af ? {url:url, text:args.text} : true);
           } catch (error) { console.log('Error: ' + error); defer.resolve('An error occured'); }
@@ -102,7 +102,7 @@ class GoogleServicesApp extends Homey.App {
         
         const actionCard = this.homey.flow.getActionCard(action.id);
         actionCard.registerRunListener(( ( args, state ) => { //async
-          var defer = new Defer();
+          const defer = new Defer();
           try {
               if(!args.device || !args.text) return false;
               console.log('start_googlettscloudAction.registerRunListener args: ');
@@ -143,17 +143,17 @@ class GoogleServicesApp extends Homey.App {
         const condition = conditionClouds[i];      
         const conditionCard = this.homey.flow.getConditionCard(condition.id);
         conditionCard.registerRunListener(( ( args, state ) => { //async
-          var defer = new Defer();
+          const defer = new Defer();
           try {
             if(!args.device || !args.text) return Promise.resolve(false);
             console.log('condition_googlettscloudAction.registerRunListener args: ');
             console.log(args);
             TtsServer.getUrl({args, voice : args.voice}).then(url=> {
-              var promises = [];
+              const promises = [];
               
               if(url.duration===undefined) url.duration=-1;
-              var p1 = args.device.setCapabilityValue('device_url', url.url);
-              var p2 = args.device.setCapabilityValue('device_duration', url.duration);
+              const p1 = args.device.setCapabilityValue('device_url', url.url);
+              const p2 = args.device.setCapabilityValue('device_duration', url.duration);
               promises.push(p1);
               promises.push(p2);
               
@@ -164,7 +164,7 @@ class GoogleServicesApp extends Homey.App {
                 else this.ClearFinishedTimer(args.device);
               }
               
-              var all = Promise.all(promises);                   
+              const all = Promise.all(promises);                   
               all.then(()=> {
                 defer.resolve(true);
               }).catch((err)=> {
