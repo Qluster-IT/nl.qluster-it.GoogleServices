@@ -139,5 +139,11 @@
   },
   "1.9.12": {
     "en": "Improved Error handling."
+  },
+  "1.9.13": {
+    "en": "Improved startup."
+  },
+  "1.9.14": {
+    "en": "Removed startup."
   }
 }

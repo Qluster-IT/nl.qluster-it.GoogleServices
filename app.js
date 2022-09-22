@@ -32,6 +32,11 @@ class GoogleServicesApp extends Homey.App {
         //if (process.env.DEBUG === '1') require('inspector').open(9222, '0.0.0.0', false);
       
       this.log('MyApp has been initialized');
+
+      // if(!await this.homey.settings.get('dc_avd_templates_info')) {
+      //   this.homey.notifications.createNotification({excerpt : "Check out the App **Device Capabilities**:\n* A new Advanced Virtual Device with custom icons for devices and **capabilities/fields**.\n* **Share Your Device** which is than shown as a Template to others!\n* **The Flow Exchange(r)** - Export Your Flows with Others!\n* Import Templates of flows and reconfigure them for your devices, zones, tags, users, etc. before the flow(script) is created!" });  
+      //   this.homey.settings.set('dc_avd_templates_info', true);
+      // }
       
       this.homey.settings.on('set', (function(settingName) {
         if(settingName=='CloudJSON') {
