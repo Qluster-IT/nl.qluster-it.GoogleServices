@@ -7,6 +7,7 @@ const textToSpeech = require('@google-cloud/text-to-speech');
 const {Defer} = require('./lib/proto');
 
 var TtsServer = require('./lib/tts-server');
+const { isArrayLike } = require('lodash');
 
 //const fetch = require('node-fetch');
 
@@ -23,6 +24,8 @@ class GoogleServicesApp extends Homey.App {
   };
 
   async onInit() {
+    
+    let loadingErrors = [];
     try {
       try {
         if (process.env.DEBUG === '1') require('inspector').open(9222, '0.0.0.0', false);
@@ -193,6 +196,9 @@ class GoogleServicesApp extends Homey.App {
               if(query) list = list.filter(x=>x.name.toLowerCase().indexOf(query.toLowerCase())>-1)
               var r = list.map(x=> { return { id:x.name, name:x.name + ' (' + x.ssmlGender + ')', gender:x.ssmlGender, languagecode:x.languageCodes[0] }});
               defer.resolve(r) ;
+            }).catch(error=> {
+              this.log(condition.id + '.language.registerAutocompleteListener error: ' + error);
+              loadingErrors.push(error);
             });    
           } catch (error) { 
             this.log(condition.id + '.language.registerAutocompleteListener error: ' + error);
@@ -217,8 +223,12 @@ class GoogleServicesApp extends Homey.App {
           });
       }
     
-    } catch (error) {      
+    } catch (error) {
       this.homey.notifications.createNotification({excerpt : "Starting Google Services App Error: " + error });   
+      loadingErrors.push(error);
+    }
+    if(loadingErrors.length) {      
+      this.homey.notifications.createNotification({excerpt : "Starting Google Services Error: " +loadingErrors.join(', ')});   
     }
     
   }
@@ -242,13 +252,21 @@ class GoogleServicesApp extends Homey.App {
   //   TtsServer.DefaultCloudLanguageCode = lg;
   // }
 
+  // async notifyWithError(message, error) {
+  //   this.homey.notifications.createNotification({excerpt : "Error while setting Google Cloud JSON: " + error });    
+  // }
+
   async setDefaultCloudVoice() {
-    var voice = await this.homey.settings.get('DefaultCloudVoice');
-    if(voice) voice = JSON.parse(voice);
-    var voices = await TtsServer.getVoices();
-    var r;
-    if(voices && voice) r = _.find(voices, v=>v.name==voice.name);
-    TtsServer.DefaultCloudVoice = r;    
+    try {        
+      var voice = await this.homey.settings.get('DefaultCloudVoice');
+      if(voice) voice = JSON.parse(voice);
+      var voices = await TtsServer.getVoices();
+      var r;
+      if(voices && voice) r = _.find(voices, v=>v.name==voice.name);
+      TtsServer.DefaultCloudVoice = r; 
+    } catch (error) {      
+      this.homey.notifications.createNotification({excerpt : "Error while setting Google Cloud JSON: " + error });     
+    }   
   }
 
   async setCloudJSON() {

@@ -145,5 +145,8 @@
   },
   "1.9.14": {
     "en": "Removed startup."
+  },
+  "1.9.15": {
+    "en": "Improved: More notifications about why the json is not working."
   }
 }
