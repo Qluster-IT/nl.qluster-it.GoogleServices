@@ -151,5 +151,8 @@
   },
   "1.9.16": {
     "en": "Improved: Store Tags."
+  },
+  "1.9.17": {
+    "en": "Improved: Added Google AND and THEN card with text, speed, pitch and volume."
   }
 }

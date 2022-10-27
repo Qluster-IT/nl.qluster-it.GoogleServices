@@ -103,7 +103,9 @@ class GoogleServicesApp extends Homey.App {
         {id:'start_googlecloudtts_voice_volume', voice:true },
         {id:'start_googlecloudtts_voice_speed', voice:true },
         {id:'start_googlecloudtts_voice_speed_pitch', voice:true },
-        {id:'start_googlecloudtts_voice_speed_pitch_af', voice:true, af:true }
+        {id:'start_googlecloudtts_voice_speed_pitch_af', voice:true, af:true },
+        {id:'start_googlecloudtts_voice_speed_pitch_volume', voice:true },
+        {id:'start_googlecloudtts_voice_speed_pitch_volume_af', voice:true, af:true }
       ];
       for (let i = 0; i < actions.length; i++) {
         const action = actions[i];
@@ -145,7 +147,8 @@ class GoogleServicesApp extends Homey.App {
         {id:'condition_say_googlecloudtts_voice', triggerAndWait: true, voice:true},
         {id:'condition_say_googlecloudtts_voice_volume', triggerAndWait: true, voice:true},
         {id:'condition_say_googlecloudtts_voice_speed', triggerAndWait: true, voice:true},
-        {id:'condition_say_googlecloudtts_voice_speed_pitch', triggerAndWait: true, voice:true}
+        {id:'condition_say_googlecloudtts_voice_speed_pitch', triggerAndWait: true, voice:true},
+        {id:'condition_say_googlecloudtts_voice_speed_pitch_volume', triggerAndWait: true, voice:true}
       ];
       for (let i = 0; i < conditionClouds.length; i++) {
         const condition = conditionClouds[i];      
