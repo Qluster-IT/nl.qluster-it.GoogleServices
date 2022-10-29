@@ -73,6 +73,73 @@
     ],
     "conditions": [
         {
+            "id": "condition_say_googlecloudtts_voice_speed_pitch_volume",
+            "highlight":true,
+            "title": {
+                "en": "Start TTS at speed with pitch with volume"
+            },
+            "titleFormatted": {
+                "en": "Start saying [[text]] in [[voice]] speed [[speakingRate]] pitch [[pitch]] with volume gain [[volumeGainDb]] and finish",
+                "nl": "Begin te zeggen [[text]] in [[voice]] snelheid [[speakingRate]] toonhoogte [[pitch]] met volume versterking [[volumeGainDb]] en voltooi"
+            },
+            "args": [
+                {
+                    "name": "text",
+                    "type": "text",
+                    "placeholder": {
+                        "en": "Text",
+                        "nl": "Tekst"
+                    }
+                },
+                {
+                    "name": "voice",
+                    "type": "autocomplete",
+                    "required": false,
+                    "placeholder": {
+                        "en": "Voice",
+                        "nl": "Stem"
+                    }
+                },
+                {
+                    "name": "speakingRate",
+                    "type": "range",
+                    "required": false,
+                    "placeholder": {
+                        "en": "Speed",
+                        "nl": "Snelheid"
+                    },
+                    "min": 0.25,
+                    "max": 4,
+                    "step": 0.01
+                },
+                {
+                    "name": "pitch",
+                    "type": "range",
+                    "required": false,
+                    "placeholder": {
+                        "en": "Pitch",
+                        "nl": "Toonhoogte"
+                    },
+                    "min": -20,
+                    "max": 20,
+                    "step": 0.1
+                },
+                {
+                    "name": "volumeGainDb",
+                    "type": "range",
+                    "required": false,                    
+                    "placeholder": {
+                        "en": "Volume Gain (dB)",
+                        "nl": "Volume versterker (dB)"
+                    },
+                    "min": -96,
+                    "max": 16,
+                    "step": 0.1,
+                    "value" : 0
+                }
+            ]
+        },
+        {
             "id": "condition_googlecloudtts",
             "title": {
                 "en": "Get URL for TTS",
@@ -301,6 +368,61 @@
             ]
         },
         {
+            "id": "condition_say_googlecloudtts_speed_pitch_volume",
+            "title": {
+                "en": "Start TTS at speed with pitch with volume"
+            },
+            "titleFormatted": {
+                "en": "Start saying [[text]] speed [[speakingRate]] pitch [[pitch]] with volume gain [[volumeGainDb]] and finish",
+                "nl": "Begin te zeggen [[text]] snelheid [[speakingRate]] toonhoogte [[pitch]] met volume versterking [[volumeGainDb]] en voltooi"
+            },
+            "args": [
+                {
+                    "name": "text",
+                    "type": "text",
+                    "placeholder": {
+                        "en": "Text",
+                        "nl": "Tekst"
+                    }
+                },
+                {
+                    "name": "speakingRate",
+                    "type": "range",
+                    "placeholder": {
+                        "en": "Speed",
+                        "nl": "Snelheid"
+                    },
+                    "min": 0.25,
+                    "max": 4,
+                    "step": 0.01
+                },
+                {
+                    "name": "pitch",
+                    "type": "range",
+                    "placeholder": {
+                        "en": "Pitch",
+                        "nl": "Toonhoogte"
+                    },
+                    "min": -20,
+                    "max": 20,
+                    "step": 0.1
+                },
+                {
+                    "name": "volumeGainDb",
+                    "type": "range",
+                    
+                    "placeholder": {
+                        "en": "Volume Gain (dB)",
+                        "nl": "Volume versterker (dB)"
+                    },
+                    "min": -96,
+                    "max": 16,
+                    "step": 0.1,
+                    "value" : 0
+                }
+            ]
+        },
+        {
             "id": "condition_say_googlecloudtts_voice",
             "title": {
                 "en": "Start TTS",
@@ -356,8 +478,8 @@
                     "name": "voice",
                     "type": "autocomplete",
                     "placeholder": {
-                        "en": "Language",
-                        "nl": "Taal"
+                        "en": "Voice",
+                        "nl": "Stem"
                     }
                 },
                 {
@@ -398,8 +520,8 @@
                     "name": "voice",
                     "type": "autocomplete",
                     "placeholder": {
-                        "en": "Language",
-                        "nl": "Taal"
+                        "en": "Voice",
+                        "nl": "Stem"
                     }
                 },
                 {
@@ -437,8 +559,8 @@
                     "name": "voice",
                     "type": "autocomplete",
                     "placeholder": {
-                        "en": "Language",
-                        "nl": "Taal"
+                        "en": "Voice",
+                        "nl": "Stem"
                     }
                 },
                 {
@@ -465,8 +587,171 @@
                 }
             ]
         }
+        
     ],
     "actions": [
+        {
+            "id": "start_googlecloudtts_voice_speed_pitch_volume_af",
+            "highlight":true,
+            "title": {
+                "en": "Start TTS with voice at speed with pitch with volume",
+                "nl": "Begin TTS met stem op snelheid met toonhoogte met volume"
+            },
+            "titleFormatted": {
+                "en": "Start saying [[text]] in [[voice]] speed [[speakingRate]] pitch [[pitch]] with volume gain [[volumeGainDb]]",
+                "nl": "Begin te zeggen [[text]] in [[voice]] snelheid [[speakingRate]] toonhoogte [[pitch]] met volume versterking [[volumeGainDb]]"
+            },
+            "args": [
+                {
+                    "name": "text",
+                    "type": "text",
+                    "placeholder": {
+                        "en": "Text",
+                        "nl": "Tekst"
+                    }
+                },
+                {
+                    "name": "voice",
+                    "required": false,
+                    "type": "autocomplete",
+                    "placeholder": {
+                        "en": "Voice",
+                        "nl": "Stem"
+                    }
+                },
+                {
+                    "name": "speakingRate",
+                    "required": false,
+                    "type": "range",
+                    "placeholder": {
+                        "en": "Speed",
+                        "nl": "Snelheid"
+                    },
+                    "min": 0.25,
+                    "max": 4,
+                    "step": 0.01
+                },
+                {
+                    "name": "pitch",
+                    "required": false,
+                    "type": "range",
+                    "placeholder": {
+                        "en": "Pitch",
+                        "nl": "Toonhoogte"
+                    },
+                    "min": -20,
+                    "max": 20,
+                    "step": 0.1
+                },
+                {
+                    "name": "volumeGainDb",
+                    "type": "range",
+                    "required":false,                    
+                    "placeholder": {
+                        "en": "Volume Gain (dB)",
+                        "nl": "Volume versterker (dB)"
+                    },
+                    "min": -96,
+                    "max": 16,
+                    "step": 0.1,
+                    "value" : 0
+                }
+            ],
+            "tokens": [
+                {
+                    "name": "url",
+                    "type": "string",
+                    "title": {
+                        "en": "Url"
+                    }
+                },
+                {
+                    "name": "text",
+                    "type": "string",
+                    "title": {
+                        "en": "Text",
+                        "nl": "Tekst"
+                    }
+                },
+                {
+                    "name": "duration",
+                    "type": "number",
+                    "title": {
+                        "en": "Duration",
+                        "nl": "Tijdsduur"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "start_googlecloudtts_voice_speed_pitch_volume",
+            
+            "highlight":true,
+            "title": {
+                "en": "Start TTS with voice at speed with pitch with volume",
+                "nl": "Begin TTS met stem op snelheid met toonhoogte met volume"
+            },
+            "titleFormatted": {
+                "en": "Start saying [[text]] in [[voice]] speed [[speakingRate]] pitch [[pitch]] with volume gain [[volumeGainDb]]",
+                "nl": "Begin te zeggen [[text]] in [[voice]] snelheid [[speakingRate]] toonhoogte [[pitch]] met volume versterking [[volumeGainDb]]"
+            },
+            "args": [
+                {
+                    "name": "text",
+                    "type": "text",
+                    "placeholder": {
+                        "en": "Text",
+                        "nl": "Tekst"
+                    }
+                },
+                {
+                    "name": "voice",
+                    "type": "autocomplete",
+                    "required":false,
+                    "placeholder": {
+                        "en": "Voice",
+                        "nl": "Stem"
+                    }
+                },
+                {
+                    "name": "speakingRate",
+                    "type": "range",
+                    "required":false,
+                    "placeholder": {
+                        "en": "Speed",
+                        "nl": "Snelheid"
+                    },
+                    "min": 0.25,
+                    "max": 4,
+                    "step": 0.01
+                },
+                {
+                    "name": "pitch",
+                    "type": "range",
+                    "required":false,
+                    "placeholder": {
+                        "en": "Pitch",
+                        "nl": "Toonhoogte"
+                    },
+                    "min": -20,
+                    "max": 20,
+                    "step": 0.1
+                },
+                {
+                    "name": "volumeGainDb",
+                    "type": "range",
+                    "required":false,                    
+                    "placeholder": {
+                        "en": "Volume Gain (dB)",
+                        "nl": "Volume versterker (dB)"
+                    },
+                    "min": -96,
+                    "max": 16,
+                    "step": 0.1,
+                    "value" : 0
+                }
+            ]
+        },
         {
             "id": "start_googlecloudtts",
             "title": {
@@ -656,8 +941,8 @@
                     "name": "voice",
                     "type": "autocomplete",
                     "placeholder": {
-                        "en": "Language",
-                        "nl": "Taal"
+                        "en": "Voice",
+                        "nl": "Stem"
                     }
                 },                
                 {
@@ -697,8 +982,8 @@
                     "name": "voice",
                     "type": "autocomplete",
                     "placeholder": {
-                        "en": "Language",
-                        "nl": "Taal"
+                        "en": "Voice",
+                        "nl": "Stem"
                     }
                 },
                 {
@@ -737,8 +1022,8 @@
                     "name": "voice",
                     "type": "autocomplete",
                     "placeholder": {
-                        "en": "Language",
-                        "nl": "Taal"
+                        "en": "Voice",
+                        "nl": "Stem"
                     }
                 },
                 {
@@ -844,5 +1129,6 @@
                 }
             ]
         }
+        
     ]
 }

@@ -7,6 +7,7 @@ const textToSpeech = require('@google-cloud/text-to-speech');
 const {Defer} = require('./lib/proto');
 
 var TtsServer = require('./lib/tts-server');
+const { isArrayLike } = require('lodash');
 
 //const fetch = require('node-fetch');
 
@@ -23,6 +24,8 @@ class GoogleServicesApp extends Homey.App {
   };
 
   async onInit() {
+    
+    let loadingErrors = [];
     try {
       try {
         if (process.env.DEBUG === '1') require('inspector').open(9222, '0.0.0.0', false);
@@ -32,6 +35,11 @@ class GoogleServicesApp extends Homey.App {
         //if (process.env.DEBUG === '1') require('inspector').open(9222, '0.0.0.0', false);
       
       this.log('MyApp has been initialized');
+
+      // if(!await this.homey.settings.get('dc_avd_templates_info')) {
+      //   this.homey.notifications.createNotification({excerpt : "Check out the App **Device Capabilities**:\n* A new Advanced Virtual Device with custom icons for devices and **capabilities/fields**.\n* **Share Your Device** which is than shown as a Template to others!\n* **The Flow Exchange(r)** - Export Your Flows with Others!\n* Import Templates of flows and reconfigure them for your devices, zones, tags, users, etc. before the flow(script) is created!" });  
+      //   this.homey.settings.set('dc_avd_templates_info', true);
+      // }
       
       this.homey.settings.on('set', (function(settingName) {
         if(settingName=='CloudJSON') {
@@ -72,14 +80,14 @@ class GoogleServicesApp extends Homey.App {
         const start = starts[i];        
         const start_googlettsAction = this.homey.flow.getActionCard(start.id);
         start_googlettsAction.registerRunListener(( ( args, state ) => { //async              
-          var defer = new Defer();
+          const defer = new Defer();
           try {
             if(!args.device || !args.text) return false;
             if(args.text.length>200) return  new Error("Max 200 characters");
-            var settings =  args.device.getSettings();
-            var languagecode = settings && settings.languagecode ? settings.languagecode : 'en-GB';
-            var url = googleTTS.getAudioUrl(args.text, { lang:languagecode, slow: start.slow });
-            this.Triggers.urlTrigger.Card.trigger(args.device, {url:url} );
+            const settings =  args.device.getSettings();
+            const languagecode = settings && settings.languagecode ? settings.languagecode : 'en-GB';
+            const url = googleTTS.getAudioUrl(args.text, { lang:languagecode, slow: start.slow });
+            this.Triggers.urlTrigger.Card.trigger(args.device, {url:url, text:args.text} );
             defer.resolve(start.af ? {url:url, text:args.text} : true);
           } catch (error) { console.log('Error: ' + error); defer.resolve('An error occured'); }
             return defer.promise;
@@ -91,23 +99,28 @@ class GoogleServicesApp extends Homey.App {
         {id:'start_googlecloudtts_volume'},
         {id:'start_googlecloudtts_speed'},
         {id:'start_googlecloudtts_speed_pitch'},
+        //{id:'start_googlecloudtts_speed_pitch_volume', voice:true },
+        //{id:'start_googlecloudtts_speed_pitch_volume_af', voice:true, af:true },
         {id:'start_googlecloudtts_voice', voice:true },
         {id:'start_googlecloudtts_voice_volume', voice:true },
         {id:'start_googlecloudtts_voice_speed', voice:true },
         {id:'start_googlecloudtts_voice_speed_pitch', voice:true },
-        {id:'start_googlecloudtts_voice_speed_pitch_af', voice:true, af:true }
+        {id:'start_googlecloudtts_voice_speed_pitch_af', voice:true, af:true },
+        {id:'start_googlecloudtts_voice_speed_pitch_volume', voice:true },
+        {id:'start_googlecloudtts_voice_speed_pitch_volume_af', voice:true, af:true }
       ];
       for (let i = 0; i < actions.length; i++) {
         const action = actions[i];
         
         const actionCard = this.homey.flow.getActionCard(action.id);
         actionCard.registerRunListener(( ( args, state ) => { //async
-          var defer = new Defer();
+          const defer = new Defer();
           try {
               if(!args.device || !args.text) return false;
               console.log('start_googlettscloudAction.registerRunListener args: ');
               TtsServer.getUrl({args, voice : args.voice }).then(url=> {
                 console.log('start_googlettscloudAction.registerRunListener url: ' + url.url);
+                if(url.duration===undefined) url.duration=-1;
                 args.device.setCapabilityValue('device_url', url.url);
                 args.device.setCapabilityValue('device_duration', url.duration);                    
                 var triggered = !!this.Triggers.cloudurlTrigger.Card.trigger(args.device, {url:url.url, text:args.text, duration :url.duration } );
@@ -132,26 +145,29 @@ class GoogleServicesApp extends Homey.App {
         {id:'condition_say_googlecloudtts', triggerAndWait: true},
         {id:'condition_say_googlecloudtts_volume', triggerAndWait: true},
         {id:'condition_say_googlecloudtts_speed', triggerAndWait: true},
-        {id:'condition_say_googlecloudtts_speed_pitch', triggerAndWait: true},      
+        {id:'condition_say_googlecloudtts_speed_pitch', triggerAndWait: true},    
+        {id:'condition_say_googlecloudtts_speed_pitch_volume', triggerAndWait: true},      
         {id:'condition_say_googlecloudtts_voice', triggerAndWait: true, voice:true},
         {id:'condition_say_googlecloudtts_voice_volume', triggerAndWait: true, voice:true},
         {id:'condition_say_googlecloudtts_voice_speed', triggerAndWait: true, voice:true},
-        {id:'condition_say_googlecloudtts_voice_speed_pitch', triggerAndWait: true, voice:true}
+        {id:'condition_say_googlecloudtts_voice_speed_pitch', triggerAndWait: true, voice:true},
+        {id:'condition_say_googlecloudtts_voice_speed_pitch_volume', triggerAndWait: true, voice:true}
       ];
       for (let i = 0; i < conditionClouds.length; i++) {
         const condition = conditionClouds[i];      
         const conditionCard = this.homey.flow.getConditionCard(condition.id);
         conditionCard.registerRunListener(( ( args, state ) => { //async
-          var defer = new Defer();
+          const defer = new Defer();
           try {
             if(!args.device || !args.text) return Promise.resolve(false);
             console.log('condition_googlettscloudAction.registerRunListener args: ');
             console.log(args);
             TtsServer.getUrl({args, voice : args.voice}).then(url=> {
-              var promises = [];
+              const promises = [];
               
-              var p1 = args.device.setCapabilityValue('device_url', url.url);
-              var p2 = args.device.setCapabilityValue('device_duration', url.duration);
+              if(url.duration===undefined) url.duration=-1;
+              const p1 = args.device.setCapabilityValue('device_url', url.url);
+              const p2 = args.device.setCapabilityValue('device_duration', url.duration);
               promises.push(p1);
               promises.push(p2);
               
@@ -162,7 +178,7 @@ class GoogleServicesApp extends Homey.App {
                 else this.ClearFinishedTimer(args.device);
               }
               
-              var all = Promise.all(promises);                   
+              const all = Promise.all(promises);                   
               all.then(()=> {
                 defer.resolve(true);
               }).catch((err)=> {
@@ -186,6 +202,9 @@ class GoogleServicesApp extends Homey.App {
               if(query) list = list.filter(x=>x.name.toLowerCase().indexOf(query.toLowerCase())>-1)
               var r = list.map(x=> { return { id:x.name, name:x.name + ' (' + x.ssmlGender + ')', gender:x.ssmlGender, languagecode:x.languageCodes[0] }});
               defer.resolve(r) ;
+            }).catch(error=> {
+              this.log(condition.id + '.language.registerAutocompleteListener error: ' + error);
+              loadingErrors.push(error);
             });    
           } catch (error) { 
             this.log(condition.id + '.language.registerAutocompleteListener error: ' + error);
@@ -210,8 +229,12 @@ class GoogleServicesApp extends Homey.App {
           });
       }
     
-    } catch (error) {      
+    } catch (error) {
       this.homey.notifications.createNotification({excerpt : "Starting Google Services App Error: " + error });   
+      loadingErrors.push(error);
+    }
+    if(loadingErrors.length) {      
+      this.homey.notifications.createNotification({excerpt : "Starting Google Services Error: " +loadingErrors.join(', ')});   
     }
     
   }
@@ -235,13 +258,21 @@ class GoogleServicesApp extends Homey.App {
   //   TtsServer.DefaultCloudLanguageCode = lg;
   // }
 
+  // async notifyWithError(message, error) {
+  //   this.homey.notifications.createNotification({excerpt : "Error while setting Google Cloud JSON: " + error });    
+  // }
+
   async setDefaultCloudVoice() {
-    var voice = await this.homey.settings.get('DefaultCloudVoice');
-    if(voice) voice = JSON.parse(voice);
-    var voices = await TtsServer.getVoices();
-    var r;
-    if(voices && voice) r = _.find(voices, v=>v.name==voice.name);
-    TtsServer.DefaultCloudVoice = r;    
+    try {        
+      var voice = await this.homey.settings.get('DefaultCloudVoice');
+      if(voice) voice = JSON.parse(voice);
+      var voices = await TtsServer.getVoices();
+      var r;
+      if(voices && voice) r = _.find(voices, v=>v.name==voice.name);
+      TtsServer.DefaultCloudVoice = r; 
+    } catch (error) {      
+      this.homey.notifications.createNotification({excerpt : "Error while setting Google Cloud JSON: " + error });     
+    }   
   }
 
   async setCloudJSON() {

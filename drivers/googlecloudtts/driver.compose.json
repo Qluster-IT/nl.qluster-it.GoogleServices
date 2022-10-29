@@ -233,6 +233,33 @@
           "nl": "Indien waar, zal het automatisch de benodige begin en einde <speak> elementen toevoegen aan spraakuitvoer."          
         },
         "value" : false
+      },
+      {
+        "id": "audioEncoding",
+        "type": "dropdown",
+        "label": {
+          "en": "Encoding",          
+          "nl": "Encoding"
+        },
+        "value" : "MP3",
+        "values": [
+          {
+            "id": "MP3",
+            "name": "MP3",
+            "label": {
+              "en": "MP3",
+              "nl": "MP3"
+            }
+          },
+          {
+            "id": "LINEAR16",
+            "name": "LINEAR16",
+            "label": {
+              "en": "LINEAR16 (WAV)",
+              "nl": "LINEAR16 (WAV)"
+            }
+          }
+        ]
       }
 
     ]

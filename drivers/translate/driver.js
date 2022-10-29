@@ -134,13 +134,19 @@ class GoogleTranslateDriver extends Homey.Driver
     }   
 
     async setCloudJSON() {
-        var json = await this.homey.settings.get('CloudJSON');
-        this.credentials = json ? JSON.parse(json) : null;
-        if(this.credentials){
-          this.translateClient  = new TranslationServiceClient({credentials:this.credentials});
-        }
-        else {
-          this.translateClient = null;
+        try {
+            
+            var json = await this.homey.settings.get('CloudJSON');
+            this.credentials = json ? JSON.parse(json) : null;
+            if(this.credentials){
+            this.translateClient  = new TranslationServiceClient({credentials:this.credentials});
+            }
+            else {
+            this.translateClient = null;
+            }
+        } catch (error) {
+            this.translateClient = null;
+            this.homey.notifications.createNotification({excerpt : "Google Cloud JSON Error: " + error });     
         }
     }
     
