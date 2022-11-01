@@ -157,5 +157,8 @@
   },
   "1.9.18": {
     "en": "Added: Added Audio Encoding on Google TTS Device Settings."
+  },
+  "1.9.19": {
+    "en": "Added: Contribution options: Patreon and GithubSponsors (with PayPal already available)."
   }
 }
