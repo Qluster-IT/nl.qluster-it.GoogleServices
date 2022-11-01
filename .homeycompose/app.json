@@ -1,6 +1,6 @@
 {
   "id": "nl.qluster-it.GoogleServices",
-  "version": "1.9.18",
+  "version": "1.9.19",
   "compatibility": ">=5.0.0",
   "sdk": 3,
   "brandColor": "#8DB000",
@@ -24,13 +24,19 @@
     "large": "/assets/images/large.png",
     "small": "/assets/images/small.png"
   },
-  "contributing": {
-    "donate": {
-      "paypal": {
-        "username": "QlusterIT"
+	"contributing": {
+		"donate": {
+			"paypal": {
+				"username": "QlusterIT"
+			},
+      "patreon": {
+				"username": "QlusterIT"
+			},
+      "githubSponsors": {
+        "username": "XeroxQ"
       }
-    }
-  },
+		}
+	},
   "source": "https://bitbucket.org/QlusterIT/nl.qluster-it.googleservices/",
   "bugs": {
     "url": "https://bitbucket.org/QlusterIT/nl.qluster-it.googleservices/issues"
