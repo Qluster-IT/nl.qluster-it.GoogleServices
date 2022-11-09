@@ -1,7 +1,7 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "nl.qluster-it.GoogleServices",
-  "version": "1.9.19",
+  "version": "1.9.20",
   "compatibility": ">=5.0.0",
   "sdk": 3,
   "brandColor": "#8DB000",
@@ -30,7 +30,9 @@
   "category": [
     "music"
   ],
-  "permissions": [],
+  "permissions": [
+    "homey:app:net.i-dev.betterlogic"
+  ],
   "images": {
     "large": "/assets/images/large.png",
     "small": "/assets/images/small.png"
@@ -239,6 +241,10 @@
             "name": "text",
             "type": "text",
             "placeholder": {
+              "en": "Text (* BLL supported)",
+              "nl": "Tekst (* BLL ondersteund)"
+            },
+            "title": {
               "en": "Text",
               "nl": "Tekst"
             }
@@ -311,6 +317,10 @@
             "name": "text",
             "type": "text",
             "placeholder": {
+              "en": "Text (* BLL supported)",
+              "nl": "Tekst (* BLL ondersteund)"
+            },
+            "title": {
               "en": "Text",
               "nl": "Tekst"
             }
@@ -337,6 +347,10 @@
             "name": "text",
             "type": "text",
             "placeholder": {
+              "en": "Text (* BLL supported)",
+              "nl": "Tekst (* BLL ondersteund)"
+            },
+            "title": {
               "en": "Text",
               "nl": "Tekst"
             }
@@ -374,6 +388,10 @@
             "name": "text",
             "type": "text",
             "placeholder": {
+              "en": "Text (* BLL supported)",
+              "nl": "Tekst (* BLL ondersteund)"
+            },
+            "title": {
               "en": "Text",
               "nl": "Tekst"
             }
@@ -422,6 +440,10 @@
             "name": "text",
             "type": "text",
             "placeholder": {
+              "en": "Text (* BLL supported)",
+              "nl": "Tekst (* BLL ondersteund)"
+            },
+            "title": {
               "en": "Text",
               "nl": "Tekst"
             }
@@ -452,6 +474,10 @@
             "name": "text",
             "type": "text",
             "placeholder": {
+              "en": "Text (* BLL supported)",
+              "nl": "Tekst (* BLL ondersteund)"
+            },
+            "title": {
               "en": "Text",
               "nl": "Tekst"
             }
@@ -490,6 +516,10 @@
             "name": "text",
             "type": "text",
             "placeholder": {
+              "en": "Text (* BLL supported)",
+              "nl": "Tekst (* BLL ondersteund)"
+            },
+            "title": {
               "en": "Text",
               "nl": "Tekst"
             }
@@ -526,6 +556,10 @@
             "name": "text",
             "type": "text",
             "placeholder": {
+              "en": "Text (* BLL supported)",
+              "nl": "Tekst (* BLL ondersteund)"
+            },
+            "title": {
               "en": "Text",
               "nl": "Tekst"
             }
@@ -573,6 +607,10 @@
             "name": "text",
             "type": "text",
             "placeholder": {
+              "en": "Text (* BLL supported)",
+              "nl": "Tekst (* BLL ondersteund)"
+            },
+            "title": {
               "en": "Text",
               "nl": "Tekst"
             }
@@ -633,6 +671,10 @@
             "name": "text",
             "type": "text",
             "placeholder": {
+              "en": "Text (* BLL supported)",
+              "nl": "Tekst (* BLL ondersteund)"
+            },
+            "title": {
               "en": "Text",
               "nl": "Tekst"
             }
@@ -641,8 +683,8 @@
             "name": "voice",
             "type": "autocomplete",
             "placeholder": {
-              "en": "Language",
-              "nl": "Taal"
+              "en": "Voice",
+              "nl": "Stem"
             }
           }
         ]
@@ -671,6 +713,10 @@
             "name": "text",
             "type": "text",
             "placeholder": {
+              "en": "Text (* BLL supported)",
+              "nl": "Tekst (* BLL ondersteund)"
+            },
+            "title": {
               "en": "Text",
               "nl": "Tekst"
             }
@@ -717,6 +763,10 @@
             "name": "text",
             "type": "text",
             "placeholder": {
+              "en": "Text (* BLL supported)",
+              "nl": "Tekst (* BLL ondersteund)"
+            },
+            "title": {
               "en": "Text",
               "nl": "Tekst"
             }
@@ -761,6 +811,10 @@
             "name": "text",
             "type": "text",
             "placeholder": {
+              "en": "Text (* BLL supported)",
+              "nl": "Tekst (* BLL ondersteund)"
+            },
+            "title": {
               "en": "Text",
               "nl": "Tekst"
             }
@@ -955,6 +1009,10 @@
             "name": "text",
             "type": "text",
             "placeholder": {
+              "en": "Text (* BLL supported)",
+              "nl": "Tekst (* BLL ondersteund)"
+            },
+            "title": {
               "en": "Text",
               "nl": "Tekst"
             }
@@ -1053,6 +1111,10 @@
             "name": "text",
             "type": "text",
             "placeholder": {
+              "en": "Text (* BLL supported)",
+              "nl": "Tekst (* BLL ondersteund)"
+            },
+            "title": {
               "en": "Text",
               "nl": "Tekst"
             }
@@ -1155,6 +1217,10 @@
             "name": "text",
             "type": "text",
             "placeholder": {
+              "en": "Text (* BLL supported)",
+              "nl": "Tekst (* BLL ondersteund)"
+            },
+            "title": {
               "en": "Text",
               "nl": "Tekst"
             }
@@ -1193,6 +1259,10 @@
             "name": "text",
             "type": "text",
             "placeholder": {
+              "en": "Text (* BLL supported)",
+              "nl": "Tekst (* BLL ondersteund)"
+            },
+            "title": {
               "en": "Text",
               "nl": "Tekst"
             }
@@ -1230,6 +1300,10 @@
             "name": "text",
             "type": "text",
             "placeholder": {
+              "en": "Text (* BLL supported)",
+              "nl": "Tekst (* BLL ondersteund)"
+            },
+            "title": {
               "en": "Text",
               "nl": "Tekst"
             }
@@ -1278,6 +1352,10 @@
             "name": "text",
             "type": "text",
             "placeholder": {
+              "en": "Text (* BLL supported)",
+              "nl": "Tekst (* BLL ondersteund)"
+            },
+            "title": {
               "en": "Text",
               "nl": "Tekst"
             }
@@ -1286,8 +1364,8 @@
             "name": "voice",
             "type": "autocomplete",
             "placeholder": {
-              "en": "Language",
-              "nl": "Taal"
+              "en": "Voice",
+              "nl": "Stem"
             }
           }
         ]
@@ -1316,6 +1394,10 @@
             "name": "text",
             "type": "text",
             "placeholder": {
+              "en": "Text (* BLL supported)",
+              "nl": "Tekst (* BLL ondersteund)"
+            },
+            "title": {
               "en": "Text",
               "nl": "Tekst"
             }
@@ -1362,6 +1444,10 @@
             "name": "text",
             "type": "text",
             "placeholder": {
+              "en": "Text (* BLL supported)",
+              "nl": "Tekst (* BLL ondersteund)"
+            },
+            "title": {
               "en": "Text",
               "nl": "Tekst"
             }
@@ -1407,6 +1493,10 @@
             "name": "text",
             "type": "text",
             "placeholder": {
+              "en": "Text (* BLL supported)",
+              "nl": "Tekst (* BLL ondersteund)"
+            },
+            "title": {
               "en": "Text",
               "nl": "Tekst"
             }
@@ -1463,6 +1553,10 @@
             "name": "text",
             "type": "text",
             "placeholder": {
+              "en": "Text (* BLL supported)",
+              "nl": "Tekst (* BLL ondersteund)"
+            },
+            "title": {
               "en": "Text",
               "nl": "Tekst"
             }
@@ -1661,6 +1755,56 @@
             "title": {
               "en": "Text",
               "nl": "Tekst"
+            }
+          }
+        ]
+      },
+      {
+        "id": "maps_calculate_traveltime",
+        "title": {
+          "en": "Calculate Travel Time",
+          "nl": "Bereken reistijd"
+        },
+        "titleFormatted": {
+          "en": "Calculate Travel Time [[from]]",
+          "nl": "Zoek [[from]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=maps"
+          },
+          {
+            "name": "from",
+            "type": "text",
+            "placeholder": {
+              "en": "From",
+              "nl": "From"
+            }
+          }
+        ],
+        "tokens": [
+          {
+            "name": "id",
+            "type": "string",
+            "title": {
+              "en": "Maps ID"
+            }
+          },
+          {
+            "name": "link",
+            "type": "string",
+            "title": {
+              "en": "Maps link"
+            }
+          },
+          {
+            "name": "text",
+            "type": "string",
+            "title": {
+              "en": "Searched text",
+              "nl": "Gezochte tekst"
             }
           }
         ]
@@ -2562,6 +2706,37 @@
           ]
         }
       ]
+    },
+    {
+      "id": "maps",
+      "deprecated": true,
+      "name": {
+        "en": "Maps",
+        "nl": "Maps"
+      },
+      "class": "other",
+      "capabilities": [],
+      "images": {
+        "large": "/drivers/maps/assets/images/large.png",
+        "small": "/drivers/maps/assets/images/small.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_my_devices"
+          },
+          "options": {
+            "singular": true
+          }
+        },
+        {
+          "id": "add_my_devices",
+          "template": "add_devices"
+        }
+      ],
+      "settings": []
     },
     {
       "id": "translate",

@@ -1,6 +1,6 @@
 {
   "id": "nl.qluster-it.GoogleServices",
-  "version": "1.9.19",
+  "version": "1.9.20",
   "compatibility": ">=5.0.0",
   "sdk": 3,
   "brandColor": "#8DB000",
@@ -19,7 +19,9 @@
   "category": [
     "music"
   ],
-  "permissions": [],
+  "permissions": [
+    "homey:app:net.i-dev.betterlogic"
+  ],
   "images": {
     "large": "/assets/images/large.png",
     "small": "/assets/images/small.png"

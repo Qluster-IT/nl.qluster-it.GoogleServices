@@ -16,6 +16,7 @@
             var defaultCloudVoice ;//= document.getElementById('defaultCloudVoice');
             var cloudProject ;
             var cloudApiKey;
+            var mapsApiKey;
             function l(s)  {
                 if(!debug) debug = document.getElementById('debug');
                 if(debug) debug.value+='\r\n' + (s!==undefined && s!==null ? s.toString() : 'undefined');
@@ -30,6 +31,7 @@
                     promises.push(Homey.set('DefaultCloudVoice', defaultCloudVoice.selectedIndex>0 && defaultCloudVoice.children.length>defaultCloudVoice.selectedIndex ? defaultCloudVoice.children[defaultCloudVoice.selectedIndex].value : null));
                     promises.push(Homey.set('CloudProject', cloudProject.value));
                     promises.push(Homey.set('CloudApiKey', cloudApiKey.value));
+                    promises.push(Homey.set('MapsApiKey', mapsApiKey.value));
                     // Promise.all(promises).then(x=> {
                     //     getVoices();
                     // }).catch(x=> {
@@ -120,6 +122,7 @@
                     defaultCloudVoice = document.getElementById('defaultCloudVoice');
                     cloudProject = document.getElementById('cloudProject');
                     cloudApiKey = document.getElementById('cloudApiKey');
+                    mapsApiKey = document.getElementById('mapsApiKey');
                     //var defaultCloudLanguageCode = document.getElementById('defaultCloudLanguageCode');
                     Homey.ready();
                     // save.addEventListener('click', function (e) {
@@ -134,7 +137,9 @@
                     Homey.get('CloudApiKey', function(err, v) {
                         cloudApiKey.value = err ? '' : v;
                     });
-                    
+                    Homey.get('MapsApiKey', function(err, v) {
+                        mapsApiKey.value = err ? '' : v;
+                    });
                     getVoices();
                 } catch (e1) {                   
                     Homey.alert('Error while loading: ' + e1);
@@ -181,6 +186,12 @@
 
         <h2>Google API Key (for YouTube)</h2>
         <input type="text" id="cloudApiKey" style="display: inline-block;width:100%;" placeholder="API Key" />
+        <div style="display: inline-block;width:100%;">Enter the API Key.</div>
+        <br/>
+        <br/>
+
+        <h2>Google API Key (for Maps)</h2>
+        <input type="text" id="mapsApiKey" style="display: inline-block;width:100%;" placeholder="API Key" />
         <div style="display: inline-block;width:100%;">Enter the API Key.</div>
         <br/>
         <br/>
