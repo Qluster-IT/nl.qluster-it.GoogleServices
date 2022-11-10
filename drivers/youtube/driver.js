@@ -3,6 +3,7 @@
 const Homey = require('homey');
 const { v4: uuidv4 } = require('uuid');
 const search = require('youtube-search');
+const { BL } = require('../../lib/bll/bl');
 
 const { Defer } = require('../../lib/proto');
 
@@ -28,12 +29,14 @@ class YouTubeDriver extends Homey.Driver
           const action = actions[i];
           
           const actionCard = this.homey.flow.getActionCard(action.id);
-          actionCard.registerRunListener(( ( args, state ) => { //async
+          actionCard.registerRunListener( async ( args, state ) => { //async
             var defer = new Defer();
             try {
                 if(!args.device || !args.text) return Promise.resolve(false);
                 console.log('youtube_search.registerRunListener args: ');
                 
+                //args.text = await BL.decode(args.text);
+
                 search(args.text, this.options, (err, results)=> {
                   if(err) {
                     defer.reject('Did you configure the API Key in the settingspage?');
@@ -66,7 +69,7 @@ class YouTubeDriver extends Homey.Driver
               defer.reject('Did you configure the API Key in the settingspage?');
             }
             return defer.promise;
-          }).bind(this));      
+          });
         }
 
 

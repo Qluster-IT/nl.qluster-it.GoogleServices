@@ -16,9 +16,13 @@
           {
             "name": "translate",
             "type": "text",
-            "title": {
-              "en": "Text to translate",
-              "nl": "Tekst om te vertalen"
+            "placeholder":{
+              "en":"Text (* BLL supported)",
+              "nl":"Tekst (* BLL ondersteund)"
+            },
+            "title":{
+              "en":"Text",
+              "nl":"Tekst"
             }
           },
           {
@@ -148,9 +152,13 @@
           {
             "name": "translate",
             "type": "text",
-            "title": {
-              "en": "Text to translate",
-              "nl": "Tekst om te vertalen"
+            "placeholder":{
+              "en":"Text (* BLL supported)",
+              "nl":"Tekst (* BLL ondersteund)"
+            },
+            "title":{
+              "en":"Text",
+              "nl":"Tekst"
             }
           },
           {
@@ -278,9 +286,13 @@
           {
             "name": "translate",
             "type": "text",
-            "title": {
-              "en": "Text to translate",
-              "nl": "Tekst om te vertalen"
+            "placeholder":{
+              "en":"Text (* BLL supported)",
+              "nl":"Tekst (* BLL ondersteund)"
+            },
+            "title":{
+              "en":"Text",
+              "nl":"Tekst"
             }
           },
           {
@@ -524,16 +536,16 @@
             "name": "sourcelanguagecode",
             "type": "string",
             "title": {
-              "en": "Text",
-              "nl": "Tekst"
+              "en": "Source language",
+              "nl": "Brontaal"
             }
           },
           {
             "name": "targetlanguagecode",
             "type": "string",
             "title": {
-              "en": "Text",
-              "nl": "Tekst"
+              "en": "Target langauge",
+              "nl": "Doeltaal"
             }
           }
         ]

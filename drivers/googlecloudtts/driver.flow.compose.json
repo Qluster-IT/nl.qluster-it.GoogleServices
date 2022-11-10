@@ -826,9 +826,13 @@
                 {
                     "name": "text",
                     "type": "text",
-                    "placeholder": {
-                        "en": "Text",
-                        "nl": "Tekst"
+                    "placeholder":{
+                      "en":"Text (* BLL supported)",
+                      "nl":"Tekst (* BLL ondersteund)"
+                    },
+                    "title":{
+                      "en":"Text",
+                      "nl":"Tekst"
                     }
                 }
             ]
