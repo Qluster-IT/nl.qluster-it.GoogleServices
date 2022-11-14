@@ -91,7 +91,7 @@ class GoogleServicesApp extends Homey.App {
             const settings =  args.device.getSettings();
             const languagecode = settings && settings.languagecode ? settings.languagecode : 'en-GB';
             
-            args.text = await BL.decode(args.text, null, languagecode);
+            args.text = await BL.decode(args.text, languagecode);
             if(args.text.length>200) return  new Error("Max 200 characters");
             
             const url = googleTTS.getAudioUrl(args.text, { lang:languagecode, slow: start.slow });
