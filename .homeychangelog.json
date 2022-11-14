@@ -172,5 +172,8 @@
   },
   "1.9.23": {
     "en": "Supported: Better Logic Library coding can now be used within Translate flowcards."
+  },
+  "1.9.24": {
+    "en": "Supported: Better Logic Library coding can now be used within Translate flowcards."
   }
 }
