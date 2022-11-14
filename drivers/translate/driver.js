@@ -5,7 +5,7 @@ const { v4: uuidv4 } = require('uuid');
 const {TranslationServiceClient} = require('@google-cloud/translate');
 
 const {Defer} = require('./../../lib/proto');
-const { BL } = require('../../lib/bll/bl');
+const { BL } = require('betterlogiclibrary');
 var projectId = 'projects/';
     
 

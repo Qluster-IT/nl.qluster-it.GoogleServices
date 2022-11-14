@@ -3,7 +3,7 @@
 const Homey = require('homey');
 const { v4: uuidv4 } = require('uuid');
 const search = require('youtube-search');
-const { BL } = require('../../lib/bll/bl');
+const { BL } = require('betterlogiclibrary');
 
 const { Defer } = require('../../lib/proto');
 

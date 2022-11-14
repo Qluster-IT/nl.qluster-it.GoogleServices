@@ -8,8 +8,7 @@ const {Defer} = require('./lib/proto');
 
 var TtsServer = require('./lib/tts-server');
 
-/** @type {import("./lib/bll/bl.typedef")} */
-const { BL } = require('./lib/bll/bl');
+const { BL } = require('betterlogiclibrary');
 
 //const fetch = require('node-fetch');
 
@@ -38,7 +37,7 @@ class GoogleServicesApp extends Homey.App {
       
       this.log('MyApp has been initialized');
 
-      this.bl = await new BL({homey:this.homey, silent:true});
+      await BL.init({homey:this.homey, silent:true});
 
       // if(!await this.homey.settings.get('dc_avd_templates_info')) {
       //   this.homey.notifications.createNotification({excerpt : "Check out the App **Device Capabilities**:\n* A new Advanced Virtual Device with custom icons for devices and **capabilities/fields**.\n* **Share Your Device** which is than shown as a Template to others!\n* **The Flow Exchange(r)** - Export Your Flows with Others!\n* Import Templates of flows and reconfigure them for your devices, zones, tags, users, etc. before the flow(script) is created!" });  
