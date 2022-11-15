@@ -178,5 +178,11 @@
   },
   "1.9.25": {
     "en": "Bugfixed: Error when Better Logic Library was not installed."
+  },
+  "1.9.26": {
+    "en": "Improved: Startup Error message."
+  },
+  "1.9.27": {
+    "en": "Bugfixed: Startup fault wwhen the old Better Logic is installed."
   }
 }
