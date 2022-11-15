@@ -7,7 +7,8 @@ const textToSpeech = require('@google-cloud/text-to-speech');
 const {Defer} = require('./lib/proto');
 
 var TtsServer = require('./lib/tts-server');
-const { isArrayLike } = require('lodash');
+
+const { BL } = require('betterlogiclibrary');
 
 //const fetch = require('node-fetch');
 
@@ -28,13 +29,15 @@ class GoogleServicesApp extends Homey.App {
     let loadingErrors = [];
     try {
       try {
-        if (process.env.DEBUG === '1') require('inspector').open(9222, '0.0.0.0', false);
+        if (process.env.DEBUG === '1') require('inspector').open(9222, '0.0.0.0', true);
       } catch (error) {
         
       }
         //if (process.env.DEBUG === '1') require('inspector').open(9222, '0.0.0.0', false);
       
       this.log('MyApp has been initialized');
+
+      await BL.init({homey:this.homey});
 
       // if(!await this.homey.settings.get('dc_avd_templates_info')) {
       //   this.homey.notifications.createNotification({excerpt : "Check out the App **Device Capabilities**:\n* A new Advanced Virtual Device with custom icons for devices and **capabilities/fields**.\n* **Share Your Device** which is than shown as a Template to others!\n* **The Flow Exchange(r)** - Export Your Flows with Others!\n* Import Templates of flows and reconfigure them for your devices, zones, tags, users, etc. before the flow(script) is created!" });  
@@ -79,19 +82,22 @@ class GoogleServicesApp extends Homey.App {
       for (let i = 0; i < starts.length; i++) {
         const start = starts[i];        
         const start_googlettsAction = this.homey.flow.getActionCard(start.id);
-        start_googlettsAction.registerRunListener(( ( args, state ) => { //async              
-          const defer = new Defer();
+        start_googlettsAction.registerRunListener(async ( args, state ) => { //async              
+          //const defer = new Defer();
           try {
             if(!args.device || !args.text) return false;
             if(args.text.length>200) return  new Error("Max 200 characters");
             const settings =  args.device.getSettings();
             const languagecode = settings && settings.languagecode ? settings.languagecode : 'en-GB';
+            
+            args.text = await BL.decode(args.text, languagecode);
+            if(args.text.length>200) return  new Error("Max 200 characters");
+            
             const url = googleTTS.getAudioUrl(args.text, { lang:languagecode, slow: start.slow });
             this.Triggers.urlTrigger.Card.trigger(args.device, {url:url, text:args.text} );
-            defer.resolve(start.af ? {url:url, text:args.text} : true);
-          } catch (error) { console.log('Error: ' + error); defer.resolve('An error occured'); }
-            return defer.promise;
-        }).bind(this));
+            return start.af ? {url:url, text:args.text} : true;
+          } catch (error) { console.log('Error: ' + error); throw Error; }
+        });
       }
 
       var actions = [

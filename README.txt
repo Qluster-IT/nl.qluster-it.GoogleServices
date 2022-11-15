@@ -30,3 +30,7 @@ There is also an old Google TTS device, with a max. 200 characters and limited o
 
 
 For playing it on Homey itself, see Media Url Converter.
+
+
+* Optional: Supports BLL coding.
+See the Better Logic Library App Settings for how to use BLL coding.

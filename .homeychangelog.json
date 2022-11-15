@@ -160,5 +160,20 @@
   },
   "1.9.19": {
     "en": "Added: Contribution options: Patreon and GithubSponsors (with PayPal already available)."
+  },
+  "1.9.20": {
+    "en": "Support added: Better Logic Library coding can now be used within flowcards."
+  },
+  "1.9.21": {
+    "en": "Support added: Better Logic Library coding can now be used within flowcards."
+  },
+  "1.9.22": {
+    "en": "Supported: Better Logic Library coding can now be used within flowcards."
+  },
+  "1.9.23": {
+    "en": "Supported: Better Logic Library coding can now be used within Translate flowcards."
+  },
+  "1.9.24": {
+    "en": "Supported: Better Logic Library coding can now be used within Translate flowcards."
   }
 }

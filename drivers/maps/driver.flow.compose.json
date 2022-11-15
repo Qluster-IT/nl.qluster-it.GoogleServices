@@ -1,0 +1,49 @@
+{       
+    "actions": [
+        {
+            "id": "maps_calculate_traveltime",
+            "title": {
+                "en": "Calculate Travel Time",
+                "nl": "Bereken reistijd"
+            },
+            "titleFormatted": {
+                "en": "Calculate Travel Time [[from]]",
+                "nl": "Zoek [[from]]"
+            },
+            "args": [
+                {
+                    "name": "from",
+                    "type": "text",
+                    "placeholder": {
+                        "en": "From",
+                        "nl": "From"
+                    }
+                }
+            ],
+            "tokens": [
+                {
+                    "name": "id",
+                    "type": "string",
+                    "title": {
+                        "en": "Maps ID"
+                    }
+                },
+                {
+                    "name": "link",
+                    "type": "string",
+                    "title": {
+                        "en": "Maps link"
+                    }
+                },
+                {
+                    "name": "text",
+                    "type": "string",
+                    "title": {
+                        "en": "Searched text",
+                        "nl": "Gezochte tekst"
+                    }
+                }
+            ]
+        }
+    ]
+}

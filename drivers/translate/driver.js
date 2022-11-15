@@ -5,6 +5,7 @@ const { v4: uuidv4 } = require('uuid');
 const {TranslationServiceClient} = require('@google-cloud/translate');
 
 const {Defer} = require('./../../lib/proto');
+const { BL } = require('betterlogiclibrary');
 var projectId = 'projects/';
     
 
@@ -74,11 +75,13 @@ class GoogleTranslateDriver extends Homey.Driver
     for (let i = 0; i < actions.length; i++) {
         const action = actions[i];      
         const actionCard = this.homey.flow.getActionCard(action.id);
-        actionCard.registerRunListener(( ( args, state ) => {
+        actionCard.registerRunListener(async ( args, state ) => {
             console.log(action.id + '.registerRunListener args: ');
             var defer = new Defer();
             try {
                 if(!args.device || !args.translate) return Promise.resolve(false);
+                args.translate = await BL.decode(args.translate);
+
                 var promises = [];
                 promises.push(args.device.setCapabilityValue('device_translate', args.translate));
 
@@ -106,7 +109,7 @@ class GoogleTranslateDriver extends Homey.Driver
                 defer.reject('Did you configure the JSON and Project in the settingspage?');
             }
             return defer.promise;
-        }).bind(this));
+        });
     }
     }
 
