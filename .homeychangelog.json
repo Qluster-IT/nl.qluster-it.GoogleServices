@@ -175,5 +175,8 @@
   },
   "1.9.24": {
     "en": "Supported: Better Logic Library coding can now be used within Translate flowcards."
+  },
+  "1.9.25": {
+    "en": "Bugfixed: Error when Better Logic Library was not installed."
   }
 }
