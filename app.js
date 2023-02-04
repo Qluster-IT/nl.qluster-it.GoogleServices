@@ -28,11 +28,11 @@ class GoogleServicesApp extends Homey.App {
     
     let loadingErrors = [];
     try {
-      try {
-        if (process.env.DEBUG === '1') require('inspector').open(9222, '0.0.0.0', true);
-      } catch (error) {
+      // try {
+      //   if (process.env.DEBUG === '1') require('inspector').open(9222, '0.0.0.0', true);
+      // } catch (error) {
         
-      }
+      // }
         //if (process.env.DEBUG === '1') require('inspector').open(9222, '0.0.0.0', false);
       
       this.log('MyApp has been initialized');
@@ -236,8 +236,12 @@ class GoogleServicesApp extends Homey.App {
       }
     
     } catch (error) {
-      this.homey.notifications.createNotification({excerpt : "Starting Google Services App Error: " + error });   
-      loadingErrors.push(error);
+      let err = error;
+      try {
+        if(err && typeof(err)=='object')err = JSON.stringify(err);
+      } catch (error) { }
+      this.homey.notifications.createNotification({excerpt : "Starting Google Services App Error: " +  err });   
+      loadingErrors.push(err);
     }
     if(loadingErrors.length) {      
       this.homey.notifications.createNotification({excerpt : "Starting Google Services Error: " +loadingErrors.join(', ')});   

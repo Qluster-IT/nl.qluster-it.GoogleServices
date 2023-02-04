@@ -175,5 +175,17 @@
   },
   "1.9.24": {
     "en": "Supported: Better Logic Library coding can now be used within Translate flowcards."
+  },
+  "1.9.25": {
+    "en": "Bugfixed: Error when Better Logic Library was not installed."
+  },
+  "1.9.26": {
+    "en": "Improved: Startup Error message."
+  },
+  "1.9.27": {
+    "en": "Bugfixed: Startup fault when the old Better Logic is installed."
+  },
+  "1.9.28": {
+    "en": "Improved: Works with Early 2023!"
   }
 }
