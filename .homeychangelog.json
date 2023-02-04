@@ -183,6 +183,9 @@
     "en": "Improved: Startup Error message."
   },
   "1.9.27": {
-    "en": "Bugfixed: Startup fault wwhen the old Better Logic is installed."
+    "en": "Bugfixed: Startup fault when the old Better Logic is installed."
+  },
+  "1.9.28": {
+    "en": "Improved: Works with Early 2023!"
   }
 }

@@ -28,11 +28,11 @@ class GoogleServicesApp extends Homey.App {
     
     let loadingErrors = [];
     try {
-      try {
-        if (process.env.DEBUG === '1') require('inspector').open(9222, '0.0.0.0', true);
-      } catch (error) {
+      // try {
+      //   if (process.env.DEBUG === '1') require('inspector').open(9222, '0.0.0.0', true);
+      // } catch (error) {
         
-      }
+      // }
         //if (process.env.DEBUG === '1') require('inspector').open(9222, '0.0.0.0', false);
       
       this.log('MyApp has been initialized');
