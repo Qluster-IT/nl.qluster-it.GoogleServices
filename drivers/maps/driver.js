@@ -132,7 +132,7 @@ class MapsDriver extends Homey.Driver
         let devices = this.getDevices();
         if(devices && devices.length>0) devices = _.filter(devices, device=> device.getData().id==firstId);
         var id = devices && devices.length>0 ? uuidv4() : firstId;
-        return {
+        return [{
             "name": 'Maps device',
             data:
             {
@@ -141,7 +141,7 @@ class MapsDriver extends Homey.Driver
             settings:
             {
             }
-        };
+        }];
 
     }
 

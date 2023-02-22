@@ -121,7 +121,7 @@ class GoogleTranslateDriver extends Homey.Driver
 
     async onPairListDevices(data)
     {
-        return {
+        return [{
             "name": 'Google Translate',
             data:
             {
@@ -132,7 +132,7 @@ class GoogleTranslateDriver extends Homey.Driver
                 "languagecode": this.homey.__('languagecode') || 'en-GB',                
                 "defaulttargetlanguagecode": 'en-GB'
             }
-        };
+        }];
 
     }   
 
