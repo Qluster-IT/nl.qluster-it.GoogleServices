@@ -39,7 +39,7 @@ class GoogleServicesApp extends Homey.App {
       this.log('GoogleServicesApp has been initialized');
 
       //let bl = 
-      BL.init({homey:this.homey});
+      await BL.init({homey:this.homey});
 
       // if(!await this.homey.settings.get('dc_avd_templates_info')) {
       //   this.homey.notifications.createNotification({excerpt : "Check out the App **Device Capabilities**:\n* A new Advanced Virtual Device with custom icons for devices and **capabilities/fields**.\n* **Share Your Device** which is than shown as a Template to others!\n* **The Flow Exchange(r)** - Export Your Flows with Others!\n* Import Templates of flows and reconfigure them for your devices, zones, tags, users, etc. before the flow(script) is created!" });  
@@ -67,12 +67,14 @@ class GoogleServicesApp extends Homey.App {
       const url_trigger = this.homey.flow.getDeviceTriggerCard('url_trigger');
       this.Triggers.urlTrigger.Card = url_trigger;
       url_trigger
-      .registerRunListener( async ( args, state ) => {  console.log('url_trigger.registerRunListener'); console.log(args); return true; });
+      .registerRunListener( async ( args, state ) => {  //console.log('url_trigger.registerRunListener'); console.log(args); 
+        return true; });
       
       const cloudurl_trigger = this.homey.flow.getDeviceTriggerCard('cloudurl_trigger');
       this.Triggers.cloudurlTrigger.Card = cloudurl_trigger;
       cloudurl_trigger
-      .registerRunListener( async ( args, state ) => { console.log('cloudurl_trigger.registerRunListener'); console.log(args);  return true; });
+      .registerRunListener( async ( args, state ) => { //console.log('cloudurl_trigger.registerRunListener'); console.log(args);
+        return true; });
       
 
       var starts = [
@@ -125,9 +127,9 @@ class GoogleServicesApp extends Homey.App {
           const defer = new Defer();
           try {
               if(!args.device || !args.text) return false;
-              console.log('start_googlettscloudAction.registerRunListener args: ');
+              //console.log('start_googlettscloudAction.registerRunListener args: ');
               TtsServer.getUrl({args, voice : args.voice }).then(url=> {
-                console.log('start_googlettscloudAction.registerRunListener url: ' + url.url);
+                //console.log('start_googlettscloudAction.registerRunListener url: ' + url.url);
                 if(url.duration===undefined) url.duration=-1;
                 args.device.setCapabilityValue('device_url', url.url);
                 args.device.setCapabilityValue('device_duration', url.duration);                    
@@ -168,8 +170,8 @@ class GoogleServicesApp extends Homey.App {
           const defer = new Defer();
           try {
             if(!args.device || !args.text) return Promise.resolve(false);
-            console.log('condition_googlettscloudAction.registerRunListener args: ');
-            console.log(args);
+            //console.log('condition_googlettscloudAction.registerRunListener args: ');
+            //console.log(args);
             TtsServer.getUrl({args, voice : args.voice}).then(url=> {
               const promises = [];
               
@@ -230,9 +232,9 @@ class GoogleServicesApp extends Homey.App {
           const trigger =  this.homey.flow.getDeviceTriggerCard(start.id);
           this.Triggers[start.id].Card = trigger;
           trigger.registerRunListener(( args, state ) => {  
-              console.log( start.id + '.registerRunListener (args, state)');         
-              console.log(args);
-              console.log(state);
+              // console.log( start.id + '.registerRunListener (args, state)');         
+              // console.log(args);
+              // console.log(state);
               return Promise.resolve( args.id && args.id.id && state.id && state.id.id && args.id.id === state.id.id );        
           });
       }
