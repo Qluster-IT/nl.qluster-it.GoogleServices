@@ -196,5 +196,8 @@
   },
   "1.9.31": {
     "en": "Improved: Removed some useless logging."
+  },
+  "1.9.32": {
+    "en": "Resolved: One-time notification about BLL coding back."
   }
 }
