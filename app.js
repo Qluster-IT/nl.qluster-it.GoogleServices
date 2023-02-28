@@ -28,18 +28,22 @@ class GoogleServicesApp extends Homey.App {
     
     let loadingErrors = [];
     try {
-      if (process.env.DEBUG === '1' || false) {
-        try {
-          require('inspector').waitForDebugger();
-        }
-        catch (error) {
-          require('inspector').open(9217, '0.0.0.0', true);
-        }
-      } 
       this.log('GoogleServicesApp has been initialized');
+      // if (process.env.DEBUG === '1' || false) {
+      //   try {
+      //     require('inspector').waitForDebugger();
+      //   }
+      //   catch (error) {
+      //     require('inspector').open(9217, '0.0.0.0', false);
+      //   }
+      // } 
+
+      this.log('GoogleServicesApp has been initialized part 2');
 
       //let bl = 
       await BL.init({homey:this.homey});
+
+      this.log('GoogleServicesApp has been initialized part 3');
 
       // if(!await this.homey.settings.get('dc_avd_templates_info')) {
       //   this.homey.notifications.createNotification({excerpt : "Check out the App **Device Capabilities**:\n* A new Advanced Virtual Device with custom icons for devices and **capabilities/fields**.\n* **Share Your Device** which is than shown as a Template to others!\n* **The Flow Exchange(r)** - Export Your Flows with Others!\n* Import Templates of flows and reconfigure them for your devices, zones, tags, users, etc. before the flow(script) is created!" });  

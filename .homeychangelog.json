@@ -199,5 +199,11 @@
   },
   "1.9.32": {
     "en": "Resolved: One-time notification about BLL coding back."
+  },
+  "1.9.33": {
+    "en": "Resolving a bug: No start-up."
+  },
+  "1.9.34": {
+    "en": "Resolving a bug: No start-up."
   }
 }
