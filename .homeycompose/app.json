@@ -1,6 +1,6 @@
 {
   "id": "nl.qluster-it.GoogleServices",
-  "version": "1.9.29",
+  "version": "1.9.30",
   "compatibility": ">=5.0.0",
   "sdk": 3,
   "brandColor": "#8DB000",
@@ -13,8 +13,18 @@
     "nl": "Stel je favoriete Google (vertaal) stem in voor je speakers"
   },
   "tags": {
-    "en": ["speech", "url", "tts", "translate"],
-    "nl": ["spraak", "url", "tts", "translate"]
+    "en": [
+      "speech",
+      "url",
+      "tts",
+      "translate"
+    ],
+    "nl": [
+      "spraak",
+      "url",
+      "tts",
+      "translate"
+    ]
   },
   "category": [
     "music"
@@ -26,19 +36,19 @@
     "large": "/assets/images/large.png",
     "small": "/assets/images/small.png"
   },
-	"contributing": {
-		"donate": {
-			"paypal": {
-				"username": "QlusterIT"
-			},
+  "contributing": {
+    "donate": {
+      "paypal": {
+        "username": "QlusterIT"
+      },
       "patreon": {
-				"username": "QlusterIT"
-			},
+        "username": "QlusterIT"
+      },
       "githubSponsors": {
         "username": "XeroxQ"
       }
-		}
-	},
+    }
+  },
   "source": "https://bitbucket.org/QlusterIT/nl.qluster-it.googleservices/",
   "bugs": {
     "url": "https://bitbucket.org/QlusterIT/nl.qluster-it.googleservices/issues"
