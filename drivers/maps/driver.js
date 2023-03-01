@@ -11,6 +11,7 @@ class MapsDriver extends Homey.Driver
 {
     async onInit()
     {
+        return;
         await this.setMapsAPIKey();
         const client = new Client({});
             //client.directions({});
