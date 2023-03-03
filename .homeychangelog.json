@@ -211,5 +211,8 @@
   },
   "1.9.36": {
     "en": "Resolved a bug (normal version again): No start-up."
+  },
+  "1.9.37": {
+    "en": "Improved: Bll updates while running."
   }
 }

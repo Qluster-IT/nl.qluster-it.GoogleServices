@@ -1,6 +1,6 @@
 {
   "id": "nl.qluster-it.GoogleServices",
-  "version": "1.9.36",
+  "version": "1.9.37",
   "compatibility": ">=5.0.0",
   "sdk": 3,
   "brandColor": "#8DB000",
