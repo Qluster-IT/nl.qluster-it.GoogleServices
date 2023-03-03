@@ -214,5 +214,8 @@
   },
   "1.9.37": {
     "en": "Improved: Bll updates while running."
+  },
+  "1.9.38": {
+    "en": "Bugfixed: Startup issues."
   }
 }
