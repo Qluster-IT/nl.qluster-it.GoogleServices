@@ -13,9 +13,7 @@ class GoogleCloudTTSDriver extends Homey.Driver
 
     async onPairListDevices(data)
     {
-        //console.log('onPairListDevicesAsync');
-        //console.log(data);
-        return {
+        return [{
             "name": 'Google Cloud TTS device',
             data:
             {
@@ -33,7 +31,7 @@ class GoogleCloudTTSDriver extends Homey.Driver
                 "suffixpause" : 0,
                 "defaultspeak" : false
             }
-        };
+        }];
 
     }
 

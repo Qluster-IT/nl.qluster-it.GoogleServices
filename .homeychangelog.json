@@ -187,5 +187,44 @@
   },
   "1.9.28": {
     "en": "Improved: Works with Early 2023!"
+  },
+  "1.9.29": {
+    "en": "Improved: Works with Early 2023 (i hope)!"
+  },
+  "1.9.30": {
+    "en": "Improved: Works with all Homey Pro's again."
+  },
+  "1.9.31": {
+    "en": "Improved: Removed some useless logging."
+  },
+  "1.9.32": {
+    "en": "Resolved: One-time notification about BLL coding back."
+  },
+  "1.9.33": {
+    "en": "Resolving a bug: No start-up."
+  },
+  "1.9.34": {
+    "en": "Resolving a bug: No start-up."
+  },
+  "1.9.35": {
+    "en": "Resolving a bug (test version): No start-up."
+  },
+  "1.9.36": {
+    "en": "Resolved a bug (normal version again): No start-up."
+  },
+  "1.9.37": {
+    "en": "Improved: Bll updates while running."
+  },
+  "1.9.38": {
+    "en": "Bugfixed: Startup issues."
+  },
+  "1.9.39": {
+    "en": "Bugfixed: Startup issues."
+  },
+  "1.9.40": {
+    "en": "Bugfixed: TEST VERSION: might contain a bug!"
+  },
+  "1.9.41": {
+    "en": "Bugfixed: No more startup issues!"
   }
 }
