@@ -226,5 +226,8 @@
   },
   "1.9.41": {
     "en": "Bugfixed: No more startup issues!"
+  },
+  "1.9.42": {
+    "en": "Bugfixed: Still startup issues, trying to resolve it!"
   }
 }
