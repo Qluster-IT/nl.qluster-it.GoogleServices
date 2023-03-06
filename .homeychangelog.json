@@ -241,5 +241,8 @@
   },
   "1.9.46": {
     "en": "Bugfixed: Startup issues finally resolved."
+  },
+  "1.9.47": {
+    "en": "Imrpoved: Memory performance."
   }
 }
