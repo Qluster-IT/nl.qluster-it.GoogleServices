@@ -229,5 +229,17 @@
   },
   "1.9.42": {
     "en": "Bugfixed: Working on startup issues on older models."
+  },
+  "1.9.43": {
+    "en": "Bugfixed: Working on startup issues on older models."
+  },
+  "1.9.44": {
+    "en": "Bugfixed: Working on startup issues on older models."
+  },
+  "1.9.45": {
+    "en": "Bugfixed: Working on startup issues on older models."
+  },
+  "1.9.46": {
+    "en": "Bugfixed: Startup issues finally resolved."
   }
 }
