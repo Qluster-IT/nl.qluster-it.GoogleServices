@@ -243,12 +243,15 @@
     "en": "Bugfixed: Startup issues finally resolved."
   },
   "1.9.47": {
-    "en": "Imrpoved: Memory performance."
+    "en": "Improved: Memory performance."
   },
   "1.9.48": {
-    "en": "Imrpoved: Memory performance."
+    "en": "Improved: Memory performance."
   },
   "1.9.49": {
-    "en": "Imrpoved: Memory performance."
+    "en": "Improved: Memory performance."
+  },
+  "1.9.50": {
+    "en": "Bugfixed: Another startup issue resolved."
   }
 }
