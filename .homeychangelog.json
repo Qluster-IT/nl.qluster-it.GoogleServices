@@ -226,5 +226,35 @@
   },
   "1.9.41": {
     "en": "Bugfixed: No more startup issues!"
+  },
+  "1.9.42": {
+    "en": "Bugfixed: Working on startup issues on older models."
+  },
+  "1.9.43": {
+    "en": "Bugfixed: Working on startup issues on older models."
+  },
+  "1.9.44": {
+    "en": "Bugfixed: Working on startup issues on older models."
+  },
+  "1.9.45": {
+    "en": "Bugfixed: Working on startup issues on older models."
+  },
+  "1.9.46": {
+    "en": "Bugfixed: Startup issues finally resolved."
+  },
+  "1.9.47": {
+    "en": "Improved: Memory performance."
+  },
+  "1.9.48": {
+    "en": "Improved: Memory performance."
+  },
+  "1.9.49": {
+    "en": "Improved: Memory performance."
+  },
+  "1.9.50": {
+    "en": "Bugfixed: Another startup issue resolved."
+  },
+  "1.9.51": {
+    "en": "Bugfixed: Solved another potential HP2023 startup bug."
   }
 }
