@@ -253,5 +253,8 @@
   },
   "1.9.50": {
     "en": "Bugfixed: Another startup issue resolved."
+  },
+  "1.9.51": {
+    "en": "Bugfixed: Solved another potential HP2023 startup bug."
   }
 }
