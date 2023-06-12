@@ -68,7 +68,7 @@ class GoogleTranslateDriver extends Homey.Driver {
 
         var actions = [
             { id: 'action_translate' },
-            { id: 'action_translate_oc', oc:1 },
+            { id: 'action_translate_oc', oc:2 },
             { id: 'action_translate_af', af: true },
             { id: 'action_translate_af_oc', af: true, oc:2 }
         ];

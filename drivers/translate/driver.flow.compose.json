@@ -279,8 +279,8 @@
           "nl": "Vertaal"
         },
         "titleFormatted": {
-          "en": "Translate [[translate]] into [[targetlanguagecode]]",
-          "nl": "Vertaal [[translate]] naar [[targetlanguagecode]]"
+          "en": "Translate [[translate]] from [[sourcelanguagecode]] into [[targetlanguagecode]]",
+          "nl": "Vertaal [[translate]] van [[sourcelanguagecode]] naar [[targetlanguagecode]]"
         },
         "args": [
           {
@@ -296,16 +296,29 @@
             }
           },
           {
+            "name": "sourcelanguagecode",
+            "type": "autocomplete",
+            "required":false,
+            "title": {
+              "en": "Source Language",
+              "nl": "Bron taal"
+            },
+            "placeholder":{
+              "en": "Source Language (optional)",
+              "nl": "Bron taal (optioneel)"
+            }
+          },
+          {
             "name": "targetlanguagecode",
             "type": "autocomplete",
+            "required":false,
             "title": {
-              "en": "Translate",
-              "nl": "Vertaal"
+              "en": "Target Language",
+              "nl": "Doel taal"
             },
             "hint": {
               "en": "The language to translate into"
             }
-            
           }
         ]
       },
