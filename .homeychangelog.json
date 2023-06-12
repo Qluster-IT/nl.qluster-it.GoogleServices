@@ -256,5 +256,11 @@
   },
   "1.9.51": {
     "en": "Bugfixed: Solved another potential HP2023 startup bug."
+  },
+  "1.9.52": {
+    "en": "Dependencies update."
+  },
+  "1.10.0": {
+    "en": "Bugfixed: Translate AF flowcard.\nLanguages added to Translate (all supported language by Google)."
   }
 }

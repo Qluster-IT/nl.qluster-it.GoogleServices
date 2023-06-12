@@ -140,6 +140,7 @@
     "actions": [
       {
         "id": "action_translate",
+        "deprecated":true,
         "title": {
           "en": "Translate",
           "nl": "Vertaal"
@@ -271,9 +272,46 @@
             ]
           }
         ]
+      },{
+        "id": "action_translate_oc",
+        "title": {
+          "en": "Translate",
+          "nl": "Vertaal"
+        },
+        "titleFormatted": {
+          "en": "Translate [[translate]] into [[targetlanguagecode]]",
+          "nl": "Vertaal [[translate]] naar [[targetlanguagecode]]"
+        },
+        "args": [
+          {
+            "name": "translate",
+            "type": "text",
+            "placeholder":{
+              "en":"Text (* BLL supported)",
+              "nl":"Tekst (* BLL ondersteund)"
+            },
+            "title":{
+              "en":"Text",
+              "nl":"Tekst"
+            }
+          },
+          {
+            "name": "targetlanguagecode",
+            "type": "autocomplete",
+            "title": {
+              "en": "Translate",
+              "nl": "Vertaal"
+            },
+            "hint": {
+              "en": "The language to translate into"
+            }
+            
+          }
+        ]
       },
       {
         "id": "action_translate_af",
+        "deprecated":true,
         "title": {
           "en": "Translate",
           "nl": "Vertaal"
@@ -303,8 +341,9 @@
               "en": "Source Language",
               "nl": "Bron taal"
             },
-            "hint": {
-              "en": "The language to translate from"
+            "placeholder":{
+              "en": "Source Language (optional)",
+              "nl": "Bron taal (optioneel)"
             },
             "values": [
               {
@@ -529,7 +568,92 @@
             "name": "translation",
             "type": "string",
             "title": {
-              "en": "Vertaling"
+              "en": "Translation",         
+              "nl": "Vertaling"
+            }
+          },
+          {
+            "name": "sourcelanguagecode",
+            "type": "string",
+            "title": {
+              "en": "Source language",
+              "nl": "Brontaal"
+            }
+          },
+          {
+            "name": "targetlanguagecode",
+            "type": "string",
+            "title": {
+              "en": "Target langauge",
+              "nl": "Doeltaal"
+            }
+          }
+        ]
+      },
+      {
+        "id": "action_translate_af_oc",
+        "title": {
+          "en": "Translate",
+          "nl": "Vertaal"
+        },
+        "titleFormatted": {
+          "en": "Translate [[translate]] from [[sourcelanguagecode]] into [[targetlanguagecode]]",
+          "nl": "Vertaal [[translate]] van [[sourcelanguagecode]] naar [[targetlanguagecode]]"
+        },
+        "args": [
+          {
+            "name": "translate",
+            "type": "text",
+            "placeholder":{
+              "en":"Text (* BLL supported)",
+              "nl":"Tekst (* BLL ondersteund)"
+            },
+            "title":{
+              "en":"Text",
+              "nl":"Tekst"
+            }
+          },
+          {
+            "name": "sourcelanguagecode",
+            "type": "autocomplete",
+            "required":false,
+            "title": {
+              "en": "Source Language",
+              "nl": "Bron taal"
+            },
+            "placeholder":{
+              "en": "Source Language (optional)",
+              "nl": "Bron taal (optioneel)"
+            }
+          },
+          {
+            "name": "targetlanguagecode",
+            "type": "autocomplete",
+            "required":false,
+            "title": {
+              "en": "Target Language",
+              "nl": "Doel taal"
+            },
+            "hint": {
+              "en": "The language to translate into"
+            }
+          }
+        ],      
+        "tokens": [
+          {
+            "name": "text",
+            "type": "string",
+            "title": {
+              "en": "Text to translate",
+              "nl": "Tekst om te vertalen"
+            }
+          },
+          {
+            "name": "translation",
+            "type": "string",
+            "title": {
+              "en": "Translation",         
+              "nl": "Vertaling"
             }
           },
           {
