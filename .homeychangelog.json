@@ -265,5 +265,8 @@
   },
   "1.10.1": {
     "en": "Improved: Default flowcard now also contains an option source-language."
+  },
+  "1.10.2": {
+    "en": "Resolved: Non-Cloud TTS could not be created on the HP2023."
   }
 }
