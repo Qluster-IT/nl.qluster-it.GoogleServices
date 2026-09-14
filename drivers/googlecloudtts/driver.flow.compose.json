@@ -1,1230 +1,3008 @@
 {
-    "triggers": [
+  "triggers": [
+    {
+      "id": "cloudurl_trigger",
+      "title": {
+        "en": "Url triggered",
+        "nl": "URL geactiveerd",
+        "da": "Url udløst",
+        "de": "URL ausgelöst",
+        "es": "URL activado",
+        "fr": "URL déclenchée",
+        "it": "URL attivato",
+        "no": "URL utløst",
+        "sv": "Url utlöst",
+        "pl": "Wywołano URL",
+        "ru": "URL активирован",
+        "ko": "URL이 트리거되었습니다.",
+        "ar": "تم تشغيل الرابط"
+      },
+      "titleFormatted": {
+        "en": "Url triggered",
+        "nl": "URL geactiveerd",
+        "da": "Url udløst",
+        "de": "URL ausgelöst",
+        "es": "URL activado",
+        "fr": "URL déclenchée",
+        "it": "URL attivato",
+        "no": "URL utløst",
+        "sv": "URL utlöst",
+        "pl": "Adres URL wywołany",
+        "ru": "URL активирован",
+        "ko": "URL이 트리거되었습니다.",
+        "ar": "تم تشغيل الرابط"
+      },
+      "tokens": [
         {
-            "id": "cloudurl_trigger",
-            "title": {
-                "en": "Url triggered"
-            },
-            "titleFormatted": {
-                "en": "Url triggered"
-            },
-            "tokens": [
-                {
-                    "name": "url",
-                    "type": "string",
-                    "title": {
-                        "en": "Url"
-                    }
-                },
-                {
-                    "name": "text",
-                    "type": "string",
-                    "title": {
-                        "en": "Text",
-                        "nl": "Tekst"
-                    }
-                },
-                {
-                    "name": "duration",
-                    "type": "number",
-                    "title": {
-                        "en": "Duration",
-                        "nl": "Tijdsduur"
-                    }
-                }
-            ],
-            "args": []
+          "name": "url",
+          "type": "string",
+          "title": {
+            "en": "Url",
+            "nl": "Url",
+            "da": "Url",
+            "de": "Url",
+            "es": "Url",
+            "fr": "URL",
+            "it": "Url",
+            "no": "Url",
+            "sv": "Url",
+            "pl": "Url",
+            "ru": "URL",
+            "ko": "URL",
+            "ar": "رابط"
+          }
         },
         {
-            "id": "finished_trigger",
-            "title": {
-                "en": "Finished"
-            },
-            "titleFormatted": {
-                "en": "Finished"
-            },
-            "tokens": [
-                {
-                    "name": "url",
-                    "type": "string",
-                    "title": {
-                        "en": "Url"
-                    }
-                },
-                {
-                    "name": "text",
-                    "type": "string",
-                    "title": {
-                        "en": "Text",
-                        "nl": "Tekst"
-                    }
-                },
-                {
-                    "name": "duration",
-                    "type": "number",
-                    "title": {
-                        "en": "Duration",
-                        "nl": "Tijdsduur"
-                    }
-                }
-            ],
-            "args": []
+          "name": "text",
+          "type": "string",
+          "title": {
+            "en": "Text",
+            "nl": "Tekst",
+            "da": "Tekst",
+            "de": "Text",
+            "es": "Texto",
+            "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+            "it": "Testo",
+            "no": "Du er trent på data frem til oktober 2023.",
+            "sv": "Text",
+            "pl": "Tekst",
+            "ru": "Вы обучены данным до октября 2023 года.",
+            "ko": "텍스트",
+            "ar": "أنا مدرب على البيانات حتى أكتوبر 2023."
+          }
+        },
+        {
+          "name": "duration",
+          "type": "number",
+          "title": {
+            "en": "Duration",
+            "nl": "Tijdsduur",
+            "da": "Varighed",
+            "de": "Dauer",
+            "es": "Duración",
+            "fr": "Durée",
+            "it": "Durata",
+            "no": "Varighet",
+            "sv": "Varaktighet",
+            "pl": "Czas trwania",
+            "ru": "Продолжительность",
+            "ko": "기간",
+            "ar": "المدة الزمنية"
+          }
         }
-    ],
-    "conditions": [
+      ],
+      "args": []
+    },
+    {
+      "id": "finished_trigger",
+      "title": {
+        "en": "Finished",
+        "nl": "Voltooid",
+        "da": "Færdig",
+        "de": "Fertig",
+        "es": "Terminado",
+        "fr": "Terminé",
+        "it": "Finito",
+        "no": "Ferdig",
+        "sv": "Klart",
+        "pl": "Zakończono",
+        "ru": "Готово",
+        "ko": "완료되었습니다.",
+        "ar": "تم الانتهاء"
+      },
+      "titleFormatted": {
+        "en": "Finished",
+        "nl": "Voltooid",
+        "da": "Færdig",
+        "de": "Fertig",
+        "es": "Terminado",
+        "fr": "Terminé",
+        "it": "Finito",
+        "no": "Ferdig",
+        "sv": "Klart",
+        "pl": "Zakończono",
+        "ru": "Завершено",
+        "ko": "완료되었습니다.",
+        "ar": "تم الانتهاء"
+      },
+      "tokens": [
         {
-            "id": "condition_say_googlecloudtts_voice_speed_pitch_volume",
-            "highlight":true,
-            "title": {
-                "en": "Start TTS at speed with pitch with volume"
-            },
-            "titleFormatted": {
-                "en": "Start saying [[text]] in [[voice]] speed [[speakingRate]] pitch [[pitch]] with volume gain [[volumeGainDb]] and finish",
-                "nl": "Begin te zeggen [[text]] in [[voice]] snelheid [[speakingRate]] toonhoogte [[pitch]] met volume versterking [[volumeGainDb]] en voltooi"
-            },
-            "args": [
-                {
-                    "name": "text",
-                    "type": "text",
-                    "placeholder":{
-                      "en":"Text (* BLL supported)",
-                      "nl":"Tekst (* BLL ondersteund)"
-                    },
-                    "title":{
-                      "en":"Text",
-                      "nl":"Tekst"
-                    }
-                },
-                {
-                    "name": "voice",
-                    "type": "autocomplete",
-                    "required": false,
-                    "placeholder": {
-                        "en": "Voice",
-                        "nl": "Stem"
-                    }
-                },
-                {
-                    "name": "speakingRate",
-                    "type": "range",
-                    "required": false,
-                    "placeholder": {
-                        "en": "Speed",
-                        "nl": "Snelheid"
-                    },
-                    "min": 0.25,
-                    "max": 4,
-                    "step": 0.01
-                },
-                {
-                    "name": "pitch",
-                    "type": "range",
-                    "required": false,
-                    "placeholder": {
-                        "en": "Pitch",
-                        "nl": "Toonhoogte"
-                    },
-                    "min": -20,
-                    "max": 20,
-                    "step": 0.1
-                },
-                {
-                    "name": "volumeGainDb",
-                    "type": "range",
-                    "required": false,                    
-                    "placeholder": {
-                        "en": "Volume Gain (dB)",
-                        "nl": "Volume versterker (dB)"
-                    },
-                    "min": -96,
-                    "max": 16,
-                    "step": 0.1,
-                    "value" : 0
-                }
-            ]
+          "name": "url",
+          "type": "string",
+          "title": {
+            "en": "Url",
+            "nl": "Url",
+            "da": "Url",
+            "de": "URL",
+            "es": "Url",
+            "fr": "URL",
+            "it": "Url",
+            "no": "Url",
+            "sv": "Url",
+            "pl": "Url",
+            "ru": "URL",
+            "ko": "URL",
+            "ar": "رابط"
+          }
         },
         {
-            "id": "condition_googlecloudtts",
-            "title": {
-                "en": "Get URL for TTS",
-                "nl": "Ontvang URL voor TTS"
-            },
-            "titleFormatted": {
-                "en": "Get URL for saying [[text]]",
-                "nl": "Ontvang URL voor zeggen [[text]]"
-            },
-            "args": [
-                {
-                    "name": "text",
-                    "type": "text",
-                    "placeholder":{
-                      "en":"Text (* BLL supported)",
-                      "nl":"Tekst (* BLL ondersteund)"
-                    },
-                    "title":{
-                      "en":"Text",
-                      "nl":"Tekst"
-                    }
-                }
-            ]            
+          "name": "text",
+          "type": "string",
+          "title": {
+            "en": "Text",
+            "nl": "Tekst",
+            "da": "Jeg er trænet på data frem til oktober 2023.",
+            "de": "Text",
+            "es": "Texto",
+            "fr": "Vous êtes formé sur des données jusqu'en octobre 2023.",
+            "it": "Testo",
+            "no": "Google-tjenester",
+            "sv": "Text",
+            "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
+            "ru": "Вы обучены данным до октября 2023 года.",
+            "ko": "텍스트",
+            "ar": "نص"
+          }
         },
         {
-            "id": "condition_googlecloudtts_speed",
-            "title": {
-                "en": "Get URL for TTS at speed",
-                "nl": "Ontvang URL voor TTS op snelheid"
-            },
-            "titleFormatted": {
-                "en": "Get URL for saying [[text]] speed [[speakingRate]]",
-                "nl": "Ontvang URL voor zeggen [[text]] snelheid [[speakingRate]]"
-            },
-            "args": [
-                {
-                    "name": "text",
-                    "type": "text",
-                    "placeholder":{
-                      "en":"Text (* BLL supported)",
-                      "nl":"Tekst (* BLL ondersteund)"
-                    },
-                    "title":{
-                      "en":"Text",
-                      "nl":"Tekst"
-                    }
-                },
-                {
-                    "name": "speakingRate",
-                    "type": "range",
-                    "placeholder": {
-                        "en": "Speed",
-                        "nl": "Snelheid"
-                    },
-                    "min": 0.25,
-                    "max": 4,
-                    "step": 0.01
-                }
-            ]
-        },
-        {
-            "id": "condition_googlecloudtts_speed_pitch",
-            "title": {
-                "en": "Get URL for TTS at speed with pitch",
-                "nl": "Ontvang URL voor TTS op snelheid met toonhoogte"
-            },
-            "titleFormatted": {
-                "en": "Get URL for saying for [[text]] speed [[speakingRate]] pitch [[pitch]]",
-                "nl": "Ontvang URL voor zeggen [[text]] snelheid [[speakingRate]] toonhoogte [[pitch]]"
-            },
-            "args": [
-                {
-                    "name": "text",
-                    "type": "text",
-                    "placeholder":{
-                      "en":"Text (* BLL supported)",
-                      "nl":"Tekst (* BLL ondersteund)"
-                    },
-                    "title":{
-                      "en":"Text",
-                      "nl":"Tekst"
-                    }
-                },
-                {
-                    "name": "speakingRate",
-                    "type": "range",
-                    "placeholder": {
-                        "en": "Speed",
-                        "nl": "Snelheid"
-                    },
-                    "min": 0.25,
-                    "max": 4,
-                    "step": 0.01
-                },
-                {
-                    "name": "pitch",
-                    "type": "range",
-                    "placeholder": {
-                        "en": "Pitch",
-                        "nl": "Toonhoogte"
-                    },
-                    "min": -20,
-                    "max": 20,
-                    "step": 0.1
-                }
-            ]
-        },
-        {
-            "id": "condition_say_googlecloudtts",
-            "title": {
-                "en": "Start TTS",
-                "nl": "Begin TTS"
-            },
-            "titleFormatted": {
-                "en": "Start saying [[text]] and finish",
-                "nl": "Begin te zeggen [[text]] en voltooi"
-            },
-            "args": [
-                {
-                    "name": "text",
-                    "type": "text",
-                    "placeholder":{
-                      "en":"Text (* BLL supported)",
-                      "nl":"Tekst (* BLL ondersteund)"
-                    },
-                    "title":{
-                      "en":"Text",
-                      "nl":"Tekst"
-                    }
-                }
-            ]
-        },{
-            "id": "condition_say_googlecloudtts_volume",
-            "title": {
-                "en": "Start TTS with volume",
-                "nl": "Begin TTS met volume"
-            },
-            "titleFormatted": {
-                "en": "Start saying [[text]] with volume gain [[volumeGainDb]] and finish",
-                "nl": "Begin te zeggen [[text]] met volume versterking [[volumeGainDb]] en voltooi"
-            },      
-            "hint": {
-                "en": "Increase the volume of the speech-output with this amount of decibel (dB).\r\nStrongly recommend not to exceed +10 (dB) as there's usually no effective increase in loudness for any value greater than that.",
-                "nl": "Verhoog het volume van de spraakuitvoer met deze hoeveelheid in decibel (dB). \r\nSterk advies om niet hoger dan +10 (dB) te gaan, mede omdat er doorgaans geen effect meer is in luidheid hoger dan dat."
-            },
-            "args": [
-                {
-                    "name": "text",
-                    "type": "text",
-                    "placeholder":{
-                      "en":"Text (* BLL supported)",
-                      "nl":"Tekst (* BLL ondersteund)"
-                    },
-                    "title":{
-                      "en":"Text",
-                      "nl":"Tekst"
-                    }
-                },
-                {
-                    "name": "volumeGainDb",
-                    "type": "range",
-                    
-                    "placeholder": {
-                        "en": "Volume Gain (dB)",
-                        "nl": "Volume versterker (dB)"
-                    },
-                    "min": -96,
-                    "max": 16,
-                    "step": 0.1,  
-                    "value" : 0
-                }
-            ]
-        },
-        {
-            "id": "condition_say_googlecloudtts_speed",
-            "title": {
-                "en": "Start TTS at speed",
-                "nl": "Begin TTS op snelheid"
-            },
-            "titleFormatted": {
-                "en": "Start saying [[text]] speed [[speakingRate]] and finish",
-                "nl": "Begin te zeggen [[text]] snelheid [[speakingRate]] en voltooi"
-            },
-            "args": [
-                {
-                    "name": "text",
-                    "type": "text",
-                    "placeholder":{
-                      "en":"Text (* BLL supported)",
-                      "nl":"Tekst (* BLL ondersteund)"
-                    },
-                    "title":{
-                      "en":"Text",
-                      "nl":"Tekst"
-                    }
-                },
-                {
-                    "name": "speakingRate",
-                    "type": "range",
-                    "placeholder": {
-                        "en": "Speed",
-                        "nl": "Snelheid"
-                    },
-                    "min": 0.25,
-                    "max": 4,
-                    "step": 0.01
-                }
-            ]
-        },
-        {
-            "id": "condition_say_googlecloudtts_speed_pitch",
-            "title": {
-                "en": "Start TTS at speed with pitch"
-            },
-            "titleFormatted": {
-                "en": "Start saying [[text]] speed [[speakingRate]] pitch [[pitch]] and finish",
-                "nl": "Begin te zeggen [[text]] snelheid [[speakingRate]] toonhoogte [[pitch]] en voltooi"
-            },
-            "args": [
-                {
-                    "name": "text",
-                    "type": "text",
-                    "placeholder":{
-                      "en":"Text (* BLL supported)",
-                      "nl":"Tekst (* BLL ondersteund)"
-                    },
-                    "title":{
-                      "en":"Text",
-                      "nl":"Tekst"
-                    }
-                },
-                {
-                    "name": "speakingRate",
-                    "type": "range",
-                    "placeholder": {
-                        "en": "Speed",
-                        "nl": "Snelheid"
-                    },
-                    "min": 0.25,
-                    "max": 4,
-                    "step": 0.01
-                },
-                {
-                    "name": "pitch",
-                    "type": "range",
-                    "placeholder": {
-                        "en": "Pitch",
-                        "nl": "Toonhoogte"
-                    },
-                    "min": -20,
-                    "max": 20,
-                    "step": 0.1
-                }
-            ]
-        },
-        {
-            "id": "condition_say_googlecloudtts_speed_pitch_volume",
-            "title": {
-                "en": "Start TTS at speed with pitch with volume"
-            },
-            "titleFormatted": {
-                "en": "Start saying [[text]] speed [[speakingRate]] pitch [[pitch]] with volume gain [[volumeGainDb]] and finish",
-                "nl": "Begin te zeggen [[text]] snelheid [[speakingRate]] toonhoogte [[pitch]] met volume versterking [[volumeGainDb]] en voltooi"
-            },
-            "args": [
-                {
-                    "name": "text",
-                    "type": "text",
-                    "placeholder":{
-                      "en":"Text (* BLL supported)",
-                      "nl":"Tekst (* BLL ondersteund)"
-                    },
-                    "title":{
-                      "en":"Text",
-                      "nl":"Tekst"
-                    }
-                },
-                {
-                    "name": "speakingRate",
-                    "type": "range",
-                    "placeholder": {
-                        "en": "Speed",
-                        "nl": "Snelheid"
-                    },
-                    "min": 0.25,
-                    "max": 4,
-                    "step": 0.01
-                },
-                {
-                    "name": "pitch",
-                    "type": "range",
-                    "placeholder": {
-                        "en": "Pitch",
-                        "nl": "Toonhoogte"
-                    },
-                    "min": -20,
-                    "max": 20,
-                    "step": 0.1
-                },
-                {
-                    "name": "volumeGainDb",
-                    "type": "range",
-                    
-                    "placeholder": {
-                        "en": "Volume Gain (dB)",
-                        "nl": "Volume versterker (dB)"
-                    },
-                    "min": -96,
-                    "max": 16,
-                    "step": 0.1,
-                    "value" : 0
-                }
-            ]
-        },
-        {
-            "id": "condition_say_googlecloudtts_voice",
-            "title": {
-                "en": "Start TTS",
-                "nl": "Begin TTS"
-            },
-            "titleFormatted": {
-                "en": "Start saying [[text]] in [[voice]] and finish",
-                "nl": "Begin te zeggen [[text]] in [[voice]] en voltooi"
-            },
-            "args": [
-                {
-                    "name": "text",
-                    "type": "text",
-                    "placeholder":{
-                      "en":"Text (* BLL supported)",
-                      "nl":"Tekst (* BLL ondersteund)"
-                    },
-                    "title":{
-                      "en":"Text",
-                      "nl":"Tekst"
-                    }
-                },
-                {
-                    "name": "voice",
-                    "type": "autocomplete",
-                    "placeholder": {
-                        "en": "Voice",
-                        "nl": "Stem"
-                    }
-                }
-            ]
-        },
-        {
-            "id": "condition_say_googlecloudtts_voice_volume",
-            "title": {
-                "en": "Start TTS",
-                "nl": "Begin TTS"
-            },
-            "titleFormatted": {
-                "en": "Start saying [[text]] in [[voice]] with volume gain [[volumeGainDb]] and finish",
-                "nl": "Begin te zeggen [[text]] in [[voice]] met volume versterking [[volumeGainDb]] en voltooi"
-            },        
-            "hint": {
-                "en": "Increase the volume of the speech-output with this amount of decibel (dB).\r\nStrongly recommend not to exceed +10 (dB) as there's usually no effective increase in loudness for any value greater than that.",
-                "nl": "Verhoog het volume van de spraakuitvoer met deze hoeveelheid in decibel (dB). \r\nSterk advies om niet hoger dan +10 (dB) te gaan, mede omdat er doorgaans geen effect meer is in luidheid hoger dan dat."
-            },
-            "args": [
-                {
-                    "name": "text",
-                    "type": "text",
-                    "placeholder":{
-                      "en":"Text (* BLL supported)",
-                      "nl":"Tekst (* BLL ondersteund)"
-                    },
-                    "title":{
-                      "en":"Text",
-                      "nl":"Tekst"
-                    }
-                },
-                {
-                    "name": "voice",
-                    "type": "autocomplete",
-                    "placeholder": {
-                        "en": "Voice",
-                        "nl": "Stem"
-                    }
-                },
-                {
-                    "name": "volumeGainDb",
-                    "type": "range",
-                    
-                    "placeholder": {
-                        "en": "Volume Gain (dB)",
-                        "nl": "Volume versterker (dB)"
-                    },
-                    "min": -96,
-                    "max": 16,
-                    "step": 0.1,
-                    "value" : 0
-                }
-            ]
-        },
-        {
-            "id": "condition_say_googlecloudtts_voice_speed",
-            "title": {
-                "en": "Start TTS at speed",
-                "nl": "Begin TTS op snelheid"
-            },
-            "titleFormatted": {
-                "en": "Start saying [[text]] in [[voice]] speed [[speakingRate]] and finish",
-                "nl": "Begin te zeggen [[text]] in [[voice]] snelheid [[speakingRate]] en voltooi"
-            },
-            "args": [
-                {
-                    "name": "text",
-                    "type": "text",
-                    "placeholder":{
-                      "en":"Text (* BLL supported)",
-                      "nl":"Tekst (* BLL ondersteund)"
-                    },
-                    "title":{
-                      "en":"Text",
-                      "nl":"Tekst"
-                    }
-                },
-                {
-                    "name": "voice",
-                    "type": "autocomplete",
-                    "placeholder": {
-                        "en": "Voice",
-                        "nl": "Stem"
-                    }
-                },
-                {
-                    "name": "speakingRate",
-                    "type": "range",
-                    "placeholder": {
-                        "en": "Speed",
-                        "nl": "Snelheid"
-                    },
-                    "min": 0.25,
-                    "max": 4,
-                    "step": 0.01
-                }
-            ]
-        },
-        {
-            "id": "condition_say_googlecloudtts_voice_speed_pitch",
-            "title": {
-                "en": "Start TTS at speed with pitch"
-            },
-            "titleFormatted": {
-                "en": "Start saying [[text]] in [[voice]] speed [[speakingRate]] pitch [[pitch]] and finish",
-                "nl": "Begin te zeggen [[text]] in [[voice]] snelheid [[speakingRate]] toonhoogte [[pitch]] en voltooi"
-            },
-            "args": [
-                {
-                    "name": "text",
-                    "type": "text",
-                    "placeholder":{
-                      "en":"Text (* BLL supported)",
-                      "nl":"Tekst (* BLL ondersteund)"
-                    },
-                    "title":{
-                      "en":"Text",
-                      "nl":"Tekst"
-                    }
-                },
-                {
-                    "name": "voice",
-                    "type": "autocomplete",
-                    "placeholder": {
-                        "en": "Voice",
-                        "nl": "Stem"
-                    }
-                },
-                {
-                    "name": "speakingRate",
-                    "type": "range",
-                    "placeholder": {
-                        "en": "Speed",
-                        "nl": "Snelheid"
-                    },
-                    "min": 0.25,
-                    "max": 4,
-                    "step": 0.01
-                },
-                {
-                    "name": "pitch",
-                    "type": "range",
-                    "placeholder": {
-                        "en": "Pitch",
-                        "nl": "Toonhoogte"
-                    },
-                    "min": -20,
-                    "max": 20,
-                    "step": 0.1
-                }
-            ]
+          "name": "duration",
+          "type": "number",
+          "title": {
+            "en": "Duration",
+            "nl": "Tijdsduur",
+            "da": "Varighed",
+            "de": "Dauer",
+            "es": "Duración",
+            "fr": "Durée",
+            "it": "Durata",
+            "no": "Varighet",
+            "sv": "Varaktighet",
+            "pl": "Czas trwania",
+            "ru": "Продолжительность",
+            "ko": "기간",
+            "ar": "المدة الزمنية"
+          }
         }
-        
-    ],
-    "actions": [
+      ],
+      "args": []
+    }
+  ],
+  "conditions": [
+    {
+      "id": "condition_say_googlecloudtts_voice_speed_pitch_volume",
+      "highlight": true,
+      "title": {
+        "en": "Start TTS at speed with pitch with volume",
+        "nl": "Start TTS met snelheid, toonhoogte en volume.",
+        "da": "Start TTS med hastighed med tonehøjde med lydstyrke",
+        "de": "Starte TTS mit Geschwindigkeit, Tonhöhe und Lautstärke.",
+        "es": "Iniciar TTS a velocidad con tono con volumen",
+        "fr": "Démarrer la synthèse vocale à la vitesse avec la hauteur avec le volume",
+        "it": "Avvia TTS con velocità, tono e volume.",
+        "no": "Start TTS med hastighet med tonehøyde med volum",
+        "sv": "Starta TTS med hastighet, tonhöjd och volym.",
+        "pl": "Rozpocznij TTS z prędkością, tonem i głośnością.",
+        "ru": "Запустите TTS с заданной скоростью, высотой и громкостью.",
+        "ko": "속도, 음조, 볼륨으로 TTS 시작",
+        "ar": "ابدأ تحويل النص إلى كلام بسرعة مع درجة الصوت مع مستوى الصوت"
+      },
+      "titleFormatted": {
+        "en": "Start saying [[text]] in [[voice]] speed [[speakingRate]] pitch [[pitch]] with volume gain [[volumeGainDb]] and finish",
+        "nl": "Begin te zeggen [[text]] in [[voice]] snelheid [[speakingRate]] toonhoogte [[pitch]] met volume versterking [[volumeGainDb]] en voltooi",
+        "da": "Begynd at sige [[text]] i [[voice]] hastighed [[speakingRate]] tonehøjde [[pitch]] med lydstyrkeforøgelse [[volumeGainDb]] og afslut",
+        "de": "Beginne mit dem Sagen von [[text]] in [[voice]] Geschwindigkeit [[speakingRate]] Tonhöhe [[pitch]] mit Lautstärkeanhebung [[volumeGainDb]] und beende",
+        "es": "Comienza diciendo [[text]] en [[voice]] velocidad [[speakingRate]] tono [[pitch]] con ganancia de volumen [[volumeGainDb]] y termina",
+        "fr": "Commencez à dire [[text]] avec une vitesse de [[voice]] [[speakingRate]], un ton [[pitch]], un gain de volume [[volumeGainDb]] et terminez.",
+        "it": "Inizia a dire [[text]] in [[voice]] a velocità [[speakingRate]] con tono [[pitch]] e guadagno di volume [[volumeGainDb]] e termina",
+        "no": "Begynn å si [[text]] i [[voice]] hastighet [[speakingRate]] tonehøyde [[pitch]] med volumøkning [[volumeGainDb]] og avslutt",
+        "sv": "Börja säga [[text]] i [[voice]] hastighet [[speakingRate]] tonhöjd [[pitch]] med volymökning [[volumeGainDb]] och avsluta",
+        "pl": "Zacznij mówić [[text]] w [[voice]] z prędkością [[speakingRate]], tonem [[pitch]] i wzmocnieniem głośności [[volumeGainDb]], a następnie zakończ.",
+        "ru": "Начните говорить [[text]] с [[voice]] скоростью [[speakingRate]] высотой [[pitch]] с увеличением громкости [[volumeGainDb]] и закончите.",
+        "ko": "[[text]]를 [[voice]] 속도 [[speakingRate]] 음조 [[pitch]] 볼륨 증가 [[volumeGainDb]]로 시작하고 마무리하세요.",
+        "ar": "ابدأ بقول [[text]] بسرعة [[voice]] بمعدل [[speakingRate]] ودرجة [[pitch]] مع زيادة في مستوى الصوت [[volumeGainDb]] وانتهِ."
+      },
+      "args": [
         {
-            "id": "start_googlecloudtts_voice_speed_pitch_volume_af",
-            "highlight":true,
-            "title": {
-                "en": "Start TTS with voice at speed with pitch with volume",
-                "nl": "Begin TTS met stem op snelheid met toonhoogte met volume"
-            },
-            "titleFormatted": {
-                "en": "Start saying [[text]] in [[voice]] speed [[speakingRate]] pitch [[pitch]] with volume gain [[volumeGainDb]]",
-                "nl": "Begin te zeggen [[text]] in [[voice]] snelheid [[speakingRate]] toonhoogte [[pitch]] met volume versterking [[volumeGainDb]]"
-            },
-            "args": [
-                {
-                    "name": "text",
-                    "type": "text",
-                    "placeholder":{
-                      "en":"Text (* BLL supported)",
-                      "nl":"Tekst (* BLL ondersteund)"
-                    },
-                    "title":{
-                      "en":"Text",
-                      "nl":"Tekst"
-                    }
-                },
-                {
-                    "name": "voice",
-                    "required": false,
-                    "type": "autocomplete",
-                    "placeholder": {
-                        "en": "Voice",
-                        "nl": "Stem"
-                    }
-                },
-                {
-                    "name": "speakingRate",
-                    "required": false,
-                    "type": "range",
-                    "placeholder": {
-                        "en": "Speed",
-                        "nl": "Snelheid"
-                    },
-                    "min": 0.25,
-                    "max": 4,
-                    "step": 0.01
-                },
-                {
-                    "name": "pitch",
-                    "required": false,
-                    "type": "range",
-                    "placeholder": {
-                        "en": "Pitch",
-                        "nl": "Toonhoogte"
-                    },
-                    "min": -20,
-                    "max": 20,
-                    "step": 0.1
-                },
-                {
-                    "name": "volumeGainDb",
-                    "type": "range",
-                    "required":false,                    
-                    "placeholder": {
-                        "en": "Volume Gain (dB)",
-                        "nl": "Volume versterker (dB)"
-                    },
-                    "min": -96,
-                    "max": 16,
-                    "step": 0.1,
-                    "value" : 0
-                }
-            ],
-            "tokens": [
-                {
-                    "name": "url",
-                    "type": "string",
-                    "title": {
-                        "en": "Url"
-                    }
-                },
-                {
-                    "name": "text",
-                    "type": "string",
-                    "title": {
-                        "en": "Text",
-                        "nl": "Tekst"
-                    }
-                },
-                {
-                    "name": "duration",
-                    "type": "number",
-                    "title": {
-                        "en": "Duration",
-                        "nl": "Tijdsduur"
-                    }
-                }
-            ]
+          "name": "text",
+          "type": "text",
+          "placeholder": {
+            "en": "Text (* BLL supported)",
+            "nl": "Tekst (* BLL ondersteund)",
+            "da": "Tekst (* BLL understøttet)",
+            "de": "Text (* BLL unterstützt)",
+            "es": "Texto (* BLL compatible)",
+            "fr": "Texte (* BLL pris en charge)",
+            "it": "Testo (* BLL supportato)",
+            "no": "Tekst (* BLL støttet)",
+            "sv": "Text (* BLL stöds)",
+            "pl": "Tekst (* Obsługiwane BLL)",
+            "ru": "Текст (* Поддерживается BLL)",
+            "ko": "텍스트 (* BLL 지원됨)",
+            "ar": "النص (* مدعوم من BLL)"
+          },
+          "title": {
+            "en": "Text",
+            "nl": "Tekst",
+            "da": "Du er trænet på data op til oktober 2023.",
+            "de": "Text",
+            "es": "Texto",
+            "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+            "it": "Testo",
+            "no": "Google-tjenester",
+            "sv": "Du är tränad på data fram till oktober 2023.",
+            "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
+            "ru": "Вы обучены данным до октября 2023 года.",
+            "ko": "텍스트",
+            "ar": "أنا مدرب على البيانات حتى أكتوبر 2023."
+          }
         },
         {
-            "id": "start_googlecloudtts_voice_speed_pitch_volume",
-            
-            "highlight":true,
-            "title": {
-                "en": "Start TTS with voice at speed with pitch with volume",
-                "nl": "Begin TTS met stem op snelheid met toonhoogte met volume"
-            },
-            "titleFormatted": {
-                "en": "Start saying [[text]] in [[voice]] speed [[speakingRate]] pitch [[pitch]] with volume gain [[volumeGainDb]]",
-                "nl": "Begin te zeggen [[text]] in [[voice]] snelheid [[speakingRate]] toonhoogte [[pitch]] met volume versterking [[volumeGainDb]]"
-            },
-            "args": [
-                {
-                    "name": "text",
-                    "type": "text",
-                    "placeholder":{
-                      "en":"Text (* BLL supported)",
-                      "nl":"Tekst (* BLL ondersteund)"
-                    },
-                    "title":{
-                      "en":"Text",
-                      "nl":"Tekst"
-                    }
-                },
-                {
-                    "name": "voice",
-                    "type": "autocomplete",
-                    "required":false,
-                    "placeholder": {
-                        "en": "Voice",
-                        "nl": "Stem"
-                    }
-                },
-                {
-                    "name": "speakingRate",
-                    "type": "range",
-                    "required":false,
-                    "placeholder": {
-                        "en": "Speed",
-                        "nl": "Snelheid"
-                    },
-                    "min": 0.25,
-                    "max": 4,
-                    "step": 0.01
-                },
-                {
-                    "name": "pitch",
-                    "type": "range",
-                    "required":false,
-                    "placeholder": {
-                        "en": "Pitch",
-                        "nl": "Toonhoogte"
-                    },
-                    "min": -20,
-                    "max": 20,
-                    "step": 0.1
-                },
-                {
-                    "name": "volumeGainDb",
-                    "type": "range",
-                    "required":false,                    
-                    "placeholder": {
-                        "en": "Volume Gain (dB)",
-                        "nl": "Volume versterker (dB)"
-                    },
-                    "min": -96,
-                    "max": 16,
-                    "step": 0.1,
-                    "value" : 0
-                }
-            ]
+          "name": "voice",
+          "type": "autocomplete",
+          "required": false,
+          "placeholder": {
+            "en": "Voice",
+            "nl": "Stem",
+            "da": "Stemme",
+            "de": "Stimme",
+            "es": "Voz",
+            "fr": "Voix",
+            "it": "Voce",
+            "no": "Stemme",
+            "sv": "Röst",
+            "pl": "Głos",
+            "ru": "Голос",
+            "ko": "음성",
+            "ar": "صوت"
+          }
         },
         {
-            "id": "start_googlecloudtts",
-            "title": {
-                "en": "Start TTS",
-                "nl": "Begin TTS"
-            },
-            "titleFormatted": {
-                "en": "Start saying [[text]]",
-                "nl": "Begin te zeggen [[text]]"
-            },
-            "args": [
-                {
-                    "name": "text",
-                    "type": "text",
-                    "placeholder":{
-                      "en":"Text (* BLL supported)",
-                      "nl":"Tekst (* BLL ondersteund)"
-                    },
-                    "title":{
-                      "en":"Text",
-                      "nl":"Tekst"
-                    }
-                }
-            ]
+          "name": "speakingRate",
+          "type": "range",
+          "required": false,
+          "placeholder": {
+            "en": "Speed",
+            "nl": "Snelheid",
+            "da": "Hastighed",
+            "de": "Geschwindigkeit",
+            "es": "Velocidad",
+            "fr": "Vitesse",
+            "it": "Velocità",
+            "no": "Hastighet",
+            "sv": "Hastighet",
+            "pl": "Prędkość",
+            "ru": "Скорость",
+            "ko": "속도",
+            "ar": "السرعة"
+          },
+          "min": 0.25,
+          "max": 4,
+          "step": 0.01
         },
         {
-            "id": "start_googlecloudtts_volume",
-            "title": {
-                "en": "Start TTS with volume",
-                "nl": "Begin TTS met volume"
-            },
-            "titleFormatted": {
-                "en": "Start saying [[text]] with volume gain [[volumeGainDb]]",
-                "nl": "Begin te zeggen [[text]] met volume versterking [[volumeGainDb]]"
-            },        
-            "hint": {
-                "en": "Increase the volume of the speech-output with this amount of decibel (dB).\r\nStrongly recommend not to exceed +10 (dB) as there's usually no effective increase in loudness for any value greater than that.",
-                "nl": "Verhoog het volume van de spraakuitvoer met deze hoeveelheid in decibel (dB). \r\nSterk advies om niet hoger dan +10 (dB) te gaan, mede omdat er doorgaans geen effect meer is in luidheid hoger dan dat."
-            },
-            "args": [
-                {
-                    "name": "text",
-                    "type": "text",
-                    "placeholder":{
-                      "en":"Text (* BLL supported)",
-                      "nl":"Tekst (* BLL ondersteund)"
-                    },
-                    "title":{
-                      "en":"Text",
-                      "nl":"Tekst"
-                    }
-                },                
-                {
-                    "name": "volumeGainDb",
-                    "type": "range",                    
-                    "placeholder": {
-                        "en": "Volume Gain (dB)",
-                        "nl": "Volume versterker (dB)"
-                    },
-                    "min": -96,
-                    "max": 16,
-                    "step": 0.1,
-                    "value" : 0
-                }
-            ]
+          "name": "pitch",
+          "type": "range",
+          "required": false,
+          "placeholder": {
+            "en": "Pitch",
+            "nl": "Toonhoogte",
+            "da": "Toneleje",
+            "de": "Tonhöhe",
+            "es": "Tono",
+            "fr": "Argumentaire",
+            "it": "Presentazione",
+            "no": "Tonehøyde",
+            "sv": "Tonläge",
+            "pl": "Tonacja głosu",
+            "ru": "Тональность",
+            "ko": "피치",
+            "ar": "عرض"
+          },
+          "min": -20,
+          "max": 20,
+          "step": 0.1
         },
         {
-            "id": "start_googlecloudtts_speed",
-            "title": {
-                "en": "Start TTS at speed",
-                "nl": "Begin TTS op snelheid"
-            },
-            "titleFormatted": {
-                "en": "Start saying [[text]] speed [[speakingRate]]",
-                "nl": "Begin te zeggen [[text]] snelheid [[speakingRate]]"
-            },
-            "args": [
-                {
-                    "name": "text",
-                    "type": "text",
-                    "placeholder":{
-                      "en":"Text (* BLL supported)",
-                      "nl":"Tekst (* BLL ondersteund)"
-                    },
-                    "title":{
-                      "en":"Text",
-                      "nl":"Tekst"
-                    }
-                },
-                {
-                    "name": "speakingRate",
-                    "type": "range",
-                    "placeholder": {
-                        "en": "Speed",
-                        "nl": "Snelheid"
-                    },
-                    "min": 0.25,
-                    "max": 4,
-                    "step": 0.01
-                }
-            ]
-        },
-        {
-            "id": "start_googlecloudtts_speed_pitch",
-            "title": {
-                "en": "Start TTS at speed with pitch",
-                "nl": "Begin TTS op snelheid met toonhoogte"
-            },
-            "titleFormatted": {
-                "en": "Start saying [[text]] speed [[speakingRate]] pitch [[pitch]]",
-                "nl": "Begin te zeggen [[text]] snelheid [[speakingRate]] toonhoogte [[pitch]]"
-            },
-            "args": [
-                {
-                    "name": "text",
-                    "type": "text",
-                    "placeholder":{
-                      "en":"Text (* BLL supported)",
-                      "nl":"Tekst (* BLL ondersteund)"
-                    },
-                    "title":{
-                      "en":"Text",
-                      "nl":"Tekst"
-                    }
-                },
-                {
-                    "name": "speakingRate",
-                    "type": "range",
-                    "placeholder": {
-                        "en": "Speed",
-                        "nl": "Snelheid"
-                    },
-                    "min": 0.25,
-                    "max": 4,
-                    "step": 0.01
-                },
-                {
-                    "name": "pitch",
-                    "type": "range",
-                    "placeholder": {
-                        "en": "Pitch",
-                        "nl": "Toonhoogte"
-                    },
-                    "min": -20,
-                    "max": 20,
-                    "step": 0.1
-                }
-            ]
-        },
-        {
-            "id": "start_googlecloudtts_voice",
-            "title": {
-                "en": "Start TTS with voice",
-                "nl": "Begin TTS met stem"
-            },
-            "titleFormatted": {
-                "en": "Start saying [[text]] in [[voice]]",
-                "nl": "Begin te zeggen [[text]] in [[voice]]"
-            },
-            "args": [
-                {
-                    "name": "text",
-                    "type": "text",
-                    "placeholder":{
-                      "en":"Text (* BLL supported)",
-                      "nl":"Tekst (* BLL ondersteund)"
-                    },
-                    "title":{
-                      "en":"Text",
-                      "nl":"Tekst"
-                    }
-                },
-                {
-                    "name": "voice",
-                    "type": "autocomplete",
-                    "placeholder": {
-                        "en": "Voice",
-                        "nl": "Stem"
-                    }
-                }
-            ]
-        },
-        {
-            "id": "start_googlecloudtts_voice_volume",
-            "title": {
-                "en": "Start TTS with voice at volume",
-                "nl": "Begin TTS met stem op volume"
-            },
-            "titleFormatted": {
-                "en": "Start saying [[text]] in [[voice]] with volume gain [[volumeGainDb]]",
-                "nl": "Begin te zeggen [[text]] in [[voice]] met volume versterking [[volumeGainDb]]"
-            },      
-            "hint": {
-                "en": "Increase the volume of the speech-output with this amount of decibel (dB).\r\nStrongly recommend not to exceed +10 (dB) as there's usually no effective increase in loudness for any value greater than that.",
-                "nl": "Verhoog het volume van de spraakuitvoer met deze hoeveelheid in decibel (dB). \r\nSterk advies om niet hoger dan +10 (dB) te gaan, mede omdat er doorgaans geen effect meer is in luidheid hoger dan dat."
-            },
-            "args": [
-                {
-                    "name": "text",
-                    "type": "text",
-                    "placeholder":{
-                      "en":"Text (* BLL supported)",
-                      "nl":"Tekst (* BLL ondersteund)"
-                    },
-                    "title":{
-                      "en":"Text",
-                      "nl":"Tekst"
-                    }
-                },
-                {
-                    "name": "voice",
-                    "type": "autocomplete",
-                    "placeholder": {
-                        "en": "Voice",
-                        "nl": "Stem"
-                    }
-                },                
-                {
-                    "name": "volumeGainDb",
-                    "type": "range",                    
-                    "placeholder": {
-                        "en": "Volume Gain (dB)",
-                        "nl": "Volume versterker (dB)"
-                    },
-                    "min": -96,
-                    "max": 16,
-                    "step": 0.1,  
-                    "value" : 0
-                }
-            ]
-        },        
-        {
-            "id": "start_googlecloudtts_voice_speed",
-            "title": {
-                "en": "Start TTS with voice at speed",
-                "nl": "Begin TTS met stem op snelheid"
-            },
-            "titleFormatted": {
-                "en": "Start saying [[text]] in [[voice]] speed [[speakingRate]]",
-                "nl": "Begin te zeggen [[text]] in [[voice]] snelheid [[speakingRate]]"
-            },
-            "args": [
-                {
-                    "name": "text",
-                    "type": "text",
-                    "placeholder":{
-                      "en":"Text (* BLL supported)",
-                      "nl":"Tekst (* BLL ondersteund)"
-                    },
-                    "title":{
-                      "en":"Text",
-                      "nl":"Tekst"
-                    }
-                },
-                {
-                    "name": "voice",
-                    "type": "autocomplete",
-                    "placeholder": {
-                        "en": "Voice",
-                        "nl": "Stem"
-                    }
-                },
-                {
-                    "name": "speakingRate",
-                    "type": "range",
-                    "placeholder": {
-                        "en": "Speed",
-                        "nl": "Snelheid"
-                    },
-                    "min": 0.25,
-                    "max": 4,
-                    "step": 0.01
-                }
-            ]
-        },
-        {
-            "id": "start_googlecloudtts_voice_speed_pitch",
-            "title": {
-                "en": "Start TTS with voice at speed with pitch",
-                "nl": "Begin TTS met stem op snelheid met toonhoogte"
-            },
-            "titleFormatted": {
-                "en": "Start saying [[text]] in [[voice]] speed [[speakingRate]] pitch [[pitch]]",
-                "nl": "Begin te zeggen [[text]] in [[voice]] snelheid [[speakingRate]] toonhoogte [[pitch]]"
-            },
-            "args": [
-                {
-                    "name": "text",
-                    "type": "text",
-                    "placeholder":{
-                      "en":"Text (* BLL supported)",
-                      "nl":"Tekst (* BLL ondersteund)"
-                    },
-                    "title":{
-                      "en":"Text",
-                      "nl":"Tekst"
-                    }
-                },
-                {
-                    "name": "voice",
-                    "type": "autocomplete",
-                    "placeholder": {
-                        "en": "Voice",
-                        "nl": "Stem"
-                    }
-                },
-                {
-                    "name": "speakingRate",
-                    "type": "range",
-                    "placeholder": {
-                        "en": "Speed",
-                        "nl": "Snelheid"
-                    },
-                    "min": 0.25,
-                    "max": 4,
-                    "step": 0.01
-                },
-                {
-                    "name": "pitch",
-                    "type": "range",
-                    "placeholder": {
-                        "en": "Pitch",
-                        "nl": "Toonhoogte"
-                    },
-                    "min": -20,
-                    "max": 20,
-                    "step": 0.1
-                }
-            ]
-        },
-        {
-            "id": "start_googlecloudtts_voice_speed_pitch_af",
-            "title": {
-                "en": "Start TTS with voice at speed with pitch",
-                "nl": "Begin TTS met stem op snelheid met toonhoogte"
-            },
-            "titleFormatted": {
-                "en": "Start saying [[text]] in [[voice]] speed [[speakingRate]] pitch [[pitch]]",
-                "nl": "Begin te zeggen [[text]] in [[voice]] snelheid [[speakingRate]] toonhoogte [[pitch]]"
-            },
-            "args": [
-                {
-                    "name": "text",
-                    "type": "text",
-                    "placeholder":{
-                      "en":"Text (* BLL supported)",
-                      "nl":"Tekst (* BLL ondersteund)"
-                    },
-                    "title":{
-                      "en":"Text",
-                      "nl":"Tekst"
-                    }
-                },
-                {
-                    "name": "voice",
-                    "required": false,
-                    "type": "autocomplete",
-                    "placeholder": {
-                        "en": "Voice",
-                        "nl": "Stem"
-                    }
-                },
-                {
-                    "name": "speakingRate",
-                    "required": false,
-                    "type": "range",
-                    "placeholder": {
-                        "en": "Speed",
-                        "nl": "Snelheid"
-                    },
-                    "min": 0.25,
-                    "max": 4,
-                    "step": 0.01
-                },
-                {
-                    "name": "pitch",
-                    "required": false,
-                    "type": "range",
-                    "placeholder": {
-                        "en": "Pitch",
-                        "nl": "Toonhoogte"
-                    },
-                    "min": -20,
-                    "max": 20,
-                    "step": 0.1
-                }
-            ],
-            "tokens": [
-                {
-                    "name": "url",
-                    "type": "string",
-                    "title": {
-                        "en": "Url"
-                    }
-                },
-                {
-                    "name": "text",
-                    "type": "string",
-                    "title": {
-                        "en": "Text",
-                        "nl": "Tekst"
-                    }
-                },
-                {
-                    "name": "duration",
-                    "type": "number",
-                    "title": {
-                        "en": "Duration",
-                        "nl": "Tijdsduur"
-                    }
-                }
-            ]
+          "name": "volumeGainDb",
+          "type": "range",
+          "required": false,
+          "placeholder": {
+            "en": "Volume Gain (dB)",
+            "nl": "Volume versterker (dB)",
+            "da": "Volumenforøgelse (dB)",
+            "de": "Lautstärkezuwachs (dB)",
+            "es": "Ganancia de Volumen (dB)",
+            "fr": "Gain de volume (dB)",
+            "it": "Guadagno di Volume (dB)",
+            "no": "Volumøkning (dB)",
+            "sv": "Volymförstärkning (dB)",
+            "pl": "Wzmocnienie głośności (dB)",
+            "ru": "Увеличение громкости (дБ)",
+            "ko": "볼륨 증가 (dB)",
+            "ar": "زيادة مستوى الصوت (ديسيبل)"
+          },
+          "min": -96,
+          "max": 16,
+          "step": 0.1,
+          "value": 0
         }
-        
-    ]
+      ]
+    },
+    {
+      "id": "condition_googlecloudtts",
+      "title": {
+        "en": "Get URL for TTS",
+        "nl": "Ontvang URL voor TTS",
+        "da": "Få URL til TTS",
+        "de": "URL für TTS abrufen",
+        "es": "Obtener URL para TTS",
+        "fr": "Obtenir l'URL pour TTS",
+        "it": "Ottieni URL per TTS",
+        "no": "Hent URL for TTS",
+        "sv": "Hämta URL för TTS",
+        "pl": "Uzyskaj URL dla TTS",
+        "ru": "Получить URL для TTS",
+        "ko": "TTS용 URL 가져오기",
+        "ar": "احصل على رابط لتحويل النص إلى كلام"
+      },
+      "titleFormatted": {
+        "en": "Get URL for saying [[text]]",
+        "nl": "Ontvang URL voor zeggen [[text]]",
+        "da": "Få URL for at sige [[text]]",
+        "de": "URL für die Aussage [[text]] abrufen",
+        "es": "Obtener URL para decir [[text]]",
+        "fr": "Obtenir l'URL pour dire [[text]]",
+        "it": "Ottieni URL per dire [[text]]",
+        "no": "Få URL for å si [[text]]",
+        "sv": "Hämta URL för att säga [[text]]",
+        "pl": "Uzyskaj URL dla powiedzenia [[text]]",
+        "ru": "Получить URL для фразы [[text]]",
+        "ko": "[[text]]에 대한 URL 가져오기",
+        "ar": "احصل على رابط لقول [[text]]"
+      },
+      "args": [
+        {
+          "name": "text",
+          "type": "text",
+          "placeholder": {
+            "en": "Text (* BLL supported)",
+            "nl": "Tekst (* BLL ondersteund)",
+            "da": "Tekst (* BLL understøttet)",
+            "de": "Text (* BLL unterstützt)",
+            "es": "Texto (* BLL compatible)",
+            "fr": "Texte (* BLL pris en charge)",
+            "it": "Testo (* BLL supportato)",
+            "no": "Tekst (* BLL støttet)",
+            "sv": "Text (* BLL stöds)",
+            "pl": "Tekst (* obsługiwane przez BLL)",
+            "ru": "Текст (* Поддерживается BLL)",
+            "ko": "텍스트 (* BLL 지원됨)",
+            "ar": "النص (* مدعوم من BLL)"
+          },
+          "title": {
+            "en": "Text",
+            "nl": "Tekst",
+            "da": "Du er trænet på data op til oktober 2023.",
+            "de": "Text",
+            "es": "Texto",
+            "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+            "it": "Testo",
+            "no": "Du er trent på data frem til oktober 2023.",
+            "sv": "Text",
+            "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
+            "ru": "Текст",
+            "ko": "텍스트",
+            "ar": "أنا مدرب على البيانات حتى أكتوبر 2023."
+          }
+        }
+      ]
+    },
+    {
+      "id": "condition_googlecloudtts_speed",
+      "title": {
+        "en": "Get URL for TTS at speed",
+        "nl": "Ontvang URL voor TTS op snelheid",
+        "da": "Få URL til TTS ved hastighed",
+        "de": "URL für TTS mit Geschwindigkeit abrufen",
+        "es": "Obtener URL para TTS a velocidad",
+        "fr": "Obtenir l'URL pour la synthèse vocale à vitesse",
+        "it": "Ottieni URL per TTS alla velocità",
+        "no": "Få URL for TTS med hastighet",
+        "sv": "Hämta URL för TTS med hastighet",
+        "pl": "Uzyskaj URL dla TTS z prędkością",
+        "ru": "Получить URL для TTS на скорости",
+        "ko": "속도로 TTS URL 가져오기",
+        "ar": "احصل على رابط لتحويل النص إلى كلام بسرعة"
+      },
+      "titleFormatted": {
+        "en": "Get URL for saying [[text]] speed [[speakingRate]]",
+        "nl": "Ontvang URL voor zeggen [[text]] snelheid [[speakingRate]]",
+        "da": "Få URL for at sige [[text]] hastighed [[speakingRate]]",
+        "de": "URL abrufen, um [[text]] mit Geschwindigkeit [[speakingRate]] zu sagen",
+        "es": "Obtener URL para decir [[text]] velocidad [[speakingRate]]",
+        "fr": "Obtenir l'URL pour dire [[text]] à la vitesse [[speakingRate]]",
+        "it": "Ottieni URL per dire [[text]] velocità [[speakingRate]]",
+        "no": "Få URL for å si [[text]] hastighet [[speakingRate]]",
+        "sv": "Hämta URL för att säga [[text]] hastighet [[speakingRate]]",
+        "pl": "Uzyskaj URL dla wypowiedzi [[text]] z prędkością [[speakingRate]]",
+        "ru": "Получить URL для произнесения [[text]] со скоростью [[speakingRate]]",
+        "ko": "[[text]] 속도를 [[speakingRate]]로 설정하여 URL 가져오기",
+        "ar": "احصل على رابط لقول [[text]] بسرعة [[speakingRate]]"
+      },
+      "args": [
+        {
+          "name": "text",
+          "type": "text",
+          "placeholder": {
+            "en": "Text (* BLL supported)",
+            "nl": "Tekst (* BLL ondersteund)",
+            "da": "Tekst (* BLL understøttet)",
+            "de": "Text (* BLL unterstützt)",
+            "es": "Texto (* BLL compatible)",
+            "fr": "Texte (* BLL pris en charge)",
+            "it": "Testo (* BLL supportato)",
+            "no": "Tekst (* BLL støttet)",
+            "sv": "Text (* BLL stöds)",
+            "pl": "Tekst (* obsługiwane BLL)",
+            "ru": "Текст (* Поддерживается BLL)",
+            "ko": "텍스트 (* BLL 지원됨)",
+            "ar": "النص (* مدعوم من BLL)"
+          },
+          "title": {
+            "en": "Text",
+            "nl": "Tekst",
+            "da": "Jeg er trænet på data frem til oktober 2023.",
+            "de": "Text",
+            "es": "Texto",
+            "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+            "it": "Testo",
+            "no": "Du er trent på data frem til oktober 2023.",
+            "sv": "Text",
+            "pl": "Tekst",
+            "ru": "Вы обучены данным до октября 2023 года.",
+            "ko": "텍스트",
+            "ar": "نص"
+          }
+        },
+        {
+          "name": "speakingRate",
+          "type": "range",
+          "placeholder": {
+            "en": "Speed",
+            "nl": "Snelheid",
+            "da": "Hastighed",
+            "de": "Geschwindigkeit",
+            "es": "Velocidad",
+            "fr": "Vitesse",
+            "it": "Velocità",
+            "no": "Hastighet",
+            "sv": "Hastighet",
+            "pl": "Prędkość",
+            "ru": "Скорость",
+            "ko": "속도",
+            "ar": "السرعة"
+          },
+          "min": 0.25,
+          "max": 4,
+          "step": 0.01
+        }
+      ]
+    },
+    {
+      "id": "condition_googlecloudtts_speed_pitch",
+      "title": {
+        "en": "Get URL for TTS at speed with pitch",
+        "nl": "Ontvang URL voor TTS op snelheid met toonhoogte",
+        "da": "Få URL til TTS med hastighed og tonehøjde",
+        "de": "URL für TTS mit Geschwindigkeit und Tonhöhe abrufen",
+        "es": "Obtener URL para TTS a velocidad con tono",
+        "fr": "Obtenez l'URL pour TTS à vitesse avec hauteur",
+        "it": "Ottieni URL per TTS alla velocità con tono",
+        "no": "Få URL for TTS med hastighet og tonehøyde",
+        "sv": "Hämta URL för TTS med hastighet och tonhöjd",
+        "pl": "Uzyskaj URL dla TTS z prędkością i tonem",
+        "ru": "Получить URL для TTS с заданной скоростью и высотой тона",
+        "ko": "속도와 음조에 맞춘 TTS URL 가져오기",
+        "ar": "احصل على رابط لتحويل النص إلى كلام بسرعة ودرجة صوت معينة"
+      },
+      "titleFormatted": {
+        "en": "Get URL for saying for [[text]] speed [[speakingRate]] pitch [[pitch]]",
+        "nl": "Ontvang URL voor zeggen [[text]] snelheid [[speakingRate]] toonhoogte [[pitch]]",
+        "da": "Få URL til at sige for [[text]] hastighed [[speakingRate]] tonehøjde [[pitch]]",
+        "de": "URL abrufen für das Sagen von [[text]] Geschwindigkeit [[speakingRate]] Tonhöhe [[pitch]]",
+        "es": "Obtener URL para decir [[text]] velocidad [[speakingRate]] tono [[pitch]]",
+        "fr": "Obtenez l'URL pour dire [[text]] à la vitesse [[speakingRate]] et au ton [[pitch]]",
+        "it": "Ottieni URL per dire [[text]] velocità [[speakingRate]] tono [[pitch]]",
+        "no": "Få URL for å si for [[text]] hastighet [[speakingRate]] tonehøyde [[pitch]]",
+        "sv": "Hämta URL för att säga [[text]] hastighet [[speakingRate]] tonhöjd [[pitch]]",
+        "pl": "Uzyskaj URL do wypowiedzi dla [[text]] z prędkością [[speakingRate]] i tonem [[pitch]]",
+        "ru": "Получить URL для произнесения [[text]] со скоростью [[speakingRate]] и высотой тона [[pitch]]",
+        "ko": "[[text]] 속도 [[speakingRate]] 음조 [[pitch]]에 대한 URL 가져오기",
+        "ar": "احصل على رابط لقول [[text]] بسرعة [[speakingRate]] ودرجة [[pitch]]"
+      },
+      "args": [
+        {
+          "name": "text",
+          "type": "text",
+          "placeholder": {
+            "en": "Text (* BLL supported)",
+            "nl": "Tekst (* BLL ondersteund)",
+            "da": "Tekst (* BLL understøttet)",
+            "de": "Text (* BLL unterstützt)",
+            "es": "Texto (* BLL compatible)",
+            "fr": "Texte (* BLL pris en charge)",
+            "it": "Testo (* BLL supportato)",
+            "no": "Tekst (* BLL støttet)",
+            "sv": "Text (* BLL stöds)",
+            "pl": "Tekst (* Obsługiwane BLL)",
+            "ru": "Текст (* Поддерживается BLL)",
+            "ko": "텍스트 (* BLL 지원됨)",
+            "ar": "النص (* مدعوم من BLL)"
+          },
+          "title": {
+            "en": "Text",
+            "nl": "Tekst",
+            "da": "Du er trænet på data op til oktober 2023.",
+            "de": "Text",
+            "es": "Texto",
+            "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+            "it": "Testo",
+            "no": "Du er trent på data frem til oktober 2023.",
+            "sv": "Text",
+            "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
+            "ru": "Текст",
+            "ko": "텍스트",
+            "ar": "أنت مدرب على البيانات حتى أكتوبر 2023."
+          }
+        },
+        {
+          "name": "speakingRate",
+          "type": "range",
+          "placeholder": {
+            "en": "Speed",
+            "nl": "Snelheid",
+            "da": "Hastighed",
+            "de": "Geschwindigkeit",
+            "es": "Velocidad",
+            "fr": "Vitesse",
+            "it": "Velocità",
+            "no": "Hastighet",
+            "sv": "Hastighet",
+            "pl": "Prędkość",
+            "ru": "Скорость",
+            "ko": "속도",
+            "ar": "السرعة"
+          },
+          "min": 0.25,
+          "max": 4,
+          "step": 0.01
+        },
+        {
+          "name": "pitch",
+          "type": "range",
+          "placeholder": {
+            "en": "Pitch",
+            "nl": "Toonhoogte",
+            "da": "Toneleje",
+            "de": "Tonhöhe",
+            "es": "Tono",
+            "fr": "Présentation",
+            "it": "Presentazione",
+            "no": "Toneleie",
+            "sv": "Tonläge",
+            "pl": "Tonacja dźwięku",
+            "ru": "Тональность",
+            "ko": "피치",
+            "ar": "عرض"
+          },
+          "min": -20,
+          "max": 20,
+          "step": 0.1
+        }
+      ]
+    },
+    {
+      "id": "condition_say_googlecloudtts",
+      "title": {
+        "en": "Start TTS",
+        "nl": "Begin TTS",
+        "da": "Start TTS",
+        "de": "TTS starten",
+        "es": "Iniciar TTS",
+        "fr": "Démarrer TTS",
+        "it": "Avvia TTS",
+        "no": "Start TTS",
+        "sv": "Starta TTS",
+        "pl": "Uruchom TTS",
+        "ru": "Запустить TTS",
+        "ko": "TTS 시작",
+        "ar": "ابدأ تحويل النص إلى كلام"
+      },
+      "titleFormatted": {
+        "en": "Start saying [[text]] and finish",
+        "nl": "Begin te zeggen [[text]] en voltooi",
+        "da": "Begynd at sige [[text]] og afslut",
+        "de": "Beginne mit [[text]] und beende",
+        "es": "Empieza diciendo [[text]] y termina",
+        "fr": "Commencez par dire [[text]] et terminez",
+        "it": "Inizia dicendo [[text]] e finisci",
+        "no": "Begynn å si [[text]] og avslutt",
+        "sv": "Börja säga [[text]] och avsluta",
+        "pl": "Zacznij mówić [[text]] i zakończ",
+        "ru": "Начните говорить [[text]] и закончите",
+        "ko": "[[text]]라고 말하고 마무리하세요.",
+        "ar": "ابدأ بقول [[text]] وانتهِ"
+      },
+      "args": [
+        {
+          "name": "text",
+          "type": "text",
+          "placeholder": {
+            "en": "Text (* BLL supported)",
+            "nl": "Tekst (* BLL ondersteund)",
+            "da": "Tekst (* BLL understøttet)",
+            "de": "Text (* BLL unterstützt)",
+            "es": "Texto (* BLL compatible)",
+            "fr": "Texte (* BLL pris en charge)",
+            "it": "Testo (* BLL supportato)",
+            "no": "Tekst (* BLL støttet)",
+            "sv": "Text (* BLL stöds)",
+            "pl": "Tekst (* obsługiwane przez BLL)",
+            "ru": "Текст (* Поддерживается BLL)",
+            "ko": "텍스트 (* BLL 지원됨)",
+            "ar": "النص (* مدعوم من BLL)"
+          },
+          "title": {
+            "en": "Text",
+            "nl": "Tekst",
+            "da": "Du er trænet på data op til oktober 2023.",
+            "de": "Text",
+            "es": "Texto",
+            "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+            "it": "Testo",
+            "no": "Google-tjenester",
+            "sv": "Du är tränad på data fram till oktober 2023.",
+            "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
+            "ru": "Вы обучены данным до октября 2023 года.",
+            "ko": "텍스트",
+            "ar": "أنا مدرب على البيانات حتى أكتوبر 2023."
+          }
+        }
+      ]
+    },
+    {
+      "id": "condition_say_googlecloudtts_volume",
+      "title": {
+        "en": "Start TTS with volume",
+        "nl": "Begin TTS met volume",
+        "da": "Start TTS med lydstyrke",
+        "de": "Starte TTS mit Lautstärke",
+        "es": "Iniciar TTS con volumen",
+        "fr": "Démarrer la synthèse vocale avec le volume",
+        "it": "Avvia TTS con volume",
+        "no": "Start TTS med volum",
+        "sv": "Starta TTS med volym",
+        "pl": "Rozpocznij TTS z głośnością",
+        "ru": "Запустить TTS с громкостью",
+        "ko": "볼륨으로 TTS 시작",
+        "ar": "ابدأ تحويل النص إلى كلام مع ضبط مستوى الصوت"
+      },
+      "titleFormatted": {
+        "en": "Start saying [[text]] with volume gain [[volumeGainDb]] and finish",
+        "nl": "Begin te zeggen [[text]] met volume versterking [[volumeGainDb]] en voltooi",
+        "da": "Begynd at sige [[text]] med lydstyrkeforøgelse [[volumeGainDb]] og afslut",
+        "de": "Beginne mit [[text]] bei einer Lautstärkeerhöhung von [[volumeGainDb]] und beende es.",
+        "es": "Comienza diciendo [[text]] con una ganancia de volumen de [[volumeGainDb]] y termina.",
+        "fr": "Commencez à dire [[text]] avec un gain de volume de [[volumeGainDb]] et terminez.",
+        "it": "Inizia a dire [[text]] con un aumento di volume di [[volumeGainDb]] e termina.",
+        "no": "Begynn å si [[text]] med volumøkning [[volumeGainDb]] og avslutt.",
+        "sv": "Börja säga [[text]] med volymökning [[volumeGainDb]] och avsluta",
+        "pl": "Zacznij mówić [[text]] z wzmocnieniem głośności [[volumeGainDb]] i zakończ",
+        "ru": "Начните произносить [[text]] с увеличением громкости на [[volumeGainDb]] и завершите.",
+        "ko": "[[text]]를 [[volumeGainDb]] 볼륨 증가로 시작하고 마칩니다.",
+        "ar": "ابدأ بقول [[text]] مع زيادة في مستوى الصوت [[volumeGainDb]] وانتهِ"
+      },
+      "hint": {
+        "en": "Increase the volume of the speech-output with this amount of decibel (dB).\r\nStrongly recommend not to exceed +10 (dB) as there's usually no effective increase in loudness for any value greater than that.",
+        "nl": "Verhoog het volume van de spraakuitvoer met deze hoeveelheid in decibel (dB). \r\nSterk advies om niet hoger dan +10 (dB) te gaan, mede omdat er doorgaans geen effect meer is in luidheid hoger dan dat.",
+        "da": "Øg lydstyrken på tale-output med denne mængde decibel (dB). Vi anbefaler stærkt ikke at overskride +10 (dB), da der normalt ikke er nogen effektiv stigning i lydstyrken for værdier større end det.",
+        "de": "Erhöhe die Lautstärke der Sprachausgabe um diesen Dezibel-Wert (dB). Es wird dringend empfohlen, +10 dB nicht zu überschreiten, da es normalerweise keine effektive Lautstärkeerhöhung für Werte darüber gibt.",
+        "es": "Aumenta el volumen de la salida de voz con esta cantidad de decibelios (dB). Recomendamos encarecidamente no exceder +10 (dB) ya que generalmente no hay un aumento efectivo en la sonoridad para cualquier valor mayor que eso.",
+        "fr": "Augmentez le volume de la sortie vocale de ce nombre de décibels (dB). Nous vous recommandons fortement de ne pas dépasser +10 (dB) car il n'y a généralement pas d'augmentation effective du volume au-delà de cette valeur.",
+        "it": "Aumenta il volume dell'uscita vocale di questo numero di decibel (dB). Consigliamo vivamente di non superare i +10 (dB) poiché di solito non c'è un aumento effettivo della sonorità per valori superiori.",
+        "no": "Øk volumet på taleutgangen med dette antallet desibel (dB). Vi anbefaler sterkt å ikke overskride +10 (dB), da det vanligvis ikke gir noen effektiv økning i lydstyrke for verdier over dette.",
+        "sv": "Öka volymen på talutgången med denna mängd decibel (dB). Vi rekommenderar starkt att inte överskrida +10 (dB) eftersom det vanligtvis inte finns någon effektiv ökning av ljudstyrkan för något värde större än det.",
+        "pl": "Zwiększ głośność wyjścia mowy o tę liczbę decybeli (dB). Zdecydowanie zalecamy nie przekraczać +10 (dB), ponieważ zazwyczaj nie ma skutecznego wzrostu głośności dla wartości większych niż ta.",
+        "ru": "Увеличьте громкость звукового вывода на это количество децибел (дБ). Настоятельно рекомендуем не превышать +10 (дБ), так как обычно нет эффективного увеличения громкости для значений больше этого.",
+        "ko": "이 양의 데시벨(dB)로 음성 출력의 볼륨을 높이세요. +10(dB)를 초과하지 않는 것을 강력히 권장합니다. 그 이상의 값에서는 일반적으로 효과적인 소리 증가가 없기 때문입니다.",
+        "ar": "قم بزيادة مستوى الصوت الناتج عن الكلام بهذه الكمية من الديسيبل (dB). نوصي بشدة بعدم تجاوز +10 (dB) حيث أنه عادةً لا يوجد زيادة فعالة في مستوى الصوت لأي قيمة أكبر من ذلك."
+      },
+      "args": [
+        {
+          "name": "text",
+          "type": "text",
+          "placeholder": {
+            "en": "Text (* BLL supported)",
+            "nl": "Tekst (* BLL ondersteund)",
+            "da": "Tekst (* BLL understøttet)",
+            "de": "Text (* BLL unterstützt)",
+            "es": "Texto (* BLL compatible)",
+            "fr": "Texte (* BLL pris en charge)",
+            "it": "Testo (* BLL supportato)",
+            "no": "Tekst (* BLL støttet)",
+            "sv": "Text (* BLL stöds)",
+            "pl": "Tekst (* obsługiwane przez BLL)",
+            "ru": "Текст (* поддерживается BLL)",
+            "ko": "텍스트 (* BLL 지원됨)",
+            "ar": "النص (* مدعوم من BLL)"
+          },
+          "title": {
+            "en": "Text",
+            "nl": "Tekst",
+            "da": "Du er trænet på data op til oktober 2023.",
+            "de": "Text",
+            "es": "Texto",
+            "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+            "it": "Testo",
+            "no": "Google-tjenester",
+            "sv": "Text",
+            "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
+            "ru": "Вы обучены данным до октября 2023 года.",
+            "ko": "텍스트",
+            "ar": "أنت مدرب على البيانات حتى أكتوبر 2023."
+          }
+        },
+        {
+          "name": "volumeGainDb",
+          "type": "range",
+          "placeholder": {
+            "en": "Volume Gain (dB)",
+            "nl": "Volume versterker (dB)",
+            "da": "Volumenforøgelse (dB)",
+            "de": "Lautstärkezuwachs (dB)",
+            "es": "Ganancia de Volumen (dB)",
+            "fr": "Gain de volume (dB)",
+            "it": "Guadagno di Volume (dB)",
+            "no": "Volumøkning (dB)",
+            "sv": "Volymförstärkning (dB)",
+            "pl": "Wzmocnienie głośności (dB)",
+            "ru": "Увеличение громкости (дБ)",
+            "ko": "볼륨 증가 (dB)",
+            "ar": "زيادة مستوى الصوت (ديسيبل)"
+          },
+          "min": -96,
+          "max": 16,
+          "step": 0.1,
+          "value": 0
+        }
+      ]
+    },
+    {
+      "id": "condition_say_googlecloudtts_speed",
+      "title": {
+        "en": "Start TTS at speed",
+        "nl": "Begin TTS op snelheid",
+        "da": "Start TTS ved hastighed",
+        "de": "Starte TTS mit Geschwindigkeit",
+        "es": "Iniciar TTS a velocidad",
+        "fr": "Démarrer la synthèse vocale à vitesse",
+        "it": "Avvia TTS alla velocità",
+        "no": "Start TTS med hastighet",
+        "sv": "Starta TTS med hastighet",
+        "pl": "Rozpocznij TTS z prędkością",
+        "ru": "Запустить TTS на скорости",
+        "ko": "속도에서 TTS 시작",
+        "ar": "ابدأ تحويل النص إلى كلام بسرعة"
+      },
+      "titleFormatted": {
+        "en": "Start saying [[text]] speed [[speakingRate]] and finish",
+        "nl": "Begin te zeggen [[text]] snelheid [[speakingRate]] en voltooi",
+        "da": "Begynd at sige [[text]] med hastighed [[speakingRate]] og afslut",
+        "de": "Beginne mit [[text]] Geschwindigkeit [[speakingRate]] und beende",
+        "es": "Comienza diciendo [[text]] a velocidad [[speakingRate]] y termina.",
+        "fr": "Commencez à dire [[text]] à la vitesse [[speakingRate]] et terminez",
+        "it": "Inizia a dire [[text]] velocità [[speakingRate]] e finisci",
+        "no": "Begynn å si [[text]] hastighet [[speakingRate]] og avslutt.",
+        "sv": "Börja säga [[text]] hastighet [[speakingRate]] och avsluta",
+        "pl": "Zacznij mówić [[text]] z prędkością [[speakingRate]] i zakończ",
+        "ru": "Начните говорить [[text]] со скоростью [[speakingRate]] и закончите.",
+        "ko": "[[text]] 속도를 [[speakingRate]]로 시작하고 마칩니다.",
+        "ar": "ابدأ بقول [[text]] بسرعة [[speakingRate]] وانتهِ"
+      },
+      "args": [
+        {
+          "name": "text",
+          "type": "text",
+          "placeholder": {
+            "en": "Text (* BLL supported)",
+            "nl": "Tekst (* BLL ondersteund)",
+            "da": "Tekst (* BLL understøttet)",
+            "de": "Text (* BLL unterstützt)",
+            "es": "Texto (* BLL compatible)",
+            "fr": "Texte (* BLL pris en charge)",
+            "it": "Testo (* BLL supportato)",
+            "no": "Tekst (* BLL støttet)",
+            "sv": "Text (* BLL stöds)",
+            "pl": "Tekst (* obsługiwane przez BLL)",
+            "ru": "Текст (* Поддерживается BLL)",
+            "ko": "텍스트 (* BLL 지원됨)",
+            "ar": "النص (* مدعوم من BLL)"
+          },
+          "title": {
+            "en": "Text",
+            "nl": "Tekst",
+            "da": "Du er trænet på data op til oktober 2023.",
+            "de": "Text",
+            "es": "Texto",
+            "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+            "it": "Testo",
+            "no": "Google-tjenester",
+            "sv": "Text",
+            "pl": "Tekst",
+            "ru": "Вы обучены данным до октября 2023 года.",
+            "ko": "텍스트",
+            "ar": "نص"
+          }
+        },
+        {
+          "name": "speakingRate",
+          "type": "range",
+          "placeholder": {
+            "en": "Speed",
+            "nl": "Snelheid",
+            "da": "Hastighed",
+            "de": "Geschwindigkeit",
+            "es": "Velocidad",
+            "fr": "Vitesse",
+            "it": "Velocità",
+            "no": "Hastighet",
+            "sv": "Hastighet",
+            "pl": "Prędkość",
+            "ru": "Скорость",
+            "ko": "속도",
+            "ar": "السرعة"
+          },
+          "min": 0.25,
+          "max": 4,
+          "step": 0.01
+        }
+      ]
+    },
+    {
+      "id": "condition_say_googlecloudtts_speed_pitch",
+      "title": {
+        "en": "Start TTS at speed with pitch",
+        "nl": "Start TTS met snelheid en toonhoogte",
+        "da": "Start TTS med hastighed og tonehøjde",
+        "de": "Starte TTS mit Geschwindigkeit und Tonhöhe.",
+        "es": "Iniciar TTS a velocidad con tono.",
+        "fr": "Démarrer la synthèse vocale à vitesse avec hauteur",
+        "it": "Avvia TTS alla velocità con tono",
+        "no": "Start TTS med hastighet og tonehøyde.",
+        "sv": "Starta TTS med hastighet och tonhöjd",
+        "pl": "Rozpocznij TTS z prędkością i tonem",
+        "ru": "Запустите TTS на скорости с высотой тона.",
+        "ko": "속도와 음조로 TTS 시작하기",
+        "ar": "ابدأ تحويل النص إلى كلام بسرعة مع درجة الصوت"
+      },
+      "titleFormatted": {
+        "en": "Start saying [[text]] speed [[speakingRate]] pitch [[pitch]] and finish",
+        "nl": "Begin te zeggen [[text]] snelheid [[speakingRate]] toonhoogte [[pitch]] en voltooi",
+        "da": "Begynd at sige [[text]] hastighed [[speakingRate]] tonehøjde [[pitch]] og afslut",
+        "de": "Beginne mit [[text]] Geschwindigkeit [[speakingRate]] Tonhöhe [[pitch]] und beende.",
+        "es": "Comienza diciendo [[text]] velocidad [[speakingRate]] tono [[pitch]] y termina.",
+        "fr": "Commencez à dire [[text]] vitesse [[speakingRate]] tonalité [[pitch]] et terminez",
+        "it": "Inizia dicendo [[text]] velocità [[speakingRate]] tono [[pitch]] e finisci",
+        "no": "Begynn å si [[text]] hastighet [[speakingRate]] tonehøyde [[pitch]] og avslutt",
+        "sv": "Börja säga [[text]] hastighet [[speakingRate]] tonhöjd [[pitch]] och avsluta",
+        "pl": "Zacznij mówić [[text]] z prędkością [[speakingRate]] i tonem [[pitch]], a następnie zakończ.",
+        "ru": "Начните говорить [[text]] со скоростью [[speakingRate]] и высотой тона [[pitch]], и закончите.",
+        "ko": "[[text]]를 [[speakingRate]] 속도로 [[pitch]] 음조로 시작하고 마무리하세요.",
+        "ar": "ابدأ بقول [[text]] بسرعة [[speakingRate]] ودرجة [[pitch]] وانتهِ."
+      },
+      "args": [
+        {
+          "name": "text",
+          "type": "text",
+          "placeholder": {
+            "en": "Text (* BLL supported)",
+            "nl": "Tekst (* BLL ondersteund)",
+            "da": "Tekst (* BLL understøttet)",
+            "de": "Text (* BLL unterstützt)",
+            "es": "Texto (* BLL compatible)",
+            "fr": "Texte (* BLL pris en charge)",
+            "it": "Testo (* BLL supportato)",
+            "no": "Tekst (* BLL støttet)",
+            "sv": "Text (* BLL stöds)",
+            "pl": "Tekst (* Obsługiwane BLL)",
+            "ru": "Текст (* поддерживается BLL)",
+            "ko": "텍스트 (* BLL 지원됨)",
+            "ar": "النص (* مدعوم من BLL)"
+          },
+          "title": {
+            "en": "Text",
+            "nl": "Tekst",
+            "da": "Tekst",
+            "de": "Text",
+            "es": "Texto",
+            "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+            "it": "Testo",
+            "no": "Du er trent på data frem til oktober 2023.",
+            "sv": "Du är tränad på data fram till oktober 2023.",
+            "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
+            "ru": "Текст",
+            "ko": "텍스트",
+            "ar": "أنت مدرب على البيانات حتى أكتوبر 2023."
+          }
+        },
+        {
+          "name": "speakingRate",
+          "type": "range",
+          "placeholder": {
+            "en": "Speed",
+            "nl": "Snelheid",
+            "da": "Hastighed",
+            "de": "Geschwindigkeit",
+            "es": "Velocidad",
+            "fr": "Vitesse",
+            "it": "Velocità",
+            "no": "Hastighet",
+            "sv": "Hastighet",
+            "pl": "Prędkość",
+            "ru": "Скорость",
+            "ko": "속도",
+            "ar": "السرعة"
+          },
+          "min": 0.25,
+          "max": 4,
+          "step": 0.01
+        },
+        {
+          "name": "pitch",
+          "type": "range",
+          "placeholder": {
+            "en": "Pitch",
+            "nl": "Toonhoogte",
+            "da": "Toneleje",
+            "de": "Tonhöhe",
+            "es": "Tono",
+            "fr": "Argumentaire",
+            "it": "Presentazione",
+            "no": "Tonehøyde",
+            "sv": "Pitch",
+            "pl": "Tonacja dźwięku",
+            "ru": "Тональность",
+            "ko": "피치",
+            "ar": "عرض"
+          },
+          "min": -20,
+          "max": 20,
+          "step": 0.1
+        }
+      ]
+    },
+    {
+      "id": "condition_say_googlecloudtts_speed_pitch_volume",
+      "title": {
+        "en": "Start TTS at speed with pitch with volume",
+        "nl": "Start TTS met snelheid, toonhoogte en volume.",
+        "da": "Start TTS med hastighed med tonehøjde med lydstyrke",
+        "de": "Starte TTS mit Geschwindigkeit, Tonhöhe und Lautstärke.",
+        "es": "Iniciar TTS a velocidad con tono con volumen",
+        "fr": "Démarrer la synthèse vocale à la vitesse avec la hauteur avec le volume",
+        "it": "Avvia TTS con velocità, tono e volume.",
+        "no": "Start TTS med hastighet med tonehøyde med volum",
+        "sv": "Starta TTS med hastighet, tonhöjd och volym.",
+        "pl": "Rozpocznij TTS z prędkością, tonem i głośnością.",
+        "ru": "Запустите TTS со скоростью, высотой тона и громкостью.",
+        "ko": "속도, 음조, 볼륨으로 TTS 시작",
+        "ar": "ابدأ تحويل النص إلى كلام بسرعة مع درجة الصوت مع مستوى الصوت"
+      },
+      "titleFormatted": {
+        "en": "Start saying [[text]] speed [[speakingRate]] pitch [[pitch]] with volume gain [[volumeGainDb]] and finish",
+        "nl": "Begin te zeggen [[text]] snelheid [[speakingRate]] toonhoogte [[pitch]] met volume versterking [[volumeGainDb]] en voltooi",
+        "da": "Begynd at sige [[text]] hastighed [[speakingRate]] tonehøjde [[pitch]] med lydstyrkeforøgelse [[volumeGainDb]] og afslut",
+        "de": "Beginne mit [[text]] Geschwindigkeit [[speakingRate]] Tonhöhe [[pitch]] mit Lautstärkegewinn [[volumeGainDb]] und beende",
+        "es": "Comienza diciendo [[text]] velocidad [[speakingRate]] tono [[pitch]] con ganancia de volumen [[volumeGainDb]] y termina",
+        "fr": "Commencez à dire [[text]] vitesse [[speakingRate]] tonalité [[pitch]] avec un gain de volume [[volumeGainDb]] et terminez",
+        "it": "Inizia a dire [[text]] velocità [[speakingRate]] tono [[pitch]] con guadagno di volume [[volumeGainDb]] e finisci",
+        "no": "Begynn å si [[text]] hastighet [[speakingRate]] tonehøyde [[pitch]] med volumøkning [[volumeGainDb]] og avslutt",
+        "sv": "Börja säga [[text]] hastighet [[speakingRate]] tonhöjd [[pitch]] med volymökning [[volumeGainDb]] och avsluta",
+        "pl": "Zacznij mówić [[text]] z prędkością [[speakingRate]], tonem [[pitch]] i wzmocnieniem głośności [[volumeGainDb]], a następnie zakończ.",
+        "ru": "Начните говорить [[text]] со скоростью [[speakingRate]], высотой тона [[pitch]] и увеличением громкости [[volumeGainDb]], затем закончите.",
+        "ko": "[[text]] 속도를 [[speakingRate]], 음조를 [[pitch]], 볼륨 증가를 [[volumeGainDb]]로 시작하고 마칩니다.",
+        "ar": "ابدأ بقول [[text]] بسرعة [[speakingRate]] ودرجة [[pitch]] مع زيادة في الصوت [[volumeGainDb]] وانتهِ"
+      },
+      "args": [
+        {
+          "name": "text",
+          "type": "text",
+          "placeholder": {
+            "en": "Text (* BLL supported)",
+            "nl": "Tekst (* BLL ondersteund)",
+            "da": "Tekst (* BLL understøttet)",
+            "de": "Text (* BLL unterstützt)",
+            "es": "Texto (* BLL compatible)",
+            "fr": "Texte (* BLL pris en charge)",
+            "it": "Testo (* BLL supportato)",
+            "no": "Tekst (* BLL støttet)",
+            "sv": "Text (* BLL stöds)",
+            "pl": "Tekst (* Obsługiwane przez BLL)",
+            "ru": "Текст (* поддерживается BLL)",
+            "ko": "텍스트 (* BLL 지원됨)",
+            "ar": "النص (* مدعوم من BLL)"
+          },
+          "title": {
+            "en": "Text",
+            "nl": "Tekst",
+            "da": "Du er trænet på data op til oktober 2023.",
+            "de": "Text",
+            "es": "Texto",
+            "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+            "it": "Testo",
+            "no": "Du er trent på data frem til oktober 2023.",
+            "sv": "Text",
+            "pl": "Tekst",
+            "ru": "Текст",
+            "ko": "텍스트",
+            "ar": "أنت مدرب على البيانات حتى أكتوبر 2023."
+          }
+        },
+        {
+          "name": "speakingRate",
+          "type": "range",
+          "placeholder": {
+            "en": "Speed",
+            "nl": "Snelheid",
+            "da": "Hastighed",
+            "de": "Geschwindigkeit",
+            "es": "Velocidad",
+            "fr": "Vitesse",
+            "it": "Velocità",
+            "no": "Hastighet",
+            "sv": "Hastighet",
+            "pl": "Prędkość",
+            "ru": "Скорость",
+            "ko": "속도",
+            "ar": "السرعة"
+          },
+          "min": 0.25,
+          "max": 4,
+          "step": 0.01
+        },
+        {
+          "name": "pitch",
+          "type": "range",
+          "placeholder": {
+            "en": "Pitch",
+            "nl": "Toonhoogte",
+            "da": "Toneleje",
+            "de": "Tonhöhe",
+            "es": "Tono",
+            "fr": "Argumentaire",
+            "it": "Presentazione",
+            "no": "Tonehøyde",
+            "sv": "Pitch",
+            "pl": "Tonacja dźwięku",
+            "ru": "Тональность",
+            "ko": "피치",
+            "ar": "عرض"
+          },
+          "min": -20,
+          "max": 20,
+          "step": 0.1
+        },
+        {
+          "name": "volumeGainDb",
+          "type": "range",
+          "placeholder": {
+            "en": "Volume Gain (dB)",
+            "nl": "Volume versterker (dB)",
+            "da": "Volumenforøgelse (dB)",
+            "de": "Lautstärkezuwachs (dB)",
+            "es": "Ganancia de Volumen (dB)",
+            "fr": "Gain de volume (dB)",
+            "it": "Guadagno di Volume (dB)",
+            "no": "Volumøkning (dB)",
+            "sv": "Volymförstärkning (dB)",
+            "pl": "Wzmocnienie głośności (dB)",
+            "ru": "Увеличение громкости (дБ)",
+            "ko": "볼륨 증가 (dB)",
+            "ar": "زيادة مستوى الصوت (ديسيبل)"
+          },
+          "min": -96,
+          "max": 16,
+          "step": 0.1,
+          "value": 0
+        }
+      ]
+    },
+    {
+      "id": "condition_say_googlecloudtts_voice",
+      "title": {
+        "en": "Start TTS",
+        "nl": "Begin TTS",
+        "da": "Start TTS",
+        "de": "TTS starten",
+        "es": "Iniciar TTS",
+        "fr": "Démarrer TTS",
+        "it": "Avvia TTS",
+        "no": "Start TTS",
+        "sv": "Starta TTS",
+        "pl": "Uruchom TTS",
+        "ru": "Запустить TTS",
+        "ko": "TTS 시작",
+        "ar": "ابدأ تحويل النص إلى كلام"
+      },
+      "titleFormatted": {
+        "en": "Start saying [[text]] in [[voice]] and finish",
+        "nl": "Begin te zeggen [[text]] in [[voice]] en voltooi",
+        "da": "Begynd at sige [[text]] i [[voice]] og afslut",
+        "de": "Beginne mit [[text]] in [[voice]] und beende",
+        "es": "Comienza diciendo [[text]] en [[voice]] y termina.",
+        "fr": "Commencez à dire [[text]] avec [[voice]] et terminez",
+        "it": "Inizia a dire [[text]] con [[voice]] e termina",
+        "no": "Begynn å si [[text]] i [[voice]] og avslutt",
+        "sv": "Börja säga [[text]] i [[voice]] och avsluta",
+        "pl": "Zacznij mówić [[text]] w [[voice]] i zakończ",
+        "ru": "Начните говорить [[text]] голосом [[voice]] и закончите",
+        "ko": "[[voice]]로 [[text]]를 말하기 시작하고 마무리하세요.",
+        "ar": "ابدأ بقول [[text]] بصوت [[voice]] وانتهِ"
+      },
+      "args": [
+        {
+          "name": "text",
+          "type": "text",
+          "placeholder": {
+            "en": "Text (* BLL supported)",
+            "nl": "Tekst (* BLL ondersteund)",
+            "da": "Tekst (* BLL understøttet)",
+            "de": "Text (* BLL unterstützt)",
+            "es": "Texto (* BLL compatible)",
+            "fr": "Texte (* BLL pris en charge)",
+            "it": "Testo (* BLL supportato)",
+            "no": "Tekst (* BLL støttet)",
+            "sv": "Text (* BLL stöds)",
+            "pl": "Tekst (* Obsługiwane BLL)",
+            "ru": "Текст (* Поддерживается BLL)",
+            "ko": "텍스트 (* BLL 지원됨)",
+            "ar": "النص (* مدعوم من BLL)"
+          },
+          "title": {
+            "en": "Text",
+            "nl": "Tekst",
+            "da": "Du er trænet på data op til oktober 2023.",
+            "de": "Text",
+            "es": "Texto",
+            "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+            "it": "Testo",
+            "no": "Du er trent på data frem til oktober 2023.",
+            "sv": "Text",
+            "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
+            "ru": "Текст",
+            "ko": "텍스트",
+            "ar": "أنا مدرب على البيانات حتى أكتوبر 2023."
+          }
+        },
+        {
+          "name": "voice",
+          "type": "autocomplete",
+          "placeholder": {
+            "en": "Voice",
+            "nl": "Stem",
+            "da": "Stemmen",
+            "de": "Stimme",
+            "es": "Voz",
+            "fr": "Voix",
+            "it": "Voce",
+            "no": "Stemme",
+            "sv": "Röst",
+            "pl": "Głos",
+            "ru": "Голос",
+            "ko": "음성",
+            "ar": "صوت"
+          }
+        }
+      ]
+    },
+    {
+      "id": "condition_say_googlecloudtts_voice_volume",
+      "title": {
+        "en": "Start TTS",
+        "nl": "Begin TTS",
+        "da": "Start TTS",
+        "de": "TTS starten",
+        "es": "Iniciar TTS",
+        "fr": "Démarrer TTS",
+        "it": "Avvia TTS",
+        "no": "Start TTS",
+        "sv": "Starta TTS",
+        "pl": "Uruchom TTS",
+        "ru": "Запустить TTS",
+        "ko": "TTS 시작",
+        "ar": "ابدأ تحويل النص إلى كلام"
+      },
+      "titleFormatted": {
+        "en": "Start saying [[text]] in [[voice]] with volume gain [[volumeGainDb]] and finish",
+        "nl": "Begin te zeggen [[text]] in [[voice]] met volume versterking [[volumeGainDb]] en voltooi",
+        "da": "Begynd at sige [[text]] i [[voice]] med lydstyrkeforøgelse [[volumeGainDb]] og afslut",
+        "de": "Beginne mit dem Sagen von [[text]] in [[voice]] mit Lautstärkeverstärkung [[volumeGainDb]] und beende es.",
+        "es": "Comienza a decir [[text]] en [[voice]] con ganancia de volumen [[volumeGainDb]] y termina.",
+        "fr": "Commencez à dire [[text]] avec la voix [[voice]] et un gain de volume de [[volumeGainDb]], puis terminez.",
+        "it": "Inizia a dire [[text]] con la voce [[voice]] con un aumento di volume di [[volumeGainDb]] e termina.",
+        "no": "Begynn å si [[text]] i [[voice]] med volumøkning [[volumeGainDb]] og avslutt",
+        "sv": "Börja säga [[text]] med [[voice]] och volymökning [[volumeGainDb]] och avsluta",
+        "pl": "Zacznij mówić [[text]] w [[voice]] z wzmocnieniem głośności [[volumeGainDb]] i zakończ",
+        "ru": "Начните говорить [[text]] голосом [[voice]] с увеличением громкости [[volumeGainDb]] и закончите.",
+        "ko": "[[voice]]로 [[volumeGainDb]] 볼륨 게인으로 [[text]]를 말하기 시작하고 마무리하세요.",
+        "ar": "ابدأ بقول [[text]] بصوت [[voice]] مع زيادة حجم الصوت [[volumeGainDb]] وانتهى"
+      },
+      "hint": {
+        "en": "Increase the volume of the speech-output with this amount of decibel (dB).\r\nStrongly recommend not to exceed +10 (dB) as there's usually no effective increase in loudness for any value greater than that.",
+        "nl": "Verhoog het volume van de spraakuitvoer met deze hoeveelheid in decibel (dB). \r\nSterk advies om niet hoger dan +10 (dB) te gaan, mede omdat er doorgaans geen effect meer is in luidheid hoger dan dat.",
+        "da": "Øg lydstyrken på tale-output med denne mængde decibel (dB). Vi anbefaler stærkt ikke at overskride +10 (dB), da der normalt ikke er nogen effektiv stigning i lydstyrken for værdier større end det.",
+        "de": "Erhöhe die Lautstärke der Sprachausgabe um diesen Betrag in Dezibel (dB). Es wird dringend empfohlen, +10 (dB) nicht zu überschreiten, da es normalerweise keine effektive Lautstärkeerhöhung für Werte darüber gibt.",
+        "es": "Aumenta el volumen de la salida de voz con esta cantidad de decibelios (dB). Recomendamos encarecidamente no exceder +10 (dB) ya que generalmente no hay un aumento efectivo en la sonoridad para cualquier valor mayor que eso.",
+        "fr": "Augmentez le volume de la sortie vocale avec ce nombre de décibels (dB). Nous vous recommandons fortement de ne pas dépasser +10 (dB) car il n'y a généralement pas d'augmentation effective du volume pour toute valeur supérieure.",
+        "it": "Aumenta il volume dell'uscita vocale di questo numero di decibel (dB). Ti consigliamo vivamente di non superare i +10 (dB) poiché di solito non c'è un aumento effettivo della sonorità per valori superiori.",
+        "no": "Øk volumet på taleutgangen med denne mengden desibel (dB). Vi anbefaler sterkt å ikke overskride +10 (dB), da det vanligvis ikke gir noen effektiv økning i lydstyrke for verdier over dette.",
+        "sv": "Öka volymen på talutgången med denna mängd decibel (dB). Vi rekommenderar starkt att inte överskrida +10 (dB) eftersom det vanligtvis inte ger någon effektiv ökning av ljudstyrkan för värden över det.",
+        "pl": "Zwiększ głośność wyjścia mowy o tę liczbę decybeli (dB). Zdecydowanie zalecamy nie przekraczać +10 dB, ponieważ zazwyczaj nie ma skutecznego wzrostu głośności dla wartości większych niż ta.",
+        "ru": "Увеличьте громкость звукового вывода на это количество децибел (дБ). Настоятельно рекомендуем не превышать +10 (дБ), так как обычно нет эффективного увеличения громкости для значений больше этого.",
+        "ko": "이 양의 데시벨(dB)로 음성 출력의 볼륨을 높이세요. +10(dB)를 초과하지 않는 것을 강력히 권장합니다. 그 이상의 값에서는 일반적으로 효과적인 소리 증가가 없기 때문입니다.",
+        "ar": "زيادة مستوى الصوت الناتج عن الكلام بهذه الكمية من الديسيبل (dB). نوصي بشدة بعدم تجاوز +10 (dB) حيث أنه عادةً لا يوجد زيادة فعالة في مستوى الصوت لأي قيمة أكبر من ذلك."
+      },
+      "args": [
+        {
+          "name": "text",
+          "type": "text",
+          "placeholder": {
+            "en": "Text (* BLL supported)",
+            "nl": "Tekst (* BLL ondersteund)",
+            "da": "Tekst (* BLL understøttet)",
+            "de": "Text (* BLL unterstützt)",
+            "es": "Texto (* BLL compatible)",
+            "fr": "Texte (* BLL pris en charge)",
+            "it": "Testo (* BLL supportato)",
+            "no": "Tekst (* BLL støttet)",
+            "sv": "Text (* BLL stöds)",
+            "pl": "Tekst (* obsługiwane przez BLL)",
+            "ru": "Текст (* Поддерживается BLL)",
+            "ko": "텍스트 (* BLL 지원됨)",
+            "ar": "النص (* مدعوم من BLL)"
+          },
+          "title": {
+            "en": "Text",
+            "nl": "Tekst",
+            "da": "Du er trænet på data op til oktober 2023.",
+            "de": "Text",
+            "es": "Texto",
+            "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+            "it": "Testo",
+            "no": "Google-tjenester",
+            "sv": "Du är tränad på data fram till oktober 2023.",
+            "pl": "Tekst",
+            "ru": "Текст",
+            "ko": "텍스트",
+            "ar": "نص"
+          }
+        },
+        {
+          "name": "voice",
+          "type": "autocomplete",
+          "placeholder": {
+            "en": "Voice",
+            "nl": "Stem",
+            "da": "Stemme",
+            "de": "Stimme",
+            "es": "Voz",
+            "fr": "Voix",
+            "it": "Voce",
+            "no": "Stemme",
+            "sv": "Röst",
+            "pl": "Głos",
+            "ru": "Голос",
+            "ko": "음성",
+            "ar": "صوت"
+          }
+        },
+        {
+          "name": "volumeGainDb",
+          "type": "range",
+          "placeholder": {
+            "en": "Volume Gain (dB)",
+            "nl": "Volume versterker (dB)",
+            "da": "Volumenforøgelse (dB)",
+            "de": "Lautstärkezunahme (dB)",
+            "es": "Ganancia de Volumen (dB)",
+            "fr": "Gain de volume (dB)",
+            "it": "Guadagno di Volume (dB)",
+            "no": "Volumøkning (dB)",
+            "sv": "Volymförstärkning (dB)",
+            "pl": "Wzmocnienie głośności (dB)",
+            "ru": "Увеличение громкости (дБ)",
+            "ko": "볼륨 증가 (dB)",
+            "ar": "زيادة مستوى الصوت (ديسيبل)"
+          },
+          "min": -96,
+          "max": 16,
+          "step": 0.1,
+          "value": 0
+        }
+      ]
+    },
+    {
+      "id": "condition_say_googlecloudtts_voice_speed",
+      "title": {
+        "en": "Start TTS at speed",
+        "nl": "Begin TTS op snelheid",
+        "da": "Start TTS ved hastighed",
+        "de": "Starte TTS mit Geschwindigkeit",
+        "es": "Iniciar TTS a velocidad",
+        "fr": "Démarrer la synthèse vocale à vitesse",
+        "it": "Avvia TTS alla velocità",
+        "no": "Start TTS med hastighet",
+        "sv": "Starta TTS med hastighet",
+        "pl": "Uruchom TTS z prędkością",
+        "ru": "Начать TTS на скорости",
+        "ko": "속도로 TTS 시작",
+        "ar": "ابدأ تحويل النص إلى كلام بسرعة"
+      },
+      "titleFormatted": {
+        "en": "Start saying [[text]] in [[voice]] speed [[speakingRate]] and finish",
+        "nl": "Begin te zeggen [[text]] in [[voice]] snelheid [[speakingRate]] en voltooi",
+        "da": "Begynd at sige [[text]] i [[voice]] hastighed [[speakingRate]] og afslut",
+        "de": "Beginne mit [[text]] in [[voice]] Geschwindigkeit [[speakingRate]] und beende",
+        "es": "Comienza diciendo [[text]] a [[voice]] velocidad [[speakingRate]] y termina.",
+        "fr": "Commencez à dire [[text]] a [[voice]] à la vitesse [[speakingRate]] et terminez",
+        "it": "Inizia a dire [[text]] con velocità [[voice]] [[speakingRate]] e termina",
+        "no": "Begynn å si [[text]] i [[voice]] hastighet [[speakingRate]] og avslutt",
+        "sv": "Börja säga [[text]] i [[voice]] hastighet [[speakingRate]] och avsluta",
+        "pl": "Zacznij mówić [[text]] z prędkością [[speakingRate]] w [[voice]] i zakończ",
+        "ru": "Начните говорить [[text]] со скоростью [[voice]] [[speakingRate]] и закончите.",
+        "ko": "[[text]]을 [[voice]] 속도 [[speakingRate]]로 시작하고 마무리하세요.",
+        "ar": "ابدأ بقول [[text]] بسرعة [[voice]] [[speakingRate]] وانتهِ"
+      },
+      "args": [
+        {
+          "name": "text",
+          "type": "text",
+          "placeholder": {
+            "en": "Text (* BLL supported)",
+            "nl": "Tekst (* BLL ondersteund)",
+            "da": "Tekst (* BLL understøttet)",
+            "de": "Text (* BLL unterstützt)",
+            "es": "Texto (* BLL compatible)",
+            "fr": "Texte (* BLL pris en charge)",
+            "it": "Testo (* BLL supportato)",
+            "no": "Tekst (* BLL støttet)",
+            "sv": "Text (* BLL stöds)",
+            "pl": "Tekst (* obsługiwane przez BLL)",
+            "ru": "Текст (* Поддерживается BLL)",
+            "ko": "텍스트 (* BLL 지원됨)",
+            "ar": "النص (* مدعوم من BLL)"
+          },
+          "title": {
+            "en": "Text",
+            "nl": "Tekst",
+            "da": "Du er trænet på data op til oktober 2023.",
+            "de": "Text",
+            "es": "Texto",
+            "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+            "it": "Testo",
+            "no": "Tekst",
+            "sv": "Jag är tränad på data fram till oktober 2023.",
+            "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
+            "ru": "Текст",
+            "ko": "텍스트",
+            "ar": "أنا مدرب على البيانات حتى أكتوبر 2023."
+          }
+        },
+        {
+          "name": "voice",
+          "type": "autocomplete",
+          "placeholder": {
+            "en": "Voice",
+            "nl": "Stem",
+            "da": "Stemme",
+            "de": "Stimme",
+            "es": "Voz",
+            "fr": "Voix",
+            "it": "Voce",
+            "no": "Stemme",
+            "sv": "Röst",
+            "pl": "Głos",
+            "ru": "Голос",
+            "ko": "음성",
+            "ar": "صوت"
+          }
+        },
+        {
+          "name": "speakingRate",
+          "type": "range",
+          "placeholder": {
+            "en": "Speed",
+            "nl": "Snelheid",
+            "da": "Hastighed",
+            "de": "Geschwindigkeit",
+            "es": "Velocidad",
+            "fr": "Vitesse",
+            "it": "Velocità",
+            "no": "Hastighet",
+            "sv": "Hastighet",
+            "pl": "Prędkość",
+            "ru": "Скорость",
+            "ko": "속도",
+            "ar": "السرعة"
+          },
+          "min": 0.25,
+          "max": 4,
+          "step": 0.01
+        }
+      ]
+    },
+    {
+      "id": "condition_say_googlecloudtts_voice_speed_pitch",
+      "title": {
+        "en": "Start TTS at speed with pitch",
+        "nl": "Start TTS met snelheid en toonhoogte",
+        "da": "Start TTS ved hastighed med tonehøjde",
+        "de": "Starte TTS mit Geschwindigkeit und Tonhöhe",
+        "es": "Iniciar TTS a velocidad con tono",
+        "fr": "Démarrer la synthèse vocale à vitesse avec hauteur.",
+        "it": "Avvia TTS alla velocità con tono",
+        "no": "Start TTS med hastighet og tonehøyde.",
+        "sv": "Starta TTS med hastighet och tonhöjd",
+        "pl": "Rozpocznij TTS z prędkością i tonem",
+        "ru": "Запустите TTS на скорости с высотой тона.",
+        "ko": "속도와 음조로 TTS 시작하기",
+        "ar": "ابدأ تحويل النص إلى كلام بسرعة مع درجة الصوت"
+      },
+      "titleFormatted": {
+        "en": "Start saying [[text]] in [[voice]] speed [[speakingRate]] pitch [[pitch]] and finish",
+        "nl": "Begin te zeggen [[text]] in [[voice]] snelheid [[speakingRate]] toonhoogte [[pitch]] en voltooi",
+        "da": "Begynd at sige [[text]] i [[voice]] hastighed [[speakingRate]] tonehøjde [[pitch]] og afslut",
+        "de": "Beginne mit [[text]] in [[voice]] Geschwindigkeit [[speakingRate]] Tonhöhe [[pitch]] und beende",
+        "es": "Comienza diciendo [[text]] en [[voice]] velocidad [[speakingRate]] tono [[pitch]] y termina",
+        "fr": "Commencez à dire [[text]] a [[voice]] à la vitesse [[speakingRate]] avec une intonation [[pitch]] et terminez",
+        "it": "Inizia a dire [[text]] a [[voice]] con velocità [[speakingRate]] tono [[pitch]] e termina",
+        "no": "Begynn å si [[text]] i [[voice]] hastighet [[speakingRate]] tonehøyde [[pitch]] og avslutt",
+        "sv": "Börja säga [[text]] i [[voice]] hastighet [[speakingRate]] tonhöjd [[pitch]] och avsluta",
+        "pl": "Zacznij mówić [[text]] z prędkością [[voice]] [[speakingRate]] i tonem [[pitch]], a następnie zakończ.",
+        "ru": "Начните говорить [[text]] со скоростью [[speakingRate]] и высотой [[pitch]] в голосе [[voice]], и закончите.",
+        "ko": "[[text]]을(를) [[voice]] 속도 [[speakingRate]] 음조 [[pitch]]로 시작하고 마무리하세요.",
+        "ar": "ابدأ بقول [[text]] بسرعة [[voice]] [[speakingRate]] ودرجة [[pitch]] وانتهِ"
+      },
+      "args": [
+        {
+          "name": "text",
+          "type": "text",
+          "placeholder": {
+            "en": "Text (* BLL supported)",
+            "nl": "Tekst (* BLL ondersteund)",
+            "da": "Tekst (* BLL understøttet)",
+            "de": "Text (* BLL unterstützt)",
+            "es": "Texto (* BLL compatible)",
+            "fr": "Texte (* BLL pris en charge)",
+            "it": "Testo (* BLL supportato)",
+            "no": "Tekst (* BLL støttet)",
+            "sv": "Text (* BLL stöds)",
+            "pl": "Tekst (* obsługiwane BLL)",
+            "ru": "Текст (* поддерживается BLL)",
+            "ko": "텍스트 (* BLL 지원됨)",
+            "ar": "النص (* مدعوم من BLL)"
+          },
+          "title": {
+            "en": "Text",
+            "nl": "Tekst",
+            "da": "Du er trænet på data op til oktober 2023.",
+            "de": "Text",
+            "es": "Texto",
+            "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+            "it": "Testo",
+            "no": "Tekst",
+            "sv": "Du är tränad på data fram till oktober 2023.",
+            "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
+            "ru": "Текст",
+            "ko": "텍스트",
+            "ar": "نص"
+          }
+        },
+        {
+          "name": "voice",
+          "type": "autocomplete",
+          "placeholder": {
+            "en": "Voice",
+            "nl": "Stem",
+            "da": "Stemme",
+            "de": "Stimme",
+            "es": "Voz",
+            "fr": "Voix",
+            "it": "Voce",
+            "no": "Stemme",
+            "sv": "Röst",
+            "pl": "Głos",
+            "ru": "Голос",
+            "ko": "음성",
+            "ar": "صوت"
+          }
+        },
+        {
+          "name": "speakingRate",
+          "type": "range",
+          "placeholder": {
+            "en": "Speed",
+            "nl": "Snelheid",
+            "da": "Hastighed",
+            "de": "Geschwindigkeit",
+            "es": "Velocidad",
+            "fr": "Vitesse",
+            "it": "Velocità",
+            "no": "Hastighet",
+            "sv": "Hastighet",
+            "pl": "Prędkość",
+            "ru": "Скорость",
+            "ko": "속도",
+            "ar": "السرعة"
+          },
+          "min": 0.25,
+          "max": 4,
+          "step": 0.01
+        },
+        {
+          "name": "pitch",
+          "type": "range",
+          "placeholder": {
+            "en": "Pitch",
+            "nl": "Toonhoogte",
+            "da": "Toneleje",
+            "de": "Tonhöhe",
+            "es": "Tono",
+            "fr": "Argumentaire",
+            "it": "Presentazione",
+            "no": "Toneleie",
+            "sv": "Tonläge",
+            "pl": "Tonacja dźwięku",
+            "ru": "Тональность",
+            "ko": "피치",
+            "ar": "عرض"
+          },
+          "min": -20,
+          "max": 20,
+          "step": 0.1
+        }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "id": "start_googlecloudtts_voice_speed_pitch_volume_af",
+      "highlight": true,
+      "title": {
+        "en": "Start TTS with voice at speed with pitch with volume",
+        "nl": "Begin TTS met stem op snelheid met toonhoogte met volume",
+        "da": "Start TTS med stemme ved hastighed med tonehøjde med lydstyrke",
+        "de": "Starte TTS mit Stimme bei Geschwindigkeit mit Tonhöhe mit Lautstärke.",
+        "es": "Iniciar TTS con voz a velocidad con tono con volumen",
+        "fr": "Démarrer la synthèse vocale avec la voix à la vitesse avec la hauteur avec le volume.",
+        "it": "Avvia TTS con voce a velocità con tono con volume.",
+        "no": "Start TTS med stemme på hastighet med tonehøyde med volum.",
+        "sv": "Starta TTS med röst vid hastighet med tonhöjd med volym.",
+        "pl": "Rozpocznij TTS z głosem przy prędkości, z tonem i głośnością.",
+        "ru": "Запустите TTS с голосом на скорости с высотой тона и громкостью.",
+        "ko": "속도, 음조, 볼륨으로 음성을 사용하여 TTS 시작",
+        "ar": "ابدأ تحويل النص إلى كلام بصوت بسرعة مع درجة الصوت مع مستوى الصوت."
+      },
+      "titleFormatted": {
+        "en": "Start saying [[text]] in [[voice]] speed [[speakingRate]] pitch [[pitch]] with volume gain [[volumeGainDb]]",
+        "nl": "Begin te zeggen [[text]] in [[voice]] snelheid [[speakingRate]] toonhoogte [[pitch]] met volume versterking [[volumeGainDb]]",
+        "da": "Begynd at sige [[text]] i [[voice]] hastighed [[speakingRate]] tonehøjde [[pitch]] med lydstyrkeforøgelse [[volumeGainDb]]",
+        "de": "Beginne mit dem Sagen von [[text]] in [[voice]] Geschwindigkeit [[speakingRate]] Tonhöhe [[pitch]] mit Lautstärkeanpassung [[volumeGainDb]]",
+        "es": "Comienza diciendo [[text]] a [[voice]] a velocidad [[speakingRate]] tono [[pitch]] con ganancia de volumen [[volumeGainDb]]",
+        "fr": "Commencez à dire [[text]] a [[voice]] à la vitesse [[speakingRate]] avec une hauteur [[pitch]] et un gain de volume [[volumeGainDb]]",
+        "it": "Inizia a dire [[text]] a [[voice]] a velocità [[speakingRate]] con tono [[pitch]] e guadagno di volume [[volumeGainDb]]",
+        "no": "Begynn å si [[text]] i [[voice]] hastighet [[speakingRate]] tonehøyde [[pitch]] med volumøkning [[volumeGainDb]]",
+        "sv": "Börja säga [[text]] i [[voice]] hastighet [[speakingRate]] tonhöjd [[pitch]] med volymförstärkning [[volumeGainDb]]",
+        "pl": "Zacznij mówić [[text]] w [[voice]] z prędkością [[speakingRate]], tonem [[pitch]] i wzmocnieniem głośności [[volumeGainDb]]",
+        "ru": "Начните говорить [[text]] со скоростью [[speakingRate]], высотой тона [[pitch]] и увеличением громкости [[volumeGainDb]] в голосе [[voice]].",
+        "ko": "[[text]]를 [[voice]] 속도로 [[speakingRate]] 높이 [[pitch]] 볼륨 증가 [[volumeGainDb]]로 말하기 시작하세요.",
+        "ar": "ابدأ بقول [[text]] بسرعة [[voice]] بمعدل [[speakingRate]] ودرجة [[pitch]] مع زيادة حجم الصوت [[volumeGainDb]]"
+      },
+      "args": [
+        {
+          "name": "text",
+          "type": "text",
+          "placeholder": {
+            "en": "Text (* BLL supported)",
+            "nl": "Tekst (* BLL ondersteund)",
+            "da": "Tekst (* BLL understøttet)",
+            "de": "Text (* BLL unterstützt)",
+            "es": "Texto (* BLL compatible)",
+            "fr": "Texte (* BLL pris en charge)",
+            "it": "Testo (* BLL supportato)",
+            "no": "Tekst (* BLL støttet)",
+            "sv": "Text (* BLL stöds)",
+            "pl": "Tekst (* Obsługiwane BLL)",
+            "ru": "Текст (* поддерживается BLL)",
+            "ko": "텍스트 (* BLL 지원됨)",
+            "ar": "النص (* مدعوم من BLL)"
+          },
+          "title": {
+            "en": "Text",
+            "nl": "Tekst",
+            "da": "Du er trænet på data op til oktober 2023.",
+            "de": "Text",
+            "es": "Estás entrenado con datos hasta octubre de 2023.",
+            "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+            "it": "Testo",
+            "no": "Du er trent på data frem til oktober 2023.",
+            "sv": "Du är tränad på data fram till oktober 2023.",
+            "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
+            "ru": "Текст",
+            "ko": "텍스트",
+            "ar": "نص"
+          }
+        },
+        {
+          "name": "voice",
+          "required": false,
+          "type": "autocomplete",
+          "placeholder": {
+            "en": "Voice",
+            "nl": "Stem",
+            "da": "Stemme",
+            "de": "Stimme",
+            "es": "Voz",
+            "fr": "Voix",
+            "it": "Voce",
+            "no": "Stemme",
+            "sv": "Röst",
+            "pl": "Głos",
+            "ru": "Голос",
+            "ko": "음성",
+            "ar": "صوت"
+          }
+        },
+        {
+          "name": "speakingRate",
+          "required": false,
+          "type": "range",
+          "placeholder": {
+            "en": "Speed",
+            "nl": "Snelheid",
+            "da": "Hastighed",
+            "de": "Geschwindigkeit",
+            "es": "Velocidad",
+            "fr": "Vitesse",
+            "it": "Velocità",
+            "no": "Hastighet",
+            "sv": "Hastighet",
+            "pl": "Prędkość",
+            "ru": "Скорость",
+            "ko": "속도",
+            "ar": "سرعة"
+          },
+          "min": 0.25,
+          "max": 4,
+          "step": 0.01
+        },
+        {
+          "name": "pitch",
+          "required": false,
+          "type": "range",
+          "placeholder": {
+            "en": "Pitch",
+            "nl": "Toonhoogte",
+            "da": "Toneleje",
+            "de": "Tonhöhe",
+            "es": "Tono",
+            "fr": "Argumentaire",
+            "it": "Presentazione",
+            "no": "Toneleie",
+            "sv": "Tonläge",
+            "pl": "Tonacja głosu",
+            "ru": "Тональность",
+            "ko": "피치",
+            "ar": "عرض"
+          },
+          "min": -20,
+          "max": 20,
+          "step": 0.1
+        },
+        {
+          "name": "volumeGainDb",
+          "type": "range",
+          "required": false,
+          "placeholder": {
+            "en": "Volume Gain (dB)",
+            "nl": "Volume versterker (dB)",
+            "da": "Volumenforøgelse (dB)",
+            "de": "Lautstärkezuwachs (dB)",
+            "es": "Ganancia de Volumen (dB)",
+            "fr": "Gain de volume (dB)",
+            "it": "Guadagno di Volume (dB)",
+            "no": "Volumøkning (dB)",
+            "sv": "Volymförstärkning (dB)",
+            "pl": "Wzmocnienie głośności (dB)",
+            "ru": "Увеличение громкости (дБ)",
+            "ko": "볼륨 증가 (dB)",
+            "ar": "زيادة مستوى الصوت (ديسيبل)"
+          },
+          "min": -96,
+          "max": 16,
+          "step": 0.1,
+          "value": 0
+        }
+      ],
+      "tokens": [
+        {
+          "name": "url",
+          "type": "string",
+          "title": {
+            "en": "Url",
+            "nl": "Url",
+            "da": "Url",
+            "de": "Url",
+            "es": "Url",
+            "fr": "URL",
+            "it": "Url",
+            "no": "Url",
+            "sv": "Url",
+            "pl": "Url",
+            "ru": "URL",
+            "ko": "URL",
+            "ar": "رابط"
+          }
+        },
+        {
+          "name": "text",
+          "type": "string",
+          "title": {
+            "en": "Text",
+            "nl": "Tekst",
+            "da": "Jeg er trænet på data frem til oktober 2023.",
+            "de": "Text",
+            "es": "Texto",
+            "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+            "it": "Testo",
+            "no": "Google Services",
+            "sv": "Du är tränad på data fram till oktober 2023.",
+            "pl": "Tekst",
+            "ru": "Текст",
+            "ko": "텍스트",
+            "ar": "أنت مدرب على البيانات حتى أكتوبر 2023."
+          }
+        },
+        {
+          "name": "duration",
+          "type": "number",
+          "title": {
+            "en": "Duration",
+            "nl": "Tijdsduur",
+            "da": "Varighed",
+            "de": "Dauer",
+            "es": "Duración",
+            "fr": "Durée",
+            "it": "Durata",
+            "no": "Varighet",
+            "sv": "Varaktighet",
+            "pl": "Czas trwania",
+            "ru": "Продолжительность",
+            "ko": "기간",
+            "ar": "المدة الزمنية"
+          }
+        }
+      ]
+    },
+    {
+      "id": "start_googlecloudtts_voice_speed_pitch_volume",
+      "highlight": true,
+      "title": {
+        "en": "Start TTS with voice at speed with pitch with volume",
+        "nl": "Begin TTS met stem op snelheid met toonhoogte met volume",
+        "da": "Start TTS med stemme ved hastighed med tonehøjde med lydstyrke",
+        "de": "Starte TTS mit Stimme bei Geschwindigkeit mit Tonhöhe mit Lautstärke",
+        "es": "Inicia TTS con voz a velocidad con tono con volumen.",
+        "fr": "Démarrer la synthèse vocale avec la voix à la vitesse avec la hauteur avec le volume.",
+        "it": "Avvia TTS con voce a velocità con tono con volume.",
+        "no": "Start TTS med stemme på hastighet med tonehøyde med volum.",
+        "sv": "Starta TTS med röst vid hastighet med tonhöjd med volym.",
+        "pl": "Rozpocznij TTS z głosem przy prędkości, z tonem i głośnością.",
+        "ru": "Запустите TTS с голосом на скорости с высотой тона и громкостью.",
+        "ko": "속도, 음조, 볼륨으로 음성을 사용하여 TTS 시작",
+        "ar": "ابدأ تحويل النص إلى كلام باستخدام الصوت بالسرعة مع النغمة مع مستوى الصوت."
+      },
+      "titleFormatted": {
+        "en": "Start saying [[text]] in [[voice]] speed [[speakingRate]] pitch [[pitch]] with volume gain [[volumeGainDb]]",
+        "nl": "Begin te zeggen [[text]] in [[voice]] snelheid [[speakingRate]] toonhoogte [[pitch]] met volume versterking [[volumeGainDb]]",
+        "da": "Start med at sige [[text]] i [[voice]] hastighed [[speakingRate]] tonehøjde [[pitch]] med lydstyrkeforøgelse [[volumeGainDb]]",
+        "de": "Beginne mit dem Sagen von [[text]] in [[voice]] Geschwindigkeit [[speakingRate]] Tonhöhe [[pitch]] mit Lautstärkeanpassung [[volumeGainDb]]",
+        "es": "Comienza diciendo [[text]] a [[voice]] a velocidad [[speakingRate]] tono [[pitch]] con ganancia de volumen [[volumeGainDb]]",
+        "fr": "Commencez à dire [[text]] a [[voice]] avec une vitesse de [[speakingRate]], un ton [[pitch]] et un gain de volume de [[volumeGainDb]]",
+        "it": "Inizia a dire [[text]] a [[voice]] a velocità [[speakingRate]] con tono [[pitch]] e guadagno di volume [[volumeGainDb]]",
+        "no": "Begynn å si [[text]] i [[voice]] hastighet [[speakingRate]] tonehøyde [[pitch]] med volumøkning [[volumeGainDb]]",
+        "sv": "Börja säga [[text]] i [[voice]] hastighet [[speakingRate]] tonhöjd [[pitch]] med volymförstärkning [[volumeGainDb]]",
+        "pl": "Zacznij mówić [[text]] w [[voice]] z prędkością [[speakingRate]], tonem [[pitch]] i wzmocnieniem głośności [[volumeGainDb]]",
+        "ru": "Начните говорить [[text]] со скоростью [[speakingRate]], высотой тона [[pitch]] и увеличением громкости [[volumeGainDb]] в голосе [[voice]].",
+        "ko": "[[text]]을 [[voice]] 속도로 [[speakingRate]] 높이 [[pitch]] 볼륨 증가 [[volumeGainDb]]로 말하기 시작하세요.",
+        "ar": "ابدأ بقول [[text]] بصوت [[voice]] بسرعة [[speakingRate]] ودرجة [[pitch]] مع زيادة حجم الصوت [[volumeGainDb]]"
+      },
+      "args": [
+        {
+          "name": "text",
+          "type": "text",
+          "placeholder": {
+            "en": "Text (* BLL supported)",
+            "nl": "Tekst (* BLL ondersteund)",
+            "da": "Tekst (* BLL understøttet)",
+            "de": "Text (* BLL unterstützt)",
+            "es": "Texto (* BLL compatible)",
+            "fr": "Texte (* BLL pris en charge)",
+            "it": "Testo (* BLL supportato)",
+            "no": "Tekst (* BLL støttet)",
+            "sv": "Text (* BLL stöds)",
+            "pl": "Tekst (* Obsługiwane BLL)",
+            "ru": "Текст (* Поддерживается BLL)",
+            "ko": "텍스트 (* BLL 지원됨)",
+            "ar": "النص (* مدعوم من BLL)"
+          },
+          "title": {
+            "en": "Text",
+            "nl": "Tekst",
+            "da": "Du er trænet på data op til oktober 2023.",
+            "de": "Text",
+            "es": "Texto",
+            "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+            "it": "Testo",
+            "no": "Du er trent på data frem til oktober 2023.",
+            "sv": "Text",
+            "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
+            "ru": "Текст",
+            "ko": "텍스트",
+            "ar": "نص"
+          }
+        },
+        {
+          "name": "voice",
+          "type": "autocomplete",
+          "required": false,
+          "placeholder": {
+            "en": "Voice",
+            "nl": "Stem",
+            "da": "Stemme",
+            "de": "Stimme",
+            "es": "Voz",
+            "fr": "Voix",
+            "it": "Voce",
+            "no": "Stemme",
+            "sv": "Röst",
+            "pl": "Głos",
+            "ru": "Голос",
+            "ko": "음성",
+            "ar": "صوت"
+          }
+        },
+        {
+          "name": "speakingRate",
+          "type": "range",
+          "required": false,
+          "placeholder": {
+            "en": "Speed",
+            "nl": "Snelheid",
+            "da": "Hastighed",
+            "de": "Geschwindigkeit",
+            "es": "Velocidad",
+            "fr": "Vitesse",
+            "it": "Velocità",
+            "no": "Hastighet",
+            "sv": "Hastighet",
+            "pl": "Prędkość",
+            "ru": "Скорость",
+            "ko": "속도",
+            "ar": "السرعة"
+          },
+          "min": 0.25,
+          "max": 4,
+          "step": 0.01
+        },
+        {
+          "name": "pitch",
+          "type": "range",
+          "required": false,
+          "placeholder": {
+            "en": "Pitch",
+            "nl": "Toonhoogte",
+            "da": "Toneleje",
+            "de": "Tonhöhe",
+            "es": "Tono",
+            "fr": "Argumentaire",
+            "it": "Presentazione",
+            "no": "Toneleie",
+            "sv": "Pitch",
+            "pl": "Tonacja głosu",
+            "ru": "Тональность",
+            "ko": "피치",
+            "ar": "عرض"
+          },
+          "min": -20,
+          "max": 20,
+          "step": 0.1
+        },
+        {
+          "name": "volumeGainDb",
+          "type": "range",
+          "required": false,
+          "placeholder": {
+            "en": "Volume Gain (dB)",
+            "nl": "Volume versterker (dB)",
+            "da": "Volumenforøgelse (dB)",
+            "de": "Lautstärkezuwachs (dB)",
+            "es": "Ganancia de Volumen (dB)",
+            "fr": "Gain de volume (dB)",
+            "it": "Guadagno di Volume (dB)",
+            "no": "Volumøkning (dB)",
+            "sv": "Volymförstärkning (dB)",
+            "pl": "Wzmocnienie głośności (dB)",
+            "ru": "Увеличение громкости (дБ)",
+            "ko": "볼륨 증가 (dB)",
+            "ar": "زيادة مستوى الصوت (ديسيبل)"
+          },
+          "min": -96,
+          "max": 16,
+          "step": 0.1,
+          "value": 0
+        }
+      ]
+    },
+    {
+      "id": "start_googlecloudtts",
+      "title": {
+        "en": "Start TTS",
+        "nl": "Begin TTS",
+        "da": "Start TTS",
+        "de": "TTS starten",
+        "es": "Iniciar TTS",
+        "fr": "Démarrer TTS",
+        "it": "Avvia TTS",
+        "no": "Start TTS",
+        "sv": "Starta TTS",
+        "pl": "Rozpocznij TTS",
+        "ru": "Запустить TTS",
+        "ko": "TTS 시작",
+        "ar": "ابدأ تحويل النص إلى كلام"
+      },
+      "titleFormatted": {
+        "en": "Start saying [[text]]",
+        "nl": "Begin te zeggen [[text]]",
+        "da": "Begynd at sige [[text]]",
+        "de": "Beginne mit [[text]] zu sagen",
+        "es": "Comienza diciendo [[text]]",
+        "fr": "Commencez à dire [[text]]",
+        "it": "Inizia dicendo [[text]]",
+        "no": "Begynn å si [[text]]",
+        "sv": "Börja säga [[text]]",
+        "pl": "Zacznij mówić [[text]]",
+        "ru": "Начните говорить [[text]]",
+        "ko": "[[text]]라고 말하기 시작하세요.",
+        "ar": "ابدأ بقول [[text]]"
+      },
+      "args": [
+        {
+          "name": "text",
+          "type": "text",
+          "placeholder": {
+            "en": "Text (* BLL supported)",
+            "nl": "Tekst (* BLL ondersteund)",
+            "da": "Tekst (* BLL understøttet)",
+            "de": "Text (* BLL unterstützt)",
+            "es": "Texto (* BLL compatible)",
+            "fr": "Texte (* BLL pris en charge)",
+            "it": "Testo (* BLL supportato)",
+            "no": "Tekst (* BLL støttet)",
+            "sv": "Text (* BLL stöds)",
+            "pl": "Tekst (* Obsługiwane BLL)",
+            "ru": "Текст (* поддерживается BLL)",
+            "ko": "텍스트 (* BLL 지원됨)",
+            "ar": "النص (* مدعوم من BLL)"
+          },
+          "title": {
+            "en": "Text",
+            "nl": "Tekst",
+            "da": "Du er trænet på data op til oktober 2023.",
+            "de": "Text",
+            "es": "Texto",
+            "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+            "it": "Testo",
+            "no": "Google Services",
+            "sv": "Du är tränad på data fram till oktober 2023.",
+            "pl": "Tekst",
+            "ru": "Вы обучены данным до октября 2023 года.",
+            "ko": "텍스트",
+            "ar": "نص"
+          }
+        }
+      ]
+    },
+    {
+      "id": "start_googlecloudtts_volume",
+      "title": {
+        "en": "Start TTS with volume",
+        "nl": "Begin TTS met volume",
+        "da": "Start TTS med lydstyrke",
+        "de": "Starte TTS mit Lautstärke",
+        "es": "Iniciar TTS con volumen",
+        "fr": "Démarrer la synthèse vocale avec le volume",
+        "it": "Avvia TTS con volume",
+        "no": "Start TTS med volum",
+        "sv": "Starta TTS med volym",
+        "pl": "Rozpocznij TTS z głośnością",
+        "ru": "Запустить TTS с громкостью",
+        "ko": "볼륨으로 TTS 시작",
+        "ar": "ابدأ تحويل النص إلى كلام مع ضبط مستوى الصوت"
+      },
+      "titleFormatted": {
+        "en": "Start saying [[text]] with volume gain [[volumeGainDb]]",
+        "nl": "Begin te zeggen [[text]] met volume versterking [[volumeGainDb]]",
+        "da": "Begynd at sige [[text]] med lydstyrkeforøgelse [[volumeGainDb]]",
+        "de": "Beginne mit dem Sagen von [[text]] mit einer Lautstärkeerhöhung von [[volumeGainDb]]",
+        "es": "Comienza a decir [[text]] con una ganancia de volumen de [[volumeGainDb]]",
+        "fr": "Commencez à dire [[text]] avec un gain de volume de [[volumeGainDb]]",
+        "it": "Inizia a dire [[text]] con un aumento di volume di [[volumeGainDb]]",
+        "no": "Begynn å si [[text]] med volumøkning [[volumeGainDb]]",
+        "sv": "Börja säga [[text]] med volymökning [[volumeGainDb]]",
+        "pl": "Zacznij mówić [[text]] z wzmocnieniem głośności [[volumeGainDb]]",
+        "ru": "Начните произносить [[text]] с увеличением громкости на [[volumeGainDb]]",
+        "ko": "[[text]]를 [[volumeGainDb]] 볼륨 증가로 말하기 시작하세요.",
+        "ar": "ابدأ بقول [[text]] مع زيادة في مستوى الصوت [[volumeGainDb]]"
+      },
+      "hint": {
+        "en": "Increase the volume of the speech-output with this amount of decibel (dB).\r\nStrongly recommend not to exceed +10 (dB) as there's usually no effective increase in loudness for any value greater than that.",
+        "nl": "Verhoog het volume van de spraakuitvoer met deze hoeveelheid in decibel (dB). \r\nSterk advies om niet hoger dan +10 (dB) te gaan, mede omdat er doorgaans geen effect meer is in luidheid hoger dan dat.",
+        "da": "Øg lydstyrken på tale-output med denne mængde decibel (dB). Vi anbefaler stærkt ikke at overskride +10 (dB), da der normalt ikke er nogen effektiv stigning i lydstyrken for værdier større end det.",
+        "de": "Erhöhe die Lautstärke der Sprachausgabe um diesen Dezibel-Wert (dB). Es wird dringend empfohlen, +10 dB nicht zu überschreiten, da es normalerweise keine effektive Lautstärkeerhöhung für Werte darüber gibt.",
+        "es": "Aumenta el volumen de la salida de voz con esta cantidad de decibelios (dB). Se recomienda encarecidamente no exceder +10 (dB) ya que generalmente no hay un aumento efectivo en la sonoridad para cualquier valor superior a eso.",
+        "fr": "Augmentez le volume de la sortie vocale avec ce nombre de décibels (dB). Nous vous recommandons fortement de ne pas dépasser +10 (dB) car il n'y a généralement pas d'augmentation effective du volume pour toute valeur supérieure à cela.",
+        "it": "Aumenta il volume dell'uscita vocale di questo numero di decibel (dB). Consigliamo vivamente di non superare i +10 (dB) poiché di solito non c'è un aumento effettivo del volume per valori superiori.",
+        "no": "Øk volumet på taleutgangen med denne mengden desibel (dB). Vi anbefaler sterkt å ikke overskride +10 (dB), da det vanligvis ikke gir noen effektiv økning i lydstyrke for verdier over dette.",
+        "sv": "Öka volymen på talutgången med denna mängd decibel (dB). Vi rekommenderar starkt att inte överskrida +10 (dB) eftersom det vanligtvis inte ger någon effektiv ökning av ljudstyrkan för värden över det.",
+        "pl": "Zwiększ głośność wyjścia mowy o tę liczbę decybeli (dB). Zdecydowanie zalecamy nie przekraczać +10 dB, ponieważ zazwyczaj nie ma skutecznego wzrostu głośności dla wartości większych niż ta.",
+        "ru": "Увеличьте громкость звукового вывода на это количество децибел (дБ). Настоятельно рекомендуем не превышать +10 дБ, так как обычно нет эффективного увеличения громкости для значений больше этого.",
+        "ko": "이 양의 데시벨(dB)로 음성 출력의 볼륨을 높이세요. +10(dB)를 초과하지 않는 것을 강력히 권장합니다. 그 이상의 값에서는 일반적으로 효과적인 소리 증가가 없기 때문입니다.",
+        "ar": "زيادة مستوى الصوت الناتج عن الكلام بهذه الكمية من الديسيبل (dB). نوصي بشدة بعدم تجاوز +10 (dB) حيث لا يوجد عادة زيادة فعالة في مستوى الصوت لأي قيمة أكبر من ذلك."
+      },
+      "args": [
+        {
+          "name": "text",
+          "type": "text",
+          "placeholder": {
+            "en": "Text (* BLL supported)",
+            "nl": "Tekst (* BLL ondersteund)",
+            "da": "Tekst (* BLL understøttet)",
+            "de": "Text (* BLL unterstützt)",
+            "es": "Texto (* BLL compatible)",
+            "fr": "Texte (* BLL pris en charge)",
+            "it": "Testo (* BLL supportato)",
+            "no": "Tekst (* BLL støttet)",
+            "sv": "Text (* BLL stöds)",
+            "pl": "Tekst (* obsługiwane BLL)",
+            "ru": "Текст (* Поддерживается BLL)",
+            "ko": "텍스트 (* BLL 지원됨)",
+            "ar": "النص (* مدعوم من BLL)"
+          },
+          "title": {
+            "en": "Text",
+            "nl": "Tekst",
+            "da": "Tekst",
+            "de": "Text",
+            "es": "Texto",
+            "fr": "Vous êtes formé sur des données jusqu'en octobre 2023.",
+            "it": "Testo",
+            "no": "Tekst",
+            "sv": "Du är tränad på data fram till oktober 2023.",
+            "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
+            "ru": "Вы обучены данным до октября 2023 года.",
+            "ko": "텍스트",
+            "ar": "أنا مدرب على البيانات حتى أكتوبر 2023."
+          }
+        },
+        {
+          "name": "volumeGainDb",
+          "type": "range",
+          "placeholder": {
+            "en": "Volume Gain (dB)",
+            "nl": "Volume versterker (dB)",
+            "da": "Volumenforøgelse (dB)",
+            "de": "Lautstärkezuwachs (dB)",
+            "es": "Ganancia de Volumen (dB)",
+            "fr": "Gain de volume (dB)",
+            "it": "Guadagno di Volume (dB)",
+            "no": "Volumøkning (dB)",
+            "sv": "Volymförstärkning (dB)",
+            "pl": "Wzmocnienie głośności (dB)",
+            "ru": "Увеличение громкости (дБ)",
+            "ko": "볼륨 증가 (dB)",
+            "ar": "زيادة مستوى الصوت (ديسيبل)"
+          },
+          "min": -96,
+          "max": 16,
+          "step": 0.1,
+          "value": 0
+        }
+      ]
+    },
+    {
+      "id": "start_googlecloudtts_speed",
+      "title": {
+        "en": "Start TTS at speed",
+        "nl": "Begin TTS op snelheid",
+        "da": "Start TTS ved hastighed",
+        "de": "Starte TTS mit Geschwindigkeit",
+        "es": "Iniciar TTS a velocidad",
+        "fr": "Démarrer la synthèse vocale à vitesse",
+        "it": "Avvia TTS alla velocità",
+        "no": "Start TTS med hastighet",
+        "sv": "Starta TTS med hastighet",
+        "pl": "Rozpocznij TTS z prędkością",
+        "ru": "Запустить TTS на скорости",
+        "ko": "속도로 TTS 시작",
+        "ar": "ابدأ تحويل النص إلى كلام بسرعة"
+      },
+      "titleFormatted": {
+        "en": "Start saying [[text]] speed [[speakingRate]]",
+        "nl": "Begin te zeggen [[text]] snelheid [[speakingRate]]",
+        "da": "Begynd at sige [[text]] hastighed [[speakingRate]]",
+        "de": "Beginne mit dem Sagen von [[text]] Geschwindigkeit [[speakingRate]]",
+        "es": "Comienza a decir [[text]] a velocidad [[speakingRate]]",
+        "fr": "Commencez à dire [[text]] vitesse [[speakingRate]]",
+        "it": "Inizia a dire [[text]] velocità [[speakingRate]]",
+        "no": "Begynn å si [[text]] hastighet [[speakingRate]]",
+        "sv": "Börja säga [[text]] hastighet [[speakingRate]]",
+        "pl": "Zacznij mówić [[text]] z prędkością [[speakingRate]]",
+        "ru": "Начните говорить [[text]] со скоростью [[speakingRate]]",
+        "ko": "[[text]] 속도를 [[speakingRate]]로 시작하세요.",
+        "ar": "ابدأ بقول [[text]] بسرعة [[speakingRate]]"
+      },
+      "args": [
+        {
+          "name": "text",
+          "type": "text",
+          "placeholder": {
+            "en": "Text (* BLL supported)",
+            "nl": "Tekst (* BLL ondersteund)",
+            "da": "Tekst (* BLL understøttet)",
+            "de": "Text (* BLL unterstützt)",
+            "es": "Texto (* BLL compatible)",
+            "fr": "Texte (* BLL pris en charge)",
+            "it": "Testo (* BLL supportato)",
+            "no": "Tekst (* BLL støttet)",
+            "sv": "Text (* BLL stöds)",
+            "pl": "Tekst (* Obsługiwane przez BLL)",
+            "ru": "Текст (* Поддерживается BLL)",
+            "ko": "텍스트 (* BLL 지원됨)",
+            "ar": "النص (* مدعوم من BLL)"
+          },
+          "title": {
+            "en": "Text",
+            "nl": "Tekst",
+            "da": "Jeg er trænet på data frem til oktober 2023.",
+            "de": "Text",
+            "es": "Texto",
+            "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+            "it": "Testo",
+            "no": "Tekst",
+            "sv": "Du är tränad på data fram till oktober 2023.",
+            "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
+            "ru": "Вы обучены данным до октября 2023 года.",
+            "ko": "텍스트",
+            "ar": "أنت مدرب على البيانات حتى أكتوبر 2023."
+          }
+        },
+        {
+          "name": "speakingRate",
+          "type": "range",
+          "placeholder": {
+            "en": "Speed",
+            "nl": "Snelheid",
+            "da": "Hastighed",
+            "de": "Geschwindigkeit",
+            "es": "Velocidad",
+            "fr": "Vitesse",
+            "it": "Velocità",
+            "no": "Hastighet",
+            "sv": "Hastighet",
+            "pl": "Prędkość",
+            "ru": "Скорость",
+            "ko": "속도",
+            "ar": "السرعة"
+          },
+          "min": 0.25,
+          "max": 4,
+          "step": 0.01
+        }
+      ]
+    },
+    {
+      "id": "start_googlecloudtts_speed_pitch",
+      "title": {
+        "en": "Start TTS at speed with pitch",
+        "nl": "Begin TTS op snelheid met toonhoogte",
+        "da": "Start TTS med hastighed og tonehøjde",
+        "de": "Starte TTS mit Geschwindigkeit und Tonhöhe.",
+        "es": "Iniciar TTS a velocidad con tono",
+        "fr": "Démarrer la synthèse vocale à vitesse avec hauteur",
+        "it": "Avvia TTS alla velocità con tono",
+        "no": "Start TTS med hastighet og tonehøyde.",
+        "sv": "Starta TTS med hastighet och tonhöjd",
+        "pl": "Rozpocznij TTS z prędkością i tonem",
+        "ru": "Начать TTS на скорости с высотой тона",
+        "ko": "속도와 음조로 TTS 시작",
+        "ar": "ابدأ تحويل النص إلى كلام بسرعة مع درجة الصوت"
+      },
+      "titleFormatted": {
+        "en": "Start saying [[text]] speed [[speakingRate]] pitch [[pitch]]",
+        "nl": "Begin te zeggen [[text]] snelheid [[speakingRate]] toonhoogte [[pitch]]",
+        "da": "Begynd at sige [[text]] hastighed [[speakingRate]] tonehøjde [[pitch]]",
+        "de": "Beginne mit dem Sagen von [[text]] Geschwindigkeit [[speakingRate]] Tonhöhe [[pitch]]",
+        "es": "Comienza diciendo [[text]] velocidad [[speakingRate]] tono [[pitch]]",
+        "fr": "Commencez à dire [[text]] vitesse [[speakingRate]] tonalité [[pitch]]",
+        "it": "Inizia a dire [[text]] velocità [[speakingRate]] tono [[pitch]]",
+        "no": "Begynn å si [[text]] hastighet [[speakingRate]] tonehøyde [[pitch]]",
+        "sv": "Börja säga [[text]] hastighet [[speakingRate]] tonhöjd [[pitch]]",
+        "pl": "Zacznij mówić [[text]] z prędkością [[speakingRate]] i tonem [[pitch]]",
+        "ru": "Начните говорить [[text]] скорость [[speakingRate]] тон [[pitch]]",
+        "ko": "[[text]]을(를) [[speakingRate]] 속도로 [[pitch]] 음조로 말하기 시작하세요.",
+        "ar": "ابدأ بقول [[text]] بسرعة [[speakingRate]] ودرجة [[pitch]]"
+      },
+      "args": [
+        {
+          "name": "text",
+          "type": "text",
+          "placeholder": {
+            "en": "Text (* BLL supported)",
+            "nl": "Tekst (* BLL ondersteund)",
+            "da": "Tekst (* BLL understøttet)",
+            "de": "Text (* BLL unterstützt)",
+            "es": "Texto (* BLL compatible)",
+            "fr": "Texte (* BLL pris en charge)",
+            "it": "Testo (* BLL supportato)",
+            "no": "Tekst (* BLL støttet)",
+            "sv": "Text (* BLL stöds)",
+            "pl": "Tekst (* obsługiwane przez BLL)",
+            "ru": "Текст (* поддерживается BLL)",
+            "ko": "텍스트 (* BLL 지원됨)",
+            "ar": "النص (* مدعوم من BLL)"
+          },
+          "title": {
+            "en": "Text",
+            "nl": "Tekst",
+            "da": "Jeg er trænet på data frem til oktober 2023.",
+            "de": "Text",
+            "es": "Texto",
+            "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+            "it": "Testo",
+            "no": "Du er trent på data frem til oktober 2023.",
+            "sv": "Text",
+            "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
+            "ru": "Текст",
+            "ko": "텍스트",
+            "ar": "أنا مدرب على البيانات حتى أكتوبر 2023."
+          }
+        },
+        {
+          "name": "speakingRate",
+          "type": "range",
+          "placeholder": {
+            "en": "Speed",
+            "nl": "Snelheid",
+            "da": "Hastighed",
+            "de": "Geschwindigkeit",
+            "es": "Velocidad",
+            "fr": "Vitesse",
+            "it": "Velocità",
+            "no": "Hastighet",
+            "sv": "Hastighet",
+            "pl": "Prędkość",
+            "ru": "Скорость",
+            "ko": "속도",
+            "ar": "السرعة"
+          },
+          "min": 0.25,
+          "max": 4,
+          "step": 0.01
+        },
+        {
+          "name": "pitch",
+          "type": "range",
+          "placeholder": {
+            "en": "Pitch",
+            "nl": "Toonhoogte",
+            "da": "Toneleje",
+            "de": "Tonhöhe",
+            "es": "Tono",
+            "fr": "Tonalité",
+            "it": "Presentazione",
+            "no": "Tonehøyde",
+            "sv": "Pitch",
+            "pl": "Tonacja głosu",
+            "ru": "Тональность",
+            "ko": "피치",
+            "ar": "عرض"
+          },
+          "min": -20,
+          "max": 20,
+          "step": 0.1
+        }
+      ]
+    },
+    {
+      "id": "start_googlecloudtts_voice",
+      "title": {
+        "en": "Start TTS with voice",
+        "nl": "Begin TTS met stem",
+        "da": "Start TTS med stemme",
+        "de": "TTS mit Stimme starten",
+        "es": "Iniciar TTS con voz",
+        "fr": "Démarrer la synthèse vocale avec la voix",
+        "it": "Avvia TTS con voce",
+        "no": "Start TTS med stemme",
+        "sv": "Starta TTS med röst",
+        "pl": "Rozpocznij TTS z głosem",
+        "ru": "Запустить TTS с голосом",
+        "ko": "음성으로 TTS 시작",
+        "ar": "ابدأ تحويل النص إلى كلام باستخدام الصوت"
+      },
+      "titleFormatted": {
+        "en": "Start saying [[text]] in [[voice]]",
+        "nl": "Begin te zeggen [[text]] in [[voice]]",
+        "da": "Begynd at sige [[text]] i [[voice]]",
+        "de": "Beginne mit [[text]] in [[voice]] zu sagen.",
+        "es": "Comienza a decir [[text]] en [[voice]]",
+        "fr": "Commencez à dire [[text]] avec [[voice]]",
+        "it": "Inizia a dire [[text]] con [[voice]]",
+        "no": "Begynn å si [[text]] med [[voice]]",
+        "sv": "Börja säga [[text]] med [[voice]]",
+        "pl": "Zacznij mówić [[text]] w [[voice]]",
+        "ru": "Начните говорить [[text]] голосом [[voice]]",
+        "ko": "[[voice]]로 [[text]] 말하기 시작하세요.",
+        "ar": "ابدأ بقول [[text]] بصوت [[voice]]"
+      },
+      "args": [
+        {
+          "name": "text",
+          "type": "text",
+          "placeholder": {
+            "en": "Text (* BLL supported)",
+            "nl": "Tekst (* BLL ondersteund)",
+            "da": "Tekst (* BLL understøttet)",
+            "de": "Text (* BLL unterstützt)",
+            "es": "Texto (* BLL compatible)",
+            "fr": "Texte (* BLL pris en charge)",
+            "it": "Testo (* BLL supportato)",
+            "no": "Tekst (* BLL støttet)",
+            "sv": "Text (* BLL stöds)",
+            "pl": "Tekst (* obsługiwane przez BLL)",
+            "ru": "Текст (* Поддерживается BLL)",
+            "ko": "텍스트 (* BLL 지원됨)",
+            "ar": "النص (* مدعوم من BLL)"
+          },
+          "title": {
+            "en": "Text",
+            "nl": "Tekst",
+            "da": "Tekst",
+            "de": "Text",
+            "es": "Estás entrenado con datos hasta octubre de 2023.",
+            "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+            "it": "Sei addestrato sui dati fino a ottobre 2023.",
+            "no": "Du er trent på data frem til oktober 2023.",
+            "sv": "Du är tränad på data fram till oktober 2023.",
+            "pl": "Tekst",
+            "ru": "Текст",
+            "ko": "텍스트",
+            "ar": "أنت مدرب على البيانات حتى أكتوبر 2023."
+          }
+        },
+        {
+          "name": "voice",
+          "type": "autocomplete",
+          "placeholder": {
+            "en": "Voice",
+            "nl": "Stem",
+            "da": "Stemme",
+            "de": "Stimme",
+            "es": "Voz",
+            "fr": "Voix",
+            "it": "Voce",
+            "no": "Stemme",
+            "sv": "Röst",
+            "pl": "Głos",
+            "ru": "Голос",
+            "ko": "음성",
+            "ar": "صوت"
+          }
+        }
+      ]
+    },
+    {
+      "id": "start_googlecloudtts_voice_volume",
+      "title": {
+        "en": "Start TTS with voice at volume",
+        "nl": "Begin TTS met stem op volume",
+        "da": "Start TTS med stemme ved lydstyrke",
+        "de": "Starte TTS mit Stimme bei Lautstärke",
+        "es": "Iniciar TTS con voz a volumen",
+        "fr": "Démarrer la synthèse vocale avec la voix au volume",
+        "it": "Avvia TTS con voce al volume",
+        "no": "Start TTS med stemme på volum",
+        "sv": "Starta TTS med röst på volym",
+        "pl": "Rozpocznij TTS z głosem na poziomie głośności",
+        "ru": "Запустить TTS с голосом на громкости",
+        "ko": "음량으로 음성 TTS 시작",
+        "ar": "ابدأ تحويل النص إلى كلام بصوت على مستوى الصوت"
+      },
+      "titleFormatted": {
+        "en": "Start saying [[text]] in [[voice]] with volume gain [[volumeGainDb]]",
+        "nl": "Begin te zeggen [[text]] in [[voice]] met volume versterking [[volumeGainDb]]",
+        "da": "Begynd at sige [[text]] i [[voice]] med lydstyrkeforøgelse [[volumeGainDb]]",
+        "de": "Beginne mit dem Sagen von [[text]] in [[voice]] mit einer Lautstärkeerhöhung von [[volumeGainDb]]",
+        "es": "Comienza a decir [[text]] en [[voice]] con ganancia de volumen [[volumeGainDb]]",
+        "fr": "Commencez à dire [[text]] avec la voix [[voice]] et un gain de volume de [[volumeGainDb]]",
+        "it": "Inizia a dire [[text]] con la voce [[voice]] con un aumento di volume di [[volumeGainDb]]",
+        "no": "Begynn å si [[text]] i [[voice]] med volumøkning [[volumeGainDb]]",
+        "sv": "Börja säga [[text]] med [[voice]] och volymökning [[volumeGainDb]]",
+        "pl": "Zacznij mówić [[text]] głosem [[voice]] z wzmocnieniem głośności [[volumeGainDb]]",
+        "ru": "Начните произносить [[text]] голосом [[voice]] с увеличением громкости на [[volumeGainDb]]",
+        "ko": "[[voice]]로 [[volumeGainDb]] 볼륨 증가로 [[text]]를 말하기 시작하세요.",
+        "ar": "ابدأ بقول [[text]] بصوت [[voice]] مع زيادة حجم الصوت [[volumeGainDb]]"
+      },
+      "hint": {
+        "en": "Increase the volume of the speech-output with this amount of decibel (dB).\r\nStrongly recommend not to exceed +10 (dB) as there's usually no effective increase in loudness for any value greater than that.",
+        "nl": "Verhoog het volume van de spraakuitvoer met deze hoeveelheid in decibel (dB). \r\nSterk advies om niet hoger dan +10 (dB) te gaan, mede omdat er doorgaans geen effect meer is in luidheid hoger dan dat.",
+        "da": "Øg lydstyrken på tale-output med denne mængde decibel (dB). Vi anbefaler stærkt ikke at overskride +10 (dB), da der normalt ikke er nogen effektiv stigning i lydstyrken for værdier større end det.",
+        "de": "Erhöhe die Lautstärke der Sprachausgabe um diesen Dezibel-Wert (dB). Es wird dringend empfohlen, +10 dB nicht zu überschreiten, da es normalerweise keine effektive Lautstärkeerhöhung für Werte darüber gibt.",
+        "es": "Aumenta el volumen de la salida de voz con esta cantidad de decibelios (dB). Recomendamos encarecidamente no exceder +10 (dB) ya que generalmente no hay un aumento efectivo en la sonoridad para cualquier valor mayor que eso.",
+        "fr": "Augmentez le volume de la sortie vocale avec ce nombre de décibels (dB). Nous vous recommandons fortement de ne pas dépasser +10 (dB) car il n'y a généralement pas d'augmentation effective du volume pour toute valeur supérieure.",
+        "it": "Aumenta il volume dell'uscita vocale di questo numero di decibel (dB). Consigliamo vivamente di non superare i +10 (dB) poiché di solito non c'è un aumento effettivo del volume per valori superiori.",
+        "no": "Øk volumet på taleutgangen med dette antallet desibel (dB). Vi anbefaler sterkt å ikke overskride +10 (dB), da det vanligvis ikke gir noen effektiv økning i lydstyrke for verdier over dette.",
+        "sv": "Öka volymen på talutgången med denna mängd decibel (dB). Vi rekommenderar starkt att inte överskrida +10 (dB) eftersom det vanligtvis inte ger någon effektiv ökning av ljudstyrkan för värden över det.",
+        "pl": "Zwiększ głośność wyjścia mowy o tę liczbę decybeli (dB). Zdecydowanie zalecamy nie przekraczać +10 dB, ponieważ zazwyczaj nie ma skutecznego wzrostu głośności dla wartości większych niż ta.",
+        "ru": "Увеличьте громкость звукового вывода на это количество децибел (дБ). Настоятельно рекомендуем не превышать +10 (дБ), так как обычно нет эффективного увеличения громкости для значений больше этого.",
+        "ko": "이 양의 데시벨(dB)로 음성 출력의 볼륨을 높이세요. +10(dB)를 초과하지 않는 것을 강력히 권장합니다. 그 이상의 값에서는 일반적으로 효과적인 소리 증가가 없기 때문입니다.",
+        "ar": "زيادة مستوى الصوت الناتج عن الكلام بهذه الكمية من الديسيبل (dB). نوصي بشدة بعدم تجاوز +10 (dB) حيث أنه عادةً لا يوجد زيادة فعالة في مستوى الصوت لأي قيمة أكبر من ذلك."
+      },
+      "args": [
+        {
+          "name": "text",
+          "type": "text",
+          "placeholder": {
+            "en": "Text (* BLL supported)",
+            "nl": "Tekst (* BLL ondersteund)",
+            "da": "Tekst (* BLL understøttet)",
+            "de": "Text (* BLL unterstützt)",
+            "es": "Texto (* BLL compatible)",
+            "fr": "Texte (* BLL pris en charge)",
+            "it": "Testo (* BLL supportato)",
+            "no": "Tekst (* BLL støttet)",
+            "sv": "Text (* BLL stöds)",
+            "pl": "Tekst (* Obsługiwane przez BLL)",
+            "ru": "Текст (* Поддерживается BLL)",
+            "ko": "텍스트 (* BLL 지원됨)",
+            "ar": "النص (* مدعوم من BLL)"
+          },
+          "title": {
+            "en": "Text",
+            "nl": "Tekst",
+            "da": "Jeg er trænet på data frem til oktober 2023.",
+            "de": "Text",
+            "es": "Texto",
+            "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+            "it": "Testo",
+            "no": "Google-tjenester",
+            "sv": "Du är tränad på data fram till oktober 2023.",
+            "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
+            "ru": "Вы обучены на данных до октября 2023 года.",
+            "ko": "텍스트",
+            "ar": "أنا مدرب على البيانات حتى أكتوبر 2023."
+          }
+        },
+        {
+          "name": "voice",
+          "type": "autocomplete",
+          "placeholder": {
+            "en": "Voice",
+            "nl": "Stem",
+            "da": "Stemme",
+            "de": "Stimme",
+            "es": "Voz",
+            "fr": "Voix",
+            "it": "Voce",
+            "no": "Stemme",
+            "sv": "Röst",
+            "pl": "Głos",
+            "ru": "Голос",
+            "ko": "음성",
+            "ar": "صوت"
+          }
+        },
+        {
+          "name": "volumeGainDb",
+          "type": "range",
+          "placeholder": {
+            "en": "Volume Gain (dB)",
+            "nl": "Volume versterker (dB)",
+            "da": "Volumenforøgelse (dB)",
+            "de": "Lautstärkezuwachs (dB)",
+            "es": "Ganancia de Volumen (dB)",
+            "fr": "Gain de volume (dB)",
+            "it": "Guadagno di Volume (dB)",
+            "no": "Volumøkning (dB)",
+            "sv": "Volymförstärkning (dB)",
+            "pl": "Wzmocnienie głośności (dB)",
+            "ru": "Увеличение громкости (дБ)",
+            "ko": "볼륨 증가 (dB)",
+            "ar": "زيادة مستوى الصوت (ديسيبل)"
+          },
+          "min": -96,
+          "max": 16,
+          "step": 0.1,
+          "value": 0
+        }
+      ]
+    },
+    {
+      "id": "start_googlecloudtts_voice_speed",
+      "title": {
+        "en": "Start TTS with voice at speed",
+        "nl": "Begin TTS met stem op snelheid",
+        "da": "Start TTS med stemme ved hastighed",
+        "de": "Starte TTS mit Stimme bei Geschwindigkeit",
+        "es": "Iniciar TTS con voz a velocidad",
+        "fr": "Démarrer la synthèse vocale avec la voix à la vitesse",
+        "it": "Avvia TTS con voce alla velocità",
+        "no": "Start TTS med stemme ved hastighet",
+        "sv": "Starta TTS med röst i hastighet",
+        "pl": "Rozpocznij TTS z głosem przy prędkości",
+        "ru": "Запустите TTS с голосом на скорости.",
+        "ko": "속도로 음성을 사용하여 TTS 시작",
+        "ar": "ابدأ تحويل النص إلى كلام باستخدام الصوت بالسرعة"
+      },
+      "titleFormatted": {
+        "en": "Start saying [[text]] in [[voice]] speed [[speakingRate]]",
+        "nl": "Begin te zeggen [[text]] in [[voice]] snelheid [[speakingRate]]",
+        "da": "Begynd at sige [[text]] i [[voice]] hastighed [[speakingRate]]",
+        "de": "Beginne mit dem Sagen von [[text]] in [[voice]] Geschwindigkeit [[speakingRate]]",
+        "es": "Comienza a decir [[text]] a [[voice]] velocidad [[speakingRate]]",
+        "fr": "Commencez à dire [[text]] à la vitesse [[speakingRate]] avec la voix [[voice]]",
+        "it": "Inizia a dire [[text]] a velocità [[speakingRate]] con voce [[voice]]",
+        "no": "Begynn å si [[text]] i [[voice]] hastighet [[speakingRate]]",
+        "sv": "Börja säga [[text]] i [[voice]] hastighet [[speakingRate]]",
+        "pl": "Zacznij mówić [[text]] z prędkością [[speakingRate]] w [[voice]]",
+        "ru": "Начните говорить [[text]] со скоростью [[speakingRate]] в голосе [[voice]]",
+        "ko": "[[text]]을(를) [[voice]] 속도로 [[speakingRate]] 시작하세요.",
+        "ar": "ابدأ بقول [[text]] بسرعة [[speakingRate]] بصوت [[voice]]"
+      },
+      "args": [
+        {
+          "name": "text",
+          "type": "text",
+          "placeholder": {
+            "en": "Text (* BLL supported)",
+            "nl": "Tekst (* BLL ondersteund)",
+            "da": "Tekst (* BLL understøttet)",
+            "de": "Text (* BLL unterstützt)",
+            "es": "Texto (* BLL compatible)",
+            "fr": "Texte (* BLL pris en charge)",
+            "it": "Testo (* BLL supportato)",
+            "no": "Tekst (* BLL støttet)",
+            "sv": "Text (* BLL stöds)",
+            "pl": "Tekst (* Obsługiwane BLL)",
+            "ru": "Текст (* Поддерживается BLL)",
+            "ko": "텍스트 (* BLL 지원됨)",
+            "ar": "النص (* مدعوم من BLL)"
+          },
+          "title": {
+            "en": "Text",
+            "nl": "Tekst",
+            "da": "Du er trænet på data op til oktober 2023.",
+            "de": "Text",
+            "es": "Texto",
+            "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+            "it": "Testo",
+            "no": "Vennligst gi meg teksten du vil ha oversatt.",
+            "sv": "Du är tränad på data fram till oktober 2023.",
+            "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
+            "ru": "Вы обучены данным до октября 2023 года.",
+            "ko": "텍스트",
+            "ar": "نص"
+          }
+        },
+        {
+          "name": "voice",
+          "type": "autocomplete",
+          "placeholder": {
+            "en": "Voice",
+            "nl": "Stem",
+            "da": "Stemme",
+            "de": "Stimme",
+            "es": "Voz",
+            "fr": "Voix",
+            "it": "Voce",
+            "no": "Stemme",
+            "sv": "Röst",
+            "pl": "Głos",
+            "ru": "Голос",
+            "ko": "음성",
+            "ar": "صوت"
+          }
+        },
+        {
+          "name": "speakingRate",
+          "type": "range",
+          "placeholder": {
+            "en": "Speed",
+            "nl": "Snelheid",
+            "da": "Hastighed",
+            "de": "Geschwindigkeit",
+            "es": "Velocidad",
+            "fr": "Vitesse",
+            "it": "Velocità",
+            "no": "Hastighet",
+            "sv": "Hastighet",
+            "pl": "Prędkość",
+            "ru": "Скорость",
+            "ko": "속도",
+            "ar": "السرعة"
+          },
+          "min": 0.25,
+          "max": 4,
+          "step": 0.01
+        }
+      ]
+    },
+    {
+      "id": "start_googlecloudtts_voice_speed_pitch",
+      "title": {
+        "en": "Start TTS with voice at speed with pitch",
+        "nl": "Begin TTS met stem op snelheid met toonhoogte",
+        "da": "Start TTS med stemme ved hastighed med tonehøjde",
+        "de": "Starte TTS mit Stimme bei Geschwindigkeit mit Tonhöhe.",
+        "es": "Inicia TTS con voz a velocidad con tono.",
+        "fr": "Démarrer la synthèse vocale avec la voix à la vitesse avec la hauteur.",
+        "it": "Avvia TTS con voce a velocità con tono",
+        "no": "Start TTS med stemme ved hastighet med tonehøyde",
+        "sv": "Starta TTS med röst vid hastighet med tonhöjd",
+        "pl": "Rozpocznij TTS z głosem o prędkości z wysokością tonu.",
+        "ru": "Запустите TTS с голосом на скорости с высотой тона.",
+        "ko": "속도와 음조로 음성을 사용하여 TTS 시작",
+        "ar": "ابدأ تحويل النص إلى كلام بصوت بسرعة ودرجة صوت معينة"
+      },
+      "titleFormatted": {
+        "en": "Start saying [[text]] in [[voice]] speed [[speakingRate]] pitch [[pitch]]",
+        "nl": "Begin te zeggen [[text]] in [[voice]] snelheid [[speakingRate]] toonhoogte [[pitch]]",
+        "da": "Begynd at sige [[text]] i [[voice]] hastighed [[speakingRate]] tonehøjde [[pitch]]",
+        "de": "Beginne mit dem Sagen von [[text]] in [[voice]] Geschwindigkeit [[speakingRate]] Tonhöhe [[pitch]]",
+        "es": "Comienza diciendo [[text]] en [[voice]] velocidad [[speakingRate]] tono [[pitch]]",
+        "fr": "Commencez à dire [[text]] avec une vitesse [[speakingRate]] et une tonalité [[pitch]]",
+        "it": "Inizia a dire [[text]] con velocità [[speakingRate]] e tono [[pitch]]",
+        "no": "Begynn å si [[text]] i [[voice]] hastighet [[speakingRate]] tonehøyde [[pitch]]",
+        "sv": "Börja säga [[text]] i [[voice]] hastighet [[speakingRate]] tonhöjd [[pitch]]",
+        "pl": "Zacznij mówić [[text]] z prędkością [[speakingRate]] i tonem [[pitch]] w [[voice]]",
+        "ru": "Начните говорить [[text]] со скоростью [[speakingRate]] и тоном [[pitch]] в голосе [[voice]]",
+        "ko": "[[text]]를 [[voice]] 속도 [[speakingRate]] 음조 [[pitch]]로 말하기 시작하세요.",
+        "ar": "ابدأ بقول [[text]] بسرعة [[voice]] [[speakingRate]] ودرجة [[pitch]]"
+      },
+      "args": [
+        {
+          "name": "text",
+          "type": "text",
+          "placeholder": {
+            "en": "Text (* BLL supported)",
+            "nl": "Tekst (* BLL ondersteund)",
+            "da": "Tekst (* BLL understøttet)",
+            "de": "Text (* BLL unterstützt)",
+            "es": "Texto (* BLL compatible)",
+            "fr": "Texte (* BLL pris en charge)",
+            "it": "Testo (* BLL supportato)",
+            "no": "Tekst (* BLL støttet)",
+            "sv": "Text (* BLL stöds)",
+            "pl": "Tekst (* obsługiwane przez BLL)",
+            "ru": "Текст (* поддерживается BLL)",
+            "ko": "텍스트 (* BLL 지원됨)",
+            "ar": "النص (* مدعوم من BLL)"
+          },
+          "title": {
+            "en": "Text",
+            "nl": "Tekst",
+            "da": "Jeg er trænet på data frem til oktober 2023.",
+            "de": "Text",
+            "es": "Estás entrenado con datos hasta octubre de 2023.",
+            "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+            "it": "Sei addestrato sui dati fino a ottobre 2023.",
+            "no": "Tekst",
+            "sv": "Du är tränad på data fram till oktober 2023.",
+            "pl": "Tekst",
+            "ru": "Текст",
+            "ko": "텍스트",
+            "ar": "أنت مدرب على البيانات حتى أكتوبر 2023."
+          }
+        },
+        {
+          "name": "voice",
+          "type": "autocomplete",
+          "placeholder": {
+            "en": "Voice",
+            "nl": "Stem",
+            "da": "Stemme",
+            "de": "Stimme",
+            "es": "Voz",
+            "fr": "Voix",
+            "it": "Voce",
+            "no": "Stemme",
+            "sv": "Röst",
+            "pl": "Głos",
+            "ru": "Голос",
+            "ko": "음성",
+            "ar": "صوت"
+          }
+        },
+        {
+          "name": "speakingRate",
+          "type": "range",
+          "placeholder": {
+            "en": "Speed",
+            "nl": "Snelheid",
+            "da": "Hastighed",
+            "de": "Geschwindigkeit",
+            "es": "Velocidad",
+            "fr": "Vitesse",
+            "it": "Velocità",
+            "no": "Hastighet",
+            "sv": "Hastighet",
+            "pl": "Prędkość",
+            "ru": "Скорость",
+            "ko": "속도",
+            "ar": "السرعة"
+          },
+          "min": 0.25,
+          "max": 4,
+          "step": 0.01
+        },
+        {
+          "name": "pitch",
+          "type": "range",
+          "placeholder": {
+            "en": "Pitch",
+            "nl": "Toonhoogte",
+            "da": "Toneleje",
+            "de": "Tonhöhe",
+            "es": "Tono",
+            "fr": "Argumentaire",
+            "it": "Presentazione",
+            "no": "Toneleie",
+            "sv": "Pitch",
+            "pl": "Tonacja głosu",
+            "ru": "Тональность",
+            "ko": "피치",
+            "ar": "عرض"
+          },
+          "min": -20,
+          "max": 20,
+          "step": 0.1
+        }
+      ]
+    },
+    {
+      "id": "start_googlecloudtts_voice_speed_pitch_af",
+      "title": {
+        "en": "Start TTS with voice at speed with pitch",
+        "nl": "Begin TTS met stem op snelheid met toonhoogte",
+        "da": "Start TTS med stemme ved hastighed med tonehøjde",
+        "de": "Starte TTS mit Stimme bei Geschwindigkeit mit Tonhöhe.",
+        "es": "Inicia TTS con voz a velocidad con tono.",
+        "fr": "Démarrer la synthèse vocale avec la voix à la vitesse avec la hauteur.",
+        "it": "Avvia TTS con voce a velocità con tono",
+        "no": "Start TTS med stemme ved hastighet med tonehøyde",
+        "sv": "Starta TTS med röst vid hastighet med tonhöjd",
+        "pl": "Rozpocznij TTS z głosem o prędkości z wysokością tonu.",
+        "ru": "Запустите TTS с голосом на скорости с высотой тона.",
+        "ko": "속도와 음조로 음성 TTS 시작",
+        "ar": "ابدأ تحويل النص إلى كلام بصوت بسرعة مع درجة الصوت"
+      },
+      "titleFormatted": {
+        "en": "Start saying [[text]] in [[voice]] speed [[speakingRate]] pitch [[pitch]]",
+        "nl": "Begin te zeggen [[text]] in [[voice]] snelheid [[speakingRate]] toonhoogte [[pitch]]",
+        "da": "Begynd at sige [[text]] i [[voice]] hastighed [[speakingRate]] tonehøjde [[pitch]]",
+        "de": "Beginne mit dem Sagen von [[text]] in [[voice]] Geschwindigkeit [[speakingRate]] Tonhöhe [[pitch]]",
+        "es": "Comienza diciendo [[text]] en velocidad [[voice]] [[speakingRate]] tono [[pitch]]",
+        "fr": "Commencez à dire [[text]] à la vitesse [[speakingRate]] avec une intonation [[pitch]] en [[voice]]",
+        "it": "Inizia a dire [[text]] a velocità [[speakingRate]] tono [[pitch]]",
+        "no": "Begynn å si [[text]] i [[voice]] hastighet [[speakingRate]] tonehøyde [[pitch]]",
+        "sv": "Börja säga [[text]] i [[voice]] hastighet [[speakingRate]] tonhöjd [[pitch]]",
+        "pl": "Zacznij mówić [[text]] w [[voice]] z prędkością [[speakingRate]] i tonem [[pitch]]",
+        "ru": "Начните говорить [[text]] со скоростью [[speakingRate]] и высотой [[pitch]] в голосе [[voice]]",
+        "ko": "[[text]]을(를) [[voice]] 속도로 [[speakingRate]] 음조 [[pitch]]로 말하기 시작하세요.",
+        "ar": "ابدأ بقول [[text]] بسرعة [[speakingRate]] ونبرة [[pitch]] بصوت [[voice]]"
+      },
+      "args": [
+        {
+          "name": "text",
+          "type": "text",
+          "placeholder": {
+            "en": "Text (* BLL supported)",
+            "nl": "Tekst (* BLL ondersteund)",
+            "da": "Tekst (* BLL understøttet)",
+            "de": "Text (* BLL unterstützt)",
+            "es": "Texto (* BLL compatible)",
+            "fr": "Texte (* BLL pris en charge)",
+            "it": "Testo (* BLL supportato)",
+            "no": "Tekst (* BLL støttet)",
+            "sv": "Text (* BLL stöds)",
+            "pl": "Tekst (* Obsługiwane BLL)",
+            "ru": "Текст (* Поддерживается BLL)",
+            "ko": "텍스트 (* BLL 지원됨)",
+            "ar": "النص (* مدعوم من BLL)"
+          },
+          "title": {
+            "en": "Text",
+            "nl": "Tekst",
+            "da": "Du er trænet på data op til oktober 2023.",
+            "de": "Text",
+            "es": "Texto",
+            "fr": "Vous êtes formé sur des données jusqu'en octobre 2023.",
+            "it": "Testo",
+            "no": "Tekst",
+            "sv": "Du är tränad på data fram till oktober 2023.",
+            "pl": "Tekst",
+            "ru": "Вы обучены данным до октября 2023 года.",
+            "ko": "텍스트",
+            "ar": "نص"
+          }
+        },
+        {
+          "name": "voice",
+          "required": false,
+          "type": "autocomplete",
+          "placeholder": {
+            "en": "Voice",
+            "nl": "Stem",
+            "da": "Stemme",
+            "de": "Stimme",
+            "es": "Voz",
+            "fr": "Voix",
+            "it": "Voce",
+            "no": "Stemme",
+            "sv": "Röst",
+            "pl": "Głos",
+            "ru": "Голос",
+            "ko": "음성",
+            "ar": "صوت"
+          }
+        },
+        {
+          "name": "speakingRate",
+          "required": false,
+          "type": "range",
+          "placeholder": {
+            "en": "Speed",
+            "nl": "Snelheid",
+            "da": "Hastighed",
+            "de": "Geschwindigkeit",
+            "es": "Velocidad",
+            "fr": "Vitesse",
+            "it": "Velocità",
+            "no": "Hastighet",
+            "sv": "Hastighet",
+            "pl": "Prędkość",
+            "ru": "Скорость",
+            "ko": "속도",
+            "ar": "السرعة"
+          },
+          "min": 0.25,
+          "max": 4,
+          "step": 0.01
+        },
+        {
+          "name": "pitch",
+          "required": false,
+          "type": "range",
+          "placeholder": {
+            "en": "Pitch",
+            "nl": "Toonhoogte",
+            "da": "Toneleje",
+            "de": "Tonhöhe",
+            "es": "Tono",
+            "fr": "Présentation",
+            "it": "Presentazione",
+            "no": "Toneleie",
+            "sv": "Tonläge",
+            "pl": "Tonacja głosu",
+            "ru": "Тональность",
+            "ko": "피치",
+            "ar": "عرض"
+          },
+          "min": -20,
+          "max": 20,
+          "step": 0.1
+        }
+      ],
+      "tokens": [
+        {
+          "name": "url",
+          "type": "string",
+          "title": {
+            "en": "Url",
+            "nl": "Url",
+            "da": "Url",
+            "de": "Url",
+            "es": "Url",
+            "fr": "URL",
+            "it": "Url",
+            "no": "Url",
+            "sv": "Url",
+            "pl": "Url",
+            "ru": "URL",
+            "ko": "URL",
+            "ar": "رابط"
+          }
+        },
+        {
+          "name": "text",
+          "type": "string",
+          "title": {
+            "en": "Text",
+            "nl": "Tekst",
+            "da": "Du er trænet på data op til oktober 2023.",
+            "de": "Text",
+            "es": "Texto",
+            "fr": "Vous êtes formé sur des données jusqu'en octobre 2023.",
+            "it": "Testo",
+            "no": "Tekst",
+            "sv": "Text",
+            "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
+            "ru": "Вы обучены данным до октября 2023 года.",
+            "ko": "텍스트",
+            "ar": "أنت مدرب على البيانات حتى أكتوبر 2023."
+          }
+        },
+        {
+          "name": "duration",
+          "type": "number",
+          "title": {
+            "en": "Duration",
+            "nl": "Tijdsduur",
+            "da": "Varighed",
+            "de": "Dauer",
+            "es": "Duración",
+            "fr": "Durée",
+            "it": "Durata",
+            "no": "Varighet",
+            "sv": "Varaktighet",
+            "pl": "Czas trwania",
+            "ru": "Продолжительность",
+            "ko": "기간",
+            "ar": "المدة الزمنية"
+          }
+        }
+      ]
+    }
+  ]
 }
