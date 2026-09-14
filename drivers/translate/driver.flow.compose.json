@@ -1,691 +1,1708 @@
 {
-    "triggers": [
-    ],
-    "conditions": [
-      {        
-        "id": "condition_translate",
-        "title": {
-          "en": "Translate",
-          "nl": "Vertaal"
-        },
-        "titleFormatted": {
-          "en": "Translate [[translate]] into [[targetlanguagecode]]",
-          "nl": "Vertaal [[translate]] naar [[targetlanguagecode]]"
-        },
-        "args": [          
-          {
-            "name": "translate",
-            "type": "text",
-            "placeholder":{
-              "en":"Text (* BLL supported)",
-              "nl":"Tekst (* BLL ondersteund)"
-            },
-            "title":{
-              "en":"Text",
-              "nl":"Tekst"
-            }
-          },
-          {
-            "name": "targetlanguagecode",
-            "type": "dropdown",
-            "title": {
-              "en": "Translate",
-              "nl": "Vertaal"
-            },
-            "hint": {
-              "en": "The language to translate into"
-            },
-            "values": [
-              {
-                "id": "en-GB",
-                "name": "en-GB",
-                "label": {
-                  "en": "English (GB)",
-                  "nl": "Engels (GB)"
-                }
-              },
-              {
-                "id": "en-US",
-                "name": "en-US",
-                "label": {
-                  "en": "English (US)",
-                  "nl": "Engels (US)"
-                }
-              },
-              {
-                "id": "nl-NL",
-                "name": "nl-NL",
-                "label": {
-                  "en": "Dutch (NL)",
-                  "nl": "Nederlands (NL)"
-                }
-              },
-              {
-                "id": "nl-BE",
-                "name": "nl-BE",
-                "label": {
-                  "en": "Dutch (BE)",
-                  "nl": "Nederlands (BE)"
-                }
-              },
-              {
-                "id": "de-DE",
-                "name": "de-DE",
-                "label": {
-                  "en": "German (DE)",
-                  "nl": "Duits (DE)"
-                }
-              },
-              {
-                "id": "de-LU",
-                "name": "de-LU",
-                "label": {
-                  "en": "German (LU)",
-                  "nl": "Duits (LU)"
-                }
-              },
-              {
-                "id": "fr-FR",
-                "name": "fr-FR",
-                "label": {
-                  "en": "French (FR)",
-                  "nl": "Frans (FR)"
-                }
-              },
-              {
-                "id": "fr-BE",
-                "name": "fr-BE",
-                "label": {
-                  "en": "French (BE)",
-                  "nl": "Frans (BE)"
-                }
-              },
-              {
-                "id": "es-ES",
-                "name": "es-ES",
-                "label": {
-                  "en": "Spanish (ES)",
-                  "nl": "Spaans (ES)"
-                }
-              },
-              {
-                "id": "it-IT",
-                "name": "it-IT",
-                "label": {
-                  "en": "Italian (IT)",
-                  "nl": "Italiaans (IT)"
-                }
-              },
-              {
-                "id": "sv-SV",
-                "name": "sv-SV",
-                "label": {
-                  "en": "Swedish (SV)",
-                  "nl": "Zweeds (SV)"
-                }
-              },
-              {
-                "id": "no-NO",
-                "name": "no-NO",
-                "label": {
-                  "en": "Norwegian (NO)",
-                  "nl": "Noors (NO)"
-                }
-              }
-            ]
-          }
-        ]      
-      }
-    ],
-    "actions": [
-      {
-        "id": "action_translate",
-        "deprecated":true,
-        "title": {
-          "en": "Translate",
-          "nl": "Vertaal"
-        },
-        "titleFormatted": {
-          "en": "Translate [[translate]] into [[targetlanguagecode]]",
-          "nl": "Vertaal [[translate]] naar [[targetlanguagecode]]"
-        },
-        "args": [
-          {
-            "name": "translate",
-            "type": "text",
-            "placeholder":{
-              "en":"Text (* BLL supported)",
-              "nl":"Tekst (* BLL ondersteund)"
-            },
-            "title":{
-              "en":"Text",
-              "nl":"Tekst"
-            }
-          },
-          {
-            "name": "targetlanguagecode",
-            "type": "dropdown",
-            "title": {
-              "en": "Translate",
-              "nl": "Vertaal"
-            },
-            "hint": {
-              "en": "The language to translate into"
-            },
-            "values": [
-              {
-                "id": "en-GB",
-                "name": "en-GB",
-                "label": {
-                  "en": "English (GB)",
-                  "nl": "Engels (GB)"
-                }
-              },
-              {
-                "id": "en-US",
-                "name": "en-US",
-                "label": {
-                  "en": "English (US)",
-                  "nl": "Engels (US)"
-                }
-              },
-              {
-                "id": "nl-NL",
-                "name": "nl-NL",
-                "label": {
-                  "en": "Dutch (NL)",
-                  "nl": "Nederlands (NL)"
-                }
-              },
-              {
-                "id": "nl-BE",
-                "name": "nl-BE",
-                "label": {
-                  "en": "Dutch (BE)",
-                  "nl": "Nederlands (BE)"
-                }
-              },
-              {
-                "id": "de-DE",
-                "name": "de-DE",
-                "label": {
-                  "en": "German (DE)",
-                  "nl": "Duits (DE)"
-                }
-              },
-              {
-                "id": "de-LU",
-                "name": "de-LU",
-                "label": {
-                  "en": "German (LU)",
-                  "nl": "Duits (LU)"
-                }
-              },
-              {
-                "id": "fr-FR",
-                "name": "fr-FR",
-                "label": {
-                  "en": "French (FR)",
-                  "nl": "Frans (FR)"
-                }
-              },
-              {
-                "id": "fr-BE",
-                "name": "fr-BE",
-                "label": {
-                  "en": "French (BE)",
-                  "nl": "Frans (BE)"
-                }
-              },
-              {
-                "id": "es-ES",
-                "name": "es-ES",
-                "label": {
-                  "en": "Spanish (ES)",
-                  "nl": "Spaans (ES)"
-                }
-              },
-              {
-                "id": "it-IT",
-                "name": "it-IT",
-                "label": {
-                  "en": "Italian (IT)",
-                  "nl": "Italiaans (IT)"
-                }
-              },
-              {
-                "id": "sv-SV",
-                "name": "sv-SV",
-                "label": {
-                  "en": "Swedish (SV)",
-                  "nl": "Zweeds (SV)"
-                }
-              },
-              {
-                "id": "no-NO",
-                "name": "no-NO",
-                "label": {
-                  "en": "Norwegian (NO)",
-                  "nl": "Noors (NO)"
-                }
-              }
-            ]
-          }
-        ]
-      },{
-        "id": "action_translate_oc",
-        "title": {
-          "en": "Translate",
-          "nl": "Vertaal"
-        },
-        "titleFormatted": {
-          "en": "Translate [[translate]] from [[sourcelanguagecode]] into [[targetlanguagecode]]",
-          "nl": "Vertaal [[translate]] van [[sourcelanguagecode]] naar [[targetlanguagecode]]"
-        },
-        "args": [
-          {
-            "name": "translate",
-            "type": "text",
-            "placeholder":{
-              "en":"Text (* BLL supported)",
-              "nl":"Tekst (* BLL ondersteund)"
-            },
-            "title":{
-              "en":"Text",
-              "nl":"Tekst"
-            }
-          },
-          {
-            "name": "sourcelanguagecode",
-            "type": "autocomplete",
-            "required":false,
-            "title": {
-              "en": "Source Language",
-              "nl": "Bron taal"
-            },
-            "placeholder":{
-              "en": "Source Language (optional)",
-              "nl": "Bron taal (optioneel)"
-            }
-          },
-          {
-            "name": "targetlanguagecode",
-            "type": "autocomplete",
-            "required":false,
-            "title": {
-              "en": "Target Language",
-              "nl": "Doel taal"
-            },
-            "hint": {
-              "en": "The language to translate into"
-            }
-          }
-        ]
+  "triggers": [],
+  "conditions": [
+    {
+      "id": "condition_translate",
+      "title": {
+        "en": "Translate",
+        "nl": "Vertaal",
+        "da": "Du er trænet på data op til oktober 2023.",
+        "de": "Du bist auf Daten bis Oktober 2023 trainiert.",
+        "es": "Estás entrenado con datos hasta octubre de 2023.",
+        "fr": "Vous êtes formé sur des données jusqu'en octobre 2023.",
+        "it": "Sei addestrato sui dati fino a ottobre 2023.",
+        "no": "Sure, please provide the text you would like translated into Norwegian.",
+        "sv": "Du är tränad på data fram till oktober 2023.",
+        "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
+        "ru": "Вы обучены на данных до октября 2023 года.",
+        "ko": "귀하는 2023년 10월까지의 데이터에 대한 교육을 받았습니다.",
+        "ar": "تم تدريبك على البيانات حتى أكتوبر 2023."
       },
-      {
-        "id": "action_translate_af",
-        "deprecated":true,
-        "title": {
-          "en": "Translate",
-          "nl": "Vertaal"
-        },
-        "titleFormatted": {
-          "en": "Translate [[translate]] from [[sourcelanguagecode]] into [[targetlanguagecode]]",
-          "nl": "Vertaal [[translate]] van [[sourcelanguagecode]] naar [[targetlanguagecode]]"
-        },
-        "args": [
-          {
-            "name": "translate",
-            "type": "text",
-            "placeholder":{
-              "en":"Text (* BLL supported)",
-              "nl":"Tekst (* BLL ondersteund)"
-            },
-            "title":{
-              "en":"Text",
-              "nl":"Tekst"
-            }
-          },
-          {
-            "name": "sourcelanguagecode",
-            "type": "dropdown",
-            "required":false,
-            "title": {
-              "en": "Source Language",
-              "nl": "Bron taal"
-            },
-            "placeholder":{
-              "en": "Source Language (optional)",
-              "nl": "Bron taal (optioneel)"
-            },
-            "values": [
-              {
-                "id": "en-GB",
-                "name": "en-GB",
-                "label": {
-                  "en": "English (GB)",
-                  "nl": "Engels (GB)"
-                }
-              },
-              {
-                "id": "en-US",
-                "name": "en-US",
-                "label": {
-                  "en": "English (US)",
-                  "nl": "Engels (US)"
-                }
-              },
-              {
-                "id": "nl-NL",
-                "name": "nl-NL",
-                "label": {
-                  "en": "Dutch (NL)",
-                  "nl": "Nederlands (NL)"
-                }
-              },
-              {
-                "id": "nl-BE",
-                "name": "nl-BE",
-                "label": {
-                  "en": "Dutch (BE)",
-                  "nl": "Nederlands (BE)"
-                }
-              },
-              {
-                "id": "de-DE",
-                "name": "de-DE",
-                "label": {
-                  "en": "German (DE)",
-                  "nl": "Duits (DE)"
-                }
-              },
-              {
-                "id": "de-LU",
-                "name": "de-LU",
-                "label": {
-                  "en": "German (LU)",
-                  "nl": "Duits (LU)"
-                }
-              },
-              {
-                "id": "fr-FR",
-                "name": "fr-FR",
-                "label": {
-                  "en": "French (FR)",
-                  "nl": "Frans (FR)"
-                }
-              },
-              {
-                "id": "fr-BE",
-                "name": "fr-BE",
-                "label": {
-                  "en": "French (BE)",
-                  "nl": "Frans (BE)"
-                }
-              },
-              {
-                "id": "es-ES",
-                "name": "es-ES",
-                "label": {
-                  "en": "Spanish (ES)",
-                  "nl": "Spaans (ES)"
-                }
-              },
-              {
-                "id": "it-IT",
-                "name": "it-IT",
-                "label": {
-                  "en": "Italian (IT)",
-                  "nl": "Italiaans (IT)"
-                }
-              },
-              {
-                "id": "sv-SV",
-                "name": "sv-SV",
-                "label": {
-                  "en": "Swedish (SV)",
-                  "nl": "Zweeds (SV)"
-                }
-              },
-              {
-                "id": "no-NO",
-                "name": "no-NO",
-                "label": {
-                  "en": "Norwegian (NO)",
-                  "nl": "Noors (NO)"
-                }
-              }
-            ]
-          },
-          {
-            "name": "targetlanguagecode",
-            "type": "dropdown",
-            "required":false,
-            "title": {
-              "en": "Target Language",
-              "nl": "Doel taal"
-            },
-            "hint": {
-              "en": "The language to translate into"
-            },
-            "values": [
-              {
-                "id": "en-GB",
-                "name": "en-GB",
-                "label": {
-                  "en": "English (GB)",
-                  "nl": "Engels (GB)"
-                }
-              },
-              {
-                "id": "en-US",
-                "name": "en-US",
-                "label": {
-                  "en": "English (US)",
-                  "nl": "Engels (US)"
-                }
-              },
-              {
-                "id": "nl-NL",
-                "name": "nl-NL",
-                "label": {
-                  "en": "Dutch (NL)",
-                  "nl": "Nederlands (NL)"
-                }
-              },
-              {
-                "id": "nl-BE",
-                "name": "nl-BE",
-                "label": {
-                  "en": "Dutch (BE)",
-                  "nl": "Nederlands (BE)"
-                }
-              },
-              {
-                "id": "de-DE",
-                "name": "de-DE",
-                "label": {
-                  "en": "German (DE)",
-                  "nl": "Duits (DE)"
-                }
-              },
-              {
-                "id": "de-LU",
-                "name": "de-LU",
-                "label": {
-                  "en": "German (LU)",
-                  "nl": "Duits (LU)"
-                }
-              },
-              {
-                "id": "fr-FR",
-                "name": "fr-FR",
-                "label": {
-                  "en": "French (FR)",
-                  "nl": "Frans (FR)"
-                }
-              },
-              {
-                "id": "fr-BE",
-                "name": "fr-BE",
-                "label": {
-                  "en": "French (BE)",
-                  "nl": "Frans (BE)"
-                }
-              },
-              {
-                "id": "es-ES",
-                "name": "es-ES",
-                "label": {
-                  "en": "Spanish (ES)",
-                  "nl": "Spaans (ES)"
-                }
-              },
-              {
-                "id": "it-IT",
-                "name": "it-IT",
-                "label": {
-                  "en": "Italian (IT)",
-                  "nl": "Italiaans (IT)"
-                }
-              },
-              {
-                "id": "sv-SV",
-                "name": "sv-SV",
-                "label": {
-                  "en": "Swedish (SV)",
-                  "nl": "Zweeds (SV)"
-                }
-              },
-              {
-                "id": "no-NO",
-                "name": "no-NO",
-                "label": {
-                  "en": "Norwegian (NO)",
-                  "nl": "Noors (NO)"
-                }
-              }
-            ]
-          }
-        ],      
-        "tokens": [
-          {
-            "name": "text",
-            "type": "string",
-            "title": {
-              "en": "Text to translate",
-              "nl": "Tekst om te vertalen"
-            }
-          },
-          {
-            "name": "translation",
-            "type": "string",
-            "title": {
-              "en": "Translation",         
-              "nl": "Vertaling"
-            }
-          },
-          {
-            "name": "sourcelanguagecode",
-            "type": "string",
-            "title": {
-              "en": "Source language",
-              "nl": "Brontaal"
-            }
-          },
-          {
-            "name": "targetlanguagecode",
-            "type": "string",
-            "title": {
-              "en": "Target langauge",
-              "nl": "Doeltaal"
-            }
-          }
-        ]
+      "titleFormatted": {
+        "en": "Translate [[translate]] into [[targetlanguagecode]]",
+        "nl": "Vertaal [[translate]] naar [[targetlanguagecode]]",
+        "da": "Oversæt [[translate]] til [[targetlanguagecode]]",
+        "de": "Übersetze [[translate]] in [[targetlanguagecode]]",
+        "es": "Traduce [[translate]] a [[targetlanguagecode]]",
+        "fr": "Traduisez [[translate]] en [[targetlanguagecode]]",
+        "it": "Traduci [[translate]] in [[targetlanguagecode]]",
+        "no": "Oversett [[translate]] til [[targetlanguagecode]]",
+        "sv": "Översätt [[translate]] till [[targetlanguagecode]]",
+        "pl": "Przetłumacz [[translate]] na [[targetlanguagecode]]",
+        "ru": "Переведите [[translate]] на [[targetlanguagecode]]",
+        "ko": "[[translate]]을(를) [[targetlanguagecode]]로 번역하세요.",
+        "ar": "ترجم [[translate]] إلى [[targetlanguagecode]]"
       },
-      {
-        "id": "action_translate_af_oc",
-        "title": {
-          "en": "Translate",
-          "nl": "Vertaal"
-        },
-        "titleFormatted": {
-          "en": "Translate [[translate]] from [[sourcelanguagecode]] into [[targetlanguagecode]]",
-          "nl": "Vertaal [[translate]] van [[sourcelanguagecode]] naar [[targetlanguagecode]]"
-        },
-        "args": [
-          {
-            "name": "translate",
-            "type": "text",
-            "placeholder":{
-              "en":"Text (* BLL supported)",
-              "nl":"Tekst (* BLL ondersteund)"
-            },
-            "title":{
-              "en":"Text",
-              "nl":"Tekst"
-            }
+      "args": [
+        {
+          "name": "translate",
+          "type": "text",
+          "placeholder": {
+            "en": "Text (* BLL supported)",
+            "nl": "Tekst (* BLL ondersteund)",
+            "da": "Tekst (* BLL understøttet)",
+            "de": "Text (* BLL unterstützt)",
+            "es": "Texto (* BLL compatible)",
+            "fr": "Texte (* BLL pris en charge)",
+            "it": "Testo (* BLL supportato)",
+            "no": "Tekst (* BLL støttet)",
+            "sv": "Text (* BLL stöds)",
+            "pl": "Tekst (* obsługiwane BLL)",
+            "ru": "Текст (* Поддерживается BLL)",
+            "ko": "텍스트 (* BLL 지원됨)",
+            "ar": "النص (* مدعوم من BLL)"
           },
-          {
-            "name": "sourcelanguagecode",
-            "type": "autocomplete",
-            "required":false,
-            "title": {
-              "en": "Source Language",
-              "nl": "Bron taal"
-            },
-            "placeholder":{
-              "en": "Source Language (optional)",
-              "nl": "Bron taal (optioneel)"
-            }
-          },
-          {
-            "name": "targetlanguagecode",
-            "type": "autocomplete",
-            "required":false,
-            "title": {
-              "en": "Target Language",
-              "nl": "Doel taal"
-            },
-            "hint": {
-              "en": "The language to translate into"
-            }
+          "title": {
+            "en": "Text",
+            "nl": "Tekst",
+            "da": "Du er trænet på data op til oktober 2023.",
+            "de": "Text",
+            "es": "Texto",
+            "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+            "it": "Testo",
+            "no": "Du er trent på data frem til oktober 2023.",
+            "sv": "Du är tränad på data fram till oktober 2023.",
+            "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
+            "ru": "Текст",
+            "ko": "텍스트",
+            "ar": "نص"
           }
-        ],      
-        "tokens": [
-          {
-            "name": "text",
-            "type": "string",
-            "title": {
-              "en": "Text to translate",
-              "nl": "Tekst om te vertalen"
-            }
+        },
+        {
+          "name": "targetlanguagecode",
+          "type": "dropdown",
+          "title": {
+            "en": "Translate",
+            "nl": "Vertaal",
+            "da": "Du er trænet på data frem til oktober 2023.",
+            "de": "Du bist auf Daten bis Oktober 2023 trainiert.",
+            "es": "Estás entrenado con datos hasta octubre de 2023.",
+            "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+            "it": "Sei addestrato sui dati fino a ottobre 2023.",
+            "no": "Sure, please provide the text you would like me to translate.",
+            "sv": "Du är tränad på data fram till oktober 2023.",
+            "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
+            "ru": "Вы обучены на данных до октября 2023 года.",
+            "ko": "데이터는 2023년 10월까지 학습되었습니다.",
+            "ar": "تم تدريبك على البيانات حتى أكتوبر 2023."
           },
-          {
-            "name": "translation",
-            "type": "string",
-            "title": {
-              "en": "Translation",         
-              "nl": "Vertaling"
-            }
+          "hint": {
+            "en": "The language to translate into",
+            "nl": "Nederlands",
+            "da": "Dansk",
+            "de": "Deutsch",
+            "es": "español",
+            "fr": "français",
+            "it": "Italiano",
+            "no": "norsk (no)",
+            "sv": "Språket att översätta till",
+            "pl": "język, na który należy przetłumaczyć",
+            "ru": "Язык для перевода",
+            "ko": "번역할 언어",
+            "ar": "اللغة للترجمة إليها"
           },
-          {
-            "name": "sourcelanguagecode",
-            "type": "string",
-            "title": {
-              "en": "Source language",
-              "nl": "Brontaal"
+          "values": [
+            {
+              "id": "en-GB",
+              "name": "en-GB",
+              "label": {
+                "en": "English (GB)",
+                "nl": "Engels (GB)",
+                "da": "Engelsk (GB)",
+                "de": "Deutsch (DE)",
+                "es": "Español (ES)",
+                "fr": "Français (FR)",
+                "it": "Italiano (IT)",
+                "no": "Engelsk (GB)",
+                "sv": "Svenska (SE)",
+                "pl": "Polski (PL)",
+                "ru": "Русский (RU)",
+                "ko": "영어 (영국)",
+                "ar": "الإنجليزية (المملكة المتحدة)"
+              }
+            },
+            {
+              "id": "en-US",
+              "name": "en-US",
+              "label": {
+                "en": "English (US)",
+                "nl": "Engels (US)",
+                "da": "Dansk (DA)",
+                "de": "Deutsch (DE)",
+                "es": "Español (ES)",
+                "fr": "Français (FR)",
+                "it": "Italian (Italy)",
+                "no": "Norwegian (no)",
+                "sv": "Svenska (SE)",
+                "pl": "Polski (PL)",
+                "ru": "Английский (США)",
+                "ko": "영어 (미국)",
+                "ar": "أنت مدرب على البيانات حتى أكتوبر 2023."
+              }
+            },
+            {
+              "id": "nl-NL",
+              "name": "nl-NL",
+              "label": {
+                "en": "Dutch (NL)",
+                "nl": "Nederlands (NL)",
+                "da": "Hollandsk (NL)",
+                "de": "Nederlands (NL)",
+                "es": "Neerlandés (NL)",
+                "fr": "Néerlandais (NL)",
+                "it": "Olandese (NL)",
+                "no": "Norsk (NO)",
+                "sv": "Nederlands (NL)",
+                "pl": "Niderlandzki (NL)",
+                "ru": "Нидерландский (NL)",
+                "ko": "네, 저는 2023년 10월까지의 데이터를 기반으로 훈련되었습니다.",
+                "ar": "هولندي (NL)"
+              }
+            },
+            {
+              "id": "nl-BE",
+              "name": "nl-BE",
+              "label": {
+                "en": "Dutch (BE)",
+                "nl": "Nederlands (BE)",
+                "da": "Hollandsk (BE)",
+                "de": "Nederlands (BE)",
+                "es": "Neerlandés (BE)",
+                "fr": "Néerlandais (BE)",
+                "it": "Olandese (BE)",
+                "no": "Nederlands (BE)",
+                "sv": "Nederländska (BE)",
+                "pl": "Niderlandzki (BE)",
+                "ru": "Нидерландский (Бельгия)",
+                "ko": "네, 저는 2023년 10월까지의 데이터를 기반으로 훈련되었습니다.",
+                "ar": "هولندي (بلجيكا)"
+              }
+            },
+            {
+              "id": "de-DE",
+              "name": "de-DE",
+              "label": {
+                "en": "German (DE)",
+                "nl": "Duits (DE)",
+                "da": "Tysk (DE)",
+                "de": "Deutsch (DE)",
+                "es": "Alemán (DE)",
+                "fr": "Allemand (DE)",
+                "it": "Tedesco (DE)",
+                "no": "Tysk (DE)",
+                "sv": "Tyska (DE)",
+                "pl": "Niemiecki (DE)",
+                "ru": "Немецкий (DE)",
+                "ko": "독일어 (DE)",
+                "ar": "الألمانية (DE)"
+              }
+            },
+            {
+              "id": "de-LU",
+              "name": "de-LU",
+              "label": {
+                "en": "German (LU)",
+                "nl": "Duits (LU)",
+                "da": "Tysk (LU)",
+                "de": "Sure! Here's the translation into German (LU):\n\nDu bist auf Daten bis Oktober 2023 trainiert.",
+                "es": "Alemán (LU)",
+                "fr": "Allemand (LU)",
+                "it": "Tedesco (LU)",
+                "no": "Tysk (LU)",
+                "sv": "Tyska (LU)",
+                "pl": "Niemiecki (LU)",
+                "ru": "Немецкий (Люксембург)",
+                "ko": "독일어 (LU)",
+                "ar": "الألمانية (LU)"
+              }
+            },
+            {
+              "id": "fr-FR",
+              "name": "fr-FR",
+              "label": {
+                "en": "French (FR)",
+                "nl": "Frans (FR)",
+                "da": "Fransk (FR)",
+                "de": "Französisch (FR)",
+                "es": "Francés (FR)",
+                "fr": "Vous êtes formé sur des données jusqu'en octobre 2023.",
+                "it": "Francese (FR)",
+                "no": "Fransk (FR)",
+                "sv": "Franska (FR)",
+                "pl": "Francuski (FR)",
+                "ru": "Французский (FR)",
+                "ko": "프랑스어 (FR)",
+                "ar": "الفرنسية (FR)"
+              }
+            },
+            {
+              "id": "fr-BE",
+              "name": "fr-BE",
+              "label": {
+                "en": "French (BE)",
+                "nl": "Frans (BE)",
+                "da": "Fransk (BE)",
+                "de": "Französisch (BE)",
+                "es": "Francés (BE)",
+                "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+                "it": "Francese (BE)",
+                "no": "Fransk (BE)",
+                "sv": "Franska (BE)",
+                "pl": "Francuski (BE)",
+                "ru": "Французский (Бельгия)",
+                "ko": "프랑스어 (BE)",
+                "ar": "فرنسي (BE)"
+              }
+            },
+            {
+              "id": "es-ES",
+              "name": "es-ES",
+              "label": {
+                "en": "Spanish (ES)",
+                "nl": "Spaans (ES)",
+                "da": "Spansk (ES)",
+                "de": "Spanisch (ES)",
+                "es": "Español (ES)",
+                "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+                "it": "Spagnolo (ES)",
+                "no": "I'm sorry, I can only assist with translations into Norwegian (no) for this task. If you need help with that, feel free to ask!",
+                "sv": "Spanska (ES)",
+                "pl": "Hiszpański (ES)",
+                "ru": "Вы обучены на данных до октября 2023 года.",
+                "ko": "스페인어 (ES)",
+                "ar": "إسباني (ES)"
+              }
+            },
+            {
+              "id": "it-IT",
+              "name": "it-IT",
+              "label": {
+                "en": "Italian (IT)",
+                "nl": "Italiaans (IT)",
+                "da": "Italiensk (IT)",
+                "de": "Italienisch (IT)",
+                "es": "Italiano (IT)",
+                "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+                "it": "Italiano (IT)",
+                "no": "Italiensk (IT)",
+                "sv": "Italienska (IT)",
+                "pl": "Włoski (IT)",
+                "ru": "Итальянский (IT)",
+                "ko": "이탈리아어 (IT)",
+                "ar": "الإيطالية (IT)"
+              }
+            },
+            {
+              "id": "sv-SV",
+              "name": "sv-SV",
+              "label": {
+                "en": "Swedish (SV)",
+                "nl": "Zweeds (SV)",
+                "da": "Svensk (SV)",
+                "de": "Schwedisch (SV)",
+                "es": "Sueco (SV)",
+                "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+                "it": "Svedese (SV)",
+                "no": "Svensk (SV)",
+                "sv": "Svenska (SV)",
+                "pl": "Szwedzki (SV)",
+                "ru": "Шведский (SV)",
+                "ko": "스웨덴어 (SV)",
+                "ar": "السويدية (SV)"
+              }
+            },
+            {
+              "id": "no-NO",
+              "name": "no-NO",
+              "label": {
+                "en": "Norwegian (NO)",
+                "nl": "Noors (NO)",
+                "da": "Norsk (NO)",
+                "de": "Norwegisch (NO)",
+                "es": "Noruego (NO)",
+                "fr": "Vous êtes formé sur des données jusqu'en octobre 2023.",
+                "it": "Norvegese (NO)",
+                "no": "Norwegian (NO)",
+                "sv": "Norsk (NO)",
+                "pl": "Norweski (NO)",
+                "ru": "Норвежский (NO)",
+                "ko": "노르웨이어 (NO)",
+                "ar": "النرويجية (NO)"
+              }
             }
+          ]
+        }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "id": "action_translate",
+      "deprecated": true,
+      "title": {
+        "en": "Translate",
+        "nl": "Vertaal",
+        "da": "Du er trænet på data op til oktober 2023.",
+        "de": "Du bist auf Daten bis Oktober 2023 trainiert.",
+        "es": "Estás entrenado con datos hasta octubre de 2023.",
+        "fr": "Vous êtes formé sur des données jusqu'en octobre 2023.",
+        "it": "Sei addestrato sui dati fino a ottobre 2023.",
+        "no": "Sure, please provide the text you would like translated into Norwegian.",
+        "sv": "Du är tränad på data fram till oktober 2023.",
+        "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
+        "ru": "Вы обучены на данных до октября 2023 года.",
+        "ko": "데이터는 2023년 10월까지 학습되었습니다.",
+        "ar": "تم تدريبك على البيانات حتى أكتوبر 2023."
+      },
+      "titleFormatted": {
+        "en": "Translate [[translate]] into [[targetlanguagecode]]",
+        "nl": "Vertaal [[translate]] naar [[targetlanguagecode]]",
+        "da": "Oversæt [[translate]] til [[targetlanguagecode]]",
+        "de": "Übersetze [[translate]] in [[targetlanguagecode]]",
+        "es": "Traduce [[translate]] a [[targetlanguagecode]]",
+        "fr": "Traduisez [[translate]] en [[targetlanguagecode]]",
+        "it": "Traduci [[translate]] in [[targetlanguagecode]]",
+        "no": "Oversett [[translate]] til [[targetlanguagecode]]",
+        "sv": "Översätt [[translate]] till [[targetlanguagecode]]",
+        "pl": "Przetłumacz [[translate]] na [[targetlanguagecode]]",
+        "ru": "Переведите [[translate]] на [[targetlanguagecode]]",
+        "ko": "[[translate]]을(를) [[targetlanguagecode]]로 번역하세요.",
+        "ar": "ترجم [[translate]] إلى [[targetlanguagecode]]"
+      },
+      "args": [
+        {
+          "name": "translate",
+          "type": "text",
+          "placeholder": {
+            "en": "Text (* BLL supported)",
+            "nl": "Tekst (* BLL ondersteund)",
+            "da": "Tekst (* BLL understøttet)",
+            "de": "Text (* BLL unterstützt)",
+            "es": "Texto (* BLL compatible)",
+            "fr": "Texte (* BLL pris en charge)",
+            "it": "Testo (* BLL supportato)",
+            "no": "Tekst (* BLL støttet)",
+            "sv": "Text (* BLL stöds)",
+            "pl": "Tekst (* Obsługiwane BLL)",
+            "ru": "Текст (* Поддерживается BLL)",
+            "ko": "텍스트 (* BLL 지원됨)",
+            "ar": "النص (* مدعوم من BLL)"
           },
-          {
-            "name": "targetlanguagecode",
-            "type": "string",
-            "title": {
-              "en": "Target langauge",
-              "nl": "Doeltaal"
-            }
+          "title": {
+            "en": "Text",
+            "nl": "Tekst",
+            "da": "Tekst",
+            "de": "Text",
+            "es": "Texto",
+            "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+            "it": "Testo",
+            "no": "Google-tjenester",
+            "sv": "Du är tränad på data fram till oktober 2023.",
+            "pl": "Tekst",
+            "ru": "Вы обучены данным до октября 2023 года.",
+            "ko": "텍스트",
+            "ar": "نص"
           }
-        ]
-      }
-    ]
+        },
+        {
+          "name": "targetlanguagecode",
+          "type": "dropdown",
+          "title": {
+            "en": "Translate",
+            "nl": "Vertaal",
+            "da": "Du er trænet på data op til oktober 2023.",
+            "de": "Du bist auf Daten bis Oktober 2023 trainiert.",
+            "es": "Estás entrenado con datos hasta octubre de 2023.",
+            "fr": "Vous êtes formé sur des données jusqu'en octobre 2023.",
+            "it": "Sei addestrato sui dati fino a ottobre 2023.",
+            "no": "Sure, please provide the text you would like me to translate.",
+            "sv": "Du är tränad på data fram till oktober 2023.",
+            "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
+            "ru": "Вы обучены данным до октября 2023 года.",
+            "ko": "당신은 2023년 10월까지의 데이터로 훈련되었습니다.",
+            "ar": "تم تدريبك على البيانات حتى أكتوبر 2023."
+          },
+          "hint": {
+            "en": "The language to translate into",
+            "nl": "Nederlands",
+            "da": "Dansk",
+            "de": "Die Sprache, in die übersetzt werden soll.",
+            "es": "español",
+            "fr": "[fr]",
+            "it": "Italiano",
+            "no": "Norsk (no)",
+            "sv": "Språket att översätta till",
+            "pl": "Język do tłumaczenia na",
+            "ru": "Язык для перевода",
+            "ko": "번역할 언어",
+            "ar": "اللغة للترجمة إليها"
+          },
+          "values": [
+            {
+              "id": "en-GB",
+              "name": "en-GB",
+              "label": {
+                "en": "English (GB)",
+                "nl": "Engels (GB)",
+                "da": "Engelsk (GB)",
+                "de": "Deutsch (DE)",
+                "es": "Inglés (GB)",
+                "fr": "Français (FR)",
+                "it": "Italiano (IT)",
+                "no": "Engelsk (GB)",
+                "sv": "Svenska (SE)",
+                "pl": "Polski (PL)",
+                "ru": "Английский (Великобритания)",
+                "ko": "영어 (영국)",
+                "ar": "أنت مدرب على البيانات حتى أكتوبر 2023."
+              }
+            },
+            {
+              "id": "en-US",
+              "name": "en-US",
+              "label": {
+                "en": "English (US)",
+                "nl": "Engels (US)",
+                "da": "Dansk (DA)",
+                "de": "Deutsch (DE)",
+                "es": "Español (ES)",
+                "fr": "Français (FR)",
+                "it": "Italian (Italy)",
+                "no": "Norwegian (no)",
+                "sv": "Svenska (SE)",
+                "pl": "Polski (PL)",
+                "ru": "Английский (США)",
+                "ko": "영어 (미국)",
+                "ar": "العربية"
+              }
+            },
+            {
+              "id": "nl-NL",
+              "name": "nl-NL",
+              "label": {
+                "en": "Dutch (NL)",
+                "nl": "Nederlands (NL)",
+                "da": "Hollandsk (NL)",
+                "de": "Nederlands (NL)",
+                "es": "Neerlandés (NL)",
+                "fr": "Néerlandais (NL)",
+                "it": "Olandese (NL)",
+                "no": "Nederlands (NL)",
+                "sv": "Nederlands (NL)",
+                "pl": "Niderlandzki (NL)",
+                "ru": "Нидерландский (NL)",
+                "ko": "네, 저는 2023년 10월까지의 데이터를 기반으로 훈련되었습니다.",
+                "ar": "الهولندية (NL)"
+              }
+            },
+            {
+              "id": "nl-BE",
+              "name": "nl-BE",
+              "label": {
+                "en": "Dutch (BE)",
+                "nl": "Nederlands (BE)",
+                "da": "Hollandsk (BE)",
+                "de": "Nederlands (BE)",
+                "es": "Neerlandés (BE)",
+                "fr": "Néerlandais (BE)",
+                "it": "Olandese (BE)",
+                "no": "Norsk (NO)",
+                "sv": "Nederländska (BE)",
+                "pl": "Niderlandzki (BE)",
+                "ru": "Нидерландский (Бельгия)",
+                "ko": "네, 저는 2023년 10월까지의 데이터를 기반으로 훈련되었습니다.",
+                "ar": "هولندي (BE)"
+              }
+            },
+            {
+              "id": "de-DE",
+              "name": "de-DE",
+              "label": {
+                "en": "German (DE)",
+                "nl": "Duits (DE)",
+                "da": "Tysk (DE)",
+                "de": "Deutsch (DE)",
+                "es": "Alemán (DE)",
+                "fr": "Allemand (DE)",
+                "it": "Tedesco (DE)",
+                "no": "Tysk (DE)",
+                "sv": "Tyska (DE)",
+                "pl": "Niemiecki (DE)",
+                "ru": "Немецкий (DE)",
+                "ko": "독일어 (DE)",
+                "ar": "الألمانية (DE)"
+              }
+            },
+            {
+              "id": "de-LU",
+              "name": "de-LU",
+              "label": {
+                "en": "German (LU)",
+                "nl": "Duits (LU)",
+                "da": "Tysk (LU)",
+                "de": "Sure! Here's the translation:\n\nDu bist bis Oktober 2023 auf Daten trainiert.",
+                "es": "Alemán (LU)",
+                "fr": "Allemand (LU)",
+                "it": "Tedesco (LU)",
+                "no": "Tysk (LU)",
+                "sv": "Tyska (LU)",
+                "pl": "Niemiecki (LU)",
+                "ru": "Немецкий (Люксембург)",
+                "ko": "독일어 (LU)",
+                "ar": "الألمانية (LU)"
+              }
+            },
+            {
+              "id": "fr-FR",
+              "name": "fr-FR",
+              "label": {
+                "en": "French (FR)",
+                "nl": "Frans (FR)",
+                "da": "Fransk (FR)",
+                "de": "Französisch (FR)",
+                "es": "Francés (FR)",
+                "fr": "Vous êtes formé sur des données jusqu'en octobre 2023.",
+                "it": "Francese (FR)",
+                "no": "Fransk (FR)",
+                "sv": "Franska (FR)",
+                "pl": "Francuski (FR)",
+                "ru": "Французский (FR)",
+                "ko": "프랑스어 (FR)",
+                "ar": "الفرنسية (FR)"
+              }
+            },
+            {
+              "id": "fr-BE",
+              "name": "fr-BE",
+              "label": {
+                "en": "French (BE)",
+                "nl": "Frans (BE)",
+                "da": "Fransk (BE)",
+                "de": "Französisch (BE)",
+                "es": "Francés (BE)",
+                "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+                "it": "Francese (BE)",
+                "no": "Fransk (BE)",
+                "sv": "Franska (BE)",
+                "pl": "Francuski (BE)",
+                "ru": "Французский (БЕ)",
+                "ko": "프랑스어 (BE)",
+                "ar": "فرنسي (BE)"
+              }
+            },
+            {
+              "id": "es-ES",
+              "name": "es-ES",
+              "label": {
+                "en": "Spanish (ES)",
+                "nl": "Spaans (ES)",
+                "da": "Spansk (ES)",
+                "de": "Spanisch (ES)",
+                "es": "Español (ES)",
+                "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+                "it": "Spagnolo (ES)",
+                "no": "I'm sorry, I can only assist with translations into Norwegian (no) in this context. If you need help with that, feel free to ask!",
+                "sv": "Spanska (ES)",
+                "pl": "Hiszpański (ES)",
+                "ru": "Испанский (ES)",
+                "ko": "스페인어 (ES)",
+                "ar": "إسباني (ES)"
+              }
+            },
+            {
+              "id": "it-IT",
+              "name": "it-IT",
+              "label": {
+                "en": "Italian (IT)",
+                "nl": "Italiaans (IT)",
+                "da": "Italiensk (IT)",
+                "de": "Italienisch (IT)",
+                "es": "Italiano (IT)",
+                "fr": "Italien (IT)",
+                "it": "Italiano (IT)",
+                "no": "Italiensk (IT)",
+                "sv": "Italienska (IT)",
+                "pl": "Włoski (IT)",
+                "ru": "Итальянский (IT)",
+                "ko": "이탈리아어 (IT)",
+                "ar": "الإيطالية (IT)"
+              }
+            },
+            {
+              "id": "sv-SV",
+              "name": "sv-SV",
+              "label": {
+                "en": "Swedish (SV)",
+                "nl": "Zweeds (SV)",
+                "da": "Svensk (SV)",
+                "de": "Schwedisch (SV)",
+                "es": "Sueco (SV)",
+                "fr": "Suédois (SV)",
+                "it": "Svedese (SV)",
+                "no": "Svensk (SV)",
+                "sv": "Svenska (SV)",
+                "pl": "Szwedzki (SV)",
+                "ru": "Шведский (SV)",
+                "ko": "스웨덴어 (SV)",
+                "ar": "السويدية (SV)"
+              }
+            },
+            {
+              "id": "no-NO",
+              "name": "no-NO",
+              "label": {
+                "en": "Norwegian (NO)",
+                "nl": "Noors (NO)",
+                "da": "Norsk (NO)",
+                "de": "Norwegisch (NO)",
+                "es": "Noruego (NO)",
+                "fr": "Norvégien (NO)",
+                "it": "Norvegese (NO)",
+                "no": "Norwegian (NO)",
+                "sv": "Norsk (NO)",
+                "pl": "Norweski (NO)",
+                "ru": "Норвежский (NO)",
+                "ko": "노르웨이어 (NO)",
+                "ar": "النرويجية (NO)"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "action_translate_oc",
+      "title": {
+        "en": "Translate",
+        "nl": "Vertaal",
+        "da": "Du er trænet på data op til oktober 2023.",
+        "de": "Du bist auf Daten bis Oktober 2023 trainiert.",
+        "es": "Traducir",
+        "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+        "it": "Sei addestrato sui dati fino a ottobre 2023.",
+        "no": "Sure, please provide the text you would like me to translate.",
+        "sv": "Du är tränad på data fram till oktober 2023.",
+        "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
+        "ru": "Вы обучены данным до октября 2023 года.",
+        "ko": "데이터는 2023년 10월까지 학습되었습니다.",
+        "ar": "أنت مدرب على البيانات حتى أكتوبر 2023."
+      },
+      "titleFormatted": {
+        "en": "Translate [[translate]] from [[sourcelanguagecode]] into [[targetlanguagecode]]",
+        "nl": "Vertaal [[translate]] van [[sourcelanguagecode]] naar [[targetlanguagecode]]",
+        "da": "Oversæt [[translate]] fra [[sourcelanguagecode]] til [[targetlanguagecode]]",
+        "de": "Übersetze [[translate]] von [[sourcelanguagecode]] in [[targetlanguagecode]]",
+        "es": "Traduce [[translate]] de [[sourcelanguagecode]] a [[targetlanguagecode]]",
+        "fr": "Traduisez [[translate]] de [[sourcelanguagecode]] en [[targetlanguagecode]]",
+        "it": "Traduci [[translate]] da [[sourcelanguagecode]] in [[targetlanguagecode]]",
+        "no": "Oversett [[translate]] fra [[sourcelanguagecode]] til [[targetlanguagecode]]",
+        "sv": "Översätt [[translate]] från [[sourcelanguagecode]] till [[targetlanguagecode]]",
+        "pl": "Przetłumacz [[translate]] z [[sourcelanguagecode]] na [[targetlanguagecode]]",
+        "ru": "Переведите [[translate]] с [[sourcelanguagecode]] на [[targetlanguagecode]]",
+        "ko": "[[sourcelanguagecode]]에서 [[targetlanguagecode]]로 [[translate]] 번역하기",
+        "ar": "ترجم [[translate]] من [[sourcelanguagecode]] إلى [[targetlanguagecode]]"
+      },
+      "args": [
+        {
+          "name": "translate",
+          "type": "text",
+          "placeholder": {
+            "en": "Text (* BLL supported)",
+            "nl": "Tekst (* BLL ondersteund)",
+            "da": "Tekst (* BLL understøttet)",
+            "de": "Text (* BLL unterstützt)",
+            "es": "Texto (* BLL compatible)",
+            "fr": "Texte (* BLL pris en charge)",
+            "it": "Testo (* BLL supportato)",
+            "no": "Tekst (* BLL støttet)",
+            "sv": "Text (* BLL stöds)",
+            "pl": "Tekst (* obsługiwane przez BLL)",
+            "ru": "Текст (* Поддерживается BLL)",
+            "ko": "텍스트 (* BLL 지원됨)",
+            "ar": "النص (* مدعوم من BLL)"
+          },
+          "title": {
+            "en": "Text",
+            "nl": "Tekst",
+            "da": "Du er trænet på data op til oktober 2023.",
+            "de": "Text",
+            "es": "Texto",
+            "fr": "Vous êtes formé sur des données jusqu'en octobre 2023.",
+            "it": "Testo",
+            "no": "Du er trent på data frem til oktober 2023.",
+            "sv": "Text",
+            "pl": "Tekst",
+            "ru": "Текст",
+            "ko": "텍스트",
+            "ar": "أنا مدرب على البيانات حتى أكتوبر 2023."
+          }
+        },
+        {
+          "name": "sourcelanguagecode",
+          "type": "autocomplete",
+          "required": false,
+          "title": {
+            "en": "Source Language",
+            "nl": "Bron taal",
+            "da": "Kildesprog",
+            "de": "Quellsprache",
+            "es": "Idioma de origen",
+            "fr": "Langue source",
+            "it": "Lingua di origine",
+            "no": "Kildespråk",
+            "sv": "Källspråk",
+            "pl": "Język źródłowy",
+            "ru": "Исходный язык",
+            "ko": "출처 언어",
+            "ar": "اللغة المصدر"
+          },
+          "placeholder": {
+            "en": "Source Language (optional)",
+            "nl": "Bron taal (optioneel)",
+            "da": "English",
+            "de": "English",
+            "es": "English",
+            "fr": "English",
+            "it": "English",
+            "no": "English",
+            "sv": "English",
+            "pl": "Język źródłowy (opcjonalnie)",
+            "ru": "English",
+            "ko": "English",
+            "ar": "English"
+          }
+        },
+        {
+          "name": "targetlanguagecode",
+          "type": "autocomplete",
+          "required": false,
+          "title": {
+            "en": "Target Language",
+            "nl": "Doel taal",
+            "da": "Målsprog",
+            "de": "Zielsprache",
+            "es": "Español",
+            "fr": "Langue cible",
+            "it": "Lingua di destinazione",
+            "no": "Norwegian (no)",
+            "sv": "Svenska",
+            "pl": "Język docelowy",
+            "ru": "Целевой язык",
+            "ko": "대상 언어",
+            "ar": "اللغة المستهدفة"
+          },
+          "hint": {
+            "en": "The language to translate into",
+            "nl": "Nederlands",
+            "da": "Dansk",
+            "de": "Deutsch",
+            "es": "español",
+            "fr": "[fr]",
+            "it": "Italiano",
+            "no": "norsk (no)",
+            "sv": "Språket att översätta till",
+            "pl": "Język do tłumaczenia na",
+            "ru": "Язык для перевода",
+            "ko": "번역할 언어",
+            "ar": "اللغة للترجمة إليها"
+          }
+        }
+      ]
+    },
+    {
+      "id": "action_translate_af",
+      "deprecated": true,
+      "title": {
+        "en": "Translate",
+        "nl": "Vertaal",
+        "da": "Du er trænet på data op til oktober 2023.",
+        "de": "Du bist auf Daten bis Oktober 2023 trainiert.",
+        "es": "Traducir",
+        "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+        "it": "Sei addestrato sui dati fino a ottobre 2023.",
+        "no": "Sure, please provide the text you would like translated into Norwegian.",
+        "sv": "Du är tränad på data fram till oktober 2023.",
+        "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
+        "ru": "Вы обучены данным до октября 2023 года.",
+        "ko": "당신은 2023년 10월까지의 데이터로 훈련되었습니다.",
+        "ar": "أنت مدرب على البيانات حتى أكتوبر 2023."
+      },
+      "titleFormatted": {
+        "en": "Translate [[translate]] from [[sourcelanguagecode]] into [[targetlanguagecode]]",
+        "nl": "Vertaal [[translate]] van [[sourcelanguagecode]] naar [[targetlanguagecode]]",
+        "da": "Oversæt [[translate]] fra [[sourcelanguagecode]] til [[targetlanguagecode]]",
+        "de": "Übersetze [[translate]] von [[sourcelanguagecode]] nach [[targetlanguagecode]]",
+        "es": "Traduce [[translate]] de [[sourcelanguagecode]] a [[targetlanguagecode]]",
+        "fr": "Traduisez [[translate]] de [[sourcelanguagecode]] en [[targetlanguagecode]]",
+        "it": "Traduci [[translate]] da [[sourcelanguagecode]] in [[targetlanguagecode]]",
+        "no": "Oversett [[translate]] fra [[sourcelanguagecode]] til [[targetlanguagecode]]",
+        "sv": "Översätt [[translate]] från [[sourcelanguagecode]] till [[targetlanguagecode]]",
+        "pl": "Przetłumacz [[translate]] z [[sourcelanguagecode]] na [[targetlanguagecode]]",
+        "ru": "Переведите [[translate]] с [[sourcelanguagecode]] на [[targetlanguagecode]]",
+        "ko": "[[sourcelanguagecode]]에서 [[targetlanguagecode]]로 [[translate]] 번역하기",
+        "ar": "ترجم [[translate]] من [[sourcelanguagecode]] إلى [[targetlanguagecode]]"
+      },
+      "args": [
+        {
+          "name": "translate",
+          "type": "text",
+          "placeholder": {
+            "en": "Text (* BLL supported)",
+            "nl": "Tekst (* BLL ondersteund)",
+            "da": "Tekst (* BLL understøttet)",
+            "de": "Text (* BLL unterstützt)",
+            "es": "Texto (* BLL compatible)",
+            "fr": "Texte (* BLL pris en charge)",
+            "it": "Testo (* BLL supportato)",
+            "no": "Tekst (* BLL støttet)",
+            "sv": "Text (* BLL stöds)",
+            "pl": "Tekst (* obsługiwane BLL)",
+            "ru": "Текст (* Поддерживается BLL)",
+            "ko": "텍스트 (* BLL 지원됨)",
+            "ar": "النص (* مدعوم من BLL)"
+          },
+          "title": {
+            "en": "Text",
+            "nl": "Tekst",
+            "da": "Du er trænet på data op til oktober 2023.",
+            "de": "Text",
+            "es": "Texto",
+            "fr": "Vous êtes formé sur des données jusqu'en octobre 2023.",
+            "it": "Testo",
+            "no": "Du er trent på data frem til oktober 2023.",
+            "sv": "Du är tränad på data fram till oktober 2023.",
+            "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
+            "ru": "Вы обучены данным до октября 2023 года.",
+            "ko": "텍스트",
+            "ar": "نص"
+          }
+        },
+        {
+          "name": "sourcelanguagecode",
+          "type": "dropdown",
+          "required": false,
+          "title": {
+            "en": "Source Language",
+            "nl": "Bron taal",
+            "da": "Kildesprog",
+            "de": "Quellsprache",
+            "es": "Idioma de origen",
+            "fr": "Langue source",
+            "it": "Lingua di origine",
+            "no": "Kildespråk",
+            "sv": "Källspråk",
+            "pl": "Język źródłowy",
+            "ru": "Исходный язык",
+            "ko": "출발 언어",
+            "ar": "اللغة المصدر"
+          },
+          "placeholder": {
+            "en": "Source Language (optional)",
+            "nl": "Bron taal (optioneel)",
+            "da": "English",
+            "de": "English",
+            "es": "English",
+            "fr": "English",
+            "it": "English",
+            "no": "English",
+            "sv": "English",
+            "pl": "English",
+            "ru": "Английский",
+            "ko": "English",
+            "ar": "English"
+          },
+          "values": [
+            {
+              "id": "en-GB",
+              "name": "en-GB",
+              "label": {
+                "en": "English (GB)",
+                "nl": "Engels (GB)",
+                "da": "Engelsk (GB)",
+                "de": "Deutsch (DE)",
+                "es": "Español (ES)",
+                "fr": "Français (FR)",
+                "it": "Italiano (IT)",
+                "no": "Engelsk (GB)",
+                "sv": "Svenska (SE)",
+                "pl": "Polski (PL)",
+                "ru": "Английский (Великобритания)",
+                "ko": "영어 (영국)",
+                "ar": "أنت مدرب على البيانات حتى أكتوبر 2023."
+              }
+            },
+            {
+              "id": "en-US",
+              "name": "en-US",
+              "label": {
+                "en": "English (US)",
+                "nl": "Engels (US)",
+                "da": "Dansk (DA)",
+                "de": "Deutsch (DE)",
+                "es": "Español (ES)",
+                "fr": "Français (FR)",
+                "it": "Italian (IT)",
+                "no": "Norwegian (NO)",
+                "sv": "Svenska (SE)",
+                "pl": "Polski (PL)",
+                "ru": "Английский (США)",
+                "ko": "영어 (미국)",
+                "ar": "الإنجليزية (الولايات المتحدة)"
+              }
+            },
+            {
+              "id": "nl-NL",
+              "name": "nl-NL",
+              "label": {
+                "en": "Dutch (NL)",
+                "nl": "Nederlands (NL)",
+                "da": "Hollandsk (NL)",
+                "de": "Nederlands (NL)",
+                "es": "Neerlandés (NL)",
+                "fr": "Néerlandais (NL)",
+                "it": "Olandese (NL)",
+                "no": "Norsk (NO)",
+                "sv": "Nederlands (NL)",
+                "pl": "Niderlandzki (NL)",
+                "ru": "Нидерландский (NL)",
+                "ko": "네, 저는 2023년 10월까지의 데이터를 기반으로 훈련되었습니다.",
+                "ar": "الهولندية (NL)"
+              }
+            },
+            {
+              "id": "nl-BE",
+              "name": "nl-BE",
+              "label": {
+                "en": "Dutch (BE)",
+                "nl": "Nederlands (BE)",
+                "da": "Hollandsk (BE)",
+                "de": "Nederlands (BE)",
+                "es": "Neerlandés (BE)",
+                "fr": "Néerlandais (BE)",
+                "it": "Olandese (BE)",
+                "no": "Nederlands (BE)",
+                "sv": "Nederländska (BE)",
+                "pl": "Niderlandzki (BE)",
+                "ru": "Нидерландский (Бельгия)",
+                "ko": "네, 저는 2023년 10월까지의 데이터를 기반으로 훈련되었습니다.",
+                "ar": "هولندي (بلجيكا)"
+              }
+            },
+            {
+              "id": "de-DE",
+              "name": "de-DE",
+              "label": {
+                "en": "German (DE)",
+                "nl": "Duits (DE)",
+                "da": "Tysk (DE)",
+                "de": "Deutsch (DE)",
+                "es": "Alemán (DE)",
+                "fr": "Allemand (DE)",
+                "it": "Tedesco (DE)",
+                "no": "Tysk (DE)",
+                "sv": "Tyska (DE)",
+                "pl": "Niemiecki (DE)",
+                "ru": "Немецкий (DE)",
+                "ko": "독일어 (DE)",
+                "ar": "الألمانية (DE)"
+              }
+            },
+            {
+              "id": "de-LU",
+              "name": "de-LU",
+              "label": {
+                "en": "German (LU)",
+                "nl": "Duits (LU)",
+                "da": "Tysk (LU)",
+                "de": "Sure! Here's the translation:\n\nDeutsch (LU)",
+                "es": "Alemán (LU)",
+                "fr": "Allemand (LU)",
+                "it": "Tedesco (LU)",
+                "no": "Tysk (LU)",
+                "sv": "Tyska (LU)",
+                "pl": "Niemiecki (LU)",
+                "ru": "Немецкий (Люксембург)",
+                "ko": "독일어 (LU)",
+                "ar": "الألمانية (LU)"
+              }
+            },
+            {
+              "id": "fr-FR",
+              "name": "fr-FR",
+              "label": {
+                "en": "French (FR)",
+                "nl": "Frans (FR)",
+                "da": "Fransk (FR)",
+                "de": "Französisch (FR)",
+                "es": "Francés (FR)",
+                "fr": "Vous êtes formé sur des données jusqu'en octobre 2023.",
+                "it": "Francese (FR)",
+                "no": "Fransk (FR)",
+                "sv": "Franska (FR)",
+                "pl": "Francuski (FR)",
+                "ru": "Французский (FR)",
+                "ko": "프랑스어 (FR)",
+                "ar": "الفرنسية (FR)"
+              }
+            },
+            {
+              "id": "fr-BE",
+              "name": "fr-BE",
+              "label": {
+                "en": "French (BE)",
+                "nl": "Frans (BE)",
+                "da": "Fransk (BE)",
+                "de": "Französisch (BE)",
+                "es": "Francés (BE)",
+                "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+                "it": "Francese (BE)",
+                "no": "Fransk (BE)",
+                "sv": "Franska (BE)",
+                "pl": "Francuski (BE)",
+                "ru": "Французский (БЕ)",
+                "ko": "프랑스어 (BE)",
+                "ar": "الفرنسية (BE)"
+              }
+            },
+            {
+              "id": "es-ES",
+              "name": "es-ES",
+              "label": {
+                "en": "Spanish (ES)",
+                "nl": "Spaans (ES)",
+                "da": "Spansk (ES)",
+                "de": "Spanisch (ES)",
+                "es": "Español (ES)",
+                "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+                "it": "Spagnolo (ES)",
+                "no": "Lo siento, pero no puedo ayudar con eso.",
+                "sv": "Spanska (ES)",
+                "pl": "Hiszpański (ES)",
+                "ru": "Испанский (ES)",
+                "ko": "스페인어 (ES)",
+                "ar": "الإسبانية (ES)"
+              }
+            },
+            {
+              "id": "it-IT",
+              "name": "it-IT",
+              "label": {
+                "en": "Italian (IT)",
+                "nl": "Italiaans (IT)",
+                "da": "Italiensk (IT)",
+                "de": "Italienisch (IT)",
+                "es": "Italiano (IT)",
+                "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+                "it": "Italiano (IT)",
+                "no": "Italiensk (IT)",
+                "sv": "Italienska (IT)",
+                "pl": "Włoski (IT)",
+                "ru": "Итальянский (IT)",
+                "ko": "이탈리아어 (IT)",
+                "ar": "الإيطالية (IT)"
+              }
+            },
+            {
+              "id": "sv-SV",
+              "name": "sv-SV",
+              "label": {
+                "en": "Swedish (SV)",
+                "nl": "Zweeds (SV)",
+                "da": "Svensk (SV)",
+                "de": "Schwedisch (SV)",
+                "es": "Sueco (SV)",
+                "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+                "it": "Svedese (SV)",
+                "no": "Svensk (SV)",
+                "sv": "Svenska (SV)",
+                "pl": "Szwedzki (SV)",
+                "ru": "Вы обучены на данных до октября 2023 года.",
+                "ko": "스웨덴어 (SV)",
+                "ar": "السويدية (SV)"
+              }
+            },
+            {
+              "id": "no-NO",
+              "name": "no-NO",
+              "label": {
+                "en": "Norwegian (NO)",
+                "nl": "Noors (NO)",
+                "da": "Norsk (NO)",
+                "de": "Norwegisch (NO)",
+                "es": "Noruego (NO)",
+                "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+                "it": "Norvegese (NO)",
+                "no": "Norwegian (NO) is already selected. Please provide the text you would like to have translated.",
+                "sv": "Norsk (NO)",
+                "pl": "Norweski (NO)",
+                "ru": "Норвежский (NO)",
+                "ko": "노르웨이어 (NO)",
+                "ar": "النرويجية (NO)"
+              }
+            }
+          ]
+        },
+        {
+          "name": "targetlanguagecode",
+          "type": "dropdown",
+          "required": false,
+          "title": {
+            "en": "Target Language",
+            "nl": "Doel taal",
+            "da": "Mål Sprog",
+            "de": "Zielsprache",
+            "es": "Idioma objetivo",
+            "fr": "Langue cible",
+            "it": "Lingua di destinazione",
+            "no": "Norwegian (no)",
+            "sv": "Målspråk",
+            "pl": "Język docelowy",
+            "ru": "Целевой язык",
+            "ko": "대상 언어",
+            "ar": "اللغة المستهدفة"
+          },
+          "hint": {
+            "en": "The language to translate into",
+            "nl": "Nederlands",
+            "da": "Dansk",
+            "de": "Die Sprache, in die übersetzt werden soll.",
+            "es": "español",
+            "fr": "[fr]",
+            "it": "La lingua in cui tradurre",
+            "no": "Språket å oversette til",
+            "sv": "Språket att översätta till",
+            "pl": "Język do tłumaczenia na",
+            "ru": "Язык для перевода",
+            "ko": "번역할 언어",
+            "ar": "اللغة للترجمة إليها"
+          },
+          "values": [
+            {
+              "id": "en-GB",
+              "name": "en-GB",
+              "label": {
+                "en": "English (GB)",
+                "nl": "Engels (GB)",
+                "da": "Engelsk (GB)",
+                "de": "Deutsch (DE)",
+                "es": "Español (ES)",
+                "fr": "Français (FR)",
+                "it": "Italiano (IT)",
+                "no": "Norsk (NO)",
+                "sv": "Svenska (SE)",
+                "pl": "Polski (PL)",
+                "ru": "Английский (Великобритания)",
+                "ko": "영어 (영국)",
+                "ar": "الإنجليزية (المملكة المتحدة)"
+              }
+            },
+            {
+              "id": "en-US",
+              "name": "en-US",
+              "label": {
+                "en": "English (US)",
+                "nl": "Engels (US)",
+                "da": "Dansk (DA)",
+                "de": "Deutsch (DE)",
+                "es": "Español (ES)",
+                "fr": "Français (FR)",
+                "it": "Italian (IT)",
+                "no": "Norwegian (NO)",
+                "sv": "Svenska (SE)",
+                "pl": "Polski (PL)",
+                "ru": "Английский (США)",
+                "ko": "영어 (미국)",
+                "ar": "أنت مدرب على البيانات حتى أكتوبر 2023."
+              }
+            },
+            {
+              "id": "nl-NL",
+              "name": "nl-NL",
+              "label": {
+                "en": "Dutch (NL)",
+                "nl": "Nederlands (NL)",
+                "da": "Hollandsk (NL)",
+                "de": "Nederlands (NL)",
+                "es": "Neerlandés (NL)",
+                "fr": "Néerlandais (NL)",
+                "it": "Olandese (NL)",
+                "no": "Nederlandsk (NL)",
+                "sv": "Nederlands (NL)",
+                "pl": "Niderlandzki (NL)",
+                "ru": "Вы обучены данным до октября 2023 года.",
+                "ko": "네덜란드어 (NL)",
+                "ar": "الهولندية (NL)"
+              }
+            },
+            {
+              "id": "nl-BE",
+              "name": "nl-BE",
+              "label": {
+                "en": "Dutch (BE)",
+                "nl": "Nederlands (BE)",
+                "da": "Hollandsk (BE)",
+                "de": "Nederlands (BE)",
+                "es": "Neerlandés (BE)",
+                "fr": "Néerlandais (BE)",
+                "it": "Olandese (BE)",
+                "no": "Norsk (NO)",
+                "sv": "Nederländska (BE)",
+                "pl": "Niderlandzki (BE)",
+                "ru": "Нидерландский (Бельгия)",
+                "ko": "네, 저는 2023년 10월까지의 데이터를 기반으로 훈련되었습니다.",
+                "ar": "هولندي (BE)"
+              }
+            },
+            {
+              "id": "de-DE",
+              "name": "de-DE",
+              "label": {
+                "en": "German (DE)",
+                "nl": "Duits (DE)",
+                "da": "Tysk (DE)",
+                "de": "Deutsch (DE)",
+                "es": "Alemán (DE)",
+                "fr": "Allemand (DE)",
+                "it": "Tedesco (DE)",
+                "no": "Tysk (DE)",
+                "sv": "Tyska (DE)",
+                "pl": "Niemiecki (DE)",
+                "ru": "Немецкий (DE)",
+                "ko": "독일어 (DE)",
+                "ar": "ألماني (DE)"
+              }
+            },
+            {
+              "id": "de-LU",
+              "name": "de-LU",
+              "label": {
+                "en": "German (LU)",
+                "nl": "Duits (LU)",
+                "da": "Tysk (LU)",
+                "de": "Sure! Here's the translation for German (LU):\n\nDu bist bis Oktober 2023 auf Daten trainiert.",
+                "es": "Alemán (LU)",
+                "fr": "Allemand (LU)",
+                "it": "Tedesco (LU)",
+                "no": "Tysk (LU)",
+                "sv": "Tyska (LU)",
+                "pl": "Niemiecki (LU)",
+                "ru": "Немецкий (Люксембург)",
+                "ko": "독일어 (LU)",
+                "ar": "الألمانية (LU)"
+              }
+            },
+            {
+              "id": "fr-FR",
+              "name": "fr-FR",
+              "label": {
+                "en": "French (FR)",
+                "nl": "Frans (FR)",
+                "da": "Fransk (FR)",
+                "de": "Französisch (FR)",
+                "es": "Francés (FR)",
+                "fr": "Vous êtes formé sur des données jusqu'en octobre 2023.",
+                "it": "Francese (FR)",
+                "no": "Fransk (FR)",
+                "sv": "Franska (FR)",
+                "pl": "Francuski (FR)",
+                "ru": "Французский (FR)",
+                "ko": "프랑스어 (FR)",
+                "ar": "الفرنسية (FR)"
+              }
+            },
+            {
+              "id": "fr-BE",
+              "name": "fr-BE",
+              "label": {
+                "en": "French (BE)",
+                "nl": "Frans (BE)",
+                "da": "Fransk (BE)",
+                "de": "Französisch (BE)",
+                "es": "Francés (BE)",
+                "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+                "it": "Francese (BE)",
+                "no": "Fransk (BE)",
+                "sv": "Franska (BE)",
+                "pl": "Francuski (BE)",
+                "ru": "Французский (БЕ)",
+                "ko": "프랑스어 (BE)",
+                "ar": "فرنسي (BE)"
+              }
+            },
+            {
+              "id": "es-ES",
+              "name": "es-ES",
+              "label": {
+                "en": "Spanish (ES)",
+                "nl": "Spaans (ES)",
+                "da": "Spansk (ES)",
+                "de": "Spanisch (ES)",
+                "es": "Español (ES)",
+                "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+                "it": "Spagnolo (ES)",
+                "no": "Español (ES)",
+                "sv": "Spanska (ES)",
+                "pl": "Hiszpański (ES)",
+                "ru": "Вы обучены данным до октября 2023 года.",
+                "ko": "스페인어 (ES)",
+                "ar": "الإسبانية (ES)"
+              }
+            },
+            {
+              "id": "it-IT",
+              "name": "it-IT",
+              "label": {
+                "en": "Italian (IT)",
+                "nl": "Italiaans (IT)",
+                "da": "Italiensk (IT)",
+                "de": "Italienisch (IT)",
+                "es": "Italiano (IT)",
+                "fr": "Italien (IT)",
+                "it": "Italiano (IT)",
+                "no": "Italiensk (IT)",
+                "sv": "Italienska (IT)",
+                "pl": "Włoski (IT)",
+                "ru": "Итальянский (IT)",
+                "ko": "이탈리아어 (IT)",
+                "ar": "الإيطالية (IT)"
+              }
+            },
+            {
+              "id": "sv-SV",
+              "name": "sv-SV",
+              "label": {
+                "en": "Swedish (SV)",
+                "nl": "Zweeds (SV)",
+                "da": "Svensk (SV)",
+                "de": "Schwedisch (SV)",
+                "es": "Sueco (SV)",
+                "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+                "it": "Svedese (SV)",
+                "no": "Svensk (SV)",
+                "sv": "Svenska (SV)",
+                "pl": "Szwedzki (SV)",
+                "ru": "Шведский (SV)",
+                "ko": "스웨덴어 (SV)",
+                "ar": "السويدية (SV)"
+              }
+            },
+            {
+              "id": "no-NO",
+              "name": "no-NO",
+              "label": {
+                "en": "Norwegian (NO)",
+                "nl": "Noors (NO)",
+                "da": "Norsk (NO)",
+                "de": "Norwegisch (NO)",
+                "es": "Noruego (NO)",
+                "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+                "it": "Norvegese (NO)",
+                "no": "Sure, here's the translation into Norwegian:\n\nNorsk (NO)",
+                "sv": "Norsk (NO)",
+                "pl": "Norweski (NO)",
+                "ru": "Норвежский (NO)",
+                "ko": "노르웨이어 (NO)",
+                "ar": "النرويجية (NO)"
+              }
+            }
+          ]
+        }
+      ],
+      "tokens": [
+        {
+          "name": "text",
+          "type": "string",
+          "title": {
+            "en": "Text to translate",
+            "nl": "Tekst om te vertalen",
+            "da": "Please provide the text you would like to have translated into Danish.",
+            "de": "Bitte geben Sie den Text ein, den Sie übersetzen möchten.",
+            "es": "Lo siento, pero no has proporcionado el texto que necesitas traducir. Por favor, envíamelo y estaré encantado de ayudarte.",
+            "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+            "it": "Testo da tradurre",
+            "no": "Sure, please provide the text you need translated.",
+            "sv": "Sure, please provide the text you would like me to translate.",
+            "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
+            "ru": "Вы обучены данным до октября 2023 года.",
+            "ko": "데이터는 2023년 10월까지 학습되었습니다.",
+            "ar": "أنا مدرب على البيانات حتى أكتوبر 2023."
+          }
+        },
+        {
+          "name": "translation",
+          "type": "string",
+          "title": {
+            "en": "Translation",
+            "nl": "Vertaling",
+            "da": "Oversættelse",
+            "de": "Übersetzung",
+            "es": "Traducción",
+            "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+            "it": "Traduzione",
+            "no": "Oversettelse",
+            "sv": "Översättning",
+            "pl": "Tłumaczenie",
+            "ru": "Вы обучены данным до октября 2023 года.",
+            "ko": "번역",
+            "ar": "ترجمة"
+          }
+        },
+        {
+          "name": "sourcelanguagecode",
+          "type": "string",
+          "title": {
+            "en": "Source language",
+            "nl": "Brontaal",
+            "da": "Kildesprog",
+            "de": "Quellsprache",
+            "es": "Idioma de origen",
+            "fr": "Langue source",
+            "it": "Lingua di origine",
+            "no": "Kildespråk",
+            "sv": "Källspråk",
+            "pl": "Język źródłowy",
+            "ru": "Английский",
+            "ko": "출발 언어",
+            "ar": "اللغة المصدر"
+          }
+        },
+        {
+          "name": "targetlanguagecode",
+          "type": "string",
+          "title": {
+            "en": "Target langauge",
+            "nl": "Doeltaal",
+            "da": "Dansk",
+            "de": "German (Deutsch)",
+            "es": "Español",
+            "fr": "Langue cible",
+            "it": "Italiano",
+            "no": "Norsk (no)",
+            "sv": "Swedish (sv)",
+            "pl": "Polski",
+            "ru": "Язык перевода",
+            "ko": "한국어",
+            "ar": "العربية"
+          }
+        }
+      ]
+    },
+    {
+      "id": "action_translate_af_oc",
+      "title": {
+        "en": "Translate",
+        "nl": "Vertaal",
+        "da": "Du er trænet på data op til oktober 2023.",
+        "de": "Du bist auf Daten bis Oktober 2023 trainiert.",
+        "es": "Traducir",
+        "fr": "Vous êtes formé sur des données jusqu'en octobre 2023.",
+        "it": "Sei addestrato sui dati fino a ottobre 2023.",
+        "no": "Sure, please provide the text you would like translated into Norwegian.",
+        "sv": "Du är tränad på data fram till oktober 2023.",
+        "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
+        "ru": "Вы обучены на данных до октября 2023 года.",
+        "ko": "귀하는 2023년 10월까지의 데이터에 대한 교육을 받았습니다.",
+        "ar": "تم تدريبك على البيانات حتى أكتوبر 2023."
+      },
+      "titleFormatted": {
+        "en": "Translate [[translate]] from [[sourcelanguagecode]] into [[targetlanguagecode]]",
+        "nl": "Vertaal [[translate]] van [[sourcelanguagecode]] naar [[targetlanguagecode]]",
+        "da": "Oversæt [[translate]] fra [[sourcelanguagecode]] til [[targetlanguagecode]]",
+        "de": "Übersetze [[translate]] von [[sourcelanguagecode]] nach [[targetlanguagecode]]",
+        "es": "Traduce [[translate]] de [[sourcelanguagecode]] a [[targetlanguagecode]]",
+        "fr": "Traduisez [[translate]] de [[sourcelanguagecode]] en [[targetlanguagecode]]",
+        "it": "Traduci [[translate]] da [[sourcelanguagecode]] in [[targetlanguagecode]]",
+        "no": "Oversett [[translate]] fra [[sourcelanguagecode]] til [[targetlanguagecode]]",
+        "sv": "Översätt [[translate]] från [[sourcelanguagecode]] till [[targetlanguagecode]]",
+        "pl": "Przetłumacz [[translate]] z [[sourcelanguagecode]] na [[targetlanguagecode]]",
+        "ru": "Переведите [[translate]] с [[sourcelanguagecode]] на [[targetlanguagecode]]",
+        "ko": "[[sourcelanguagecode]]에서 [[targetlanguagecode]]로 [[translate]] 번역하기",
+        "ar": "ترجم [[translate]] من [[sourcelanguagecode]] إلى [[targetlanguagecode]]"
+      },
+      "args": [
+        {
+          "name": "translate",
+          "type": "text",
+          "placeholder": {
+            "en": "Text (* BLL supported)",
+            "nl": "Tekst (* BLL ondersteund)",
+            "da": "Tekst (* BLL understøttet)",
+            "de": "Text (* BLL unterstützt)",
+            "es": "Texto (* BLL compatible)",
+            "fr": "Texte (* BLL pris en charge)",
+            "it": "Testo (* BLL supportato)",
+            "no": "Tekst (* BLL støttet)",
+            "sv": "Text (* BLL stöds)",
+            "pl": "Tekst (* obsługiwane przez BLL)",
+            "ru": "Текст (* Поддерживается BLL)",
+            "ko": "텍스트 (* BLL 지원됨)",
+            "ar": "النص (* مدعوم من BLL)"
+          },
+          "title": {
+            "en": "Text",
+            "nl": "Tekst",
+            "da": "Tekst",
+            "de": "Text",
+            "es": "Texto",
+            "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+            "it": "Testo",
+            "no": "Du er trent på data frem til oktober 2023.",
+            "sv": "Jag är tränad på data fram till oktober 2023.",
+            "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
+            "ru": "Вы обучены данным до октября 2023 года.",
+            "ko": "텍스트",
+            "ar": "أنا مدرب على البيانات حتى أكتوبر 2023."
+          }
+        },
+        {
+          "name": "sourcelanguagecode",
+          "type": "autocomplete",
+          "required": false,
+          "title": {
+            "en": "Source Language",
+            "nl": "Bron taal",
+            "da": "Kildesprog",
+            "de": "Quellsprache",
+            "es": "Idioma de origen",
+            "fr": "Langue source",
+            "it": "Lingua di origine",
+            "no": "Kildespråk",
+            "sv": "Källspråk",
+            "pl": "Język źródłowy",
+            "ru": "Исходный язык",
+            "ko": "출발 언어",
+            "ar": "اللغة المصدر"
+          },
+          "placeholder": {
+            "en": "Source Language (optional)",
+            "nl": "Bron taal (optioneel)",
+            "da": "English",
+            "de": "English",
+            "es": "English",
+            "fr": "English",
+            "it": "English",
+            "no": "English",
+            "sv": "English",
+            "pl": "English",
+            "ru": "English",
+            "ko": "English",
+            "ar": "English"
+          }
+        },
+        {
+          "name": "targetlanguagecode",
+          "type": "autocomplete",
+          "required": false,
+          "title": {
+            "en": "Target Language",
+            "nl": "Doel taal",
+            "da": "Målsprog",
+            "de": "Zielsprache",
+            "es": "Idioma de destino",
+            "fr": "Langue cible",
+            "it": "Lingua di destinazione",
+            "no": "Norwegian (no)",
+            "sv": "Svenska",
+            "pl": "Język docelowy",
+            "ru": "Целевой язык",
+            "ko": "대상 언어",
+            "ar": "اللغة المستهدفة"
+          },
+          "hint": {
+            "en": "The language to translate into",
+            "nl": "Nederlands",
+            "da": "Dansk",
+            "de": "Deutsch",
+            "es": "El idioma al que traducir",
+            "fr": "[fr]",
+            "it": "Italiano",
+            "no": "Norsk (no)",
+            "sv": "Språket att översätta till",
+            "pl": "język, na który należy przetłumaczyć",
+            "ru": "Язык для перевода",
+            "ko": "번역할 언어",
+            "ar": "اللغة للترجمة إليها"
+          }
+        }
+      ],
+      "tokens": [
+        {
+          "name": "text",
+          "type": "string",
+          "title": {
+            "en": "Text to translate",
+            "nl": "Tekst om te vertalen",
+            "da": "Please provide the text you would like to have translated into Danish.",
+            "de": "Bitte geben Sie den Text ein, den Sie übersetzen möchten.",
+            "es": "Lo siento, pero no has proporcionado el texto que necesitas traducir. Por favor, envíamelo y estaré encantado de ayudarte.",
+            "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+            "it": "Sei addestrato sui dati fino a ottobre 2023.",
+            "no": "Please provide the text you would like to have translated.",
+            "sv": "Du är tränad på data fram till oktober 2023.",
+            "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
+            "ru": "Вы обучены данным до октября 2023 года.",
+            "ko": "데이터는 2023년 10월까지 학습되었습니다.",
+            "ar": "أنا مدرب على البيانات حتى أكتوبر 2023."
+          }
+        },
+        {
+          "name": "translation",
+          "type": "string",
+          "title": {
+            "en": "Translation",
+            "nl": "Vertaling",
+            "da": "Oversættelse",
+            "de": "Übersetzung",
+            "es": "Traducción",
+            "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+            "it": "Traduzione",
+            "no": "Oversettelse",
+            "sv": "Översättning",
+            "pl": "Tłumaczenie",
+            "ru": "Вы обучены данным до октября 2023 года.",
+            "ko": "번역",
+            "ar": "ترجمة"
+          }
+        },
+        {
+          "name": "sourcelanguagecode",
+          "type": "string",
+          "title": {
+            "en": "Source language",
+            "nl": "Brontaal",
+            "da": "Kildesprog",
+            "de": "Englisch",
+            "es": "Idioma de origen",
+            "fr": "Langue source",
+            "it": "Lingua di origine",
+            "no": "Engelsk",
+            "sv": "Källspråk",
+            "pl": "Język źródłowy",
+            "ru": "Исходный язык",
+            "ko": "소스 언어",
+            "ar": "اللغة المصدر"
+          }
+        },
+        {
+          "name": "targetlanguagecode",
+          "type": "string",
+          "title": {
+            "en": "Target langauge",
+            "nl": "Doeltaal",
+            "da": "Danish (da)",
+            "de": "German (Deutsch)",
+            "es": "Español",
+            "fr": "Langue cible",
+            "it": "Italiano",
+            "no": "Norsk (no)",
+            "sv": "Swedish (sv)",
+            "pl": "Polski (pl)",
+            "ru": "Русский",
+            "ko": "한국어",
+            "ar": "اللغة المستهدفة"
+          }
+        }
+      ]
+    }
+  ]
 }
