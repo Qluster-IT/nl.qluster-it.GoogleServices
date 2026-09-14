@@ -2,7 +2,18 @@
   "type": "string",
   "title": {
     "en": "To translate",
-    "nl": "Te vertalen"
+    "nl": "Te vertalen",
+    "da": "At oversætte",
+    "de": "Übersetzen",
+    "es": "Traducir",
+    "fr": "Pour traduire",
+    "it": "Tradurre",
+    "no": "Å oversette",
+    "sv": "Att översätta",
+    "pl": "Aby przetłumaczyć",
+    "ru": "Перевести",
+    "ko": "번역하기 위해",
+    "ar": "للترجمة"
   },
   "getable": true,
   "setable": false,

@@ -2,7 +2,18 @@
   "type": "number",
   "title": {
     "en": "Duration",
-    "nl": "Tijdsduur"
+    "nl": "Tijdsduur",
+    "da": "Varighed",
+    "de": "Dauer",
+    "es": "Duración",
+    "fr": "Durée",
+    "it": "Durata",
+    "no": "Varighet",
+    "sv": "Varaktighet",
+    "pl": "Czas trwania",
+    "ru": "Продолжительность",
+    "ko": "기간",
+    "ar": "المدة الزمنية"
   },
   "getable": true,
   "setable": false,

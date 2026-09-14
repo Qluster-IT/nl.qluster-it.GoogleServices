@@ -1,32 +1,41 @@
 {
-    "id": "youtube",
-    "name": {
-      "en": "YouTube",
-      "nl": "YouTube"
-    },
-    "class": "other",
-    "capabilities": [
-      
-    ],
-    "images": {
-      "large": "{{driverAssetsPath}}/images/large.png",
-      "small": "{{driverAssetsPath}}/images/small.png"
-    },
-    "pair": [
-      {
-        "id": "list_devices",
-        "template": "list_devices",
-        "navigation": {
-          "next": "add_my_devices"
-        },
-        "options": {
-          "singular": true
-        }
+  "id": "youtube",
+  "name": {
+    "en": "YouTube",
+    "nl": "YouTube",
+    "da": "YouTube",
+    "de": "YouTube",
+    "es": "YouTube",
+    "fr": "YouTube",
+    "it": "YouTube",
+    "no": "YouTube",
+    "sv": "YouTube",
+    "pl": "YouTube",
+    "ru": "YouTube",
+    "ko": "유튜브",
+    "ar": "YouTube"
+  },
+  "class": "other",
+  "capabilities": [],
+  "images": {
+    "large": "{{driverAssetsPath}}/images/large.png",
+    "small": "{{driverAssetsPath}}/images/small.png"
+  },
+  "pair": [
+    {
+      "id": "list_devices",
+      "template": "list_devices",
+      "navigation": {
+        "next": "add_my_devices"
       },
-      {
-        "id": "add_my_devices",
-        "template": "add_devices"
+      "options": {
+        "singular": true
       }
-    ],    
-    "settings": []
-  }
+    },
+    {
+      "id": "add_my_devices",
+      "template": "add_devices"
+    }
+  ],
+  "settings": []
+}

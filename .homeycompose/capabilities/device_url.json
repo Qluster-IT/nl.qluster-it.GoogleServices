@@ -1,10 +1,22 @@
 {
-    "type": "string",
-    "title": {
-      "en": "Url"
-    },
-    "getable": true,
-    "setable": false,
-    "uiComponent": "sensor",
-    "icon": "/assets/icon.svg"
-  }
+  "type": "string",
+  "title": {
+    "en": "Url",
+    "nl": "Url",
+    "da": "Url",
+    "de": "URL",
+    "es": "Url",
+    "fr": "Url",
+    "it": "Url",
+    "no": "Url",
+    "sv": "Url",
+    "pl": "Url",
+    "ru": "URL",
+    "ko": "URL",
+    "ar": "رابط"
+  },
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "icon": "/assets/icon.svg"
+}

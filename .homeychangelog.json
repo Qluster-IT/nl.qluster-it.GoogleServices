@@ -268,5 +268,8 @@
   },
   "1.10.2": {
     "en": "Resolved: Non-Cloud TTS could not be created on the HP2023."
+  },
+  "1.11.0": {
+    "en": "Translated: Translated into all supported languages."
   }
 }
