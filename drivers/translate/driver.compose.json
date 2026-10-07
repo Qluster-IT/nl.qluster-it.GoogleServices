@@ -21,6 +21,7 @@
     "device_translation"
   ],
   "images": {
+    "xlarge": "/drivers/translate/assets/images/xlarge.png",
     "large": "/drivers/translate/assets/images/large.png",
     "small": "/drivers/translate/assets/images/small.png"
   },

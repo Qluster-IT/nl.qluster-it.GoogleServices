@@ -18,6 +18,7 @@
   "class": "other",
   "capabilities": [],
   "images": {
+    "xlarge": "/drivers/googletts/assets/images/xlarge.png",
     "large": "/drivers/googletts/assets/images/large.png",
     "small": "/drivers/googletts/assets/images/small.png"
   },
