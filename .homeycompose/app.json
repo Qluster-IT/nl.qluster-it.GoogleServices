@@ -39,13 +39,92 @@
       "speech",
       "url",
       "tts",
-      "translate"
+      "translate",
+      "youtube"
     ],
     "nl": [
       "spraak",
       "url",
       "tts",
-      "translate"
+      "translate",
+      "youtube"
+    ],
+    "da": [
+      "speech",
+      "url",
+      "tts",
+      "translate",
+      "youtube"
+    ],
+    "de": [
+      "speech",
+      "url",
+      "tts",
+      "translate",
+      "youtube"
+    ],
+    "es": [
+      "speech",
+      "url",
+      "tts",
+      "translate",
+      "youtube"
+    ],
+    "fr": [
+      "speech",
+      "url",
+      "tts",
+      "translate",
+      "youtube"
+    ],
+    "it": [
+      "speech",
+      "url",
+      "tts",
+      "translate",
+      "youtube"
+    ],
+    "no": [
+      "speech",
+      "url",
+      "tts",
+      "translate",
+      "youtube"
+    ],
+    "sv": [
+      "speech",
+      "url",
+      "tts",
+      "translate",
+      "youtube"
+    ],
+    "pl": [
+      "speech",
+      "url",
+      "tts",
+      "translate",
+      "youtube"
+    ],
+    "ru": [
+      "speech",
+      "url",
+      "tts",
+      "translate",
+      "youtube"
+    ],
+    "ko": [
+      "speech",
+      "url",
+      "tts",
+      "translate",
+      "youtube"
+    ],
+    "ar": [
+      "speech",
+      "url",
+      "tts",
+      "translate",
+      "youtube"
     ]
   },
   "category": [
