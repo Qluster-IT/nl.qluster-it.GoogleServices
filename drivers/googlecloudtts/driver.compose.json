@@ -1,266 +1,563 @@
 {
-    "id": "googlecloudtts",
-    "name": {
-      "en": "Text-To-Speech",
-      "nl": "Tekst-Naar-Spraak"
+  "id": "googlecloudtts",
+  "name": {
+    "en": "Text-To-Speech",
+    "nl": "Tekst-Naar-Spraak",
+    "da": "Tekst-til-tale",
+    "de": "Text-to-Speech",
+    "es": "Texto a voz",
+    "fr": "Synthèse vocale",
+    "it": "Sintesi vocale",
+    "no": "Tekst-til-tale",
+    "sv": "Text-till-tal",
+    "pl": "Syntezator mowy",
+    "ru": "Текст-в-речь",
+    "ko": "텍스트-음성 변환",
+    "ar": "تحويل النص إلى كلام"
+  },
+  "class": "other",
+  "capabilities": [
+    "device_url",
+    "device_duration"
+  ],
+  "images": {
+    "xlarge": "{{driverAssetsPath}}/images/xlarge.png",
+    "large": "{{driverAssetsPath}}/images/large.png",
+    "small": "{{driverAssetsPath}}/images/small.png"
+  },
+  "pair": [
+    {
+      "id": "list_devices",
+      "template": "list_devices",
+      "navigation": {
+        "next": "add_my_devices"
+      },
+      "options": {
+        "singular": true
+      }
     },
-    "class": "other",
-    "capabilities": [
-      "device_url",
-      "device_duration"
-    ],
-    "images": {
-      "large": "{{driverAssetsPath}}/images/large.png",
-      "small": "{{driverAssetsPath}}/images/small.png"
+    {
+      "id": "add_my_devices",
+      "template": "add_devices"
+    }
+  ],
+  "repair": [
+    {
+      "id": "fix_list_devices",
+      "template": "list_devices",
+      "navigation": {
+        "next": "done_fix_my_devices"
+      },
+      "options": {
+        "singular": true
+      }
     },
-    "pair": [
-      {
-        "id": "list_devices",
-        "template": "list_devices",
-        "navigation": {
-          "next": "add_my_devices"
-        },
-        "options": {
-          "singular": true
-        }
+    {
+      "id": "done_fix_my_devices",
+      "template": "done"
+    }
+  ],
+  "settings": [
+    {
+      "id": "speakingRate",
+      "type": "number",
+      "label": {
+        "en": "Speed %",
+        "nl": "Snelheid %",
+        "da": "Hastighed %",
+        "de": "Geschwindigkeit %",
+        "es": "Velocidad %",
+        "fr": "Vitesse %",
+        "it": "Velocità %",
+        "no": "Hastighet %",
+        "sv": "Hastighet %",
+        "pl": "Prędkość %",
+        "ru": "Скорость %",
+        "ko": "속도 %",
+        "ar": "السرعة %"
       },
-      {
-        "id": "add_my_devices",
-        "template": "add_devices"
+      "hint": {
+        "en": "The speed at which to play the speech (1 is default)",
+        "nl": "De snelheid waarmee de spraak wordt  (1 is standaard)",
+        "da": "Hastigheden, som talen skal afspilles med (1 er standard)",
+        "de": "Die Geschwindigkeit, mit der die Sprache abgespielt wird (1 ist Standard)",
+        "es": "La velocidad a la que se reproducirá el discurso (1 es la predeterminada)",
+        "fr": "La vitesse à laquelle lire le discours (1 est la valeur par défaut)",
+        "it": "La velocità con cui riprodurre il discorso (1 è il valore predefinito)",
+        "no": "Hastigheten for å spille av talen (1 er standard)",
+        "sv": "Hastigheten för att spela upp talet (1 är standard)",
+        "pl": "Prędkość odtwarzania mowy (1 to domyślna)",
+        "ru": "Скорость воспроизведения речи (1 по умолчанию)",
+        "ko": "음성 재생 속도 (1이 기본값)",
+        "ar": "السرعة التي يتم بها تشغيل الكلام (1 هي الافتراضية)"
+      },
+      "min": 0.25,
+      "max": 4,
+      "step": 0.01,
+      "labelMultiplier": 100,
+      "labelDecimals": 0,
+      "value": 1
+    },
+    {
+      "id": "pitch",
+      "type": "number",
+      "label": "Pitch",
+      "min": -20,
+      "max": 20,
+      "step": 0.1,
+      "value": 0
+    },
+    {
+      "id": "delay",
+      "type": "number",
+      "label": {
+        "en": "Delay for each file to (finish) playing in ms",
+        "nl": "Vertraging voor elk bestand om te (eindige) spelen in ms",
+        "da": "Forsinkelse for hver fil, der skal (af)spilles, i ms",
+        "de": "Verzögerung für jede Datei, bis sie (fertig) abgespielt ist, in ms",
+        "es": "Retraso para que cada archivo (termine) de reproducirse en ms",
+        "fr": "Délai pour chaque fichier avant la fin de la lecture en ms",
+        "it": "Ritardo per ogni file per (finire) di riprodurre in ms",
+        "no": "Forsinkelse for hver fil før den (fullfører) avspilling i ms",
+        "sv": "Fördröjning för varje fil att (spela klart) i ms",
+        "pl": "Opóźnienie dla każdego pliku do (zakończenia) odtwarzania w ms",
+        "ru": "Задержка для каждого файла до (завершения) воспроизведения в мс",
+        "ko": "각 파일이 재생을 완료하는 데 걸리는 지연 시간 (밀리초)",
+        "ar": "المدة الزمنية لكل ملف حتى (ينتهي) من التشغيل بالمللي ثانية"
+      },
+      "value": 1000,
+      "hint": {
+        "en": "Extra waiting time before (finishing) playing the next file.\r\nThis means the delay it takes the output device to play the file.",
+        "nl": "Extra wachttijd voor het (eindigen van het) spelen van het bestand.\r\nOftewel de wachttijd die het afspeelapparaat nodig heeft om the spelen.",
+        "da": "Ekstra ventetid før (afslutning) afspilning af næste fil. Dette betyder den forsinkelse, det tager for outputenheden at afspille filen.",
+        "de": "Zusätzliche Wartezeit, bevor die nächste Datei (fertig) abgespielt wird.  \nDas bedeutet die Verzögerung, die das Ausgabegerät benötigt, um die Datei abzuspielen.",
+        "es": "Tiempo de espera adicional antes de (terminar) reproducir el siguiente archivo. Esto significa el retraso que toma el dispositivo de salida para reproducir el archivo.",
+        "fr": "Temps d'attente supplémentaire avant de (terminer) lire le fichier suivant. Cela signifie le délai que prend le périphérique de sortie pour lire le fichier.",
+        "it": "Tempo di attesa extra prima di (finire) di riprodurre il file successivo. Questo significa il ritardo che impiega il dispositivo di output per riprodurre il file.",
+        "no": "Ekstra ventetid før (ferdig)spilling av neste fil. Dette betyr forsinkelsen det tar for utgangsenheten å spille av filen.",
+        "sv": "Extra väntetid innan nästa fil spelas upp (färdigställs). Detta innebär fördröjningen det tar för utgångsenheten att spela upp filen.",
+        "pl": "Dodatkowy czas oczekiwania przed (zakończeniem) odtwarzaniem następnego pliku. Oznacza to opóźnienie, jakie zajmuje urządzeniu wyjściowemu odtworzenie pliku.",
+        "ru": "Дополнительное время ожидания перед (завершением) воспроизведением следующего файла. Это означает задержку, которую устройство вывода тратит на воспроизведение файла.",
+        "ko": "다음 파일을 (재생 완료 후) 재생하기 전의 추가 대기 시간.  \n이는 출력 장치가 파일을 재생하는 데 걸리는 지연 시간을 의미합니다.",
+        "ar": "وقت انتظار إضافي قبل (الانتهاء من) تشغيل الملف التالي.  \nهذا يعني التأخير الذي يستغرقه جهاز الإخراج لتشغيل الملف."
       }
-    ],
-    "repair": [
-      {
-        "id": "fix_list_devices",
-        "template": "list_devices",
-        "navigation": {
-          "next": "done_fix_my_devices"
-        },
-        "options": {
-          "singular": true
-        }
+    },
+    {
+      "id": "deviceprofile",
+      "type": "dropdown",
+      "label": {
+        "en": "Device Profile",
+        "nl": "Apparaat profiel",
+        "da": "Enhedsprofil",
+        "de": "Geräteprofil",
+        "es": "Perfil del dispositivo",
+        "fr": "Profil de l'appareil",
+        "it": "Profilo del dispositivo",
+        "no": "Enhetsprofil",
+        "sv": "Enhetsprofil",
+        "pl": "Profil urządzenia",
+        "ru": "Профиль устройства",
+        "ko": "디바이스 프로필",
+        "ar": "ملف الجهاز"
       },
-      {
-        "id": "done_fix_my_devices",
-        "template": "done"
-      }
-    ],
-    "settings": [
-      {
-        "id": "speakingRate",
-        "type": "number",
-        "label": {
-          "en": "Speed %",
-          "nl": "Snelheid %"
-        },
-        "hint": {
-          "en": "The speed at which to play the speech (1 is default)",
-          "nl": "De snelheid waarmee de spraak wordt  (1 is standaard)"
-        },
-        "min": 0.25,
-        "max": 4,
-        "step": 0.01,          
-        "labelMultiplier": 100,
-        "labelDecimals": 0,
-        "value" : 1
+      "hint": {
+        "en": "Select an 'audio effect' profile that is applied on (post synthesized) text to speech.\r\nSee https://cloud.google.com/text-to-speech/docs/audio-profiles for more info",
+        "nl": "Kies een 'audio effect' profiel die word toegepast (post synthesized) op de spraakuitvoer.\r\nKijk op https://cloud.google.com/text-to-speech/docs/audio-profiles voor meer informatie.",
+        "da": "Vælg en 'lyd effekt' profil, der anvendes på (efter syntetiseret) tekst til tale. Se https://cloud.google.com/text-to-speech/docs/audio-profiles for mere info.",
+        "de": "Wählen Sie ein 'Audioeffekt'-Profil aus, das auf den (nach der Synthese erstellten) Text-zu-Sprache angewendet wird. Weitere Informationen finden Sie unter https://cloud.google.com/text-to-speech/docs/audio-profiles.",
+        "es": "Selecciona un perfil de 'efecto de audio' que se aplica al texto a voz (post-sintetizado). Consulta https://cloud.google.com/text-to-speech/docs/audio-profiles para más información.",
+        "fr": "Sélectionnez un profil 'effet audio' qui est appliqué sur le texte synthétisé (après synthèse) pour la conversion texte en parole. Consultez https://cloud.google.com/text-to-speech/docs/audio-profiles pour plus d'informations.",
+        "it": "Seleziona un profilo 'effetto audio' che viene applicato al testo sintetizzato (post sintesi). Consulta https://cloud.google.com/text-to-speech/docs/audio-profiles per maggiori informazioni.",
+        "no": "Velg en 'lydeffekt' profil som brukes på (etter syntetisert) tekst til tale. Se https://cloud.google.com/text-to-speech/docs/audio-profiles for mer info.",
+        "sv": "Välj en 'ljudeffekt'-profil som tillämpas på (efter syntetiserad) text till tal. Se https://cloud.google.com/text-to-speech/docs/audio-profiles för mer information.",
+        "pl": "Wybierz profil 'efektu dźwiękowego', który jest stosowany do (po syntezowanym) tekście na mowę. Więcej informacji znajdziesz na stronie https://cloud.google.com/text-to-speech/docs/audio-profiles",
+        "ru": "Выберите профиль «аудиоэффекта», который применяется к (после синтеза) тексту в речь. Подробнее см. на https://cloud.google.com/text-to-speech/docs/audio-profiles",
+        "ko": "(합성 후) 텍스트 음성 변환에 적용되는 '오디오 효과' 프로필을 선택하세요. 자세한 내용은 https://cloud.google.com/text-to-speech/docs/audio-profiles를 참조하세요.",
+        "ar": "حدد ملف تعريف \"تأثير صوتي\" يتم تطبيقه على النص المحول إلى كلام (بعد التوليف). راجع https://cloud.google.com/text-to-speech/docs/audio-profiles لمزيد من المعلومات."
       },
-      {
-        "id": "pitch",
-        "type": "number",
-        "label": "Pitch",
-        "min": -20,
-        "max": 20,
-        "step": 0.1,
-        "value" : 0
-      },
-      {
-        "id": "delay",
-        "type": "number",
-        "label": {
-          "en": "Delay for each file to (finish) playing in ms",
-          "nl": "Vertraging voor elk bestand om te (eindige) spelen in ms"
-        },
-        "value": 1000,
-        "hint": {
-          "en": "Extra waiting time before (finishing) playing the next file.\r\nThis means the delay it takes the output device to play the file.",
-          "nl": "Extra wachttijd voor het (eindigen van het) spelen van het bestand.\r\nOftewel de wachttijd die het afspeelapparaat nodig heeft om the spelen."
-        }
-      },
-      {
-        "id": "deviceprofile",
-        "type": "dropdown",
-        "label": {
-          "en": "Device Profile",          
-          "nl": "Apparaat profiel"
-        },
-        "hint": {
-          "en": "Select an 'audio effect' profile that is applied on (post synthesized) text to speech.\r\nSee https://cloud.google.com/text-to-speech/docs/audio-profiles for more info",
-          "nl": "Kies een 'audio effect' profiel die word toegepast (post synthesized) op de spraakuitvoer.\r\nKijk op https://cloud.google.com/text-to-speech/docs/audio-profiles voor meer informatie."
-        },
-        "value" : "undefined",
-        "values": [
-          {
-            "id": "undefined",
-            "name": "undefined",
-            "label": {
-              "en": "No Profile",
-              "nl": "Geen profiel"
-            }
-          },
-          {
-            "id": "wearable-class-device",
-            "name": "wearable-class-device",
-            "label": {
-              "en": "Smart watches and other wearables, like Apple Watch, Wear OS watch (wearable-class-device)",
-              "nl": "Smart horloge's en andere draagbare apparaten, zoals Apple horloges en Wear OS Horloges (wearable-class-device)"
-            }
-          },
-          {
-            "id": "handset-class-device",
-            "name": "handset-class-device",
-            "label": {
-              "en": "Smartphones, like Google Pixel, Samsung Galaxy, Apple iPhone (handset-class-device)",
-              "nl": "Smart telefoons, zoals Google Pixel, Samsung Galaxy en Apple iPhone (handset-class-device)"
-            }
-          },
-          {
-            "id": "headphone-class-device",
-            "name": "headphone-class-device",
-            "label": {
-              "en": "Earbuds or headphones for audio playback, like Sennheiser headphones (headphone-class-device)",              
-              "nl": "Oordopjes of hoofdtelefoon, zoals Sennheiser headphones (headphone-class-device)"
-            }
-          },
-          {
-            "id": "small-bluetooth-speaker-class-device",
-            "name": "small-bluetooth-speaker-class-device",
-            "label": {
-              "en": "Small home speakers, like Google Home Mini (small-bluetooth-speaker-class-device)",              
-              "nl": "Kleine thuis speakers, zoals Google Home Mini (small-bluetooth-speaker-class-device)"
-            }
-          },
-          {
-            "id": "medium-bluetooth-speaker-class-device",
-            "name": "medium-bluetooth-speaker-class-device",
-            "label": {
-              "en": "Smart home speakers, like Google Home (medium-bluetooth-speaker-class-device)",
-              "nl": "Smart thuis speakers, zoals Google Home (medium-bluetooth-speaker-class-device)"
-            }
-          },
-          {
-            "id": "large-home-entertainment-class-device",
-            "name": "large-home-entertainment-class-device",
-            "label": {
-              "en": "Home entertainment systems or smart TVs, like Google Home Max, LG TV (large-home-entertainment-class-device)",
-              "nl": "Home entertainment systemen of Smart TVs, zoals Google Home Max, Samsung Samrt TV en LG TV (large-home-entertainment-class-device)"
-            }
-          },
-          {
-            "id": "large-automotive-class-device",
-            "name": "large-automotive-class-device",
-            "label": {
-              "en": "Car speakers (large-automotive-class-device)",
-              "nl": "Auto speakers (large-automotive-class-device)"
-            }
-          },
-          {
-            "id": "telephony-class-application",
-            "name": "telephony-class-application",
-            "label": {
-              "en": "Interactive Voice Response (IVR) systems (telephony-class-application)",
-              "nl": "Interactieve Spraak Beantwoording (IVR) systeem (telephony-class-application)"
-            }
+      "value": "undefined",
+      "values": [
+        {
+          "id": "undefined",
+          "name": "undefined",
+          "label": {
+            "en": "No Profile",
+            "nl": "Geen profiel",
+            "da": "Ingen profil",
+            "de": "Kein Profil",
+            "es": "Sin perfil",
+            "fr": "Aucun profil",
+            "it": "Nessun profilo",
+            "no": "Ingen profil",
+            "sv": "Ingen profil",
+            "pl": "Brak profilu",
+            "ru": "Нет профиля",
+            "ko": "프로필 없음",
+            "ar": "لا ملف تعريف"
           }
-        ]
-      },
-      {
-        "id": "volumeGainDb",
-        "type": "number",
-        "label": {
-          "en": "Volume Gain (dB)",
-          "nl": "Volume versterker (dB)"
         },
-        "min": -96,
-        "max": 16,
-        "step": 0.1,        
-        "hint": {
-          "en": "Increase the volume of the speech-output with this amount of decibel (dB).\r\nStrongly recommend not to exceed +10 (dB) as there's usually no effective increase in loudness for any value greater than that.",
-          "nl": "Verhoog het volume van de spraakuitvoer met deze hoeveelheid in decibel (dB). \r\nSterk advies om niet hoger dan +10 (dB) te gaan, mede omdat er doorgaans geen effect meer is in luidheid hoger dan dat."
-        },
-        "value" : 0
-      },
-      {
-        "id": "prefixpause",
-        "type": "number",
-        "label": {
-          "en": "Prefix Pause (ms)",
-          "nl": "Pauze vooraf (ms)"
-        },
-        "hint": {
-          "en": "Add a pause (in milleseconds) to the beginning of each speech output of this device.",
-          "nl": "Voeg een pauze toe (in milliseconde) aan het begin van iedere spraakuitvoer van dit apparaat."
-        },
-        "min": 0,
-        "max": 60000,
-        "step": 1,
-        "value" : 0
-      },
-      {
-        "id": "suffixpause",
-        "type": "number",
-        "label": {
-          "en": "Suffix Pause (ms)",
-          "nl": "Pauze achteraf (ms)"
-        },
-        "hint": {
-          "en": "Add a pause (in milleseconds) to the end of each speech output of this device.",
-          "nl": "Voeg een pauze toe (in milliseconde) aan het einde van iedere spraakuitvoer van dit apparaat."
-        },
-        "min": 0,
-        "max": 60000,
-        "step": 1,
-        "value" : 0
-      },
-      {
-        "id": "defaultspeak",
-        "type": "checkbox",
-        "label": {
-          "en": "Always use SSML",
-          "nl": "Gebruik altijd SSML"
-        },
-        "hint": {
-          "en": "If true, it will automatically insert the necessary start and end <speak> elements in speechoutput.",
-          "nl": "Indien waar, zal het automatisch de benodige begin en einde <speak> elementen toevoegen aan spraakuitvoer."          
-        },
-        "value" : false
-      },
-      {
-        "id": "audioEncoding",
-        "type": "dropdown",
-        "label": {
-          "en": "Encoding",          
-          "nl": "Encoding"
-        },
-        "value" : "MP3",
-        "values": [
-          {
-            "id": "MP3",
-            "name": "MP3",
-            "label": {
-              "en": "MP3",
-              "nl": "MP3"
-            }
-          },
-          {
-            "id": "LINEAR16",
-            "name": "LINEAR16",
-            "label": {
-              "en": "LINEAR16 (WAV)",
-              "nl": "LINEAR16 (WAV)"
-            }
+        {
+          "id": "wearable-class-device",
+          "name": "wearable-class-device",
+          "label": {
+            "en": "Smart watches and other wearables, like Apple Watch, Wear OS watch (wearable-class-device)",
+            "nl": "Smart horloge's en andere draagbare apparaten, zoals Apple horloges en Wear OS Horloges (wearable-class-device)",
+            "da": "Smartwatches og andre wearables, som Apple Watch, Wear OS-ur (wearable-class-device)",
+            "de": "Smartwatches und andere Wearables, wie Apple Watch, Wear OS-Uhr (Wearable-Class-Gerät)",
+            "es": "Relojes inteligentes y otros dispositivos portátiles, como Apple Watch, reloj Wear OS (dispositivo de clase portátil)",
+            "fr": "Montres intelligentes et autres appareils portables, comme l'Apple Watch, la montre Wear OS (appareil de classe portable)",
+            "it": "Smartwatch e altri dispositivi indossabili, come Apple Watch, Wear OS watch (dispositivo di classe indossabile)",
+            "no": "Smarte klokker og andre wearables, som Apple Watch, Wear OS-klokke (bærbar-enhet)",
+            "sv": "Smarta klockor och andra bärbara enheter, som Apple Watch, Wear OS-klocka (bärbar-enhetsklass)",
+            "pl": "Smartwatche i inne urządzenia noszone, takie jak Apple Watch, zegarek Wear OS (urządzenie klasy noszonej)",
+            "ru": "Умные часы и другие носимые устройства, такие как Apple Watch, часы на Wear OS (устройство носимого класса)",
+            "ko": "스마트 워치 및 기타 웨어러블 기기, 예를 들어 Apple Watch, Wear OS 워치 (웨어러블 클래스 디바이스)",
+            "ar": "الساعات الذكية والأجهزة القابلة للارتداء الأخرى، مثل Apple Watch وWear OS watch (جهاز من فئة الأجهزة القابلة للارتداء)"
           }
-        ]
-      }
-
-    ]
-  }
+        },
+        {
+          "id": "handset-class-device",
+          "name": "handset-class-device",
+          "label": {
+            "en": "Smartphones, like Google Pixel, Samsung Galaxy, Apple iPhone (handset-class-device)",
+            "nl": "Smart telefoons, zoals Google Pixel, Samsung Galaxy en Apple iPhone (handset-class-device)",
+            "da": "Smartphones, som Google Pixel, Samsung Galaxy, Apple iPhone (håndsæt-enhed)",
+            "de": "Smartphones, wie Google Pixel, Samsung Galaxy, Apple iPhone (Handy-Klasse-Gerät)",
+            "es": "Smartphones, como Google Pixel, Samsung Galaxy, Apple iPhone (dispositivo de clase teléfono)",
+            "fr": "Smartphones, comme Google Pixel, Samsung Galaxy, Apple iPhone (appareil de classe téléphone)",
+            "it": "Smartphone, come Google Pixel, Samsung Galaxy, Apple iPhone (dispositivo di classe handset)",
+            "no": "Smarttelefoner, som Google Pixel, Samsung Galaxy, Apple iPhone (håndsett-enhetsklasse)",
+            "sv": "Smartphones, som Google Pixel, Samsung Galaxy, Apple iPhone (handenhetsklass-enhet)",
+            "pl": "Smartfony, takie jak Google Pixel, Samsung Galaxy, Apple iPhone (urządzenie klasy telefon)",
+            "ru": "Смартфоны, такие как Google Pixel, Samsung Galaxy, Apple iPhone (устройство-класса-телефон)",
+            "ko": "스마트폰, 예를 들어 Google Pixel, Samsung Galaxy, Apple iPhone (핸드셋-클래스-디바이스)",
+            "ar": "الهواتف الذكية، مثل Google Pixel، Samsung Galaxy، Apple iPhone (جهاز من فئة الهواتف المحمولة)"
+          }
+        },
+        {
+          "id": "headphone-class-device",
+          "name": "headphone-class-device",
+          "label": {
+            "en": "Earbuds or headphones for audio playback, like Sennheiser headphones (headphone-class-device)",
+            "nl": "Oordopjes of hoofdtelefoon, zoals Sennheiser headphones (headphone-class-device)",
+            "da": "Ørepropper eller hovedtelefoner til lydafspilning, som Sennheiser hovedtelefoner (hovedtelefon-klasse-enhed)",
+            "de": "Ohrhörer oder Kopfhörer für die Audiowiedergabe, wie Sennheiser-Kopfhörer (Kopfhörer-Klasse-Gerät)",
+            "es": "Auriculares o audífonos para reproducción de audio, como los audífonos Sennheiser (dispositivo-clase-audífono)",
+            "fr": "Écouteurs ou casques pour la lecture audio, comme les casques Sennheiser (appareil de type casque)",
+            "it": "Auricolari o cuffie per la riproduzione audio, come le cuffie Sennheiser (dispositivo di classe cuffie)",
+            "no": "Ørepropper eller hodetelefoner for lydavspilling, som Sennheiser hodetelefoner (hodetelefon-enhetsklasse)",
+            "sv": "Öronproppar eller hörlurar för ljuduppspelning, som Sennheiser-hörlurar (hörlursklass-enhet)",
+            "pl": "Słuchawki douszne lub nauszne do odtwarzania dźwięku, takie jak słuchawki Sennheiser (urządzenie klasy słuchawkowej)",
+            "ru": "Наушники или гарнитура для воспроизведения звука, например, наушники Sennheiser (устройство-класса-наушников)",
+            "ko": "오디오 재생을 위한 이어버드 또는 헤드폰, 예를 들어 Sennheiser 헤드폰 (헤드폰-클래스-디바이스)",
+            "ar": "سماعات الأذن أو سماعات الرأس لتشغيل الصوت، مثل سماعات Sennheiser (جهاز من فئة سماعات الرأس)"
+          }
+        },
+        {
+          "id": "small-bluetooth-speaker-class-device",
+          "name": "small-bluetooth-speaker-class-device",
+          "label": {
+            "en": "Small home speakers, like Google Home Mini (small-bluetooth-speaker-class-device)",
+            "nl": "Kleine thuis speakers, zoals Google Home Mini (small-bluetooth-speaker-class-device)",
+            "da": "Små hjemmehøjttalere, som Google Home Mini (enhed i klassen for små Bluetooth-højttalere)",
+            "de": "Kleine Lautsprecher für Zuhause, wie Google Home Mini (kleines Bluetooth-Lautsprecher-Klasse-Gerät)",
+            "es": "Pequeños altavoces para el hogar, como Google Home Mini (dispositivo de clase altavoz bluetooth pequeño)",
+            "fr": "Petits haut-parleurs domestiques, comme Google Home Mini (appareil de classe petit haut-parleur Bluetooth)",
+            "it": "Piccoli altoparlanti domestici, come Google Home Mini (dispositivo di classe altoparlante bluetooth piccolo)",
+            "no": "Små høyttalere til hjemmet, som Google Home Mini (enhet i klassen for små Bluetooth-høyttalere)",
+            "sv": "Små hemmatalare, som Google Home Mini (enhet i klassen små Bluetooth-högtalare)",
+            "pl": "Małe głośniki domowe, takie jak Google Home Mini (urządzenie klasy małego głośnika Bluetooth)",
+            "ru": "Небольшие домашние колонки, такие как Google Home Mini (устройство класса маленьких Bluetooth-колонок)",
+            "ko": "구글 홈 미니와 같은 작은 홈 스피커 (소형 블루투스 스피커급 장치)",
+            "ar": "مكبرات الصوت المنزلية الصغيرة، مثل Google Home Mini (جهاز من فئة مكبرات الصوت الصغيرة بتقنية البلوتوث)"
+          }
+        },
+        {
+          "id": "medium-bluetooth-speaker-class-device",
+          "name": "medium-bluetooth-speaker-class-device",
+          "label": {
+            "en": "Smart home speakers, like Google Home (medium-bluetooth-speaker-class-device)",
+            "nl": "Smart thuis speakers, zoals Google Home (medium-bluetooth-speaker-class-device)",
+            "da": "Smarte højttalere til hjemmet, som Google Home (medium-bluetooth-højttaler-klasse-enhed)",
+            "de": "Smart-Home-Lautsprecher, wie Google Home (mittelgroßes Bluetooth-Lautsprecher-Klasse-Gerät)",
+            "es": "Altavoces inteligentes para el hogar, como Google Home (dispositivo de clase media-altavoz-bluetooth)",
+            "fr": "Enceintes intelligentes pour la maison, comme Google Home (appareil de classe moyenne avec Bluetooth)",
+            "it": "Altoparlanti intelligenti per la casa, come Google Home (dispositivo di classe media con altoparlante Bluetooth)",
+            "no": "Smarte høyttalere til hjemmet, som Google Home (medium-bluetooth-høyttaler-enhet)",
+            "sv": "Smarta högtalare för hemmet, som Google Home (medium-bluetooth-högtalare-klass-enhet)",
+            "pl": "Inteligentne głośniki domowe, takie jak Google Home (urządzenie klasy średniej z obsługą Bluetooth)",
+            "ru": "Умные домашние колонки, такие как Google Home (устройство среднего класса с поддержкой Bluetooth)",
+            "ko": "스마트 홈 스피커, 예를 들어 Google Home (중간-블루투스-스피커-클래스-장치)",
+            "ar": "مكبرات الصوت الذكية، مثل Google Home (جهاز من فئة مكبرات الصوت المتوسطة بتقنية البلوتوث)"
+          }
+        },
+        {
+          "id": "large-home-entertainment-class-device",
+          "name": "large-home-entertainment-class-device",
+          "label": {
+            "en": "Home entertainment systems or smart TVs, like Google Home Max, LG TV (large-home-entertainment-class-device)",
+            "nl": "Home entertainment systemen of Smart TVs, zoals Google Home Max, Samsung Samrt TV en LG TV (large-home-entertainment-class-device)",
+            "da": "Hjemmeunderholdningssystemer eller smarte TV'er, som Google Home Max, LG TV (stor-hjemmeunderholdnings-klasse-enhed)",
+            "de": "Heimunterhaltungssysteme oder Smart-TVs, wie Google Home Max, LG TV (großes Heimunterhaltungsgerät)",
+            "es": "Sistemas de entretenimiento en el hogar o televisores inteligentes, como Google Home Max, LG TV (dispositivo de clase de entretenimiento en el hogar grande)",
+            "fr": "Systèmes de divertissement à domicile ou téléviseurs intelligents, comme Google Home Max, LG TV (appareil de classe divertissement à domicile de grande taille)",
+            "it": "Sistemi di intrattenimento domestico o smart TV, come Google Home Max, LG TV (dispositivo di intrattenimento domestico di grandi dimensioni)",
+            "no": "Hjemmeunderholdningssystemer eller smarte TV-er, som Google Home Max, LG TV (stor-hjemmeunderholdningsklasse-enhet)",
+            "sv": "Hemmaunderhållningssystem eller smarta TV-apparater, som Google Home Max, LG TV (stor-hemmaunderhållningsklass-enhet)",
+            "pl": "Systemy rozrywki domowej lub inteligentne telewizory, takie jak Google Home Max, LG TV (urządzenie klasy rozrywki domowej dużego formatu)",
+            "ru": "Домашние развлекательные системы или умные телевизоры, такие как Google Home Max, LG TV (устройство класса больших домашних развлечений)",
+            "ko": "홈 엔터테인먼트 시스템 또는 스마트 TV, 예를 들어 Google Home Max, LG TV(대형 홈 엔터테인먼트 클래스 장치)",
+            "ar": "أنظمة الترفيه المنزلي أو التلفزيونات الذكية، مثل Google Home Max، وLG TV (جهاز ترفيه منزلي كبير)"
+          }
+        },
+        {
+          "id": "large-automotive-class-device",
+          "name": "large-automotive-class-device",
+          "label": {
+            "en": "Car speakers (large-automotive-class-device)",
+            "nl": "Auto speakers (large-automotive-class-device)",
+            "da": "Bilhøjttalere (stor-automobil-klasse-enhed)",
+            "de": "Autolautsprecher (großes Automobilgerät)",
+            "es": "Altavoces de coche (dispositivo de clase automotriz grande)",
+            "fr": "Haut-parleurs de voiture (appareil de classe automobile grande)",
+            "it": "Altoparlanti per auto (dispositivo di classe automobilistica grande)",
+            "no": "Bilhøyttalere (stor-bilklasse-enhet)",
+            "sv": "Bilhögtalare (stor-automotiv-klass-enhet)",
+            "pl": "Głośniki samochodowe (duże-urządzenie-klasy-automotive)",
+            "ru": "Автомобильные колонки (устройство большого автомобильного класса)",
+            "ko": "자동차 스피커 (대형 자동차 클래스 장치)",
+            "ar": "مكبرات صوت السيارة (جهاز كبير لفئة السيارات)"
+          }
+        },
+        {
+          "id": "telephony-class-application",
+          "name": "telephony-class-application",
+          "label": {
+            "en": "Interactive Voice Response (IVR) systems (telephony-class-application)",
+            "nl": "Interactieve Spraak Beantwoording (IVR) systeem (telephony-class-application)",
+            "da": "Interaktive stemmesvarsystemer (IVR) (telefoni-klasse-applikation)",
+            "de": "Interaktive Sprachdialogsysteme (IVR) (Telefonie-Klassen-Anwendung)",
+            "es": "Sistemas de Respuesta de Voz Interactiva (IVR) (aplicación de clase telefónica)",
+            "fr": "Systèmes de Réponse Vocale Interactive (RVI) (application de classe téléphonie)",
+            "it": "Sistemi di Risposta Vocale Interattiva (IVR) (applicazione di classe telefonica)",
+            "no": "Interaktive talerespons (IVR) systemer (telefoni-klasse-applikasjon)",
+            "sv": "Interaktiva röstrespons-system (IVR) (telefoni-klass-applikation)",
+            "pl": "Interaktywne systemy odpowiedzi głosowej (IVR) (aplikacja klasy telekomunikacyjnej)",
+            "ru": "Интерактивные голосовые системы (IVR) (телефонные приложения)",
+            "ko": "대화형 음성 응답(IVR) 시스템 (전화 응용 프로그램)",
+            "ar": "أنظمة الاستجابة الصوتية التفاعلية (IVR) (تطبيقات فئة الاتصالات الهاتفية)"
+          }
+        }
+      ]
+    },
+    {
+      "id": "volumeGainDb",
+      "type": "number",
+      "label": {
+        "en": "Volume Gain (dB)",
+        "nl": "Volume versterker (dB)",
+        "da": "Volumenforøgelse (dB)",
+        "de": "Lautstärkezunahme (dB)",
+        "es": "Ganancia de Volumen (dB)",
+        "fr": "Gain de volume (dB)",
+        "it": "Guadagno di Volume (dB)",
+        "no": "Volumøkning (dB)",
+        "sv": "Volymförstärkning (dB)",
+        "pl": "Wzmocnienie głośności (dB)",
+        "ru": "Увеличение громкости (дБ)",
+        "ko": "볼륨 증가 (dB)",
+        "ar": "زيادة مستوى الصوت (ديسيبل)"
+      },
+      "min": -96,
+      "max": 16,
+      "step": 0.1,
+      "hint": {
+        "en": "Increase the volume of the speech-output with this amount of decibel (dB).\r\nStrongly recommend not to exceed +10 (dB) as there's usually no effective increase in loudness for any value greater than that.",
+        "nl": "Verhoog het volume van de spraakuitvoer met deze hoeveelheid in decibel (dB). \r\nSterk advies om niet hoger dan +10 (dB) te gaan, mede omdat er doorgaans geen effect meer is in luidheid hoger dan dat.",
+        "da": "Øg lydstyrken på tale-output med dette antal decibel (dB). Vi anbefaler stærkt ikke at overskride +10 (dB), da der normalt ikke er nogen effektiv stigning i lydstyrken for værdier større end det.",
+        "de": "Erhöhe die Lautstärke der Sprachausgabe um diesen Dezibel-Wert (dB). Es wird dringend empfohlen, +10 dB nicht zu überschreiten, da es normalerweise keine effektive Lautstärkeerhöhung für Werte darüber gibt.",
+        "es": "Aumenta el volumen de la salida de voz con esta cantidad de decibelios (dB). Recomendamos encarecidamente no exceder +10 (dB) ya que generalmente no hay un aumento efectivo en la sonoridad para cualquier valor mayor que eso.",
+        "fr": "Augmentez le volume de la sortie vocale de ce nombre de décibels (dB). Nous vous recommandons fortement de ne pas dépasser +10 (dB) car il n'y a généralement pas d'augmentation effective du volume pour toute valeur supérieure.",
+        "it": "Aumenta il volume dell'uscita vocale di questo numero di decibel (dB). Consigliamo vivamente di non superare i +10 (dB) poiché di solito non c'è un aumento effettivo della sonorità per valori superiori.",
+        "no": "Øk volumet på taleutgangen med dette antallet desibel (dB). Vi anbefaler sterkt å ikke overskride +10 (dB), da det vanligvis ikke gir noen effektiv økning i lydstyrke for verdier over dette.",
+        "sv": "Öka volymen på talutgången med denna mängd decibel (dB). Vi rekommenderar starkt att inte överskrida +10 (dB) eftersom det vanligtvis inte ger någon effektiv ökning av ljudstyrkan för värden över det.",
+        "pl": "Zwiększ głośność wyjścia mowy o tę liczbę decybeli (dB). Zdecydowanie zalecamy nie przekraczać +10 dB, ponieważ zazwyczaj nie ma skutecznego wzrostu głośności dla wartości większych niż ta.",
+        "ru": "Увеличьте громкость звукового вывода на это количество децибел (дБ). Настоятельно рекомендуем не превышать +10 (дБ), так как обычно нет эффективного увеличения громкости для значений больше этого.",
+        "ko": "음성 출력의 볼륨을 이 데시벨(dB)만큼 증가시킵니다. +10(dB)을 초과하지 않기를 강력히 권장합니다. 그 이상의 값에서는 일반적으로 효과적인 소리 증가가 없기 때문입니다.",
+        "ar": "قم بزيادة مستوى الصوت الناتج عن الكلام بهذه الكمية من الديسيبل (dB). نوصي بشدة بعدم تجاوز +10 (dB) حيث لا يوجد عادةً زيادة فعالة في مستوى الصوت لأي قيمة أكبر من ذلك."
+      },
+      "value": 0
+    },
+    {
+      "id": "prefixpause",
+      "type": "number",
+      "label": {
+        "en": "Prefix Pause (ms)",
+        "nl": "Pauze vooraf (ms)",
+        "da": "Præfiks Pause (ms)",
+        "de": "Präfix-Pause (ms)",
+        "es": "Prefijo de pausa (ms)",
+        "fr": "Pause du préfixe (ms)",
+        "it": "Prefisso Pausa (ms)",
+        "no": "Prefiks pause (ms)",
+        "sv": "Prefixpaus (ms)",
+        "pl": "Prefiksowa pauza (ms)",
+        "ru": "Пауза префикса (мс)",
+        "ko": "접두사 일시 중지 (밀리초)",
+        "ar": "إيقاف مؤقت للبداية (مللي ثانية)"
+      },
+      "hint": {
+        "en": "Add a pause (in milleseconds) to the beginning of each speech output of this device.",
+        "nl": "Voeg een pauze toe (in milliseconde) aan het begin van iedere spraakuitvoer van dit apparaat.",
+        "da": "Tilføj en pause (i millisekunder) til begyndelsen af hver taleoutput fra denne enhed.",
+        "de": "Fügen Sie eine Pause (in Millisekunden) am Anfang jeder Sprachausgabe dieses Geräts hinzu.",
+        "es": "Agrega una pausa (en milisegundos) al inicio de cada salida de voz de este dispositivo.",
+        "fr": "Ajoutez une pause (en millisecondes) au début de chaque sortie vocale de cet appareil.",
+        "it": "Aggiungi una pausa (in millisecondi) all'inizio di ogni output vocale di questo dispositivo.",
+        "no": "Legg til en pause (i millisekunder) i begynnelsen av hver taleutgang fra denne enheten.",
+        "sv": "Lägg till en paus (i millisekunder) i början av varje talutmatning från den här enheten.",
+        "pl": "Dodaj pauzę (w milisekundach) na początku każdej wypowiedzi tego urządzenia.",
+        "ru": "Добавьте паузу (в миллисекундах) в начало каждого голосового вывода этого устройства.",
+        "ko": "이 장치의 각 음성 출력 시작 부분에 일시 정지(밀리초)를 추가하세요.",
+        "ar": "أضف وقفة (بالملي ثانية) إلى بداية كل إخراج صوتي لهذا الجهاز."
+      },
+      "min": 0,
+      "max": 60000,
+      "step": 1,
+      "value": 0
+    },
+    {
+      "id": "suffixpause",
+      "type": "number",
+      "label": {
+        "en": "Suffix Pause (ms)",
+        "nl": "Pauze achteraf (ms)",
+        "da": "Suffiks Pause (ms)",
+        "de": "Suffix-Pause (ms)",
+        "es": "Pausa de sufijo (ms)",
+        "fr": "Pause du suffixe (ms)",
+        "it": "Pausa suffisso (ms)",
+        "no": "Suffiks pause (ms)",
+        "sv": "Suffixpaus (ms)",
+        "pl": "Sufiks Pauza (ms)",
+        "ru": "Суффикс Пауза (мс)",
+        "ko": "접미사 일시정지 (밀리초)",
+        "ar": "إيقاف مؤقت لاحقة (مللي ثانية)"
+      },
+      "hint": {
+        "en": "Add a pause (in milleseconds) to the end of each speech output of this device.",
+        "nl": "Voeg een pauze toe (in milliseconde) aan het einde van iedere spraakuitvoer van dit apparaat.",
+        "da": "Tilføj en pause (i millisekunder) til slutningen af hver taleoutput fra denne enhed.",
+        "de": "Fügen Sie am Ende jeder Sprachausgabe dieses Geräts eine Pause (in Millisekunden) hinzu.",
+        "es": "Agrega una pausa (en milisegundos) al final de cada salida de voz de este dispositivo.",
+        "fr": "Ajoutez une pause (en millisecondes) à la fin de chaque sortie vocale de cet appareil.",
+        "it": "Aggiungi una pausa (in millisecondi) alla fine di ogni output vocale di questo dispositivo.",
+        "no": "Legg til en pause (i millisekunder) på slutten av hver taleutgang fra denne enheten.",
+        "sv": "Lägg till en paus (i millisekunder) i slutet av varje talutgång från den här enheten.",
+        "pl": "Dodaj pauzę (w milisekundach) na końcu każdej wypowiedzi tego urządzenia.",
+        "ru": "Добавьте паузу (в миллисекундах) в конец каждой голосовой команды этого устройства.",
+        "ko": "이 기기의 각 음성 출력 끝에 일시 정지 시간을 밀리초 단위로 추가하세요.",
+        "ar": "أضف وقفة (بالملي ثانية) إلى نهاية كل إخراج صوتي لهذا الجهاز."
+      },
+      "min": 0,
+      "max": 60000,
+      "step": 1,
+      "value": 0
+    },
+    {
+      "id": "defaultspeak",
+      "type": "checkbox",
+      "label": {
+        "en": "Always use SSML",
+        "nl": "Gebruik altijd SSML",
+        "da": "Brug altid SSML",
+        "de": "Immer SSML verwenden",
+        "es": "Siempre usa SSML",
+        "fr": "Toujours utiliser SSML",
+        "it": "Usa sempre SSML",
+        "no": "Bruk alltid SSML",
+        "sv": "Använd alltid SSML",
+        "pl": "Zawsze używaj SSML",
+        "ru": "Всегда используйте SSML",
+        "ko": "항상 SSML 사용하기",
+        "ar": "دائمًا استخدم SSML"
+      },
+      "hint": {
+        "en": "If true, it will automatically insert the necessary start and end <speak> elements in speechoutput.",
+        "nl": "Indien waar, zal het automatisch de benodige begin en einde <speak> elementen toevoegen aan spraakuitvoer.",
+        "da": "Hvis sandt, vil det automatisk indsætte de nødvendige start- og slut-<speak>-elementer i taleoutput.",
+        "de": "Wenn wahr, werden automatisch die erforderlichen <speak>-Elemente für den Anfang und das Ende in die Sprachausgabe eingefügt.",
+        "es": "Si es verdadero, insertará automáticamente los elementos <speak> de inicio y fin necesarios en la salida de voz.",
+        "fr": "Si c'est vrai, il insérera automatiquement les éléments <speak> de début et de fin nécessaires dans le discours.",
+        "it": "Se vero, inserirà automaticamente gli elementi <speak> necessari all'inizio e alla fine di speechoutput.",
+        "no": "Hvis sant, vil det automatisk sette inn de nødvendige start- og slutt-<speak>-elementene i taleutgangen.",
+        "sv": "Om sant, kommer det automatiskt att infoga de nödvändiga start- och slut-<speak>-elementen i talutgången.",
+        "pl": "Jeśli to prawda, automatycznie wstawi niezbędne elementy <speak> na początku i końcu w wyjściu mowy.",
+        "ru": "Если установлено значение true, то в speechoutput автоматически будут вставлены необходимые элементы <speak> в начале и в конце.",
+        "ko": "사실이라면, speechoutput에 필요한 시작 및 종료 <speak> 요소를 자동으로 삽입합니다.",
+        "ar": "إذا كان صحيحًا، فسيقوم تلقائيًا بإدراج عناصر <speak> اللازمة للبداية والنهاية في إخراج الكلام."
+      },
+      "value": false
+    },
+    {
+      "id": "audioEncoding",
+      "type": "dropdown",
+      "label": {
+        "en": "Encoding",
+        "nl": "Encoding",
+        "da": "Kodning",
+        "de": "Kodierung",
+        "es": "Codificación",
+        "fr": "Encodage",
+        "it": "Codifica",
+        "no": "Koding",
+        "sv": "Kodning",
+        "pl": "Kodowanie",
+        "ru": "Кодирование",
+        "ko": "인코딩",
+        "ar": "ترميز"
+      },
+      "value": "MP3",
+      "values": [
+        {
+          "id": "MP3",
+          "name": "MP3",
+          "label": {
+            "en": "MP3",
+            "nl": "MP3",
+            "da": "MP3",
+            "de": "MP3",
+            "es": "MP3",
+            "fr": "MP3",
+            "it": "MP3",
+            "no": "MP3",
+            "sv": "MP3",
+            "pl": "MP3",
+            "ru": "MP3",
+            "ko": "MP3",
+            "ar": "MP3"
+          }
+        },
+        {
+          "id": "LINEAR16",
+          "name": "LINEAR16",
+          "label": {
+            "en": "LINEAR16 (WAV)",
+            "nl": "LINEAR16 (WAV)",
+            "da": "LINEAR16 (WAV)",
+            "de": "LINEAR16 (WAV)",
+            "es": "LINEAR16 (WAV)",
+            "fr": "LINEAR16 (WAV)",
+            "it": "LINEAR16 (WAV)",
+            "no": "LINEAR16 (WAV)",
+            "sv": "LINEAR16 (WAV)",
+            "pl": "LINEAR16 (WAV)",
+            "ru": "LINEAR16 (WAV)",
+            "ko": "LINEAR16 (WAV)",
+            "ar": "LINEAR16 (WAV)"
+          }
+        }
+      ]
+    }
+  ]
+}

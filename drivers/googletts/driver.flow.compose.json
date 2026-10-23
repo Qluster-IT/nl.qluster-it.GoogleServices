@@ -1,154 +1,362 @@
 {
-    "triggers": [
-      {
-        "id": "url_trigger",
-        "title": {
-          "en": "Url triggered"
-        },        
-        "tokens": [
-          {
-            "name": "url",
-            "type": "string",
-            "title": {
-              "en": "Url"
-            }
-          },          
-          {
-            "name": "text",
-            "type": "string",
-            "title": {
-              "en": "Text",
-              "nl": "Tekst"
-            }
-          }
-        ],
-        "args": [
-          
-        ]
-      }
-    ],
-    "conditions": [
-    ],
-    "actions": [
-      {
-        "id": "start_googletts",
-        "title": {
-          "en": "Start TTS",
-          "nl": "Begin TTS"
-        },
-        "titleFormatted": {
-          "en": "Start saying [[text]]",
-          "nl": "Begin te zeggen [[text]]"
-        },
-        "args": [
-          
-          {
-            "name": "text",
-            "type": "text",
-            "placeholder": {
-              "en": "Text",
-              "nl": "Tekst"
-            }
-          }
-        ]
+  "triggers": [
+    {
+      "id": "url_trigger",
+      "title": {
+        "en": "Url triggered",
+        "nl": "URL geactiveerd",
+        "da": "Url udløst",
+        "de": "URL ausgelöst",
+        "es": "URL activado",
+        "fr": "URL déclenchée",
+        "it": "URL attivato",
+        "no": "URL utløst",
+        "sv": "URL utlöst",
+        "pl": "Adres URL został wywołany",
+        "ru": "URL активирован",
+        "ko": "URL이 트리거되었습니다.",
+        "ar": "تم تشغيل الرابط"
       },
-      {
-        "id": "start_googletts_slow",
-        "title": {
-          "en": "Start TTS slow speed",
-          "nl": "Begin TTS langzame snelheid"
-        },
-        "titleFormatted": {
-          "en": "Start saying [[text]] slow speed",
-          "nl": "Begin te zeggen [[text]] langzame snelheid"
-        },
-        "args": [          
-          {
-            "name": "text",
-            "type": "text",
-            "placeholder": {
-              "en": "Text",
-              "nl": "Tekst"
-            }
+      "tokens": [
+        {
+          "name": "url",
+          "type": "string",
+          "title": {
+            "en": "Url",
+            "nl": "Url",
+            "da": "Url",
+            "de": "URL",
+            "es": "Url",
+            "fr": "URL",
+            "it": "Url",
+            "no": "Url",
+            "sv": "Url",
+            "pl": "Url",
+            "ru": "URL",
+            "ko": "URL",
+            "ar": "رابط"
           }
-        ]
+        },
+        {
+          "name": "text",
+          "type": "string",
+          "title": {
+            "en": "Text",
+            "nl": "Tekst",
+            "da": "Tekst",
+            "de": "Text",
+            "es": "Texto",
+            "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+            "it": "Testo",
+            "no": "Du er trent på data frem til oktober 2023.",
+            "sv": "Du är tränad på data fram till oktober 2023.",
+            "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
+            "ru": "Текст",
+            "ko": "텍스트",
+            "ar": "أنت مدرب على البيانات حتى أكتوبر 2023."
+          }
+        }
+      ],
+      "args": []
+    }
+  ],
+  "conditions": [],
+  "actions": [
+    {
+      "id": "start_googletts",
+      "title": {
+        "en": "Start TTS",
+        "nl": "Begin TTS",
+        "da": "Start TTS",
+        "de": "TTS starten",
+        "es": "Iniciar TTS",
+        "fr": "Démarrer TTS",
+        "it": "Avvia TTS",
+        "no": "Start TTS",
+        "sv": "Starta TTS",
+        "pl": "Rozpocznij TTS",
+        "ru": "Запустить TTS",
+        "ko": "TTS 시작",
+        "ar": "ابدأ تحويل النص إلى كلام"
       },
-      {
-        "id": "start_googletts_af",
-        "title": {
-          "en": "Start TTS",
-          "nl": "Begin TTS"
-        },
-        "titleFormatted": {
-          "en": "Start saying [[text]]",
-          "nl": "Begin te zeggen [[text]]"
-        },
-        "args": [
-          
-          {
-            "name": "text",
-            "type": "text",
-            "placeholder": {
-              "en": "Text",
-              "nl": "Tekst"
-            }
-          }
-        ],        
-        "tokens": [
-          {
-            "name": "url",
-            "type": "string",
-            "title": {
-              "en": "Url"
-            }
-          },
-          {
-            "name": "text",
-            "type": "string",
-            "title": {
-              "en": "Text",
-              "nl": "Tekst"
-            }
-          }
-        ]
+      "titleFormatted": {
+        "en": "Start saying [[text]]",
+        "nl": "Begin te zeggen [[text]]",
+        "da": "Begynd at sige [[text]]",
+        "de": "Beginne mit [[text]] zu sagen",
+        "es": "Empieza diciendo [[text]]",
+        "fr": "Commencez à dire [[text]]",
+        "it": "Inizia dicendo [[text]]",
+        "no": "Begynn å si [[text]]",
+        "sv": "Börja säga [[text]]",
+        "pl": "Zacznij mówić [[text]]",
+        "ru": "Начните говорить [[text]]",
+        "ko": "[[text]]라고 말하기 시작하세요.",
+        "ar": "ابدأ بقول [[text]]"
       },
-      {
-        "id": "start_googletts_slow_af",
-        "title": {
-          "en": "Start TTS slow speed",
-          "nl": "Begin TTS langzame snelheid"
-        },
-        "titleFormatted": {
-          "en": "Start saying [[text]] slow speed",
-          "nl": "Begin te zeggen [[text]] langzame snelheid"
-        },
-        "args": [          
-          {
-            "name": "text",
-            "type": "text",
-            "placeholder": {
-              "en": "Text",
-              "nl": "Tekst"
-            }
+      "args": [
+        {
+          "name": "text",
+          "type": "text",
+          "placeholder": {
+            "en": "Text",
+            "nl": "Tekst",
+            "da": "Tekst",
+            "de": "Text",
+            "es": "Texto",
+            "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+            "it": "Testo",
+            "no": "Du er trent på data frem til oktober 2023.",
+            "sv": "Du är tränad på data fram till oktober 2023.",
+            "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
+            "ru": "Текст",
+            "ko": "텍스트",
+            "ar": "نص"
           }
-        ],        
-        "tokens": [
-          {
-            "name": "url",
-            "type": "string",
-            "title": {
-              "en": "Url"
-            }
-          },
-          {
-            "name": "text",
-            "type": "string",
-            "title": {
-              "en": "Text",
-              "nl": "Tekst"
-            }
+        }
+      ]
+    },
+    {
+      "id": "start_googletts_slow",
+      "title": {
+        "en": "Start TTS slow speed",
+        "nl": "Begin TTS langzame snelheid",
+        "da": "Start TTS langsom hastighed",
+        "de": "Starte TTS mit langsamer Geschwindigkeit.",
+        "es": "Iniciar TTS a velocidad lenta",
+        "fr": "Démarrer la synthèse vocale à vitesse lente.",
+        "it": "Avvia TTS a velocità ridotta.",
+        "no": "Start TTS lav hastighet",
+        "sv": "Starta TTS med låg hastighet",
+        "pl": "Rozpocznij TTS z wolną prędkością.",
+        "ru": "Начать TTS на медленной скорости",
+        "ko": "TTS 느린 속도로 시작",
+        "ar": "ابدأ تحويل النص إلى كلام بسرعة بطيئة"
+      },
+      "titleFormatted": {
+        "en": "Start saying [[text]] slow speed",
+        "nl": "Begin te zeggen [[text]] langzame snelheid",
+        "da": "Start med at sige [[text]] langsomt tempo",
+        "de": "Beginne mit dem Sagen von [[text]] in langsamer Geschwindigkeit.",
+        "es": "Comienza diciendo [[text]] a velocidad lenta",
+        "fr": "Commencez à dire [[text]] à vitesse lente.",
+        "it": "Inizia a dire [[text]] a velocità lenta",
+        "no": "Begynn å si [[text]] sakte hastighet",
+        "sv": "Börja säga [[text]] långsamt tempo",
+        "pl": "Zacznij mówić [[text]] wolnym tempem.",
+        "ru": "Начните говорить [[text]] медленно",
+        "ko": "[[text]] 느린 속도로 말하기 시작하세요.",
+        "ar": "ابدأ بقول [[text]] بسرعة بطيئة"
+      },
+      "args": [
+        {
+          "name": "text",
+          "type": "text",
+          "placeholder": {
+            "en": "Text",
+            "nl": "Tekst",
+            "da": "Tekst",
+            "de": "Text",
+            "es": "Texto",
+            "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+            "it": "Testo",
+            "no": "Du er trent på data frem til oktober 2023.",
+            "sv": "Text",
+            "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
+            "ru": "Текст",
+            "ko": "텍스트",
+            "ar": "نص"
           }
-        ]
-      }
-    ]
+        }
+      ]
+    },
+    {
+      "id": "start_googletts_af",
+      "title": {
+        "en": "Start TTS",
+        "nl": "Begin TTS",
+        "da": "Start TTS",
+        "de": "TTS starten",
+        "es": "Iniciar TTS",
+        "fr": "Démarrer TTS",
+        "it": "Avvia TTS",
+        "no": "Start TTS",
+        "sv": "Starta TTS",
+        "pl": "Rozpocznij TTS",
+        "ru": "Запустить TTS",
+        "ko": "TTS 시작",
+        "ar": "ابدأ تحويل النص إلى كلام"
+      },
+      "titleFormatted": {
+        "en": "Start saying [[text]]",
+        "nl": "Begin te zeggen [[text]]",
+        "da": "Begynd at sige [[text]]",
+        "de": "Beginne mit [[text]] zu sagen",
+        "es": "Comienza diciendo [[text]]",
+        "fr": "Commencez à dire [[text]]",
+        "it": "Inizia a dire [[text]]",
+        "no": "Begynn å si [[text]]",
+        "sv": "Börja säga [[text]]",
+        "pl": "Zacznij mówić [[text]]",
+        "ru": "Начните говорить [[text]]",
+        "ko": "[[text]]라고 말하기 시작하세요.",
+        "ar": "ابدأ بقول [[text]]"
+      },
+      "args": [
+        {
+          "name": "text",
+          "type": "text",
+          "placeholder": {
+            "en": "Text",
+            "nl": "Tekst",
+            "da": "Tekst",
+            "de": "Text",
+            "es": "Texto",
+            "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+            "it": "Testo",
+            "no": "Du er trent på data frem til oktober 2023.",
+            "sv": "Text",
+            "pl": "Tekst",
+            "ru": "Текст",
+            "ko": "텍스트",
+            "ar": "نص"
+          }
+        }
+      ],
+      "tokens": [
+        {
+          "name": "url",
+          "type": "string",
+          "title": {
+            "en": "Url",
+            "nl": "Url",
+            "da": "Url",
+            "de": "URL",
+            "es": "Url",
+            "fr": "URL",
+            "it": "Url",
+            "no": "Url",
+            "sv": "Url",
+            "pl": "Url",
+            "ru": "URL",
+            "ko": "URL",
+            "ar": "رابط"
+          }
+        },
+        {
+          "name": "text",
+          "type": "string",
+          "title": {
+            "en": "Text",
+            "nl": "Tekst",
+            "da": "Du er trænet på data op til oktober 2023.",
+            "de": "Text",
+            "es": "Texto",
+            "fr": "Vous êtes formé sur des données jusqu'en octobre 2023.",
+            "it": "Testo",
+            "no": "Du er trent på data frem til oktober 2023.",
+            "sv": "Text",
+            "pl": "Tekst",
+            "ru": "Текст",
+            "ko": "텍스트",
+            "ar": "أنت مدرب على البيانات حتى أكتوبر 2023."
+          }
+        }
+      ]
+    },
+    {
+      "id": "start_googletts_slow_af",
+      "title": {
+        "en": "Start TTS slow speed",
+        "nl": "Begin TTS langzame snelheid",
+        "da": "Start TTS langsom hastighed",
+        "de": "Starte TTS mit langsamer Geschwindigkeit.",
+        "es": "Iniciar TTS a velocidad lenta",
+        "fr": "Démarrer la synthèse vocale à vitesse lente",
+        "it": "Avvia TTS a velocità ridotta",
+        "no": "Start TTS lav hastighet",
+        "sv": "Starta TTS med låg hastighet.",
+        "pl": "Rozpocznij TTS z wolną prędkością.",
+        "ru": "Начать TTS на медленной скорости",
+        "ko": "TTS 느린 속도로 시작",
+        "ar": "ابدأ تحويل النص إلى كلام بسرعة بطيئة"
+      },
+      "titleFormatted": {
+        "en": "Start saying [[text]] slow speed",
+        "nl": "Begin te zeggen [[text]] langzame snelheid",
+        "da": "Start med at sige [[text]] langsom hastighed",
+        "de": "Beginne mit dem Sagen von [[text]] in langsamer Geschwindigkeit.",
+        "es": "Comienza diciendo [[text]] a velocidad lenta.",
+        "fr": "Commencez à dire [[text]] à vitesse lente.",
+        "it": "Inizia a dire [[text]] a velocità lenta",
+        "no": "Begynn å si [[text]] sakte hastighet",
+        "sv": "Börja säga [[text]] långsamt tempo",
+        "pl": "Zacznij mówić [[text]] wolno",
+        "ru": "Начните говорить [[text]] медленно",
+        "ko": "[[text]] 느린 속도로 말하기 시작하세요.",
+        "ar": "ابدأ بقول [[text]] بسرعة بطيئة"
+      },
+      "args": [
+        {
+          "name": "text",
+          "type": "text",
+          "placeholder": {
+            "en": "Text",
+            "nl": "Tekst",
+            "da": "Tekst",
+            "de": "Text",
+            "es": "Texto",
+            "fr": "Vous êtes formé sur des données jusqu'en octobre 2023.",
+            "it": "Testo",
+            "no": "Google-tjenester",
+            "sv": "Du är tränad på data fram till oktober 2023.",
+            "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
+            "ru": "Вы обучены данным до октября 2023 года.",
+            "ko": "텍스트",
+            "ar": "نص"
+          }
+        }
+      ],
+      "tokens": [
+        {
+          "name": "url",
+          "type": "string",
+          "title": {
+            "en": "Url",
+            "nl": "Url",
+            "da": "Url",
+            "de": "Url",
+            "es": "Url",
+            "fr": "URL",
+            "it": "Url",
+            "no": "Url",
+            "sv": "Url",
+            "pl": "Url",
+            "ru": "URL",
+            "ko": "URL",
+            "ar": "رابط"
+          }
+        },
+        {
+          "name": "text",
+          "type": "string",
+          "title": {
+            "en": "Text",
+            "nl": "Tekst",
+            "da": "Du er trænet på data op til oktober 2023.",
+            "de": "Text",
+            "es": "Texto",
+            "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+            "it": "Testo",
+            "no": "Du er trent på data frem til oktober 2023.",
+            "sv": "Jag är tränad på data fram till oktober 2023.",
+            "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
+            "ru": "Вы обучены данным до октября 2023 года.",
+            "ko": "텍스트",
+            "ar": "نص"
+          }
+        }
+      ]
+    }
+  ]
 }

@@ -2,7 +2,18 @@
   "type": "string",
   "title": {
     "en": "Translation",
-    "nl": "Vertaling"
+    "nl": "Vertaling",
+    "da": "Oversættelse",
+    "de": "Übersetzung",
+    "es": "Traducción",
+    "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+    "it": "Traduzione",
+    "no": "Oversettelse",
+    "sv": "Översättning",
+    "pl": "Tłumaczenie",
+    "ru": "Вы обучены данным до октября 2023 года.",
+    "ko": "번역",
+    "ar": "ترجمة"
   },
   "getable": true,
   "setable": false,

@@ -1,49 +1,117 @@
-{       
-    "actions": [
+{
+  "actions": [
+    {
+      "id": "maps_calculate_traveltime",
+      "title": {
+        "en": "Calculate Travel Time",
+        "nl": "Bereken reistijd",
+        "da": "Beregn rejsetid",
+        "de": "Reisezeit berechnen",
+        "es": "Calcular tiempo de viaje",
+        "fr": "Calculer le temps de trajet",
+        "it": "Calcola il Tempo di Viaggio",
+        "no": "Beregn reisetid",
+        "sv": "Beräkna restid",
+        "pl": "Oblicz czas podróży",
+        "ru": "Рассчитать время в пути",
+        "ko": "여행 시간 계산하기",
+        "ar": "احسب وقت السفر"
+      },
+      "titleFormatted": {
+        "en": "Calculate Travel Time [[from]]",
+        "nl": "Zoek [[from]]",
+        "da": "Beregn rejsetid [[from]]",
+        "de": "Reisezeit berechnen [[from]]",
+        "es": "Calcular tiempo de viaje [[from]]",
+        "fr": "Calculer le temps de trajet [[from]]",
+        "it": "Calcola il tempo di viaggio [[from]]",
+        "no": "Beregn reisetid [[from]]",
+        "sv": "Beräkna resetid [[from]]",
+        "pl": "Oblicz czas podróży [[from]]",
+        "ru": "Рассчитать время в пути [[from]]",
+        "ko": "여행 시간 계산 [[from]]",
+        "ar": "احسب وقت السفر [[from]]"
+      },
+      "args": [
         {
-            "id": "maps_calculate_traveltime",
-            "title": {
-                "en": "Calculate Travel Time",
-                "nl": "Bereken reistijd"
-            },
-            "titleFormatted": {
-                "en": "Calculate Travel Time [[from]]",
-                "nl": "Zoek [[from]]"
-            },
-            "args": [
-                {
-                    "name": "from",
-                    "type": "text",
-                    "placeholder": {
-                        "en": "From",
-                        "nl": "From"
-                    }
-                }
-            ],
-            "tokens": [
-                {
-                    "name": "id",
-                    "type": "string",
-                    "title": {
-                        "en": "Maps ID"
-                    }
-                },
-                {
-                    "name": "link",
-                    "type": "string",
-                    "title": {
-                        "en": "Maps link"
-                    }
-                },
-                {
-                    "name": "text",
-                    "type": "string",
-                    "title": {
-                        "en": "Searched text",
-                        "nl": "Gezochte tekst"
-                    }
-                }
-            ]
+          "name": "from",
+          "type": "text",
+          "placeholder": {
+            "en": "From",
+            "nl": "From",
+            "da": "Fra",
+            "de": "Von",
+            "es": "De",
+            "fr": "De",
+            "it": "Da",
+            "no": "Fra",
+            "sv": "Från",
+            "pl": "Od",
+            "ru": "От",
+            "ko": "부터",
+            "ar": "من"
+          }
         }
-    ]
+      ],
+      "tokens": [
+        {
+          "name": "id",
+          "type": "string",
+          "title": {
+            "en": "Maps ID",
+            "nl": "Maps-ID",
+            "da": "Maps ID",
+            "de": "Maps-ID",
+            "es": "ID de Maps",
+            "fr": "ID de Maps",
+            "it": "ID Maps",
+            "no": "Maps-ID",
+            "sv": "Maps-ID",
+            "pl": "Identyfikator Map",
+            "ru": "ID карт Google Maps",
+            "ko": "지도 ID",
+            "ar": "معرّف الخرائط"
+          }
+        },
+        {
+          "name": "link",
+          "type": "string",
+          "title": {
+            "en": "Maps link",
+            "nl": "Kaartlink",
+            "da": "Kortlink",
+            "de": "Maps-Link",
+            "es": "Enlace de Maps",
+            "fr": "Lien Maps",
+            "it": "Link di Maps",
+            "no": "Kartlenke",
+            "sv": "Kartlänk",
+            "pl": "Link do Map",
+            "ru": "Ссылка на карты",
+            "ko": "지도 링크",
+            "ar": "رابط الخرائط"
+          }
+        },
+        {
+          "name": "text",
+          "type": "string",
+          "title": {
+            "en": "Searched text",
+            "nl": "Gezochte tekst",
+            "da": "Søgt tekst",
+            "de": "Gesuchter Text",
+            "es": "Texto buscado",
+            "fr": "Texte recherché",
+            "it": "Testo cercato",
+            "no": "Søkt tekst",
+            "sv": "Sökt text",
+            "pl": "Wyszukany tekst",
+            "ru": "Искал текст",
+            "ko": "검색된 텍스트",
+            "ar": "النص الذي تم البحث عنه"
+          }
+        }
+      ]
+    }
+  ]
 }

@@ -1,38 +1,142 @@
 {
   "id": "nl.qluster-it.GoogleServices",
-  "version": "1.9.51",
+  "version": "2.0.3",
   "compatibility": ">=5.0.0",
   "sdk": 3,
   "brandColor": "#8DB000",
   "name": {
     "en": "Google Services",
-    "nl": "Google Services"
+    "nl": "Google Services",
+    "da": "Google Services",
+    "de": "Google-Dienste",
+    "es": "Servicios de Google",
+    "fr": "Services Google",
+    "it": "Google Services",
+    "no": "Google-tjenester",
+    "sv": "Google-tjänster",
+    "pl": "Usługi Google",
+    "ru": "Google Services",
+    "ko": "Google 서비스",
+    "ar": "خدمات Google"
   },
   "description": {
     "en": "Setup your favorite Google (translate) voice for your speakers",
-    "nl": "Stel je favoriete Google (vertaal) stem in voor je speakers"
+    "nl": "Stel je favoriete Google (vertaal) stem in voor je speakers",
+    "da": "Opsæt din yndlings Google (oversæt) stemme til dine højttalere",
+    "de": "Richte deine bevorzugte Google (Übersetzer) Stimme für deine Lautsprecher ein.",
+    "es": "Configura tu voz favorita de Google (translate) para tus altavoces.",
+    "fr": "Configurez votre voix Google (traduction) préférée pour vos enceintes.",
+    "it": "Configura la tua voce preferita di Google (traduzione) per i tuoi altoparlanti.",
+    "no": "Sett opp din favoritt Google (oversett) stemme for høyttalerne dine",
+    "sv": "Ställ in din favorit Google (översätt) röst för dina högtalare",
+    "pl": "Skonfiguruj ulubiony głos Google (tłumaczenie) dla swoich głośników.",
+    "ru": "Настройте свой любимый голос Google (перевод) для ваших колонок.",
+    "ko": "스피커에 사용할 좋아하는 Google (번역) 음성을 설정하세요.",
+    "ar": "قم بإعداد صوت Google (ترجمة) المفضل لديك لمكبرات الصوت الخاصة بك"
   },
   "tags": {
     "en": [
       "speech",
       "url",
       "tts",
-      "translate"
+      "translate",
+      "youtube"
     ],
     "nl": [
       "spraak",
       "url",
       "tts",
-      "translate"
+      "translate",
+      "youtube"
+    ],
+    "da": [
+      "speech",
+      "url",
+      "tts",
+      "translate",
+      "youtube"
+    ],
+    "de": [
+      "speech",
+      "url",
+      "tts",
+      "translate",
+      "youtube"
+    ],
+    "es": [
+      "speech",
+      "url",
+      "tts",
+      "translate",
+      "youtube"
+    ],
+    "fr": [
+      "speech",
+      "url",
+      "tts",
+      "translate",
+      "youtube"
+    ],
+    "it": [
+      "speech",
+      "url",
+      "tts",
+      "translate",
+      "youtube"
+    ],
+    "no": [
+      "speech",
+      "url",
+      "tts",
+      "translate",
+      "youtube"
+    ],
+    "sv": [
+      "speech",
+      "url",
+      "tts",
+      "translate",
+      "youtube"
+    ],
+    "pl": [
+      "speech",
+      "url",
+      "tts",
+      "translate",
+      "youtube"
+    ],
+    "ru": [
+      "speech",
+      "url",
+      "tts",
+      "translate",
+      "youtube"
+    ],
+    "ko": [
+      "speech",
+      "url",
+      "tts",
+      "translate",
+      "youtube"
+    ],
+    "ar": [
+      "speech",
+      "url",
+      "tts",
+      "translate",
+      "youtube"
     ]
   },
   "category": [
-    "music"
+    "music",
+    "video",
+    "tools"
   ],
   "permissions": [
     "homey:app:net.i-dev.betterlogic"
   ],
   "images": {
+    "xlarge": "/assets/images/xlarge.png",
     "large": "/assets/images/large.png",
     "small": "/assets/images/small.png"
   },
@@ -49,9 +153,9 @@
       }
     }
   },
-  "source": "https://bitbucket.org/QlusterIT/nl.qluster-it.googleservices/",
+  "source": "https://github.com/Qluster-IT/nl.qluster-it.GoogleServices/",
   "bugs": {
-    "url": "https://bitbucket.org/QlusterIT/nl.qluster-it.googleservices/issues"
+    "url": "https://github.com/Qluster-IT/nl.qluster-it.GoogleServices/issues"
   },
   "homeyCommunityTopicId": 43257,
   "author": {

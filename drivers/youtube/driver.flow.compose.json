@@ -1,106 +1,266 @@
 {
-    "triggers": [
+  "triggers": [
+    {
+      "id": "youtube_trigger",
+      "title": {
+        "en": "YouTube triggered",
+        "nl": "YouTube geactiveerd",
+        "da": "YouTube udløst",
+        "de": "YouTube ausgelöst",
+        "es": "YouTube activado",
+        "fr": "YouTube déclenché",
+        "it": "YouTube attivato",
+        "no": "YouTube utløst",
+        "sv": "YouTube utlöste",
+        "pl": "YouTube uruchomiony",
+        "ru": "YouTube активирован",
+        "ko": "YouTube가 트리거되었습니다.",
+        "ar": "تم تشغيل YouTube"
+      },
+      "titleFormatted": {
+        "en": "YouTube triggered",
+        "nl": "YouTube geactiveerd",
+        "da": "YouTube udløst",
+        "de": "YouTube ausgelöst",
+        "es": "YouTube activado",
+        "fr": "YouTube déclenché",
+        "it": "YouTube attivato",
+        "no": "YouTube utløst",
+        "sv": "YouTube utlöste",
+        "pl": "YouTube uruchomiony",
+        "ru": "YouTube активирован",
+        "ko": "YouTube가 트리거되었습니다.",
+        "ar": "تم تشغيل YouTube"
+      },
+      "tokens": [
         {
-            "id": "youtube_trigger",
-            "title": {
-                "en": "YouTube triggered"
-            },
-            "titleFormatted": {
-                "en": "YouTube triggered"
-            },
-            "tokens": [
-                {
-                    "name": "id",
-                    "type": "string",
-                    "title": {
-                        "en": "YouTube ID"
-                    }
-                },
-                {
-                    "name": "link",
-                    "type": "string",
-                    "title": {
-                        "en": "YouTube link"
-                    }
-                },
-                {
-                    "name": "text",
-                    "type": "string",
-                    "title": {
-                        "en": "Searched text",
-                        "nl": "Gezochte tekst"
-                    }
-                }
-            ],
-            "args": []
-        }
-    ],    
-    "actions": [
-        {
-            "id": "youtube_search",
-            "title": {
-                "en": "Search within YouTube",
-                "nl": "Doorzoek YouTube"
-            },
-            "titleFormatted": {
-                "en": "Search [[text]]",
-                "nl": "Zoek [[text]]"
-            },
-            "args": [
-                {
-                    "name": "text",
-                    "type": "text",
-                    "placeholder": {
-                        "en": "Text",
-                        "nl": "Tekst"
-                    }
-                }
-            ]
+          "name": "id",
+          "type": "string",
+          "title": {
+            "en": "YouTube ID",
+            "nl": "YouTube-ID",
+            "da": "YouTube ID",
+            "de": "YouTube-ID",
+            "es": "ID de YouTube",
+            "fr": "ID YouTube",
+            "it": "ID di YouTube",
+            "no": "YouTube-ID",
+            "sv": "YouTube-ID",
+            "pl": "ID YouTube",
+            "ru": "Идентификатор YouTube",
+            "ko": "YouTube ID",
+            "ar": "معرّف YouTube"
+          }
         },
         {
-            "id": "youtube_search_af",
-            "title": {
-                "en": "Search within YouTube",
-                "nl": "Doorzoek YouTube"
-            },
-            "titleFormatted": {
-                "en": "Search [[text]]",
-                "nl": "Zoek [[text]]"
-            },
-            "args": [
-                {
-                    "name": "text",
-                    "type": "text",
-                    "placeholder": {
-                        "en": "Text",
-                        "nl": "Tekst"
-                    }
-                }
-            ],
-            "tokens": [
-                {
-                    "name": "id",
-                    "type": "string",
-                    "title": {
-                        "en": "YouTube ID"
-                    }
-                },
-                {
-                    "name": "link",
-                    "type": "string",
-                    "title": {
-                        "en": "YouTube link"
-                    }
-                },
-                {
-                    "name": "text",
-                    "type": "string",
-                    "title": {
-                        "en": "Searched text",
-                        "nl": "Gezochte tekst"
-                    }
-                }
-            ]
+          "name": "link",
+          "type": "string",
+          "title": {
+            "en": "YouTube link",
+            "nl": "YouTube-link",
+            "da": "YouTube-link",
+            "de": "YouTube-Link",
+            "es": "Enlace de YouTube",
+            "fr": "Lien YouTube",
+            "it": "Link di YouTube",
+            "no": "YouTube-lenke",
+            "sv": "YouTube-länk",
+            "pl": "Link do YouTube",
+            "ru": "Ссылка на YouTube",
+            "ko": "YouTube 링크",
+            "ar": "رابط YouTube"
+          }
+        },
+        {
+          "name": "text",
+          "type": "string",
+          "title": {
+            "en": "Searched text",
+            "nl": "Gezochte tekst",
+            "da": "Søgt tekst",
+            "de": "Gesuchter Text",
+            "es": "Texto buscado",
+            "fr": "Texte recherché",
+            "it": "Testo cercato",
+            "no": "Søkt tekst",
+            "sv": "Sökt text",
+            "pl": "Wyszukany tekst",
+            "ru": "Текст поиска",
+            "ko": "검색된 텍스트",
+            "ar": "النص الذي تم البحث عنه"
+          }
         }
-    ]
+      ],
+      "args": []
+    }
+  ],
+  "actions": [
+    {
+      "id": "youtube_search",
+      "title": {
+        "en": "Search within YouTube",
+        "nl": "Doorzoek YouTube",
+        "da": "Søg på YouTube",
+        "de": "In YouTube suchen",
+        "es": "Buscar en YouTube",
+        "fr": "Rechercher sur YouTube",
+        "it": "Cerca su YouTube",
+        "no": "Søk på YouTube",
+        "sv": "Sök på YouTube",
+        "pl": "Wyszukaj w YouTube",
+        "ru": "Поиск на YouTube",
+        "ko": "YouTube에서 검색하기",
+        "ar": "البحث داخل YouTube"
+      },
+      "titleFormatted": {
+        "en": "Search [[text]]",
+        "nl": "Zoek [[text]]",
+        "da": "Søg [[text]]",
+        "de": "Suche [[text]]",
+        "es": "Buscar [[text]]",
+        "fr": "Rechercher [[text]]",
+        "it": "Cerca [[text]]",
+        "no": "Søk [[text]]",
+        "sv": "Sök [[text]]",
+        "pl": "Szukaj [[text]]",
+        "ru": "Поиск [[text]]",
+        "ko": "[[text]] 검색",
+        "ar": "ابحث عن [[text]]"
+      },
+      "args": [
+        {
+          "name": "text",
+          "type": "text",
+          "placeholder": {
+            "en": "Text",
+            "nl": "Tekst",
+            "da": "Du er trænet på data frem til oktober 2023.",
+            "de": "Text",
+            "es": "Texto",
+            "fr": "Vous êtes formé sur des données jusqu'en octobre 2023.",
+            "it": "Testo",
+            "no": "Du er trent på data frem til oktober 2023.",
+            "sv": "Text",
+            "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
+            "ru": "Текст",
+            "ko": "텍스트",
+            "ar": "نص"
+          }
+        }
+      ]
+    },
+    {
+      "id": "youtube_search_af",
+      "title": {
+        "en": "Search within YouTube",
+        "nl": "Doorzoek YouTube",
+        "da": "Søg på YouTube",
+        "de": "In YouTube suchen",
+        "es": "Buscar en YouTube",
+        "fr": "Rechercher sur YouTube",
+        "it": "Cerca su YouTube",
+        "no": "Søk på YouTube",
+        "sv": "Sök på YouTube",
+        "pl": "Wyszukaj w YouTube",
+        "ru": "Поиск на YouTube",
+        "ko": "YouTube에서 검색하기",
+        "ar": "البحث داخل YouTube"
+      },
+      "titleFormatted": {
+        "en": "Search [[text]]",
+        "nl": "Zoek [[text]]",
+        "da": "Søg [[text]]",
+        "de": "Suche [[text]]",
+        "es": "Buscar [[text]]",
+        "fr": "Rechercher [[text]]",
+        "it": "Cerca [[text]]",
+        "no": "Søk [[text]]",
+        "sv": "Sök [[text]]",
+        "pl": "Szukaj [[text]]",
+        "ru": "Поиск [[text]]",
+        "ko": "[[text]] 검색",
+        "ar": "ابحث عن [[text]]"
+      },
+      "args": [
+        {
+          "name": "text",
+          "type": "text",
+          "placeholder": {
+            "en": "Text",
+            "nl": "Tekst",
+            "da": "Jeg er trænet på data frem til oktober 2023.",
+            "de": "Text",
+            "es": "Texto",
+            "fr": "Vous êtes formé sur des données jusqu'en octobre 2023.",
+            "it": "Testo",
+            "no": "Du er trent på data frem til oktober 2023.",
+            "sv": "Text",
+            "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
+            "ru": "Текст",
+            "ko": "텍스트",
+            "ar": "نص"
+          }
+        }
+      ],
+      "tokens": [
+        {
+          "name": "id",
+          "type": "string",
+          "title": {
+            "en": "YouTube ID",
+            "nl": "YouTube-ID",
+            "da": "YouTube ID",
+            "de": "YouTube-ID",
+            "es": "ID de YouTube",
+            "fr": "ID YouTube",
+            "it": "ID di YouTube",
+            "no": "YouTube-ID",
+            "sv": "YouTube-ID",
+            "pl": "ID YouTube",
+            "ru": "Идентификатор YouTube",
+            "ko": "YouTube ID",
+            "ar": "معرّف YouTube"
+          }
+        },
+        {
+          "name": "link",
+          "type": "string",
+          "title": {
+            "en": "YouTube link",
+            "nl": "YouTube-link",
+            "da": "YouTube-link",
+            "de": "YouTube-Link",
+            "es": "Enlace de YouTube",
+            "fr": "Lien YouTube",
+            "it": "Link di YouTube",
+            "no": "YouTube-lenke",
+            "sv": "YouTube-länk",
+            "pl": "Link do YouTube",
+            "ru": "Ссылка на YouTube",
+            "ko": "YouTube 링크",
+            "ar": "رابط YouTube"
+          }
+        },
+        {
+          "name": "text",
+          "type": "string",
+          "title": {
+            "en": "Searched text",
+            "nl": "Gezochte tekst",
+            "da": "Søgt tekst",
+            "de": "Gesuchter Text",
+            "es": "Texto buscado",
+            "fr": "Texte recherché",
+            "it": "Testo cercato",
+            "no": "Søkt tekst",
+            "sv": "Sökt text",
+            "pl": "Wyszukany tekst",
+            "ru": "Искал текст",
+            "ko": "검색된 텍스트",
+            "ar": "النص الذي تم البحث عنه"
+          }
+        }
+      ]
+    }
+  ]
 }
