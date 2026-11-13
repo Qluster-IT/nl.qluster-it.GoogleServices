@@ -24,6 +24,10 @@ A pause added the beginning will separate the notification sound and the actual 
 
 You get a URL for the audio that will be streamed through Homey, so the device eventually playing the mp3 file should be in the same network and have access.
 The last 100 transcripts are stored in Homey's Memory for speed and less requests to Google Cloud (restart of app or Homey means reset of memory).
+The cache keeps the 100 most recently used completed audio entries. Matching
+device profiles reuse cached audio; failed synthesis is reported and is not
+cached. Audio metadata parsing reuses the existing buffer instead of copying
+the complete recording. Memory still depends on the size of those recordings.
 
 Create a House device that triggers all applicable devices to say "Dinner is ready!" or just a device for the main room to say "The doorbell is ringing".
 You can add "devices" as many times as you would like, each with its own trigger.

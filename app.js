@@ -63,7 +63,7 @@ class GoogleServicesApp extends Homey.App {
       await this.setDefaultCloudVoice();   
       //await this.setDefaultCloudLanguageCode();
 
-      TtsServer.init({client: this.client, homey: Homey});
+      TtsServer.init({client: this.client, homey: this.homey});
 
 
 

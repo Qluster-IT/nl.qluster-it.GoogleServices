@@ -2,6 +2,9 @@
   "name": "nl.qluster-it.GoogleServices",
   "version": "0.0.1",
   "main": "app.js",
+  "scripts": {
+    "test": "node --test"
+  },
   "devDependencies": {
     "homey": "^2.9.7",
     "@tsconfig/node12": "^1.0.11",
