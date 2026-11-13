@@ -104,7 +104,7 @@ class GoogleServicesApp extends Homey.App {
             const url = googleTTS.getAudioUrl(args.text, { lang:languagecode, slow: start.slow });
             this.Triggers.urlTrigger.Card.trigger(args.device, {url:url, text:args.text} );
             return start.af ? {url:url, text:args.text} : true;
-          } catch (error) { console.log('Error: ' + error); throw Error; }
+          } catch (error) { console.log('Error: ' + error); throw error; }
         });
       }
 
@@ -218,7 +218,7 @@ class GoogleServicesApp extends Homey.App {
               defer.resolve(r) ;
             }).catch(error=> {
               this.log(condition.id + '.language.registerAutocompleteListener error: ' + error);
-              loadingErrors.push(error);
+              defer.resolve([]);
             });    
           } catch (error) { 
             this.log(condition.id + '.language.registerAutocompleteListener error: ' + error);
@@ -258,16 +258,24 @@ class GoogleServicesApp extends Homey.App {
   }
   
   SetFinishedTimer(device, tokens) {
-    var defer = new Defer();
     this.ClearFinishedTimer(device);
+    const defer = new Defer();
+    device.finishedDefer = defer;
     var delay = device.getSetting('delay');
     device.finishedTimer = setTimeout((()=> {        
+        device.finishedTimer = null;
+        device.finishedDefer = null;
         defer.resolve(!!this.Triggers.finished_trigger.Card.trigger(device, tokens));
     }).bind(this), tokens.duration + (delay || 1000));
     return defer.promise;
   }
+  // Settles a superseded wait so its Flow does not hang when newer speech replaces it.
   ClearFinishedTimer(device) {    
     if(device.finishedTimer) clearTimeout(device.finishedTimer);
+    device.finishedTimer = null;
+    const defer = device.finishedDefer;
+    device.finishedDefer = null;
+    if(defer && !defer.isDefered) defer.resolve(false);
   }
   
   // async setDefaultCloudLanguageCode() {

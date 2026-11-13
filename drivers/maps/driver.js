@@ -3,8 +3,6 @@
 const Homey = require('homey');
 const { v4: uuidv4 } = require('uuid');
 
-const {Client} = require("@googlemaps/google-maps-services-js");
-
 const { Defer } = require('../../lib/proto');
 
 class MapsDriver extends Homey.Driver
@@ -13,6 +11,8 @@ class MapsDriver extends Homey.Driver
     {
         return;
         await this.setMapsAPIKey();
+        // Loaded lazily: the Maps client costs ~3 MB of heap and is currently unused.
+        const { Client } = require("@googlemaps/google-maps-services-js");
         const client = new Client({});
             //client.directions({});
             client
