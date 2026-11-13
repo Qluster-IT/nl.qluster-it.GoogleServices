@@ -73,3 +73,62 @@ test('TTS entries are not exposed while synthesis is still pending', async () =>
   assert.equal((await pending).binary, binary);
   assert.equal(server.Urls.length, 1);
 });
+
+function deferred() {
+  let resolve;
+  const promise = new Promise(r => { resolve = r; });
+  return { promise, resolve };
+}
+
+test('replaced TTS clients close only after their in-flight requests finish', async () => {
+  const { server, get, binary } = createServer();
+  const closed = [];
+  const pending = deferred();
+  const old = { synthesizeSpeech: () => pending.promise, close: async () => { closed.push('old'); } };
+  const idle = { synthesizeSpeech: async () => [{ audioContent: binary }], close: async () => { closed.push('idle'); } };
+  const next = { synthesizeSpeech: async () => [{ audioContent: binary }], close: async () => { closed.push('next'); } };
+  server.client = old;
+  const running = get('in flight');
+  await new Promise(resolve => setImmediate(resolve));
+
+  server.setClient(old);
+  server.setClient(next);
+  await new Promise(resolve => setImmediate(resolve));
+  assert.deepEqual(closed, [], 'an in-flight request must not lose its client');
+  assert.ok(await get('new client'));
+
+  pending.resolve([{ audioContent: binary }]);
+  assert.ok(await running);
+  await new Promise(resolve => setImmediate(resolve));
+  assert.deepEqual(closed, ['old']);
+
+  server.setClient(idle);
+  server.setClient(next);
+  await new Promise(resolve => setImmediate(resolve));
+  assert.deepEqual(closed, ['old', 'next', 'idle']);
+  assert.equal(server.clientCalls.size, 0);
+  assert.equal(server.retiredClients.size, 0);
+});
+
+test('requests with a foreign host header get one reply instead of a second write', async () => {
+  const filename = require.resolve('../lib/tts-server');
+  const m = new Module(filename, module);
+  m.filename = filename;
+  m.paths = module.paths;
+  let handler;
+  m.require = id => {
+    if (id === 'http') return { createServer: h => { handler = h; return { listen() { return this; } }; } };
+    if (id === 'betterlogiclibrary') return { BL: {} };
+    if (id === 'music-metadata') return {};
+    return Module.prototype.require.call(m, id);
+  };
+  m._compile(fs.readFileSync(filename, 'utf8'), filename);
+  const server = m.exports;
+  server.init({ client: null, homey: {} });
+  server.ip = '127.0.0.1';
+  server.Urls = [{ id: 'abc', binary: Buffer.alloc(4), audioConfig: { audioEncoding: 'MP3' } }];
+  let heads = 0;
+  const res = { writeHead() { if (heads++) throw new Error('ERR_HTTP_HEADERS_SENT'); }, write() {}, end() {} };
+  handler({ headers: { host: 'other:47333' }, url: '/tts/abc.mp3' }, res);
+  assert.equal(heads, 1);
+});

@@ -2,7 +2,8 @@
 
 const Homey = require('homey');
 const { v4: uuidv4 } = require('uuid');
-const { TranslationServiceClient } = require('@google-cloud/translate').v3;
+// The Translation client library costs several MB of heap; load it only when credentials are configured.
+let TranslationServiceClient;
 
 const { Defer } = require('./../../lib/proto');
 const { BL } = require('betterlogiclibrary');
@@ -156,6 +157,7 @@ class GoogleTranslateDriver extends Homey.Driver {
             var json = await this.homey.settings.get('CloudJSON');
             this.credentials = json ? JSON.parse(json) : null;
             if (this.credentials) {
+                if (!TranslationServiceClient) ({ TranslationServiceClient } = require('@google-cloud/translate').v3);
                 this.translateClient = new TranslationServiceClient({ credentials: this.credentials });
                 await this.setLanguages();
             }

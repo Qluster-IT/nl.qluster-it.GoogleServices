@@ -2,7 +2,8 @@
 const _ = require('lodash');
 const Homey = require('homey');
 const googleTTS = require('google-tts-api');
-const textToSpeech = require('@google-cloud/text-to-speech');
+// The Cloud Text-to-Speech library costs several MB of heap; load it only when credentials are configured.
+let textToSpeech;
     
 const {Defer} = require('./lib/proto');
 
@@ -52,7 +53,8 @@ class GoogleServicesApp extends Homey.App {
       
       this.homey.settings.on('set', (function(settingName) {
         if(settingName=='CloudJSON') {
-            this.setCloudJSON();
+            this.setCloudJSON().then(changed => changed && this.setDefaultCloudVoice())
+              .catch(error => this.error('Updating Google Cloud credentials failed', error));
         } else if(settingName=='DefaultCloudVoice') {
             this.setDefaultCloudVoice();
         // } else if(settingName=='DefaultCloudLanguageCode') {
@@ -303,25 +305,29 @@ class GoogleServicesApp extends Homey.App {
 
   async setCloudJSON() {
     var json = await this.homey.settings.get('CloudJSON');
+    let credentials;
     try {      
-      this.credentials = json && json!='' ? JSON.parse(json) : null;
+      credentials = json && json!='' ? JSON.parse(json) : null;
     } catch (error) {
-      this.credentials = null;
+      credentials = null;
       this.homey.notifications.createNotification({excerpt : "Error while setting Google Cloud JSON: " + error });      
     }
-    if(this.credentials){
+    // The settings page re-saves CloudJSON with every save; keep the client unless the credentials differ.
+    if (this.client !== undefined && _.isEqual(credentials, this.credentials)) return false;
+    let client = null;
+    if(credentials){
       try {        
-        this.client = new textToSpeech.TextToSpeechClient({credentials:this.credentials});
+        if (!textToSpeech) textToSpeech = require('@google-cloud/text-to-speech');
+        client = new textToSpeech.TextToSpeechClient({credentials});
       } catch (error) {        
         this.homey.notifications.createNotification({excerpt : "Error while setting Google Cloud Client: " + error });    
+        return false;
       }
     }
-    else {
-      
-      this.client = null;
-    }
-    TtsServer.client = this.client;
-    //await this.credentialsUpdated();
+    this.credentials = credentials;
+    this.client = client;
+    TtsServer.setClient(client);
+    return true;
   }
   // async credentialsUpdated() {
   //   this.emit('credentialsUpdated', this.credentials); 
