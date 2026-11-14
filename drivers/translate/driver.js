@@ -5,12 +5,15 @@ const { v4: uuidv4 } = require('uuid');
 // The Translation client library costs several MB of heap; load it only when credentials are configured.
 let TranslationServiceClient;
 
-const { Defer } = require('./../../lib/proto');
+const { Defer, jsonEqual } = require('./../../lib/proto');
 const { BL } = require('betterlogiclibrary');
 var projectId = 'projects/';
 
 
 class GoogleTranslateDriver extends Homey.Driver {
+    clientCalls = new Map();
+    retiredClients = new Set();
+
     async onInit() {
         this.log('GoogleTranslateDriver has been initialized');
 
@@ -155,22 +158,54 @@ class GoogleTranslateDriver extends Homey.Driver {
         try {
 
             var json = await this.homey.settings.get('CloudJSON');
-            this.credentials = json ? JSON.parse(json) : null;
+            const credentials = json ? JSON.parse(json) : null;
+            // The settings page re-saves CloudJSON with every save; keep the client unless the credentials differ.
+            if (credentials && this.translateClient && jsonEqual(credentials, this.credentials)) return;
+            this.credentials = credentials;
             if (this.credentials) {
-                if (!TranslationServiceClient) ({ TranslationServiceClient } = require('@google-cloud/translate').v3);
-                this.translateClient = new TranslationServiceClient({ credentials: this.credentials });
+                // The package index also loads the v2/v3beta1 clients and the generated protos.
+                if (!TranslationServiceClient) ({ TranslationServiceClient } = require('@google-cloud/translate/build/src/v3'));
+                this.setClient(new TranslationServiceClient({ credentials: this.credentials }));
                 await this.setLanguages();
             }
             else {
-                this.translateClient = null;
+                this.setClient(null);
                 this.languages = null;
                 this.languagesError = null;
             }
         } catch (error) {
-            this.translateClient = null;
+            this.setClient(null);
             this.languagesError = error;
             this.homey.notifications.createNotification({ excerpt: "Google Cloud JSON (Translation) Error: " + error });
         }
+    }
+
+    // A replaced client is closed only after its running requests finish.
+    async callClient(method, request) {
+        const client = this.translateClient;
+        this.clientCalls.set(client, (this.clientCalls.get(client) || 0) + 1);
+        try {
+            return await client[method](request);
+        } finally {
+            const calls = this.clientCalls.get(client) - 1;
+            if (calls) this.clientCalls.set(client, calls);
+            else {
+                this.clientCalls.delete(client);
+                if (this.retiredClients.delete(client)) this.closeClient(client);
+            }
+        }
+    }
+
+    setClient(client) {
+        const previous = this.translateClient;
+        this.translateClient = client;
+        if (!previous || previous === client) return;
+        if (this.clientCalls.has(previous)) this.retiredClients.add(previous);
+        else this.closeClient(previous);
+    }
+
+    closeClient(client) {
+        Promise.resolve().then(() => client.close()).catch(error => this.error('Closing replaced Translation client failed', error));
     }
 
     async setCloudProject() {
@@ -184,7 +219,7 @@ class GoogleTranslateDriver extends Homey.Driver {
         }
     }
     async translate(text, source, target) {
-        const [translation] = await this.translateClient.translateText({ contents: [text], sourceLanguageCode: source, targetLanguageCode: target, parent: projectId });
+        const [translation] = await this.callClient('translateText', { contents: [text], sourceLanguageCode: source, targetLanguageCode: target, parent: projectId });
         return translation && translation.translations && translation.translations.length > 0 ? translation.translations[0].translatedText : null;
     }
 
@@ -192,7 +227,7 @@ class GoogleTranslateDriver extends Homey.Driver {
         try {
             this.languages = null;
             this.languagesError = null;
-            let languages = await this.translateClient.getSupportedLanguages({ parent: projectId, 
+            let languages = await this.callClient('getSupportedLanguages', { parent: projectId,
                 displayLanguageCode: this.homey.i18n.getLanguage() });
             if(languages) this.languages = languages[0].languages.map(x=>{
                 return {

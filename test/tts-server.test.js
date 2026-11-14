@@ -24,12 +24,22 @@ function createServer() {
   const binary = Buffer.alloc(32, 1);
   const errors = [];
   let requests = 0;
-  server.homey = { error: (...args) => errors.push(args), notifications: { createNotification: async () => {} } };
+  const timers = [];
+  server.homey = {
+    error: (...args) => errors.push(args),
+    notifications: { createNotification: async () => {} },
+    setTimeout: (fn, ms) => {
+      const timer = { fn, ms, active: true };
+      timers.push(timer);
+      return timer;
+    },
+    clearTimeout: timer => { timer.active = false; }
+  };
   server.client = { synthesizeSpeech: async () => { requests++; return [{ audioContent: binary }]; } };
   server.DefaultCloudVoice = { name: 'test', ssmlGender: 'NEUTRAL', languageCodes: ['en-GB'] };
   const device = { homey: { cloud: { getLocalAddress: async () => '127.0.0.1' } }, getSettings: () => ({ deviceprofile: 'test-profile' }) };
   const get = text => server.getUrl({ args: { text, device } });
-  return { server, get, binary, parsed, errors, requests: () => requests };
+  return { server, get, binary, parsed, errors, timers, requests: () => requests };
 }
 
 test('TTS cache retains only the 100 most recently used completed entries', async () => {
@@ -110,6 +120,80 @@ test('replaced TTS clients close only after their in-flight requests finish', as
   assert.equal(server.retiredClients.size, 0);
 });
 
+test('Cloud voices are sorted by name and a missing list gives no voices', async () => {
+  const { server } = createServer();
+  const voices = [{ name: 'nl-NL-B' }, { name: 'en-GB-A', n: 1 }, { name: 'de-DE-A' }, { name: 'en-GB-A', n: 2 }];
+  server.client = { listVoices: async () => [{ voices }] };
+  assert.deepEqual((await server.getVoices()).map(v => v.n || v.name), ['de-DE-A', 1, 2, 'nl-NL-B']);
+  server.client = { listVoices: async () => [{}] };
+  assert.deepEqual(await server.getVoices(), []);
+});
+
+test('the voice list is asked from Google once while typing, again with new credentials, and released after 10 minutes', async () => {
+  const { server, timers } = createServer();
+  let requests = 0;
+  const client = () => ({ listVoices: async () => { requests++; return [{ voices: [{ name: 'b' }, { name: 'a' }] }]; }, close: async () => {} });
+  server.client = null;
+  server.setClient(client());
+  await Promise.all([server.getVoices(), server.getVoices()]);
+  (await server.getVoices()).pop();
+  assert.deepEqual((await server.getVoices()).map(voice => voice.name), ['a', 'b'], 'a caller cannot change the kept list');
+  assert.equal(requests, 1);
+
+  server.setClient(server.client);
+  assert.equal(timers[0].active, true, 'unchanged credentials keep the existing cache timer');
+  server.setClient(client());
+  assert.equal(server.voicesCache, null, 'the old list is released with the old credentials');
+  assert.equal(timers[0].active, false, 'the old timeout must not retain its client and voice list');
+  await server.getVoices();
+  assert.equal(requests, 2);
+
+  const timer = timers[timers.length - 1];
+  assert.equal(timer.ms, 10 * 60 * 1000);
+  timer.fn();
+  assert.equal(server.voicesCache, null);
+  await server.getVoices();
+  assert.equal(requests, 3);
+  timers[0].fn();
+  assert.ok(server.voicesCache, 'an expired timer of older credentials leaves the current list alone');
+});
+
+test('a voice list that Google could not deliver is asked again on the next call', async () => {
+  const { server, timers } = createServer();
+  let requests = 0;
+  server.client = { listVoices: async () => { if (++requests === 1) throw new Error('unavailable'); return [{ voices: [{ name: 'a' }] }]; } };
+  await assert.rejects(server.getVoices(), /unavailable/);
+  assert.equal(timers.filter(timer => timer.active).length, 0, 'a failed request leaves no cache timer');
+  assert.deepEqual((await server.getVoices()).map(voice => voice.name), ['a']);
+  assert.equal(requests, 2);
+});
+
+test('an old pending voice request cannot invalidate the new cache, and closing releases its timer', async () => {
+  const { server, timers } = createServer();
+  let fail;
+  let closed = false;
+  server.client = {
+    listVoices: () => new Promise((resolve, reject) => { fail = reject; }),
+    close: async () => { closed = true; }
+  };
+  const pending = server.getVoices();
+  const rejected = assert.rejects(pending, /old request failed/);
+  server.setClient({ listVoices: async () => [{ voices: [{ name: 'new' }] }] });
+  await server.getVoices();
+  const cache = server.voicesCache;
+  assert.equal(timers[0].active, false);
+  assert.equal(closed, false, 'client remains available until its pending request settles');
+  fail(new Error('old request failed'));
+  await rejected;
+  await new Promise(resolve => setImmediate(resolve));
+  assert.equal(closed, true);
+  assert.equal(server.voicesCache, cache);
+  assert.equal(timers.filter(timer => timer.active).length, 1);
+  server.close();
+  assert.equal(server.voicesCache, null);
+  assert.equal(timers.filter(timer => timer.active).length, 0);
+});
+
 test('requests with a foreign host header get one reply instead of a second write', async () => {
   const filename = require.resolve('../lib/tts-server');
   const m = new Module(filename, module);
@@ -117,7 +201,7 @@ test('requests with a foreign host header get one reply instead of a second writ
   m.paths = module.paths;
   let handler;
   m.require = id => {
-    if (id === 'http') return { createServer: h => { handler = h; return { listen() { return this; } }; } };
+    if (id === 'http') return { createServer: h => { handler = h; return { on() { return this; }, listen() { return this; } }; } };
     if (id === 'betterlogiclibrary') return { BL: {} };
     if (id === 'music-metadata') return {};
     return Module.prototype.require.call(m, id);
@@ -131,4 +215,44 @@ test('requests with a foreign host header get one reply instead of a second writ
   const res = { writeHead() { if (heads++) throw new Error('ERR_HTTP_HEADERS_SENT'); }, write() {}, end() {} };
   handler({ headers: { host: 'other:47333' }, url: '/tts/abc.mp3' }, res);
   assert.equal(heads, 1);
+
+  const reply = url => {
+    const out = { body: [] };
+    handler({ headers: { host: '127.0.0.1:47333' }, url }, {
+      writeHead: (status, headers) => { out.status = status; out.headers = headers; },
+      write: chunk => out.body.push(chunk),
+      end: chunk => { if (chunk) out.body.push(chunk); }
+    });
+    return out;
+  };
+  const audio = reply('/tts/abc.mp3');
+  assert.equal(audio.headers['content-type'], 'audio/mpeg');
+  assert.equal(audio.body[0], server.Urls[0].binary);
+  assert.equal(reply('/tts/unknown.mp3').body[0], JSON.stringify({ status: 'ok' }));
+});
+
+test('a busy TTS port is logged as a TTS server error instead of an uncaught exception', async () => {
+  const { EventEmitter } = require('node:events');
+  const filename = require.resolve('../lib/tts-server');
+  const m = new Module(filename, module);
+  m.filename = filename;
+  m.paths = module.paths;
+  m.require = id => {
+    if (id === 'http') return { createServer: () => {
+      const server = new EventEmitter();
+      server.listen = () => {
+        process.nextTick(() => server.emit('error', Object.assign(new Error('listen EADDRINUSE: :::47333'), { code: 'EADDRINUSE' })));
+        return server;
+      };
+      return server;
+    } };
+    if (id === 'betterlogiclibrary') return { BL: {} };
+    return Module.prototype.require.call(m, id);
+  };
+  m._compile(fs.readFileSync(filename, 'utf8'), filename);
+  const errors = [];
+  m.exports.init({ client: null, homey: { error: (...args) => errors.push(args) } });
+  await new Promise(resolve => setImmediate(resolve));
+  assert.equal(errors.length, 1);
+  assert.equal(errors[0][1].code, 'EADDRINUSE');
 });

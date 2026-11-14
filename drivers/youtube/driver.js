@@ -99,7 +99,7 @@ class YouTubeDriver extends Homey.Driver
         //console.log(data);
         const firstId = 'youtubedevice';
         let devices = this.getDevices();
-        if(devices && devices.length>0) devices = _.filter(devices, device=> device.getData().id==firstId);
+        if(devices && devices.length>0) devices = devices.filter(device=> device.getData().id==firstId);
         var id = devices && devices.length>0 ? uuidv4() : firstId;
         return [{
             "name": 'YouTube device',

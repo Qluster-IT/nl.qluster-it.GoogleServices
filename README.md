@@ -14,6 +14,9 @@ Useable with any device that thakes an URL.
 Cloud devices:
 All languages that Google supports, are supported, because the settings are build from live data, so when a new language becames available, it will be for this App also.
 Currently you can only set the Voice in the settings, but it will be setable per device in the near future.
+The Cloud voice list is cached for up to 10 minutes, including concurrent lookups.
+Changing credentials, a failed lookup, or closing the speech server clears the
+list and its expiry timer, so old clients are not retained by unused timers.
 You can set Pitch, Speed, Volume Gain and Device Profile per device (will be overruled by flows with pitch and/or speed).
 
 SSML coding is accepted now, like: <speak>Here are <say-as interpret-as=\"characters\">SSML</say-as> samples.<break time=\"3s\" />. And continue</speak>

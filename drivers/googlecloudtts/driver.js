@@ -35,45 +35,15 @@ class GoogleCloudTTSDriver extends Homey.Driver
 
     }
 
-    onRepair( socket, device ) {
-        var settings = device.getSettings();
-        const devices = [
-          {
-            'name': device.name,
-            'data': {
-              'id': uuidv4()//device.id,
-            }//,
-            // "settings":
-            // {
-            //     "languagecode": settings.languagecode || "default",
-            //     "speakingRate" : settings.speakingRate || 1,
-            //     "pitch" : settings.pitch || 0
-            // }
-          }
-        ]
-        //var devices = [device];
-        socket.on('list_devices', function( data, callback ) {
-            // emit when devices are still being searched
-            socket.emit('list_devices', devices );
-            console.log('list_devices');
-            var capabilities = device.getCapabilities();
-            var caps = [ 'device_url', 'device_duration' ];
-            for (let i = 0; i < caps.length; i++) {
-                const cap = caps[i];
-                if(!capabilities.indexOf(cap)>-1) device.addCapability(cap);                
+    // Repair lists the device and adds the capabilities that older devices miss.
+    async onRepair(session, device) {
+        session.setHandler('list_devices', async () => {
+            for (const capability of ['device_url', 'device_duration']) {
+                if (!device.hasCapability(capability)) await device.addCapability(capability);
             }
-
-    
-          // fire the callback when searching is done
-          callback( null, devices );
-    
-          // when no devices are found, return an empty array
-          // callback( null, [] );
-    
-          // or fire a callback with Error to show that instead
-          // callback( new Error('Something bad has occured!') );
+            return [{ name: device.getName(), data: { id: uuidv4() } }];
         });
-      }
+    }
 
 }
 

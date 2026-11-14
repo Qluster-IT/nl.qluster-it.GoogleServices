@@ -1,11 +1,10 @@
 'use strict';
-const _ = require('lodash');
 const Homey = require('homey');
 const googleTTS = require('google-tts-api');
 // The Cloud Text-to-Speech library costs several MB of heap; load it only when credentials are configured.
 let textToSpeech;
     
-const {Defer} = require('./lib/proto');
+const {Defer, jsonEqual} = require('./lib/proto');
 
 var TtsServer = require('./lib/tts-server');
 
@@ -61,11 +60,12 @@ class GoogleServicesApp extends Homey.App {
         //   this.setDefaultCloudLanguageCode();
         }
       }).bind(this));
+      // Before the credentials: the startup voice lookup uses the TTS server's homey timers.
+      TtsServer.init({homey: this.homey});
       await this.setCloudJSON();
       await this.setDefaultCloudVoice();   
       //await this.setDefaultCloudLanguageCode();
 
-      TtsServer.init({client: this.client, homey: this.homey});
 
 
 
@@ -96,12 +96,12 @@ class GoogleServicesApp extends Homey.App {
           //const defer = new Defer();
           try {
             if(!args.device || !args.text) return false;
-            if(args.text.length>200) return  new Error("Max 200 characters");
+            if(args.text.length>200) throw new Error("Max 200 characters");
             const settings =  args.device.getSettings();
             const languagecode = settings && settings.languagecode ? settings.languagecode : 'en-GB';
             
             args.text = await BL.decode(args.text, languagecode);
-            if(args.text.length>200) return  new Error("Max 200 characters");
+            if(args.text.length>200) throw new Error("Max 200 characters");
             
             const url = googleTTS.getAudioUrl(args.text, { lang:languagecode, slow: start.slow });
             this.Triggers.urlTrigger.Card.trigger(args.device, {url:url, text:args.text} );
@@ -296,7 +296,7 @@ class GoogleServicesApp extends Homey.App {
       if(voice) voice = JSON.parse(voice);
       var voices = await TtsServer.getVoices();
       var r;
-      if(voices && voice) r = _.find(voices, v=>v.name==voice.name);
+      if(voices && voice) r = voices.find(v=>v.name==voice.name);
       TtsServer.DefaultCloudVoice = r; 
     } catch (error) {      
       this.homey.notifications.createNotification({excerpt : "Error while setting Google Cloud JSON: " + error });     
@@ -313,11 +313,12 @@ class GoogleServicesApp extends Homey.App {
       this.homey.notifications.createNotification({excerpt : "Error while setting Google Cloud JSON: " + error });      
     }
     // The settings page re-saves CloudJSON with every save; keep the client unless the credentials differ.
-    if (this.client !== undefined && _.isEqual(credentials, this.credentials)) return false;
+    if (this.client !== undefined && jsonEqual(credentials, this.credentials)) return false;
     let client = null;
     if(credentials){
       try {        
-        if (!textToSpeech) textToSpeech = require('@google-cloud/text-to-speech');
+        // The package index also loads the v1beta1 client and the generated protos.
+        if (!textToSpeech) textToSpeech = require('@google-cloud/text-to-speech/build/src/v1');
         client = new textToSpeech.TextToSpeechClient({credentials});
       } catch (error) {        
         this.homey.notifications.createNotification({excerpt : "Error while setting Google Cloud Client: " + error });    
