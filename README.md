@@ -1,8 +1,8 @@
-Use the newest Google Cloud Services, starting with the new Text-to-Speech and Translate.
+Use Google Text-to-Speech, Translate and YouTube with Homey.
 
 
 Translate
-U can make a Google Translate device and use it as action or a condition to translate, of which the transalation will be available as a tokenvalue of the device.
+Create a Google Translate device and use an action or condition to translate text. The original text and translation are available as device values; Advanced Flow actions also provide translation tokens.
 
 
 For this you will need https://cloud.google.com/translate/docs/setup#api and enter the JSON and Project in the settings.
@@ -13,7 +13,7 @@ Useable with any device that thakes an URL.
 
 Cloud devices:
 All languages that Google supports, are supported, because the settings are build from live data, so when a new language becames available, it will be for this App also.
-Currently you can only set the Voice in the settings, but it will be setable per device in the near future.
+Set a default voice in the app settings, or select a voice in a Flow card.
 The Cloud voice list is cached for up to 10 minutes, including concurrent lookups.
 Changing credentials, a failed lookup, or closing the speech server clears the
 list and its expiry timer, so old clients are not retained by unused timers.
@@ -67,3 +67,9 @@ Norwegian (NO)
 
 
 For playing it on Homey itself, see Media Url Converter.
+
+YouTube
+Search YouTube using a Flow and use the returned video ID or link in other Flow cards.
+
+Better Logic Library
+BLL coding is optional in supported text fields. When Better Logic Library is unavailable, text is passed through unchanged and BLL expressions are not evaluated.

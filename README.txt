@@ -32,5 +32,5 @@ There is also an old Google TTS device, with a max. 200 characters and limited o
 For playing it on Homey itself, see Media Url Converter.
 
 
-* Optional: Supports BLL coding.
+* Optional: Supports BLL coding. When Better Logic Library is unavailable, text is passed through unchanged and BLL expressions are not evaluated.
 See the Better Logic Library App Settings for how to use BLL coding.

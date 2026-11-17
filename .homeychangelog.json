@@ -1393,5 +1393,20 @@
     "ru": "Изменили исходный код и задачи с Bitbucket на GitHub.",
     "ko": "소스 코드와 문제를 Bitbucket에서 GitHub로 변경했습니다.",
     "ar": "تم تغيير الشيفرة المصدرية والمشكلات من Bitbucket إلى GitHub."
+  },
+  "2.0.4": {
+    "en": "Fixed Google Translate language lookup and translation. Improved speech reliability, device pairing and memory usage.",
+    "nl": "Google Translate-taalselectie en vertalingen opgelost. Betere betrouwbaarheid van spraak, apparaten koppelen en geheugengebruik.",
+    "da": "Rettet sprogvalg og oversættelse i Google Translate. Forbedret talens pålidelighed, enhedsparring og hukommelsesforbrug.",
+    "de": "Sprachauswahl und Übersetzung in Google Translate korrigiert. Sprachwiedergabe, Gerätekopplung und Speichernutzung verbessert.",
+    "es": "Corregidas la selección de idioma y la traducción en Google Translate. Mejoradas la fiabilidad de voz, la vinculación de dispositivos y el uso de memoria.",
+    "fr": "Correction de la sélection des langues et de la traduction dans Google Translate. Amélioration de la fiabilité vocale, de l'association des appareils et de l'utilisation de la mémoire.",
+    "it": "Corretti la selezione della lingua e la traduzione in Google Translate. Migliorati l'affidabilità della voce, l'associazione dei dispositivi e l'uso della memoria.",
+    "no": "Rettet språkvalg og oversettelse i Google Translate. Forbedret talepålitelighet, enhetsparing og minnebruk.",
+    "sv": "Åtgärdade språkval och översättning i Google Translate. Förbättrade talets tillförlitlighet, enhetsparkoppling och minnesanvändning.",
+    "pl": "Naprawiono wybór języka i tłumaczenie w Google Translate. Poprawiono niezawodność mowy, parowanie urządzeń i wykorzystanie pamięci.",
+    "ru": "Исправлены выбор языка и перевод в Google Translate. Улучшены надёжность речи, сопряжение устройств и использование памяти.",
+    "ko": "Google Translate의 언어 선택 및 번역을 수정했습니다. 음성 안정성, 기기 페어링 및 메모리 사용을 개선했습니다.",
+    "ar": "تم إصلاح اختيار اللغة والترجمة في Google Translate، وتحسين موثوقية الكلام وإقران الأجهزة واستخدام الذاكرة."
   }
 }
