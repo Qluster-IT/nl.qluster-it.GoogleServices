@@ -211,6 +211,7 @@ test('Translation client is replaced only on a credentials change and closes aft
     '@google-cloud/translate/build/src/v3': { TranslationServiceClient }
   });
   const driver = new Driver();
+  driver.projectLocation = 'projects/test-project/locations/global';
   let json = '{"client_email":"a@example.com","private_key":"one"}';
   driver.homey = { settings: { get: async () => json }, notifications: { createNotification: async () => {} }, i18n: { getLanguage: () => 'en' } };
   const tick = () => new Promise(resolve => setImmediate(resolve));
@@ -238,6 +239,46 @@ test('Translation client is replaced only on a credentials change and closes aft
   assert.equal(driver.translateClient, null);
   assert.deepEqual(created, ['one', 'two']);
   assert.deepEqual(closed, ['one', 'two']);
+});
+
+test('Translation requests use the configured project in the global API location', async () => {
+  const requests = [];
+  class TranslationServiceClient {
+    async getSupportedLanguages(request) {
+      requests.push(['languages', request]);
+      return [{ languages: [{ displayName: 'English', languageCode: 'en' }] }];
+    }
+    async translateText(request) {
+      requests.push(['translate', request]);
+      return [{ translations: [{ translatedText: 'bonjour' }] }];
+    }
+    async close() {}
+  }
+  const { exports: Driver } = compile('../drivers/translate/driver', {
+    homey: { Driver: class {} },
+    betterlogiclibrary: { BL: {} },
+    '@google-cloud/translate/build/src/v3': { TranslationServiceClient }
+  });
+  const driver = new Driver();
+  const settings = {
+    CloudJSON: '{"client_email":"a@example.com","private_key":"key"}',
+    CloudProject: 'test-project'
+  };
+  driver.homey = {
+    settings: { get: async name => settings[name] },
+    i18n: { getLanguage: () => 'en' }
+  };
+
+  await driver.setCloudJSON();
+  assert.deepEqual(requests, [], 'language lookup waits until the project setting is loaded');
+  await driver.setCloudProject();
+  assert.equal(await driver.translate('hello', 'en', 'fr'), 'bonjour');
+  assert.deepEqual(requests.map(([method, request]) => [method, request.parent]), [
+    ['languages', 'projects/test-project/locations/global'],
+    ['translate', 'projects/test-project/locations/global']
+  ]);
+  assert.deepEqual(driver.languages.map(language => language.id), ['en']);
+  await driver.translateClient.close();
 });
 
 test('pairing another YouTube or Maps device gets a new id instead of failing', async () => {

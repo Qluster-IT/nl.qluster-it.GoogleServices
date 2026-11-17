@@ -7,8 +7,6 @@ let TranslationServiceClient;
 
 const { Defer, jsonEqual } = require('./../../lib/proto');
 const { BL } = require('betterlogiclibrary');
-var projectId = 'projects/';
-
 
 class GoogleTranslateDriver extends Homey.Driver {
     clientCalls = new Map();
@@ -166,7 +164,7 @@ class GoogleTranslateDriver extends Homey.Driver {
                 // The package index also loads the v2/v3beta1 clients and the generated protos.
                 if (!TranslationServiceClient) ({ TranslationServiceClient } = require('@google-cloud/translate/build/src/v3'));
                 this.setClient(new TranslationServiceClient({ credentials: this.credentials }));
-                await this.setLanguages();
+                if (this.projectLocation) await this.setLanguages();
             }
             else {
                 this.setClient(null);
@@ -209,25 +207,30 @@ class GoogleTranslateDriver extends Homey.Driver {
     }
 
     async setCloudProject() {
-        var project = await this.homey.settings.get('CloudProject');
-        projectId = 'projects/' + project;
-        if (project && this.translateClient) {
+        const project = await this.homey.settings.get('CloudProject');
+        this.projectLocation = project ? `projects/${project}/locations/global` : null;
+        if (this.projectLocation && this.translateClient) {
             await this.setLanguages();
         } else {
             this.languages = null;
-            //this.languagesError = null;
+            this.languagesError = null;
         }
     }
     async translate(text, source, target) {
-        const [translation] = await this.callClient('translateText', { contents: [text], sourceLanguageCode: source, targetLanguageCode: target, parent: projectId });
+        if (!this.projectLocation) throw new Error('Google Cloud Project is not configured.');
+        const [translation] = await this.callClient('translateText', { contents: [text], sourceLanguageCode: source, targetLanguageCode: target, parent: this.projectLocation });
         return translation && translation.translations && translation.translations.length > 0 ? translation.translations[0].translatedText : null;
     }
 
     async setLanguages() {
         try {
+            if (!this.projectLocation) {
+                this.languages = null;
+                return;
+            }
             this.languages = null;
             this.languagesError = null;
-            let languages = await this.callClient('getSupportedLanguages', { parent: projectId,
+            let languages = await this.callClient('getSupportedLanguages', { parent: this.projectLocation,
                 displayLanguageCode: this.homey.i18n.getLanguage() });
             if(languages) this.languages = languages[0].languages.map(x=>{
                 return {
