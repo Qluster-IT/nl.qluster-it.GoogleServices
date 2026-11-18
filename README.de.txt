@@ -1,33 +1,18 @@
-Nutze die neuesten Google Cloud Services, beginnend mit der neuen Text-to-Speech und Translate.
+Nutze Google Maps, Text-to-Speech, Google Übersetzer und YouTube in deinen Homey-Flows.
 
-Translate
-Du kannst ein Google Translate-Gerät erstellen und es als Aktion oder Bedingung verwenden, um zu übersetzen. Die Übersetzung steht dann als Token des Geräts zur Verfügung.
+FUNKTIONEN
 
-Text-To-Speech
-Kann mit jedem Gerät verwendet werden, das eine URL akzeptiert.
+* Google Maps: Speichere eine Fahrt mit Adressvorschlägen oder gib Adressen oder Koordinaten selbst ein. Sieh Fahrzeit, Entfernung, voraussichtliche Ankunft und den Zeitpunkt der letzten Aktualisierung. Aktualisiere per Taste oder Flow und öffne die Routenkarte bei Bedarf. Advanced Flow kann eine einmalige Route berechnen, ohne die gespeicherte Fahrt zu ändern.
+* Text-to-Speech: Wandle Text in eine Audio-URL für einen kompatiblen Player um.
+* Google Cloud Text-to-Speech: Wähle eine Stimme und passe Sprechtempo, Tonhöhe und Lautstärke an. Nutze SSML-Code, um Pausen einzufügen oder die Aussprache zu steuern.
+* Google Übersetzer: Übersetze Text in einem Flow und verwende die Übersetzung in nachfolgenden Karten.
+* YouTube: Suche ein Video und nutze seine ID oder seinen Link in einem Flow.
 
-YouTube
-Durchsuche YouTube und spiele es auf YouTube oder jedem Gerät ab, das eine URL akzeptiert.
+Nutze die Audio-URLs in deinen Automatisierungen. Spiele sie zum Beispiel auf Sonos mit einer festgelegten Lautstärke ab, öffne sie im Browser deines Samsung Smart TV oder gib sie an IFTTT weiter.
 
-Alle von Google unterstützten Sprachen werden unterstützt.
-Stelle die Stimme in den Einstellungen ein oder überschreibe sie in einem Flow.
-Du kannst Pitch, Geschwindigkeit, Lautstärkezuwachs und Geräteprofil pro Gerät einstellen (wird von Flows mit Pitch und/oder Geschwindigkeit übersteuert).
-SSML-Codierung wird jetzt akzeptiert, wie: <speak>Hier sind <say-as interpret-as=\"characters\">SSML</say-as> Beispiele.<break time=\"3s\" />. Und weiter</speak>
+Hinterlege die Zugangsdaten für die verwendeten Google-Dienste in den App-Einstellungen.
 
-Du kannst auch eine Vor- und/oder Nachsilbenpause über die Geräteeinstellungen hinzufügen, was besonders nützlich für Chromecast-Benutzer ist:
-Eine am Anfang hinzugefügte Pause trennt das Benachrichtigungssignal von der tatsächlichen Sprache.
+Better Logic Library wird unterstützt (optional). Nutze BLL-Codierung in unterstützten Textfeldern. Wie BLL-Codierung funktioniert, erfährst du in den App-Einstellungen von Better Logic Library.
 
-Erstelle ein Haushaltsgerät, das alle anwendbaren Geräte dazu bringt, "Abendessen ist fertig!" zu sagen, oder einfach ein Gerät für den Hauptraum, das "Die Türklingel läutet" sagt.
-Du kannst "Geräte" so oft hinzufügen, wie du möchtest, jedes mit eigenem Auslöser.
-Bedingungen sind auch verfügbar!
-
-Das funktioniert großartig mit anderen Apps wie Sonos (Play (URL) bei Lautstärke), Samsung Smart TV (Browser mit der URL starten) und IFTTT.
-
-Siehe das Community-Thema für eine Erklärung, wie man das notwendige kostenlose Google Cloud Service-Konto (JSON-Datei) erhält.
-
-Es gibt auch ein altes Google TTS-Gerät mit maximal 200 Zeichen und eingeschränkten Optionen.
-
-Für die Wiedergabe auf Homey selbst, siehe Media Url Converter.
-
-* Optional: Unterstützt BLL-Codierung.
-Siehe die Einstellungen der Better Logic Library App für die Verwendung von BLL-Codierung.
+Hilfe und Austausch findest du im Thema zu Google Services im Community-Forum.
+Wähle für das Wiki und das Benutzerhandbuch von Google Services auf der Seite der App im Homey App Store unter „Entwicklerwebsite“ die Option „Website besuchen“.

@@ -16,8 +16,9 @@
     "ar": "خرائط"
   },
   "class": "other",
-  "capabilities": ["maps_refresh", "maps_minutes", "maps_distance", "maps_eta", "maps_last_refreshed"],
+  "capabilities": ["maps_refresh", "maps_minutes", "maps_distance", "maps_eta", "maps_last_refreshed", "maps_traffic_delay"],
   "images": {
+    "xlarge": "{{driverAssetsPath}}/images/xlarge.png",
     "large": "{{driverAssetsPath}}/images/large.png",
     "small": "{{driverAssetsPath}}/images/small.png"
   },
@@ -40,20 +41,37 @@
       "template": "add_devices"
     }
   ],
+  "repair": [
+    { "id": "edit_route" }
+  ],
   "settings": [
     {
       "id": "origin",
       "type": "text",
       "label": { "en": "Origin", "nl": "Vertrekpunt" },
-      "hint": { "en": "Enter a full address or latitude, longitude. Locations selected during pairing are saved as place_id: followed by a Google place ID.", "nl": "Voer een volledig adres of breedtegraad, lengtegraad in. Locaties gekozen tijdens het koppelen worden opgeslagen als place_id: gevolgd door een Google-plaats-ID." },
+      "hint": { "en": "Enter a full address or latitude, longitude. Use Repair for address suggestions.", "nl": "Voer een volledig adres of breedtegraad, lengtegraad in. Gebruik Repareren voor adressuggesties." },
       "value": ""
+    },
+    {
+      "id": "origin_homey",
+      "type": "checkbox",
+      "label": { "en": "Use Homey's location as origin", "nl": "Gebruik Homey's locatie als vertrekpunt" },
+      "hint": { "en": "Ignores the origin address and sends Homey's current coordinates to Google when refreshing.", "nl": "Negeert het vertrekadres en stuurt Homey's actuele coördinaten naar Google bij het verversen." },
+      "value": false
     },
     {
       "id": "destination",
       "type": "text",
       "label": { "en": "Destination", "nl": "Bestemming" },
-      "hint": { "en": "Enter a full address or latitude, longitude. Locations selected during pairing are saved as place_id: followed by a Google place ID.", "nl": "Voer een volledig adres of breedtegraad, lengtegraad in. Locaties gekozen tijdens het koppelen worden opgeslagen als place_id: gevolgd door een Google-plaats-ID." },
+      "hint": { "en": "Enter a full address or latitude, longitude. Use Repair for address suggestions.", "nl": "Voer een volledig adres of breedtegraad, lengtegraad in. Gebruik Repareren voor adressuggesties." },
       "value": ""
+    },
+    {
+      "id": "destination_homey",
+      "type": "checkbox",
+      "label": { "en": "Use Homey's location as destination", "nl": "Gebruik Homey's locatie als bestemming" },
+      "hint": { "en": "Ignores the destination address and sends Homey's current coordinates to Google when refreshing.", "nl": "Negeert het bestemmingsadres en stuurt Homey's actuele coördinaten naar Google bij het verversen." },
+      "value": false
     },
     {
       "id": "travel_mode",
@@ -72,6 +90,13 @@
       "type": "checkbox",
       "label": { "en": "Show route image", "nl": "Toon routeafbeelding" },
       "hint": { "en": "Requires route images to be enabled in the app settings and Maps Static API to be enabled in Google Cloud.", "nl": "Vereist dat routeafbeeldingen aanstaan in de app-instellingen en Maps Static API aanstaat in Google Cloud." },
+      "value": true
+    },
+    {
+      "id": "route_traffic",
+      "type": "checkbox",
+      "label": { "en": "Show traffic on route images", "nl": "Toon verkeer op routeafbeeldingen" },
+      "hint": { "en": "Driving only. Requires route images and traffic colors to be enabled in the app settings. Applies on the next refresh and uses the Google Routes Enterprise billing tier.", "nl": "Alleen voor autoroutes. Vereist dat routeafbeeldingen en verkeerskleuren aanstaan in de app-instellingen. Geldt vanaf de volgende verversing en valt onder het Google Routes Enterprise-tarief." },
       "value": true
     }
   ]

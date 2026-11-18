@@ -1,6 +1,6 @@
 {
   "id": "nl.qluster-it.GoogleServices",
-  "version": "2.0.4",
+  "version": "2.1.1",
   "compatibility": ">=5.0.0",
   "sdk": 3,
   "brandColor": "#8DB000",
@@ -133,7 +133,8 @@
     "tools"
   ],
   "permissions": [
-    "homey:app:net.i-dev.betterlogic"
+    "homey:app:net.i-dev.betterlogic",
+    "homey:manager:geolocation"
   ],
   "images": {
     "xlarge": "/assets/images/xlarge.png",

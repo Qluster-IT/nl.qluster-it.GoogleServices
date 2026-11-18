@@ -1,33 +1,18 @@
-Använd de senaste Google Cloud-tjänsterna, börjar med den nya Text-till-Tal och Översättning.
+Använd Google Maps, text-till-tal, Google Översätt och YouTube i dina Homey Flows.
 
-Översätt
-Du kan skapa en Google Translate-enhet och använda den som en åtgärd eller ett villkor för att översätta, där översättningen blir tillgänglig som en token i enheten.
+FUNKTIONER
 
-Text-till-Tal
-Användbar med alla enheter som tar en URL.
+* Google Maps: Spara en resa med adressförslag eller skriv in adresser eller koordinater själv. Se restid, avstånd, beräknad ankomst och senaste uppdatering. Uppdatera med en knapp eller ett Flow och öppna ruttkartan vid behov. Advanced Flow kan beräkna en engångsrutt utan att ändra den sparade resan.
+* Text-till-tal: Omvandla text till en ljud-URL för en kompatibel spelare.
+* Google Cloud Text-to-Speech: Välj röst och justera talhastighet, tonhöjd och volym. Använd SSML-kod för att lägga in pauser eller styra uttalet.
+* Google Översätt: Översätt text i ett Flow och använd översättningen i efterföljande kort.
+* YouTube: Sök efter en video och använd dess ID eller länk i ett Flow.
 
-YouTube
-Sök på YouTube och spela upp det på YouTube eller vilken enhet som helst som tar en URL.
+Använd ljud-URL:erna i dina automatiseringar. Du kan till exempel spela upp dem på Sonos med vald volym, öppna dem i webbläsaren på din Samsung Smart TV eller skicka dem vidare till IFTTT.
 
-Alla språk som Google stöder är också stödda här.
-Ställ in röst i inställningarna eller skriv över den i ett flöde.
-Du kan ställa in tonhöjd, hastighet, volymförstärkning och enhetsprofil per enhet (kommer att ersättas av flöden med tonhöjd och/eller hastighet).
-SSML-kodning accepteras nu, till exempel: <speak>Här är <say-as interpret-as=\"characters\">SSML</say-as> exempel.<break time=\"3s\" />. Och fortsätt</speak>
+Ange autentiseringsuppgifter för de Google-tjänster du använder i appinställningarna.
 
-Du kan också lägga till ett prefix- och/eller suffix-paus via enhetsinställningarna, vilket är särskilt användbart för Chromecast-användare:
-En paus i början kommer att separera notifikationsljudet och det faktiska talet.
+Better Logic Library stöds (valfritt). Använd BLL-kodning i textfält som stöder det. Se appinställningarna för Better Logic Library för att lära dig hur du använder BLL-kodning.
 
-Skapa en Hem-enhet som triggar alla tillämpliga enheter att säga "Maten är klar!" eller bara en enhet för huvudrummet att säga "Dörrklockan ringer".
-Du kan lägga till "enheter" så många gånger du vill, varje med sin egen trigger.
-Villkor är också tillgängliga!
-
-Detta fungerar utmärkt med andra appar som Sonos (Spela (url) på volym), Samsung Smart TV (Starta webbläsare med URL) och IFTTT.
-
-Se community-ämnet för förklaring om hur du får det nödvändiga kostnadsfria Google Cloud Service Account (JSON-fil).
-
-Det finns också en gammal Google TTS-enhet, med max. 200 tecken och begränsade alternativ.
-
-För att spela det på Homey själv, se Media Url Converter.
-
-* Valfritt: Stödjer BLL-kodning.
-Se appinställningar för Better Logic Library för hur du använder BLL-kodning.
+Se ämnet om Google Services i communityforumet för hjälp och diskussion.
+Välj ”Besök webbplats” under ”Utvecklarens webbplats” på appens sida i Homey App Store för att öppna Google Services wiki och användarmanual.

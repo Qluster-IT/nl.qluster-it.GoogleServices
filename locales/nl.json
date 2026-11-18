@@ -23,7 +23,12 @@
       "continue": "Doorgaan",
       "searching": "Adressen zoeken...",
       "no_results": "Geen Google-suggesties beschikbaar. Probeer een vollediger adres of kies Gebruik ingevoerd adres.",
-      "search_error": "Adressen zoeken mislukt. Controleer Places API (New) en je Maps-sleutel of ga door met een handmatig ingevoerd adres."
+      "search_error": "Adressen zoeken mislukt. Controleer Places API (New) en je Maps-sleutel of ga door met een handmatig ingevoerd adres.",
+      "traffic": "Toon verkeer op routeafbeeldingen",
+      "traffic_help": "Standaard aan voor afbeeldingen van autoroutes. Verkeerskleuren moeten ook aanstaan in de app-instellingen. Geldt vanaf de volgende verversing en valt onder het Google Routes Enterprise-tarief.",
+      "use_homey_origin": "Gebruik Homey's locatie als vertrekpunt",
+      "use_homey_destination": "Gebruik Homey's locatie als bestemming",
+      "homey_location_help": "Als je dit kiest, worden Homey's actuele coördinaten naar Google gestuurd wanneer je de route ververst."
     },
     "route_unavailable": "Er zijn geen routewaarden beschikbaar. Ververs eerst de opgeslagen route.",
     "invalid_minutes": "Voer een niet-negatief aantal minuten in.",
@@ -31,6 +36,15 @@
       "use_typed": "Gebruik ingevoerd adres: __address__",
       "typed_help": "Gebruik ingevoerd adres of coördinaten. Google Maps bepaalt de locatie bij het berekenen van de route.",
       "search_unavailable": "Gebruik ingevoerd adres of coördinaten. Google-suggesties niet beschikbaar: __error__"
-    }
+    },
+    "settings_busy": "De route-instellingen worden al gewijzigd. Probeer het opnieuw.",
+    "repair": {
+      "title": "Bewerk je Maps-route",
+      "intro": "Bewerk de adressen, het vervoermiddel en de afbeeldingsopties voor dit apparaat. Kies een suggestie of voer een volledig adres of breedtegraad, lengtegraad in. Oudere locaties die als ID zijn opgeslagen, worden opgezocht wanneer je dit scherm opent. Ververs de route op het apparaat of met een Flow om nieuwe resultaten te zien.",
+      "save": "Route-instellingen opslaan",
+      "address_lookup_failed": "Een eerder opgeslagen locatie kon niet worden opgezocht. Voer het adres in of kies het voordat je opslaat."
+    },
+    "homey_location_unavailable": "Homey's locatie is niet beschikbaar. Controleer Homey's locatie-instellingen of gebruik een adres.",
+    "use_readable_address": "Voer een adres of coördinaten in plaats van een plaats-ID in, of kies een adres via Repareren."
   }
 }

@@ -1,0 +1,11 @@
+{
+  "type": "number",
+  "icon": "/assets/capabilities/maps-minutes.svg",
+  "title": { "en": "Estimated traffic delay", "nl": "Geschatte verkeersvertraging" },
+  "units": "min",
+  "decimals": 1,
+  "getable": true,
+  "setable": false,
+  "insights": false,
+  "uiComponent": "sensor"
+}

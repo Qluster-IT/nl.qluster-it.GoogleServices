@@ -2,7 +2,8 @@
 
 const Homey = require('homey');
 const { v4: uuidv4 } = require('uuid');
-const { parseRoute, computeRoute, autocompletePlaces, fetchMap } = require('../../lib/maps');
+const { parseRoute, parseRouteSettings, routePlacesKey, computeRoute, autocompletePlaces,
+  lookupPlaceAddress, fetchMap } = require('../../lib/maps');
 
 class MapsDriver extends Homey.Driver {
   onInit() {
@@ -13,8 +14,16 @@ class MapsDriver extends Homey.Driver {
       const { tokens } = await this.calculateRoute(parseRoute(from, to, mode));
       return tokens;
     });
-    for (const name of ['from', 'to']) {
-      calculate.getArgument(name).registerAutocompleteListener(query => this.searchAddresses(query));
+    const tripTakesLonger = this.homey.flow.getConditionCard('maps_trip_takes_longer');
+    tripTakesLonger.registerRunListener(async ({ from, to, mode, minutes }) => {
+      if (!Number.isFinite(minutes) || minutes < 0) throw new Error(this.homey.__('maps.invalid_minutes'));
+      const { durationSeconds } = await this.calculateRoute(parseRoute(from, to, mode));
+      return durationSeconds / 60 > minutes;
+    });
+    for (const card of [calculate, tripTakesLonger]) {
+      for (const name of ['from', 'to']) {
+        card.getArgument(name).registerAutocompleteListener(query => this.searchAddresses(query));
+      }
     }
     this.homey.flow.getActionCard('maps_calculate_traveltime')
       .registerRunListener(async () => { throw new Error('Replace this old card with Calculate a one-off Google Maps route.'); });
@@ -37,8 +46,9 @@ class MapsDriver extends Homey.Driver {
     return key.trim();
   }
 
-  calculateRoute(input, includeMap) {
-    return computeRoute(this.getMapsKey(), input, includeMap);
+  calculateRoute(input, includeMap, showTraffic) {
+    const includeTraffic = showTraffic && this.homey.settings.get('MapsRouteTrafficEnabled') !== false;
+    return computeRoute(this.getMapsKey(), input, includeMap, includeTraffic);
   }
 
   routeImagesEnabled() {
@@ -47,7 +57,7 @@ class MapsDriver extends Homey.Driver {
 
   async fetchRouteImage(map) {
     if (!this.routeImagesEnabled()) throw new Error('Route images are disabled in Google Services app settings.');
-    return fetchMap(this.getMapsKey(), map);
+    return fetchMap(this.getMapsKey(), map, () => this.log('Route is too detailed for traffic colors; showing the blue route.'));
   }
 
   async searchAddresses(query) {
@@ -76,17 +86,43 @@ class MapsDriver extends Homey.Driver {
     let configured;
     session.setHandler('search_address', query => this.searchAddresses(query));
     session.setHandler('save_route', async data => {
-      const input = parseRoute(data?.origin, data?.destination, data?.travel_mode);
-      if (typeof data.route_image !== 'boolean') throw new Error('Choose whether to show the route image.');
-      configured = {
-        origin: input.origin.text, destination: input.destination.text,
-        travel_mode: input.mode, route_image: data.route_image
-      };
+      configured = parseRouteSettings(data);
     });
     session.setHandler('list_devices', async () => {
       if (!configured) throw new Error('Configure the route before adding the device.');
       const devices = await this.onPairListDevices();
-      return devices.map(device => ({ ...device, settings: { ...configured } }));
+      const { settings, places } = configured;
+      return devices.map(device => ({ ...device, settings: { ...settings }, store: { [routePlacesKey]: places } }));
+    });
+  }
+
+  onRepair(session, device) {
+    session.setHandler('get_route_settings', async () => {
+      const { origin, destination, origin_homey, destination_homey, travel_mode, route_image, route_traffic } = device.getSettings();
+      const settings = { origin, destination, travel_mode: travel_mode || 'DRIVE',
+        origin_homey: origin_homey === true, destination_homey: destination_homey === true,
+        route_image: route_image !== false, route_traffic: route_traffic !== false };
+      const unresolved = await Promise.all(['origin', 'destination'].map(async endpoint => {
+        const id = settings[endpoint];
+        if (typeof id !== 'string' || !id.trim().startsWith('place_id:')) return false;
+        try {
+          const name = await lookupPlaceAddress(this.getMapsKey(), id, this.homey.i18n.getLanguage());
+          settings[endpoint] = { name, id };
+          return false;
+        } catch (error) {
+          // Do not log addresses or saved IDs; Repair lets the user replace a failed lookup.
+          this.error('Maps could not look up a saved place:', error.message);
+          settings[endpoint] = '';
+          return true;
+        }
+      }));
+      if (unresolved.some(Boolean)) settings.address_lookup_failed = true;
+      return settings;
+    });
+    session.setHandler('search_address', query => this.searchAddresses(query));
+    session.setHandler('save_route_settings', async data => {
+      const { settings, places } = parseRouteSettings(data);
+      await device.updateRouteSettings(settings, places);
     });
   }
 

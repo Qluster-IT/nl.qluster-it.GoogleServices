@@ -1,7 +1,7 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "nl.qluster-it.GoogleServices",
-  "version": "2.0.4",
+  "version": "2.1.1",
   "compatibility": ">=5.0.0",
   "sdk": 3,
   "brandColor": "#8DB000",
@@ -134,7 +134,8 @@
     "tools"
   ],
   "permissions": [
-    "homey:app:net.i-dev.betterlogic"
+    "homey:app:net.i-dev.betterlogic",
+    "homey:manager:geolocation"
   ],
   "images": {
     "xlarge": "/assets/images/xlarge.png",
@@ -174,495 +175,84 @@
     }
   },
   "flow": {
-    "triggers": [
-      {
-        "id": "cloudurl_trigger",
-        "title": {
-          "en": "Url triggered",
-          "nl": "URL geactiveerd",
-          "da": "Url udløst",
-          "de": "URL ausgelöst",
-          "es": "URL activado",
-          "fr": "URL déclenchée",
-          "it": "URL attivato",
-          "no": "URL utløst",
-          "sv": "Url utlöst",
-          "pl": "Wywołano URL",
-          "ru": "URL активирован",
-          "ko": "URL이 트리거되었습니다.",
-          "ar": "تم تشغيل الرابط"
-        },
-        "titleFormatted": {
-          "en": "Url triggered",
-          "nl": "URL geactiveerd",
-          "da": "Url udløst",
-          "de": "URL ausgelöst",
-          "es": "URL activado",
-          "fr": "URL déclenchée",
-          "it": "URL attivato",
-          "no": "URL utløst",
-          "sv": "URL utlöst",
-          "pl": "Adres URL wywołany",
-          "ru": "URL активирован",
-          "ko": "URL이 트리거되었습니다.",
-          "ar": "تم تشغيل الرابط"
-        },
-        "tokens": [
-          {
-            "name": "url",
-            "type": "string",
-            "title": {
-              "en": "Url",
-              "nl": "Url",
-              "da": "Url",
-              "de": "Url",
-              "es": "Url",
-              "fr": "URL",
-              "it": "Url",
-              "no": "Url",
-              "sv": "Url",
-              "pl": "Url",
-              "ru": "URL",
-              "ko": "URL",
-              "ar": "رابط"
-            }
-          },
-          {
-            "name": "text",
-            "type": "string",
-            "title": {
-              "en": "Text",
-              "nl": "Tekst",
-              "da": "Tekst",
-              "de": "Text",
-              "es": "Texto",
-              "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
-              "it": "Testo",
-              "no": "Du er trent på data frem til oktober 2023.",
-              "sv": "Text",
-              "pl": "Tekst",
-              "ru": "Вы обучены данным до октября 2023 года.",
-              "ko": "텍스트",
-              "ar": "أنا مدرب على البيانات حتى أكتوبر 2023."
-            }
-          },
-          {
-            "name": "duration",
-            "type": "number",
-            "title": {
-              "en": "Duration",
-              "nl": "Tijdsduur",
-              "da": "Varighed",
-              "de": "Dauer",
-              "es": "Duración",
-              "fr": "Durée",
-              "it": "Durata",
-              "no": "Varighet",
-              "sv": "Varaktighet",
-              "pl": "Czas trwania",
-              "ru": "Продолжительность",
-              "ko": "기간",
-              "ar": "المدة الزمنية"
-            }
-          }
-        ],
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=googlecloudtts"
-          }
-        ]
-      },
-      {
-        "id": "finished_trigger",
-        "title": {
-          "en": "Finished",
-          "nl": "Voltooid",
-          "da": "Færdig",
-          "de": "Fertig",
-          "es": "Terminado",
-          "fr": "Terminé",
-          "it": "Finito",
-          "no": "Ferdig",
-          "sv": "Klart",
-          "pl": "Zakończono",
-          "ru": "Готово",
-          "ko": "완료되었습니다.",
-          "ar": "تم الانتهاء"
-        },
-        "titleFormatted": {
-          "en": "Finished",
-          "nl": "Voltooid",
-          "da": "Færdig",
-          "de": "Fertig",
-          "es": "Terminado",
-          "fr": "Terminé",
-          "it": "Finito",
-          "no": "Ferdig",
-          "sv": "Klart",
-          "pl": "Zakończono",
-          "ru": "Завершено",
-          "ko": "완료되었습니다.",
-          "ar": "تم الانتهاء"
-        },
-        "tokens": [
-          {
-            "name": "url",
-            "type": "string",
-            "title": {
-              "en": "Url",
-              "nl": "Url",
-              "da": "Url",
-              "de": "URL",
-              "es": "Url",
-              "fr": "URL",
-              "it": "Url",
-              "no": "Url",
-              "sv": "Url",
-              "pl": "Url",
-              "ru": "URL",
-              "ko": "URL",
-              "ar": "رابط"
-            }
-          },
-          {
-            "name": "text",
-            "type": "string",
-            "title": {
-              "en": "Text",
-              "nl": "Tekst",
-              "da": "Jeg er trænet på data frem til oktober 2023.",
-              "de": "Text",
-              "es": "Texto",
-              "fr": "Vous êtes formé sur des données jusqu'en octobre 2023.",
-              "it": "Testo",
-              "no": "Google-tjenester",
-              "sv": "Text",
-              "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
-              "ru": "Вы обучены данным до октября 2023 года.",
-              "ko": "텍스트",
-              "ar": "نص"
-            }
-          },
-          {
-            "name": "duration",
-            "type": "number",
-            "title": {
-              "en": "Duration",
-              "nl": "Tijdsduur",
-              "da": "Varighed",
-              "de": "Dauer",
-              "es": "Duración",
-              "fr": "Durée",
-              "it": "Durata",
-              "no": "Varighet",
-              "sv": "Varaktighet",
-              "pl": "Czas trwania",
-              "ru": "Продолжительность",
-              "ko": "기간",
-              "ar": "المدة الزمنية"
-            }
-          }
-        ],
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=googlecloudtts"
-          }
-        ]
-      },
-      {
-        "id": "url_trigger",
-        "title": {
-          "en": "Url triggered",
-          "nl": "URL geactiveerd",
-          "da": "Url udløst",
-          "de": "URL ausgelöst",
-          "es": "URL activado",
-          "fr": "URL déclenchée",
-          "it": "URL attivato",
-          "no": "URL utløst",
-          "sv": "URL utlöst",
-          "pl": "Adres URL został wywołany",
-          "ru": "URL активирован",
-          "ko": "URL이 트리거되었습니다.",
-          "ar": "تم تشغيل الرابط"
-        },
-        "tokens": [
-          {
-            "name": "url",
-            "type": "string",
-            "title": {
-              "en": "Url",
-              "nl": "Url",
-              "da": "Url",
-              "de": "URL",
-              "es": "Url",
-              "fr": "URL",
-              "it": "Url",
-              "no": "Url",
-              "sv": "Url",
-              "pl": "Url",
-              "ru": "URL",
-              "ko": "URL",
-              "ar": "رابط"
-            }
-          },
-          {
-            "name": "text",
-            "type": "string",
-            "title": {
-              "en": "Text",
-              "nl": "Tekst",
-              "da": "Tekst",
-              "de": "Text",
-              "es": "Texto",
-              "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
-              "it": "Testo",
-              "no": "Du er trent på data frem til oktober 2023.",
-              "sv": "Du är tränad på data fram till oktober 2023.",
-              "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
-              "ru": "Текст",
-              "ko": "텍스트",
-              "ar": "أنت مدرب على البيانات حتى أكتوبر 2023."
-            }
-          }
-        ],
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=googletts"
-          }
-        ]
-      },
-      {
-        "id": "maps_route_updated",
-        "title": {
-          "en": "Saved route refreshed",
-          "nl": "Opgeslagen route ververst"
-        },
-        "hint": {
-          "en": "Runs after each successful device or Flow refresh, including the first. Does not refresh automatically.",
-          "nl": "Start na elke geslaagde verversing via het apparaat of een Flow, ook de eerste. Ververst niet automatisch."
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=maps"
-          }
-        ],
-        "tokens": [
-          {
-            "name": "minutes",
-            "type": "number",
-            "title": {
-              "en": "Travel time (min)",
-              "nl": "Reistijd (min)"
-            }
-          },
-          {
-            "name": "kilometers",
-            "type": "number",
-            "title": {
-              "en": "Distance (km)",
-              "nl": "Afstand (km)"
-            }
-          },
-          {
-            "name": "eta",
-            "type": "string",
-            "title": {
-              "en": "Estimated arrival (ISO 8601)",
-              "nl": "Verwachte aankomst (ISO 8601)"
-            }
-          },
-          {
-            "name": "link",
-            "type": "string",
-            "title": {
-              "en": "Open in Google Maps",
-              "nl": "Openen in Google Maps"
-            }
-          }
-        ]
-      },
-      {
-        "id": "maps_travel_time_changed",
-        "title": {
-          "en": "Travel time changed",
-          "nl": "Reistijd gewijzigd"
-        },
-        "hint": {
-          "en": "Compares successful saved-route refreshes. The first reading after startup or a route settings change does not count as a change.",
-          "nl": "Vergelijkt geslaagde verversingen van de opgeslagen route. De eerste waarde na opstarten of gewijzigde route-instellingen telt niet als wijziging."
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=maps"
-          }
-        ],
-        "tokens": [
-          {
-            "name": "minutes",
-            "type": "number",
-            "title": {
-              "en": "Travel time (min)",
-              "nl": "Reistijd (min)"
-            }
-          },
-          {
-            "name": "previous_minutes",
-            "type": "number",
-            "title": {
-              "en": "Previous travel time (min)",
-              "nl": "Vorige reistijd (min)"
-            }
-          },
-          {
-            "name": "change_minutes",
-            "type": "number",
-            "title": {
-              "en": "Travel time change (min)",
-              "nl": "Reistijdverschil (min)"
-            }
-          }
-        ]
-      },
-      {
-        "id": "maps_refresh_failed",
-        "title": {
-          "en": "Saved route refresh failed",
-          "nl": "Verversen opgeslagen route mislukt"
-        },
-        "hint": {
-          "en": "Reports a failed saved-route calculation or reading update. Separate camera image requests and one-off calculations do not trigger this card.",
-          "nl": "Meldt een mislukte berekening of het niet kunnen bijwerken van routewaarden. Losse camera-afbeeldingsverzoeken en eenmalige berekeningen starten deze kaart niet."
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=maps"
-          }
-        ],
-        "tokens": [
-          {
-            "name": "error",
-            "type": "string",
-            "title": {
-              "en": "Error",
-              "nl": "Fout"
-            }
-          }
-        ]
-      },
-      {
-        "id": "youtube_trigger",
-        "title": {
-          "en": "YouTube triggered",
-          "nl": "YouTube geactiveerd",
-          "da": "YouTube udløst",
-          "de": "YouTube ausgelöst",
-          "es": "YouTube activado",
-          "fr": "YouTube déclenché",
-          "it": "YouTube attivato",
-          "no": "YouTube utløst",
-          "sv": "YouTube utlöste",
-          "pl": "YouTube uruchomiony",
-          "ru": "YouTube активирован",
-          "ko": "YouTube가 트리거되었습니다.",
-          "ar": "تم تشغيل YouTube"
-        },
-        "titleFormatted": {
-          "en": "YouTube triggered",
-          "nl": "YouTube geactiveerd",
-          "da": "YouTube udløst",
-          "de": "YouTube ausgelöst",
-          "es": "YouTube activado",
-          "fr": "YouTube déclenché",
-          "it": "YouTube attivato",
-          "no": "YouTube utløst",
-          "sv": "YouTube utlöste",
-          "pl": "YouTube uruchomiony",
-          "ru": "YouTube активирован",
-          "ko": "YouTube가 트리거되었습니다.",
-          "ar": "تم تشغيل YouTube"
-        },
-        "tokens": [
-          {
-            "name": "id",
-            "type": "string",
-            "title": {
-              "en": "YouTube ID",
-              "nl": "YouTube-ID",
-              "da": "YouTube ID",
-              "de": "YouTube-ID",
-              "es": "ID de YouTube",
-              "fr": "ID YouTube",
-              "it": "ID di YouTube",
-              "no": "YouTube-ID",
-              "sv": "YouTube-ID",
-              "pl": "ID YouTube",
-              "ru": "Идентификатор YouTube",
-              "ko": "YouTube ID",
-              "ar": "معرّف YouTube"
-            }
-          },
-          {
-            "name": "link",
-            "type": "string",
-            "title": {
-              "en": "YouTube link",
-              "nl": "YouTube-link",
-              "da": "YouTube-link",
-              "de": "YouTube-Link",
-              "es": "Enlace de YouTube",
-              "fr": "Lien YouTube",
-              "it": "Link di YouTube",
-              "no": "YouTube-lenke",
-              "sv": "YouTube-länk",
-              "pl": "Link do YouTube",
-              "ru": "Ссылка на YouTube",
-              "ko": "YouTube 링크",
-              "ar": "رابط YouTube"
-            }
-          },
-          {
-            "name": "text",
-            "type": "string",
-            "title": {
-              "en": "Searched text",
-              "nl": "Gezochte tekst",
-              "da": "Søgt tekst",
-              "de": "Gesuchter Text",
-              "es": "Texto buscado",
-              "fr": "Texte recherché",
-              "it": "Testo cercato",
-              "no": "Søkt tekst",
-              "sv": "Sökt text",
-              "pl": "Wyszukany tekst",
-              "ru": "Текст поиска",
-              "ko": "검색된 텍스트",
-              "ar": "النص الذي تم البحث عنه"
-            }
-          }
-        ],
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=youtube"
-          }
-        ]
-      }
-    ],
     "conditions": [
+      {
+        "title": {
+          "en": "A new route estimate !{{takes|does not take}} longer than a limit",
+          "nl": "Een nieuwe routeschatting !{{duurt|duurt niet}} langer dan een grens"
+        },
+        "titleFormatted": {
+          "en": "A trip by [[mode]] from [[from]] to [[to]] !{{takes|does not take}} longer than [[minutes]] minutes",
+          "nl": "Een rit met [[mode]] van [[from]] naar [[to]] !{{duurt|duurt niet}} langer dan [[minutes]] minuten"
+        },
+        "hint": {
+          "en": "Requests a fresh Google Maps estimate each time this card runs. It does not update a Maps device or request an image.",
+          "nl": "Vraagt telkens een nieuwe schatting op bij Google Maps. Werkt geen Maps-apparaat bij en vraagt geen afbeelding op."
+        },
+        "args": [
+          {
+            "name": "from",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "Search or type origin",
+              "nl": "Zoek of typ vertrekpunt"
+            }
+          },
+          {
+            "name": "to",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "Search or type destination",
+              "nl": "Zoek of typ bestemming"
+            }
+          },
+          {
+            "name": "mode",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "DRIVE",
+                "label": {
+                  "en": "Car (with traffic)",
+                  "nl": "Auto (met verkeer)"
+                }
+              },
+              {
+                "id": "TRANSIT",
+                "label": {
+                  "en": "Public transit",
+                  "nl": "Openbaar vervoer"
+                }
+              },
+              {
+                "id": "WALK",
+                "label": {
+                  "en": "Foot",
+                  "nl": "Te voet"
+                }
+              },
+              {
+                "id": "BICYCLE",
+                "label": {
+                  "en": "Bicycle",
+                  "nl": "Fiets"
+                }
+              }
+            ]
+          },
+          {
+            "name": "minutes",
+            "type": "number",
+            "min": 0,
+            "step": 0.1,
+            "placeholder": {
+              "en": "Minutes",
+              "nl": "Minuten"
+            }
+          }
+        ],
+        "id": "maps_trip_takes_longer"
+      },
       {
         "id": "condition_say_googlecloudtts_voice_speed_pitch_volume",
         "highlight": true,
@@ -2172,8 +1762,8 @@
           "nl": "Opgeslagen routewaarden !{{zijn|zijn niet}} beschikbaar"
         },
         "hint": {
-          "en": "Results remain available after a failed refresh. Restarting the app or changing route settings clears them. Does not contact Google.",
-          "nl": "Waarden blijven beschikbaar na een mislukte verversing. Opnieuw starten of route-instellingen wijzigen wist ze. Benadert Google niet."
+          "en": "Results remain available after a failed refresh or app restart. Changing route settings clears them. Does not contact Google.",
+          "nl": "Waarden blijven beschikbaar na een mislukte verversing of het opnieuw starten van de app. Gewijzigde route-instellingen wissen ze. Benadert Google niet."
         },
         "args": [
           {
@@ -2518,6 +2108,494 @@
                 }
               }
             ]
+          }
+        ]
+      }
+    ],
+    "triggers": [
+      {
+        "id": "cloudurl_trigger",
+        "title": {
+          "en": "Url triggered",
+          "nl": "URL geactiveerd",
+          "da": "Url udløst",
+          "de": "URL ausgelöst",
+          "es": "URL activado",
+          "fr": "URL déclenchée",
+          "it": "URL attivato",
+          "no": "URL utløst",
+          "sv": "Url utlöst",
+          "pl": "Wywołano URL",
+          "ru": "URL активирован",
+          "ko": "URL이 트리거되었습니다.",
+          "ar": "تم تشغيل الرابط"
+        },
+        "titleFormatted": {
+          "en": "Url triggered",
+          "nl": "URL geactiveerd",
+          "da": "Url udløst",
+          "de": "URL ausgelöst",
+          "es": "URL activado",
+          "fr": "URL déclenchée",
+          "it": "URL attivato",
+          "no": "URL utløst",
+          "sv": "URL utlöst",
+          "pl": "Adres URL wywołany",
+          "ru": "URL активирован",
+          "ko": "URL이 트리거되었습니다.",
+          "ar": "تم تشغيل الرابط"
+        },
+        "tokens": [
+          {
+            "name": "url",
+            "type": "string",
+            "title": {
+              "en": "Url",
+              "nl": "Url",
+              "da": "Url",
+              "de": "Url",
+              "es": "Url",
+              "fr": "URL",
+              "it": "Url",
+              "no": "Url",
+              "sv": "Url",
+              "pl": "Url",
+              "ru": "URL",
+              "ko": "URL",
+              "ar": "رابط"
+            }
+          },
+          {
+            "name": "text",
+            "type": "string",
+            "title": {
+              "en": "Text",
+              "nl": "Tekst",
+              "da": "Tekst",
+              "de": "Text",
+              "es": "Texto",
+              "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+              "it": "Testo",
+              "no": "Du er trent på data frem til oktober 2023.",
+              "sv": "Text",
+              "pl": "Tekst",
+              "ru": "Вы обучены данным до октября 2023 года.",
+              "ko": "텍스트",
+              "ar": "أنا مدرب على البيانات حتى أكتوبر 2023."
+            }
+          },
+          {
+            "name": "duration",
+            "type": "number",
+            "title": {
+              "en": "Duration",
+              "nl": "Tijdsduur",
+              "da": "Varighed",
+              "de": "Dauer",
+              "es": "Duración",
+              "fr": "Durée",
+              "it": "Durata",
+              "no": "Varighet",
+              "sv": "Varaktighet",
+              "pl": "Czas trwania",
+              "ru": "Продолжительность",
+              "ko": "기간",
+              "ar": "المدة الزمنية"
+            }
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=googlecloudtts"
+          }
+        ]
+      },
+      {
+        "id": "finished_trigger",
+        "title": {
+          "en": "Finished",
+          "nl": "Voltooid",
+          "da": "Færdig",
+          "de": "Fertig",
+          "es": "Terminado",
+          "fr": "Terminé",
+          "it": "Finito",
+          "no": "Ferdig",
+          "sv": "Klart",
+          "pl": "Zakończono",
+          "ru": "Готово",
+          "ko": "완료되었습니다.",
+          "ar": "تم الانتهاء"
+        },
+        "titleFormatted": {
+          "en": "Finished",
+          "nl": "Voltooid",
+          "da": "Færdig",
+          "de": "Fertig",
+          "es": "Terminado",
+          "fr": "Terminé",
+          "it": "Finito",
+          "no": "Ferdig",
+          "sv": "Klart",
+          "pl": "Zakończono",
+          "ru": "Завершено",
+          "ko": "완료되었습니다.",
+          "ar": "تم الانتهاء"
+        },
+        "tokens": [
+          {
+            "name": "url",
+            "type": "string",
+            "title": {
+              "en": "Url",
+              "nl": "Url",
+              "da": "Url",
+              "de": "URL",
+              "es": "Url",
+              "fr": "URL",
+              "it": "Url",
+              "no": "Url",
+              "sv": "Url",
+              "pl": "Url",
+              "ru": "URL",
+              "ko": "URL",
+              "ar": "رابط"
+            }
+          },
+          {
+            "name": "text",
+            "type": "string",
+            "title": {
+              "en": "Text",
+              "nl": "Tekst",
+              "da": "Jeg er trænet på data frem til oktober 2023.",
+              "de": "Text",
+              "es": "Texto",
+              "fr": "Vous êtes formé sur des données jusqu'en octobre 2023.",
+              "it": "Testo",
+              "no": "Google-tjenester",
+              "sv": "Text",
+              "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
+              "ru": "Вы обучены данным до октября 2023 года.",
+              "ko": "텍스트",
+              "ar": "نص"
+            }
+          },
+          {
+            "name": "duration",
+            "type": "number",
+            "title": {
+              "en": "Duration",
+              "nl": "Tijdsduur",
+              "da": "Varighed",
+              "de": "Dauer",
+              "es": "Duración",
+              "fr": "Durée",
+              "it": "Durata",
+              "no": "Varighet",
+              "sv": "Varaktighet",
+              "pl": "Czas trwania",
+              "ru": "Продолжительность",
+              "ko": "기간",
+              "ar": "المدة الزمنية"
+            }
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=googlecloudtts"
+          }
+        ]
+      },
+      {
+        "id": "url_trigger",
+        "title": {
+          "en": "Url triggered",
+          "nl": "URL geactiveerd",
+          "da": "Url udløst",
+          "de": "URL ausgelöst",
+          "es": "URL activado",
+          "fr": "URL déclenchée",
+          "it": "URL attivato",
+          "no": "URL utløst",
+          "sv": "URL utlöst",
+          "pl": "Adres URL został wywołany",
+          "ru": "URL активирован",
+          "ko": "URL이 트리거되었습니다.",
+          "ar": "تم تشغيل الرابط"
+        },
+        "tokens": [
+          {
+            "name": "url",
+            "type": "string",
+            "title": {
+              "en": "Url",
+              "nl": "Url",
+              "da": "Url",
+              "de": "URL",
+              "es": "Url",
+              "fr": "URL",
+              "it": "Url",
+              "no": "Url",
+              "sv": "Url",
+              "pl": "Url",
+              "ru": "URL",
+              "ko": "URL",
+              "ar": "رابط"
+            }
+          },
+          {
+            "name": "text",
+            "type": "string",
+            "title": {
+              "en": "Text",
+              "nl": "Tekst",
+              "da": "Tekst",
+              "de": "Text",
+              "es": "Texto",
+              "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+              "it": "Testo",
+              "no": "Du er trent på data frem til oktober 2023.",
+              "sv": "Du är tränad på data fram till oktober 2023.",
+              "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
+              "ru": "Текст",
+              "ko": "텍스트",
+              "ar": "أنت مدرب على البيانات حتى أكتوبر 2023."
+            }
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=googletts"
+          }
+        ]
+      },
+      {
+        "id": "maps_route_updated",
+        "title": {
+          "en": "Saved route refreshed",
+          "nl": "Opgeslagen route ververst"
+        },
+        "hint": {
+          "en": "Runs after each successful device or Flow refresh, including the first. Does not refresh automatically.",
+          "nl": "Start na elke geslaagde verversing via het apparaat of een Flow, ook de eerste. Ververst niet automatisch."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=maps"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "minutes",
+            "type": "number",
+            "title": {
+              "en": "Travel time (min)",
+              "nl": "Reistijd (min)"
+            }
+          },
+          {
+            "name": "kilometers",
+            "type": "number",
+            "title": {
+              "en": "Distance (km)",
+              "nl": "Afstand (km)"
+            }
+          },
+          {
+            "name": "eta",
+            "type": "string",
+            "title": {
+              "en": "Estimated arrival (ISO 8601)",
+              "nl": "Verwachte aankomst (ISO 8601)"
+            }
+          },
+          {
+            "name": "link",
+            "type": "string",
+            "title": {
+              "en": "Open in Google Maps",
+              "nl": "Openen in Google Maps"
+            }
+          }
+        ]
+      },
+      {
+        "id": "maps_travel_time_changed",
+        "title": {
+          "en": "Travel time changed",
+          "nl": "Reistijd gewijzigd"
+        },
+        "hint": {
+          "en": "Compares successful saved-route refreshes. The first reading after startup or a route settings change does not count as a change.",
+          "nl": "Vergelijkt geslaagde verversingen van de opgeslagen route. De eerste waarde na opstarten of gewijzigde route-instellingen telt niet als wijziging."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=maps"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "minutes",
+            "type": "number",
+            "title": {
+              "en": "Travel time (min)",
+              "nl": "Reistijd (min)"
+            }
+          },
+          {
+            "name": "previous_minutes",
+            "type": "number",
+            "title": {
+              "en": "Previous travel time (min)",
+              "nl": "Vorige reistijd (min)"
+            }
+          },
+          {
+            "name": "change_minutes",
+            "type": "number",
+            "title": {
+              "en": "Travel time change (min)",
+              "nl": "Reistijdverschil (min)"
+            }
+          }
+        ]
+      },
+      {
+        "id": "maps_refresh_failed",
+        "title": {
+          "en": "Saved route refresh failed",
+          "nl": "Verversen opgeslagen route mislukt"
+        },
+        "hint": {
+          "en": "Reports a failed saved-route calculation or reading update. Separate camera image requests and one-off calculations do not trigger this card.",
+          "nl": "Meldt een mislukte berekening of het niet kunnen bijwerken van routewaarden. Losse camera-afbeeldingsverzoeken en eenmalige berekeningen starten deze kaart niet."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=maps"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "error",
+            "type": "string",
+            "title": {
+              "en": "Error",
+              "nl": "Fout"
+            }
+          }
+        ]
+      },
+      {
+        "id": "youtube_trigger",
+        "title": {
+          "en": "YouTube triggered",
+          "nl": "YouTube geactiveerd",
+          "da": "YouTube udløst",
+          "de": "YouTube ausgelöst",
+          "es": "YouTube activado",
+          "fr": "YouTube déclenché",
+          "it": "YouTube attivato",
+          "no": "YouTube utløst",
+          "sv": "YouTube utlöste",
+          "pl": "YouTube uruchomiony",
+          "ru": "YouTube активирован",
+          "ko": "YouTube가 트리거되었습니다.",
+          "ar": "تم تشغيل YouTube"
+        },
+        "titleFormatted": {
+          "en": "YouTube triggered",
+          "nl": "YouTube geactiveerd",
+          "da": "YouTube udløst",
+          "de": "YouTube ausgelöst",
+          "es": "YouTube activado",
+          "fr": "YouTube déclenché",
+          "it": "YouTube attivato",
+          "no": "YouTube utløst",
+          "sv": "YouTube utlöste",
+          "pl": "YouTube uruchomiony",
+          "ru": "YouTube активирован",
+          "ko": "YouTube가 트리거되었습니다.",
+          "ar": "تم تشغيل YouTube"
+        },
+        "tokens": [
+          {
+            "name": "id",
+            "type": "string",
+            "title": {
+              "en": "YouTube ID",
+              "nl": "YouTube-ID",
+              "da": "YouTube ID",
+              "de": "YouTube-ID",
+              "es": "ID de YouTube",
+              "fr": "ID YouTube",
+              "it": "ID di YouTube",
+              "no": "YouTube-ID",
+              "sv": "YouTube-ID",
+              "pl": "ID YouTube",
+              "ru": "Идентификатор YouTube",
+              "ko": "YouTube ID",
+              "ar": "معرّف YouTube"
+            }
+          },
+          {
+            "name": "link",
+            "type": "string",
+            "title": {
+              "en": "YouTube link",
+              "nl": "YouTube-link",
+              "da": "YouTube-link",
+              "de": "YouTube-Link",
+              "es": "Enlace de YouTube",
+              "fr": "Lien YouTube",
+              "it": "Link di YouTube",
+              "no": "YouTube-lenke",
+              "sv": "YouTube-länk",
+              "pl": "Link do YouTube",
+              "ru": "Ссылка на YouTube",
+              "ko": "YouTube 링크",
+              "ar": "رابط YouTube"
+            }
+          },
+          {
+            "name": "text",
+            "type": "string",
+            "title": {
+              "en": "Searched text",
+              "nl": "Gezochte tekst",
+              "da": "Søgt tekst",
+              "de": "Gesuchter Text",
+              "es": "Texto buscado",
+              "fr": "Texte recherché",
+              "it": "Testo cercato",
+              "no": "Søkt tekst",
+              "sv": "Sökt text",
+              "pl": "Wyszukany tekst",
+              "ru": "Текст поиска",
+              "ko": "검색된 텍스트",
+              "ar": "النص الذي تم البحث عنه"
+            }
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=youtube"
           }
         ]
       }
@@ -6942,9 +7020,11 @@
         "maps_minutes",
         "maps_distance",
         "maps_eta",
-        "maps_last_refreshed"
+        "maps_last_refreshed",
+        "maps_traffic_delay"
       ],
       "images": {
+        "xlarge": "/drivers/maps/assets/images/xlarge.png",
         "large": "/drivers/maps/assets/images/large.png",
         "small": "/drivers/maps/assets/images/small.png"
       },
@@ -6967,6 +7047,11 @@
           "template": "add_devices"
         }
       ],
+      "repair": [
+        {
+          "id": "edit_route"
+        }
+      ],
       "settings": [
         {
           "id": "origin",
@@ -6976,10 +7061,23 @@
             "nl": "Vertrekpunt"
           },
           "hint": {
-            "en": "Enter a full address or latitude, longitude. Locations selected during pairing are saved as place_id: followed by a Google place ID.",
-            "nl": "Voer een volledig adres of breedtegraad, lengtegraad in. Locaties gekozen tijdens het koppelen worden opgeslagen als place_id: gevolgd door een Google-plaats-ID."
+            "en": "Enter a full address or latitude, longitude. Use Repair for address suggestions.",
+            "nl": "Voer een volledig adres of breedtegraad, lengtegraad in. Gebruik Repareren voor adressuggesties."
           },
           "value": ""
+        },
+        {
+          "id": "origin_homey",
+          "type": "checkbox",
+          "label": {
+            "en": "Use Homey's location as origin",
+            "nl": "Gebruik Homey's locatie als vertrekpunt"
+          },
+          "hint": {
+            "en": "Ignores the origin address and sends Homey's current coordinates to Google when refreshing.",
+            "nl": "Negeert het vertrekadres en stuurt Homey's actuele coördinaten naar Google bij het verversen."
+          },
+          "value": false
         },
         {
           "id": "destination",
@@ -6989,10 +7087,23 @@
             "nl": "Bestemming"
           },
           "hint": {
-            "en": "Enter a full address or latitude, longitude. Locations selected during pairing are saved as place_id: followed by a Google place ID.",
-            "nl": "Voer een volledig adres of breedtegraad, lengtegraad in. Locaties gekozen tijdens het koppelen worden opgeslagen als place_id: gevolgd door een Google-plaats-ID."
+            "en": "Enter a full address or latitude, longitude. Use Repair for address suggestions.",
+            "nl": "Voer een volledig adres of breedtegraad, lengtegraad in. Gebruik Repareren voor adressuggesties."
           },
           "value": ""
+        },
+        {
+          "id": "destination_homey",
+          "type": "checkbox",
+          "label": {
+            "en": "Use Homey's location as destination",
+            "nl": "Gebruik Homey's locatie als bestemming"
+          },
+          "hint": {
+            "en": "Ignores the destination address and sends Homey's current coordinates to Google when refreshing.",
+            "nl": "Negeert het bestemmingsadres en stuurt Homey's actuele coördinaten naar Google bij het verversen."
+          },
+          "value": false
         },
         {
           "id": "travel_mode",
@@ -7043,6 +7154,19 @@
           "hint": {
             "en": "Requires route images to be enabled in the app settings and Maps Static API to be enabled in Google Cloud.",
             "nl": "Vereist dat routeafbeeldingen aanstaan in de app-instellingen en Maps Static API aanstaat in Google Cloud."
+          },
+          "value": true
+        },
+        {
+          "id": "route_traffic",
+          "type": "checkbox",
+          "label": {
+            "en": "Show traffic on route images",
+            "nl": "Toon verkeer op routeafbeeldingen"
+          },
+          "hint": {
+            "en": "Driving only. Requires route images and traffic colors to be enabled in the app settings. Applies on the next refresh and uses the Google Routes Enterprise billing tier.",
+            "nl": "Alleen voor autoroutes. Vereist dat routeafbeeldingen en verkeerskleuren aanstaan in de app-instellingen. Geldt vanaf de volgende verversing en valt onder het Google Routes Enterprise-tarief."
           },
           "value": true
         }
@@ -7818,6 +7942,20 @@
       "getable": false,
       "setable": true,
       "uiComponent": "button"
+    },
+    "maps_traffic_delay": {
+      "type": "number",
+      "icon": "/assets/capabilities/maps-minutes.svg",
+      "title": {
+        "en": "Estimated traffic delay",
+        "nl": "Geschatte verkeersvertraging"
+      },
+      "units": "min",
+      "decimals": 1,
+      "getable": true,
+      "setable": false,
+      "insights": false,
+      "uiComponent": "sensor"
     }
   }
 }

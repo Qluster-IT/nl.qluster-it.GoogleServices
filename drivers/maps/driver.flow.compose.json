@@ -46,7 +46,7 @@
     {
       "id": "maps_route_available",
       "title": { "en": "Saved route results !{{are|are not}} available", "nl": "Opgeslagen routewaarden !{{zijn|zijn niet}} beschikbaar" },
-      "hint": { "en": "Results remain available after a failed refresh. Restarting the app or changing route settings clears them. Does not contact Google.", "nl": "Waarden blijven beschikbaar na een mislukte verversing. Opnieuw starten of route-instellingen wijzigen wist ze. Benadert Google niet." },
+      "hint": { "en": "Results remain available after a failed refresh or app restart. Changing route settings clears them. Does not contact Google.", "nl": "Waarden blijven beschikbaar na een mislukte verversing of het opnieuw starten van de app. Gewijzigde route-instellingen wissen ze. Benadert Google niet." },
       "args": []
     }
   ],

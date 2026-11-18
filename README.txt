@@ -1,36 +1,18 @@
-Use the newest Google Cloud Services, starting with the new Text-to-Speech and Translate.
+Use Google Maps, Text-to-Speech, Translate and YouTube in your Homey Flows.
 
-Translate
-U can create a Google Translate device and use it as action or a condition to translate, of which the translation will be available as a token of the device.
+FEATURES
 
-Text-To-Speech
-Useable with any device that takes an URL.
+* Google Maps: Save a trip with address suggestions or enter addresses or coordinates yourself. See travel time, distance, estimated arrival and when the route was last refreshed. Refresh with a button or Flow and view the route map on demand. Advanced Flow can calculate a one-off route without changing the saved trip.
+* Text-to-Speech: Turn text into an audio URL for a compatible player.
+* Google Cloud Text-to-Speech: Choose a voice and adjust speaking speed, pitch and volume. Use SSML markup to add pauses or control pronunciation.
+* Google Translate: Translate text in a Flow and use the translation in later cards.
+* YouTube: Search for a video and use its ID or link in a Flow.
 
-YouTube
-Search YouTube and play it on YouTube or any device that takes an URL.
+Use speech audio URLs in your automations. For instance, play them on Sonos at a set volume, open them in the Samsung Smart TV browser, or pass them to IFTTT.
 
-All languages that Google supports, are supported.
-Set voice in settings or overwrite it in a flow.
-You can set Pitch, Speed, Volume Gain and Device Profile per device (will be overruled by flows with pitch and/or speed).
-SSML coding is accepted now, like: <speak>Here are <say-as interpret-as=\"characters\">SSML</say-as> samples.<break time=\"3s\" />. And continue</speak>
+Configure credentials for the Google services you use in app settings.
 
-You can also add a prefix and/or suffix pause through the device settings, which is particularly useful for Chromecast users:
-A pause added the beginning will separate the notification sound and the actual speech.
+Better Logic Library is supported (optional). Use BLL coding in supported text fields. See the Better Logic Library app settings to learn how to use BLL coding.
 
-Create a House device that triggers all applicable devices to say "Dinner is ready!" or just a device for the main room to say "The doorbell is ringing".
-You can add "devices" as many times as you would like, each with its own trigger.
-Conditions are also available!
-
-This works great with other Apps like Sonos (Play (url) at volume), Samsung Smart TV (Laung Browser with the URL) and IFTTT.
-
-
-See the community topic for explanation on how to get the necessary free Google Cloud Service Account (JSON file).
-
-There is also an old Google TTS device, with a max. 200 characters and limited options.
-
-
-For playing it on Homey itself, see Media Url Converter.
-
-
-* Optional: Supports BLL coding. When Better Logic Library is unavailable, text is passed through unchanged and BLL expressions are not evaluated.
-See the Better Logic Library App Settings for how to use BLL coding.
+See the Google Services topic on the Community Forum for help and discussion.
+For the Google Services wiki and user manual, select “Visit website” under “Developer website” on the app’s Homey App Store page.

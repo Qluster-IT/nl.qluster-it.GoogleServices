@@ -1408,5 +1408,35 @@
     "ru": "Исправлены выбор языка и перевод в Google Translate. Улучшены надёжность речи, сопряжение устройств и использование памяти.",
     "ko": "Google Translate의 언어 선택 및 번역을 수정했습니다. 음성 안정성, 기기 페어링 및 메모리 사용을 개선했습니다.",
     "ar": "تم إصلاح اختيار اللغة والترجمة في Google Translate، وتحسين موثوقية الكلام وإقران الأجهزة واستخدام الذاكرة."
+  },
+  "2.1.0": {
+    "en": "Google Maps: Save routes with address suggestions, see travel time, distance and estimated arrival, and view route images on demand. Refresh with a button or Flow and see when the route was last refreshed. New Flow cards support one-off calculations, route updates and travel time checks.",
+    "nl": "Google Maps: Sla routes op met adressuggesties, bekijk reistijd, afstand en verwachte aankomst en open routeafbeeldingen op aanvraag. Ververs met een knop of Flow en zie wanneer de route voor het laatst is ververst. Nieuwe Flow-kaarten bieden eenmalige berekeningen, route-updates en reistijdcontroles.",
+    "da": "Google Maps: Gem ruter med adresseforslag, se rejsetid, afstand og forventet ankomst, og vis rutebilleder efter behov. Opdater med en knap eller et Flow, og se tidspunktet for seneste opdatering. Nye Flow-kort giver engangsberegninger, ruteopdateringer og kontrol af rejsetid.",
+    "de": "Google Maps: Routen mit Adressvorschlägen speichern und Fahrzeit, Entfernung, voraussichtliche Ankunft sowie Routenbilder bei Bedarf ansehen. Per Taste oder Flow aktualisieren und die letzte Aktualisierung sehen. Neue Flow-Karten bieten einmalige Berechnungen, Routenaktualisierungen und Fahrzeitprüfungen.",
+    "es": "Google Maps: Guarda rutas con sugerencias de direcciones y consulta la duración, la distancia, la llegada estimada y las imágenes de ruta bajo demanda. Actualiza con un botón o un Flow y consulta la última actualización. Las nuevas tarjetas de Flow permiten cálculos puntuales, actualizaciones de rutas y comprobaciones de duración.",
+    "fr": "Google Maps : enregistrez des itinéraires avec des suggestions d’adresses et consultez la durée, la distance, l’arrivée estimée et les images à la demande. Actualisez avec un bouton ou un Flow et consultez la dernière actualisation. De nouvelles cartes Flow permettent des calculs ponctuels, des mises à jour d’itinéraire et des contrôles de durée.",
+    "it": "Google Maps: salva percorsi con suggerimenti di indirizzi e consulta durata, distanza, arrivo previsto e immagini su richiesta. Aggiorna con un pulsante o un Flow e visualizza l’ultimo aggiornamento. Le nuove schede Flow consentono calcoli singoli, aggiornamenti dei percorsi e controlli dei tempi di viaggio.",
+    "no": "Google Maps: Lagre ruter med adresseforslag, se reisetid, avstand og forventet ankomst, og vis rutebilder ved behov. Oppdater med en knapp eller en Flow, og se når ruten sist ble oppdatert. Nye Flow-kort gir engangsberegninger, ruteoppdateringer og sjekk av reisetid.",
+    "sv": "Google Maps: Spara rutter med adressförslag och se restid, avstånd, beräknad ankomst och ruttbilder vid behov. Uppdatera med en knapp eller ett Flow och se när rutten senast uppdaterades. Nya Flow-kort ger engångsberäkningar, ruttuppdateringar och kontroller av restid.",
+    "pl": "Google Maps: Zapisuj trasy z podpowiedziami adresów i sprawdzaj czas podróży, odległość, przewidywane przybycie oraz obrazy tras na żądanie. Odświeżaj przyciskiem lub przez Flow i sprawdzaj czas ostatniego odświeżenia. Nowe karty Flow umożliwiają jednorazowe obliczenia, aktualizacje tras i sprawdzanie czasu podróży.",
+    "ru": "Google Maps: сохраняйте маршруты с подсказками адресов, узнавайте время в пути, расстояние и ожидаемое время прибытия и просматривайте изображения маршрутов по запросу. Обновляйте маршрут кнопкой или через Flow и смотрите время последнего обновления. Новые карточки Flow поддерживают разовые расчёты, обновления маршрутов и проверку времени в пути.",
+    "ko": "Google Maps: 주소 추천을 이용해 경로를 저장하고 이동 시간, 거리, 예상 도착 시간과 경로 이미지를 필요할 때 확인할 수 있습니다. 버튼이나 Flow로 새로고침하고 마지막 갱신 시간을 확인하세요. 새 Flow 카드는 일회성 경로 계산, 경로 갱신 및 이동 시간 확인을 지원합니다.",
+    "ar": "Google Maps: احفظ المسارات باستخدام اقتراحات العناوين، واعرض مدة الرحلة والمسافة ووقت الوصول المتوقع وصور المسار عند الطلب. حدّث المسار بزر أو عبر Flow واعرض وقت آخر تحديث. تدعم بطاقات Flow الجديدة الحساب لمرة واحدة وتحديث المسار والتحقق من مدة الرحلة."
+  },
+  "2.1.1": {
+    "en": "Google Maps now retains route results and the last loaded route image across app restarts. The refresh button ignores additional presses while an update is in progress.",
+    "nl": "Google Maps bewaart routegegevens en de laatst geladen routeafbeelding na het opnieuw starten van de app. De verversknop negeert extra drukken zolang een update bezig is.",
+    "da": "Google Maps bevarer rutedata og det senest indlæste rutebillede efter genstart af appen. Opdateringsknappen ignorerer flere tryk, mens en opdatering er i gang.",
+    "de": "Google Maps behält Routenergebnisse und das zuletzt geladene Routenbild nach einem App-Neustart bei. Die Aktualisierungstaste ignoriert weitere Drücke, solange eine Aktualisierung läuft.",
+    "es": "Google Maps conserva los resultados de la ruta y la última imagen cargada al reiniciar la aplicación. El botón de actualización ignora nuevas pulsaciones mientras la actualización está en curso.",
+    "fr": "Google Maps conserve les résultats de l’itinéraire et la dernière image chargée après le redémarrage de l’application. Le bouton d’actualisation ignore les pressions supplémentaires pendant une actualisation.",
+    "it": "Google Maps conserva i risultati del percorso e l’ultima immagine caricata dopo il riavvio dell’app. Il pulsante di aggiornamento ignora ulteriori pressioni mentre è in corso un aggiornamento.",
+    "no": "Google Maps beholder rutedata og det sist innlastede rutebildet når appen startes på nytt. Oppdateringsknappen ignorerer flere trykk mens en oppdatering pågår.",
+    "sv": "Google Maps behåller ruttresultaten och den senast inlästa ruttbilden när appen startas om. Uppdateringsknappen ignorerar fler tryck medan en uppdatering pågår.",
+    "pl": "Google Maps zachowuje wyniki trasy i ostatnio załadowany obraz po ponownym uruchomieniu aplikacji. Przycisk odświeżania ignoruje kolejne naciśnięcia podczas trwającej aktualizacji.",
+    "ru": "Google Maps сохраняет результаты маршрута и последнее загруженное изображение после перезапуска приложения. Кнопка обновления игнорирует повторные нажатия во время обновления.",
+    "ko": "앱을 다시 시작해도 Google Maps의 경로 결과와 마지막으로 불러온 경로 이미지가 유지됩니다. 업데이트가 진행되는 동안 새로고침 버튼을 다시 눌러도 무시됩니다.",
+    "ar": "يحتفظ Google Maps بنتائج المسار وآخر صورة تم تحميلها بعد إعادة تشغيل التطبيق. يتجاهل زر التحديث الضغطات الإضافية أثناء تنفيذ التحديث."
   }
 }

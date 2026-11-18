@@ -5,6 +5,7 @@
   let submitting = false;
   const addresses = ['origin', 'destination'].map(id => {
     const input = document.getElementById(id);
+    const useHomey = document.getElementById(`${id}Homey`);
     const results = document.getElementById(`${id}Suggestions`);
     const status = document.getElementById(`${id}Status`);
     const attribution = document.getElementById(`${id}Attribution`);
@@ -75,7 +76,14 @@
         results.firstElementChild.firstElementChild.focus();
       }
     });
-    return { value: () => selected ? selected.id : input.value.trim(), clear };
+    useHomey.addEventListener('change', () => {
+      input.disabled = useHomey.checked;
+      clear();
+    });
+    return {
+      value: () => selected?.google ? { name: selected.name, id: selected.id } : input.value.trim(),
+      usesHomey: () => useHomey.checked, clear
+    };
   });
 
   document.getElementById('routeForm').addEventListener('submit', async event => {
@@ -90,8 +98,10 @@
     try {
       await Homey.emit('save_route', {
         origin: addresses[0].value(), destination: addresses[1].value(),
+        origin_homey: addresses[0].usesHomey(), destination_homey: addresses[1].usesHomey(),
         travel_mode: document.getElementById('travelMode').value,
-        route_image: document.getElementById('routeImage').checked
+        route_image: document.getElementById('routeImage').checked,
+        route_traffic: document.getElementById('routeTraffic').checked
       });
       await Homey.showView('list_devices');
     } catch (error) {

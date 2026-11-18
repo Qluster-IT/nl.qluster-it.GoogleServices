@@ -192,6 +192,82 @@ test('Maps autocomplete uses the dedicated Places endpoint and reports errors wi
     assert.ok(!error.message.includes('example-secret'));
     return true;
   });
+
+});
+
+test('Maps traffic settings, estimated delay, and colored route images', async t => {
+  await t.test('requests traffic colors only for enabled driving images and reports delay without a second request', async () => {
+    const { Response } = require('node-fetch');
+    const requests = [];
+    let fallbackInfo;
+    const intervals = [{ endPolylinePointIndex: 1, speed: 'SLOW' }];
+    const maps = compile('../lib/maps', {
+      'node-fetch': async (_, options) => {
+        requests.push(options);
+        return new Response(JSON.stringify({ fallbackInfo, routes: [{
+          duration: '180s', staticDuration: '90s', polyline: { encodedPolyline: '??AA' },
+          travelAdvisory: { speedReadingIntervals: intervals }
+        }] }));
+      }
+    }).exports;
+    const Driver = compile('../drivers/maps/driver', { homey: { Driver: class {} }, '../../lib/maps': maps }).exports;
+    const driver = new Driver();
+    const settings = { MapsApiKey: 'fake-key' };
+    driver.homey = { settings: { get: key => settings[key] } };
+    for (const [mode, image, deviceTraffic, appTraffic, color, delay] of [
+      ['DRIVE', true, true, undefined, true, 1.5],
+      ['DRIVE', true, true, false, false, 1.5],
+      ['DRIVE', true, false, true, false, 1.5],
+      ['DRIVE', false, true, true, false, 1.5],
+      ['WALK', true, true, true, false, null]
+    ]) {
+      settings.MapsRouteTrafficEnabled = appTraffic;
+      const count = requests.length;
+      const result = await driver.calculateRoute(maps.parseRoute('Utrecht', 'Amsterdam', mode), image, deviceTraffic);
+      assert.equal(requests.length, count + 1);
+      assert.deepEqual(JSON.parse(requests.at(-1).body).extraComputations, color ? ['TRAFFIC_ON_POLYLINE'] : undefined);
+      assert.equal(requests.at(-1).headers['X-Goog-FieldMask'].includes('speedReadingIntervals'), color);
+      assert.equal(result.delayMinutes, delay);
+      assert.deepEqual(result.map?.intervals, color ? intervals : undefined);
+    }
+    fallbackInfo = { routingMode: 'FALLBACK_TRAFFIC_UNAWARE' };
+    const result = await driver.calculateRoute(maps.parseRoute('Utrecht', 'Amsterdam', 'DRIVE'), false);
+    assert.equal(result.delayMinutes, null);
+  });
+
+  await t.test('paints adjacent traffic segments with independent encoded paths', async () => {
+    const { Response } = require('node-fetch');
+    const urls = [];
+    const maps = compile('../lib/maps', {
+      'node-fetch': async url => {
+        urls.push(new URL(url));
+        return new Response('png', { headers: { 'content-type': 'image/png' } });
+      }
+    }).exports;
+    const path = '??AA??AC'; // (0,0), (1,1), (1,1), (2,3) in polyline units.
+    await maps.fetchMap('fake-key', { path, intervals: [
+      { endPolylinePointIndex: 1, speed: 'NORMAL' },
+      { startPolylinePointIndex: 1, endPolylinePointIndex: 2, speed: 'SLOW' },
+      { startPolylinePointIndex: 2, endPolylinePointIndex: 3, speed: 'TRAFFIC_JAM' }
+    ] });
+    assert.deepEqual(urls[0].searchParams.getAll('path'), [
+      `color:0x155BE9FF|weight:5|enc:${path}`,
+      'color:0x16864AFF|weight:5|enc:??AA',
+      'color:0xDC7600FF|weight:5|enc:AA??',
+      'color:0xC62828FF|weight:5|enc:AAAC'
+    ]);
+    let omitted = false;
+    const long = 'AA'.repeat(5000);
+    await maps.fetchMap('fake-key', { path: long, intervals: [
+      { endPolylinePointIndex: 4999, speed: 'TRAFFIC_JAM' }
+    ] }, () => { omitted = true; });
+    assert.equal(omitted, true);
+    assert.equal(urls[1].searchParams.getAll('path').length, 1);
+    await assert.rejects(() => maps.fetchMap('fake-key', { path, intervals: [
+      { endPolylinePointIndex: 4, speed: 'TRAFFIC_JAM' }
+    ] }), /invalid traffic interval/);
+    assert.equal(urls.length, 2);
+  });
 });
 
 test('Maps pairing validates the route and keeps settings isolated between sessions', async () => {
@@ -242,16 +318,160 @@ test('Maps pairing validates the route and keeps settings isolated between sessi
   assert.equal(errors.length, 1);
   searchError = new TypeError('Unexpected programming error');
   await assert.rejects(() => handlers.search_address('Utrecht'), /Unexpected programming error/);
-  const settings = { origin: 'place_id:ChIJ_example', destination: '52,4', travel_mode: 'WALK', route_image: false };
+  const settings = { origin: suggestions[0], destination: '52,4', travel_mode: 'WALK', route_image: false, route_traffic: true };
   await handlers.save_route(settings);
   const [paired] = await handlers.list_devices();
+  const expected = { ...settings, origin: 'Utrecht', origin_homey: false, destination_homey: false };
   assert.equal(paired.name, 'Maps device');
-  assert.deepEqual(paired.settings, settings);
+  assert.deepEqual(paired.settings, expected);
+  assert.deepEqual(paired.store.maps_route_places, { origin: { address: 'Utrecht', id: 'place_id:ChIJ_example' } });
   await assert.rejects(() => other.list_devices(), /Configure/);
   await assert.rejects(() => handlers.save_route({ ...settings, origin: '' }), /origin and destination/);
+  await assert.rejects(() => handlers.save_route({ ...settings, origin: suggestions[0].id }), /instead of a place ID/);
   await assert.rejects(() => handlers.save_route({ ...settings, travel_mode: 'FLY' }), /travel mode/);
   await assert.rejects(() => handlers.save_route({ ...settings, route_image: 'true' }), /route image/);
-  assert.deepEqual((await handlers.list_devices())[0].settings, settings);
+  assert.deepEqual((await handlers.list_devices())[0].settings, expected);
+  await handlers.save_route({ ...settings, origin: '', origin_homey: true });
+  assert.deepEqual((await handlers.list_devices())[0].settings, { ...expected, origin: '', origin_homey: true });
+});
+
+test('Maps repair updates route settings on the existing device without refreshing the route', async () => {
+  let lookupDenied = true;
+  const driverMaps = compile('../lib/maps', {
+    'node-fetch': async (url, options) => {
+      assert.equal(url, 'https://places.googleapis.com/v1/places/ChIJ_origin?languageCode=nl');
+      assert.equal(options.headers['X-Goog-FieldMask'], 'formattedAddress');
+      if (lookupDenied) return new (require('node-fetch').Response)(null, { status: 403 });
+      return new (require('node-fetch').Response)(JSON.stringify({ formattedAddress: 'Origin address' }));
+    }
+  }).exports;
+  const Driver = compile('../drivers/maps/driver', { homey: { Driver: class {} }, '../../lib/maps': driverMaps }).exports;
+  const Device = compile('../drivers/maps/device', { homey: { Device: class {} } }).exports;
+  const driver = new Driver();
+  const device = new Device();
+  const settings = { origin: 'place_id:ChIJ_origin', destination: 'Utrecht', travel_mode: 'WALK', route_image: false };
+  const writes = [];
+  const store = {};
+  const cleared = [];
+  const search = [];
+  let warning;
+  let imageUpdates = 0;
+  const errors = [];
+  driver.error = (...args) => errors.push(args.join(' '));
+  driver.homey = { settings: { get: () => 'fake-key' }, i18n: { getLanguage: () => 'nl' } };
+  driver.searchAddresses = async query => {
+    search.push(query);
+    return [{ name: 'Amsterdam', id: 'place_id:ChIJ_amsterdam', google: true }];
+  };
+  driver.calculateRoute = () => assert.fail('Repair must not calculate a route');
+  Object.assign(device, {
+    driver, homey: { __: key => key },
+    getSettings: () => ({ ...settings }),
+    getSetting: key => settings[key],
+    getStoreValue: key => store[key],
+    setStoreValue: async (key, value) => { store[key] = value; },
+    setSettings: async changes => { writes.push(changes); Object.assign(settings, changes); },
+    unsetStoreValue: async key => cleared.push(key),
+    setCapabilityValue: async (id, value) => { assert.equal(value, null); cleared.push(id); },
+    setWarning: async text => { warning = text; },
+    image: { update: async () => { imageUpdates++; } },
+    routeMap: { path: 'old route' },
+    routeImage: Promise.resolve(Buffer.from('old image'))
+  });
+  const handlers = {};
+  driver.onRepair({ setHandler: (name, fn) => { handlers[name] = fn; } }, device);
+  const unresolved = await handlers.get_route_settings();
+  assert.equal(unresolved.origin, '');
+  assert.equal(unresolved.address_lookup_failed, true);
+  assert.match(errors[0], /denied access/);
+  assert.equal(settings.origin, 'place_id:ChIJ_origin');
+  assert.deepEqual(writes, []);
+  lookupDenied = false;
+  const saved = await handlers.get_route_settings();
+  assert.deepEqual(saved, { ...settings, origin: { name: 'Origin address', id: settings.origin },
+    origin_homey: false, destination_homey: false, route_traffic: true });
+  assert.deepEqual(search, []);
+  await handlers.save_route_settings(saved);
+  const migrated = await handlers.get_route_settings();
+  assert.equal(migrated.origin, 'Origin address');
+  assert.deepEqual(store.maps_route_places, { origin: { address: 'Origin address', id: saved.origin.id } });
+  assert.deepEqual(writes.splice(0), [{ origin: 'Origin address' }]);
+  await handlers.save_route_settings(migrated);
+  await assert.rejects(() => handlers.save_route_settings({ ...migrated, destination: '' }), /origin and destination/);
+  assert.deepEqual(writes, []);
+  assert.deepEqual(cleared, []);
+
+  const [suggestion] = await handlers.search_address('Amsterdam');
+  assert.deepEqual(search, ['Amsterdam']);
+  await handlers.save_route_settings({ ...migrated, route_traffic: false });
+  assert.deepEqual(writes, [{ route_traffic: false }]);
+  assert.deepEqual(cleared, []);
+  await handlers.save_route_settings({ ...migrated, destination: suggestion, origin_homey: true,
+    travel_mode: 'DRIVE', route_image: true, route_traffic: false });
+  assert.deepEqual(writes[1], { destination: suggestion.name, origin_homey: true, travel_mode: 'DRIVE', route_image: true });
+  assert.deepEqual({ ...settings, destination_homey: false }, { ...migrated, ...writes[1], route_traffic: false });
+  assert.deepEqual(cleared.sort(), ['maps_distance', 'maps_eta', 'maps_last_refreshed', 'maps_minutes', 'maps_route_state', 'maps_traffic_delay']);
+  assert.equal(device.routeMap, null);
+  assert.equal(device.routeImage, null);
+  assert.equal(imageUpdates, 1);
+  assert.equal(warning, 'maps.refresh_needed');
+  const resolve = () => driverMaps.resolveSavedRoute(settings, () => ({ text: 'Homey' }), store.maps_route_places);
+  assert.deepEqual(resolve().destination.waypoint, { placeId: 'ChIJ_amsterdam' });
+  await device.onSettings({ newSettings: { ...settings, destination: 'Rotterdam' }, changedKeys: ['destination'] });
+  settings.destination = 'Rotterdam';
+  assert.deepEqual(resolve().destination.waypoint, { address: 'Rotterdam' });
+  assert.equal(store.maps_route_places.destination, undefined);
+  assert.equal(store.maps_route_places.origin.id, saved.origin.id);
+});
+
+test('Maps Pair and Repair forms save all route settings, including explicit opt-outs', async () => {
+  const vm = require('node:vm');
+  for (const [view, save] of [['pair/configure', 'save_route'], ['repair/edit_route', 'save_route_settings']]) {
+    const fields = new Map();
+    const get = id => {
+      if (!fields.has(id)) fields.set(id, {
+        value: '', checked: false, disabled: id === 'routeAddresses', handlers: {},
+        addEventListener(event, handler) { this.handlers[event] = handler; },
+        replaceChildren() {}
+      });
+      return fields.get(id);
+    };
+    const saved = { origin: 'Origin address', destination: '52,4', origin_homey: true, destination_homey: false,
+      travel_mode: 'TRANSIT', route_image: false, route_traffic: false };
+    const pairing = save === 'save_route';
+    const calls = [];
+    const script = fs.readFileSync(require.resolve(`../drivers/maps/${view}.js`), 'utf8');
+    await vm.runInNewContext(script, {
+      document: { getElementById: get }, setTimeout, clearTimeout,
+      Homey: {
+        __: key => key, setTitle() {}, showView: id => calls.push(id), done: () => calls.push('done'),
+        async emit(event, data) {
+          if (event === 'get_route_settings') return saved;
+          assert.equal(event, save);
+          calls.push({ ...data });
+        }
+      }
+    });
+    if (pairing) {
+      get('origin').value = saved.origin;
+      get('destination').value = saved.destination;
+      get('travelMode').value = saved.travel_mode;
+      get('routeImage').checked = saved.route_image;
+      get('routeTraffic').checked = saved.route_traffic;
+      get('originHomey').checked = true;
+      get('originHomey').handlers.change();
+    } else {
+      assert.equal(get('origin').value, saved.origin);
+      assert.equal(get('destination').value, saved.destination);
+      assert.equal(get('travelMode').value, saved.travel_mode);
+      assert.equal(get('routeImage').checked, false);
+      assert.equal(get('routeTraffic').checked, false);
+    }
+    assert.equal(get('origin').disabled, true);
+    assert.equal(get('destination').disabled, false);
+    await get(pairing ? 'routeForm' : 'editRouteForm').handlers.submit({ preventDefault() {} });
+    assert.deepEqual(calls, [saved, pairing ? 'list_devices' : 'done']);
+  }
 });
 
 test('Maps selected place IDs are used for routing and Google Maps links', async () => {
@@ -298,7 +518,7 @@ test('Maps only reads its own key, and a one-off calculation returns tags withou
         registerRunListener: run => { listeners[id] = run; },
         getArgument: name => ({ registerAutocompleteListener: run => { autocomplete[name] = run; } })
       }),
-      getConditionCard: () => ({ registerRunListener() {} })
+      getConditionCard: () => ({ registerRunListener() {}, getArgument: () => ({ registerAutocompleteListener() {} }) })
     }
   };
   driver.onInit();
@@ -328,7 +548,8 @@ test('Maps conditions check saved results without requests and handle missing re
       getActionCard: () => ({
         registerRunListener() {}, getArgument: () => ({ registerAutocompleteListener() {} })
       }),
-      getConditionCard: id => ({ registerRunListener: run => { conditions[id] = run; } })
+      getConditionCard: id => ({ registerRunListener: run => { conditions[id] = run; },
+        getArgument: () => ({ registerAutocompleteListener() {} }) })
     }
   };
   driver.onInit();
@@ -346,6 +567,44 @@ test('Maps conditions check saved results without requests and handle missing re
   }
   current = 0;
   assert.equal(await conditions.maps_route_available({ device }), true);
+  let requests = 0;
+  driver.calculateRoute = async (input, includeMap) => {
+    requests++;
+    assert.equal(input.origin.waypoint.placeId, 'ChIJ_origin');
+    assert.equal(input.destination.waypoint.address, 'Utrecht');
+    assert.equal(input.mode, 'DRIVE');
+    assert.equal(includeMap, undefined);
+    return { durationSeconds: 1503, tokens: { minutes: 25.1 } };
+  };
+  const fresh = minutes => conditions.maps_trip_takes_longer({
+    from: { id: 'place_id:ChIJ_origin' }, to: 'Utrecht', mode: 'DRIVE', minutes
+  });
+  for (const minutes of [-1, NaN, '10']) await assert.rejects(() => fresh(minutes), /invalid_minutes/);
+  assert.equal(requests, 0);
+  assert.equal(await fresh(25), true);
+  assert.equal(await fresh(25.05), false);
+  assert.equal(await fresh(25.1), false);
+  assert.equal(requests, 3);
+});
+
+test('Maps resolves each Homey endpoint on demand and validates missing coordinates', () => {
+  const { resolveSavedRoute } = require('../lib/maps');
+  const Device = compile('../drivers/maps/device', { homey: { Device: class {} } }).exports;
+  const device = new Device();
+  let latitude = 52;
+  const longitude = 4;
+  device.homey = { __: key => key, geolocation: { getLatitude: () => latitude, getLongitude: () => longitude } };
+  const settings = { origin: 'A', destination: 'B', travel_mode: 'WALK' };
+  const resolve = flags => resolveSavedRoute({ ...settings, ...flags }, () => device.getHomeyRoutePoint());
+  assert.equal(resolveSavedRoute(settings, () => assert.fail('Manual routes must not read Homey location')).origin.text, 'A');
+  assert.deepEqual(resolve({ origin_homey: true, origin: '' }).origin.waypoint, { location: { latLng: { latitude, longitude } } });
+  assert.equal(resolve({ origin_homey: true }).destination.text, 'B');
+  latitude = 53;
+  const tripHome = resolve({ destination_homey: true, destination: '' });
+  assert.equal(tripHome.origin.text, 'A');
+  assert.equal(tripHome.destination.text, '53,4');
+  latitude = null;
+  assert.throws(() => resolve({ destination_homey: true }), /homey_location_unavailable/);
 });
 
 test('Maps device button refreshes the saved route and streams its camera image on demand', async t => {
@@ -354,6 +613,7 @@ test('Maps device button refreshes the saved route and streams its camera image 
   const Device = compile('../drivers/maps/device', { homey: { Device: class {} } }).exports;
   const device = new Device();
   const values = { maps_refresh: true };
+  const store = {};
   let source;
   let refresh;
   let imageFetches = 0;
@@ -393,6 +653,9 @@ test('Maps device button refreshes the saved route and streams its camera image 
     getSettings: () => settings,
     getSetting: key => settings[key],
     getCapabilityValue: key => values[key],
+    getStoreValue: key => store[key],
+    setStoreValue: async (key, value) => { store[key] = value; },
+    unsetStoreValue: async key => { delete store[key]; },
     hasCapability: () => true,
     setCapabilityValue: async (id, value) => { values[id] = value; },
     registerCapabilityListener: (id, fn) => { assert.equal(id, 'maps_refresh'); refresh = fn; },
@@ -401,7 +664,7 @@ test('Maps device button refreshes the saved route and streams its camera image 
   });
   await device.onInit();
   assert.equal(values.maps_refresh, false);
-  assert.equal(values.maps_last_refreshed, null);
+  assert.equal(values.maps_last_refreshed ?? null, null);
   values.maps_refresh = true;
   await refresh();
   assert.equal(values.maps_refresh, false);
@@ -462,17 +725,112 @@ test('Maps device button refreshes the saved route and streams its camera image 
   await device.onSettings({ newSettings: settings, changedKeys: ['route_image'] });
   assert.equal(values.maps_minutes, null);
   assert.equal(values.maps_last_refreshed, null);
+  assert.equal(store.maps_route_state, undefined);
   await refresh();
   assert.equal(events.at(-1).id, 'maps_route_updated');
   await assert.rejects(() => source(new Writable()), /image_unavailable/);
   await device.onUninit();
 });
 
+test('Maps refresh ignores overlapping button presses and restores saved readings and route images after restart', async () => {
+  const Device = compile('../drivers/maps/device', { homey: { Device: class {} } }).exports;
+  const values = {
+    maps_minutes: 31, maps_distance: 42, maps_eta: 'Nov 18, 6:00 PM',
+    maps_last_refreshed: 'Nov 18, 2026, 5:25:00 PM', maps_refresh: false
+  };
+  const store = {};
+  const tokens = { minutes: 28, kilometers: 39, eta: '2026-11-18T17:58:00Z' };
+  const map = { path: 'encoded route', start: { latitude: 52, longitude: 5 }, end: { latitude: 53, longitude: 5 } };
+  const imageBytes = Buffer.from('cached route image');
+  let resolveRoute;
+  let routeRequests = 0;
+  let imageRequests = 0;
+  let refreshListener;
+  let imageSource;
+  const settings = { origin: 'Utrecht', destination: 'Amsterdam', travel_mode: 'DRIVE', route_image: true };
+  const makeImage = () => ({
+    setStream: listener => { imageSource = listener; },
+    update: async () => {},
+    unregister: async () => {}
+  });
+  const attach = device => {
+    Object.assign(device, {
+      homey: {
+        images: { createImage: async () => makeImage() },
+        flow: { getDeviceTriggerCard: () => ({ trigger: async () => {} }) },
+        __: key => key,
+        clock: { getTimezone: () => 'Europe/Amsterdam' },
+        i18n: { getLanguage: () => 'en' }
+      },
+      driver: {
+        routeImagesEnabled: () => true,
+        calculateRoute: async () => {
+          routeRequests++;
+          return new Promise(resolve => { resolveRoute = resolve; });
+        },
+        fetchRouteImage: async requestedMap => {
+          assert.deepEqual(requestedMap, map);
+          imageRequests++;
+          return imageBytes;
+        }
+      },
+      getSettings: () => settings,
+      getSetting: key => settings[key],
+      getCapabilityValue: key => values[key],
+      hasCapability: () => true,
+      setCapabilityValue: async (id, value) => { values[id] = value; },
+      getStoreValue: key => store[key],
+      setStoreValue: async (key, value) => { store[key] = value; },
+      unsetStoreValue: async key => { delete store[key]; },
+      registerCapabilityListener: (id, listener) => {
+        assert.equal(id, 'maps_refresh');
+        refreshListener = listener;
+      },
+      setWarning: async () => {},
+      setCameraImage: async (id, title) => { assert.equal(id, 'route'); assert.equal(title, 'maps.image_title'); },
+      error: () => {}
+    });
+  };
+  const writeImage = () => new Writable({ write(_, __, done) { done(); } });
+
+  const device = new Device();
+  attach(device);
+  await device.onInit();
+  assert.equal(values.maps_minutes, 31);
+  assert.equal(values.maps_last_refreshed, 'Nov 18, 2026, 5:25:00 PM');
+  values.maps_refresh = true;
+  const firstPress = refreshListener();
+  assert.equal(routeRequests, 1);
+  await refreshListener();
+  assert.equal(routeRequests, 1);
+  assert.equal(values.maps_refresh, true);
+
+  resolveRoute({ tokens, map });
+  await firstPress;
+  assert.equal(values.maps_minutes, 28);
+  assert.equal(values.maps_distance, 39);
+  assert.equal(values.maps_refresh, false);
+  await imageSource(writeImage());
+  assert.equal(imageRequests, 1);
+  assert.equal(store.maps_route_state.image, imageBytes.toString('base64'));
+
+  const savedReadings = { ...values };
+  await device.onUninit();
+  const restartedDevice = new Device();
+  attach(restartedDevice);
+  await restartedDevice.onInit();
+  assert.deepEqual(values, { ...savedReadings, maps_refresh: false });
+  await imageSource(writeImage());
+  assert.equal(imageRequests, 1);
+  assert.equal(routeRequests, 1);
+  await restartedDevice.onUninit();
+});
+
 test('Maps image settings default to enabled and save an explicit opt-out', async () => {
   const vm = require('node:vm');
   for (const value of [undefined, null, true, false]) {
     const fields = Object.fromEntries([
-      'cloudJSON', 'cloudProject', 'cloudApiKey', 'mapsApiKey', 'mapsRouteImages',
+      'cloudJSON', 'cloudProject', 'cloudApiKey', 'mapsApiKey', 'mapsRouteImages', 'mapsRouteTraffic',
       'defaultCloudVoice', 'save', 'settingsStatus'
     ].map(id => [id, { value: '', add() {}, addEventListener(_, listener) { this.click = listener; } }]));
     const writes = [];
@@ -483,15 +841,17 @@ test('Maps image settings default to enabled and save an explicit opt-out', asyn
     vm.runInContext(fs.readFileSync(require.resolve('../settings/settings.js'), 'utf8'), context);
     await context.onHomeyReady({
       ready() {},
-      get(key, callback) { callback(null, key === 'MapsRouteImagesEnabled' ? value : null); },
+      get(key, callback) { callback(null, ['MapsRouteImagesEnabled', 'MapsRouteTrafficEnabled'].includes(key) ? value : null); },
       set(key, next, callback) { writes.push([key, next]); callback(null); }
     });
     assert.equal(fields.mapsRouteImages.checked, value !== false);
+    assert.equal(fields.mapsRouteTraffic.checked, value !== false);
     await fields.save.click();
     assert.deepEqual(writes, []);
     fields.mapsRouteImages.checked = !fields.mapsRouteImages.checked;
+    fields.mapsRouteTraffic.checked = !fields.mapsRouteTraffic.checked;
     await fields.save.click();
-    assert.deepEqual(writes, [['MapsRouteImagesEnabled', value === false]]);
+    assert.deepEqual(writes, [['MapsRouteImagesEnabled', value === false], ['MapsRouteTrafficEnabled', value === false]]);
   }
 });
 

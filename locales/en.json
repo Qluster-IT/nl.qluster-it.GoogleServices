@@ -23,7 +23,12 @@
       "continue": "Continue",
       "searching": "Searching addresses...",
       "no_results": "No Google suggestions available. Try a more complete address or select Use typed address.",
-      "search_error": "Address search failed. Check Places API (New) and your Maps key, or continue with a manually entered address."
+      "search_error": "Address search failed. Check Places API (New) and your Maps key, or continue with a manually entered address.",
+      "traffic": "Show traffic on route images",
+      "traffic_help": "On by default for driving route images. Traffic colors must also be enabled in the app settings. Applies on the next refresh and uses Google Routes Enterprise billing.",
+      "use_homey_origin": "Use Homey's location as origin",
+      "use_homey_destination": "Use Homey's location as destination",
+      "homey_location_help": "If selected, Homey's current coordinates are sent to Google when you refresh the route."
     },
     "route_unavailable": "No route results are available. Refresh the saved route first.",
     "invalid_minutes": "Enter a non-negative number of minutes.",
@@ -31,6 +36,15 @@
       "use_typed": "Use typed address: __address__",
       "typed_help": "Use typed address or coordinates. Google Maps resolves the location when calculating the route.",
       "search_unavailable": "Use typed address or coordinates. Google suggestions unavailable: __error__"
-    }
+    },
+    "settings_busy": "Route settings are already being changed. Try again.",
+    "repair": {
+      "title": "Edit your Maps route",
+      "intro": "Edit the addresses, travel mode, and image options for this device. Choose a suggestion or enter a full address or latitude, longitude. Older locations saved as IDs are looked up when you open this screen. Refresh the route on the device or from a Flow to see new results.",
+      "save": "Save route settings",
+      "address_lookup_failed": "A previously saved location could not be looked up. Enter or select its address before saving."
+    },
+    "homey_location_unavailable": "Homey's location is unavailable. Check Homey's location settings or use an address instead.",
+    "use_readable_address": "Enter an address or coordinates instead of a place ID, or use Repair to choose an address."
   }
 }

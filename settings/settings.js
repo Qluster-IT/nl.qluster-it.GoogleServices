@@ -7,11 +7,13 @@ async function onHomeyReady(Homey) {
         CloudApiKey: document.getElementById('cloudApiKey'),
         MapsApiKey: document.getElementById('mapsApiKey'),
         MapsRouteImagesEnabled: document.getElementById('mapsRouteImages'),
+        MapsRouteTrafficEnabled: document.getElementById('mapsRouteTraffic'),
         DefaultCloudVoice: document.getElementById('defaultCloudVoice')
     };
     const button = document.getElementById('save');
     const status = document.getElementById('settingsStatus');
     const saved = {};
+    const toggles = ['MapsRouteImagesEnabled', 'MapsRouteTrafficEnabled'];
     const call = (method, ...args) => new Promise((resolve, reject) => {
         Homey[method](...args, (err, value) => err ? reject(err) : resolve(value));
     });
@@ -53,7 +55,7 @@ async function onHomeyReady(Homey) {
     try {
         await Promise.all(Object.keys(fields).map(async key => {
             const value = await call('get', key);
-            if (key === 'MapsRouteImagesEnabled') saved[key] = fields[key].checked = value !== false;
+            if (toggles.includes(key)) saved[key] = fields[key].checked = value !== false;
             else if (key === 'DefaultCloudVoice') saved[key] = value || null;
             else saved[key] = fields[key].value = value || '';
         }));
@@ -69,12 +71,14 @@ async function onHomeyReady(Homey) {
 
     button.addEventListener('click', async () => {
         const next = Object.fromEntries(Object.entries(fields).map(([key, field]) => [key, field.value]));
-        next.MapsRouteImagesEnabled = fields.MapsRouteImagesEnabled.checked;
+        for (const key of toggles) next[key] = fields[key].checked;
         next.DefaultCloudVoice = next.DefaultCloudVoice || null;
         if (next.MapsApiKey !== saved.MapsApiKey) next.MapsApiKey = next.MapsApiKey.trim();
-        const keys = Object.keys(fields).filter(key => key !== 'MapsRouteImagesEnabled');
-        if (next.MapsRouteImagesEnabled) keys.push('MapsRouteImagesEnabled');
-        else keys.unshift('MapsRouteImagesEnabled');
+        const keys = [
+            ...toggles.filter(key => !next[key]),
+            ...Object.keys(fields).filter(key => !toggles.includes(key)),
+            ...toggles.filter(key => next[key])
+        ];
         button.disabled = true;
         status.textContent = 'Saving settings...';
         let currentKey;

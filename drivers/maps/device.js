@@ -3,20 +3,31 @@
 const Homey = require('homey');
 const { pipeline, Readable } = require('stream');
 const pipe = require('util').promisify(pipeline);
-const { parseRoute } = require('../../lib/maps');
+const { validateSavedRoute, resolveSavedRoute, savedRouteEndpoint, routePlacesKey } = require('../../lib/maps');
 
-const readings = ['maps_minutes', 'maps_distance', 'maps_eta', 'maps_last_refreshed'];
+const readings = ['maps_minutes', 'maps_distance', 'maps_eta', 'maps_last_refreshed', 'maps_traffic_delay'];
+const routeStoreKey = 'maps_route_state';
 
 class MapsDevice extends Homey.Device {
   async onInit() {
     for (const capability of ['maps_refresh', ...readings]) {
       if (!this.hasCapability(capability)) await this.addCapability(capability);
     }
+    const storedRoute = this.getStoreValue(routeStoreKey);
+    if (storedRoute?.version === 1 && typeof storedRoute.map?.path === 'string') {
+      this.routeMap = storedRoute.map;
+      if (typeof storedRoute.image === 'string' && storedRoute.image.length > 0) {
+        this.routeImage = Promise.resolve(Buffer.from(storedRoute.image, 'base64'));
+      }
+    }
     await this.setCapabilityValue('maps_refresh', false);
     this.registerCapabilityListener('maps_refresh', async () => {
+      if (this.buttonRefreshInProgress) return;
+      this.buttonRefreshInProgress = true;
       try {
         await this.refreshRoute();
       } finally {
+        this.buttonRefreshInProgress = false;
         await this.setCapabilityValue('maps_refresh', false);
       }
     });
@@ -26,7 +37,17 @@ class MapsDevice extends Homey.Device {
       if (!map || !this.driver.routeImagesEnabled()) throw new Error(this.homey.__('maps.image_unavailable'));
       try {
         // Keep failed attempts too: only an explicit route refresh permits another Google request.
-        if (!this.routeImage) this.routeImage = this.driver.fetchRouteImage(map);
+        if (!this.routeImage) {
+          this.routeImage = this.driver.fetchRouteImage(map).then(async bytes => {
+            if (this.routeMap !== map || !this.driver.routeImagesEnabled()) {
+              throw new Error('The route image is no longer available.');
+            }
+            await this.setStoreValue(routeStoreKey, {
+              version: 1, map, image: bytes.toString('base64')
+            });
+            return bytes;
+          });
+        }
         const bytes = await this.routeImage;
         if (this.routeMap !== map || !this.driver.routeImagesEnabled()) {
           throw new Error('The route image is no longer available.');
@@ -38,19 +59,73 @@ class MapsDevice extends Homey.Device {
       }
     });
     await this.setCameraImage('route', this.homey.__('maps.image_title'), this.image);
-    await this.clearReadings();
-    await this.setWarning(this.getSetting('origin') && this.getSetting('destination')
-      ? this.homey.__('maps.refresh_needed') : this.homey.__('maps.setup_needed'));
+    if (!this.routeMap) {
+      await this.setWarning((this.getSetting('origin_homey') || this.getSetting('origin'))
+        && (this.getSetting('destination_homey') || this.getSetting('destination'))
+        ? this.homey.__('maps.refresh_needed') : this.homey.__('maps.setup_needed'));
+    }
   }
 
   async onSettings({ newSettings, changedKeys }) {
-    if (!changedKeys.some(key => ['origin', 'destination', 'travel_mode', 'route_image'].includes(key))) return;
-    parseRoute(newSettings.origin, newSettings.destination, newSettings.travel_mode);
+    if (!changedKeys.some(key => ['origin', 'destination', 'origin_homey', 'destination_homey', 'travel_mode', 'route_image'].includes(key))) return;
+    validateSavedRoute(newSettings);
+    const stored = this.getStoreValue(routePlacesKey);
+    const places = { ...stored };
+    for (const key of ['origin', 'destination']) {
+      if (!changedKeys.includes(key)) continue;
+      if (newSettings[key]?.trim().startsWith('place_id:')) throw new Error(this.homey.__('maps.use_readable_address'));
+      delete places[key];
+    }
+    await this.changeRouteSettings(undefined, Object.keys(stored ?? {}).length !== Object.keys(places).length ? places : undefined);
+  }
+
+  async updateRouteSettings(settings, selectedPlaces) {
+    const current = this.getSettings();
+    const stored = this.getStoreValue(routePlacesKey);
+    const places = {};
+    const defaults = { origin: '', destination: '', origin_homey: false, destination_homey: false,
+      travel_mode: 'DRIVE', route_image: true, route_traffic: true };
+    let updatePlaces = false;
+    let changeRoute = false;
+    for (const key of ['origin', 'destination']) {
+      const old = stored?.[key];
+      const next = selectedPlaces[key] ?? (old?.address === settings[key] ? old : undefined);
+      if (next) places[key] = next;
+      if (old?.id !== next?.id || old?.address !== next?.address) updatePlaces = true;
+      if (!settings[`${key}_homey`] &&
+        savedRouteEndpoint(settings, places, key) !== savedRouteEndpoint(current, stored, key)?.trim()) changeRoute = true;
+    }
+    const changes = {};
+    for (const [key, value] of Object.entries(settings)) {
+      if (value !== (current[key] ?? defaults[key])) changes[key] = value;
+    }
+    const keys = Object.keys(changes);
+    changeRoute ||= keys.some(key => !['origin', 'destination', 'route_traffic'].includes(key));
+    if (updatePlaces || changeRoute) await this.changeRouteSettings(changes, updatePlaces ? places : undefined, changeRoute);
+    else if (keys.length) await this.setSettings(changes);
+  }
+
+  async changeRouteSettings(changes, places, clear = true) {
+    if (this.changingSettings) throw new Error(this.homey.__('maps.settings_busy'));
     this.changingSettings = true;
     try {
       if (this.pendingRefresh) await this.pendingRefresh.catch(() => {});
-      await this.clearReadings();
-      await this.setWarning(this.homey.__('maps.refresh_needed'));
+      // Programmatic settings changes do not call onSettings.
+      const previousPlaces = places ? this.getStoreValue(routePlacesKey) : undefined;
+      if (places) await this.setStoreValue(routePlacesKey, places);
+      try {
+        if (changes && Object.keys(changes).length) await this.setSettings(changes);
+      } catch (error) {
+        if (places) {
+          if (previousPlaces) await this.setStoreValue(routePlacesKey, previousPlaces);
+          else await this.unsetStoreValue(routePlacesKey);
+        }
+        throw error;
+      }
+      if (clear) {
+        await this.clearReadings();
+        await this.setWarning(this.homey.__('maps.refresh_needed'));
+      }
     } finally {
       this.changingSettings = false;
     }
@@ -59,6 +134,7 @@ class MapsDevice extends Homey.Device {
   async clearReadings() {
     this.routeMap = null;
     this.routeImage = null;
+    await this.unsetStoreValue(routeStoreKey);
     await Promise.all(readings.map(id => this.setCapabilityValue(id, null)));
     await this.image.update();
   }
@@ -71,17 +147,29 @@ class MapsDevice extends Homey.Device {
     return this.pendingRefresh;
   }
 
+  getHomeyRoutePoint() {
+    const latitude = this.homey.geolocation.getLatitude();
+    const longitude = this.homey.geolocation.getLongitude();
+    if (!Number.isFinite(latitude) || !Number.isFinite(longitude) || Math.abs(latitude) > 90 || Math.abs(longitude) > 180) {
+      throw new Error(this.homey.__('maps.homey_location_unavailable'));
+    }
+    return { text: `${latitude},${longitude}`, waypoint: { location: { latLng: { latitude, longitude } } } };
+  }
+
   async updateRoute() {
     try {
       const previousMinutes = this.getCapabilityValue('maps_minutes');
-      const { origin, destination, travel_mode, route_image } = this.getSettings();
-      const input = parseRoute(origin, destination, travel_mode || 'DRIVE');
+      const settings = this.getSettings();
+      const { route_image, route_traffic } = settings;
+      const input = resolveSavedRoute(settings, () => this.getHomeyRoutePoint(), this.getStoreValue(routePlacesKey));
       const showMap = route_image !== false && this.driver.routeImagesEnabled();
-      const { tokens, map } = await this.driver.calculateRoute(input, showMap);
+      const { tokens, map, delayMinutes } = await this.driver.calculateRoute(input, showMap, showMap && route_traffic !== false);
       if (this.changingSettings || this.closed) throw new Error('The route changed during refresh. Try again.');
+      await this.setStoreValue(routeStoreKey, { version: 1, map, image: null });
       await Promise.all([
         this.setCapabilityValue('maps_minutes', tokens.minutes),
         this.setCapabilityValue('maps_distance', tokens.kilometers),
+        this.setCapabilityValue('maps_traffic_delay', delayMinutes ?? null),
         this.setCapabilityValue('maps_eta', new Intl.DateTimeFormat(this.homey.i18n.getLanguage(), {
           timeZone: this.homey.clock.getTimezone(), month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit'
         }).format(new Date(tokens.eta)))

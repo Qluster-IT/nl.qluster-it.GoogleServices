@@ -1,24 +1,88 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
   <defs>
-    <linearGradient id="field" x2="1" y2="1" gradientUnits="objectBoundingBox">
-      <stop stop-color="#f0faf5"/>
-      <stop offset="1" stop-color="#c5e1f4"/>
+    <clipPath id="platform">
+      <path d="M0 416H90C109 400 167 394 250 394S391 400 410 416H500V500H0Z"/>
+    </clipPath>
+    <linearGradient id="map" x2="95%" y2="100%">
+      <stop stop-color="#eafffc"/><stop offset=".58" stop-color="#8fe6dc"/><stop offset="1" stop-color="#37afc0"/>
     </linearGradient>
-    <linearGradient id="route" x2="1" y2="1" gradientUnits="objectBoundingBox">
-      <stop stop-color="#006e74"/>
-      <stop offset="1" stop-color="#1746c9"/>
+    <linearGradient id="fold" x2="20%" y2="100%">
+      <stop stop-color="#bffbff"/><stop offset=".5" stop-color="#62bbff"/><stop offset="1" stop-color="#2360d3"/>
     </linearGradient>
+    <linearGradient id="edge" x2="15%" y2="100%">
+      <stop stop-color="#e5faff"/><stop offset=".25" stop-color="#5bc4fd"/><stop offset="1" stop-color="#143f9b"/>
+    </linearGradient>
+    <linearGradient id="pin" x2="72%" y2="90%">
+      <stop stop-color="#fff3a7"/><stop offset=".23" stop-color="#ff7a56"/><stop offset=".6" stop-color="#fb323c"/><stop offset="1" stop-color="#b80946"/>
+    </linearGradient>
+    <linearGradient id="nav" x2="60%" y2="100%">
+      <stop stop-color="#66f7ff"/><stop offset=".48" stop-color="#2196ff"/><stop offset="1" stop-color="#104ab4"/>
+    </linearGradient>
+    <linearGradient id="blueType" x2="0%" y2="100%">
+      <stop stop-color="#82ecff"/><stop offset=".18" stop-color="#00baff"/><stop offset=".63" stop-color="#0576f0"/><stop offset="1" stop-color="#073eae"/>
+    </linearGradient>
+    <linearGradient id="redType" x2="0%" y2="100%">
+      <stop stop-color="#ffb394"/><stop offset=".18" stop-color="#ff6353"/><stop offset=".6" stop-color="#f42a19"/><stop offset="1" stop-color="#ba190d"/>
+    </linearGradient>
+    <linearGradient id="goldType" x2="0%" y2="100%">
+      <stop stop-color="#fffba7"/><stop offset=".18" stop-color="#ffe72c"/><stop offset=".6" stop-color="#ffc400"/><stop offset="1" stop-color="#ed9100"/>
+    </linearGradient>
+    <linearGradient id="whiteType" x2="0%" y2="100%">
+      <stop stop-color="#fff"/><stop offset=".64" stop-color="#f5faff"/><stop offset="1" stop-color="#b3c9ee"/>
+    </linearGradient>
+    <linearGradient id="sheetGloss" x2="72%" y2="100%">
+      <stop stop-color="#fff" stop-opacity=".65"/><stop offset=".44" stop-color="#fff" stop-opacity=".12"/>
+      <stop offset=".52" stop-color="#093c8e" stop-opacity="0"/><stop offset="1" stop-color="#093c8e" stop-opacity=".36"/>
+    </linearGradient>
+    <radialGradient id="halo">
+      <stop stop-color="#1265f5" stop-opacity=".52"/><stop offset="1" stop-color="#1265f5" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="blur" x="-.2" y="-.6" width="1.4" height="2.2"><feGaussianBlur stdDeviation="5"/></filter>
+    <filter id="depth" x="-.2" y="-.25" width="1.4" height="1.5">
+      <feDropShadow dx="3" dy="7" stdDeviation="7" flood-color="#020e28" flood-opacity=".82"/>
+    </filter>
+    <clipPath id="sheet"><path d="M64 189q-3-13 12-17l102-30 139 31 105-31q12-4 14 9l-10 179q-1 10-12 14l-106 36-141-29-102 28q-13 4-13-9Z"/></clipPath>
+    <path id="marker" d="M0-83c-49 0-85 35-85 80 0 52 57 115 79 135q6 5 12 0C28 112 85 49 85-3c0-45-36-80-85-80ZM0-36a32 32 0 1 1 0 64 32 32 0 0 1 0-64Z" fill-rule="evenodd"/>
   </defs>
-  <rect width="500" height="500" fill="#eff7fa"/>
-  <rect x="22" y="22" width="456" height="456" rx="76" fill="url(#field)"/>
-  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M46 315c85-43 123 26 208-17s126-48 200-20M126 45l52 128-17 68-21 68 18 143M344 49l-33 113 31 58 54 74 31 141M56 163l122 10 69-49 64 38 134-28M71 391l83 17 89-62 58 84 130-29" stroke="#b5cfd7" stroke-width="24"/>
-    <path d="M46 315c85-43 123 26 208-17s126-48 200-20M126 45l52 128-17 68-21 68 18 143M344 49l-33 113 31 58 54 74 31 141M56 163l122 10 69-49 64 38 134-28M71 391l83 17 89-62 58 84 130-29" stroke="#fff" stroke-width="14"/>
-    <path d="M132 367v-56a37 37 0 0 1 37-37h66a34 34 0 0 0 0-68h-25a28 28 0 0 1 0-56h118" stroke="#fff" stroke-width="43"/>
-    <path d="M132 367v-56a37 37 0 0 1 37-37h66a34 34 0 0 0 0-68h-25a28 28 0 0 1 0-56h118" stroke="url(#route)" stroke-width="28"/>
+  <ellipse cx="250" cy="278" rx="239" ry="207" fill="url(#halo)"/>
+  <image href="../../../youtube/assets/images/xlarge.png" width="500" height="500" clip-path="url(#platform)"/>
+  <g filter="url(#depth)">
+  <path d="M65 199q-3-13 12-17l102-30 139 31 105-31q12-4 14 9l-10 179q-1 10-12 14l-107 36-141-29-102 28q-14 4-14-10Z" fill="url(#edge)" stroke="#103e94" stroke-width="3"/>
+  <g clip-path="url(#sheet)">
+    <rect x="45" y="136" width="396" height="248" fill="url(#map)"/>
+    <path d="M178 140l139 30-10 213-141-28Z" fill="url(#fold)"/>
+    <path d="M55 268c51 12 53-36 104-24s52 59 112 58 74-43 167-27l-7 52c-77-19-100 31-163 27s-95-56-124-57c-36-1-45 33-95 12Z" fill="#1e9bea" opacity=".64"/>
+    <path d="m52 195 104-31-7 60-96 25Zm293 9 84-26-3 53-85 24Z" fill="#43d186" opacity=".78"/>
+    <g fill="none" stroke="#f8ffff" stroke-linecap="round" stroke-linejoin="round" opacity=".91">
+      <path d="m45 229 129-36 140 31 124-38M46 337l124-36 142 30 125-40M114 159l-10 221M215 149l-12 226m162-225-11 225m44-230-11 210" stroke-width="7"/>
+      <path d="m54 287 120-41 136 30 118-37m-173-76-10 208" stroke-width="4"/>
+    </g>
+    <path d="m171 192 145 32m-146 77 142 30" stroke="#a2e8ff" stroke-width="2" opacity=".5"/>
+    <rect x="45" y="136" width="396" height="248" fill="url(#sheetGloss)"/>
   </g>
-  <circle cx="132" cy="367" r="27" fill="#fff"/>
-  <circle cx="132" cy="367" r="17" fill="#006e74"/>
-  <path d="M400 132c0 37-52 90-52 90s-52-53-52-90a52 52 0 1 1 104 0Z" fill="#123774" stroke="#fff" stroke-width="9"/>
-  <circle cx="348" cy="131" r="20" fill="#fff"/>
+  <path d="M64 189q-3-13 12-17l102-30 139 31 105-31q12-4 14 9l-10 179q-1 10-12 14l-106 36-141-29-102 28q-13 4-13-9Z" fill="none" stroke="#d3fbff" stroke-width="4"/>
+  <path d="M178 144l-11 207m150-176-9 204" fill="none" stroke="#efffff" stroke-width="2" opacity=".72"/>
+  <path d="M104 330l53-16q15-4 18-21l4-22q3-18 25-13l53 12q18 4 25-8l21-31" fill="none" stroke="#fff" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M104 330l53-16q15-4 18-21l4-22q3-18 25-13l53 12q18 4 25-8l21-31" fill="none" stroke="#215cee" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="104" cy="330" r="13" fill="#2fe4ba" stroke="#fff" stroke-width="5"/>
+  </g>
+  <ellipse cx="310" cy="300" rx="51" ry="13" fill="#133b72" opacity=".44" filter="url(#blur)"/>
+  <g transform="translate(306 177) scale(.93)">
+    <use href="#marker" transform="translate(7 5)" fill="#791d5d" stroke="#651650" stroke-width="4"/>
+    <circle cx="0" cy="-4" r="35" fill="#153d8d" stroke="#ff9a76" stroke-width="5"/>
+    <circle cx="0" cy="-4" r="27" fill="url(#map)"/>
+    <use href="#marker" fill="url(#pin)" stroke="#fff3e1" stroke-width="4"/>
+    <path d="M-70-18a73 73 0 0 1 70-56q28 0 48 13" fill="none" stroke="#fff9dc" stroke-width="4" stroke-linecap="round" opacity=".72"/>
+  </g>
+  <g transform="translate(395 314) rotate(12)" filter="url(#depth)">
+    <rect x="-43" y="-38" width="87" height="85" rx="21" fill="url(#edge)" stroke="#123e95" stroke-width="3"/>
+    <rect x="-46" y="-44" width="86" height="85" rx="21" fill="url(#nav)" stroke="#d7faff" stroke-width="4"/>
+    <path d="m-26 8 46-33-10 52-13-16Z" fill="#f3ffff" stroke="#ddfaff" stroke-width="2" stroke-linejoin="round"/>
+    <path d="m-3 11 23-36-10 52Z" fill="#b9e8ff"/>
+  </g>
+  <g text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-size="99" font-weight="900" letter-spacing="-3" paint-order="stroke fill" stroke-linejoin="round">
+    <text x="250" y="109" fill="#081e49" stroke="#061736" stroke-width="12" filter="url(#depth)">Maps</text>
+    <text x="250" y="106" stroke-width="7"><tspan fill="#073478" stroke="#073478">M</tspan><tspan fill="#831d20" stroke="#831d20">a</tspan><tspan fill="#9e5708" stroke="#9e5708">p</tspan><tspan fill="#2b447a" stroke="#2b447a">s</tspan></text>
+    <text x="250" y="99" stroke-width="3"><tspan fill="url(#blueType)" stroke="#33bafa">M</tspan><tspan fill="url(#redType)" stroke="#ff8976">a</tspan><tspan fill="url(#goldType)" stroke="#ffe05e">p</tspan><tspan fill="url(#whiteType)" stroke="#c6e4ff">s</tspan></text>
+  </g>
 </svg>

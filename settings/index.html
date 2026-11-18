@@ -160,7 +160,7 @@
                 <dt>Google Maps routes, images and address suggestions</dt>
                 <dd>Billing is required. Under global pay-as-you-go pricing, Google's free monthly caps are
                     <strong>10,000 Essentials route requests</strong>, <strong>5,000 Pro route requests</strong>
-                    (including traffic-aware driving), a separate <strong>10,000 Static Maps image requests</strong>,
+                    (including traffic-aware driving without traffic colors), a separate <strong>10,000 Static Maps image requests</strong>,
                     and <strong>10,000 Places Autocomplete requests</strong>.
                     Pairing and one-off Flow address suggestions use per-request autocomplete billing, not unlimited session pricing.
                     Searches start at 3 characters; pairing waits until you pause typing for half a second.
@@ -245,13 +245,24 @@
                     There is no automatic polling or app-imposed refresh limit. Image requests can incur charges.
                     If an image request fails, refresh the route to try again.</p>
             </div>
+            <div class="field">
+                <label class="checkbox-label" for="mapsRouteTraffic">
+                    <input type="checkbox" class="hy-nostyle" id="mapsRouteTraffic" aria-describedby="mapsTrafficHelp" disabled />
+                    Enable traffic colors on route images
+                </label>
+                <p class="field-help" id="mapsTrafficHelp">On by default. Applies to driving routes on the next refresh when route images
+                    and traffic colors are also enabled on the device. Green means normal traffic, orange means slow traffic,
+                    and red means a jam. Google bills these route calculations at the Routes Enterprise tier.
+                    Turning this off does not disable the estimated traffic delay reading.</p>
+            </div>
             <details class="setup-guide">
               <summary>Maps device setup</summary>
               <p>When pairing a Maps route device, choose an origin and destination using address suggestions
                 or select <strong>Use typed address</strong> for a manual address or <strong>latitude, longitude</strong>.
                 This option stays available if Google suggestions cannot be loaded.
-                Select a travel mode and whether to show a route image before adding the device.
-                These options remain editable in device settings; selected Google locations are saved as
+                Select a travel mode and whether to show a route image and traffic colors.
+                Use <strong>Repair</strong> on an existing device to edit these options with address suggestions,
+                or use <strong>Advanced Settings</strong> to edit them manually. Selected Google locations are saved as
                 <strong>place_id:</strong> followed by a place ID, which you can replace with an address or coordinates.
                 Press <strong>Refresh route</strong>
                 on the device or run the saved-route refresh Flow action. The app does not poll in the background.</p>

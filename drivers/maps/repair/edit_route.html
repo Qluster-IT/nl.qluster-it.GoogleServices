@@ -1,0 +1,62 @@
+<style>
+  .route-field { margin-bottom: 20px; }
+  .route-field label { display: block; margin-bottom: 8px; }
+  .route-field input[type="text"], .route-field select { width: 100%; box-sizing: border-box; }
+  .route-suggestions { margin: 8px 0 0; padding: 0; list-style: none; }
+  .route-suggestions button { width: 100%; text-align: left; white-space: normal; margin-bottom: 4px; }
+  .route-attribution { font: normal 400 12px sans-serif; color: #5e5e5e; background: white; padding: 10px; white-space: nowrap; }
+</style>
+
+<form id="editRouteForm" class="homey-form">
+  <p class="homey-text-regular" data-i18n="maps.repair.intro"></p>
+  <p class="homey-text-small" data-i18n="maps.pair.requirements"></p>
+  <fieldset id="routeAddresses" disabled style="border: 0; margin: 0; padding: 0;">
+    <div class="route-field">
+      <label class="homey-form-label" for="origin" data-i18n="maps.pair.origin"></label>
+      <label><input id="originHomey" type="checkbox" aria-describedby="homeyLocationHelp" />
+        <span data-i18n="maps.pair.use_homey_origin"></span></label>
+      <input class="homey-form-input" id="origin" type="text" maxlength="512" required autocomplete="off"
+        aria-describedby="originStatus" aria-controls="originSuggestions" />
+      <div id="originStatus" class="homey-text-small" role="status"></div>
+      <ul id="originSuggestions" class="route-suggestions"></ul>
+      <div id="originAttribution" class="route-attribution" translate="no" hidden>Google Maps</div>
+    </div>
+    <div class="route-field">
+      <label class="homey-form-label" for="destination" data-i18n="maps.pair.destination"></label>
+      <label><input id="destinationHomey" type="checkbox" aria-describedby="homeyLocationHelp" />
+        <span data-i18n="maps.pair.use_homey_destination"></span></label>
+      <input class="homey-form-input" id="destination" type="text" maxlength="512" required autocomplete="off"
+        aria-describedby="destinationStatus" aria-controls="destinationSuggestions" />
+      <div id="destinationStatus" class="homey-text-small" role="status"></div>
+      <ul id="destinationSuggestions" class="route-suggestions"></ul>
+      <div id="destinationAttribution" class="route-attribution" translate="no" hidden>Google Maps</div>
+    </div>
+    <div class="route-field">
+      <p id="homeyLocationHelp" class="homey-text-small" data-i18n="maps.pair.homey_location_help"></p>
+      <label class="homey-form-label" for="travelMode" data-i18n="maps.pair.mode"></label>
+      <select class="homey-form-select" id="travelMode">
+        <option value="DRIVE" data-i18n="maps.pair.drive"></option>
+        <option value="TRANSIT" data-i18n="maps.pair.transit"></option>
+        <option value="WALK" data-i18n="maps.pair.walk"></option>
+        <option value="BICYCLE" data-i18n="maps.pair.bicycle"></option>
+      </select>
+    </div>
+    <div class="route-field">
+      <label for="routeImage">
+        <input id="routeImage" type="checkbox" aria-describedby="routeImageHelp" />
+        <span data-i18n="maps.pair.image"></span>
+      </label>
+      <p id="routeImageHelp" class="homey-text-small" data-i18n="maps.pair.image_help"></p>
+    </div>
+    <div class="route-field">
+      <label for="routeTraffic">
+        <input id="routeTraffic" type="checkbox" aria-describedby="routeTrafficHelp" />
+        <span data-i18n="maps.pair.traffic"></span>
+      </label>
+      <p id="routeTrafficHelp" class="homey-text-small" data-i18n="maps.pair.traffic_help"></p>
+    </div>
+    <button class="homey-button-primary-full" type="submit" data-i18n="maps.repair.save"></button>
+  </fieldset>
+  <p id="routeError" class="homey-text-small" role="alert"></p>
+</form>
+<script src="edit_route.js"></script>
