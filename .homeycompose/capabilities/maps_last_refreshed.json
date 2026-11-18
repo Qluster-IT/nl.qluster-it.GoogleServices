@@ -1,0 +1,9 @@
+{
+  "type": "string",
+  "icon": "/assets/capabilities/maps-last-refreshed.svg",
+  "title": { "en": "Last refreshed", "nl": "Laatst ververst" },
+  "getable": true,
+  "setable": false,
+  "insights": false,
+  "uiComponent": "sensor"
+}

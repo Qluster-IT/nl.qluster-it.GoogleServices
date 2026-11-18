@@ -439,6 +439,130 @@
         ]
       },
       {
+        "id": "maps_route_updated",
+        "title": {
+          "en": "Saved route refreshed",
+          "nl": "Opgeslagen route ververst"
+        },
+        "hint": {
+          "en": "Runs after each successful device or Flow refresh, including the first. Does not refresh automatically.",
+          "nl": "Start na elke geslaagde verversing via het apparaat of een Flow, ook de eerste. Ververst niet automatisch."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=maps"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "minutes",
+            "type": "number",
+            "title": {
+              "en": "Travel time (min)",
+              "nl": "Reistijd (min)"
+            }
+          },
+          {
+            "name": "kilometers",
+            "type": "number",
+            "title": {
+              "en": "Distance (km)",
+              "nl": "Afstand (km)"
+            }
+          },
+          {
+            "name": "eta",
+            "type": "string",
+            "title": {
+              "en": "Estimated arrival (ISO 8601)",
+              "nl": "Verwachte aankomst (ISO 8601)"
+            }
+          },
+          {
+            "name": "link",
+            "type": "string",
+            "title": {
+              "en": "Open in Google Maps",
+              "nl": "Openen in Google Maps"
+            }
+          }
+        ]
+      },
+      {
+        "id": "maps_travel_time_changed",
+        "title": {
+          "en": "Travel time changed",
+          "nl": "Reistijd gewijzigd"
+        },
+        "hint": {
+          "en": "Compares successful saved-route refreshes. The first reading after startup or a route settings change does not count as a change.",
+          "nl": "Vergelijkt geslaagde verversingen van de opgeslagen route. De eerste waarde na opstarten of gewijzigde route-instellingen telt niet als wijziging."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=maps"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "minutes",
+            "type": "number",
+            "title": {
+              "en": "Travel time (min)",
+              "nl": "Reistijd (min)"
+            }
+          },
+          {
+            "name": "previous_minutes",
+            "type": "number",
+            "title": {
+              "en": "Previous travel time (min)",
+              "nl": "Vorige reistijd (min)"
+            }
+          },
+          {
+            "name": "change_minutes",
+            "type": "number",
+            "title": {
+              "en": "Travel time change (min)",
+              "nl": "Reistijdverschil (min)"
+            }
+          }
+        ]
+      },
+      {
+        "id": "maps_refresh_failed",
+        "title": {
+          "en": "Saved route refresh failed",
+          "nl": "Verversen opgeslagen route mislukt"
+        },
+        "hint": {
+          "en": "Reports a failed saved-route calculation or reading update. Separate camera image requests and one-off calculations do not trigger this card.",
+          "nl": "Meldt een mislukte berekening of het niet kunnen bijwerken van routewaarden. Losse camera-afbeeldingsverzoeken en eenmalige berekeningen starten deze kaart niet."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=maps"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "error",
+            "type": "string",
+            "title": {
+              "en": "Error",
+              "nl": "Fout"
+            }
+          }
+        ]
+      },
+      {
         "id": "youtube_trigger",
         "title": {
           "en": "YouTube triggered",
@@ -2006,6 +2130,56 @@
             "min": -20,
             "max": 20,
             "step": 0.1
+          }
+        ]
+      },
+      {
+        "id": "maps_travel_time_above",
+        "title": {
+          "en": "Travel time !{{exceeds|does not exceed}} a limit",
+          "nl": "Reistijd !{{overschrijdt|overschrijdt niet}} een grens"
+        },
+        "titleFormatted": {
+          "en": "Travel time !{{exceeds|does not exceed}} [[minutes]] minutes",
+          "nl": "Reistijd !{{overschrijdt|overschrijdt niet}} [[minutes]] minuten"
+        },
+        "hint": {
+          "en": "Checks the last successful refresh without contacting Google. Fails if no route results are available.",
+          "nl": "Controleert de laatste geslaagde verversing zonder Google te benaderen. Geeft een fout als er geen routewaarden beschikbaar zijn."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=maps"
+          },
+          {
+            "name": "minutes",
+            "type": "number",
+            "min": 0,
+            "step": 0.1,
+            "placeholder": {
+              "en": "Minutes",
+              "nl": "Minuten"
+            }
+          }
+        ]
+      },
+      {
+        "id": "maps_route_available",
+        "title": {
+          "en": "Saved route results !{{are|are not}} available",
+          "nl": "Opgeslagen routewaarden !{{zijn|zijn niet}} beschikbaar"
+        },
+        "hint": {
+          "en": "Results remain available after a failed refresh. Restarting the app or changing route settings clears them. Does not contact Google.",
+          "nl": "Waarden blijven beschikbaar na een mislukte verversing. Opnieuw starten of route-instellingen wijzigen wist ze. Benadert Google niet."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=maps"
           }
         ]
       },
@@ -4131,35 +4305,14 @@
       },
       {
         "id": "maps_calculate_traveltime",
+        "deprecated": true,
         "title": {
           "en": "Calculate Travel Time",
-          "nl": "Bereken reistijd",
-          "da": "Beregn rejsetid",
-          "de": "Reisezeit berechnen",
-          "es": "Calcular tiempo de viaje",
-          "fr": "Calculer le temps de trajet",
-          "it": "Calcola il Tempo di Viaggio",
-          "no": "Beregn reisetid",
-          "sv": "Beräkna restid",
-          "pl": "Oblicz czas podróży",
-          "ru": "Рассчитать время в пути",
-          "ko": "여행 시간 계산하기",
-          "ar": "احسب وقت السفر"
+          "nl": "Bereken reistijd"
         },
         "titleFormatted": {
-          "en": "Calculate Travel Time [[from]]",
-          "nl": "Zoek [[from]]",
-          "da": "Beregn rejsetid [[from]]",
-          "de": "Reisezeit berechnen [[from]]",
-          "es": "Calcular tiempo de viaje [[from]]",
-          "fr": "Calculer le temps de trajet [[from]]",
-          "it": "Calcola il tempo di viaggio [[from]]",
-          "no": "Beregn reisetid [[from]]",
-          "sv": "Beräkna resetid [[from]]",
-          "pl": "Oblicz czas podróży [[from]]",
-          "ru": "Рассчитать время в пути [[from]]",
-          "ko": "여행 시간 계산 [[from]]",
-          "ar": "احسب وقت السفر [[from]]"
+          "en": "Calculate travel time from [[from]]",
+          "nl": "Bereken reistijd vanaf [[from]]"
         },
         "args": [
           {
@@ -4172,18 +4325,7 @@
             "type": "text",
             "placeholder": {
               "en": "From",
-              "nl": "From",
-              "da": "Fra",
-              "de": "Von",
-              "es": "De",
-              "fr": "De",
-              "it": "Da",
-              "no": "Fra",
-              "sv": "Från",
-              "pl": "Od",
-              "ru": "От",
-              "ko": "부터",
-              "ar": "من"
+              "nl": "Vertrekpunt"
             }
           }
         ],
@@ -4193,18 +4335,7 @@
             "type": "string",
             "title": {
               "en": "Maps ID",
-              "nl": "Maps-ID",
-              "da": "Maps ID",
-              "de": "Maps-ID",
-              "es": "ID de Maps",
-              "fr": "ID de Maps",
-              "it": "ID Maps",
-              "no": "Maps-ID",
-              "sv": "Maps-ID",
-              "pl": "Identyfikator Map",
-              "ru": "ID карт Google Maps",
-              "ko": "지도 ID",
-              "ar": "معرّف الخرائط"
+              "nl": "Maps-ID"
             }
           },
           {
@@ -4212,18 +4343,7 @@
             "type": "string",
             "title": {
               "en": "Maps link",
-              "nl": "Kaartlink",
-              "da": "Kortlink",
-              "de": "Maps-Link",
-              "es": "Enlace de Maps",
-              "fr": "Lien Maps",
-              "it": "Link di Maps",
-              "no": "Kartlenke",
-              "sv": "Kartlänk",
-              "pl": "Link do Map",
-              "ru": "Ссылка на карты",
-              "ko": "지도 링크",
-              "ar": "رابط الخرائط"
+              "nl": "Kaartlink"
             }
           },
           {
@@ -4231,18 +4351,131 @@
             "type": "string",
             "title": {
               "en": "Searched text",
-              "nl": "Gezochte tekst",
-              "da": "Søgt tekst",
-              "de": "Gesuchter Text",
-              "es": "Texto buscado",
-              "fr": "Texte recherché",
-              "it": "Testo cercato",
-              "no": "Søkt tekst",
-              "sv": "Sökt text",
-              "pl": "Wyszukany tekst",
-              "ru": "Искал текст",
-              "ko": "검색된 텍스트",
-              "ar": "النص الذي تم البحث عنه"
+              "nl": "Gezochte tekst"
+            }
+          }
+        ]
+      },
+      {
+        "id": "maps_refresh_route",
+        "title": {
+          "en": "Refresh saved Google Maps route",
+          "nl": "Ververs opgeslagen Google Maps-route"
+        },
+        "hint": {
+          "en": "Uses this device's saved origin, destination and travel mode.",
+          "nl": "Gebruikt het ingestelde vertrekpunt, de bestemming en het vervoermiddel van dit apparaat."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=maps"
+          }
+        ]
+      },
+      {
+        "id": "maps_calculate_route",
+        "title": {
+          "en": "Calculate a one-off Google Maps route",
+          "nl": "Bereken een eenmalige Google Maps-route"
+        },
+        "titleFormatted": {
+          "en": "Calculate route from [[from]] to [[to]] by [[mode]]",
+          "nl": "Bereken route van [[from]] naar [[to]] met [[mode]]"
+        },
+        "hint": {
+          "en": "Search for a location or select Use typed address for a manual address or coordinates. Suggestions need Places API (New). Returns tags without changing the saved route, readings or image.",
+          "nl": "Zoek een locatie of kies Gebruik ingevoerd adres voor een handmatig adres of coördinaten. Suggesties vereisen Places API (New). Geeft tags terug zonder de opgeslagen route, waarden of afbeelding te wijzigen."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=maps"
+          },
+          {
+            "name": "from",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "Search or type origin",
+              "nl": "Zoek of typ vertrekpunt"
+            }
+          },
+          {
+            "name": "to",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "Search or type destination",
+              "nl": "Zoek of typ bestemming"
+            }
+          },
+          {
+            "name": "mode",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "DRIVE",
+                "label": {
+                  "en": "Car (with traffic)",
+                  "nl": "Auto (met verkeer)"
+                }
+              },
+              {
+                "id": "TRANSIT",
+                "label": {
+                  "en": "Public transit",
+                  "nl": "Openbaar vervoer"
+                }
+              },
+              {
+                "id": "WALK",
+                "label": {
+                  "en": "Foot",
+                  "nl": "Te voet"
+                }
+              },
+              {
+                "id": "BICYCLE",
+                "label": {
+                  "en": "Bicycle",
+                  "nl": "Fiets"
+                }
+              }
+            ]
+          }
+        ],
+        "tokens": [
+          {
+            "name": "minutes",
+            "type": "number",
+            "title": {
+              "en": "Travel time (min)",
+              "nl": "Reistijd (min)"
+            }
+          },
+          {
+            "name": "kilometers",
+            "type": "number",
+            "title": {
+              "en": "Distance (km)",
+              "nl": "Afstand (km)"
+            }
+          },
+          {
+            "name": "eta",
+            "type": "string",
+            "title": {
+              "en": "Estimated arrival (ISO 8601)",
+              "nl": "Verwachte aankomst (ISO 8601)"
+            }
+          },
+          {
+            "name": "link",
+            "type": "string",
+            "title": {
+              "en": "Open in Google Maps",
+              "nl": "Openen in Google Maps"
             }
           }
         ]
@@ -6688,7 +6921,6 @@
     },
     {
       "id": "maps",
-      "deprecated": true,
       "name": {
         "en": "Maps",
         "nl": "Maps",
@@ -6705,12 +6937,21 @@
         "ar": "خرائط"
       },
       "class": "other",
-      "capabilities": [],
+      "capabilities": [
+        "maps_refresh",
+        "maps_minutes",
+        "maps_distance",
+        "maps_eta",
+        "maps_last_refreshed"
+      ],
       "images": {
         "large": "/drivers/maps/assets/images/large.png",
         "small": "/drivers/maps/assets/images/small.png"
       },
       "pair": [
+        {
+          "id": "configure"
+        },
         {
           "id": "list_devices",
           "template": "list_devices",
@@ -6726,7 +6967,86 @@
           "template": "add_devices"
         }
       ],
-      "settings": []
+      "settings": [
+        {
+          "id": "origin",
+          "type": "text",
+          "label": {
+            "en": "Origin",
+            "nl": "Vertrekpunt"
+          },
+          "hint": {
+            "en": "Enter a full address or latitude, longitude. Locations selected during pairing are saved as place_id: followed by a Google place ID.",
+            "nl": "Voer een volledig adres of breedtegraad, lengtegraad in. Locaties gekozen tijdens het koppelen worden opgeslagen als place_id: gevolgd door een Google-plaats-ID."
+          },
+          "value": ""
+        },
+        {
+          "id": "destination",
+          "type": "text",
+          "label": {
+            "en": "Destination",
+            "nl": "Bestemming"
+          },
+          "hint": {
+            "en": "Enter a full address or latitude, longitude. Locations selected during pairing are saved as place_id: followed by a Google place ID.",
+            "nl": "Voer een volledig adres of breedtegraad, lengtegraad in. Locaties gekozen tijdens het koppelen worden opgeslagen als place_id: gevolgd door een Google-plaats-ID."
+          },
+          "value": ""
+        },
+        {
+          "id": "travel_mode",
+          "type": "dropdown",
+          "label": {
+            "en": "Travel mode",
+            "nl": "Vervoermiddel"
+          },
+          "value": "DRIVE",
+          "values": [
+            {
+              "id": "DRIVE",
+              "label": {
+                "en": "Driving (with traffic)",
+                "nl": "Auto (met verkeer)"
+              }
+            },
+            {
+              "id": "TRANSIT",
+              "label": {
+                "en": "Public transit",
+                "nl": "Openbaar vervoer"
+              }
+            },
+            {
+              "id": "WALK",
+              "label": {
+                "en": "Walking",
+                "nl": "Lopen"
+              }
+            },
+            {
+              "id": "BICYCLE",
+              "label": {
+                "en": "Cycling",
+                "nl": "Fietsen"
+              }
+            }
+          ]
+        },
+        {
+          "id": "route_image",
+          "type": "checkbox",
+          "label": {
+            "en": "Show route image",
+            "nl": "Toon routeafbeelding"
+          },
+          "hint": {
+            "en": "Requires route images to be enabled in the app settings and Maps Static API to be enabled in Google Cloud.",
+            "nl": "Vereist dat routeafbeeldingen aanstaan in de app-instellingen en Maps Static API aanstaat in Google Cloud."
+          },
+          "value": true
+        }
+      ]
     },
     {
       "id": "translate",
@@ -7435,6 +7755,69 @@
       "setable": false,
       "uiComponent": "sensor",
       "icon": "/assets/icon.svg"
+    },
+    "maps_distance": {
+      "type": "number",
+      "icon": "/assets/capabilities/maps-distance.svg",
+      "title": {
+        "en": "Google Maps distance",
+        "nl": "Google Maps-afstand"
+      },
+      "units": "km",
+      "decimals": 2,
+      "getable": true,
+      "setable": false,
+      "insights": false,
+      "uiComponent": "sensor"
+    },
+    "maps_eta": {
+      "type": "string",
+      "icon": "/assets/capabilities/maps-eta.svg",
+      "title": {
+        "en": "Google Maps estimated arrival",
+        "nl": "Google Maps-verwachte aankomst"
+      },
+      "getable": true,
+      "setable": false,
+      "insights": false,
+      "uiComponent": "sensor"
+    },
+    "maps_last_refreshed": {
+      "type": "string",
+      "icon": "/assets/capabilities/maps-last-refreshed.svg",
+      "title": {
+        "en": "Last refreshed",
+        "nl": "Laatst ververst"
+      },
+      "getable": true,
+      "setable": false,
+      "insights": false,
+      "uiComponent": "sensor"
+    },
+    "maps_minutes": {
+      "type": "number",
+      "icon": "/assets/capabilities/maps-minutes.svg",
+      "title": {
+        "en": "Google Maps travel time",
+        "nl": "Google Maps-reistijd"
+      },
+      "units": "min",
+      "decimals": 1,
+      "getable": true,
+      "setable": false,
+      "insights": false,
+      "uiComponent": "sensor"
+    },
+    "maps_refresh": {
+      "type": "boolean",
+      "icon": "/assets/capabilities/maps-refresh.svg",
+      "title": {
+        "en": "Refresh route",
+        "nl": "Ververs route"
+      },
+      "getable": false,
+      "setable": true,
+      "uiComponent": "button"
     }
   }
 }

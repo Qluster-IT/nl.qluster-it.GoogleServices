@@ -1,0 +1,31 @@
+{
+  "image_title": "Google Maps-route",
+  "setup_needed": "Stel het vertrekpunt en de bestemming in bij de apparaatinstellingen.",
+  "refresh_needed": "Druk op Ververs route om de opgeslagen route te berekenen.",
+  "image_missing": "Google Maps gaf geen routelijn voor de afbeelding terug.",
+  "image_unavailable": "Er is geen afbeelding beschikbaar. Zet routeafbeeldingen aan en ververs de opgeslagen route.",
+  "route_unavailable": "Er zijn geen routewaarden beschikbaar. Ververs eerst de opgeslagen route.",
+  "invalid_minutes": "Voer een niet-negatief aantal minuten in.",
+  "address": {
+    "typed_help": "Gebruik ingevoerd adres of coördinaten. Google Maps bepaalt de locatie bij het berekenen van de route.",
+    "search_unavailable": "Gebruik ingevoerd adres of coördinaten. Google-suggesties niet beschikbaar: __error__"
+  },
+  "pair": {
+    "title": "Stel je Maps-route in",
+    "intro": "Kies je vertrekpunt, bestemming, vervoermiddel en voorkeur voor routeafbeeldingen. Kies een adressuggestie of Gebruik ingevoerd adres om direct een volledig adres of breedtegraad, lengtegraad te gebruiken.",
+    "requirements": "Voor adressuggesties moet Places API (New) aanstaan en toegestaan zijn voor je Maps-API-sleutel in de app-instellingen. Er wordt alleen gezocht terwijl je typt; Google kan hiervoor kosten rekenen. Gebruik ingevoerd adres blijft beschikbaar als suggesties niet geladen kunnen worden.",
+    "origin": "Vertrekpunt",
+    "destination": "Bestemming",
+    "mode": "Vervoermiddel",
+    "drive": "Auto (met verkeer)",
+    "transit": "Openbaar vervoer",
+    "walk": "Lopen",
+    "bicycle": "Fietsen",
+    "image": "Toon routeafbeelding",
+    "image_help": "Vereist Maps Static API en ingeschakelde routeafbeeldingen in de app-instellingen. Afbeeldingen worden alleen op verzoek opgehaald na verversen via het apparaat of een Flow; er wordt niet automatisch opgehaald.",
+    "continue": "Doorgaan",
+    "searching": "Adressen zoeken...",
+    "no_results": "Geen Google-suggesties beschikbaar. Probeer een vollediger adres of kies Gebruik ingevoerd adres.",
+    "search_error": "Adressen zoeken mislukt. Controleer Places API (New) en je Maps-sleutel of ga door met een handmatig ingevoerd adres."
+  }
+}

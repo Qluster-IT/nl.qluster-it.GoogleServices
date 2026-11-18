@@ -1,6 +1,5 @@
 {
   "id": "maps",
-  "deprecated": true,
   "name": {
     "en": "Maps",
     "nl": "Maps",
@@ -17,12 +16,15 @@
     "ar": "خرائط"
   },
   "class": "other",
-  "capabilities": [],
+  "capabilities": ["maps_refresh", "maps_minutes", "maps_distance", "maps_eta", "maps_last_refreshed"],
   "images": {
     "large": "{{driverAssetsPath}}/images/large.png",
     "small": "{{driverAssetsPath}}/images/small.png"
   },
   "pair": [
+    {
+      "id": "configure"
+    },
     {
       "id": "list_devices",
       "template": "list_devices",
@@ -38,5 +40,39 @@
       "template": "add_devices"
     }
   ],
-  "settings": []
+  "settings": [
+    {
+      "id": "origin",
+      "type": "text",
+      "label": { "en": "Origin", "nl": "Vertrekpunt" },
+      "hint": { "en": "Enter a full address or latitude, longitude. Locations selected during pairing are saved as place_id: followed by a Google place ID.", "nl": "Voer een volledig adres of breedtegraad, lengtegraad in. Locaties gekozen tijdens het koppelen worden opgeslagen als place_id: gevolgd door een Google-plaats-ID." },
+      "value": ""
+    },
+    {
+      "id": "destination",
+      "type": "text",
+      "label": { "en": "Destination", "nl": "Bestemming" },
+      "hint": { "en": "Enter a full address or latitude, longitude. Locations selected during pairing are saved as place_id: followed by a Google place ID.", "nl": "Voer een volledig adres of breedtegraad, lengtegraad in. Locaties gekozen tijdens het koppelen worden opgeslagen als place_id: gevolgd door een Google-plaats-ID." },
+      "value": ""
+    },
+    {
+      "id": "travel_mode",
+      "type": "dropdown",
+      "label": { "en": "Travel mode", "nl": "Vervoermiddel" },
+      "value": "DRIVE",
+      "values": [
+        { "id": "DRIVE", "label": { "en": "Driving (with traffic)", "nl": "Auto (met verkeer)" } },
+        { "id": "TRANSIT", "label": { "en": "Public transit", "nl": "Openbaar vervoer" } },
+        { "id": "WALK", "label": { "en": "Walking", "nl": "Lopen" } },
+        { "id": "BICYCLE", "label": { "en": "Cycling", "nl": "Fietsen" } }
+      ]
+    },
+    {
+      "id": "route_image",
+      "type": "checkbox",
+      "label": { "en": "Show route image", "nl": "Toon routeafbeelding" },
+      "hint": { "en": "Requires route images to be enabled in the app settings and Maps Static API to be enabled in Google Cloud.", "nl": "Vereist dat routeafbeeldingen aanstaan in de app-instellingen en Maps Static API aanstaat in Google Cloud." },
+      "value": true
+    }
+  ]
 }

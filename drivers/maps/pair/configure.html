@@ -1,0 +1,49 @@
+<style>
+  .route-field { margin-bottom: 20px; }
+  .route-field label { display: block; margin-bottom: 8px; }
+  .route-field input[type="text"], .route-field select { width: 100%; box-sizing: border-box; }
+  .route-suggestions { margin: 8px 0 0; padding: 0; list-style: none; }
+  .route-suggestions button { width: 100%; text-align: left; white-space: normal; margin-bottom: 4px; }
+  .route-attribution { font: normal 400 12px sans-serif; color: #5e5e5e; background: white; padding: 10px; white-space: nowrap; }
+  .route-status { margin-top: 8px; }
+</style>
+
+<form id="routeForm" class="homey-form">
+  <p class="homey-text-regular" data-i18n="maps.pair.intro"></p>
+  <p class="homey-text-small" data-i18n="maps.pair.requirements"></p>
+  <div class="route-field">
+    <label class="homey-form-label" for="origin" data-i18n="maps.pair.origin"></label>
+    <input class="homey-form-input" id="origin" type="text" maxlength="512" required autocomplete="off"
+      aria-describedby="originStatus" aria-controls="originSuggestions" />
+    <div id="originStatus" class="route-status homey-text-small" role="status"></div>
+    <ul id="originSuggestions" class="route-suggestions"></ul>
+    <div id="originAttribution" class="route-attribution" translate="no" hidden>Google Maps</div>
+  </div>
+  <div class="route-field">
+    <label class="homey-form-label" for="destination" data-i18n="maps.pair.destination"></label>
+    <input class="homey-form-input" id="destination" type="text" maxlength="512" required autocomplete="off"
+      aria-describedby="destinationStatus" aria-controls="destinationSuggestions" />
+    <div id="destinationStatus" class="route-status homey-text-small" role="status"></div>
+    <ul id="destinationSuggestions" class="route-suggestions"></ul>
+    <div id="destinationAttribution" class="route-attribution" translate="no" hidden>Google Maps</div>
+  </div>
+  <div class="route-field">
+    <label class="homey-form-label" for="travelMode" data-i18n="maps.pair.mode"></label>
+    <select class="homey-form-select" id="travelMode">
+      <option value="DRIVE" data-i18n="maps.pair.drive"></option>
+      <option value="TRANSIT" data-i18n="maps.pair.transit"></option>
+      <option value="WALK" data-i18n="maps.pair.walk"></option>
+      <option value="BICYCLE" data-i18n="maps.pair.bicycle"></option>
+    </select>
+  </div>
+  <div class="route-field">
+    <label for="routeImage">
+      <input id="routeImage" type="checkbox" checked />
+      <span data-i18n="maps.pair.image"></span>
+    </label>
+    <p class="homey-text-small" data-i18n="maps.pair.image_help"></p>
+  </div>
+  <p id="routeError" class="homey-text-small" role="alert"></p>
+  <button class="homey-button-primary-full" type="submit" id="continue" data-i18n="maps.pair.continue"></button>
+</form>
+<script src="configure.js"></script>

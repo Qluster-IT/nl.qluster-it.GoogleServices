@@ -1,0 +1,11 @@
+{
+  "type": "number",
+  "icon": "/assets/capabilities/maps-distance.svg",
+  "title": { "en": "Google Maps distance", "nl": "Google Maps-afstand" },
+  "units": "km",
+  "decimals": 2,
+  "getable": true,
+  "setable": false,
+  "insights": false,
+  "uiComponent": "sensor"
+}

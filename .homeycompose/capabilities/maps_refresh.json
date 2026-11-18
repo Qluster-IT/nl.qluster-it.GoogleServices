@@ -1,0 +1,8 @@
+{
+  "type": "boolean",
+  "icon": "/assets/capabilities/maps-refresh.svg",
+  "title": { "en": "Refresh route", "nl": "Ververs route" },
+  "getable": false,
+  "setable": true,
+  "uiComponent": "button"
+}

@@ -1,0 +1,31 @@
+{
+  "image_title": "Google Maps route",
+  "setup_needed": "Set an origin and destination in the device settings.",
+  "refresh_needed": "Press Refresh route to calculate the saved route.",
+  "image_missing": "Google Maps did not return a route line for the image.",
+  "image_unavailable": "No image is available. Enable route images and refresh the saved route.",
+  "route_unavailable": "No route results are available. Refresh the saved route first.",
+  "invalid_minutes": "Enter a non-negative number of minutes.",
+  "address": {
+    "typed_help": "Use typed address or coordinates. Google Maps resolves the location when calculating the route.",
+    "search_unavailable": "Use typed address or coordinates. Google suggestions unavailable: __error__"
+  },
+  "pair": {
+    "title": "Set up your Maps route",
+    "intro": "Choose your origin, destination, travel mode and route image preference. Select an address suggestion or Use typed address to use a full address or latitude, longitude directly.",
+    "requirements": "Address suggestions need Places API (New) enabled and allowed for your Maps API key in app settings. Searches run only while you type and may incur Google charges. Use typed address remains available if suggestions cannot be loaded.",
+    "origin": "Origin",
+    "destination": "Destination",
+    "mode": "Travel mode",
+    "drive": "Driving (with traffic)",
+    "transit": "Public transit",
+    "walk": "Walking",
+    "bicycle": "Cycling",
+    "image": "Show route image",
+    "image_help": "Requires Maps Static API and route images enabled in app settings. Images are fetched only on demand after a device or Flow refresh; there is no automatic polling.",
+    "continue": "Continue",
+    "searching": "Searching addresses...",
+    "no_results": "No Google suggestions available. Try a more complete address or select Use typed address.",
+    "search_error": "Address search failed. Check Places API (New) and your Maps key, or continue with a manually entered address."
+  }
+}

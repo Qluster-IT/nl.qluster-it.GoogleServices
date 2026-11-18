@@ -1,0 +1,9 @@
+{
+  "type": "string",
+  "icon": "/assets/capabilities/maps-eta.svg",
+  "title": { "en": "Google Maps estimated arrival", "nl": "Google Maps-verwachte aankomst" },
+  "getable": true,
+  "setable": false,
+  "insights": false,
+  "uiComponent": "sensor"
+}

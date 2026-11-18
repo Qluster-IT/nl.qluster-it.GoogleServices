@@ -1,204 +1,272 @@
 <!doctype html>
-<html>
+<html lang="en">
     <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Google Services settings</title>
         <style>
-            h2 {
-                margin-top:20px;
-                margin-bottom:3px;
+            html { height: 100%; overflow: hidden; }
+
+            body.settings-page {
+                --settings-bg: var(--homey-background-color, var(--homey-color-background, var(--homey-color-mono-02, Canvas)));
+                --card-bg: var(--homey-color-mono-0, var(--settings-bg));
+                --header-bg: var(--card-bg);
+                --ink: var(--homey-color-text, var(--homey-text-color, CanvasText));
+                --muted: var(--ink);
+                --line: var(--homey-color-mono-400, #808080);
+                --action: #315b0b;
+                --action-hover: #254605;
+                --focus: var(--homey-color-text, var(--homey-text-color, Highlight));
+                margin: 0;
+                /* Homey's default body padding would inset the footer on all sides. */
+                padding: 0 !important;
+                height: 100%;
+                overflow: hidden;
+                display: grid;
+                grid-template-rows: minmax(0, 1fr) auto;
+                background: var(--settings-bg);
+                color: var(--ink);
+                font: 1rem/1.5 system-ui, sans-serif;
             }
+
+            @supports (color: color-mix(in srgb, black, white)) {
+                body.settings-page {
+                    --header-bg: color-mix(in srgb, var(--ink) 7%, var(--card-bg));
+                    --muted: color-mix(in srgb, var(--ink) 78%, var(--card-bg));
+                    --line: color-mix(in srgb, var(--ink) 24%, var(--card-bg));
+                }
+            }
+
+            .settings-page * { box-sizing: border-box; }
+            .settings-scroll { overflow: auto; }
+            .settings-shell { max-width: 52rem; margin: 0 auto; padding: clamp(0.75rem, 3vw, 2rem); }
+            .settings-intro { margin-bottom: 1.25rem; }
+            .settings-intro h1 { margin: 0; font-size: 1.5rem; }
+            .settings-intro p { margin: 0.25rem 0 0; color: var(--muted); }
+            .settings-card {
+                margin-bottom: 1rem;
+                border: 1px solid var(--line);
+                border-radius: 0.65rem;
+                overflow: hidden;
+                background: var(--card-bg);
+            }
+            .settings-card:last-child { margin-bottom: 0; }
+            .card-heading {
+                margin: 0;
+                padding: 0.65rem 1rem;
+                background: var(--header-bg);
+                border-bottom: 1px solid var(--line);
+                font-size: 1rem;
+                font-weight: 700;
+            }
+            .card-body { padding: 1rem; }
+            .card-body > :first-child { margin-top: 0; }
+            .card-body > :last-child { margin-bottom: 0; }
+            .field + .field { margin-top: 1rem; }
+            .field label { display: block; margin-bottom: 0.3rem; font-weight: 600; }
+            .field .checkbox-label { display: flex; align-items: center; gap: 0.5rem; }
+            .field-help { margin: 0.35rem 0 0; color: var(--muted); font-size: 0.875rem; }
+            .field .settings-control {
+                display: block;
+                width: 100%;
+                min-width: 0;
+                min-height: 2.75rem;
+                padding: 0.55rem 0.7rem;
+                border: 1px solid var(--line);
+                border-radius: 0.4rem;
+                background: var(--card-bg);
+                color: var(--ink);
+                font: inherit;
+            }
+            .field textarea.settings-control { resize: vertical; font-family: ui-monospace, monospace; }
+            .settings-actions {
+                padding: 0.75rem clamp(0.75rem, 3vw, 2rem);
+                padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+                border-top: 1px solid var(--line);
+                background: var(--settings-bg);
+            }
+            .settings-actions .settings-save {
+                display: block;
+                padding: 0.55rem 0.9rem;
+                min-height: 2.75rem;
+                width: 100%;
+                border: 1px solid transparent;
+                border-radius: 0.4rem;
+                background: var(--action);
+                color: #fff;
+                font: inherit;
+                font-weight: 600;
+                cursor: pointer;
+            }
+            .settings-actions .settings-save:hover:not(:disabled) { background: var(--action-hover); }
+            .settings-actions .settings-save:disabled { opacity: 0.65; cursor: default; }
+            .settings-page :is(input, select, textarea, button, summary):focus-visible {
+                outline: 2px solid var(--focus);
+                outline-offset: 2px;
+            }
+            .save-status { margin: 0 0 0.4rem; color: var(--muted); }
+            .save-status:empty { display: none; }
+            .setup-guide { margin: 0 0 1rem; padding: 0.65rem 0.85rem; border-radius: 0.4rem; background: var(--header-bg); }
+            .setup-guide summary { cursor: pointer; font-weight: 600; }
+            .setup-guide ol { padding-inline-start: 1.4rem; }
+            .setup-guide li + li { margin-top: 0.5rem; }
+            .setup-guide > :last-child { margin-bottom: 0; }
+            .usage-guide dl { margin-bottom: 0.75rem; }
+            .usage-guide dt { font-weight: 600; }
+            .usage-guide dd { margin: 0.2rem 0 0.8rem; }
+            .usage-guide a { color: inherit; text-decoration: underline; }
         </style>
         <script type="text/javascript" src="/homey.js" data-origin="settings"></script>
-           
-        <script type="text/javascript"> 
-            var debug; 
-            var saveButton;// = document.getElementById('save');
-            var cloudJSON;// = document.getElementById('cloudJSON');
-            var defaultCloudVoice ;//= document.getElementById('defaultCloudVoice');
-            var cloudProject ;
-            var cloudApiKey;
-            var mapsApiKey;
-            function l(s)  {
-                if(!debug) debug = document.getElementById('debug');
-                if(debug) debug.value+='\r\n' + (s!==undefined && s!==null ? s.toString() : 'undefined');
-            }
-
-            
-            function save() {
-                //Homey.alert('Saving');
-                try {                        
-                    var promises = [];
-                    promises.push(Homey.set('CloudJSON', cloudJSON.value));
-                    promises.push(Homey.set('DefaultCloudVoice', defaultCloudVoice.selectedIndex>0 && defaultCloudVoice.children.length>defaultCloudVoice.selectedIndex ? defaultCloudVoice.children[defaultCloudVoice.selectedIndex].value : null));
-                    promises.push(Homey.set('CloudProject', cloudProject.value));
-                    promises.push(Homey.set('CloudApiKey', cloudApiKey.value));
-                    promises.push(Homey.set('MapsApiKey', mapsApiKey.value));
-                    // Promise.all(promises).then(x=> {
-                    //     getVoices();
-                    // }).catch(x=> {
-                    //     Homey.alert('Error while saving-catch: ' + x);
-                    // });
-                    setTimeout(function() {
-                        getVoices();
-                    }, 1000);
-                        Homey.alert('Saved');
-                    //await Homey.set('DefaultCloudLanguageCode', defaultCloudLanguageCode.children[defaultCloudLanguageCode.selectedIndex].value);                            
-
-                } catch (error) {
-                    Homey.alert('Error while saving: ' + error);
-                }
-            }
-                
-            function getVoices() {
-                // var list;
-                // var languages=[];
-                // var genders = [];
-
-                Homey.api( 'get', '/getVoices', function(err, result) {
-                    // list = result;
-                    
-                    // list.forEach(voice=> {
-                    //     if(genders.indexOf(voice.ssmlGender)==-1) genders.push(voice.ssmlGender) ;
-                    //     voice.languageCodes.forEach(lg=> { if(languages.indexOf(lg)==-1) languages.push(lg) ;});
-                    // });
-                    
-                    for (let i = 0; i < defaultCloudVoice.children.length; i++) {
-                        const element = defaultCloudVoice.children[i];
-                        defaultCloudVoice.removeChild(element);
-                        i--;                        
-                    } 
-                    
-                    // Homey.get('DefaultCloudLanguageCode', function(err, defaultLanguageCode) {
-                    //     try {
-                    //         if(!defaultLanguageCode) defaultLanguageCode = this.homey.__("languagecode") || 'en-GB';
-                    //         //Homey.alert('try: ' + result);
-                    //         for (let i = 0; i < languages.length; i++) {
-                    //             const languageCode = languages[i];
-                    //             var option = document.createElement('option');
-                    //             option.value = languageCode;
-                    //             option.innerText = languageCode;
-                    //             if(languageCode==defaultLanguageCode) option.selected = true;
-                    //             defaultCloudLanguageCode.appendChild(option);                            
-                    //         }
-                    //         //Homey.alert('try done');
-                            
-                    //     } catch (error) {
-                    //         Homey.alert('DefaultCloudLanguageCode.error: ' + error);                                
-                    //     }
-                    // });
-
-                    for (let i = 0; i < defaultCloudVoice.children.length; i++) {
-                        const element = defaultCloudVoice.children[i];
-                        defaultCloudVoice.removeChild(element);
-                        i--;                        
-                    }
-                    if(!err) Homey.get('DefaultCloudVoice', function(err, defaultVoice) {
-                        try {
-                            //if(!defaultVoice) return;
-                            defaultVoice = defaultVoice ? JSON.parse(defaultVoice) : null;
-                            if(result && result.length>0)for (let i = 0; i < result.length; i++) {
-                                const voice = result[i];
-                                var option = document.createElement('option');
-                                var val = JSON.stringify(voice);
-                                option.value = val;
-                                option.innerText = voice.name + ' (' + voice.ssmlGender + ')';
-                                if(defaultVoice && voice.name==defaultVoice.name) option.selected = true;
-                                defaultCloudVoice.appendChild(option);                            
-                            }
-                            
-                        } catch (error) {
-                            Homey.alert('DefaultCloudVoice.error: ' + error);                                
-                        }
-                    });
-                });
-            }
-                
-
-            function onHomeyReady(Homey) {
-                //Homey.alert('ready');
-                try {
-                    
-                    saveButton = document.getElementById('save');
-                    cloudJSON = document.getElementById('cloudJSON');
-                    defaultCloudVoice = document.getElementById('defaultCloudVoice');
-                    cloudProject = document.getElementById('cloudProject');
-                    cloudApiKey = document.getElementById('cloudApiKey');
-                    mapsApiKey = document.getElementById('mapsApiKey');
-                    //var defaultCloudLanguageCode = document.getElementById('defaultCloudLanguageCode');
-                    Homey.ready();
-                    // save.addEventListener('click', function (e) {
-                        
-                    // });
-                    Homey.get('CloudJSON', function(err, v) {
-                        cloudJSON.value = err ? '' : v;
-                    });
-                    Homey.get('CloudProject', function(err, v) {
-                        cloudProject.value = err ? '' : v;
-                    });
-                    Homey.get('CloudApiKey', function(err, v) {
-                        cloudApiKey.value = err ? '' : v;
-                    });
-                    Homey.get('MapsApiKey', function(err, v) {
-                        mapsApiKey.value = err ? '' : v;
-                    });
-                    getVoices();
-                } catch (e1) {                   
-                    Homey.alert('Error while loading: ' + e1);
-                }
-            }
-        </script>
+        <script src="settings.js"></script>
 
     </head>
 
-    <body>        
-            <!-- <textarea id="debug" type="text" columns="40" rows="5" style="width:100%;display: none;" ></textarea>
-            <br/>
-            <br/>
-         -->
-        <h2>Google Cloud Service Account JSON</h2>
-        <textarea id="cloudJSON" type="text" columns="40" rows="10" style="width:100%;" placeholder="example : {
-  'type': 'service_account',
-  'project_id': '',
-  'private_key_id': '',
-  'private_key': '-----BEGIN PRIVATE KEY-----\\n-----END PRIVATE KEY-----\n',
-  'client_email': '',
-  'client_id': '',
-  'auth_uri': 'https://accounts.google.com/o/oauth2/auth',
-  'token_uri': 'https://oauth2.googleapis.com/token',
-  'auth_provider_x509_cert_url': 'https://www.googleapis.com/oauth2/v1/certs',
-  'client_x509_cert_url': ''
-}
-          "></textarea>
-        <br/>
-<!-- 
-        <h2>Google Cloud Default Language Code</h2>
-        <select id="defaultCloudLanguageCode" style="display: inline-block;width:100%;"></select>
-        <br/> -->
+    <body class="settings-page">
+      <main class="settings-scroll">
+       <div class="settings-shell">
+        <header class="settings-intro">
+            <h1>Google Services</h1>
+            <p>Configure the Google services you use with Homey.</p>
+        </header>
 
-        <h2>Google Cloud Default Voice</h2>
-        <select id="defaultCloudVoice" style="display: inline-block;width:100%;"></select>
-        <br/>
+        <section class="settings-card usage-guide" aria-labelledby="usageHeading">
+          <h2 class="card-heading" id="usageHeading">Free usage &amp; billing</h2>
+          <div class="card-body">
+            <p>These are Google's published allowances, not a balance or a spending limit.
+                Your region, billing plan, and usage outside Homey can affect what you pay.</p>
+            <details class="setup-guide">
+              <summary>View allowances by service</summary>
+              <dl>
+                <dt>Google TTS (without Cloud)</dt>
+                <dd>No API key or Google Cloud billing setup. The app allows up to <strong>200 characters per message</strong>.
+                    This uses an unofficial endpoint with no guaranteed usage allowance.</dd>
 
-        <h2>Google Cloud Project (for Translate)</h2>
-        <input type="text" id="cloudProject" style="display: inline-block;width:100%;" placeholder="ProjectID" />
-        <div style="display: inline-block;width:100%;">Enter the <strong>Project ID</strong>. Case Sensitive!</div>
-        <br/>
-        <br/><br/>
+                <dt>Cloud Text-to-Speech</dt>
+                <dd>Billing is required. Google's monthly free allowance depends on the voice:
+                    <strong>4 million characters</strong> for Standard or WaveNet, or <strong>1 million characters</strong>
+                    for Neural2, Studio, or Chirp 3: HD. Do not assume every voice has a free tier.
+                    <a href="https://cloud.google.com/text-to-speech/pricing" target="_blank" rel="noopener noreferrer">Text-to-Speech pricing</a></dd>
 
-        <h2>Google API Key (for YouTube)</h2>
-        <input type="text" id="cloudApiKey" style="display: inline-block;width:100%;" placeholder="API Key" />
-        <div style="display: inline-block;width:100%;">Enter the API Key.</div>
-        <br/>
-        <br/>
+                <dt>Cloud Translation</dt>
+                <dd>Billing is required. The default translation model includes the first <strong>500,000 characters per month</strong>
+                    through a monthly credit. Usage above that is billed.
+                    <a href="https://cloud.google.com/products/translate/pricing#advanced-pricing" target="_blank" rel="noopener noreferrer">Cloud Translation pricing</a></dd>
 
-        <h2>Google API Key (for Maps)</h2>
-        <input type="text" id="mapsApiKey" style="display: inline-block;width:100%;" placeholder="API Key" />
-        <div style="display: inline-block;width:100%;">Enter the API Key.</div>
-        <br/>
-        <br/>
+                <dt>YouTube search</dt>
+                <dd>The YouTube Data API normally allows <strong>100 search requests per project per day</strong>
+                    at no charge. The quota resets at midnight Pacific Time. If exhausted, searches can fail until it resets.
+                    <a href="https://developers.google.com/youtube/data/determine_quota_cost" target="_blank" rel="noopener noreferrer">YouTube quota details</a></dd>
 
-        <input type="button" id="save" onclick="save()" value="Save"/>
+                <dt>Google Maps routes, images and address suggestions</dt>
+                <dd>Billing is required. Under global pay-as-you-go pricing, Google's free monthly caps are
+                    <strong>10,000 Essentials route requests</strong>, <strong>5,000 Pro route requests</strong>
+                    (including traffic-aware driving), a separate <strong>10,000 Static Maps image requests</strong>,
+                    and <strong>10,000 Places Autocomplete requests</strong>.
+                    Pairing and one-off Flow address suggestions use per-request autocomplete billing, not unlimited session pricing.
+                    Searches start at 3 characters; pairing waits until you pause typing for half a second.
+                    <strong>Use typed address</strong> lets you select a manual address or coordinates without Places API.
+                    The app does not poll automatically; each device or Flow refresh can incur usage.
+                    <a href="https://developers.google.com/maps/billing-and-pricing/pricing" target="_blank" rel="noopener noreferrer">Google Maps pricing</a></dd>
+              </dl>
+              <p>Check your actual usage in Google Cloud Console. Lower API quotas where available to limit requests;
+                  billing budgets and alerts do not automatically stop charges.</p>
+            </details>
+          </div>
+        </section>
 
-</body>
+        <section class="settings-card" aria-labelledby="cloudHeading">
+          <h2 class="card-heading" id="cloudHeading">Cloud Text-to-Speech &amp; Translate</h2>
+          <div class="card-body">
+            <div class="field">
+                <label for="cloudJSON">Google Cloud service account JSON</label>
+                <textarea class="settings-control hy-nostyle" id="cloudJSON" rows="5" autocomplete="off" spellcheck="false"
+                    placeholder="Paste the service account JSON" aria-describedby="cloudJSONHelp"></textarea>
+                <p class="field-help" id="cloudJSONHelp">Shared by Cloud Text-to-Speech and Translate.</p>
+            </div>
+            <div class="field">
+                <label for="defaultCloudVoice">Default Cloud voice</label>
+                <select class="settings-control hy-nostyle" id="defaultCloudVoice" aria-describedby="voiceStatus"></select>
+                <p class="field-help save-status" id="voiceStatus" role="status"></p>
+            </div>
+            <div class="field">
+                <label for="cloudProject">Google Cloud project ID (Translate only)</label>
+                <input class="settings-control hy-nostyle" type="text" id="cloudProject" placeholder="Project ID" aria-describedby="cloudProjectHelp" />
+                <p class="field-help" id="cloudProjectHelp">Enter the project ID exactly as it appears in Google Cloud Console.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="settings-card" aria-labelledby="youtubeHeading">
+          <h2 class="card-heading" id="youtubeHeading">YouTube</h2>
+          <div class="card-body">
+            <div class="field">
+                <label for="cloudApiKey">YouTube API key</label>
+                <input class="settings-control hy-nostyle" type="password" id="cloudApiKey" autocomplete="off" spellcheck="false" />
+            </div>
+          </div>
+        </section>
+
+        <section class="settings-card" aria-labelledby="mapsHeading">
+          <h2 class="card-heading" id="mapsHeading">Google Maps</h2>
+          <div class="card-body">
+            <p>Maps uses its own API key. It does not use the Translate project ID, Cloud service account JSON, or YouTube key.</p>
+            <details class="setup-guide" open>
+              <summary>Google Cloud requirements</summary>
+              <ol>
+                <li>In Google Cloud Console, select the project that owns your Maps API key and make sure
+                    it is linked to an active billing account.</li>
+                <li>Enable <strong>Routes API</strong> for travel time, distance, and estimated arrival.
+                    Enable <strong>Maps Static API</strong> only if you want route images.
+                    Enable <strong>Places API (New)</strong> for address suggestions during device pairing and in the one-off Flow card;
+                    it is optional if you enter full addresses or coordinates manually.
+                    If Google prompts you to accept the Maps Platform terms for your billing region, do so in the Console.</li>
+                <li>Under <strong>APIs &amp; Services &rarr; Credentials</strong>, use a dedicated Maps API key.
+                    Under <strong>API restrictions</strong>, allow Routes API, Maps Static API for images,
+                    and Places API (New) for pairing and Flow address suggestions.
+                    Under <strong>Application restrictions</strong>, do not use website (HTTP referrer) restrictions:
+                    Homey makes server-side requests. If you restrict by IP address, allow Homey's public outbound IP,
+                    not its local network address.</li>
+              </ol>
+            </details>
+            <div class="field">
+                <label for="mapsApiKey">Maps API key</label>
+                <input class="settings-control hy-nostyle" type="password" id="mapsApiKey" autocomplete="off" spellcheck="false"
+                    aria-describedby="mapsKeyHelp" disabled />
+                <p class="field-help" id="mapsKeyHelp">Keep your existing Maps key if it meets the requirements above.</p>
+            </div>
+            <div class="field">
+                <label class="checkbox-label" for="mapsRouteImages">
+                    <input type="checkbox" class="hy-nostyle" id="mapsRouteImages" aria-describedby="mapsImagesHelp" disabled />
+                    Enable route images
+                </label>
+                <p class="field-help" id="mapsImagesHelp">On by default. Requires Maps Static API to be enabled and allowed for your Maps key.
+                    Disable this option if you do not want route images. After a device or Flow refresh, Homey requests the image
+                    only when it needs to display it, then reuses that image until the next refresh.
+                    There is no automatic polling or app-imposed refresh limit. Image requests can incur charges.
+                    If an image request fails, refresh the route to try again.</p>
+            </div>
+            <details class="setup-guide">
+              <summary>Maps device setup</summary>
+              <p>When pairing a Maps route device, choose an origin and destination using address suggestions
+                or select <strong>Use typed address</strong> for a manual address or <strong>latitude, longitude</strong>.
+                This option stays available if Google suggestions cannot be loaded.
+                Select a travel mode and whether to show a route image before adding the device.
+                These options remain editable in device settings; selected Google locations are saved as
+                <strong>place_id:</strong> followed by a place ID, which you can replace with an address or coordinates.
+                Press <strong>Refresh route</strong>
+                on the device or run the saved-route refresh Flow action. The app does not poll in the background.</p>
+              <p>To view an image, leave <strong>Enable route images</strong> here and <strong>Show route image</strong>
+                on the device enabled (both are on by default). Refresh the saved route, then open the device's camera image.</p>
+            </details>
+          </div>
+        </section>
+       </div>
+      </main>
+      <footer class="settings-actions">
+        <p class="save-status" id="settingsStatus" role="status"></p>
+        <button type="button" class="hy-nostyle settings-save" id="save" disabled>Save settings</button>
+      </footer>
+    </body>
 </html>
 
 
