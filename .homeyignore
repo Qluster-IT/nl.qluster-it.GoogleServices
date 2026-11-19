@@ -1,5 +1,5 @@
 test/
-tools/airplay/
+tools/
 .github/
 .vscode/
 AGENTS.md

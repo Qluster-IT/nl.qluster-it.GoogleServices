@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "main": "app.js",
   "scripts": {
-    "test": "node --test"
+    "test": "node --test",
+    "postinstall": "node tools/prune-dependencies.js"
   },
   "devDependencies": {
     "@tsconfig/node12": "^1.0.11",
