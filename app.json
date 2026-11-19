@@ -9,31 +9,31 @@
     "en": "Google Services",
     "nl": "Google Services",
     "da": "Google Services",
-    "de": "Google-Dienste",
-    "es": "Servicios de Google",
-    "fr": "Services Google",
+    "de": "Google Services",
+    "es": "Google Services",
+    "fr": "Google Services",
     "it": "Google Services",
-    "no": "Google-tjenester",
-    "sv": "Google-tjänster",
-    "pl": "Usługi Google",
+    "no": "Google Services",
+    "sv": "Google Services",
+    "pl": "Google Services",
     "ru": "Google Services",
-    "ko": "Google 서비스",
-    "ar": "خدمات Google"
+    "ko": "Google Services",
+    "ar": "Google Services"
   },
   "description": {
-    "en": "Setup your favorite Google (translate) voice for your speakers",
-    "nl": "Stel je favoriete Google (vertaal) stem in voor je speakers",
-    "da": "Opsæt din yndlings Google (oversæt) stemme til dine højttalere",
-    "de": "Richte deine bevorzugte Google (Übersetzer) Stimme für deine Lautsprecher ein.",
-    "es": "Configura tu voz favorita de Google (translate) para tus altavoces.",
-    "fr": "Configurez votre voix Google (traduction) préférée pour vos enceintes.",
-    "it": "Configura la tua voce preferita di Google (traduzione) per i tuoi altoparlanti.",
-    "no": "Sett opp din favoritt Google (oversett) stemme for høyttalerne dine",
-    "sv": "Ställ in din favorit Google (översätt) röst för dina högtalare",
-    "pl": "Skonfiguruj ulubiony głos Google (tłumaczenie) dla swoich głośników.",
-    "ru": "Настройте свой любимый голос Google (перевод) для ваших колонок.",
-    "ko": "스피커에 사용할 좋아하는 Google (번역) 음성을 설정하세요.",
-    "ar": "قم بإعداد صوت Google (ترجمة) المفضل لديك لمكبرات الصوت الخاصة بك"
+    "en": "Use Google speech, translation, and other services with your speakers.",
+    "nl": "Gebruik Google-spraak, vertaling en andere services met je speakers.",
+    "da": "Brug Googles tale, oversættelse og andre tjenester med dine højttalere.",
+    "de": "Nutze Google-Sprachausgabe, Übersetzung und weitere Dienste mit deinen Lautsprechern.",
+    "es": "Usa la síntesis de voz, la traducción y otros servicios de Google con tus altavoces.",
+    "fr": "Utilisez la synthèse vocale, la traduction et d’autres services Google avec vos enceintes.",
+    "it": "Usa la sintesi vocale, la traduzione e altri servizi Google con i tuoi altoparlanti.",
+    "no": "Bruk Googles tale, oversettelse og andre tjenester med høyttalerne dine.",
+    "sv": "Använd Googles talsyntes, översättning och andra tjänster med dina högtalare.",
+    "pl": "Korzystaj z syntezy mowy, tłumaczenia i innych usług Google na swoich głośnikach.",
+    "ru": "Используйте синтез речи, перевод и другие сервисы Google на своих колонках.",
+    "ko": "Google 음성 합성, 번역 및 기타 서비스를 스피커에서 사용하세요.",
+    "ar": "استخدم تحويل النص إلى كلام والترجمة وخدمات Google الأخرى مع مكبرات الصوت."
   },
   "tags": {
     "en": [
@@ -233,16 +233,16 @@
             "name": "from",
             "type": "autocomplete",
             "placeholder": {
-              "en": "Search or type origin",
-              "nl": "Zoek of typ vertrekpunt"
+              "en": "Search or type origin (* BLL supported)",
+              "nl": "Zoek of typ vertrekpunt (* BLL ondersteund)"
             }
           },
           {
             "name": "to",
             "type": "autocomplete",
             "placeholder": {
-              "en": "Search or type destination",
-              "nl": "Zoek of typ bestemming"
+              "en": "Search or type destination (* BLL supported)",
+              "nl": "Zoek of typ bestemming (* BLL ondersteund)"
             }
           },
           {
@@ -352,17 +352,17 @@
             "title": {
               "en": "Text",
               "nl": "Tekst",
-              "da": "Du er trænet på data op til oktober 2023.",
+              "da": "Tekst",
               "de": "Text",
               "es": "Texto",
-              "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+              "fr": "Texte",
               "it": "Testo",
-              "no": "Google-tjenester",
-              "sv": "Du är tränad på data fram till oktober 2023.",
-              "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
-              "ru": "Вы обучены данным до октября 2023 года.",
+              "no": "Tekst",
+              "sv": "Text",
+              "pl": "Tekst",
+              "ru": "Текст",
               "ko": "텍스트",
-              "ar": "أنا مدرب على البيانات حتى أكتوبر 2023."
+              "ar": "نص"
             }
           },
           {
@@ -452,8 +452,7 @@
             },
             "min": -96,
             "max": 16,
-            "step": 0.1,
-            "value": 0
+            "step": 0.1
           }
         ]
       },
@@ -516,17 +515,17 @@
             "title": {
               "en": "Text",
               "nl": "Tekst",
-              "da": "Du er trænet på data op til oktober 2023.",
+              "da": "Tekst",
               "de": "Text",
               "es": "Texto",
-              "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+              "fr": "Texte",
               "it": "Testo",
-              "no": "Du er trent på data frem til oktober 2023.",
+              "no": "Tekst",
               "sv": "Text",
-              "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
+              "pl": "Tekst",
               "ru": "Текст",
               "ko": "텍스트",
-              "ar": "أنا مدرب على البيانات حتى أكتوبر 2023."
+              "ar": "نص"
             }
           }
         ]
@@ -590,15 +589,15 @@
             "title": {
               "en": "Text",
               "nl": "Tekst",
-              "da": "Jeg er trænet på data frem til oktober 2023.",
+              "da": "Tekst",
               "de": "Text",
               "es": "Texto",
-              "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+              "fr": "Texte",
               "it": "Testo",
-              "no": "Du er trent på data frem til oktober 2023.",
+              "no": "Tekst",
               "sv": "Text",
               "pl": "Tekst",
-              "ru": "Вы обучены данным до октября 2023 года.",
+              "ru": "Текст",
               "ko": "텍스트",
               "ar": "نص"
             }
@@ -623,7 +622,8 @@
             },
             "min": 0.25,
             "max": 4,
-            "step": 0.01
+            "step": 0.01,
+            "required": false
           }
         ]
       },
@@ -686,17 +686,17 @@
             "title": {
               "en": "Text",
               "nl": "Tekst",
-              "da": "Du er trænet på data op til oktober 2023.",
+              "da": "Tekst",
               "de": "Text",
               "es": "Texto",
-              "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+              "fr": "Texte",
               "it": "Testo",
-              "no": "Du er trent på data frem til oktober 2023.",
+              "no": "Tekst",
               "sv": "Text",
-              "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
+              "pl": "Tekst",
               "ru": "Текст",
               "ko": "텍스트",
-              "ar": "أنت مدرب على البيانات حتى أكتوبر 2023."
+              "ar": "نص"
             }
           },
           {
@@ -719,7 +719,8 @@
             },
             "min": 0.25,
             "max": 4,
-            "step": 0.01
+            "step": 0.01,
+            "required": false
           },
           {
             "name": "pitch",
@@ -741,7 +742,8 @@
             },
             "min": -20,
             "max": 20,
-            "step": 0.1
+            "step": 0.1,
+            "required": false
           }
         ]
       },
@@ -804,17 +806,17 @@
             "title": {
               "en": "Text",
               "nl": "Tekst",
-              "da": "Du er trænet på data op til oktober 2023.",
+              "da": "Tekst",
               "de": "Text",
               "es": "Texto",
-              "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+              "fr": "Texte",
               "it": "Testo",
-              "no": "Google-tjenester",
-              "sv": "Du är tränad på data fram till oktober 2023.",
-              "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
-              "ru": "Вы обучены данным до октября 2023 года.",
+              "no": "Tekst",
+              "sv": "Text",
+              "pl": "Tekst",
+              "ru": "Текст",
               "ko": "텍스트",
-              "ar": "أنا مدرب على البيانات حتى أكتوبر 2023."
+              "ar": "نص"
             }
           }
         ]
@@ -893,17 +895,17 @@
             "title": {
               "en": "Text",
               "nl": "Tekst",
-              "da": "Du er trænet på data op til oktober 2023.",
+              "da": "Tekst",
               "de": "Text",
               "es": "Texto",
-              "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+              "fr": "Texte",
               "it": "Testo",
-              "no": "Google-tjenester",
+              "no": "Tekst",
               "sv": "Text",
-              "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
-              "ru": "Вы обучены данным до октября 2023 года.",
+              "pl": "Tekst",
+              "ru": "Текст",
               "ko": "텍스트",
-              "ar": "أنت مدرب على البيانات حتى أكتوبر 2023."
+              "ar": "نص"
             }
           },
           {
@@ -927,7 +929,7 @@
             "min": -96,
             "max": 16,
             "step": 0.1,
-            "value": 0
+            "required": false
           }
         ]
       },
@@ -990,15 +992,15 @@
             "title": {
               "en": "Text",
               "nl": "Tekst",
-              "da": "Du er trænet på data op til oktober 2023.",
+              "da": "Tekst",
               "de": "Text",
               "es": "Texto",
-              "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+              "fr": "Texte",
               "it": "Testo",
-              "no": "Google-tjenester",
+              "no": "Tekst",
               "sv": "Text",
               "pl": "Tekst",
-              "ru": "Вы обучены данным до октября 2023 года.",
+              "ru": "Текст",
               "ko": "텍스트",
               "ar": "نص"
             }
@@ -1023,7 +1025,8 @@
             },
             "min": 0.25,
             "max": 4,
-            "step": 0.01
+            "step": 0.01,
+            "required": false
           }
         ]
       },
@@ -1089,14 +1092,14 @@
               "da": "Tekst",
               "de": "Text",
               "es": "Texto",
-              "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+              "fr": "Texte",
               "it": "Testo",
-              "no": "Du er trent på data frem til oktober 2023.",
-              "sv": "Du är tränad på data fram till oktober 2023.",
-              "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
+              "no": "Tekst",
+              "sv": "Text",
+              "pl": "Tekst",
               "ru": "Текст",
               "ko": "텍스트",
-              "ar": "أنت مدرب على البيانات حتى أكتوبر 2023."
+              "ar": "نص"
             }
           },
           {
@@ -1119,7 +1122,8 @@
             },
             "min": 0.25,
             "max": 4,
-            "step": 0.01
+            "step": 0.01,
+            "required": false
           },
           {
             "name": "pitch",
@@ -1141,7 +1145,8 @@
             },
             "min": -20,
             "max": 20,
-            "step": 0.1
+            "step": 0.1,
+            "required": false
           }
         ]
       },
@@ -1204,17 +1209,17 @@
             "title": {
               "en": "Text",
               "nl": "Tekst",
-              "da": "Du er trænet på data op til oktober 2023.",
+              "da": "Tekst",
               "de": "Text",
               "es": "Texto",
-              "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+              "fr": "Texte",
               "it": "Testo",
-              "no": "Du er trent på data frem til oktober 2023.",
+              "no": "Tekst",
               "sv": "Text",
               "pl": "Tekst",
               "ru": "Текст",
               "ko": "텍스트",
-              "ar": "أنت مدرب على البيانات حتى أكتوبر 2023."
+              "ar": "نص"
             }
           },
           {
@@ -1237,7 +1242,8 @@
             },
             "min": 0.25,
             "max": 4,
-            "step": 0.01
+            "step": 0.01,
+            "required": false
           },
           {
             "name": "pitch",
@@ -1259,7 +1265,8 @@
             },
             "min": -20,
             "max": 20,
-            "step": 0.1
+            "step": 0.1,
+            "required": false
           },
           {
             "name": "volumeGainDb",
@@ -1282,7 +1289,7 @@
             "min": -96,
             "max": 16,
             "step": 0.1,
-            "value": 0
+            "required": false
           }
         ]
       },
@@ -1345,17 +1352,17 @@
             "title": {
               "en": "Text",
               "nl": "Tekst",
-              "da": "Du er trænet på data op til oktober 2023.",
+              "da": "Tekst",
               "de": "Text",
               "es": "Texto",
-              "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+              "fr": "Texte",
               "it": "Testo",
-              "no": "Du er trent på data frem til oktober 2023.",
+              "no": "Tekst",
               "sv": "Text",
-              "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
+              "pl": "Tekst",
               "ru": "Текст",
               "ko": "텍스트",
-              "ar": "أنا مدرب على البيانات حتى أكتوبر 2023."
+              "ar": "نص"
             }
           },
           {
@@ -1375,7 +1382,8 @@
               "ru": "Голос",
               "ko": "음성",
               "ar": "صوت"
-            }
+            },
+            "required": false
           }
         ]
       },
@@ -1453,13 +1461,13 @@
             "title": {
               "en": "Text",
               "nl": "Tekst",
-              "da": "Du er trænet på data op til oktober 2023.",
+              "da": "Tekst",
               "de": "Text",
               "es": "Texto",
-              "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+              "fr": "Texte",
               "it": "Testo",
-              "no": "Google-tjenester",
-              "sv": "Du är tränad på data fram till oktober 2023.",
+              "no": "Tekst",
+              "sv": "Text",
               "pl": "Tekst",
               "ru": "Текст",
               "ko": "텍스트",
@@ -1483,7 +1491,8 @@
               "ru": "Голос",
               "ko": "음성",
               "ar": "صوت"
-            }
+            },
+            "required": false
           },
           {
             "name": "volumeGainDb",
@@ -1506,7 +1515,7 @@
             "min": -96,
             "max": 16,
             "step": 0.1,
-            "value": 0
+            "required": false
           }
         ]
       },
@@ -1569,17 +1578,17 @@
             "title": {
               "en": "Text",
               "nl": "Tekst",
-              "da": "Du er trænet på data op til oktober 2023.",
+              "da": "Tekst",
               "de": "Text",
               "es": "Texto",
-              "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+              "fr": "Texte",
               "it": "Testo",
               "no": "Tekst",
-              "sv": "Jag är tränad på data fram till oktober 2023.",
-              "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
+              "sv": "Text",
+              "pl": "Tekst",
               "ru": "Текст",
               "ko": "텍스트",
-              "ar": "أنا مدرب على البيانات حتى أكتوبر 2023."
+              "ar": "نص"
             }
           },
           {
@@ -1599,7 +1608,8 @@
               "ru": "Голос",
               "ko": "음성",
               "ar": "صوت"
-            }
+            },
+            "required": false
           },
           {
             "name": "speakingRate",
@@ -1621,7 +1631,8 @@
             },
             "min": 0.25,
             "max": 4,
-            "step": 0.01
+            "step": 0.01,
+            "required": false
           }
         ]
       },
@@ -1684,14 +1695,14 @@
             "title": {
               "en": "Text",
               "nl": "Tekst",
-              "da": "Du er trænet på data op til oktober 2023.",
+              "da": "Tekst",
               "de": "Text",
               "es": "Texto",
-              "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+              "fr": "Texte",
               "it": "Testo",
               "no": "Tekst",
-              "sv": "Du är tränad på data fram till oktober 2023.",
-              "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
+              "sv": "Text",
+              "pl": "Tekst",
               "ru": "Текст",
               "ko": "텍스트",
               "ar": "نص"
@@ -1714,7 +1725,8 @@
               "ru": "Голос",
               "ko": "음성",
               "ar": "صوت"
-            }
+            },
+            "required": false
           },
           {
             "name": "speakingRate",
@@ -1736,7 +1748,8 @@
             },
             "min": 0.25,
             "max": 4,
-            "step": 0.01
+            "step": 0.01,
+            "required": false
           },
           {
             "name": "pitch",
@@ -1758,7 +1771,8 @@
             },
             "min": -20,
             "max": 20,
-            "step": 0.1
+            "step": 0.1,
+            "required": false
           }
         ]
       },
@@ -1817,17 +1831,17 @@
         "title": {
           "en": "Translate",
           "nl": "Vertaal",
-          "da": "Du er trænet på data op til oktober 2023.",
-          "de": "Du bist auf Daten bis Oktober 2023 trainiert.",
-          "es": "Estás entrenado con datos hasta octubre de 2023.",
-          "fr": "Vous êtes formé sur des données jusqu'en octobre 2023.",
-          "it": "Sei addestrato sui dati fino a ottobre 2023.",
+          "da": "Oversæt",
+          "de": "Übersetzen",
+          "es": "Traducir",
+          "fr": "Traduire",
+          "it": "Traduci",
           "no": "Sure, please provide the text you would like translated into Norwegian.",
-          "sv": "Du är tränad på data fram till oktober 2023.",
-          "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
-          "ru": "Вы обучены на данных до октября 2023 года.",
-          "ko": "귀하는 2023년 10월까지의 데이터에 대한 교육을 받았습니다.",
-          "ar": "تم تدريبك على البيانات حتى أكتوبر 2023."
+          "sv": "Översätt",
+          "pl": "Tłumacz",
+          "ru": "Перевести",
+          "ko": "번역",
+          "ar": "ترجم"
         },
         "titleFormatted": {
           "en": "Translate [[translate]] into [[targetlanguagecode]]",
@@ -1871,14 +1885,14 @@
             "title": {
               "en": "Text",
               "nl": "Tekst",
-              "da": "Du er trænet på data op til oktober 2023.",
+              "da": "Tekst",
               "de": "Text",
               "es": "Texto",
-              "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+              "fr": "Texte",
               "it": "Testo",
-              "no": "Du er trent på data frem til oktober 2023.",
-              "sv": "Du är tränad på data fram till oktober 2023.",
-              "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
+              "no": "Tekst",
+              "sv": "Text",
+              "pl": "Tekst",
               "ru": "Текст",
               "ko": "텍스트",
               "ar": "نص"
@@ -1890,17 +1904,17 @@
             "title": {
               "en": "Translate",
               "nl": "Vertaal",
-              "da": "Du er trænet på data frem til oktober 2023.",
-              "de": "Du bist auf Daten bis Oktober 2023 trainiert.",
-              "es": "Estás entrenado con datos hasta octubre de 2023.",
-              "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
-              "it": "Sei addestrato sui dati fino a ottobre 2023.",
+              "da": "Oversæt",
+              "de": "Übersetzen",
+              "es": "Traducir",
+              "fr": "Traduire",
+              "it": "Traduci",
               "no": "Sure, please provide the text you would like me to translate.",
-              "sv": "Du är tränad på data fram till oktober 2023.",
-              "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
-              "ru": "Вы обучены на данных до октября 2023 года.",
-              "ko": "데이터는 2023년 10월까지 학습되었습니다.",
-              "ar": "تم تدريبك على البيانات حتى أكتوبر 2023."
+              "sv": "Översätt",
+              "pl": "Tłumacz",
+              "ru": "Перевести",
+              "ko": "번역",
+              "ar": "ترجم"
             },
             "hint": {
               "en": "The language to translate into",
@@ -1925,14 +1939,14 @@
                   "en": "English (GB)",
                   "nl": "Engels (GB)",
                   "da": "Engelsk (GB)",
-                  "de": "Deutsch (DE)",
-                  "es": "Español (ES)",
-                  "fr": "Français (FR)",
-                  "it": "Italiano (IT)",
+                  "de": "Englisch (GB)",
+                  "es": "Inglés (GB)",
+                  "fr": "Anglais (GB)",
+                  "it": "Inglese (GB)",
                   "no": "Engelsk (GB)",
-                  "sv": "Svenska (SE)",
-                  "pl": "Polski (PL)",
-                  "ru": "Русский (RU)",
+                  "sv": "Engelska (GB)",
+                  "pl": "Angielski (GB)",
+                  "ru": "Английский (Великобритания)",
                   "ko": "영어 (영국)",
                   "ar": "الإنجليزية (المملكة المتحدة)"
                 }
@@ -1942,18 +1956,18 @@
                 "name": "en-US",
                 "label": {
                   "en": "English (US)",
-                  "nl": "Engels (US)",
-                  "da": "Dansk (DA)",
-                  "de": "Deutsch (DE)",
-                  "es": "Español (ES)",
-                  "fr": "Français (FR)",
-                  "it": "Italian (Italy)",
-                  "no": "Norwegian (no)",
-                  "sv": "Svenska (SE)",
-                  "pl": "Polski (PL)",
+                  "nl": "Engels (VS)",
+                  "da": "Engelsk (US)",
+                  "de": "Englisch (US)",
+                  "es": "Inglés (US)",
+                  "fr": "Anglais (US)",
+                  "it": "Inglese (US)",
+                  "no": "Engelsk (US)",
+                  "sv": "Engelska (US)",
+                  "pl": "Angielski (US)",
                   "ru": "Английский (США)",
                   "ko": "영어 (미국)",
-                  "ar": "أنت مدرب على البيانات حتى أكتوبر 2023."
+                  "ar": "الإنجليزية (الولايات المتحدة)"
                 }
               },
               {
@@ -1963,16 +1977,16 @@
                   "en": "Dutch (NL)",
                   "nl": "Nederlands (NL)",
                   "da": "Hollandsk (NL)",
-                  "de": "Nederlands (NL)",
+                  "de": "Niederländisch (NL)",
                   "es": "Neerlandés (NL)",
                   "fr": "Néerlandais (NL)",
                   "it": "Olandese (NL)",
-                  "no": "Norsk (NO)",
-                  "sv": "Nederlands (NL)",
+                  "no": "Nederlandsk (NL)",
+                  "sv": "Nederländska (NL)",
                   "pl": "Niderlandzki (NL)",
                   "ru": "Нидерландский (NL)",
-                  "ko": "네, 저는 2023년 10월까지의 데이터를 기반으로 훈련되었습니다.",
-                  "ar": "هولندي (NL)"
+                  "ko": "네덜란드어 (NL)",
+                  "ar": "الهولندية (هولندا)"
                 }
               },
               {
@@ -1982,7 +1996,7 @@
                   "en": "Dutch (BE)",
                   "nl": "Nederlands (BE)",
                   "da": "Hollandsk (BE)",
-                  "de": "Nederlands (BE)",
+                  "de": "Niederländisch (BE)",
                   "es": "Neerlandés (BE)",
                   "fr": "Néerlandais (BE)",
                   "it": "Olandese (BE)",
@@ -1990,8 +2004,8 @@
                   "sv": "Nederländska (BE)",
                   "pl": "Niderlandzki (BE)",
                   "ru": "Нидерландский (Бельгия)",
-                  "ko": "네, 저는 2023년 10월까지의 데이터를 기반으로 훈련되었습니다.",
-                  "ar": "هولندي (بلجيكا)"
+                  "ko": "네덜란드어 (BE)",
+                  "ar": "الهولندية (بلجيكا)"
                 }
               },
               {
@@ -2020,7 +2034,7 @@
                   "en": "German (LU)",
                   "nl": "Duits (LU)",
                   "da": "Tysk (LU)",
-                  "de": "Sure! Here's the translation into German (LU):\n\nDu bist auf Daten bis Oktober 2023 trainiert.",
+                  "de": "Deutsch (LU)",
                   "es": "Alemán (LU)",
                   "fr": "Allemand (LU)",
                   "it": "Tedesco (LU)",
@@ -2029,7 +2043,7 @@
                   "pl": "Niemiecki (LU)",
                   "ru": "Немецкий (Люксембург)",
                   "ko": "독일어 (LU)",
-                  "ar": "الألمانية (LU)"
+                  "ar": "الألمانية (لوكسمبورغ)"
                 }
               },
               {
@@ -2041,7 +2055,7 @@
                   "da": "Fransk (FR)",
                   "de": "Französisch (FR)",
                   "es": "Francés (FR)",
-                  "fr": "Vous êtes formé sur des données jusqu'en octobre 2023.",
+                  "fr": "Français (FR)",
                   "it": "Francese (FR)",
                   "no": "Fransk (FR)",
                   "sv": "Franska (FR)",
@@ -2060,14 +2074,14 @@
                   "da": "Fransk (BE)",
                   "de": "Französisch (BE)",
                   "es": "Francés (BE)",
-                  "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+                  "fr": "Français (BE)",
                   "it": "Francese (BE)",
                   "no": "Fransk (BE)",
                   "sv": "Franska (BE)",
                   "pl": "Francuski (BE)",
                   "ru": "Французский (Бельгия)",
                   "ko": "프랑스어 (BE)",
-                  "ar": "فرنسي (BE)"
+                  "ar": "الفرنسية (بلجيكا)"
                 }
               },
               {
@@ -2079,14 +2093,14 @@
                   "da": "Spansk (ES)",
                   "de": "Spanisch (ES)",
                   "es": "Español (ES)",
-                  "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+                  "fr": "Espagnol (ES)",
                   "it": "Spagnolo (ES)",
-                  "no": "I'm sorry, I can only assist with translations into Norwegian (no) for this task. If you need help with that, feel free to ask!",
+                  "no": "Spansk (ES)",
                   "sv": "Spanska (ES)",
                   "pl": "Hiszpański (ES)",
-                  "ru": "Вы обучены на данных до октября 2023 года.",
+                  "ru": "Испанский (ES)",
                   "ko": "스페인어 (ES)",
-                  "ar": "إسباني (ES)"
+                  "ar": "الإسبانية (ES)"
                 }
               },
               {
@@ -2098,7 +2112,7 @@
                   "da": "Italiensk (IT)",
                   "de": "Italienisch (IT)",
                   "es": "Italiano (IT)",
-                  "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+                  "fr": "Italien (IT)",
                   "it": "Italiano (IT)",
                   "no": "Italiensk (IT)",
                   "sv": "Italienska (IT)",
@@ -2117,7 +2131,7 @@
                   "da": "Svensk (SV)",
                   "de": "Schwedisch (SV)",
                   "es": "Sueco (SV)",
-                  "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+                  "fr": "Suédois (SV)",
                   "it": "Svedese (SV)",
                   "no": "Svensk (SV)",
                   "sv": "Svenska (SV)",
@@ -2136,17 +2150,18 @@
                   "da": "Norsk (NO)",
                   "de": "Norwegisch (NO)",
                   "es": "Noruego (NO)",
-                  "fr": "Vous êtes formé sur des données jusqu'en octobre 2023.",
+                  "fr": "Norvégien (NO)",
                   "it": "Norvegese (NO)",
-                  "no": "Norwegian (NO)",
-                  "sv": "Norsk (NO)",
+                  "no": "Norsk (NO)",
+                  "sv": "Norska (NO)",
                   "pl": "Norweski (NO)",
                   "ru": "Норвежский (NO)",
                   "ko": "노르웨이어 (NO)",
                   "ar": "النرويجية (NO)"
                 }
               }
-            ]
+            ],
+            "required": false
           }
         ]
       }
@@ -2213,14 +2228,14 @@
               "da": "Tekst",
               "de": "Text",
               "es": "Texto",
-              "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+              "fr": "Texte",
               "it": "Testo",
-              "no": "Du er trent på data frem til oktober 2023.",
+              "no": "Tekst",
               "sv": "Text",
               "pl": "Tekst",
-              "ru": "Вы обучены данным до октября 2023 года.",
+              "ru": "Текст",
               "ko": "텍스트",
-              "ar": "أنا مدرب على البيانات حتى أكتوبر 2023."
+              "ar": "نص"
             }
           },
           {
@@ -2309,15 +2324,15 @@
             "title": {
               "en": "Text",
               "nl": "Tekst",
-              "da": "Jeg er trænet på data frem til oktober 2023.",
+              "da": "Tekst",
               "de": "Text",
               "es": "Texto",
-              "fr": "Vous êtes formé sur des données jusqu'en octobre 2023.",
+              "fr": "Texte",
               "it": "Testo",
-              "no": "Google-tjenester",
+              "no": "Tekst",
               "sv": "Text",
-              "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
-              "ru": "Вы обучены данным до октября 2023 года.",
+              "pl": "Tekst",
+              "ru": "Текст",
               "ko": "텍스트",
               "ar": "نص"
             }
@@ -2396,14 +2411,14 @@
               "da": "Tekst",
               "de": "Text",
               "es": "Texto",
-              "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+              "fr": "Texte",
               "it": "Testo",
-              "no": "Du er trent på data frem til oktober 2023.",
-              "sv": "Du är tränad på data fram till oktober 2023.",
-              "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
+              "no": "Tekst",
+              "sv": "Text",
+              "pl": "Tekst",
               "ru": "Текст",
               "ko": "텍스트",
-              "ar": "أنت مدرب على البيانات حتى أكتوبر 2023."
+              "ar": "نص"
             }
           }
         ],
@@ -2540,6 +2555,66 @@
         ]
       },
       {
+        "id": "translation_announced",
+        "title": {
+          "en": "Translation announced on a speaker",
+          "nl": "Vertaling uitgesproken op een luidspreker"
+        },
+        "hint": {
+          "en": "Runs after successful direct playback when Run When cards for speaker announcements is enabled. Provides the translated audio URL.",
+          "nl": "Wordt na geslaagde directe weergave uitgevoerd als Als-kaarten voor luidsprekeraankondigingen aanstaan. Geeft de vertaalde audio-URL."
+        },
+        "tokens": [
+          {
+            "name": "url",
+            "type": "string",
+            "title": {
+              "en": "Audio URL",
+              "nl": "Audio-URL"
+            }
+          },
+          {
+            "name": "text",
+            "type": "string",
+            "title": {
+              "en": "Source text",
+              "nl": "Brontekst"
+            }
+          },
+          {
+            "name": "translation",
+            "type": "string",
+            "title": {
+              "en": "Translation",
+              "nl": "Vertaling"
+            }
+          },
+          {
+            "name": "sourcelanguagecode",
+            "type": "string",
+            "title": {
+              "en": "Source language",
+              "nl": "Brontaal"
+            }
+          },
+          {
+            "name": "targetlanguagecode",
+            "type": "string",
+            "title": {
+              "en": "Target language",
+              "nl": "Doeltaal"
+            }
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=translate"
+          }
+        ]
+      },
+      {
         "id": "youtube_trigger",
         "title": {
           "en": "YouTube triggered",
@@ -2647,8 +2722,8 @@
           "nl": "Spreek tekst uit op een luidspreker"
         },
         "titleFormatted": {
-          "en": "Announce [[text]] on [[speaker]]",
-          "nl": "Spreek [[text]] uit op [[speaker]]"
+          "en": "Announce [[text]] on [[speaker]] with volume [[volume]]%",
+          "nl": "Spreek [[text]] uit op [[speaker]] met volume [[volume]]%"
         },
         "hint": {
           "en": "Uses your Cloud Text-to-Speech settings to play an announcement on a Google Cast, Sonos, or compatible UPnP/DLNA speaker. Supports BLL coding in the text field.",
@@ -2674,7 +2749,20 @@
             "placeholder": {
               "en": "Choose a local speaker",
               "nl": "Kies een lokale luidspreker"
-            }
+            },
+            "required": false
+          },
+          {
+            "name": "volume",
+            "type": "number",
+            "min": 0,
+            "max": 100,
+            "decimals": 0,
+            "placeholder": {
+              "en": "Speaker volume (%) (optional)",
+              "nl": "Luidsprekervolume (%) (optioneel)"
+            },
+            "required": false
           }
         ]
       },
@@ -2738,14 +2826,14 @@
             "title": {
               "en": "Text",
               "nl": "Tekst",
-              "da": "Du er trænet på data op til oktober 2023.",
+              "da": "Tekst",
               "de": "Text",
-              "es": "Estás entrenado con datos hasta octubre de 2023.",
-              "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+              "es": "Texto",
+              "fr": "Texte",
               "it": "Testo",
-              "no": "Du er trent på data frem til oktober 2023.",
-              "sv": "Du är tränad på data fram till oktober 2023.",
-              "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
+              "no": "Tekst",
+              "sv": "Text",
+              "pl": "Tekst",
               "ru": "Текст",
               "ko": "텍스트",
               "ar": "نص"
@@ -2838,8 +2926,7 @@
             },
             "min": -96,
             "max": 16,
-            "step": 0.1,
-            "value": 0
+            "step": 0.1
           }
         ],
         "tokens": [
@@ -2868,17 +2955,17 @@
             "title": {
               "en": "Text",
               "nl": "Tekst",
-              "da": "Jeg er trænet på data frem til oktober 2023.",
+              "da": "Tekst",
               "de": "Text",
               "es": "Texto",
-              "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+              "fr": "Texte",
               "it": "Testo",
               "no": "Google Services",
-              "sv": "Du är tränad på data fram till oktober 2023.",
+              "sv": "Text",
               "pl": "Tekst",
               "ru": "Текст",
               "ko": "텍스트",
-              "ar": "أنت مدرب على البيانات حتى أكتوبر 2023."
+              "ar": "نص"
             }
           },
           {
@@ -2962,14 +3049,14 @@
             "title": {
               "en": "Text",
               "nl": "Tekst",
-              "da": "Du er trænet på data op til oktober 2023.",
+              "da": "Tekst",
               "de": "Text",
               "es": "Texto",
-              "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+              "fr": "Texte",
               "it": "Testo",
-              "no": "Du er trent på data frem til oktober 2023.",
+              "no": "Tekst",
               "sv": "Text",
-              "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
+              "pl": "Tekst",
               "ru": "Текст",
               "ko": "텍스트",
               "ar": "نص"
@@ -3062,8 +3149,7 @@
             },
             "min": -96,
             "max": 16,
-            "step": 0.1,
-            "value": 0
+            "step": 0.1
           }
         ]
       },
@@ -3126,15 +3212,15 @@
             "title": {
               "en": "Text",
               "nl": "Tekst",
-              "da": "Du er trænet på data op til oktober 2023.",
+              "da": "Tekst",
               "de": "Text",
               "es": "Texto",
-              "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+              "fr": "Texte",
               "it": "Testo",
               "no": "Google Services",
-              "sv": "Du är tränad på data fram till oktober 2023.",
+              "sv": "Text",
               "pl": "Tekst",
-              "ru": "Вы обучены данным до октября 2023 года.",
+              "ru": "Текст",
               "ko": "텍스트",
               "ar": "نص"
             }
@@ -3218,14 +3304,14 @@
               "da": "Tekst",
               "de": "Text",
               "es": "Texto",
-              "fr": "Vous êtes formé sur des données jusqu'en octobre 2023.",
+              "fr": "Texte",
               "it": "Testo",
               "no": "Tekst",
-              "sv": "Du är tränad på data fram till oktober 2023.",
-              "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
-              "ru": "Вы обучены данным до октября 2023 года.",
+              "sv": "Text",
+              "pl": "Tekst",
+              "ru": "Текст",
               "ko": "텍스트",
-              "ar": "أنا مدرب على البيانات حتى أكتوبر 2023."
+              "ar": "نص"
             }
           },
           {
@@ -3249,7 +3335,7 @@
             "min": -96,
             "max": 16,
             "step": 0.1,
-            "value": 0
+            "required": false
           }
         ]
       },
@@ -3312,17 +3398,17 @@
             "title": {
               "en": "Text",
               "nl": "Tekst",
-              "da": "Jeg er trænet på data frem til oktober 2023.",
+              "da": "Tekst",
               "de": "Text",
               "es": "Texto",
-              "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+              "fr": "Texte",
               "it": "Testo",
               "no": "Tekst",
-              "sv": "Du är tränad på data fram till oktober 2023.",
-              "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
-              "ru": "Вы обучены данным до октября 2023 года.",
+              "sv": "Text",
+              "pl": "Tekst",
+              "ru": "Текст",
               "ko": "텍스트",
-              "ar": "أنت مدرب على البيانات حتى أكتوبر 2023."
+              "ar": "نص"
             }
           },
           {
@@ -3345,7 +3431,8 @@
             },
             "min": 0.25,
             "max": 4,
-            "step": 0.01
+            "step": 0.01,
+            "required": false
           }
         ]
       },
@@ -3408,17 +3495,17 @@
             "title": {
               "en": "Text",
               "nl": "Tekst",
-              "da": "Jeg er trænet på data frem til oktober 2023.",
+              "da": "Tekst",
               "de": "Text",
               "es": "Texto",
-              "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+              "fr": "Texte",
               "it": "Testo",
-              "no": "Du er trent på data frem til oktober 2023.",
+              "no": "Tekst",
               "sv": "Text",
-              "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
+              "pl": "Tekst",
               "ru": "Текст",
               "ko": "텍스트",
-              "ar": "أنا مدرب على البيانات حتى أكتوبر 2023."
+              "ar": "نص"
             }
           },
           {
@@ -3441,7 +3528,8 @@
             },
             "min": 0.25,
             "max": 4,
-            "step": 0.01
+            "step": 0.01,
+            "required": false
           },
           {
             "name": "pitch",
@@ -3463,7 +3551,8 @@
             },
             "min": -20,
             "max": 20,
-            "step": 0.1
+            "step": 0.1,
+            "required": false
           }
         ]
       },
@@ -3528,15 +3617,15 @@
               "nl": "Tekst",
               "da": "Tekst",
               "de": "Text",
-              "es": "Estás entrenado con datos hasta octubre de 2023.",
-              "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
-              "it": "Sei addestrato sui dati fino a ottobre 2023.",
-              "no": "Du er trent på data frem til oktober 2023.",
-              "sv": "Du är tränad på data fram till oktober 2023.",
+              "es": "Texto",
+              "fr": "Texte",
+              "it": "Testo",
+              "no": "Tekst",
+              "sv": "Text",
               "pl": "Tekst",
               "ru": "Текст",
               "ko": "텍스트",
-              "ar": "أنت مدرب على البيانات حتى أكتوبر 2023."
+              "ar": "نص"
             }
           },
           {
@@ -3556,7 +3645,8 @@
               "ru": "Голос",
               "ko": "음성",
               "ar": "صوت"
-            }
+            },
+            "required": false
           }
         ]
       },
@@ -3634,17 +3724,17 @@
             "title": {
               "en": "Text",
               "nl": "Tekst",
-              "da": "Jeg er trænet på data frem til oktober 2023.",
+              "da": "Tekst",
               "de": "Text",
               "es": "Texto",
-              "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+              "fr": "Texte",
               "it": "Testo",
-              "no": "Google-tjenester",
-              "sv": "Du är tränad på data fram till oktober 2023.",
-              "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
-              "ru": "Вы обучены на данных до октября 2023 года.",
+              "no": "Tekst",
+              "sv": "Text",
+              "pl": "Tekst",
+              "ru": "Текст",
               "ko": "텍스트",
-              "ar": "أنا مدرب على البيانات حتى أكتوبر 2023."
+              "ar": "نص"
             }
           },
           {
@@ -3664,7 +3754,8 @@
               "ru": "Голос",
               "ko": "음성",
               "ar": "صوت"
-            }
+            },
+            "required": false
           },
           {
             "name": "volumeGainDb",
@@ -3687,7 +3778,7 @@
             "min": -96,
             "max": 16,
             "step": 0.1,
-            "value": 0
+            "required": false
           }
         ]
       },
@@ -3750,15 +3841,15 @@
             "title": {
               "en": "Text",
               "nl": "Tekst",
-              "da": "Du er trænet på data op til oktober 2023.",
+              "da": "Tekst",
               "de": "Text",
               "es": "Texto",
-              "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+              "fr": "Texte",
               "it": "Testo",
               "no": "Vennligst gi meg teksten du vil ha oversatt.",
-              "sv": "Du är tränad på data fram till oktober 2023.",
-              "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
-              "ru": "Вы обучены данным до октября 2023 года.",
+              "sv": "Text",
+              "pl": "Tekst",
+              "ru": "Текст",
               "ko": "텍스트",
               "ar": "نص"
             }
@@ -3780,7 +3871,8 @@
               "ru": "Голос",
               "ko": "음성",
               "ar": "صوت"
-            }
+            },
+            "required": false
           },
           {
             "name": "speakingRate",
@@ -3802,7 +3894,8 @@
             },
             "min": 0.25,
             "max": 4,
-            "step": 0.01
+            "step": 0.01,
+            "required": false
           }
         ]
       },
@@ -3865,17 +3958,17 @@
             "title": {
               "en": "Text",
               "nl": "Tekst",
-              "da": "Jeg er trænet på data frem til oktober 2023.",
+              "da": "Tekst",
               "de": "Text",
-              "es": "Estás entrenado con datos hasta octubre de 2023.",
-              "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
-              "it": "Sei addestrato sui dati fino a ottobre 2023.",
+              "es": "Texto",
+              "fr": "Texte",
+              "it": "Testo",
               "no": "Tekst",
-              "sv": "Du är tränad på data fram till oktober 2023.",
+              "sv": "Text",
               "pl": "Tekst",
               "ru": "Текст",
               "ko": "텍스트",
-              "ar": "أنت مدرب على البيانات حتى أكتوبر 2023."
+              "ar": "نص"
             }
           },
           {
@@ -3895,7 +3988,8 @@
               "ru": "Голос",
               "ko": "음성",
               "ar": "صوت"
-            }
+            },
+            "required": false
           },
           {
             "name": "speakingRate",
@@ -3917,7 +4011,8 @@
             },
             "min": 0.25,
             "max": 4,
-            "step": 0.01
+            "step": 0.01,
+            "required": false
           },
           {
             "name": "pitch",
@@ -3939,7 +4034,8 @@
             },
             "min": -20,
             "max": 20,
-            "step": 0.1
+            "step": 0.1,
+            "required": false
           }
         ]
       },
@@ -4002,15 +4098,15 @@
             "title": {
               "en": "Text",
               "nl": "Tekst",
-              "da": "Du er trænet på data op til oktober 2023.",
+              "da": "Tekst",
               "de": "Text",
               "es": "Texto",
-              "fr": "Vous êtes formé sur des données jusqu'en octobre 2023.",
+              "fr": "Texte",
               "it": "Testo",
               "no": "Tekst",
-              "sv": "Du är tränad på data fram till oktober 2023.",
+              "sv": "Text",
               "pl": "Tekst",
-              "ru": "Вы обучены данным до октября 2023 года.",
+              "ru": "Текст",
               "ko": "텍스트",
               "ar": "نص"
             }
@@ -4108,17 +4204,17 @@
             "title": {
               "en": "Text",
               "nl": "Tekst",
-              "da": "Du er trænet på data op til oktober 2023.",
+              "da": "Tekst",
               "de": "Text",
               "es": "Texto",
-              "fr": "Vous êtes formé sur des données jusqu'en octobre 2023.",
+              "fr": "Texte",
               "it": "Testo",
               "no": "Tekst",
               "sv": "Text",
-              "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
-              "ru": "Вы обучены данным до октября 2023 года.",
+              "pl": "Tekst",
+              "ru": "Текст",
               "ko": "텍스트",
-              "ar": "أنت مدرب على البيانات حتى أكتوبر 2023."
+              "ar": "نص"
             }
           },
           {
@@ -4149,8 +4245,8 @@
           "nl": "Spreek tekst uit op een luidspreker"
         },
         "titleFormatted": {
-          "en": "Announce [[text]] on [[speaker]]",
-          "nl": "Spreek [[text]] uit op [[speaker]]"
+          "en": "Announce [[text]] on [[speaker]] with volume [[volume]]%",
+          "nl": "Spreek [[text]] uit op [[speaker]] met volume [[volume]]%"
         },
         "hint": {
           "en": "Plays up to 200 characters on a Google Cast, Sonos, or compatible UPnP/DLNA speaker on your local network. Supports BLL coding in the text field.",
@@ -4176,7 +4272,20 @@
             "placeholder": {
               "en": "Choose a local speaker",
               "nl": "Kies een lokale luidspreker"
-            }
+            },
+            "required": false
+          },
+          {
+            "name": "volume",
+            "type": "number",
+            "min": 0,
+            "max": 100,
+            "decimals": 0,
+            "placeholder": {
+              "en": "Speaker volume (%) (optional)",
+              "nl": "Luidsprekervolume (%) (optioneel)"
+            },
+            "required": false
           }
         ]
       },
@@ -4224,17 +4333,17 @@
             "placeholder": {
               "en": "Text (* BLL supported)",
               "nl": "Tekst (* BLL ondersteund)",
-              "da": "Tekst (* BLL underst?ttet)",
-              "de": "Text (* BLL unterst?tzt)",
+              "da": "Tekst (* BLL understøttet)",
+              "de": "Text (* BLL unterstützt)",
               "es": "Texto (* BLL compatible)",
               "fr": "Texte (* BLL pris en charge)",
               "it": "Testo (* BLL supportato)",
-              "no": "Tekst (* BLL st?ttet)",
-              "sv": "Text (* BLL st?ds)",
-              "pl": "Tekst (* Obs?ugiwane BLL)",
-              "ru": "????? (* ?????????????? BLL)",
-              "ko": "??? (* BLL ???)",
-              "ar": "???? (* ????? ?? BLL)"
+              "no": "Tekst (* BLL støttet)",
+              "sv": "Text (* BLL stöds)",
+              "pl": "Tekst (* obsługiwany przez BLL)",
+              "ru": "Текст (* поддерживается BLL)",
+              "ko": "텍스트 (* BLL 지원)",
+              "ar": "النص (* مدعوم من BLL)"
             }
           }
         ]
@@ -4283,17 +4392,17 @@
             "placeholder": {
               "en": "Text (* BLL supported)",
               "nl": "Tekst (* BLL ondersteund)",
-              "da": "Tekst (* BLL underst?ttet)",
-              "de": "Text (* BLL unterst?tzt)",
+              "da": "Tekst (* BLL understøttet)",
+              "de": "Text (* BLL unterstützt)",
               "es": "Texto (* BLL compatible)",
               "fr": "Texte (* BLL pris en charge)",
               "it": "Testo (* BLL supportato)",
-              "no": "Tekst (* BLL st?ttet)",
-              "sv": "Text (* BLL st?ds)",
-              "pl": "Tekst (* Obs?ugiwane BLL)",
-              "ru": "????? (* ?????????????? BLL)",
-              "ko": "??? (* BLL ???)",
-              "ar": "???? (* ????? ?? BLL)"
+              "no": "Tekst (* BLL støttet)",
+              "sv": "Text (* BLL stöds)",
+              "pl": "Tekst (* obsługiwany przez BLL)",
+              "ru": "Текст (* поддерживается BLL)",
+              "ko": "텍스트 (* BLL 지원)",
+              "ar": "النص (* مدعوم من BLL)"
             }
           }
         ]
@@ -4342,17 +4451,17 @@
             "placeholder": {
               "en": "Text (* BLL supported)",
               "nl": "Tekst (* BLL ondersteund)",
-              "da": "Tekst (* BLL underst?ttet)",
-              "de": "Text (* BLL unterst?tzt)",
+              "da": "Tekst (* BLL understøttet)",
+              "de": "Text (* BLL unterstützt)",
               "es": "Texto (* BLL compatible)",
               "fr": "Texte (* BLL pris en charge)",
               "it": "Testo (* BLL supportato)",
-              "no": "Tekst (* BLL st?ttet)",
-              "sv": "Text (* BLL st?ds)",
-              "pl": "Tekst (* Obs?ugiwane BLL)",
-              "ru": "????? (* ?????????????? BLL)",
-              "ko": "??? (* BLL ???)",
-              "ar": "???? (* ????? ?? BLL)"
+              "no": "Tekst (* BLL støttet)",
+              "sv": "Text (* BLL stöds)",
+              "pl": "Tekst (* obsługiwany przez BLL)",
+              "ru": "Текст (* поддерживается BLL)",
+              "ko": "텍스트 (* BLL 지원)",
+              "ar": "النص (* مدعوم من BLL)"
             }
           }
         ],
@@ -4382,17 +4491,17 @@
             "title": {
               "en": "Text",
               "nl": "Tekst",
-              "da": "Du er trænet på data op til oktober 2023.",
+              "da": "Tekst",
               "de": "Text",
               "es": "Texto",
-              "fr": "Vous êtes formé sur des données jusqu'en octobre 2023.",
+              "fr": "Texte",
               "it": "Testo",
-              "no": "Du er trent på data frem til oktober 2023.",
+              "no": "Tekst",
               "sv": "Text",
               "pl": "Tekst",
               "ru": "Текст",
               "ko": "텍스트",
-              "ar": "أنت مدرب على البيانات حتى أكتوبر 2023."
+              "ar": "نص"
             }
           }
         ]
@@ -4441,17 +4550,17 @@
             "placeholder": {
               "en": "Text (* BLL supported)",
               "nl": "Tekst (* BLL ondersteund)",
-              "da": "Tekst (* BLL underst?ttet)",
-              "de": "Text (* BLL unterst?tzt)",
+              "da": "Tekst (* BLL understøttet)",
+              "de": "Text (* BLL unterstützt)",
               "es": "Texto (* BLL compatible)",
               "fr": "Texte (* BLL pris en charge)",
               "it": "Testo (* BLL supportato)",
-              "no": "Tekst (* BLL st?ttet)",
-              "sv": "Text (* BLL st?ds)",
-              "pl": "Tekst (* Obs?ugiwane BLL)",
-              "ru": "????? (* ?????????????? BLL)",
-              "ko": "??? (* BLL ???)",
-              "ar": "???? (* ????? ?? BLL)"
+              "no": "Tekst (* BLL støttet)",
+              "sv": "Text (* BLL stöds)",
+              "pl": "Tekst (* obsługiwany przez BLL)",
+              "ru": "Текст (* поддерживается BLL)",
+              "ko": "텍스트 (* BLL 지원)",
+              "ar": "النص (* مدعوم من BLL)"
             }
           }
         ],
@@ -4481,15 +4590,15 @@
             "title": {
               "en": "Text",
               "nl": "Tekst",
-              "da": "Du er trænet på data op til oktober 2023.",
+              "da": "Tekst",
               "de": "Text",
               "es": "Texto",
-              "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+              "fr": "Texte",
               "it": "Testo",
-              "no": "Du er trent på data frem til oktober 2023.",
-              "sv": "Jag är tränad på data fram till oktober 2023.",
-              "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
-              "ru": "Вы обучены данным до октября 2023 года.",
+              "no": "Tekst",
+              "sv": "Text",
+              "pl": "Tekst",
+              "ru": "Текст",
               "ko": "텍스트",
               "ar": "نص"
             }
@@ -4591,16 +4700,16 @@
             "name": "from",
             "type": "autocomplete",
             "placeholder": {
-              "en": "Search or type origin",
-              "nl": "Zoek of typ vertrekpunt"
+              "en": "Search or type origin (* BLL supported)",
+              "nl": "Zoek of typ vertrekpunt (* BLL ondersteund)"
             }
           },
           {
             "name": "to",
             "type": "autocomplete",
             "placeholder": {
-              "en": "Search or type destination",
-              "nl": "Zoek of typ bestemming"
+              "en": "Search or type destination (* BLL supported)",
+              "nl": "Zoek of typ bestemming (* BLL ondersteund)"
             }
           },
           {
@@ -4680,8 +4789,8 @@
           "nl": "Vertaal tekst en spreek die uit op een luidspreker"
         },
         "titleFormatted": {
-          "en": "Translate [[text]] to [[targetlanguagecode]] and announce it on [[speaker]]",
-          "nl": "Vertaal [[text]] naar [[targetlanguagecode]] en spreek het uit op [[speaker]]"
+          "en": "Translate [[text]] to [[targetlanguagecode]] and announce it on [[speaker]] with volume [[volume]]%",
+          "nl": "Vertaal [[text]] naar [[targetlanguagecode]] en spreek het uit op [[speaker]] met volume [[volume]]%"
         },
         "hint": {
           "en": "Uses the source language of this device. Basic speech supports up to 200 characters. Configure optional Cloud voices in Repair. Supports BLL coding in the text field.",
@@ -4707,7 +4816,8 @@
             "placeholder": {
               "en": "Target language",
               "nl": "Doeltaal"
-            }
+            },
+            "required": false
           },
           {
             "name": "speaker",
@@ -4715,7 +4825,20 @@
             "placeholder": {
               "en": "Choose a local speaker",
               "nl": "Kies een lokale luidspreker"
-            }
+            },
+            "required": false
+          },
+          {
+            "name": "volume",
+            "type": "number",
+            "min": 0,
+            "max": 100,
+            "decimals": 0,
+            "placeholder": {
+              "en": "Speaker volume (%) (optional)",
+              "nl": "Luidsprekervolume (%) (optioneel)"
+            },
+            "required": false
           }
         ]
       },
@@ -4725,17 +4848,17 @@
         "title": {
           "en": "Translate",
           "nl": "Vertaal",
-          "da": "Du er trænet på data op til oktober 2023.",
-          "de": "Du bist auf Daten bis Oktober 2023 trainiert.",
-          "es": "Estás entrenado con datos hasta octubre de 2023.",
-          "fr": "Vous êtes formé sur des données jusqu'en octobre 2023.",
-          "it": "Sei addestrato sui dati fino a ottobre 2023.",
+          "da": "Oversæt",
+          "de": "Übersetzen",
+          "es": "Traducir",
+          "fr": "Traduire",
+          "it": "Traduci",
           "no": "Sure, please provide the text you would like translated into Norwegian.",
-          "sv": "Du är tränad på data fram till oktober 2023.",
-          "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
-          "ru": "Вы обучены на данных до октября 2023 года.",
-          "ko": "데이터는 2023년 10월까지 학습되었습니다.",
-          "ar": "تم تدريبك على البيانات حتى أكتوبر 2023."
+          "sv": "Översätt",
+          "pl": "Tłumacz",
+          "ru": "Перевести",
+          "ko": "번역",
+          "ar": "ترجم"
         },
         "titleFormatted": {
           "en": "Translate [[translate]] into [[targetlanguagecode]]",
@@ -4782,12 +4905,12 @@
               "da": "Tekst",
               "de": "Text",
               "es": "Texto",
-              "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+              "fr": "Texte",
               "it": "Testo",
-              "no": "Google-tjenester",
-              "sv": "Du är tränad på data fram till oktober 2023.",
+              "no": "Tekst",
+              "sv": "Text",
               "pl": "Tekst",
-              "ru": "Вы обучены данным до октября 2023 года.",
+              "ru": "Текст",
               "ko": "텍스트",
               "ar": "نص"
             }
@@ -4798,17 +4921,17 @@
             "title": {
               "en": "Translate",
               "nl": "Vertaal",
-              "da": "Du er trænet på data op til oktober 2023.",
-              "de": "Du bist auf Daten bis Oktober 2023 trainiert.",
-              "es": "Estás entrenado con datos hasta octubre de 2023.",
-              "fr": "Vous êtes formé sur des données jusqu'en octobre 2023.",
-              "it": "Sei addestrato sui dati fino a ottobre 2023.",
+              "da": "Oversæt",
+              "de": "Übersetzen",
+              "es": "Traducir",
+              "fr": "Traduire",
+              "it": "Traduci",
               "no": "Sure, please provide the text you would like me to translate.",
-              "sv": "Du är tränad på data fram till oktober 2023.",
-              "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
-              "ru": "Вы обучены данным до октября 2023 года.",
-              "ko": "당신은 2023년 10월까지의 데이터로 훈련되었습니다.",
-              "ar": "تم تدريبك على البيانات حتى أكتوبر 2023."
+              "sv": "Översätt",
+              "pl": "Tłumacz",
+              "ru": "Перевести",
+              "ko": "번역",
+              "ar": "ترجم"
             },
             "hint": {
               "en": "The language to translate into",
@@ -4833,16 +4956,16 @@
                   "en": "English (GB)",
                   "nl": "Engels (GB)",
                   "da": "Engelsk (GB)",
-                  "de": "Deutsch (DE)",
+                  "de": "Englisch (GB)",
                   "es": "Inglés (GB)",
-                  "fr": "Français (FR)",
-                  "it": "Italiano (IT)",
+                  "fr": "Anglais (GB)",
+                  "it": "Inglese (GB)",
                   "no": "Engelsk (GB)",
-                  "sv": "Svenska (SE)",
-                  "pl": "Polski (PL)",
+                  "sv": "Engelska (GB)",
+                  "pl": "Angielski (GB)",
                   "ru": "Английский (Великобритания)",
                   "ko": "영어 (영국)",
-                  "ar": "أنت مدرب على البيانات حتى أكتوبر 2023."
+                  "ar": "الإنجليزية (المملكة المتحدة)"
                 }
               },
               {
@@ -4850,18 +4973,18 @@
                 "name": "en-US",
                 "label": {
                   "en": "English (US)",
-                  "nl": "Engels (US)",
-                  "da": "Dansk (DA)",
-                  "de": "Deutsch (DE)",
-                  "es": "Español (ES)",
-                  "fr": "Français (FR)",
-                  "it": "Italian (Italy)",
-                  "no": "Norwegian (no)",
-                  "sv": "Svenska (SE)",
-                  "pl": "Polski (PL)",
+                  "nl": "Engels (VS)",
+                  "da": "Engelsk (US)",
+                  "de": "Englisch (US)",
+                  "es": "Inglés (US)",
+                  "fr": "Anglais (US)",
+                  "it": "Inglese (US)",
+                  "no": "Engelsk (US)",
+                  "sv": "Engelska (US)",
+                  "pl": "Angielski (US)",
                   "ru": "Английский (США)",
                   "ko": "영어 (미국)",
-                  "ar": "العربية"
+                  "ar": "الإنجليزية (الولايات المتحدة)"
                 }
               },
               {
@@ -4871,16 +4994,16 @@
                   "en": "Dutch (NL)",
                   "nl": "Nederlands (NL)",
                   "da": "Hollandsk (NL)",
-                  "de": "Nederlands (NL)",
+                  "de": "Niederländisch (NL)",
                   "es": "Neerlandés (NL)",
                   "fr": "Néerlandais (NL)",
                   "it": "Olandese (NL)",
-                  "no": "Nederlands (NL)",
-                  "sv": "Nederlands (NL)",
+                  "no": "Nederlandsk (NL)",
+                  "sv": "Nederländska (NL)",
                   "pl": "Niderlandzki (NL)",
                   "ru": "Нидерландский (NL)",
-                  "ko": "네, 저는 2023년 10월까지의 데이터를 기반으로 훈련되었습니다.",
-                  "ar": "الهولندية (NL)"
+                  "ko": "네덜란드어 (NL)",
+                  "ar": "الهولندية (هولندا)"
                 }
               },
               {
@@ -4890,16 +5013,16 @@
                   "en": "Dutch (BE)",
                   "nl": "Nederlands (BE)",
                   "da": "Hollandsk (BE)",
-                  "de": "Nederlands (BE)",
+                  "de": "Niederländisch (BE)",
                   "es": "Neerlandés (BE)",
                   "fr": "Néerlandais (BE)",
                   "it": "Olandese (BE)",
-                  "no": "Norsk (NO)",
+                  "no": "Nederlands (BE)",
                   "sv": "Nederländska (BE)",
                   "pl": "Niderlandzki (BE)",
                   "ru": "Нидерландский (Бельгия)",
-                  "ko": "네, 저는 2023년 10월까지의 데이터를 기반으로 훈련되었습니다.",
-                  "ar": "هولندي (BE)"
+                  "ko": "네덜란드어 (BE)",
+                  "ar": "الهولندية (بلجيكا)"
                 }
               },
               {
@@ -4928,7 +5051,7 @@
                   "en": "German (LU)",
                   "nl": "Duits (LU)",
                   "da": "Tysk (LU)",
-                  "de": "Sure! Here's the translation:\n\nDu bist bis Oktober 2023 auf Daten trainiert.",
+                  "de": "Deutsch (LU)",
                   "es": "Alemán (LU)",
                   "fr": "Allemand (LU)",
                   "it": "Tedesco (LU)",
@@ -4937,7 +5060,7 @@
                   "pl": "Niemiecki (LU)",
                   "ru": "Немецкий (Люксембург)",
                   "ko": "독일어 (LU)",
-                  "ar": "الألمانية (LU)"
+                  "ar": "الألمانية (لوكسمبورغ)"
                 }
               },
               {
@@ -4949,7 +5072,7 @@
                   "da": "Fransk (FR)",
                   "de": "Französisch (FR)",
                   "es": "Francés (FR)",
-                  "fr": "Vous êtes formé sur des données jusqu'en octobre 2023.",
+                  "fr": "Français (FR)",
                   "it": "Francese (FR)",
                   "no": "Fransk (FR)",
                   "sv": "Franska (FR)",
@@ -4968,14 +5091,14 @@
                   "da": "Fransk (BE)",
                   "de": "Französisch (BE)",
                   "es": "Francés (BE)",
-                  "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+                  "fr": "Français (BE)",
                   "it": "Francese (BE)",
                   "no": "Fransk (BE)",
                   "sv": "Franska (BE)",
                   "pl": "Francuski (BE)",
-                  "ru": "Французский (БЕ)",
+                  "ru": "Французский (Бельгия)",
                   "ko": "프랑스어 (BE)",
-                  "ar": "فرنسي (BE)"
+                  "ar": "الفرنسية (بلجيكا)"
                 }
               },
               {
@@ -4987,14 +5110,14 @@
                   "da": "Spansk (ES)",
                   "de": "Spanisch (ES)",
                   "es": "Español (ES)",
-                  "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+                  "fr": "Espagnol (ES)",
                   "it": "Spagnolo (ES)",
-                  "no": "I'm sorry, I can only assist with translations into Norwegian (no) in this context. If you need help with that, feel free to ask!",
+                  "no": "Spansk (ES)",
                   "sv": "Spanska (ES)",
                   "pl": "Hiszpański (ES)",
                   "ru": "Испанский (ES)",
                   "ko": "스페인어 (ES)",
-                  "ar": "إسباني (ES)"
+                  "ar": "الإسبانية (ES)"
                 }
               },
               {
@@ -5046,8 +5169,8 @@
                   "es": "Noruego (NO)",
                   "fr": "Norvégien (NO)",
                   "it": "Norvegese (NO)",
-                  "no": "Norwegian (NO)",
-                  "sv": "Norsk (NO)",
+                  "no": "Norsk (NO)",
+                  "sv": "Norska (NO)",
                   "pl": "Norweski (NO)",
                   "ru": "Норвежский (NO)",
                   "ko": "노르웨이어 (NO)",
@@ -5063,17 +5186,17 @@
         "title": {
           "en": "Translate",
           "nl": "Vertaal",
-          "da": "Du er trænet på data op til oktober 2023.",
-          "de": "Du bist auf Daten bis Oktober 2023 trainiert.",
+          "da": "Oversæt",
+          "de": "Übersetzen",
           "es": "Traducir",
-          "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
-          "it": "Sei addestrato sui dati fino a ottobre 2023.",
+          "fr": "Traduire",
+          "it": "Traduci",
           "no": "Sure, please provide the text you would like me to translate.",
-          "sv": "Du är tränad på data fram till oktober 2023.",
-          "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
-          "ru": "Вы обучены данным до октября 2023 года.",
-          "ko": "데이터는 2023년 10월까지 학습되었습니다.",
-          "ar": "أنت مدرب على البيانات حتى أكتوبر 2023."
+          "sv": "Översätt",
+          "pl": "Tłumacz",
+          "ru": "Перевести",
+          "ko": "번역",
+          "ar": "ترجم"
         },
         "titleFormatted": {
           "en": "Translate [[translate]] from [[sourcelanguagecode]] into [[targetlanguagecode]]",
@@ -5117,17 +5240,17 @@
             "title": {
               "en": "Text",
               "nl": "Tekst",
-              "da": "Du er trænet på data op til oktober 2023.",
+              "da": "Tekst",
               "de": "Text",
               "es": "Texto",
-              "fr": "Vous êtes formé sur des données jusqu'en octobre 2023.",
+              "fr": "Texte",
               "it": "Testo",
-              "no": "Du er trent på data frem til oktober 2023.",
+              "no": "Tekst",
               "sv": "Text",
               "pl": "Tekst",
               "ru": "Текст",
               "ko": "텍스트",
-              "ar": "أنا مدرب على البيانات حتى أكتوبر 2023."
+              "ar": "نص"
             }
           },
           {
@@ -5208,17 +5331,17 @@
         "title": {
           "en": "Translate",
           "nl": "Vertaal",
-          "da": "Du er trænet på data op til oktober 2023.",
-          "de": "Du bist auf Daten bis Oktober 2023 trainiert.",
+          "da": "Oversæt",
+          "de": "Übersetzen",
           "es": "Traducir",
-          "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
-          "it": "Sei addestrato sui dati fino a ottobre 2023.",
+          "fr": "Traduire",
+          "it": "Traduci",
           "no": "Sure, please provide the text you would like translated into Norwegian.",
-          "sv": "Du är tränad på data fram till oktober 2023.",
-          "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
-          "ru": "Вы обучены данным до октября 2023 года.",
-          "ko": "당신은 2023년 10월까지의 데이터로 훈련되었습니다.",
-          "ar": "أنت مدرب على البيانات حتى أكتوبر 2023."
+          "sv": "Översätt",
+          "pl": "Tłumacz",
+          "ru": "Перевести",
+          "ko": "번역",
+          "ar": "ترجم"
         },
         "titleFormatted": {
           "en": "Translate [[translate]] from [[sourcelanguagecode]] into [[targetlanguagecode]]",
@@ -5262,15 +5385,15 @@
             "title": {
               "en": "Text",
               "nl": "Tekst",
-              "da": "Du er trænet på data op til oktober 2023.",
+              "da": "Tekst",
               "de": "Text",
               "es": "Texto",
-              "fr": "Vous êtes formé sur des données jusqu'en octobre 2023.",
+              "fr": "Texte",
               "it": "Testo",
-              "no": "Du er trent på data frem til oktober 2023.",
-              "sv": "Du är tränad på data fram till oktober 2023.",
-              "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
-              "ru": "Вы обучены данным до октября 2023 года.",
+              "no": "Tekst",
+              "sv": "Text",
+              "pl": "Tekst",
+              "ru": "Текст",
               "ko": "텍스트",
               "ar": "نص"
             }
@@ -5317,16 +5440,16 @@
                   "en": "English (GB)",
                   "nl": "Engels (GB)",
                   "da": "Engelsk (GB)",
-                  "de": "Deutsch (DE)",
-                  "es": "Español (ES)",
-                  "fr": "Français (FR)",
-                  "it": "Italiano (IT)",
+                  "de": "Englisch (GB)",
+                  "es": "Inglés (GB)",
+                  "fr": "Anglais (GB)",
+                  "it": "Inglese (GB)",
                   "no": "Engelsk (GB)",
-                  "sv": "Svenska (SE)",
-                  "pl": "Polski (PL)",
+                  "sv": "Engelska (GB)",
+                  "pl": "Angielski (GB)",
                   "ru": "Английский (Великобритания)",
                   "ko": "영어 (영국)",
-                  "ar": "أنت مدرب على البيانات حتى أكتوبر 2023."
+                  "ar": "الإنجليزية (المملكة المتحدة)"
                 }
               },
               {
@@ -5334,15 +5457,15 @@
                 "name": "en-US",
                 "label": {
                   "en": "English (US)",
-                  "nl": "Engels (US)",
-                  "da": "Dansk (DA)",
-                  "de": "Deutsch (DE)",
-                  "es": "Español (ES)",
-                  "fr": "Français (FR)",
-                  "it": "Italian (IT)",
-                  "no": "Norwegian (NO)",
-                  "sv": "Svenska (SE)",
-                  "pl": "Polski (PL)",
+                  "nl": "Engels (VS)",
+                  "da": "Engelsk (US)",
+                  "de": "Englisch (US)",
+                  "es": "Inglés (US)",
+                  "fr": "Anglais (US)",
+                  "it": "Inglese (US)",
+                  "no": "Engelsk (US)",
+                  "sv": "Engelska (US)",
+                  "pl": "Angielski (US)",
                   "ru": "Английский (США)",
                   "ko": "영어 (미국)",
                   "ar": "الإنجليزية (الولايات المتحدة)"
@@ -5355,16 +5478,16 @@
                   "en": "Dutch (NL)",
                   "nl": "Nederlands (NL)",
                   "da": "Hollandsk (NL)",
-                  "de": "Nederlands (NL)",
+                  "de": "Niederländisch (NL)",
                   "es": "Neerlandés (NL)",
                   "fr": "Néerlandais (NL)",
                   "it": "Olandese (NL)",
-                  "no": "Norsk (NO)",
-                  "sv": "Nederlands (NL)",
+                  "no": "Nederlandsk (NL)",
+                  "sv": "Nederländska (NL)",
                   "pl": "Niderlandzki (NL)",
                   "ru": "Нидерландский (NL)",
-                  "ko": "네, 저는 2023년 10월까지의 데이터를 기반으로 훈련되었습니다.",
-                  "ar": "الهولندية (NL)"
+                  "ko": "네덜란드어 (NL)",
+                  "ar": "الهولندية (هولندا)"
                 }
               },
               {
@@ -5374,7 +5497,7 @@
                   "en": "Dutch (BE)",
                   "nl": "Nederlands (BE)",
                   "da": "Hollandsk (BE)",
-                  "de": "Nederlands (BE)",
+                  "de": "Niederländisch (BE)",
                   "es": "Neerlandés (BE)",
                   "fr": "Néerlandais (BE)",
                   "it": "Olandese (BE)",
@@ -5382,8 +5505,8 @@
                   "sv": "Nederländska (BE)",
                   "pl": "Niderlandzki (BE)",
                   "ru": "Нидерландский (Бельгия)",
-                  "ko": "네, 저는 2023년 10월까지의 데이터를 기반으로 훈련되었습니다.",
-                  "ar": "هولندي (بلجيكا)"
+                  "ko": "네덜란드어 (BE)",
+                  "ar": "الهولندية (بلجيكا)"
                 }
               },
               {
@@ -5412,7 +5535,7 @@
                   "en": "German (LU)",
                   "nl": "Duits (LU)",
                   "da": "Tysk (LU)",
-                  "de": "Sure! Here's the translation:\n\nDeutsch (LU)",
+                  "de": "Deutsch (LU)",
                   "es": "Alemán (LU)",
                   "fr": "Allemand (LU)",
                   "it": "Tedesco (LU)",
@@ -5421,7 +5544,7 @@
                   "pl": "Niemiecki (LU)",
                   "ru": "Немецкий (Люксембург)",
                   "ko": "독일어 (LU)",
-                  "ar": "الألمانية (LU)"
+                  "ar": "الألمانية (لوكسمبورغ)"
                 }
               },
               {
@@ -5433,7 +5556,7 @@
                   "da": "Fransk (FR)",
                   "de": "Französisch (FR)",
                   "es": "Francés (FR)",
-                  "fr": "Vous êtes formé sur des données jusqu'en octobre 2023.",
+                  "fr": "Français (FR)",
                   "it": "Francese (FR)",
                   "no": "Fransk (FR)",
                   "sv": "Franska (FR)",
@@ -5452,14 +5575,14 @@
                   "da": "Fransk (BE)",
                   "de": "Französisch (BE)",
                   "es": "Francés (BE)",
-                  "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+                  "fr": "Français (BE)",
                   "it": "Francese (BE)",
                   "no": "Fransk (BE)",
                   "sv": "Franska (BE)",
                   "pl": "Francuski (BE)",
-                  "ru": "Французский (БЕ)",
+                  "ru": "Французский (Бельгия)",
                   "ko": "프랑스어 (BE)",
-                  "ar": "الفرنسية (BE)"
+                  "ar": "الفرنسية (بلجيكا)"
                 }
               },
               {
@@ -5471,9 +5594,9 @@
                   "da": "Spansk (ES)",
                   "de": "Spanisch (ES)",
                   "es": "Español (ES)",
-                  "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+                  "fr": "Espagnol (ES)",
                   "it": "Spagnolo (ES)",
-                  "no": "Lo siento, pero no puedo ayudar con eso.",
+                  "no": "Spansk (ES)",
                   "sv": "Spanska (ES)",
                   "pl": "Hiszpański (ES)",
                   "ru": "Испанский (ES)",
@@ -5490,7 +5613,7 @@
                   "da": "Italiensk (IT)",
                   "de": "Italienisch (IT)",
                   "es": "Italiano (IT)",
-                  "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+                  "fr": "Italien (IT)",
                   "it": "Italiano (IT)",
                   "no": "Italiensk (IT)",
                   "sv": "Italienska (IT)",
@@ -5509,12 +5632,12 @@
                   "da": "Svensk (SV)",
                   "de": "Schwedisch (SV)",
                   "es": "Sueco (SV)",
-                  "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+                  "fr": "Suédois (SV)",
                   "it": "Svedese (SV)",
                   "no": "Svensk (SV)",
                   "sv": "Svenska (SV)",
                   "pl": "Szwedzki (SV)",
-                  "ru": "Вы обучены на данных до октября 2023 года.",
+                  "ru": "Шведский (SV)",
                   "ko": "스웨덴어 (SV)",
                   "ar": "السويدية (SV)"
                 }
@@ -5528,10 +5651,10 @@
                   "da": "Norsk (NO)",
                   "de": "Norwegisch (NO)",
                   "es": "Noruego (NO)",
-                  "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+                  "fr": "Norvégien (NO)",
                   "it": "Norvegese (NO)",
-                  "no": "Norwegian (NO) is already selected. Please provide the text you would like to have translated.",
-                  "sv": "Norsk (NO)",
+                  "no": "Norsk (NO)",
+                  "sv": "Norska (NO)",
                   "pl": "Norweski (NO)",
                   "ru": "Норвежский (NO)",
                   "ko": "노르웨이어 (NO)",
@@ -5582,13 +5705,13 @@
                   "en": "English (GB)",
                   "nl": "Engels (GB)",
                   "da": "Engelsk (GB)",
-                  "de": "Deutsch (DE)",
-                  "es": "Español (ES)",
-                  "fr": "Français (FR)",
-                  "it": "Italiano (IT)",
-                  "no": "Norsk (NO)",
-                  "sv": "Svenska (SE)",
-                  "pl": "Polski (PL)",
+                  "de": "Englisch (GB)",
+                  "es": "Inglés (GB)",
+                  "fr": "Anglais (GB)",
+                  "it": "Inglese (GB)",
+                  "no": "Engelsk (GB)",
+                  "sv": "Engelska (GB)",
+                  "pl": "Angielski (GB)",
                   "ru": "Английский (Великобритания)",
                   "ko": "영어 (영국)",
                   "ar": "الإنجليزية (المملكة المتحدة)"
@@ -5599,18 +5722,18 @@
                 "name": "en-US",
                 "label": {
                   "en": "English (US)",
-                  "nl": "Engels (US)",
-                  "da": "Dansk (DA)",
-                  "de": "Deutsch (DE)",
-                  "es": "Español (ES)",
-                  "fr": "Français (FR)",
-                  "it": "Italian (IT)",
-                  "no": "Norwegian (NO)",
-                  "sv": "Svenska (SE)",
-                  "pl": "Polski (PL)",
+                  "nl": "Engels (VS)",
+                  "da": "Engelsk (US)",
+                  "de": "Englisch (US)",
+                  "es": "Inglés (US)",
+                  "fr": "Anglais (US)",
+                  "it": "Inglese (US)",
+                  "no": "Engelsk (US)",
+                  "sv": "Engelska (US)",
+                  "pl": "Angielski (US)",
                   "ru": "Английский (США)",
                   "ko": "영어 (미국)",
-                  "ar": "أنت مدرب على البيانات حتى أكتوبر 2023."
+                  "ar": "الإنجليزية (الولايات المتحدة)"
                 }
               },
               {
@@ -5620,16 +5743,16 @@
                   "en": "Dutch (NL)",
                   "nl": "Nederlands (NL)",
                   "da": "Hollandsk (NL)",
-                  "de": "Nederlands (NL)",
+                  "de": "Niederländisch (NL)",
                   "es": "Neerlandés (NL)",
                   "fr": "Néerlandais (NL)",
                   "it": "Olandese (NL)",
                   "no": "Nederlandsk (NL)",
-                  "sv": "Nederlands (NL)",
+                  "sv": "Nederländska (NL)",
                   "pl": "Niderlandzki (NL)",
-                  "ru": "Вы обучены данным до октября 2023 года.",
+                  "ru": "Нидерландский (NL)",
                   "ko": "네덜란드어 (NL)",
-                  "ar": "الهولندية (NL)"
+                  "ar": "الهولندية (هولندا)"
                 }
               },
               {
@@ -5639,16 +5762,16 @@
                   "en": "Dutch (BE)",
                   "nl": "Nederlands (BE)",
                   "da": "Hollandsk (BE)",
-                  "de": "Nederlands (BE)",
+                  "de": "Niederländisch (BE)",
                   "es": "Neerlandés (BE)",
                   "fr": "Néerlandais (BE)",
                   "it": "Olandese (BE)",
-                  "no": "Norsk (NO)",
+                  "no": "Nederlands (BE)",
                   "sv": "Nederländska (BE)",
                   "pl": "Niderlandzki (BE)",
                   "ru": "Нидерландский (Бельгия)",
-                  "ko": "네, 저는 2023년 10월까지의 데이터를 기반으로 훈련되었습니다.",
-                  "ar": "هولندي (BE)"
+                  "ko": "네덜란드어 (BE)",
+                  "ar": "الهولندية (بلجيكا)"
                 }
               },
               {
@@ -5667,7 +5790,7 @@
                   "pl": "Niemiecki (DE)",
                   "ru": "Немецкий (DE)",
                   "ko": "독일어 (DE)",
-                  "ar": "ألماني (DE)"
+                  "ar": "الألمانية (DE)"
                 }
               },
               {
@@ -5677,7 +5800,7 @@
                   "en": "German (LU)",
                   "nl": "Duits (LU)",
                   "da": "Tysk (LU)",
-                  "de": "Sure! Here's the translation for German (LU):\n\nDu bist bis Oktober 2023 auf Daten trainiert.",
+                  "de": "Deutsch (LU)",
                   "es": "Alemán (LU)",
                   "fr": "Allemand (LU)",
                   "it": "Tedesco (LU)",
@@ -5686,7 +5809,7 @@
                   "pl": "Niemiecki (LU)",
                   "ru": "Немецкий (Люксембург)",
                   "ko": "독일어 (LU)",
-                  "ar": "الألمانية (LU)"
+                  "ar": "الألمانية (لوكسمبورغ)"
                 }
               },
               {
@@ -5698,7 +5821,7 @@
                   "da": "Fransk (FR)",
                   "de": "Französisch (FR)",
                   "es": "Francés (FR)",
-                  "fr": "Vous êtes formé sur des données jusqu'en octobre 2023.",
+                  "fr": "Français (FR)",
                   "it": "Francese (FR)",
                   "no": "Fransk (FR)",
                   "sv": "Franska (FR)",
@@ -5717,14 +5840,14 @@
                   "da": "Fransk (BE)",
                   "de": "Französisch (BE)",
                   "es": "Francés (BE)",
-                  "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+                  "fr": "Français (BE)",
                   "it": "Francese (BE)",
                   "no": "Fransk (BE)",
                   "sv": "Franska (BE)",
                   "pl": "Francuski (BE)",
-                  "ru": "Французский (БЕ)",
+                  "ru": "Французский (Бельгия)",
                   "ko": "프랑스어 (BE)",
-                  "ar": "فرنسي (BE)"
+                  "ar": "الفرنسية (بلجيكا)"
                 }
               },
               {
@@ -5736,12 +5859,12 @@
                   "da": "Spansk (ES)",
                   "de": "Spanisch (ES)",
                   "es": "Español (ES)",
-                  "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+                  "fr": "Espagnol (ES)",
                   "it": "Spagnolo (ES)",
-                  "no": "Español (ES)",
+                  "no": "Spansk (ES)",
                   "sv": "Spanska (ES)",
                   "pl": "Hiszpański (ES)",
-                  "ru": "Вы обучены данным до октября 2023 года.",
+                  "ru": "Испанский (ES)",
                   "ko": "스페인어 (ES)",
                   "ar": "الإسبانية (ES)"
                 }
@@ -5774,7 +5897,7 @@
                   "da": "Svensk (SV)",
                   "de": "Schwedisch (SV)",
                   "es": "Sueco (SV)",
-                  "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+                  "fr": "Suédois (SV)",
                   "it": "Svedese (SV)",
                   "no": "Svensk (SV)",
                   "sv": "Svenska (SV)",
@@ -5793,10 +5916,10 @@
                   "da": "Norsk (NO)",
                   "de": "Norwegisch (NO)",
                   "es": "Noruego (NO)",
-                  "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+                  "fr": "Norvégien (NO)",
                   "it": "Norvegese (NO)",
-                  "no": "Sure, here's the translation into Norwegian:\n\nNorsk (NO)",
-                  "sv": "Norsk (NO)",
+                  "no": "Norsk (NO)",
+                  "sv": "Norska (NO)",
                   "pl": "Norweski (NO)",
                   "ru": "Норвежский (NO)",
                   "ko": "노르웨이어 (NO)",
@@ -5816,14 +5939,14 @@
               "da": "Please provide the text you would like to have translated into Danish.",
               "de": "Bitte geben Sie den Text ein, den Sie übersetzen möchten.",
               "es": "Lo siento, pero no has proporcionado el texto que necesitas traducir. Por favor, envíamelo y estaré encantado de ayudarte.",
-              "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+              "fr": "Texte à traduire",
               "it": "Testo da tradurre",
               "no": "Sure, please provide the text you need translated.",
               "sv": "Sure, please provide the text you would like me to translate.",
-              "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
-              "ru": "Вы обучены данным до октября 2023 года.",
-              "ko": "데이터는 2023년 10월까지 학습되었습니다.",
-              "ar": "أنا مدرب على البيانات حتى أكتوبر 2023."
+              "pl": "Tekst do przetłumaczenia",
+              "ru": "Текст для перевода",
+              "ko": "번역할 텍스트",
+              "ar": "نص للترجمة"
             }
           },
           {
@@ -5835,12 +5958,12 @@
               "da": "Oversættelse",
               "de": "Übersetzung",
               "es": "Traducción",
-              "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+              "fr": "Traduction",
               "it": "Traduzione",
               "no": "Oversettelse",
               "sv": "Översättning",
               "pl": "Tłumaczenie",
-              "ru": "Вы обучены данным до октября 2023 года.",
+              "ru": "Перевод",
               "ko": "번역",
               "ar": "ترجمة"
             }
@@ -5890,17 +6013,17 @@
         "title": {
           "en": "Translate",
           "nl": "Vertaal",
-          "da": "Du er trænet på data op til oktober 2023.",
-          "de": "Du bist auf Daten bis Oktober 2023 trainiert.",
+          "da": "Oversæt",
+          "de": "Übersetzen",
           "es": "Traducir",
-          "fr": "Vous êtes formé sur des données jusqu'en octobre 2023.",
-          "it": "Sei addestrato sui dati fino a ottobre 2023.",
+          "fr": "Traduire",
+          "it": "Traduci",
           "no": "Sure, please provide the text you would like translated into Norwegian.",
-          "sv": "Du är tränad på data fram till oktober 2023.",
-          "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
-          "ru": "Вы обучены на данных до октября 2023 года.",
-          "ko": "귀하는 2023년 10월까지의 데이터에 대한 교육을 받았습니다.",
-          "ar": "تم تدريبك على البيانات حتى أكتوبر 2023."
+          "sv": "Översätt",
+          "pl": "Tłumacz",
+          "ru": "Перевести",
+          "ko": "번역",
+          "ar": "ترجم"
         },
         "titleFormatted": {
           "en": "Translate [[translate]] from [[sourcelanguagecode]] into [[targetlanguagecode]]",
@@ -5947,14 +6070,14 @@
               "da": "Tekst",
               "de": "Text",
               "es": "Texto",
-              "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+              "fr": "Texte",
               "it": "Testo",
-              "no": "Du er trent på data frem til oktober 2023.",
-              "sv": "Jag är tränad på data fram till oktober 2023.",
-              "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
-              "ru": "Вы обучены данным до октября 2023 года.",
+              "no": "Tekst",
+              "sv": "Text",
+              "pl": "Tekst",
+              "ru": "Текст",
               "ko": "텍스트",
-              "ar": "أنا مدرب على البيانات حتى أكتوبر 2023."
+              "ar": "نص"
             }
           },
           {
@@ -6038,14 +6161,14 @@
               "da": "Please provide the text you would like to have translated into Danish.",
               "de": "Bitte geben Sie den Text ein, den Sie übersetzen möchten.",
               "es": "Lo siento, pero no has proporcionado el texto que necesitas traducir. Por favor, envíamelo y estaré encantado de ayudarte.",
-              "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
-              "it": "Sei addestrato sui dati fino a ottobre 2023.",
+              "fr": "Texte à traduire",
+              "it": "Testo da tradurre",
               "no": "Please provide the text you would like to have translated.",
-              "sv": "Du är tränad på data fram till oktober 2023.",
-              "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
-              "ru": "Вы обучены данным до октября 2023 года.",
-              "ko": "데이터는 2023년 10월까지 학습되었습니다.",
-              "ar": "أنا مدرب على البيانات حتى أكتوبر 2023."
+              "sv": "Text att översätta",
+              "pl": "Tekst do przetłumaczenia",
+              "ru": "Текст для перевода",
+              "ko": "번역할 텍스트",
+              "ar": "نص للترجمة"
             }
           },
           {
@@ -6057,12 +6180,12 @@
               "da": "Oversættelse",
               "de": "Übersetzung",
               "es": "Traducción",
-              "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+              "fr": "Traduction",
               "it": "Traduzione",
               "no": "Oversettelse",
               "sv": "Översättning",
               "pl": "Tłumaczenie",
-              "ru": "Вы обучены данным до октября 2023 года.",
+              "ru": "Перевод",
               "ko": "번역",
               "ar": "ترجمة"
             }
@@ -6149,19 +6272,19 @@
             "name": "text",
             "type": "text",
             "placeholder": {
-              "en": "Text",
-              "nl": "Tekst",
-              "da": "Du er trænet på data frem til oktober 2023.",
-              "de": "Text",
-              "es": "Texto",
-              "fr": "Vous êtes formé sur des données jusqu'en octobre 2023.",
-              "it": "Testo",
-              "no": "Du er trent på data frem til oktober 2023.",
-              "sv": "Text",
-              "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
-              "ru": "Текст",
-              "ko": "텍스트",
-              "ar": "نص"
+              "en": "Text (* BLL supported)",
+              "nl": "Tekst (* BLL ondersteund)",
+              "da": "Tekst (* BLL understøttet)",
+              "de": "Text (* BLL unterstützt)",
+              "es": "Texto (* BLL compatible)",
+              "fr": "Texte (* BLL pris en charge)",
+              "it": "Testo (* BLL supportato)",
+              "no": "Tekst (* BLL støttet)",
+              "sv": "Text (* BLL stöds)",
+              "pl": "Tekst (* obsługiwany przez BLL)",
+              "ru": "Текст (* Поддерживается BLL)",
+              "ko": "텍스트 (* BLL 지원됨)",
+              "ar": "نص (* مدعوم من BLL)"
             }
           }
         ]
@@ -6208,19 +6331,19 @@
             "name": "text",
             "type": "text",
             "placeholder": {
-              "en": "Text",
-              "nl": "Tekst",
-              "da": "Jeg er trænet på data frem til oktober 2023.",
-              "de": "Text",
-              "es": "Texto",
-              "fr": "Vous êtes formé sur des données jusqu'en octobre 2023.",
-              "it": "Testo",
-              "no": "Du er trent på data frem til oktober 2023.",
-              "sv": "Text",
-              "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
-              "ru": "Текст",
-              "ko": "텍스트",
-              "ar": "نص"
+              "en": "Text (* BLL supported)",
+              "nl": "Tekst (* BLL ondersteund)",
+              "da": "Tekst (* BLL understøttet)",
+              "de": "Text (* BLL unterstützt)",
+              "es": "Texto (* BLL compatible)",
+              "fr": "Texte (* BLL pris en charge)",
+              "it": "Testo (* BLL supportato)",
+              "no": "Tekst (* BLL støttet)",
+              "sv": "Text (* BLL stöds)",
+              "pl": "Tekst (* obsługiwany przez BLL)",
+              "ru": "Текст (* Поддерживается BLL)",
+              "ko": "텍스트 (* BLL 지원됨)",
+              "ar": "نص (* مدعوم من BLL)"
             }
           }
         ],
@@ -6316,6 +6439,9 @@
       },
       "pair": [
         {
+          "id": "speech_settings"
+        },
+        {
           "id": "choose_voice"
         },
         {
@@ -6334,6 +6460,9 @@
         }
       ],
       "repair": [
+        {
+          "id": "speech_settings"
+        },
         {
           "id": "configure_voice"
         }
@@ -6369,10 +6498,36 @@
             "nl": "Activeer Wanneer-kaarten bij luidsprekeraankondigingen"
           },
           "hint": {
-            "en": "Also trigger the audio URL and timed Finished When cards for direct Google Cast or DLNA announcements.",
-            "nl": "Activeer ook de Wanneer-kaarten voor de audio-URL en de geschatte eindtijd bij directe aankondigingen via Google Cast of DLNA."
+            "en": "For direct Google Cast, Sonos and UPnP/DLNA playback: turn on to run the audio URL and timed Finished When cards after playback starts successfully. Turn off to suppress both cards. Finished uses the audio duration and delay, not a speaker signal.",
+            "nl": "Bij direct afspelen via Google Cast, Sonos en UPnP/DLNA: schakel in om de Wanneer-kaarten met de audio-URL en de geschatte eindtijd te activeren na een succesvolle start. Schakel uit om beide te onderdrukken. De eindtijd gebruikt de audioduur en vertraging, geen luidsprekersignaal."
           },
           "value": false
+        },
+        {
+          "id": "announcement_group_sonos",
+          "type": "checkbox",
+          "label": {
+            "en": "Temporarily group Sonos rooms",
+            "nl": "Sonos-kamers tijdelijk groeperen"
+          },
+          "hint": {
+            "en": "With All speakers, group compatible Sonos rooms for synchronized speech, then restore their groups. Other speakers play separately.",
+            "nl": "Groepeer bij Alle luidsprekers compatibele Sonos-kamers voor gesynchroniseerde spraak en herstel daarna de groepen. Andere luidsprekers spelen afzonderlijk."
+          },
+          "value": true
+        },
+        {
+          "id": "announcement_resume",
+          "type": "checkbox",
+          "label": {
+            "en": "Resume previous playback",
+            "nl": "Vorige weergave hervatten"
+          },
+          "hint": {
+            "en": "After direct speaker playback, restore the previous source and position where supported. Unsupported features are skipped.",
+            "nl": "Herstel na direct afspelen de vorige bron en positie waar dit wordt ondersteund. Niet-ondersteunde functies worden overgeslagen."
+          },
+          "value": true
         },
         {
           "id": "speakingRate",
@@ -6393,19 +6548,19 @@
             "ar": "السرعة %"
           },
           "hint": {
-            "en": "The speed at which to play the speech (1 is default)",
-            "nl": "De snelheid waarmee de spraak wordt  (1 is standaard)",
-            "da": "Hastigheden, som talen skal afspilles med (1 er standard)",
-            "de": "Die Geschwindigkeit, mit der die Sprache abgespielt wird (1 ist Standard)",
-            "es": "La velocidad a la que se reproducirá el discurso (1 es la predeterminada)",
-            "fr": "La vitesse à laquelle lire le discours (1 est la valeur par défaut)",
-            "it": "La velocità con cui riprodurre il discorso (1 è il valore predefinito)",
-            "no": "Hastigheten for å spille av talen (1 er standard)",
-            "sv": "Hastigheten för att spela upp talet (1 är standard)",
-            "pl": "Prędkość odtwarzania mowy (1 to domyślna)",
-            "ru": "Скорость воспроизведения речи (1 по умолчанию)",
-            "ko": "음성 재생 속도 (1이 기본값)",
-            "ar": "السرعة التي يتم بها تشغيل الكلام (1 هي الافتراضية)"
+            "en": "Speech playback speed (100% is normal).",
+            "nl": "De spreeksnelheid (100% is normaal).",
+            "da": "Talens afspilningshastighed (100% er normalt).",
+            "de": "Sprechgeschwindigkeit (100% ist normal).",
+            "es": "Velocidad de reproducción de la voz (100% es normal).",
+            "fr": "Vitesse de lecture de la voix (100% est normal).",
+            "it": "Velocità di riproduzione della voce (100% è normale).",
+            "no": "Avspillingshastighet for tale (100% er normalt).",
+            "sv": "Talets uppspelningshastighet (100% är normalt).",
+            "pl": "Prędkość odtwarzania mowy (100% to normalna prędkość).",
+            "ru": "Скорость воспроизведения речи (100% — обычная скорость).",
+            "ko": "음성 재생 속도(100%가 보통 속도입니다).",
+            "ar": "سرعة تشغيل الكلام (100% هي السرعة العادية)."
           },
           "min": 0.25,
           "max": 4,
@@ -6903,6 +7058,9 @@
       },
       "pair": [
         {
+          "id": "speech_settings"
+        },
+        {
           "id": "list_devices",
           "template": "list_devices",
           "navigation": {
@@ -6926,10 +7084,36 @@
             "nl": "Activeer Wanneer-kaarten bij luidsprekeraankondigingen"
           },
           "hint": {
-            "en": "Also trigger the audio URL When card after a direct Google Cast or DLNA announcement starts.",
-            "nl": "Activeer ook de Wanneer-kaart voor de audio-URL als een directe aankondiging via Google Cast of DLNA start."
+            "en": "For direct Google Cast, Sonos and UPnP/DLNA playback: turn on to run the audio URL When card after playback starts successfully. Turn off to play without triggering that card.",
+            "nl": "Bij direct afspelen via Google Cast, Sonos en UPnP/DLNA: schakel in om de Wanneer-kaart met de audio-URL te activeren nadat het afspelen succesvol is gestart. Schakel uit om zonder die kaart af te spelen."
           },
           "value": false
+        },
+        {
+          "id": "announcement_group_sonos",
+          "type": "checkbox",
+          "label": {
+            "en": "Temporarily group Sonos rooms",
+            "nl": "Sonos-kamers tijdelijk groeperen"
+          },
+          "hint": {
+            "en": "With All speakers, group compatible Sonos rooms for synchronized speech, then restore their groups. Other speakers play separately.",
+            "nl": "Groepeer bij Alle luidsprekers compatibele Sonos-kamers voor gesynchroniseerde spraak en herstel daarna de groepen. Andere luidsprekers spelen afzonderlijk."
+          },
+          "value": true
+        },
+        {
+          "id": "announcement_resume",
+          "type": "checkbox",
+          "label": {
+            "en": "Resume previous playback",
+            "nl": "Vorige weergave hervatten"
+          },
+          "hint": {
+            "en": "After direct speaker playback, restore the previous source and position where supported. Unsupported features are skipped.",
+            "nl": "Herstel na direct afspelen de vorige bron en positie waar dit wordt ondersteund. Niet-ondersteunde functies worden overgeslagen."
+          },
+          "value": true
         },
         {
           "id": "languagecode",
@@ -6973,16 +7157,16 @@
                 "en": "English (GB)",
                 "nl": "Engels (GB)",
                 "da": "Engelsk (GB)",
-                "de": "Deutsch (DE)",
-                "es": "Español (ES)",
-                "fr": "Français (FR)",
-                "it": "Italiano (IT)",
+                "de": "Englisch (GB)",
+                "es": "Inglés (GB)",
+                "fr": "Anglais (GB)",
+                "it": "Inglese (GB)",
                 "no": "Engelsk (GB)",
-                "sv": "Svenska (SE)",
-                "pl": "Polski (PL)",
+                "sv": "Engelska (GB)",
+                "pl": "Angielski (GB)",
                 "ru": "Английский (Великобритания)",
                 "ko": "영어 (영국)",
-                "ar": "أنت مدرب على البيانات حتى أكتوبر 2023."
+                "ar": "الإنجليزية (المملكة المتحدة)"
               }
             },
             {
@@ -6990,18 +7174,18 @@
               "name": "en-US",
               "label": {
                 "en": "English (US)",
-                "nl": "Engels (US)",
+                "nl": "Engels (VS)",
                 "da": "Engelsk (US)",
-                "de": "Deutsch (DE)",
-                "es": "Español (ES)",
-                "fr": "Français (FR)",
-                "it": "Italiano (IT)",
-                "no": "Norwegian (NO)",
-                "sv": "Svenska (SE)",
-                "pl": "Polski (PL)",
+                "de": "Englisch (US)",
+                "es": "Inglés (US)",
+                "fr": "Anglais (US)",
+                "it": "Inglese (US)",
+                "no": "Engelsk (US)",
+                "sv": "Engelska (US)",
+                "pl": "Angielski (US)",
                 "ru": "Английский (США)",
                 "ko": "영어 (미국)",
-                "ar": "العربية (AR)"
+                "ar": "الإنجليزية (الولايات المتحدة)"
               }
             },
             {
@@ -7011,16 +7195,16 @@
                 "en": "Dutch (NL)",
                 "nl": "Nederlands (NL)",
                 "da": "Hollandsk (NL)",
-                "de": "Nederlands (NL)",
+                "de": "Niederländisch (NL)",
                 "es": "Neerlandés (NL)",
                 "fr": "Néerlandais (NL)",
                 "it": "Olandese (NL)",
-                "no": "Nederlands (NL)",
-                "sv": "Nederlands (NL)",
+                "no": "Nederlandsk (NL)",
+                "sv": "Nederländska (NL)",
                 "pl": "Niderlandzki (NL)",
-                "ru": "Вы обучены данным до октября 2023 года.",
-                "ko": "네, 저는 2023년 10월까지의 데이터를 기반으로 훈련되었습니다.",
-                "ar": "الهولندية (NL)"
+                "ru": "Нидерландский (NL)",
+                "ko": "네덜란드어 (NL)",
+                "ar": "الهولندية (هولندا)"
               }
             },
             {
@@ -7030,16 +7214,16 @@
                 "en": "Dutch (BE)",
                 "nl": "Nederlands (BE)",
                 "da": "Hollandsk (BE)",
-                "de": "Nederlands (BE)",
+                "de": "Niederländisch (BE)",
                 "es": "Neerlandés (BE)",
                 "fr": "Néerlandais (BE)",
                 "it": "Olandese (BE)",
-                "no": "Norsk (NO)",
+                "no": "Nederlands (BE)",
                 "sv": "Nederländska (BE)",
-                "pl": "Niestety, nie mogę przetłumaczyć tekstu na język niderlandzki (BE). Czy mogę pomóc w czymś innym?",
+                "pl": "Niderlandzki (BE)",
                 "ru": "Нидерландский (Бельгия)",
-                "ko": "네, 저는 2023년 10월까지의 데이터를 기반으로 훈련되었습니다.",
-                "ar": "هولندية (بلجيكا)"
+                "ko": "네덜란드어 (BE)",
+                "ar": "الهولندية (بلجيكا)"
               }
             },
             {
@@ -7068,7 +7252,7 @@
                 "en": "German (LU)",
                 "nl": "Duits (LU)",
                 "da": "Tysk (LU)",
-                "de": "Sure! Here's the translation:\n\nDu bist bis Oktober 2023 auf Daten trainiert.",
+                "de": "Deutsch (LU)",
                 "es": "Alemán (LU)",
                 "fr": "Allemand (LU)",
                 "it": "Tedesco (LU)",
@@ -7077,7 +7261,7 @@
                 "pl": "Niemiecki (LU)",
                 "ru": "Немецкий (Люксембург)",
                 "ko": "독일어 (LU)",
-                "ar": "الألمانية (LU)"
+                "ar": "الألمانية (لوكسمبورغ)"
               }
             },
             {
@@ -7089,7 +7273,7 @@
                 "da": "Fransk (FR)",
                 "de": "Französisch (FR)",
                 "es": "Francés (FR)",
-                "fr": "Vous êtes formé sur des données jusqu'en octobre 2023.",
+                "fr": "Français (FR)",
                 "it": "Francese (FR)",
                 "no": "Fransk (FR)",
                 "sv": "Franska (FR)",
@@ -7108,14 +7292,14 @@
                 "da": "Fransk (BE)",
                 "de": "Französisch (BE)",
                 "es": "Francés (BE)",
-                "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+                "fr": "Français (BE)",
                 "it": "Francese (BE)",
                 "no": "Fransk (BE)",
                 "sv": "Franska (BE)",
                 "pl": "Francuski (BE)",
-                "ru": "Французский (БЕ)",
+                "ru": "Французский (Бельгия)",
                 "ko": "프랑스어 (BE)",
-                "ar": "فرنسي (BE)"
+                "ar": "الفرنسية (بلجيكا)"
               }
             },
             {
@@ -7127,14 +7311,14 @@
                 "da": "Spansk (ES)",
                 "de": "Spanisch (ES)",
                 "es": "Español (ES)",
-                "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+                "fr": "Espagnol (ES)",
                 "it": "Spagnolo (ES)",
-                "no": "Lo siento, no puedo ayudar con eso.",
+                "no": "Spansk (ES)",
                 "sv": "Spanska (ES)",
                 "pl": "Hiszpański (ES)",
                 "ru": "Испанский (ES)",
                 "ko": "스페인어 (ES)",
-                "ar": "إسباني (ES)"
+                "ar": "الإسبانية (ES)"
               }
             },
             {
@@ -7146,7 +7330,7 @@
                 "da": "Italiensk (IT)",
                 "de": "Italienisch (IT)",
                 "es": "Italiano (IT)",
-                "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+                "fr": "Italien (IT)",
                 "it": "Italiano (IT)",
                 "no": "Italiensk (IT)",
                 "sv": "Italienska (IT)",
@@ -7184,10 +7368,10 @@
                 "da": "Norsk (NO)",
                 "de": "Norwegisch (NO)",
                 "es": "Noruego (NO)",
-                "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+                "fr": "Norvégien (NO)",
                 "it": "Norvegese (NO)",
-                "no": "Norwegian (NO)",
-                "sv": "Norsk (NO)",
+                "no": "Norsk (NO)",
+                "sv": "Norska (NO)",
                 "pl": "Norweski (NO)",
                 "ru": "Норвежский (NO)",
                 "ko": "노르웨이어 (NO)",
@@ -7195,6 +7379,11 @@
               }
             }
           ]
+        }
+      ],
+      "repair": [
+        {
+          "id": "speech_settings"
         }
       ]
     },
@@ -7377,18 +7566,18 @@
       "id": "translate",
       "name": {
         "en": "Google Translate",
-        "nl": "Google Vertaal",
+        "nl": "Google Translate",
         "da": "Google Translate",
         "de": "Google Translate",
         "es": "Google Translate",
-        "fr": "Google Traduction",
-        "it": "Google Traduttore",
+        "fr": "Google Translate",
+        "it": "Google Translate",
         "no": "Google Translate",
         "sv": "Google Translate",
         "pl": "Google Translate",
-        "ru": "Google Переводчик",
-        "ko": "구글 번역",
-        "ar": "ترجمة Google"
+        "ru": "Google Translate",
+        "ko": "Google Translate",
+        "ar": "Google Translate"
       },
       "class": "other",
       "capabilities": [
@@ -7401,6 +7590,12 @@
         "small": "/drivers/translate/assets/images/small.png"
       },
       "pair": [
+        {
+          "id": "speech_settings"
+        },
+        {
+          "id": "choose_voice"
+        },
         {
           "id": "list_devices",
           "template": "list_devices",
@@ -7418,10 +7613,52 @@
       ],
       "repair": [
         {
+          "id": "speech_settings"
+        },
+        {
           "id": "configure_voice"
         }
       ],
       "settings": [
+        {
+          "id": "trigger_when_announcing",
+          "type": "checkbox",
+          "value": false,
+          "label": {
+            "en": "Run When cards for speaker announcements",
+            "nl": "Activeer Wanneer-kaarten bij luidsprekeraankondigingen"
+          },
+          "hint": {
+            "en": "For direct Google Cast, Sonos and UPnP/DLNA playback: turn on to run Translation announced with the translated audio URL after playback starts successfully. Turn off to play without triggering that card.",
+            "nl": "Bij direct afspelen via Google Cast, Sonos en UPnP/DLNA: schakel in om Vertaling aangekondigd met de vertaalde audio-URL te activeren na een succesvolle start. Schakel uit om zonder die Wanneer-kaart af te spelen."
+          }
+        },
+        {
+          "id": "announcement_group_sonos",
+          "type": "checkbox",
+          "label": {
+            "en": "Temporarily group Sonos rooms",
+            "nl": "Sonos-kamers tijdelijk groeperen"
+          },
+          "hint": {
+            "en": "With All speakers, group compatible Sonos rooms for synchronized speech, then restore their groups. Other speakers play separately.",
+            "nl": "Groepeer bij Alle luidsprekers compatibele Sonos-kamers voor gesynchroniseerde spraak en herstel daarna de groepen. Andere luidsprekers spelen afzonderlijk."
+          },
+          "value": true
+        },
+        {
+          "id": "announcement_resume",
+          "type": "checkbox",
+          "label": {
+            "en": "Resume previous playback",
+            "nl": "Vorige weergave hervatten"
+          },
+          "hint": {
+            "en": "After direct speaker playback, restore the previous source and position where supported. Unsupported features are skipped.",
+            "nl": "Herstel na direct afspelen de vorige bron en positie waar dit wordt ondersteund. Niet-ondersteunde functies worden overgeslagen."
+          },
+          "value": true
+        },
         {
           "type": "group",
           "label": {
@@ -7486,13 +7723,13 @@
                 "en": "English (GB)",
                 "nl": "Engels (GB)",
                 "da": "Engelsk (GB)",
-                "de": "Deutsch (DE)",
+                "de": "Englisch (GB)",
                 "es": "Inglés (GB)",
-                "fr": "Français (FR)",
-                "it": "Italiano (IT)",
+                "fr": "Anglais (GB)",
+                "it": "Inglese (GB)",
                 "no": "Engelsk (GB)",
-                "sv": "Svenska (SE)",
-                "pl": "Polski (PL)",
+                "sv": "Engelska (GB)",
+                "pl": "Angielski (GB)",
                 "ru": "Английский (Великобритания)",
                 "ko": "영어 (영국)",
                 "ar": "الإنجليزية (المملكة المتحدة)"
@@ -7503,18 +7740,18 @@
               "name": "en-US",
               "label": {
                 "en": "English (US)",
-                "nl": "Engels (US)",
-                "da": "Dansk (DA)",
-                "de": "Deutsch (DE)",
-                "es": "Español (ES)",
-                "fr": "Français (FR)",
-                "it": "Italian (it)",
-                "no": "Norwegian (NO)",
-                "sv": "Svenska (SE)",
-                "pl": "Polski (PL)",
+                "nl": "Engels (VS)",
+                "da": "Engelsk (US)",
+                "de": "Englisch (US)",
+                "es": "Inglés (US)",
+                "fr": "Anglais (US)",
+                "it": "Inglese (US)",
+                "no": "Engelsk (US)",
+                "sv": "Engelska (US)",
+                "pl": "Angielski (US)",
                 "ru": "Английский (США)",
                 "ko": "영어 (미국)",
-                "ar": "العربية (AR)"
+                "ar": "الإنجليزية (الولايات المتحدة)"
               }
             },
             {
@@ -7524,16 +7761,16 @@
                 "en": "Dutch (NL)",
                 "nl": "Nederlands (NL)",
                 "da": "Hollandsk (NL)",
-                "de": "Nederlands (NL)",
+                "de": "Niederländisch (NL)",
                 "es": "Neerlandés (NL)",
                 "fr": "Néerlandais (NL)",
                 "it": "Olandese (NL)",
-                "no": "Nederlands (NL)",
-                "sv": "Nederlands (NL)",
+                "no": "Nederlandsk (NL)",
+                "sv": "Nederländska (NL)",
                 "pl": "Niderlandzki (NL)",
-                "ru": "Вы обучены на данных до октября 2023 года.",
-                "ko": "네, 저는 2023년 10월까지의 데이터를 기반으로 훈련되었습니다.",
-                "ar": "الهولندية (NL)"
+                "ru": "Нидерландский (NL)",
+                "ko": "네덜란드어 (NL)",
+                "ar": "الهولندية (هولندا)"
               }
             },
             {
@@ -7543,7 +7780,7 @@
                 "en": "Dutch (BE)",
                 "nl": "Nederlands (BE)",
                 "da": "Hollandsk (BE)",
-                "de": "Nederlands (BE)",
+                "de": "Niederländisch (BE)",
                 "es": "Neerlandés (BE)",
                 "fr": "Néerlandais (BE)",
                 "it": "Olandese (BE)",
@@ -7551,8 +7788,8 @@
                 "sv": "Nederländska (BE)",
                 "pl": "Niderlandzki (BE)",
                 "ru": "Нидерландский (Бельгия)",
-                "ko": "네, 저는 2023년 10월까지의 데이터를 기반으로 훈련되었습니다.",
-                "ar": "هولندي (بلجيكا)"
+                "ko": "네덜란드어 (BE)",
+                "ar": "الهولندية (بلجيكا)"
               }
             },
             {
@@ -7581,7 +7818,7 @@
                 "en": "German (LU)",
                 "nl": "Duits (LU)",
                 "da": "Tysk (LU)",
-                "de": "Sure! Here's the translation:\n\nDeutsch (LU)",
+                "de": "Deutsch (LU)",
                 "es": "Alemán (LU)",
                 "fr": "Allemand (LU)",
                 "it": "Tedesco (LU)",
@@ -7590,7 +7827,7 @@
                 "pl": "Niemiecki (LU)",
                 "ru": "Немецкий (Люксембург)",
                 "ko": "독일어 (LU)",
-                "ar": "الألمانية (LU)"
+                "ar": "الألمانية (لوكسمبورغ)"
               }
             },
             {
@@ -7602,7 +7839,7 @@
                 "da": "Fransk (FR)",
                 "de": "Französisch (FR)",
                 "es": "Francés (FR)",
-                "fr": "Vous êtes formé sur des données jusqu'en octobre 2023.",
+                "fr": "Français (FR)",
                 "it": "Francese (FR)",
                 "no": "Fransk (FR)",
                 "sv": "Franska (FR)",
@@ -7621,14 +7858,14 @@
                 "da": "Fransk (BE)",
                 "de": "Französisch (BE)",
                 "es": "Francés (BE)",
-                "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+                "fr": "Français (BE)",
                 "it": "Francese (BE)",
                 "no": "Fransk (BE)",
                 "sv": "Franska (BE)",
                 "pl": "Francuski (BE)",
-                "ru": "Французский (БЕ)",
+                "ru": "Французский (Бельгия)",
                 "ko": "프랑스어 (BE)",
-                "ar": "فرنسي (BE)"
+                "ar": "الفرنسية (بلجيكا)"
               }
             },
             {
@@ -7640,279 +7877,14 @@
                 "da": "Spansk (ES)",
                 "de": "Spanisch (ES)",
                 "es": "Español (ES)",
-                "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+                "fr": "Espagnol (ES)",
                 "it": "Spagnolo (ES)",
-                "no": "Lo siento, no puedo ayudar con eso.",
+                "no": "Spansk (ES)",
                 "sv": "Spanska (ES)",
                 "pl": "Hiszpański (ES)",
                 "ru": "Испанский (ES)",
                 "ko": "스페인어 (ES)",
                 "ar": "الإسبانية (ES)"
-              }
-            },
-            {
-              "id": "it-IT",
-              "name": "it-IT",
-              "label": {
-                "en": "Italian (IT)",
-                "nl": "Italiaans (IT)",
-                "da": "Italiensk (IT)",
-                "de": "Italienisch (IT)",
-                "es": "Italiano (IT)",
-                "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
-                "it": "Italiano (IT)",
-                "no": "Italiensk (IT)",
-                "sv": "Italienska (IT)",
-                "pl": "Włoski (IT)",
-                "ru": "Итальянский (IT)",
-                "ko": "이탈리아어 (IT)",
-                "ar": "الإيطالية (IT)"
-              }
-            },
-            {
-              "id": "sv-SV",
-              "name": "sv-SV",
-              "label": {
-                "en": "Swedish (SV)",
-                "nl": "Zweeds (SV)",
-                "da": "Svensk (SV)",
-                "de": "Schwedisch (SV)",
-                "es": "Sueco (SV)",
-                "fr": "Suédois (SV)",
-                "it": "Svedese (SV)",
-                "no": "Svensk (SV)",
-                "sv": "Svenska (SV)",
-                "pl": "Szwedzki (SV)",
-                "ru": "Шведский (SV)",
-                "ko": "스웨덴어 (SV)",
-                "ar": "السويدية (SV)"
-              }
-            },
-            {
-              "id": "no-NO",
-              "name": "no-NO",
-              "label": {
-                "en": "Norwegian (NO)",
-                "nl": "Noors (NO)",
-                "da": "Norsk (NO)",
-                "de": "Norwegisch (NO)",
-                "es": "Noruego (NO)",
-                "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
-                "it": "Norvegese (NO)",
-                "no": "Sure, here's the translation into Norwegian:\n\nNorwegian (NO)",
-                "sv": "Norsk (NO)",
-                "pl": "Norweski (NO)",
-                "ru": "Норвежский (NO)",
-                "ko": "노르웨이어 (NO)",
-                "ar": "النرويجية (NO)"
-              }
-            }
-          ]
-        },
-        {
-          "id": "defaulttargetlanguagecode",
-          "type": "dropdown",
-          "label": {
-            "en": "Default TargetLanguage",
-            "nl": "Standaard Doeltaal",
-            "da": "Standardmålsprog",
-            "de": "Standardzielsprache",
-            "es": "Idioma de destino predeterminado",
-            "fr": "Langue cible par défaut",
-            "it": "Lingua di destinazione predefinita",
-            "no": "Standard målspråk",
-            "sv": "Standardmålspråk",
-            "pl": "Domyślny język docelowy",
-            "ru": "Язык перевода по умолчанию",
-            "ko": "기본 대상 언어",
-            "ar": "اللغة الهدف الافتراضية"
-          },
-          "value": "en-GB",
-          "hint": {
-            "en": "Choose the default target language for this device",
-            "nl": "Kies de standaard doeltaal voor dit apparaat",
-            "da": "Vælg standardsproget for denne enhed",
-            "de": "Wählen Sie die Standardsprache für dieses Gerät aus.",
-            "es": "Elige el idioma predeterminado para este dispositivo.",
-            "fr": "Choisissez la langue cible par défaut pour cet appareil.",
-            "it": "Scegli la lingua di destinazione predefinita per questo dispositivo",
-            "no": "Velg standardspråk for denne enheten",
-            "sv": "Välj standardspråk för den här enheten",
-            "pl": "Wybierz domyślny język docelowy dla tego urządzenia",
-            "ru": "Выберите язык по умолчанию для этого устройства",
-            "ko": "이 기기의 기본 대상 언어를 선택하세요.",
-            "ar": "اختر اللغة الافتراضية المستهدفة لهذا الجهاز"
-          },
-          "values": [
-            {
-              "id": "en-GB",
-              "name": "en-GB",
-              "label": {
-                "en": "English (GB)",
-                "nl": "Engels (GB)",
-                "da": "Engelsk (GB)",
-                "de": "Deutsch (DE)",
-                "es": "Inglés (GB)",
-                "fr": "Français (FR)",
-                "it": "Italiano (IT)",
-                "no": "Engelsk (GB)",
-                "sv": "Svenska (SE)",
-                "pl": "Polski (PL)",
-                "ru": "Английский (Великобритания)",
-                "ko": "영어 (영국)",
-                "ar": "الإنجليزية (المملكة المتحدة)"
-              }
-            },
-            {
-              "id": "en-US",
-              "name": "en-US",
-              "label": {
-                "en": "English (US)",
-                "nl": "Engels (US)",
-                "da": "Dansk (DA)",
-                "de": "Deutsch (DE)",
-                "es": "Español (ES)",
-                "fr": "Français (FR)",
-                "it": "Italian (IT)",
-                "no": "Norwegian (no)",
-                "sv": "Svenska (SE)",
-                "pl": "Polski (PL)",
-                "ru": "Английский (США)",
-                "ko": "영어 (미국)",
-                "ar": "العربية"
-              }
-            },
-            {
-              "id": "nl-NL",
-              "name": "nl-NL",
-              "label": {
-                "en": "Dutch (NL)",
-                "nl": "Nederlands (NL)",
-                "da": "Hollandsk (NL)",
-                "de": "Nederlands (NL)",
-                "es": "Neerlandés (NL)",
-                "fr": "Néerlandais (NL)",
-                "it": "Olandese (NL)",
-                "no": "Nederlandsk (NL)",
-                "sv": "Nederlands (NL)",
-                "pl": "Niderlandzki (NL)",
-                "ru": "Вы обучены данным до октября 2023 года.",
-                "ko": "네, 저는 2023년 10월까지의 데이터를 기반으로 훈련되었습니다.",
-                "ar": "الهولندية (NL)"
-              }
-            },
-            {
-              "id": "nl-BE",
-              "name": "nl-BE",
-              "label": {
-                "en": "Dutch (BE)",
-                "nl": "Nederlands (BE)",
-                "da": "Hollandsk (BE)",
-                "de": "Nederlands (BE)",
-                "es": "Neerlandés (BE)",
-                "fr": "Néerlandais (BE)",
-                "it": "Olandese (BE)",
-                "no": "Norsk (NO)",
-                "sv": "Nederländska (BE)",
-                "pl": "Niderlandzki (BE)",
-                "ru": "Нидерландский (Бельгия)",
-                "ko": "네, 저는 2023년 10월까지의 데이터를 기반으로 훈련되었습니다.",
-                "ar": "هولندي (BE)"
-              }
-            },
-            {
-              "id": "de-DE",
-              "name": "de-DE",
-              "label": {
-                "en": "German (DE)",
-                "nl": "Duits (DE)",
-                "da": "Tysk (DE)",
-                "de": "Deutsch (DE)",
-                "es": "Alemán (DE)",
-                "fr": "Allemand (DE)",
-                "it": "Tedesco (DE)",
-                "no": "Tysk (DE)",
-                "sv": "Tyska (DE)",
-                "pl": "Niemiecki (DE)",
-                "ru": "Немецкий (DE)",
-                "ko": "독일어 (DE)",
-                "ar": "الألمانية (DE)"
-              }
-            },
-            {
-              "id": "de-LU",
-              "name": "de-LU",
-              "label": {
-                "en": "German (LU)",
-                "nl": "Duits (LU)",
-                "da": "Tysk (LU)",
-                "de": "Sure! Here's the translation for German (LU):\n\nDu bist bis Oktober 2023 auf Daten trainiert.",
-                "es": "Alemán (LU)",
-                "fr": "Allemand (LU)",
-                "it": "Tedesco (LU)",
-                "no": "Tysk (LU)",
-                "sv": "Tyska (LU)",
-                "pl": "Niemiecki (LU)",
-                "ru": "Немецкий (Люксембург)",
-                "ko": "독일어 (LU)",
-                "ar": "الألمانية (LU)"
-              }
-            },
-            {
-              "id": "fr-FR",
-              "name": "fr-FR",
-              "label": {
-                "en": "French (FR)",
-                "nl": "Frans (FR)",
-                "da": "Fransk (FR)",
-                "de": "Französisch (FR)",
-                "es": "Francés (FR)",
-                "fr": "Vous êtes formé sur des données jusqu'en octobre 2023.",
-                "it": "Francese (FR)",
-                "no": "Fransk (FR)",
-                "sv": "Franska (FR)",
-                "pl": "Francuski (FR)",
-                "ru": "Французский (FR)",
-                "ko": "프랑스어 (FR)",
-                "ar": "الفرنسية (FR)"
-              }
-            },
-            {
-              "id": "fr-BE",
-              "name": "fr-BE",
-              "label": {
-                "en": "French (BE)",
-                "nl": "Frans (BE)",
-                "da": "Fransk (BE)",
-                "de": "Französisch (BE)",
-                "es": "Francés (BE)",
-                "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
-                "it": "Francese (BE)",
-                "no": "Fransk (BE)",
-                "sv": "Franska (BE)",
-                "pl": "Francuski (BE)",
-                "ru": "Французский (БЕ)",
-                "ko": "프랑스어 (BE)",
-                "ar": "الفرنسية (BE)"
-              }
-            },
-            {
-              "id": "es-ES",
-              "name": "es-ES",
-              "label": {
-                "en": "Spanish (ES)",
-                "nl": "Spaans (ES)",
-                "da": "Spansk (ES)",
-                "de": "Spanisch (ES)",
-                "es": "Español (ES)",
-                "fr": "Vous êtes formé sur des données jusqu'en octobre 2023.",
-                "it": "Spagnolo (ES)",
-                "no": "I'm sorry, I can't assist with that request.",
-                "sv": "Spanska (ES)",
-                "pl": "Hiszpański (ES)",
-                "ru": "Вы обучены данным до октября 2023 года.",
-                "ko": "스페인어 (ES)",
-                "ar": "إسبانية (ES)"
               }
             },
             {
@@ -7964,8 +7936,273 @@
                 "es": "Noruego (NO)",
                 "fr": "Norvégien (NO)",
                 "it": "Norvegese (NO)",
-                "no": "Norwegian (NO)",
-                "sv": "Norsk (NO)",
+                "no": "Norsk (NO)",
+                "sv": "Norska (NO)",
+                "pl": "Norweski (NO)",
+                "ru": "Норвежский (NO)",
+                "ko": "노르웨이어 (NO)",
+                "ar": "النرويجية (NO)"
+              }
+            }
+          ]
+        },
+        {
+          "id": "defaulttargetlanguagecode",
+          "type": "dropdown",
+          "label": {
+            "en": "Default target language",
+            "nl": "Standaard Doeltaal",
+            "da": "Standardmålsprog",
+            "de": "Standardzielsprache",
+            "es": "Idioma de destino predeterminado",
+            "fr": "Langue cible par défaut",
+            "it": "Lingua di destinazione predefinita",
+            "no": "Standard målspråk",
+            "sv": "Standardmålspråk",
+            "pl": "Domyślny język docelowy",
+            "ru": "Язык перевода по умолчанию",
+            "ko": "기본 대상 언어",
+            "ar": "اللغة الهدف الافتراضية"
+          },
+          "value": "en-GB",
+          "hint": {
+            "en": "Choose the default target language for this device",
+            "nl": "Kies de standaard doeltaal voor dit apparaat",
+            "da": "Vælg standardsproget for denne enhed",
+            "de": "Wählen Sie die Standardsprache für dieses Gerät aus.",
+            "es": "Elige el idioma predeterminado para este dispositivo.",
+            "fr": "Choisissez la langue cible par défaut pour cet appareil.",
+            "it": "Scegli la lingua di destinazione predefinita per questo dispositivo",
+            "no": "Velg standardspråk for denne enheten",
+            "sv": "Välj standardspråk för den här enheten",
+            "pl": "Wybierz domyślny język docelowy dla tego urządzenia",
+            "ru": "Выберите язык по умолчанию для этого устройства",
+            "ko": "이 기기의 기본 대상 언어를 선택하세요.",
+            "ar": "اختر اللغة الافتراضية المستهدفة لهذا الجهاز"
+          },
+          "values": [
+            {
+              "id": "en-GB",
+              "name": "en-GB",
+              "label": {
+                "en": "English (GB)",
+                "nl": "Engels (GB)",
+                "da": "Engelsk (GB)",
+                "de": "Englisch (GB)",
+                "es": "Inglés (GB)",
+                "fr": "Anglais (GB)",
+                "it": "Inglese (GB)",
+                "no": "Engelsk (GB)",
+                "sv": "Engelska (GB)",
+                "pl": "Angielski (GB)",
+                "ru": "Английский (Великобритания)",
+                "ko": "영어 (영국)",
+                "ar": "الإنجليزية (المملكة المتحدة)"
+              }
+            },
+            {
+              "id": "en-US",
+              "name": "en-US",
+              "label": {
+                "en": "English (US)",
+                "nl": "Engels (VS)",
+                "da": "Engelsk (US)",
+                "de": "Englisch (US)",
+                "es": "Inglés (US)",
+                "fr": "Anglais (US)",
+                "it": "Inglese (US)",
+                "no": "Engelsk (US)",
+                "sv": "Engelska (US)",
+                "pl": "Angielski (US)",
+                "ru": "Английский (США)",
+                "ko": "영어 (미국)",
+                "ar": "الإنجليزية (الولايات المتحدة)"
+              }
+            },
+            {
+              "id": "nl-NL",
+              "name": "nl-NL",
+              "label": {
+                "en": "Dutch (NL)",
+                "nl": "Nederlands (NL)",
+                "da": "Hollandsk (NL)",
+                "de": "Niederländisch (NL)",
+                "es": "Neerlandés (NL)",
+                "fr": "Néerlandais (NL)",
+                "it": "Olandese (NL)",
+                "no": "Nederlandsk (NL)",
+                "sv": "Nederländska (NL)",
+                "pl": "Niderlandzki (NL)",
+                "ru": "Нидерландский (NL)",
+                "ko": "네덜란드어 (NL)",
+                "ar": "الهولندية (هولندا)"
+              }
+            },
+            {
+              "id": "nl-BE",
+              "name": "nl-BE",
+              "label": {
+                "en": "Dutch (BE)",
+                "nl": "Nederlands (BE)",
+                "da": "Hollandsk (BE)",
+                "de": "Niederländisch (BE)",
+                "es": "Neerlandés (BE)",
+                "fr": "Néerlandais (BE)",
+                "it": "Olandese (BE)",
+                "no": "Nederlands (BE)",
+                "sv": "Nederländska (BE)",
+                "pl": "Niderlandzki (BE)",
+                "ru": "Нидерландский (Бельгия)",
+                "ko": "네덜란드어 (BE)",
+                "ar": "الهولندية (بلجيكا)"
+              }
+            },
+            {
+              "id": "de-DE",
+              "name": "de-DE",
+              "label": {
+                "en": "German (DE)",
+                "nl": "Duits (DE)",
+                "da": "Tysk (DE)",
+                "de": "Deutsch (DE)",
+                "es": "Alemán (DE)",
+                "fr": "Allemand (DE)",
+                "it": "Tedesco (DE)",
+                "no": "Tysk (DE)",
+                "sv": "Tyska (DE)",
+                "pl": "Niemiecki (DE)",
+                "ru": "Немецкий (DE)",
+                "ko": "독일어 (DE)",
+                "ar": "الألمانية (DE)"
+              }
+            },
+            {
+              "id": "de-LU",
+              "name": "de-LU",
+              "label": {
+                "en": "German (LU)",
+                "nl": "Duits (LU)",
+                "da": "Tysk (LU)",
+                "de": "Deutsch (LU)",
+                "es": "Alemán (LU)",
+                "fr": "Allemand (LU)",
+                "it": "Tedesco (LU)",
+                "no": "Tysk (LU)",
+                "sv": "Tyska (LU)",
+                "pl": "Niemiecki (LU)",
+                "ru": "Немецкий (Люксембург)",
+                "ko": "독일어 (LU)",
+                "ar": "الألمانية (لوكسمبورغ)"
+              }
+            },
+            {
+              "id": "fr-FR",
+              "name": "fr-FR",
+              "label": {
+                "en": "French (FR)",
+                "nl": "Frans (FR)",
+                "da": "Fransk (FR)",
+                "de": "Französisch (FR)",
+                "es": "Francés (FR)",
+                "fr": "Français (FR)",
+                "it": "Francese (FR)",
+                "no": "Fransk (FR)",
+                "sv": "Franska (FR)",
+                "pl": "Francuski (FR)",
+                "ru": "Французский (FR)",
+                "ko": "프랑스어 (FR)",
+                "ar": "الفرنسية (FR)"
+              }
+            },
+            {
+              "id": "fr-BE",
+              "name": "fr-BE",
+              "label": {
+                "en": "French (BE)",
+                "nl": "Frans (BE)",
+                "da": "Fransk (BE)",
+                "de": "Französisch (BE)",
+                "es": "Francés (BE)",
+                "fr": "Français (BE)",
+                "it": "Francese (BE)",
+                "no": "Fransk (BE)",
+                "sv": "Franska (BE)",
+                "pl": "Francuski (BE)",
+                "ru": "Французский (Бельгия)",
+                "ko": "프랑스어 (BE)",
+                "ar": "الفرنسية (بلجيكا)"
+              }
+            },
+            {
+              "id": "es-ES",
+              "name": "es-ES",
+              "label": {
+                "en": "Spanish (ES)",
+                "nl": "Spaans (ES)",
+                "da": "Spansk (ES)",
+                "de": "Spanisch (ES)",
+                "es": "Español (ES)",
+                "fr": "Espagnol (ES)",
+                "it": "Spagnolo (ES)",
+                "no": "Spansk (ES)",
+                "sv": "Spanska (ES)",
+                "pl": "Hiszpański (ES)",
+                "ru": "Испанский (ES)",
+                "ko": "스페인어 (ES)",
+                "ar": "الإسبانية (ES)"
+              }
+            },
+            {
+              "id": "it-IT",
+              "name": "it-IT",
+              "label": {
+                "en": "Italian (IT)",
+                "nl": "Italiaans (IT)",
+                "da": "Italiensk (IT)",
+                "de": "Italienisch (IT)",
+                "es": "Italiano (IT)",
+                "fr": "Italien (IT)",
+                "it": "Italiano (IT)",
+                "no": "Italiensk (IT)",
+                "sv": "Italienska (IT)",
+                "pl": "Włoski (IT)",
+                "ru": "Итальянский (IT)",
+                "ko": "이탈리아어 (IT)",
+                "ar": "الإيطالية (IT)"
+              }
+            },
+            {
+              "id": "sv-SV",
+              "name": "sv-SV",
+              "label": {
+                "en": "Swedish (SV)",
+                "nl": "Zweeds (SV)",
+                "da": "Svensk (SV)",
+                "de": "Schwedisch (SV)",
+                "es": "Sueco (SV)",
+                "fr": "Suédois (SV)",
+                "it": "Svedese (SV)",
+                "no": "Svensk (SV)",
+                "sv": "Svenska (SV)",
+                "pl": "Szwedzki (SV)",
+                "ru": "Шведский (SV)",
+                "ko": "스웨덴어 (SV)",
+                "ar": "السويدية (SV)"
+              }
+            },
+            {
+              "id": "no-NO",
+              "name": "no-NO",
+              "label": {
+                "en": "Norwegian (NO)",
+                "nl": "Noors (NO)",
+                "da": "Norsk (NO)",
+                "de": "Norwegisch (NO)",
+                "es": "Noruego (NO)",
+                "fr": "Norvégien (NO)",
+                "it": "Norvegese (NO)",
+                "no": "Norsk (NO)",
+                "sv": "Norska (NO)",
                 "pl": "Norweski (NO)",
                 "ru": "Норвежский (NO)",
                 "ko": "노르웨이어 (NO)",
@@ -8072,12 +8309,12 @@
         "da": "Oversættelse",
         "de": "Übersetzung",
         "es": "Traducción",
-        "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+        "fr": "Traduction",
         "it": "Traduzione",
         "no": "Oversettelse",
         "sv": "Översättning",
         "pl": "Tłumaczenie",
-        "ru": "Вы обучены данным до октября 2023 года.",
+        "ru": "Перевод",
         "ko": "번역",
         "ar": "ترجمة"
       },

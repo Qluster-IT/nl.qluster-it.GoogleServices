@@ -46,14 +46,14 @@
             "da": "Tekst",
             "de": "Text",
             "es": "Texto",
-            "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+            "fr": "Texte",
             "it": "Testo",
-            "no": "Du er trent på data frem til oktober 2023.",
-            "sv": "Du är tränad på data fram till oktober 2023.",
-            "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
+            "no": "Tekst",
+            "sv": "Text",
+            "pl": "Tekst",
             "ru": "Текст",
             "ko": "텍스트",
-            "ar": "أنت مدرب على البيانات حتى أكتوبر 2023."
+            "ar": "نص"
           }
         }
       ],
@@ -64,12 +64,48 @@
   "actions": [
     {
       "id": "announce_googletts",
-      "title": { "en": "Announce text on a speaker", "nl": "Spreek tekst uit op een luidspreker" },
-      "titleFormatted": { "en": "Announce [[text]] on [[speaker]]", "nl": "Spreek [[text]] uit op [[speaker]]" },
-      "hint": { "en": "Plays up to 200 characters on a Google Cast, Sonos, or compatible UPnP/DLNA speaker on your local network. Supports BLL coding in the text field.", "nl": "Speelt maximaal 200 tekens af op een Google Cast-, Sonos- of compatibele UPnP/DLNA-luidspreker op je lokale netwerk. BLL-codering wordt ondersteund in het tekstveld." },
+      "title": {
+        "en": "Announce text on a speaker",
+        "nl": "Spreek tekst uit op een luidspreker"
+      },
+      "titleFormatted": {
+        "en": "Announce [[text]] on [[speaker]] with volume [[volume]]%",
+        "nl": "Spreek [[text]] uit op [[speaker]] met volume [[volume]]%"
+      },
+      "hint": {
+        "en": "Plays up to 200 characters on a Google Cast, Sonos, or compatible UPnP/DLNA speaker on your local network. Supports BLL coding in the text field.",
+        "nl": "Speelt maximaal 200 tekens af op een Google Cast-, Sonos- of compatibele UPnP/DLNA-luidspreker op je lokale netwerk. BLL-codering wordt ondersteund in het tekstveld."
+      },
       "args": [
-        { "name": "text", "type": "text", "placeholder": { "en": "Text to announce (* BLL supported)", "nl": "Tekst om uit te spreken (* BLL ondersteund)" } },
-        { "name": "speaker", "type": "autocomplete", "placeholder": { "en": "Choose a local speaker", "nl": "Kies een lokale luidspreker" } }
+        {
+          "name": "text",
+          "type": "text",
+          "placeholder": {
+            "en": "Text to announce (* BLL supported)",
+            "nl": "Tekst om uit te spreken (* BLL ondersteund)"
+          }
+        },
+        {
+          "name": "speaker",
+          "type": "autocomplete",
+          "placeholder": {
+            "en": "Choose a speaker",
+            "nl": "Kies een luidspreker"
+          },
+          "required": false
+        },
+        {
+          "name": "volume",
+          "type": "number",
+          "min": 0,
+          "max": 100,
+          "decimals": 0,
+          "placeholder": {
+            "en": "Speaker volume (%) (optional)",
+            "nl": "Luidsprekervolume (%) (optioneel)"
+          },
+          "required": false
+        }
       ]
     },
     {
@@ -111,17 +147,17 @@
           "placeholder": {
             "en": "Text (* BLL supported)",
             "nl": "Tekst (* BLL ondersteund)",
-            "da": "Tekst (* BLL underst?ttet)",
-            "de": "Text (* BLL unterst?tzt)",
+            "da": "Tekst (* BLL understøttet)",
+            "de": "Text (* BLL unterstützt)",
             "es": "Texto (* BLL compatible)",
             "fr": "Texte (* BLL pris en charge)",
             "it": "Testo (* BLL supportato)",
-            "no": "Tekst (* BLL st?ttet)",
-            "sv": "Text (* BLL st?ds)",
-            "pl": "Tekst (* Obs?ugiwane BLL)",
-            "ru": "????? (* ?????????????? BLL)",
-            "ko": "??? (* BLL ???)",
-            "ar": "???? (* ????? ?? BLL)"
+            "no": "Tekst (* BLL støttet)",
+            "sv": "Text (* BLL stöds)",
+            "pl": "Tekst (* obsługiwany przez BLL)",
+            "ru": "Текст (* поддерживается BLL)",
+            "ko": "텍스트 (* BLL 지원)",
+            "ar": "النص (* مدعوم من BLL)"
           }
         }
       ]
@@ -165,17 +201,17 @@
           "placeholder": {
             "en": "Text (* BLL supported)",
             "nl": "Tekst (* BLL ondersteund)",
-            "da": "Tekst (* BLL underst?ttet)",
-            "de": "Text (* BLL unterst?tzt)",
+            "da": "Tekst (* BLL understøttet)",
+            "de": "Text (* BLL unterstützt)",
             "es": "Texto (* BLL compatible)",
             "fr": "Texte (* BLL pris en charge)",
             "it": "Testo (* BLL supportato)",
-            "no": "Tekst (* BLL st?ttet)",
-            "sv": "Text (* BLL st?ds)",
-            "pl": "Tekst (* Obs?ugiwane BLL)",
-            "ru": "????? (* ?????????????? BLL)",
-            "ko": "??? (* BLL ???)",
-            "ar": "???? (* ????? ?? BLL)"
+            "no": "Tekst (* BLL støttet)",
+            "sv": "Text (* BLL stöds)",
+            "pl": "Tekst (* obsługiwany przez BLL)",
+            "ru": "Текст (* поддерживается BLL)",
+            "ko": "텍스트 (* BLL 지원)",
+            "ar": "النص (* مدعوم من BLL)"
           }
         }
       ]
@@ -219,17 +255,17 @@
           "placeholder": {
             "en": "Text (* BLL supported)",
             "nl": "Tekst (* BLL ondersteund)",
-            "da": "Tekst (* BLL underst?ttet)",
-            "de": "Text (* BLL unterst?tzt)",
+            "da": "Tekst (* BLL understøttet)",
+            "de": "Text (* BLL unterstützt)",
             "es": "Texto (* BLL compatible)",
             "fr": "Texte (* BLL pris en charge)",
             "it": "Testo (* BLL supportato)",
-            "no": "Tekst (* BLL st?ttet)",
-            "sv": "Text (* BLL st?ds)",
-            "pl": "Tekst (* Obs?ugiwane BLL)",
-            "ru": "????? (* ?????????????? BLL)",
-            "ko": "??? (* BLL ???)",
-            "ar": "???? (* ????? ?? BLL)"
+            "no": "Tekst (* BLL støttet)",
+            "sv": "Text (* BLL stöds)",
+            "pl": "Tekst (* obsługiwany przez BLL)",
+            "ru": "Текст (* поддерживается BLL)",
+            "ko": "텍스트 (* BLL 지원)",
+            "ar": "النص (* مدعوم من BLL)"
           }
         }
       ],
@@ -259,17 +295,17 @@
           "title": {
             "en": "Text",
             "nl": "Tekst",
-            "da": "Du er trænet på data op til oktober 2023.",
+            "da": "Tekst",
             "de": "Text",
             "es": "Texto",
-            "fr": "Vous êtes formé sur des données jusqu'en octobre 2023.",
+            "fr": "Texte",
             "it": "Testo",
-            "no": "Du er trent på data frem til oktober 2023.",
+            "no": "Tekst",
             "sv": "Text",
             "pl": "Tekst",
             "ru": "Текст",
             "ko": "텍스트",
-            "ar": "أنت مدرب على البيانات حتى أكتوبر 2023."
+            "ar": "نص"
           }
         }
       ]
@@ -313,17 +349,17 @@
           "placeholder": {
             "en": "Text (* BLL supported)",
             "nl": "Tekst (* BLL ondersteund)",
-            "da": "Tekst (* BLL underst?ttet)",
-            "de": "Text (* BLL unterst?tzt)",
+            "da": "Tekst (* BLL understøttet)",
+            "de": "Text (* BLL unterstützt)",
             "es": "Texto (* BLL compatible)",
             "fr": "Texte (* BLL pris en charge)",
             "it": "Testo (* BLL supportato)",
-            "no": "Tekst (* BLL st?ttet)",
-            "sv": "Text (* BLL st?ds)",
-            "pl": "Tekst (* Obs?ugiwane BLL)",
-            "ru": "????? (* ?????????????? BLL)",
-            "ko": "??? (* BLL ???)",
-            "ar": "???? (* ????? ?? BLL)"
+            "no": "Tekst (* BLL støttet)",
+            "sv": "Text (* BLL stöds)",
+            "pl": "Tekst (* obsługiwany przez BLL)",
+            "ru": "Текст (* поддерживается BLL)",
+            "ko": "텍스트 (* BLL 지원)",
+            "ar": "النص (* مدعوم من BLL)"
           }
         }
       ],
@@ -353,15 +389,15 @@
           "title": {
             "en": "Text",
             "nl": "Tekst",
-            "da": "Du er trænet på data op til oktober 2023.",
+            "da": "Tekst",
             "de": "Text",
             "es": "Texto",
-            "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+            "fr": "Texte",
             "it": "Testo",
-            "no": "Du er trent på data frem til oktober 2023.",
-            "sv": "Jag är tränad på data fram till oktober 2023.",
-            "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
-            "ru": "Вы обучены данным до октября 2023 года.",
+            "no": "Tekst",
+            "sv": "Text",
+            "pl": "Tekst",
+            "ru": "Текст",
             "ko": "텍스트",
             "ar": "نص"
           }

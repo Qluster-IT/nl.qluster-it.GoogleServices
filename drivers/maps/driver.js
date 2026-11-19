@@ -2,6 +2,7 @@
 
 const Homey = require('homey');
 const { v4: uuidv4 } = require('uuid');
+const { BL } = require('betterlogiclibrary');
 const { parseRoute, parseRouteSettings, routePlacesKey, computeRoute, autocompletePlaces,
   lookupPlaceAddress, fetchMap } = require('../../lib/maps');
 
@@ -11,13 +12,13 @@ class MapsDriver extends Homey.Driver {
       .registerRunListener(async ({ device }) => { await device.refreshRoute(); });
     const calculate = this.homey.flow.getActionCard('maps_calculate_route');
     calculate.registerRunListener(async ({ from, to, mode }) => {
-      const { tokens } = await this.calculateRoute(parseRoute(from, to, mode));
+      const { tokens } = await this.calculateRoute(await this.parseFlowRoute(from, to, mode));
       return tokens;
     });
     const tripTakesLonger = this.homey.flow.getConditionCard('maps_trip_takes_longer');
     tripTakesLonger.registerRunListener(async ({ from, to, mode, minutes }) => {
       if (!Number.isFinite(minutes) || minutes < 0) throw new Error(this.homey.__('maps.invalid_minutes'));
-      const { durationSeconds } = await this.calculateRoute(parseRoute(from, to, mode));
+      const { durationSeconds } = await this.calculateRoute(await this.parseFlowRoute(from, to, mode));
       return durationSeconds / 60 > minutes;
     });
     for (const card of [calculate, tripTakesLonger]) {
@@ -36,6 +37,16 @@ class MapsDriver extends Homey.Driver {
         if (!Number.isFinite(current)) throw new Error(this.homey.__('maps.route_unavailable'));
         return current > minutes;
       });
+  }
+
+  async parseFlowRoute(from, to, mode) {
+    const decode = async value => {
+      const text = typeof value === 'string' ? value : value?.id;
+      if (typeof text !== 'string') throw new Error('Choose an address or enter text.');
+      if (text.startsWith('place_id:')) return value;
+      return BL.decode(text, this.homey.i18n.getLanguage());
+    };
+    return parseRoute(await decode(from), await decode(to), mode);
   }
 
   getMapsKey() {

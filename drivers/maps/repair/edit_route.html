@@ -1,4 +1,7 @@
 <style>
+  #editRouteForm { padding-bottom: calc(100px + env(safe-area-inset-bottom, 0px)); }
+  .setup-actions { position: fixed; bottom: 0; left: 0; right: 0; z-index: 10; padding: 12px 20px calc(12px + env(safe-area-inset-bottom, 0px)); background: var(--homey-background-color, #fff); border-top: 1px solid var(--homey-line-color, #ddd); }
+  .setup-actions button { width: 100%; margin: 0; }
   .route-field { margin-bottom: 20px; }
   .route-field label { display: block; margin-bottom: 8px; }
   .route-field input[type="text"], .route-field select { width: 100%; box-sizing: border-box; }
@@ -55,7 +58,9 @@
       </label>
       <p id="routeTrafficHelp" class="homey-text-small" data-i18n="maps.pair.traffic_help"></p>
     </div>
-    <button class="homey-button-primary-full" type="submit" data-i18n="maps.repair.save"></button>
+    <div class="setup-actions">
+      <button class="homey-button-primary-full hy-nostyle" type="submit" data-i18n="maps.repair.save"></button>
+    </div>
   </fieldset>
   <p id="routeError" class="homey-text-small" role="alert"></p>
 </form>

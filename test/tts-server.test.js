@@ -42,6 +42,25 @@ function createServer() {
   return { server, get, binary, parsed, errors, timers, requests: () => requests };
 }
 
+test('optional Cloud speech overrides use device defaults and preserve an explicit zero', async () => {
+  const { server, binary } = createServer();
+  const requests = [];
+  server.client.synthesizeSpeech = async request => { requests.push(request); return [{ audioContent: binary }]; };
+  const device = {
+    homey: { cloud: { getLocalAddress: async () => '127.0.0.1' } },
+    getSettings: () => ({ speakingRate: 1.25, pitch: 5, volumeGainDb: 7 }),
+    getStoreValue: () => ({ name: 'nl-NL-Test', languageCode: 'nl-NL', ssmlGender: 'FEMALE' })
+  };
+  await server.getUrl({ args: { device, text: 'Default' } });
+  await server.getUrl({ args: { device, text: 'Zero overrides', pitch: 0, volumeGainDb: 0 } });
+  assert.equal(requests[0].audioConfig.speakingRate, 1.25);
+  assert.equal(requests[0].audioConfig.pitch, 5);
+  assert.equal(requests[0].audioConfig.volumeGainDb, 7);
+  assert.equal(requests[0].voice.name, 'nl-NL-Test');
+  assert.equal(requests[1].audioConfig.pitch, 0);
+  assert.equal(requests[1].audioConfig.volumeGainDb, 0);
+});
+
 test('TTS cache retains only the 100 most recently used completed entries', async () => {
   const { server, get, requests } = createServer();
   const first = await get('text-0');
@@ -70,6 +89,17 @@ test('TTS duration parsing reuses the audio buffer and failures do not poison th
   server.client.synthesizeSpeech = async () => [{ audioContent: binary }];
   assert.ok(await get('failure'));
   assert.equal(server.Urls.length, 2);
+});
+
+test('hosted speech duration lazily parses the existing buffer once and reports missing audio', async () => {
+  const { server, binary, parsed } = createServer();
+  server.Urls = [{ id: 'test-audio', binary, audioConfig: { audioEncoding: 'MP3' } }];
+  const address = 'http://homey.invalid:47333/tts/test-audio.mp3';
+  assert.equal(await server.hostedDuration(address), 1500);
+  assert.equal(await server.hostedDuration(address), 1500);
+  assert.deepEqual(parsed, [binary]);
+  assert.equal(parsed[0], binary);
+  await assert.rejects(server.hostedDuration('http://homey.invalid/tts/absent.mp3'), /no longer available/);
 });
 
 test('Cloud TTS uses an explicit Flow voice before the device and app defaults', async () => {

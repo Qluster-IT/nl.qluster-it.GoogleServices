@@ -15,5 +15,13 @@
   "choose_language": "Kies een aankondigingstaal voor het voorbeeld.",
   "speaker_stereo": "Stereo",
   "speaker_left": "Links",
-  "speaker_right": "Rechts"
+  "speaker_right": "Rechts",
+  "speaker_all": "Alle luidsprekers",
+  "speaker_all_help": "Alle momenteel vindbare luidsprekers",
+  "settings_title": "Spraak- en luidsprekerinstellingen",
+  "default_speaker": "Standaardluidspreker",
+  "no_speaker": "Geen directe weergave (gebruik Flow-kaarten)",
+  "speaker_help": "Gebruikt door spraak- en vertaalacties. Een expliciete luidspreker op een aankondigingskaart gaat voor. Alle luidsprekers omvat elk gevonden doel; alleen compatibele Sonos-kamers kunnen worden gesynchroniseerd.",
+  "reload_speakers": "Zoek luidsprekers opnieuw",
+  "settings_saved": "Instellingen opgeslagen"
 }

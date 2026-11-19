@@ -26,7 +26,14 @@
     "small": "{{driverAssetsPath}}/images/small.png"
   },
   "pair": [
-    { "id": "choose_voice", "$template": "speech_voice" },
+    {
+      "id": "speech_settings",
+      "$template": "speech_settings"
+    },
+    {
+      "id": "choose_voice",
+      "$template": "speech_voice"
+    },
     {
       "id": "list_devices",
       "template": "list_devices",
@@ -43,26 +50,76 @@
     }
   ],
   "repair": [
-    { "id": "configure_voice", "$template": "speech_voice" }
+    {
+      "id": "speech_settings",
+      "$template": "speech_settings"
+    },
+    {
+      "id": "configure_voice",
+      "$template": "speech_voice"
+    }
   ],
   "settings": [
     {
       "type": "group",
-      "label": { "en": "Speech voice", "nl": "Spraakstem" },
-      "children": [{
-        "id": "voice_repair_help",
-        "type": "label",
-        "label": { "en": "Choose a voice in Repair", "nl": "Kies een stem via Repareren" },
-        "value": "",
-        "hint": { "en": "Open Repair on this device to choose and preview its Cloud TTS voice.", "nl": "Open Repareren op dit apparaat om zijn Cloud TTS-stem te kiezen en te beluisteren." }
-      }]
+      "label": {
+        "en": "Speech voice",
+        "nl": "Spraakstem"
+      },
+      "children": [
+        {
+          "id": "voice_repair_help",
+          "type": "label",
+          "label": {
+            "en": "Choose a voice in Repair",
+            "nl": "Kies een stem via Repareren"
+          },
+          "value": "",
+          "hint": {
+            "en": "Open Repair on this device to choose and preview its Cloud TTS voice.",
+            "nl": "Open Repareren op dit apparaat om zijn Cloud TTS-stem te kiezen en te beluisteren."
+          }
+        }
+      ]
     },
     {
       "id": "trigger_when_announcing",
       "type": "checkbox",
-      "label": { "en": "Run When cards for speaker announcements", "nl": "Activeer Wanneer-kaarten bij luidsprekeraankondigingen" },
-      "hint": { "en": "Also trigger the audio URL and timed Finished When cards for direct Google Cast or DLNA announcements.", "nl": "Activeer ook de Wanneer-kaarten voor de audio-URL en de geschatte eindtijd bij directe aankondigingen via Google Cast of DLNA." },
+      "label": {
+        "en": "Run When cards for speaker announcements",
+        "nl": "Activeer Wanneer-kaarten bij luidsprekeraankondigingen"
+      },
+      "hint": {
+        "en": "For direct Google Cast, Sonos and UPnP/DLNA playback: turn on to run the audio URL and timed Finished When cards after playback starts successfully. Turn off to suppress both cards. Finished uses the audio duration and delay, not a speaker signal.",
+        "nl": "Bij direct afspelen via Google Cast, Sonos en UPnP/DLNA: schakel in om de Wanneer-kaarten met de audio-URL en de geschatte eindtijd te activeren na een succesvolle start. Schakel uit om beide te onderdrukken. De eindtijd gebruikt de audioduur en vertraging, geen luidsprekersignaal."
+      },
       "value": false
+    },
+    {
+      "id": "announcement_group_sonos",
+      "type": "checkbox",
+      "label": {
+        "en": "Temporarily group Sonos rooms",
+        "nl": "Sonos-kamers tijdelijk groeperen"
+      },
+      "hint": {
+        "en": "With All speakers, group compatible Sonos rooms for synchronized speech, then restore their groups. Other speakers play separately.",
+        "nl": "Groepeer bij Alle luidsprekers compatibele Sonos-kamers voor gesynchroniseerde spraak en herstel daarna de groepen. Andere luidsprekers spelen afzonderlijk."
+      },
+      "value": true
+    },
+    {
+      "id": "announcement_resume",
+      "type": "checkbox",
+      "label": {
+        "en": "Resume previous playback",
+        "nl": "Vorige weergave hervatten"
+      },
+      "hint": {
+        "en": "After direct speaker playback, restore the previous source and position where supported. Unsupported features are skipped.",
+        "nl": "Herstel na direct afspelen de vorige bron en positie waar dit wordt ondersteund. Niet-ondersteunde functies worden overgeslagen."
+      },
+      "value": true
     },
     {
       "id": "speakingRate",
@@ -83,19 +140,19 @@
         "ar": "السرعة %"
       },
       "hint": {
-        "en": "The speed at which to play the speech (1 is default)",
-        "nl": "De snelheid waarmee de spraak wordt  (1 is standaard)",
-        "da": "Hastigheden, som talen skal afspilles med (1 er standard)",
-        "de": "Die Geschwindigkeit, mit der die Sprache abgespielt wird (1 ist Standard)",
-        "es": "La velocidad a la que se reproducirá el discurso (1 es la predeterminada)",
-        "fr": "La vitesse à laquelle lire le discours (1 est la valeur par défaut)",
-        "it": "La velocità con cui riprodurre il discorso (1 è il valore predefinito)",
-        "no": "Hastigheten for å spille av talen (1 er standard)",
-        "sv": "Hastigheten för att spela upp talet (1 är standard)",
-        "pl": "Prędkość odtwarzania mowy (1 to domyślna)",
-        "ru": "Скорость воспроизведения речи (1 по умолчанию)",
-        "ko": "음성 재생 속도 (1이 기본값)",
-        "ar": "السرعة التي يتم بها تشغيل الكلام (1 هي الافتراضية)"
+        "en": "Speech playback speed (100% is normal).",
+        "nl": "De spreeksnelheid (100% is normaal).",
+        "da": "Talens afspilningshastighed (100% er normalt).",
+        "de": "Sprechgeschwindigkeit (100% ist normal).",
+        "es": "Velocidad de reproducción de la voz (100% es normal).",
+        "fr": "Vitesse de lecture de la voix (100% est normal).",
+        "it": "Velocità di riproduzione della voce (100% è normale).",
+        "no": "Avspillingshastighet for tale (100% er normalt).",
+        "sv": "Talets uppspelningshastighet (100% är normalt).",
+        "pl": "Prędkość odtwarzania mowy (100% to normalna prędkość).",
+        "ru": "Скорость воспроизведения речи (100% — обычная скорость).",
+        "ko": "음성 재생 속도(100%가 보통 속도입니다).",
+        "ar": "سرعة تشغيل الكلام (100% هي السرعة العادية)."
       },
       "min": 0.25,
       "max": 4,

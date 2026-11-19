@@ -64,6 +64,14 @@
     "choose_language": "Kies een aankondigingstaal voor het voorbeeld.",
     "speaker_stereo": "Stereo",
     "speaker_left": "Links",
-    "speaker_right": "Rechts"
+    "speaker_right": "Rechts",
+    "speaker_all": "Alle luidsprekers",
+    "speaker_all_help": "Alle momenteel vindbare luidsprekers (niet gesynchroniseerd)",
+    "settings_title": "Spraak- en luidsprekerinstellingen",
+    "default_speaker": "Standaardluidspreker",
+    "no_speaker": "Geen directe weergave (gebruik Flow-kaarten)",
+    "speaker_help": "Gebruikt door bestaande spraak- en vertaalacties. Een expliciete luidspreker op een aankondigingskaart gaat voor. Alle luidsprekers start weergave op elk gevonden doel; weergave is niet gesynchroniseerd en kan bestaande audio onderbreken.",
+    "reload_speakers": "Zoek luidsprekers opnieuw",
+    "settings_saved": "Instellingen opgeslagen"
   }
 }

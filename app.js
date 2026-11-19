@@ -64,7 +64,7 @@ class GoogleServicesApp extends Homey.App {
       TtsServer.init({homey: this.homey});
       await this.setCloudJSON();
       await this.setDefaultCloudVoice();   
-      const { registerAnnouncement, basicSpeech } = require('./lib/speaker-announcements');
+      const { registerAnnouncement, basicSpeech, selectSpeaker, playAnnouncement } = require('./lib/speaker-announcements');
       registerAnnouncement(this.homey, 'announce_googletts', async ({ device, text }) => {
         const language = device.getSettings().languagecode || 'en-GB';
         const decoded = await BL.decode(text, language);
@@ -73,6 +73,7 @@ class GoogleServicesApp extends Homey.App {
         return this.Triggers.urlTrigger.Card.trigger(device, { url, text });
       });
       registerAnnouncement(this.homey, 'announce_googlecloudtts', async args => {
+        this.ClearFinishedTimer(args.device);
         const speechArgs = { ...args };
         const audio = await TtsServer.getUrl({ args: speechArgs });
         return { url: audio.url, type: audio.audioConfig.audioEncoding === 'MP3' ? 'audio/mpeg' : 'audio/wav',
@@ -117,12 +118,19 @@ class GoogleServicesApp extends Homey.App {
             if(args.text.length>200) throw new Error("Max 200 characters");
             const settings =  args.device.getSettings();
             const languagecode = settings && settings.languagecode ? settings.languagecode : 'en-GB';
-            
+            const speaker = await selectSpeaker(this.homey, args.device);
             args.text = await BL.decode(args.text, languagecode);
             if(args.text.length>200) throw new Error("Max 200 characters");
-            
-            const url = googleTTS.getAudioUrl(args.text, { lang:languagecode, slow: start.slow });
-            this.Triggers.urlTrigger.Card.trigger(args.device, {url:url, text:args.text} );
+            let url;
+            if (speaker) {
+              const media = { ...await basicSpeech(this.homey, args.text, languagecode, start.slow), text: args.text };
+              url = media.url;
+              await playAnnouncement(this.homey, args.device, speaker, media,
+                (device, tokens) => this.Triggers.urlTrigger.Card.trigger(device, { url: tokens.url, text: tokens.text }));
+            } else {
+              url = googleTTS.getAudioUrl(args.text, { lang:languagecode, slow: start.slow });
+              await this.Triggers.urlTrigger.Card.trigger(args.device, {url:url, text:args.text} );
+            }
             return start.af ? {url:url, text:args.text} : true;
           } catch (error) { console.log('Error: ' + error); throw error; }
         });
@@ -147,7 +155,11 @@ class GoogleServicesApp extends Homey.App {
         const action = actions[i];
         
         const actionCard = this.homey.flow.getActionCard(action.id);
-        actionCard.registerRunListener(( ( args, state ) => { //async
+        actionCard.registerRunListener((async ( args, state ) => {
+          if (args.device?.getStoreValue?.('announcement_speaker')) {
+            const tokens = await this.sayCloudOnSpeaker(args);
+            return action.af ? tokens : true;
+          }
           const defer = new Defer();
           try {
               if(!args.device || !args.text) return false;
@@ -190,7 +202,11 @@ class GoogleServicesApp extends Homey.App {
       for (let i = 0; i < conditionClouds.length; i++) {
         const condition = conditionClouds[i];      
         const conditionCard = this.homey.flow.getConditionCard(condition.id);
-        conditionCard.registerRunListener(( ( args, state ) => { //async
+        conditionCard.registerRunListener((async ( args, state ) => {
+          if (condition.triggerAndWait && args.device?.getStoreValue?.('announcement_speaker')) {
+            await this.sayCloudOnSpeaker(args, true);
+            return true;
+          }
           const defer = new Defer();
           try {
             if(!args.device || !args.text) return Promise.resolve(false);
@@ -211,6 +227,7 @@ class GoogleServicesApp extends Homey.App {
                 if(triggered) promises.push(this.SetFinishedTimer(args.device, {url:url.url, text:args.text, duration :url.duration }));
                 else this.ClearFinishedTimer(args.device);
               }
+
               
               const all = Promise.all(promises);                   
               all.then(()=> {
@@ -266,7 +283,28 @@ class GoogleServicesApp extends Homey.App {
     
   }
   
-  SetFinishedTimer(device, tokens) {
+  async sayCloudOnSpeaker(args, wait = false) {
+    const { selectSpeaker, playAnnouncement } = require('./lib/speaker-announcements');
+    const speaker = await selectSpeaker(this.homey, args.device);
+    const audio = await TtsServer.getUrl({ args, voice: args.voice });
+    const tokens = { url: audio.url, text: args.text, duration: audio.duration ?? -1 };
+    await Promise.all([
+      args.device.setCapabilityValue('device_url', tokens.url),
+      args.device.setCapabilityValue('device_duration', tokens.duration)
+    ]);
+    this.ClearFinishedTimer(args.device);
+    await playAnnouncement(this.homey, args.device, speaker, {
+      ...tokens, type: audio.audioConfig.audioEncoding === 'MP3' ? 'audio/mpeg' : 'audio/wav'
+    }, device => this.Triggers.cloudurlTrigger.Card.trigger(device, tokens));
+    const trigger = args.device.getSetting('trigger_when_announcing') === true;
+    if (trigger || wait) {
+      const finished = this.SetFinishedTimer(args.device, tokens, trigger);
+      if (wait) await finished;
+    }
+    return tokens;
+  }
+
+  SetFinishedTimer(device, tokens, triggerWhenCards = true) {
     this.ClearFinishedTimer(device);
     const defer = new Defer();
     device.finishedDefer = defer;
@@ -275,14 +313,14 @@ class GoogleServicesApp extends Homey.App {
         device.finishedTimer = null;
         device.finishedDefer = null;
         try {
-          const triggered = this.Triggers.finished_trigger.Card.trigger(device, tokens);
+          const triggered = triggerWhenCards ? this.Triggers.finished_trigger.Card.trigger(device, tokens) : true;
           await triggered;
           defer.resolve(!!triggered);
         } catch (error) {
           this.error('Could not trigger the Cloud TTS Finished card', error);
           defer.resolve(false);
         }
-    }, tokens.duration + (delay || 1000));
+    }, tokens.duration + (delay ?? 1000));
     return defer.promise;
   }
   // Settles a superseded wait so its Flow does not hang when newer speech replaces it.

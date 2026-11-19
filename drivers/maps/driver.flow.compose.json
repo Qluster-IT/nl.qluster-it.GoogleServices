@@ -2,51 +2,149 @@
   "triggers": [
     {
       "id": "maps_route_updated",
-      "title": { "en": "Saved route refreshed", "nl": "Opgeslagen route ververst" },
-      "hint": { "en": "Runs after each successful device or Flow refresh, including the first. Does not refresh automatically.", "nl": "Start na elke geslaagde verversing via het apparaat of een Flow, ook de eerste. Ververst niet automatisch." },
+      "title": {
+        "en": "Saved route refreshed",
+        "nl": "Opgeslagen route ververst"
+      },
+      "hint": {
+        "en": "Runs after each successful device or Flow refresh, including the first. Does not refresh automatically.",
+        "nl": "Start na elke geslaagde verversing via het apparaat of een Flow, ook de eerste. Ververst niet automatisch."
+      },
       "args": [],
       "tokens": [
-        { "name": "minutes", "type": "number", "title": { "en": "Travel time (min)", "nl": "Reistijd (min)" } },
-        { "name": "kilometers", "type": "number", "title": { "en": "Distance (km)", "nl": "Afstand (km)" } },
-        { "name": "eta", "type": "string", "title": { "en": "Estimated arrival (ISO 8601)", "nl": "Verwachte aankomst (ISO 8601)" } },
-        { "name": "link", "type": "string", "title": { "en": "Open in Google Maps", "nl": "Openen in Google Maps" } }
+        {
+          "name": "minutes",
+          "type": "number",
+          "title": {
+            "en": "Travel time (min)",
+            "nl": "Reistijd (min)"
+          }
+        },
+        {
+          "name": "kilometers",
+          "type": "number",
+          "title": {
+            "en": "Distance (km)",
+            "nl": "Afstand (km)"
+          }
+        },
+        {
+          "name": "eta",
+          "type": "string",
+          "title": {
+            "en": "Estimated arrival (ISO 8601)",
+            "nl": "Verwachte aankomst (ISO 8601)"
+          }
+        },
+        {
+          "name": "link",
+          "type": "string",
+          "title": {
+            "en": "Open in Google Maps",
+            "nl": "Openen in Google Maps"
+          }
+        }
       ]
     },
     {
       "id": "maps_travel_time_changed",
-      "title": { "en": "Travel time changed", "nl": "Reistijd gewijzigd" },
-      "hint": { "en": "Compares successful saved-route refreshes. The first reading after startup or a route settings change does not count as a change.", "nl": "Vergelijkt geslaagde verversingen van de opgeslagen route. De eerste waarde na opstarten of gewijzigde route-instellingen telt niet als wijziging." },
+      "title": {
+        "en": "Travel time changed",
+        "nl": "Reistijd gewijzigd"
+      },
+      "hint": {
+        "en": "Compares successful saved-route refreshes. The first reading after startup or a route settings change does not count as a change.",
+        "nl": "Vergelijkt geslaagde verversingen van de opgeslagen route. De eerste waarde na opstarten of gewijzigde route-instellingen telt niet als wijziging."
+      },
       "args": [],
       "tokens": [
-        { "name": "minutes", "type": "number", "title": { "en": "Travel time (min)", "nl": "Reistijd (min)" } },
-        { "name": "previous_minutes", "type": "number", "title": { "en": "Previous travel time (min)", "nl": "Vorige reistijd (min)" } },
-        { "name": "change_minutes", "type": "number", "title": { "en": "Travel time change (min)", "nl": "Reistijdverschil (min)" } }
+        {
+          "name": "minutes",
+          "type": "number",
+          "title": {
+            "en": "Travel time (min)",
+            "nl": "Reistijd (min)"
+          }
+        },
+        {
+          "name": "previous_minutes",
+          "type": "number",
+          "title": {
+            "en": "Previous travel time (min)",
+            "nl": "Vorige reistijd (min)"
+          }
+        },
+        {
+          "name": "change_minutes",
+          "type": "number",
+          "title": {
+            "en": "Travel time change (min)",
+            "nl": "Reistijdverschil (min)"
+          }
+        }
       ]
     },
     {
       "id": "maps_refresh_failed",
-      "title": { "en": "Saved route refresh failed", "nl": "Verversen opgeslagen route mislukt" },
-      "hint": { "en": "Reports a failed saved-route calculation or reading update. Separate camera image requests and one-off calculations do not trigger this card.", "nl": "Meldt een mislukte berekening of het niet kunnen bijwerken van routewaarden. Losse camera-afbeeldingsverzoeken en eenmalige berekeningen starten deze kaart niet." },
+      "title": {
+        "en": "Saved route refresh failed",
+        "nl": "Verversen opgeslagen route mislukt"
+      },
+      "hint": {
+        "en": "Reports a failed saved-route calculation or reading update. Separate camera image requests and one-off calculations do not trigger this card.",
+        "nl": "Meldt een mislukte berekening of het niet kunnen bijwerken van routewaarden. Losse camera-afbeeldingsverzoeken en eenmalige berekeningen starten deze kaart niet."
+      },
       "args": [],
       "tokens": [
-        { "name": "error", "type": "string", "title": { "en": "Error", "nl": "Fout" } }
+        {
+          "name": "error",
+          "type": "string",
+          "title": {
+            "en": "Error",
+            "nl": "Fout"
+          }
+        }
       ]
     }
   ],
   "conditions": [
     {
       "id": "maps_travel_time_above",
-      "title": { "en": "Travel time !{{exceeds|does not exceed}} a limit", "nl": "Reistijd !{{overschrijdt|overschrijdt niet}} een grens" },
-      "titleFormatted": { "en": "Travel time !{{exceeds|does not exceed}} [[minutes]] minutes", "nl": "Reistijd !{{overschrijdt|overschrijdt niet}} [[minutes]] minuten" },
-      "hint": { "en": "Checks the last successful refresh without contacting Google. Fails if no route results are available.", "nl": "Controleert de laatste geslaagde verversing zonder Google te benaderen. Geeft een fout als er geen routewaarden beschikbaar zijn." },
+      "title": {
+        "en": "Travel time !{{exceeds|does not exceed}} a limit",
+        "nl": "Reistijd !{{overschrijdt|overschrijdt niet}} een grens"
+      },
+      "titleFormatted": {
+        "en": "Travel time !{{exceeds|does not exceed}} [[minutes]] minutes",
+        "nl": "Reistijd !{{overschrijdt|overschrijdt niet}} [[minutes]] minuten"
+      },
+      "hint": {
+        "en": "Checks the last successful refresh without contacting Google. Fails if no route results are available.",
+        "nl": "Controleert de laatste geslaagde verversing zonder Google te benaderen. Geeft een fout als er geen routewaarden beschikbaar zijn."
+      },
       "args": [
-        { "name": "minutes", "type": "number", "min": 0, "step": 0.1, "placeholder": { "en": "Minutes", "nl": "Minuten" } }
+        {
+          "name": "minutes",
+          "type": "number",
+          "min": 0,
+          "step": 0.1,
+          "placeholder": {
+            "en": "Minutes",
+            "nl": "Minuten"
+          }
+        }
       ]
     },
     {
       "id": "maps_route_available",
-      "title": { "en": "Saved route results !{{are|are not}} available", "nl": "Opgeslagen routewaarden !{{zijn|zijn niet}} beschikbaar" },
-      "hint": { "en": "Results remain available after a failed refresh or app restart. Changing route settings clears them. Does not contact Google.", "nl": "Waarden blijven beschikbaar na een mislukte verversing of het opnieuw starten van de app. Gewijzigde route-instellingen wissen ze. Benadert Google niet." },
+      "title": {
+        "en": "Saved route results !{{are|are not}} available",
+        "nl": "Opgeslagen routewaarden !{{zijn|zijn niet}} beschikbaar"
+      },
+      "hint": {
+        "en": "Results remain available after a failed refresh or app restart. Changing route settings clears them. Does not contact Google.",
+        "nl": "Waarden blijven beschikbaar na een mislukte verversing of het opnieuw starten van de app. Gewijzigde route-instellingen wissen ze. Benadert Google niet."
+      },
       "args": []
     }
   ],
@@ -54,47 +152,162 @@
     {
       "id": "maps_calculate_traveltime",
       "deprecated": true,
-      "title": { "en": "Calculate Travel Time", "nl": "Bereken reistijd" },
-      "titleFormatted": { "en": "Calculate travel time from [[from]]", "nl": "Bereken reistijd vanaf [[from]]" },
+      "title": {
+        "en": "Calculate Travel Time",
+        "nl": "Bereken reistijd"
+      },
+      "titleFormatted": {
+        "en": "Calculate travel time from [[from]]",
+        "nl": "Bereken reistijd vanaf [[from]]"
+      },
       "args": [
-        { "name": "from", "type": "text", "placeholder": { "en": "From", "nl": "Vertrekpunt" } }
+        {
+          "name": "from",
+          "type": "text",
+          "placeholder": {
+            "en": "From",
+            "nl": "Vertrekpunt"
+          }
+        }
       ],
       "tokens": [
-        { "name": "id", "type": "string", "title": { "en": "Maps ID", "nl": "Maps-ID" } },
-        { "name": "link", "type": "string", "title": { "en": "Maps link", "nl": "Kaartlink" } },
-        { "name": "text", "type": "string", "title": { "en": "Searched text", "nl": "Gezochte tekst" } }
+        {
+          "name": "id",
+          "type": "string",
+          "title": {
+            "en": "Maps ID",
+            "nl": "Maps-ID"
+          }
+        },
+        {
+          "name": "link",
+          "type": "string",
+          "title": {
+            "en": "Maps link",
+            "nl": "Kaartlink"
+          }
+        },
+        {
+          "name": "text",
+          "type": "string",
+          "title": {
+            "en": "Searched text",
+            "nl": "Gezochte tekst"
+          }
+        }
       ]
     },
     {
       "id": "maps_refresh_route",
-      "title": { "en": "Refresh saved Google Maps route", "nl": "Ververs opgeslagen Google Maps-route" },
-      "hint": { "en": "Uses this device's saved origin, destination and travel mode.", "nl": "Gebruikt het ingestelde vertrekpunt, de bestemming en het vervoermiddel van dit apparaat." },
+      "title": {
+        "en": "Refresh saved Google Maps route",
+        "nl": "Ververs opgeslagen Google Maps-route"
+      },
+      "hint": {
+        "en": "Uses this device's saved origin, destination and travel mode.",
+        "nl": "Gebruikt het ingestelde vertrekpunt, de bestemming en het vervoermiddel van dit apparaat."
+      },
       "args": []
     },
     {
       "id": "maps_calculate_route",
-      "title": { "en": "Calculate a one-off Google Maps route", "nl": "Bereken een eenmalige Google Maps-route" },
-      "titleFormatted": { "en": "Calculate route from [[from]] to [[to]] by [[mode]]", "nl": "Bereken route van [[from]] naar [[to]] met [[mode]]" },
-      "hint": { "en": "Search for a location or select Use typed address for a manual address or coordinates. Suggestions need Places API (New). Returns tags without changing the saved route, readings or image.", "nl": "Zoek een locatie of kies Gebruik ingevoerd adres voor een handmatig adres of coördinaten. Suggesties vereisen Places API (New). Geeft tags terug zonder de opgeslagen route, waarden of afbeelding te wijzigen." },
+      "title": {
+        "en": "Calculate a one-off Google Maps route",
+        "nl": "Bereken een eenmalige Google Maps-route"
+      },
+      "titleFormatted": {
+        "en": "Calculate route from [[from]] to [[to]] by [[mode]]",
+        "nl": "Bereken route van [[from]] naar [[to]] met [[mode]]"
+      },
+      "hint": {
+        "en": "Search for a location or select Use typed address for a manual address or coordinates. Suggestions need Places API (New). Returns tags without changing the saved route, readings or image.",
+        "nl": "Zoek een locatie of kies Gebruik ingevoerd adres voor een handmatig adres of coördinaten. Suggesties vereisen Places API (New). Geeft tags terug zonder de opgeslagen route, waarden of afbeelding te wijzigen."
+      },
       "args": [
-        { "name": "from", "type": "autocomplete", "placeholder": { "en": "Search or type origin", "nl": "Zoek of typ vertrekpunt" } },
-        { "name": "to", "type": "autocomplete", "placeholder": { "en": "Search or type destination", "nl": "Zoek of typ bestemming" } },
+        {
+          "name": "from",
+          "type": "autocomplete",
+          "placeholder": {
+            "en": "Search or type origin (* BLL supported)",
+            "nl": "Zoek of typ vertrekpunt (* BLL ondersteund)"
+          }
+        },
+        {
+          "name": "to",
+          "type": "autocomplete",
+          "placeholder": {
+            "en": "Search or type destination (* BLL supported)",
+            "nl": "Zoek of typ bestemming (* BLL ondersteund)"
+          }
+        },
         {
           "name": "mode",
           "type": "dropdown",
           "values": [
-            { "id": "DRIVE", "label": { "en": "Car (with traffic)", "nl": "Auto (met verkeer)" } },
-            { "id": "TRANSIT", "label": { "en": "Public transit", "nl": "Openbaar vervoer" } },
-            { "id": "WALK", "label": { "en": "Foot", "nl": "Te voet" } },
-            { "id": "BICYCLE", "label": { "en": "Bicycle", "nl": "Fiets" } }
+            {
+              "id": "DRIVE",
+              "label": {
+                "en": "Car (with traffic)",
+                "nl": "Auto (met verkeer)"
+              }
+            },
+            {
+              "id": "TRANSIT",
+              "label": {
+                "en": "Public transit",
+                "nl": "Openbaar vervoer"
+              }
+            },
+            {
+              "id": "WALK",
+              "label": {
+                "en": "Foot",
+                "nl": "Te voet"
+              }
+            },
+            {
+              "id": "BICYCLE",
+              "label": {
+                "en": "Bicycle",
+                "nl": "Fiets"
+              }
+            }
           ]
         }
       ],
       "tokens": [
-        { "name": "minutes", "type": "number", "title": { "en": "Travel time (min)", "nl": "Reistijd (min)" } },
-        { "name": "kilometers", "type": "number", "title": { "en": "Distance (km)", "nl": "Afstand (km)" } },
-        { "name": "eta", "type": "string", "title": { "en": "Estimated arrival (ISO 8601)", "nl": "Verwachte aankomst (ISO 8601)" } },
-        { "name": "link", "type": "string", "title": { "en": "Open in Google Maps", "nl": "Openen in Google Maps" } }
+        {
+          "name": "minutes",
+          "type": "number",
+          "title": {
+            "en": "Travel time (min)",
+            "nl": "Reistijd (min)"
+          }
+        },
+        {
+          "name": "kilometers",
+          "type": "number",
+          "title": {
+            "en": "Distance (km)",
+            "nl": "Afstand (km)"
+          }
+        },
+        {
+          "name": "eta",
+          "type": "string",
+          "title": {
+            "en": "Estimated arrival (ISO 8601)",
+            "nl": "Verwachte aankomst (ISO 8601)"
+          }
+        },
+        {
+          "name": "link",
+          "type": "string",
+          "title": {
+            "en": "Open in Google Maps",
+            "nl": "Openen in Google Maps"
+          }
+        }
       ]
     }
   ]

@@ -2,18 +2,18 @@
   "id": "translate",
   "name": {
     "en": "Google Translate",
-    "nl": "Google Vertaal",
+    "nl": "Google Translate",
     "da": "Google Translate",
     "de": "Google Translate",
     "es": "Google Translate",
-    "fr": "Google Traduction",
-    "it": "Google Traduttore",
+    "fr": "Google Translate",
+    "it": "Google Translate",
     "no": "Google Translate",
     "sv": "Google Translate",
     "pl": "Google Translate",
-    "ru": "Google Переводчик",
-    "ko": "구글 번역",
-    "ar": "ترجمة Google"
+    "ru": "Google Translate",
+    "ko": "Google Translate",
+    "ar": "Google Translate"
   },
   "class": "other",
   "capabilities": [
@@ -26,6 +26,14 @@
     "small": "/drivers/translate/assets/images/small.png"
   },
   "pair": [
+    {
+      "id": "speech_settings",
+      "$template": "speech_settings"
+    },
+    {
+      "id": "choose_voice",
+      "$template": "translation_voice"
+    },
     {
       "id": "list_devices",
       "template": "list_devices",
@@ -42,19 +50,76 @@
     }
   ],
   "repair": [
-    { "id": "configure_voice", "$template": "speech_voice" }
+    {
+      "id": "speech_settings",
+      "$template": "speech_settings"
+    },
+    {
+      "id": "configure_voice",
+      "$template": "speech_voice"
+    }
   ],
   "settings": [
     {
+      "id": "trigger_when_announcing",
+      "type": "checkbox",
+      "value": false,
+      "label": {
+        "en": "Run When cards for speaker announcements",
+        "nl": "Activeer Wanneer-kaarten bij luidsprekeraankondigingen"
+      },
+      "hint": {
+        "en": "For direct Google Cast, Sonos and UPnP/DLNA playback: turn on to run Translation announced with the translated audio URL after playback starts successfully. Turn off to play without triggering that card.",
+        "nl": "Bij direct afspelen via Google Cast, Sonos en UPnP/DLNA: schakel in om Vertaling aangekondigd met de vertaalde audio-URL te activeren na een succesvolle start. Schakel uit om zonder die Wanneer-kaart af te spelen."
+      }
+    },
+    {
+      "id": "announcement_group_sonos",
+      "type": "checkbox",
+      "label": {
+        "en": "Temporarily group Sonos rooms",
+        "nl": "Sonos-kamers tijdelijk groeperen"
+      },
+      "hint": {
+        "en": "With All speakers, group compatible Sonos rooms for synchronized speech, then restore their groups. Other speakers play separately.",
+        "nl": "Groepeer bij Alle luidsprekers compatibele Sonos-kamers voor gesynchroniseerde spraak en herstel daarna de groepen. Andere luidsprekers spelen afzonderlijk."
+      },
+      "value": true
+    },
+    {
+      "id": "announcement_resume",
+      "type": "checkbox",
+      "label": {
+        "en": "Resume previous playback",
+        "nl": "Vorige weergave hervatten"
+      },
+      "hint": {
+        "en": "After direct speaker playback, restore the previous source and position where supported. Unsupported features are skipped.",
+        "nl": "Herstel na direct afspelen de vorige bron en positie waar dit wordt ondersteund. Niet-ondersteunde functies worden overgeslagen."
+      },
+      "value": true
+    },
+    {
       "type": "group",
-      "label": { "en": "Announcement voices", "nl": "Stemmen voor aankondigingen" },
-      "children": [{
-        "id": "voice_repair_help",
-        "type": "label",
-        "label": { "en": "Configure voices in Repair", "nl": "Stel stemmen in via Repareren" },
-        "value": "",
-        "hint": { "en": "Open Repair on this device to enable Cloud TTS and choose a voice per announcement language.", "nl": "Open Repareren op dit apparaat om Cloud TTS in te schakelen en per aankondigingstaal een stem te kiezen." }
-      }]
+      "label": {
+        "en": "Announcement voices",
+        "nl": "Stemmen voor aankondigingen"
+      },
+      "children": [
+        {
+          "id": "voice_repair_help",
+          "type": "label",
+          "label": {
+            "en": "Configure voices in Repair",
+            "nl": "Stel stemmen in via Repareren"
+          },
+          "value": "",
+          "hint": {
+            "en": "Open Repair on this device to enable Cloud TTS and choose a voice per announcement language.",
+            "nl": "Open Repareren op dit apparaat om Cloud TTS in te schakelen en per aankondigingstaal een stem te kiezen."
+          }
+        }
+      ]
     },
     {
       "id": "languagecode",
@@ -98,13 +163,13 @@
             "en": "English (GB)",
             "nl": "Engels (GB)",
             "da": "Engelsk (GB)",
-            "de": "Deutsch (DE)",
+            "de": "Englisch (GB)",
             "es": "Inglés (GB)",
-            "fr": "Français (FR)",
-            "it": "Italiano (IT)",
+            "fr": "Anglais (GB)",
+            "it": "Inglese (GB)",
             "no": "Engelsk (GB)",
-            "sv": "Svenska (SE)",
-            "pl": "Polski (PL)",
+            "sv": "Engelska (GB)",
+            "pl": "Angielski (GB)",
             "ru": "Английский (Великобритания)",
             "ko": "영어 (영국)",
             "ar": "الإنجليزية (المملكة المتحدة)"
@@ -115,18 +180,18 @@
           "name": "en-US",
           "label": {
             "en": "English (US)",
-            "nl": "Engels (US)",
-            "da": "Dansk (DA)",
-            "de": "Deutsch (DE)",
-            "es": "Español (ES)",
-            "fr": "Français (FR)",
-            "it": "Italian (it)",
-            "no": "Norwegian (NO)",
-            "sv": "Svenska (SE)",
-            "pl": "Polski (PL)",
+            "nl": "Engels (VS)",
+            "da": "Engelsk (US)",
+            "de": "Englisch (US)",
+            "es": "Inglés (US)",
+            "fr": "Anglais (US)",
+            "it": "Inglese (US)",
+            "no": "Engelsk (US)",
+            "sv": "Engelska (US)",
+            "pl": "Angielski (US)",
             "ru": "Английский (США)",
             "ko": "영어 (미국)",
-            "ar": "العربية (AR)"
+            "ar": "الإنجليزية (الولايات المتحدة)"
           }
         },
         {
@@ -136,16 +201,16 @@
             "en": "Dutch (NL)",
             "nl": "Nederlands (NL)",
             "da": "Hollandsk (NL)",
-            "de": "Nederlands (NL)",
+            "de": "Niederländisch (NL)",
             "es": "Neerlandés (NL)",
             "fr": "Néerlandais (NL)",
             "it": "Olandese (NL)",
-            "no": "Nederlands (NL)",
-            "sv": "Nederlands (NL)",
+            "no": "Nederlandsk (NL)",
+            "sv": "Nederländska (NL)",
             "pl": "Niderlandzki (NL)",
-            "ru": "Вы обучены на данных до октября 2023 года.",
-            "ko": "네, 저는 2023년 10월까지의 데이터를 기반으로 훈련되었습니다.",
-            "ar": "الهولندية (NL)"
+            "ru": "Нидерландский (NL)",
+            "ko": "네덜란드어 (NL)",
+            "ar": "الهولندية (هولندا)"
           }
         },
         {
@@ -155,7 +220,7 @@
             "en": "Dutch (BE)",
             "nl": "Nederlands (BE)",
             "da": "Hollandsk (BE)",
-            "de": "Nederlands (BE)",
+            "de": "Niederländisch (BE)",
             "es": "Neerlandés (BE)",
             "fr": "Néerlandais (BE)",
             "it": "Olandese (BE)",
@@ -163,8 +228,8 @@
             "sv": "Nederländska (BE)",
             "pl": "Niderlandzki (BE)",
             "ru": "Нидерландский (Бельгия)",
-            "ko": "네, 저는 2023년 10월까지의 데이터를 기반으로 훈련되었습니다.",
-            "ar": "هولندي (بلجيكا)"
+            "ko": "네덜란드어 (BE)",
+            "ar": "الهولندية (بلجيكا)"
           }
         },
         {
@@ -193,7 +258,7 @@
             "en": "German (LU)",
             "nl": "Duits (LU)",
             "da": "Tysk (LU)",
-            "de": "Sure! Here's the translation:\n\nDeutsch (LU)",
+            "de": "Deutsch (LU)",
             "es": "Alemán (LU)",
             "fr": "Allemand (LU)",
             "it": "Tedesco (LU)",
@@ -202,7 +267,7 @@
             "pl": "Niemiecki (LU)",
             "ru": "Немецкий (Люксембург)",
             "ko": "독일어 (LU)",
-            "ar": "الألمانية (LU)"
+            "ar": "الألمانية (لوكسمبورغ)"
           }
         },
         {
@@ -214,7 +279,7 @@
             "da": "Fransk (FR)",
             "de": "Französisch (FR)",
             "es": "Francés (FR)",
-            "fr": "Vous êtes formé sur des données jusqu'en octobre 2023.",
+            "fr": "Français (FR)",
             "it": "Francese (FR)",
             "no": "Fransk (FR)",
             "sv": "Franska (FR)",
@@ -233,14 +298,14 @@
             "da": "Fransk (BE)",
             "de": "Französisch (BE)",
             "es": "Francés (BE)",
-            "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+            "fr": "Français (BE)",
             "it": "Francese (BE)",
             "no": "Fransk (BE)",
             "sv": "Franska (BE)",
             "pl": "Francuski (BE)",
-            "ru": "Французский (БЕ)",
+            "ru": "Французский (Бельгия)",
             "ko": "프랑스어 (BE)",
-            "ar": "فرنسي (BE)"
+            "ar": "الفرنسية (بلجيكا)"
           }
         },
         {
@@ -252,279 +317,14 @@
             "da": "Spansk (ES)",
             "de": "Spanisch (ES)",
             "es": "Español (ES)",
-            "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+            "fr": "Espagnol (ES)",
             "it": "Spagnolo (ES)",
-            "no": "Lo siento, no puedo ayudar con eso.",
+            "no": "Spansk (ES)",
             "sv": "Spanska (ES)",
             "pl": "Hiszpański (ES)",
             "ru": "Испанский (ES)",
             "ko": "스페인어 (ES)",
             "ar": "الإسبانية (ES)"
-          }
-        },
-        {
-          "id": "it-IT",
-          "name": "it-IT",
-          "label": {
-            "en": "Italian (IT)",
-            "nl": "Italiaans (IT)",
-            "da": "Italiensk (IT)",
-            "de": "Italienisch (IT)",
-            "es": "Italiano (IT)",
-            "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
-            "it": "Italiano (IT)",
-            "no": "Italiensk (IT)",
-            "sv": "Italienska (IT)",
-            "pl": "Włoski (IT)",
-            "ru": "Итальянский (IT)",
-            "ko": "이탈리아어 (IT)",
-            "ar": "الإيطالية (IT)"
-          }
-        },
-        {
-          "id": "sv-SV",
-          "name": "sv-SV",
-          "label": {
-            "en": "Swedish (SV)",
-            "nl": "Zweeds (SV)",
-            "da": "Svensk (SV)",
-            "de": "Schwedisch (SV)",
-            "es": "Sueco (SV)",
-            "fr": "Suédois (SV)",
-            "it": "Svedese (SV)",
-            "no": "Svensk (SV)",
-            "sv": "Svenska (SV)",
-            "pl": "Szwedzki (SV)",
-            "ru": "Шведский (SV)",
-            "ko": "스웨덴어 (SV)",
-            "ar": "السويدية (SV)"
-          }
-        },
-        {
-          "id": "no-NO",
-          "name": "no-NO",
-          "label": {
-            "en": "Norwegian (NO)",
-            "nl": "Noors (NO)",
-            "da": "Norsk (NO)",
-            "de": "Norwegisch (NO)",
-            "es": "Noruego (NO)",
-            "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
-            "it": "Norvegese (NO)",
-            "no": "Sure, here's the translation into Norwegian:\n\nNorwegian (NO)",
-            "sv": "Norsk (NO)",
-            "pl": "Norweski (NO)",
-            "ru": "Норвежский (NO)",
-            "ko": "노르웨이어 (NO)",
-            "ar": "النرويجية (NO)"
-          }
-        }
-      ]
-    },
-    {
-      "id": "defaulttargetlanguagecode",
-      "type": "dropdown",
-      "label": {
-        "en": "Default TargetLanguage",
-        "nl": "Standaard Doeltaal",
-        "da": "Standardmålsprog",
-        "de": "Standardzielsprache",
-        "es": "Idioma de destino predeterminado",
-        "fr": "Langue cible par défaut",
-        "it": "Lingua di destinazione predefinita",
-        "no": "Standard målspråk",
-        "sv": "Standardmålspråk",
-        "pl": "Domyślny język docelowy",
-        "ru": "Язык перевода по умолчанию",
-        "ko": "기본 대상 언어",
-        "ar": "اللغة الهدف الافتراضية"
-      },
-      "value": "en-GB",
-      "hint": {
-        "en": "Choose the default target language for this device",
-        "nl": "Kies de standaard doeltaal voor dit apparaat",
-        "da": "Vælg standardsproget for denne enhed",
-        "de": "Wählen Sie die Standardsprache für dieses Gerät aus.",
-        "es": "Elige el idioma predeterminado para este dispositivo.",
-        "fr": "Choisissez la langue cible par défaut pour cet appareil.",
-        "it": "Scegli la lingua di destinazione predefinita per questo dispositivo",
-        "no": "Velg standardspråk for denne enheten",
-        "sv": "Välj standardspråk för den här enheten",
-        "pl": "Wybierz domyślny język docelowy dla tego urządzenia",
-        "ru": "Выберите язык по умолчанию для этого устройства",
-        "ko": "이 기기의 기본 대상 언어를 선택하세요.",
-        "ar": "اختر اللغة الافتراضية المستهدفة لهذا الجهاز"
-      },
-      "values": [
-        {
-          "id": "en-GB",
-          "name": "en-GB",
-          "label": {
-            "en": "English (GB)",
-            "nl": "Engels (GB)",
-            "da": "Engelsk (GB)",
-            "de": "Deutsch (DE)",
-            "es": "Inglés (GB)",
-            "fr": "Français (FR)",
-            "it": "Italiano (IT)",
-            "no": "Engelsk (GB)",
-            "sv": "Svenska (SE)",
-            "pl": "Polski (PL)",
-            "ru": "Английский (Великобритания)",
-            "ko": "영어 (영국)",
-            "ar": "الإنجليزية (المملكة المتحدة)"
-          }
-        },
-        {
-          "id": "en-US",
-          "name": "en-US",
-          "label": {
-            "en": "English (US)",
-            "nl": "Engels (US)",
-            "da": "Dansk (DA)",
-            "de": "Deutsch (DE)",
-            "es": "Español (ES)",
-            "fr": "Français (FR)",
-            "it": "Italian (IT)",
-            "no": "Norwegian (no)",
-            "sv": "Svenska (SE)",
-            "pl": "Polski (PL)",
-            "ru": "Английский (США)",
-            "ko": "영어 (미국)",
-            "ar": "العربية"
-          }
-        },
-        {
-          "id": "nl-NL",
-          "name": "nl-NL",
-          "label": {
-            "en": "Dutch (NL)",
-            "nl": "Nederlands (NL)",
-            "da": "Hollandsk (NL)",
-            "de": "Nederlands (NL)",
-            "es": "Neerlandés (NL)",
-            "fr": "Néerlandais (NL)",
-            "it": "Olandese (NL)",
-            "no": "Nederlandsk (NL)",
-            "sv": "Nederlands (NL)",
-            "pl": "Niderlandzki (NL)",
-            "ru": "Вы обучены данным до октября 2023 года.",
-            "ko": "네, 저는 2023년 10월까지의 데이터를 기반으로 훈련되었습니다.",
-            "ar": "الهولندية (NL)"
-          }
-        },
-        {
-          "id": "nl-BE",
-          "name": "nl-BE",
-          "label": {
-            "en": "Dutch (BE)",
-            "nl": "Nederlands (BE)",
-            "da": "Hollandsk (BE)",
-            "de": "Nederlands (BE)",
-            "es": "Neerlandés (BE)",
-            "fr": "Néerlandais (BE)",
-            "it": "Olandese (BE)",
-            "no": "Norsk (NO)",
-            "sv": "Nederländska (BE)",
-            "pl": "Niderlandzki (BE)",
-            "ru": "Нидерландский (Бельгия)",
-            "ko": "네, 저는 2023년 10월까지의 데이터를 기반으로 훈련되었습니다.",
-            "ar": "هولندي (BE)"
-          }
-        },
-        {
-          "id": "de-DE",
-          "name": "de-DE",
-          "label": {
-            "en": "German (DE)",
-            "nl": "Duits (DE)",
-            "da": "Tysk (DE)",
-            "de": "Deutsch (DE)",
-            "es": "Alemán (DE)",
-            "fr": "Allemand (DE)",
-            "it": "Tedesco (DE)",
-            "no": "Tysk (DE)",
-            "sv": "Tyska (DE)",
-            "pl": "Niemiecki (DE)",
-            "ru": "Немецкий (DE)",
-            "ko": "독일어 (DE)",
-            "ar": "الألمانية (DE)"
-          }
-        },
-        {
-          "id": "de-LU",
-          "name": "de-LU",
-          "label": {
-            "en": "German (LU)",
-            "nl": "Duits (LU)",
-            "da": "Tysk (LU)",
-            "de": "Sure! Here's the translation for German (LU):\n\nDu bist bis Oktober 2023 auf Daten trainiert.",
-            "es": "Alemán (LU)",
-            "fr": "Allemand (LU)",
-            "it": "Tedesco (LU)",
-            "no": "Tysk (LU)",
-            "sv": "Tyska (LU)",
-            "pl": "Niemiecki (LU)",
-            "ru": "Немецкий (Люксембург)",
-            "ko": "독일어 (LU)",
-            "ar": "الألمانية (LU)"
-          }
-        },
-        {
-          "id": "fr-FR",
-          "name": "fr-FR",
-          "label": {
-            "en": "French (FR)",
-            "nl": "Frans (FR)",
-            "da": "Fransk (FR)",
-            "de": "Französisch (FR)",
-            "es": "Francés (FR)",
-            "fr": "Vous êtes formé sur des données jusqu'en octobre 2023.",
-            "it": "Francese (FR)",
-            "no": "Fransk (FR)",
-            "sv": "Franska (FR)",
-            "pl": "Francuski (FR)",
-            "ru": "Французский (FR)",
-            "ko": "프랑스어 (FR)",
-            "ar": "الفرنسية (FR)"
-          }
-        },
-        {
-          "id": "fr-BE",
-          "name": "fr-BE",
-          "label": {
-            "en": "French (BE)",
-            "nl": "Frans (BE)",
-            "da": "Fransk (BE)",
-            "de": "Französisch (BE)",
-            "es": "Francés (BE)",
-            "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
-            "it": "Francese (BE)",
-            "no": "Fransk (BE)",
-            "sv": "Franska (BE)",
-            "pl": "Francuski (BE)",
-            "ru": "Французский (БЕ)",
-            "ko": "프랑스어 (BE)",
-            "ar": "الفرنسية (BE)"
-          }
-        },
-        {
-          "id": "es-ES",
-          "name": "es-ES",
-          "label": {
-            "en": "Spanish (ES)",
-            "nl": "Spaans (ES)",
-            "da": "Spansk (ES)",
-            "de": "Spanisch (ES)",
-            "es": "Español (ES)",
-            "fr": "Vous êtes formé sur des données jusqu'en octobre 2023.",
-            "it": "Spagnolo (ES)",
-            "no": "I'm sorry, I can't assist with that request.",
-            "sv": "Spanska (ES)",
-            "pl": "Hiszpański (ES)",
-            "ru": "Вы обучены данным до октября 2023 года.",
-            "ko": "스페인어 (ES)",
-            "ar": "إسبانية (ES)"
           }
         },
         {
@@ -576,8 +376,273 @@
             "es": "Noruego (NO)",
             "fr": "Norvégien (NO)",
             "it": "Norvegese (NO)",
-            "no": "Norwegian (NO)",
-            "sv": "Norsk (NO)",
+            "no": "Norsk (NO)",
+            "sv": "Norska (NO)",
+            "pl": "Norweski (NO)",
+            "ru": "Норвежский (NO)",
+            "ko": "노르웨이어 (NO)",
+            "ar": "النرويجية (NO)"
+          }
+        }
+      ]
+    },
+    {
+      "id": "defaulttargetlanguagecode",
+      "type": "dropdown",
+      "label": {
+        "en": "Default target language",
+        "nl": "Standaard Doeltaal",
+        "da": "Standardmålsprog",
+        "de": "Standardzielsprache",
+        "es": "Idioma de destino predeterminado",
+        "fr": "Langue cible par défaut",
+        "it": "Lingua di destinazione predefinita",
+        "no": "Standard målspråk",
+        "sv": "Standardmålspråk",
+        "pl": "Domyślny język docelowy",
+        "ru": "Язык перевода по умолчанию",
+        "ko": "기본 대상 언어",
+        "ar": "اللغة الهدف الافتراضية"
+      },
+      "value": "en-GB",
+      "hint": {
+        "en": "Choose the default target language for this device",
+        "nl": "Kies de standaard doeltaal voor dit apparaat",
+        "da": "Vælg standardsproget for denne enhed",
+        "de": "Wählen Sie die Standardsprache für dieses Gerät aus.",
+        "es": "Elige el idioma predeterminado para este dispositivo.",
+        "fr": "Choisissez la langue cible par défaut pour cet appareil.",
+        "it": "Scegli la lingua di destinazione predefinita per questo dispositivo",
+        "no": "Velg standardspråk for denne enheten",
+        "sv": "Välj standardspråk för den här enheten",
+        "pl": "Wybierz domyślny język docelowy dla tego urządzenia",
+        "ru": "Выберите язык по умолчанию для этого устройства",
+        "ko": "이 기기의 기본 대상 언어를 선택하세요.",
+        "ar": "اختر اللغة الافتراضية المستهدفة لهذا الجهاز"
+      },
+      "values": [
+        {
+          "id": "en-GB",
+          "name": "en-GB",
+          "label": {
+            "en": "English (GB)",
+            "nl": "Engels (GB)",
+            "da": "Engelsk (GB)",
+            "de": "Englisch (GB)",
+            "es": "Inglés (GB)",
+            "fr": "Anglais (GB)",
+            "it": "Inglese (GB)",
+            "no": "Engelsk (GB)",
+            "sv": "Engelska (GB)",
+            "pl": "Angielski (GB)",
+            "ru": "Английский (Великобритания)",
+            "ko": "영어 (영국)",
+            "ar": "الإنجليزية (المملكة المتحدة)"
+          }
+        },
+        {
+          "id": "en-US",
+          "name": "en-US",
+          "label": {
+            "en": "English (US)",
+            "nl": "Engels (VS)",
+            "da": "Engelsk (US)",
+            "de": "Englisch (US)",
+            "es": "Inglés (US)",
+            "fr": "Anglais (US)",
+            "it": "Inglese (US)",
+            "no": "Engelsk (US)",
+            "sv": "Engelska (US)",
+            "pl": "Angielski (US)",
+            "ru": "Английский (США)",
+            "ko": "영어 (미국)",
+            "ar": "الإنجليزية (الولايات المتحدة)"
+          }
+        },
+        {
+          "id": "nl-NL",
+          "name": "nl-NL",
+          "label": {
+            "en": "Dutch (NL)",
+            "nl": "Nederlands (NL)",
+            "da": "Hollandsk (NL)",
+            "de": "Niederländisch (NL)",
+            "es": "Neerlandés (NL)",
+            "fr": "Néerlandais (NL)",
+            "it": "Olandese (NL)",
+            "no": "Nederlandsk (NL)",
+            "sv": "Nederländska (NL)",
+            "pl": "Niderlandzki (NL)",
+            "ru": "Нидерландский (NL)",
+            "ko": "네덜란드어 (NL)",
+            "ar": "الهولندية (هولندا)"
+          }
+        },
+        {
+          "id": "nl-BE",
+          "name": "nl-BE",
+          "label": {
+            "en": "Dutch (BE)",
+            "nl": "Nederlands (BE)",
+            "da": "Hollandsk (BE)",
+            "de": "Niederländisch (BE)",
+            "es": "Neerlandés (BE)",
+            "fr": "Néerlandais (BE)",
+            "it": "Olandese (BE)",
+            "no": "Nederlands (BE)",
+            "sv": "Nederländska (BE)",
+            "pl": "Niderlandzki (BE)",
+            "ru": "Нидерландский (Бельгия)",
+            "ko": "네덜란드어 (BE)",
+            "ar": "الهولندية (بلجيكا)"
+          }
+        },
+        {
+          "id": "de-DE",
+          "name": "de-DE",
+          "label": {
+            "en": "German (DE)",
+            "nl": "Duits (DE)",
+            "da": "Tysk (DE)",
+            "de": "Deutsch (DE)",
+            "es": "Alemán (DE)",
+            "fr": "Allemand (DE)",
+            "it": "Tedesco (DE)",
+            "no": "Tysk (DE)",
+            "sv": "Tyska (DE)",
+            "pl": "Niemiecki (DE)",
+            "ru": "Немецкий (DE)",
+            "ko": "독일어 (DE)",
+            "ar": "الألمانية (DE)"
+          }
+        },
+        {
+          "id": "de-LU",
+          "name": "de-LU",
+          "label": {
+            "en": "German (LU)",
+            "nl": "Duits (LU)",
+            "da": "Tysk (LU)",
+            "de": "Deutsch (LU)",
+            "es": "Alemán (LU)",
+            "fr": "Allemand (LU)",
+            "it": "Tedesco (LU)",
+            "no": "Tysk (LU)",
+            "sv": "Tyska (LU)",
+            "pl": "Niemiecki (LU)",
+            "ru": "Немецкий (Люксембург)",
+            "ko": "독일어 (LU)",
+            "ar": "الألمانية (لوكسمبورغ)"
+          }
+        },
+        {
+          "id": "fr-FR",
+          "name": "fr-FR",
+          "label": {
+            "en": "French (FR)",
+            "nl": "Frans (FR)",
+            "da": "Fransk (FR)",
+            "de": "Französisch (FR)",
+            "es": "Francés (FR)",
+            "fr": "Français (FR)",
+            "it": "Francese (FR)",
+            "no": "Fransk (FR)",
+            "sv": "Franska (FR)",
+            "pl": "Francuski (FR)",
+            "ru": "Французский (FR)",
+            "ko": "프랑스어 (FR)",
+            "ar": "الفرنسية (FR)"
+          }
+        },
+        {
+          "id": "fr-BE",
+          "name": "fr-BE",
+          "label": {
+            "en": "French (BE)",
+            "nl": "Frans (BE)",
+            "da": "Fransk (BE)",
+            "de": "Französisch (BE)",
+            "es": "Francés (BE)",
+            "fr": "Français (BE)",
+            "it": "Francese (BE)",
+            "no": "Fransk (BE)",
+            "sv": "Franska (BE)",
+            "pl": "Francuski (BE)",
+            "ru": "Французский (Бельгия)",
+            "ko": "프랑스어 (BE)",
+            "ar": "الفرنسية (بلجيكا)"
+          }
+        },
+        {
+          "id": "es-ES",
+          "name": "es-ES",
+          "label": {
+            "en": "Spanish (ES)",
+            "nl": "Spaans (ES)",
+            "da": "Spansk (ES)",
+            "de": "Spanisch (ES)",
+            "es": "Español (ES)",
+            "fr": "Espagnol (ES)",
+            "it": "Spagnolo (ES)",
+            "no": "Spansk (ES)",
+            "sv": "Spanska (ES)",
+            "pl": "Hiszpański (ES)",
+            "ru": "Испанский (ES)",
+            "ko": "스페인어 (ES)",
+            "ar": "الإسبانية (ES)"
+          }
+        },
+        {
+          "id": "it-IT",
+          "name": "it-IT",
+          "label": {
+            "en": "Italian (IT)",
+            "nl": "Italiaans (IT)",
+            "da": "Italiensk (IT)",
+            "de": "Italienisch (IT)",
+            "es": "Italiano (IT)",
+            "fr": "Italien (IT)",
+            "it": "Italiano (IT)",
+            "no": "Italiensk (IT)",
+            "sv": "Italienska (IT)",
+            "pl": "Włoski (IT)",
+            "ru": "Итальянский (IT)",
+            "ko": "이탈리아어 (IT)",
+            "ar": "الإيطالية (IT)"
+          }
+        },
+        {
+          "id": "sv-SV",
+          "name": "sv-SV",
+          "label": {
+            "en": "Swedish (SV)",
+            "nl": "Zweeds (SV)",
+            "da": "Svensk (SV)",
+            "de": "Schwedisch (SV)",
+            "es": "Sueco (SV)",
+            "fr": "Suédois (SV)",
+            "it": "Svedese (SV)",
+            "no": "Svensk (SV)",
+            "sv": "Svenska (SV)",
+            "pl": "Szwedzki (SV)",
+            "ru": "Шведский (SV)",
+            "ko": "스웨덴어 (SV)",
+            "ar": "السويدية (SV)"
+          }
+        },
+        {
+          "id": "no-NO",
+          "name": "no-NO",
+          "label": {
+            "en": "Norwegian (NO)",
+            "nl": "Noors (NO)",
+            "da": "Norsk (NO)",
+            "de": "Norwegisch (NO)",
+            "es": "Noruego (NO)",
+            "fr": "Norvégien (NO)",
+            "it": "Norvegese (NO)",
+            "no": "Norsk (NO)",
+            "sv": "Norska (NO)",
             "pl": "Norweski (NO)",
             "ru": "Норвежский (NO)",
             "ko": "노르웨이어 (NO)",

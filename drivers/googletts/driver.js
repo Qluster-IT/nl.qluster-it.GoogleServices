@@ -2,6 +2,7 @@
 
 const Homey = require('homey');
 const { v4: uuidv4 } = require('uuid');
+const registerSpeechSettings = require('../../lib/speech-setup');
 
 class GoogleTTSDriver extends Homey.Driver
 {
@@ -25,6 +26,15 @@ class GoogleTTSDriver extends Homey.Driver
             }
         }];
 
+    }
+
+    onPair(session) {
+        const configure = registerSpeechSettings(this, session, 'googletts');
+        session.setHandler('list_devices', async () => configure(await this.onPairListDevices()));
+    }
+
+    onRepair(session, device) {
+        registerSpeechSettings(this, session, 'googletts', device);
     }
 
 }

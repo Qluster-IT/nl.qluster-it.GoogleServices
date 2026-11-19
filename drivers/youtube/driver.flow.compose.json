@@ -132,19 +132,19 @@
           "name": "text",
           "type": "text",
           "placeholder": {
-            "en": "Text",
-            "nl": "Tekst",
-            "da": "Du er trænet på data frem til oktober 2023.",
-            "de": "Text",
-            "es": "Texto",
-            "fr": "Vous êtes formé sur des données jusqu'en octobre 2023.",
-            "it": "Testo",
-            "no": "Du er trent på data frem til oktober 2023.",
-            "sv": "Text",
-            "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
-            "ru": "Текст",
-            "ko": "텍스트",
-            "ar": "نص"
+            "en": "Text (* BLL supported)",
+            "nl": "Tekst (* BLL ondersteund)",
+            "da": "Tekst (* BLL understøttet)",
+            "de": "Text (* BLL unterstützt)",
+            "es": "Texto (* BLL compatible)",
+            "fr": "Texte (* BLL pris en charge)",
+            "it": "Testo (* BLL supportato)",
+            "no": "Tekst (* BLL støttet)",
+            "sv": "Text (* BLL stöds)",
+            "pl": "Tekst (* obsługiwany przez BLL)",
+            "ru": "Текст (* Поддерживается BLL)",
+            "ko": "텍스트 (* BLL 지원됨)",
+            "ar": "نص (* مدعوم من BLL)"
           }
         }
       ]
@@ -186,19 +186,19 @@
           "name": "text",
           "type": "text",
           "placeholder": {
-            "en": "Text",
-            "nl": "Tekst",
-            "da": "Jeg er trænet på data frem til oktober 2023.",
-            "de": "Text",
-            "es": "Texto",
-            "fr": "Vous êtes formé sur des données jusqu'en octobre 2023.",
-            "it": "Testo",
-            "no": "Du er trent på data frem til oktober 2023.",
-            "sv": "Text",
-            "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
-            "ru": "Текст",
-            "ko": "텍스트",
-            "ar": "نص"
+            "en": "Text (* BLL supported)",
+            "nl": "Tekst (* BLL ondersteund)",
+            "da": "Tekst (* BLL understøttet)",
+            "de": "Text (* BLL unterstützt)",
+            "es": "Texto (* BLL compatible)",
+            "fr": "Texte (* BLL pris en charge)",
+            "it": "Testo (* BLL supportato)",
+            "no": "Tekst (* BLL støttet)",
+            "sv": "Text (* BLL stöds)",
+            "pl": "Tekst (* obsługiwany przez BLL)",
+            "ru": "Текст (* Поддерживается BLL)",
+            "ko": "텍스트 (* BLL 지원됨)",
+            "ar": "نص (* مدعوم من BLL)"
           }
         }
       ],

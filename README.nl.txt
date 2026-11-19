@@ -15,6 +15,8 @@ Kies in een aparte Dan-kaart een Google Cast- (Chromecast), Sonos- of compatibel
 * Google Cloud Tekst-naar-spraak: Lees tekst of SSML voor met je ingestelde stem en audio-instellingen.
 * Google Translate: Vertaal tekst naar de gekozen taal en lees de vertaling voor.
 
+Kies Alle luidsprekers voor een aankondiging door het hele huis, of sla een standaardluidspreker op bij het koppelen of repareren. Daar kun je ook de apparaatinstellingen aanpassen. Tijdelijk groeperen van Sonos-kamers en hervatten van vorige weergave staan standaard aan waar dit wordt ondersteund; andere luidsprekers spelen afzonderlijk. De aankondigingskaarten hebben een optioneel luidsprekervolume dat daarna waar mogelijk wordt hersteld. Optionele Flow-argumenten gebruiken de apparaatinstellingen.
+
 Gebruik de audio-URL’s in je automatiseringen. Speel ze bijvoorbeeld af op Sonos met een ingesteld volume, open ze in de browser van je Samsung Smart TV of geef ze door aan IFTTT.
 
 Stel bij de app-instellingen de toegangsgegevens in voor de Google-diensten die je gebruikt.

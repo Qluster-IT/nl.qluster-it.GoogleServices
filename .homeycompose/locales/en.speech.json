@@ -15,5 +15,13 @@
   "choose_language": "Choose an announcement language to preview.",
   "speaker_stereo": "Stereo",
   "speaker_left": "Left",
-  "speaker_right": "Right"
+  "speaker_right": "Right",
+  "speaker_all": "All speakers",
+  "speaker_all_help": "All currently discoverable speakers",
+  "settings_title": "Speech and speaker settings",
+  "default_speaker": "Default speaker",
+  "no_speaker": "No direct playback (use Flow cards)",
+  "speaker_help": "Used by speech and translation actions. An explicit speaker on an announcement card overrides this choice. All speakers includes every discovered target; only compatible Sonos rooms can be synchronized.",
+  "reload_speakers": "Find speakers again",
+  "settings_saved": "Settings saved"
 }

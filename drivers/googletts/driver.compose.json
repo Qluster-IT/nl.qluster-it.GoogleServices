@@ -24,6 +24,10 @@
   },
   "pair": [
     {
+      "id": "speech_settings",
+      "$template": "speech_settings"
+    },
+    {
       "id": "list_devices",
       "template": "list_devices",
       "navigation": {
@@ -42,9 +46,41 @@
     {
       "id": "trigger_when_announcing",
       "type": "checkbox",
-      "label": { "en": "Run When cards for speaker announcements", "nl": "Activeer Wanneer-kaarten bij luidsprekeraankondigingen" },
-      "hint": { "en": "Also trigger the audio URL When card after a direct Google Cast or DLNA announcement starts.", "nl": "Activeer ook de Wanneer-kaart voor de audio-URL als een directe aankondiging via Google Cast of DLNA start." },
+      "label": {
+        "en": "Run When cards for speaker announcements",
+        "nl": "Activeer Wanneer-kaarten bij luidsprekeraankondigingen"
+      },
+      "hint": {
+        "en": "For direct Google Cast, Sonos and UPnP/DLNA playback: turn on to run the audio URL When card after playback starts successfully. Turn off to play without triggering that card.",
+        "nl": "Bij direct afspelen via Google Cast, Sonos en UPnP/DLNA: schakel in om de Wanneer-kaart met de audio-URL te activeren nadat het afspelen succesvol is gestart. Schakel uit om zonder die kaart af te spelen."
+      },
       "value": false
+    },
+    {
+      "id": "announcement_group_sonos",
+      "type": "checkbox",
+      "label": {
+        "en": "Temporarily group Sonos rooms",
+        "nl": "Sonos-kamers tijdelijk groeperen"
+      },
+      "hint": {
+        "en": "With All speakers, group compatible Sonos rooms for synchronized speech, then restore their groups. Other speakers play separately.",
+        "nl": "Groepeer bij Alle luidsprekers compatibele Sonos-kamers voor gesynchroniseerde spraak en herstel daarna de groepen. Andere luidsprekers spelen afzonderlijk."
+      },
+      "value": true
+    },
+    {
+      "id": "announcement_resume",
+      "type": "checkbox",
+      "label": {
+        "en": "Resume previous playback",
+        "nl": "Vorige weergave hervatten"
+      },
+      "hint": {
+        "en": "After direct speaker playback, restore the previous source and position where supported. Unsupported features are skipped.",
+        "nl": "Herstel na direct afspelen de vorige bron en positie waar dit wordt ondersteund. Niet-ondersteunde functies worden overgeslagen."
+      },
+      "value": true
     },
     {
       "id": "languagecode",
@@ -88,16 +124,16 @@
             "en": "English (GB)",
             "nl": "Engels (GB)",
             "da": "Engelsk (GB)",
-            "de": "Deutsch (DE)",
-            "es": "Español (ES)",
-            "fr": "Français (FR)",
-            "it": "Italiano (IT)",
+            "de": "Englisch (GB)",
+            "es": "Inglés (GB)",
+            "fr": "Anglais (GB)",
+            "it": "Inglese (GB)",
             "no": "Engelsk (GB)",
-            "sv": "Svenska (SE)",
-            "pl": "Polski (PL)",
+            "sv": "Engelska (GB)",
+            "pl": "Angielski (GB)",
             "ru": "Английский (Великобритания)",
             "ko": "영어 (영국)",
-            "ar": "أنت مدرب على البيانات حتى أكتوبر 2023."
+            "ar": "الإنجليزية (المملكة المتحدة)"
           }
         },
         {
@@ -105,18 +141,18 @@
           "name": "en-US",
           "label": {
             "en": "English (US)",
-            "nl": "Engels (US)",
+            "nl": "Engels (VS)",
             "da": "Engelsk (US)",
-            "de": "Deutsch (DE)",
-            "es": "Español (ES)",
-            "fr": "Français (FR)",
-            "it": "Italiano (IT)",
-            "no": "Norwegian (NO)",
-            "sv": "Svenska (SE)",
-            "pl": "Polski (PL)",
+            "de": "Englisch (US)",
+            "es": "Inglés (US)",
+            "fr": "Anglais (US)",
+            "it": "Inglese (US)",
+            "no": "Engelsk (US)",
+            "sv": "Engelska (US)",
+            "pl": "Angielski (US)",
             "ru": "Английский (США)",
             "ko": "영어 (미국)",
-            "ar": "العربية (AR)"
+            "ar": "الإنجليزية (الولايات المتحدة)"
           }
         },
         {
@@ -126,16 +162,16 @@
             "en": "Dutch (NL)",
             "nl": "Nederlands (NL)",
             "da": "Hollandsk (NL)",
-            "de": "Nederlands (NL)",
+            "de": "Niederländisch (NL)",
             "es": "Neerlandés (NL)",
             "fr": "Néerlandais (NL)",
             "it": "Olandese (NL)",
-            "no": "Nederlands (NL)",
-            "sv": "Nederlands (NL)",
+            "no": "Nederlandsk (NL)",
+            "sv": "Nederländska (NL)",
             "pl": "Niderlandzki (NL)",
-            "ru": "Вы обучены данным до октября 2023 года.",
-            "ko": "네, 저는 2023년 10월까지의 데이터를 기반으로 훈련되었습니다.",
-            "ar": "الهولندية (NL)"
+            "ru": "Нидерландский (NL)",
+            "ko": "네덜란드어 (NL)",
+            "ar": "الهولندية (هولندا)"
           }
         },
         {
@@ -145,16 +181,16 @@
             "en": "Dutch (BE)",
             "nl": "Nederlands (BE)",
             "da": "Hollandsk (BE)",
-            "de": "Nederlands (BE)",
+            "de": "Niederländisch (BE)",
             "es": "Neerlandés (BE)",
             "fr": "Néerlandais (BE)",
             "it": "Olandese (BE)",
-            "no": "Norsk (NO)",
+            "no": "Nederlands (BE)",
             "sv": "Nederländska (BE)",
-            "pl": "Niestety, nie mogę przetłumaczyć tekstu na język niderlandzki (BE). Czy mogę pomóc w czymś innym?",
+            "pl": "Niderlandzki (BE)",
             "ru": "Нидерландский (Бельгия)",
-            "ko": "네, 저는 2023년 10월까지의 데이터를 기반으로 훈련되었습니다.",
-            "ar": "هولندية (بلجيكا)"
+            "ko": "네덜란드어 (BE)",
+            "ar": "الهولندية (بلجيكا)"
           }
         },
         {
@@ -183,7 +219,7 @@
             "en": "German (LU)",
             "nl": "Duits (LU)",
             "da": "Tysk (LU)",
-            "de": "Sure! Here's the translation:\n\nDu bist bis Oktober 2023 auf Daten trainiert.",
+            "de": "Deutsch (LU)",
             "es": "Alemán (LU)",
             "fr": "Allemand (LU)",
             "it": "Tedesco (LU)",
@@ -192,7 +228,7 @@
             "pl": "Niemiecki (LU)",
             "ru": "Немецкий (Люксембург)",
             "ko": "독일어 (LU)",
-            "ar": "الألمانية (LU)"
+            "ar": "الألمانية (لوكسمبورغ)"
           }
         },
         {
@@ -204,7 +240,7 @@
             "da": "Fransk (FR)",
             "de": "Französisch (FR)",
             "es": "Francés (FR)",
-            "fr": "Vous êtes formé sur des données jusqu'en octobre 2023.",
+            "fr": "Français (FR)",
             "it": "Francese (FR)",
             "no": "Fransk (FR)",
             "sv": "Franska (FR)",
@@ -223,14 +259,14 @@
             "da": "Fransk (BE)",
             "de": "Französisch (BE)",
             "es": "Francés (BE)",
-            "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+            "fr": "Français (BE)",
             "it": "Francese (BE)",
             "no": "Fransk (BE)",
             "sv": "Franska (BE)",
             "pl": "Francuski (BE)",
-            "ru": "Французский (БЕ)",
+            "ru": "Французский (Бельгия)",
             "ko": "프랑스어 (BE)",
-            "ar": "فرنسي (BE)"
+            "ar": "الفرنسية (بلجيكا)"
           }
         },
         {
@@ -242,14 +278,14 @@
             "da": "Spansk (ES)",
             "de": "Spanisch (ES)",
             "es": "Español (ES)",
-            "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+            "fr": "Espagnol (ES)",
             "it": "Spagnolo (ES)",
-            "no": "Lo siento, no puedo ayudar con eso.",
+            "no": "Spansk (ES)",
             "sv": "Spanska (ES)",
             "pl": "Hiszpański (ES)",
             "ru": "Испанский (ES)",
             "ko": "스페인어 (ES)",
-            "ar": "إسباني (ES)"
+            "ar": "الإسبانية (ES)"
           }
         },
         {
@@ -261,7 +297,7 @@
             "da": "Italiensk (IT)",
             "de": "Italienisch (IT)",
             "es": "Italiano (IT)",
-            "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+            "fr": "Italien (IT)",
             "it": "Italiano (IT)",
             "no": "Italiensk (IT)",
             "sv": "Italienska (IT)",
@@ -299,10 +335,10 @@
             "da": "Norsk (NO)",
             "de": "Norwegisch (NO)",
             "es": "Noruego (NO)",
-            "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
+            "fr": "Norvégien (NO)",
             "it": "Norvegese (NO)",
-            "no": "Norwegian (NO)",
-            "sv": "Norsk (NO)",
+            "no": "Norsk (NO)",
+            "sv": "Norska (NO)",
             "pl": "Norweski (NO)",
             "ru": "Норвежский (NO)",
             "ko": "노르웨이어 (NO)",
@@ -310,6 +346,12 @@
           }
         }
       ]
+    }
+  ],
+  "repair": [
+    {
+      "id": "speech_settings",
+      "$template": "speech_settings"
     }
   ]
 }

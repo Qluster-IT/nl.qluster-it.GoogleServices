@@ -3,6 +3,7 @@
 const Homey = require('homey');
 const { v4: uuidv4 } = require('uuid');
 const { deviceVoiceKey, registerVoicePicker, validateVoice } = require('../../lib/speech-voices');
+const registerSpeechSettings = require('../../lib/speech-setup');
 
 class GoogleCloudTTSDriver extends Homey.Driver
 {
@@ -37,16 +38,18 @@ class GoogleCloudTTSDriver extends Homey.Driver
     }
 
     onPair(session) {
+        const configure = registerSpeechSettings(this, session, 'googlecloudtts');
         let voice = null;
         registerVoicePicker(session);
         session.setHandler('save_voice', async selection => { voice = await validateVoice(selection); });
         session.setHandler('list_devices', async () => {
             const devices = await this.onPairListDevices();
-            return devices.map(device => voice ? { ...device, store: { [deviceVoiceKey]: voice } } : device);
+            return configure(devices.map(device => voice ? { ...device, store: { [deviceVoiceKey]: voice } } : device));
         });
     }
 
     onRepair(session, device) {
+        registerSpeechSettings(this, session, 'googlecloudtts', device);
         registerVoicePicker(session);
         session.setHandler('get_voice_config', () => ({ voice: device.getStoreValue(deviceVoiceKey) ?? null }));
         session.setHandler('save_voice', async selection => {

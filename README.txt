@@ -15,6 +15,8 @@ Choose a Google Cast (Chromecast), Sonos, or compatible UPnP/DLNA speaker on Hom
 * Google Cloud Text-to-Speech: Read text or SSML aloud with your configured voice and audio settings.
 * Google Translate: Translate text to the selected language and read it aloud.
 
+Select All speakers for a whole-house announcement, or save a default speaker in Pair or Repair. You can also edit the device settings there. Temporary Sonos grouping and resuming previous playback are on by default where supported; other speakers play independently. The announcement cards offer optional speaker volume, restored afterward where supported. Optional Flow arguments use the device defaults.
+
 Use speech audio URLs in your automations. For instance, play them on Sonos at a set volume, open them in the Samsung Smart TV browser, or pass them to IFTTT.
 
 Configure credentials for the Google services you use in app settings.

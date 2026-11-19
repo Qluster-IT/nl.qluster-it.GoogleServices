@@ -30,13 +30,13 @@ class YouTubeDriver extends Homey.Driver
           
           const actionCard = this.homey.flow.getActionCard(action.id);
           actionCard.registerRunListener( async ( args, state ) => { //async
+            args.text = await BL.decode(args.text);
+            if (typeof args.text !== 'string' || !args.text.trim()) throw new Error('Enter text to search for on YouTube.');
             var defer = new Defer();
             try {
                 if(!args.device || !args.text) return Promise.resolve(false);
                 console.log('youtube_search.registerRunListener args: ');
                 
-                //args.text = await BL.decode(args.text);
-
                 search(args.text, this.options, (err, results)=> {
                   if(err) {
                     defer.reject('Did you configure the API Key in the settingspage?');

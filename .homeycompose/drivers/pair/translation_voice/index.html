@@ -1,0 +1,114 @@
+<style>
+  #translation-form { padding-bottom: calc(100px + env(safe-area-inset-bottom, 0px)); }
+  .setup-actions { position: fixed; bottom: 0; left: 0; right: 0; z-index: 10; padding: 12px 20px calc(12px + env(safe-area-inset-bottom, 0px)); background: var(--homey-background-color, #fff); border-top: 1px solid var(--homey-line-color, #ddd); }
+  .setup-actions button { width: 100%; margin: 0; }
+</style>
+<form class="homey-form" id="translation-form">
+  <fieldset id="translation-fields" disabled style="border:0;margin:0;padding:0">
+    <label><input id="translation-cloud" type="checkbox" /> <span data-i18n="speech.cloud"></span></label>
+    <p class="homey-text-small" data-i18n="speech.translation_help"></p>
+    <div id="translation-picker" hidden>
+      <label class="homey-form-label" for="translation-target" data-i18n="speech.target"></label>
+      <select class="homey-form-select" id="translation-target"></select>
+      <label class="homey-form-label" for="translation-voice" data-i18n="speech.voice"></label>
+      <select class="homey-form-select" id="translation-voice"></select>
+      <ul id="translation-preferences"></ul>
+      <input class="homey-form-input" id="translation-sample" maxlength="200" />
+      <button class="homey-button-secondary hy-nostyle" type="button" id="translation-preview" data-i18n="speech.preview"></button>
+      <audio id="translation-audio" controls hidden></audio>
+    </div>
+    <div class="setup-actions">
+      <button class="homey-button-primary hy-nostyle" type="submit" data-i18n="speech.continue"></button>
+    </div>
+  </fieldset>
+  <p role="status" id="translation-status"></p>
+</form>
+<script>
+(async () => {
+  Homey.setTitle(Homey.__('speech.title'));
+  const get = id => document.getElementById('translation-' + id);
+  const status = get('status');
+  let config;
+  try { config = await Homey.emit('get_voice_config'); }
+  catch (error) { status.textContent = error.message; return; }
+  const preferences = new Map((config.voices || []).map(({ target, voice }) => [target, voice]));
+  let catalog = [];
+  try { catalog = await Homey.emit('list_voices'); }
+  catch (error) { status.textContent = error.message; }
+  const target = get('target');
+  const select = get('voice');
+  const languages = new Map((config.languages || []).map(({ id, name }) => [id.toLowerCase(), name]));
+  const codes = new Set([...preferences.keys(), ...catalog.flatMap(({ languageCode }) =>
+    [languageCode.toLowerCase(), languageCode.split('-')[0].toLowerCase()])]);
+  for (const code of [...codes].sort()) {
+    if (languages.size && !languages.has(code) && !preferences.has(code)) continue;
+    target.add(new Option(languages.has(code) ? `${languages.get(code)} (${code})` : code, code));
+  }
+  let options = [];
+  function showPreferences() {
+    get('preferences').replaceChildren();
+    for (const [language, voice] of preferences) {
+      const item = document.createElement('li');
+      item.textContent = `${language} — ${voice.name} `;
+      const remove = document.createElement('button');
+      remove.type = 'button';
+      remove.className = 'homey-button-secondary hy-nostyle';
+      remove.textContent = Homey.__('speech.remove');
+      remove.onclick = () => { preferences.delete(language); showVoices(); };
+      item.append(remove);
+      get('preferences').append(item);
+    }
+  }
+  function showVoices() {
+    const saved = preferences.get(target.value);
+    options = catalog.filter(voice => voice.languageCode.toLowerCase() === target.value ||
+      (!target.value.includes('-') && voice.languageCode.toLowerCase().startsWith(target.value + '-')));
+    if (saved && !options.some(voice => voice.name === saved.name && voice.languageCode === saved.languageCode)) options.push(saved);
+    select.replaceChildren(new Option(Homey.__('speech.language_default'), ''));
+    for (const [i, voice] of options.entries()) select.add(new Option(`${voice.languageCode} — ${voice.name}`, String(i),
+      false, voice.name === saved?.name && voice.languageCode === saved?.languageCode));
+    showPreferences();
+  }
+  const selection = () => select.value === '' ? null : options[Number(select.value)];
+  target.onchange = showVoices;
+  select.onchange = () => {
+    if (selection()) preferences.set(target.value, selection());
+    else preferences.delete(target.value);
+    showPreferences();
+  };
+  get('cloud').checked = config.enabled;
+  get('picker').hidden = !config.enabled;
+  get('cloud').onchange = () => { get('audio').pause(); get('picker').hidden = !get('cloud').checked; };
+  get('sample').placeholder = Homey.__('speech.sample');
+  get('sample').setAttribute('aria-label', Homey.__('speech.sample'));
+  showVoices();
+  if (!catalog.length) status.textContent ||= Homey.__('speech.no_voices');
+  get('fields').disabled = false;
+  async function perform(action) {
+    if (get('fields').disabled) return;
+    get('fields').disabled = true;
+    status.textContent = '';
+    try { await action(); }
+    catch (error) { status.textContent = error.message; }
+    finally { get('fields').disabled = false; }
+  }
+  get('preview').onclick = () => perform(async () => {
+    if (!target.value) throw new Error(Homey.__('speech.choose_language'));
+    const audio = get('audio');
+    audio.pause();
+    audio.hidden = true;
+    audio.src = 'data:audio/mpeg;base64,' + await Homey.emit('preview_voice',
+      { voice: selection(), target: target.value, text: get('sample').value });
+    audio.hidden = false;
+  });
+  get('form').onsubmit = event => {
+    event.preventDefault();
+    perform(async () => {
+      await Homey.emit('save_translation_voices', { enabled: get('cloud').checked,
+        voices: [...preferences].map(([target, voice]) => ({ target, voice })) });
+      get('audio').pause();
+      await Homey.showView('list_devices');
+    });
+  };
+})();
+</script>

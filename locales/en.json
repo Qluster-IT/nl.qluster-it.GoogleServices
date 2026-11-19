@@ -64,6 +64,14 @@
     "choose_language": "Choose an announcement language to preview.",
     "speaker_stereo": "Stereo",
     "speaker_left": "Left",
-    "speaker_right": "Right"
+    "speaker_right": "Right",
+    "speaker_all": "All speakers",
+    "speaker_all_help": "All currently discoverable speakers (not synchronized)",
+    "settings_title": "Speech and speaker settings",
+    "default_speaker": "Default speaker",
+    "no_speaker": "No direct playback (use Flow cards)",
+    "speaker_help": "Used by existing speech and translation actions. An explicit speaker on an announcement card overrides this choice. All speakers starts playback on every discovered target; playback is not synchronized and can interrupt existing audio.",
+    "reload_speakers": "Find speakers again",
+    "settings_saved": "Settings saved"
   }
 }

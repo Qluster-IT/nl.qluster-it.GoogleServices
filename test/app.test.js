@@ -6,7 +6,7 @@ const Module = require('node:module');
 const { Readable, Writable } = require('node:stream');
 const test = require('node:test');
 
-function loadApp({ getVoices = async () => [], textToSpeech = {}, ttsServer } = {}) {
+function loadApp({ getVoices = async () => [], textToSpeech = {}, ttsServer, announcements } = {}) {
   const filename = require.resolve('../app');
   const m = new Module(filename, module);
   m.filename = filename;
@@ -17,6 +17,7 @@ function loadApp({ getVoices = async () => [], textToSpeech = {}, ttsServer } = 
     if (id === '@google-cloud/text-to-speech/build/src/v1') return textToSpeech;
     if (id === 'betterlogiclibrary') return { BL: { init: async () => {}, decode: async text => text } };
     if (id === './lib/tts-server') return ttsServer || { init() {}, setClient() {}, getVoices, getUrl: async () => ({}) };
+    if (id === './lib/speaker-announcements' && announcements) return announcements;
     return Module.prototype.require.call(m, id);
   };
   m._compile(fs.readFileSync(filename, 'utf8'), filename);
@@ -314,7 +315,7 @@ test('speaker announcements resolve the selected speaker before synthesizing', a
   const speaker = { id: 'cast:abc' };
   const args = { text: 'Hallo', speaker };
   const media = { url: 'http://192.168.1.1:47333/tts/test.mp3', type: 'audio/mpeg' };
-  assert.equal(await run({ ...args, device: { getSetting: () => undefined } }), true);
+  assert.equal(await run({ ...args, device: { getSetting: () => false } }), true);
   assert.deepEqual(calls, ['missing', 'cast:abc', 'cast:abc',
     ['cast:abc', media]]);
   calls.length = 0;
@@ -325,6 +326,240 @@ test('speaker announcements resolve the selected speaker before synthesizing', a
   playbackError = null;
   assert.equal(await run({ ...args, device }), true);
   assert.deepEqual(calls, ['cast:abc', ['cast:abc', media], ['when', device, media]]);
+});
+
+test('default speakers are used only when there is no explicit selection, and failures never trigger When cards', async () => {
+  const played = [], triggered = [];
+  let run, generated = 0, fail = false;
+  const helpers = compile('../lib/speaker-announcements', {
+    './speaker-playback': class {
+      async select(value) { return value; }
+      async play(speaker, media) {
+        played.push([speaker.id, media.url]);
+        if (fail) throw new Error('one speaker unavailable');
+      }
+    }
+  }).exports;
+  const homey = { flow: { getActionCard: () => ({
+    getArgument: () => ({ registerAutocompleteListener() {} }),
+    registerRunListener: listener => { run = listener; }
+  }) } };
+  let trigger = false;
+  const device = {
+    getStoreValue: key => key === helpers.defaultSpeakerKey ? { id: 'all' } : undefined,
+    getSetting: key => key === 'trigger_when_announcing' && trigger
+  };
+  helpers.registerAnnouncement(homey, 'example', async () => {
+    generated++;
+    return { url: 'http://local/audio.mp3' };
+  }, (_, media) => triggered.push(media));
+  await run({ device, text: 'Default' });
+  assert.deepEqual(played, [['all', 'http://local/audio.mp3']]);
+  assert.equal(triggered.length, 0);
+  trigger = true;
+  await run({ device, text: 'Override', speaker: { id: 'cast:chosen' } });
+  assert.equal(played[1][0], 'cast:chosen');
+  assert.equal(triggered.length, 1);
+  fail = true;
+  await assert.rejects(run({ device, text: 'Failure' }), /unavailable/);
+  assert.equal(triggered.length, 1);
+  assert.equal(generated, 3);
+  assert.equal(await helpers.selectSpeaker(homey, { getStoreValue: () => undefined }), null);
+});
+
+test('direct playback defaults grouping and resume on, preserves opt-outs and validates volume before synthesis', async () => {
+  const played = [];
+  let run, generated = 0;
+  const helpers = compile('../lib/speaker-announcements', {
+    './speaker-playback': class {
+      async select(value) { return value; }
+      async play(speaker, media, options) { played.push({ speaker, media, options }); }
+    },
+    './tts-server': { hostedDuration: async () => 1500 }
+  }).exports;
+  const homey = { flow: { getActionCard: () => ({
+    getArgument: () => ({ registerAutocompleteListener() {} }),
+    registerRunListener: listener => { run = listener; }
+  }) } };
+  const settings = {};
+  const device = { getSetting: key => settings[key], getStoreValue: () => ({ id: 'all' }) };
+  helpers.registerAnnouncement(homey, 'example', async () => {
+    generated++;
+    return { url: 'http://homey.invalid/tts/example.mp3' };
+  });
+  await run({ device, text: 'Default settings' });
+  assert.deepEqual(played[0].options, { group: true, resume: true, delay: 0, volume: undefined });
+  assert.equal(played[0].media.duration, 1500);
+  await run({ device, text: 'One speaker', speaker: { id: 'one' }, volume: 0 });
+  assert.deepEqual(played[1].options, { group: false, resume: true, delay: 0, volume: 0 });
+  settings.announcement_group_sonos = settings.announcement_resume = false;
+  await run({ device, text: 'Explicit opt-outs' });
+  assert.equal(played[2].options.group, false);
+  assert.equal(played[2].options.resume, false);
+  assert.equal(played[2].media.duration, undefined);
+  await assert.rejects(run({ device, text: 'Invalid', volume: 101 }), /volume/);
+  await assert.rejects(run({ device, text: 'Invalid', volume: NaN }), /volume/);
+  assert.equal(generated, 3);
+});
+
+test('All snapshots fresh discovery, attempts every target in bounded batches and reports failures after playback', async () => {
+  const Playback = require('../lib/speaker-playback');
+  const attempted = [], errors = [];
+  let active = 0, peak = 0;
+  const media = { url: 'http://local/audio.mp3' };
+  class TestPlayback extends Playback {
+    async refresh() { return this.speakers; }
+    async playSingle(target, audio) {
+      assert.equal(audio, media);
+      attempted.push(target.id);
+      active++; peak = Math.max(peak, active);
+      await new Promise(resolve => setImmediate(resolve));
+      active--;
+      if (target.id === '2') throw new Error('unavailable');
+    }
+  }
+  const playback = new TestPlayback((...args) => errors.push(args));
+  playback.speakers = [];
+  await assert.rejects(playback.select({ id: 'all' }), /No speakers/);
+  playback.speakers = Array.from({ length: 7 }, (_, id) => ({ id: String(id), name: `Speaker ${id}` }));
+  const selected = await playback.select({ id: 'all' });
+  playback.speakers.push({ id: 'later', name: 'Discovered later' });
+  await assert.rejects(playback.play(selected, media), /1 speaker\(s\): Speaker 2: unavailable/);
+  assert.deepEqual(attempted, ['0', '1', '2', '3', '4', '5', '6']);
+  assert.equal(peak, 4);
+  assert.equal(errors.length, 0, 'start failures are returned to the caller, not reported twice');
+});
+
+test('speech setup saves complete settings per session and preserves an offline default during repair', async () => {
+  const register = compile('../lib/speech-setup', {
+    './speaker-announcements': {
+      defaultSpeakerKey: 'announcement_speaker',
+      getPlayback: () => ({ autocomplete: async () => [{ id: 'all', name: 'All speakers' }] })
+    }
+  }).exports;
+  const driver = { homey: { i18n: { getLanguage: () => 'nl' }, __: () => 'nl-NL' }, error() {} };
+  const session = () => { const handlers = {}; return { handlers, setHandler: (id, fn) => { handlers[id] = fn; } }; };
+  const first = session(), second = session();
+  const decorate = register(driver, first, 'googletts');
+  register(driver, second, 'googletts');
+  const initial = first.handlers.get_speech_settings().settings;
+  assert.equal(initial.languagecode, 'nl-NL');
+  await assert.rejects(first.handlers.save_speech_settings({ settings: { ...initial, typo: true }, speaker: null }), /Unknown/);
+  await assert.rejects(first.handlers.save_speech_settings({ settings: { ...initial, trigger_when_announcing: 'false' }, speaker: null }), /Invalid/);
+  await assert.rejects(first.handlers.save_speech_settings({ settings: initial, speaker: { id: 'bogus' } }), /available speaker/);
+  await first.handlers.save_speech_settings({ settings: initial, speaker: { id: 'all' } });
+  assert.equal(decorate([{}])[0].store.announcement_speaker.id, 'all');
+  assert.equal(second.handlers.get_speech_settings().speaker, null);
+  let stored = { id: 'offline', name: 'Offline speaker' }, saved;
+  const repair = session();
+  const device = {
+    getSetting: key => initial[key], getStoreValue: () => stored,
+    setStoreValue: async (_, value) => { stored = value; }, unsetStoreValue: async () => { stored = null; },
+    setSettings: async value => { saved = value; }
+  };
+  register(driver, repair, 'googletts', device);
+  await repair.handlers.save_speech_settings({ settings: initial, speaker: { id: 'offline' } });
+  assert.deepEqual(saved, initial);
+  assert.equal(stored.id, 'offline');
+  device.setSettings = async () => { throw new Error('write failed'); };
+  await assert.rejects(repair.handlers.save_speech_settings({ settings: initial, speaker: null }), /write failed/);
+  assert.equal(stored.id, 'offline', 'failed settings writes restore the original output selection');
+});
+
+test('Maps decodes manual BLL addresses once but leaves selected Google Place IDs untouched', async () => {
+  const decoded = [];
+  const Driver = compile('../drivers/maps/driver', {
+    homey: { Driver: class {} },
+    betterlogiclibrary: { BL: { decode: async text => { decoded.push(text); return 'Decoded address'; } } }
+  }).exports;
+  const driver = new Driver();
+  driver.homey = { i18n: { getLanguage: () => 'en' } };
+  const route = await driver.parseFlowRoute({ id: 'place_id:ChIJ_test' }, { id: '{[ address ]}' }, 'WALK');
+  assert.deepEqual(decoded, ['{[ address ]}']);
+  assert.equal(route.origin.waypoint.placeId, 'ChIJ_test');
+  assert.equal(route.destination.waypoint.address, 'Decoded address');
+});
+
+test('Cloud default output waits without emitting URL or Finished when the checkbox is off', async () => {
+  const events = [];
+  const App = loadApp({
+    ttsServer: { getUrl: async () => ({ url: 'http://local/speech.mp3', duration: 1, audioConfig: { audioEncoding: 'MP3' } }) },
+    announcements: {
+      selectSpeaker: async () => ({ id: 'all' }),
+      playAnnouncement: async (_, device, speaker, media, trigger) => {
+        events.push('play');
+        if (device.getSetting('trigger_when_announcing')) await trigger(device, media);
+      }
+    }
+  });
+  const app = new App();
+  app.homey = {};
+  app.error = () => assert.fail('Unexpected timer failure');
+  app.Triggers = {
+    cloudurlTrigger: { Card: { trigger: async () => events.push('url') } },
+    finished_trigger: { Card: { trigger: async () => events.push('finished') } }
+  };
+  let enabled = false;
+  const device = {
+    setCapabilityValue: async () => {},
+    getSetting: key => key === 'delay' ? 0 : enabled
+  };
+  await app.sayCloudOnSpeaker({ device, text: 'Silent triggers' }, true);
+  assert.deepEqual(events, ['play']);
+  enabled = true;
+  await app.sayCloudOnSpeaker({ device, text: 'Enabled triggers' }, true);
+  assert.deepEqual(events, ['play', 'play', 'url', 'finished']);
+});
+
+test('Translate announcements use the default target, respect explicit overrides and emit translated tokens only when enabled', async () => {
+  const events = [], requests = [], runs = {};
+  const helpers = compile('../lib/speaker-announcements', {
+    './speaker-playback': class {
+      async select(value) { return value; }
+      async play(_, media) { events.push(['play', media.translation]); }
+    }
+  }).exports;
+  const Driver = compile('../drivers/translate/driver', {
+    homey: { Driver: class {} },
+    betterlogiclibrary: { BL: { decode: async text => text.replace('{[ greeting ]}', 'Hello') } },
+    '../../lib/speaker-announcements': helpers
+  }).exports;
+  const driver = new Driver();
+  driver.log = () => {};
+  driver.setCloudJSON = driver.setCloudProject = async () => {};
+  const card = id => ({
+    registerRunListener: run => { runs[id] = run; },
+    registerArgumentAutocompleteListener() {},
+    getArgument: () => ({ registerAutocompleteListener() {} }),
+    trigger: async (_, tokens) => events.push(['trigger', tokens])
+  });
+  driver.homey = { settings: { on() {} }, flow: {
+    getDeviceTriggerCard: card, getActionCard: card, getConditionCard: card
+  } };
+  driver.translate = async (text, source, target) => {
+    requests.push([text, source, target]);
+    return target === 'de' ? 'Hallo' : 'Bonjour';
+  };
+  driver.translationMedia = async () => ({ url: 'http://local/translation.mp3', type: 'audio/mpeg' });
+  await driver.onInit();
+  let enabled = false;
+  const device = {
+    getSetting: key => ({ languagecode: 'en', defaulttargetlanguagecode: 'fr', trigger_when_announcing: enabled,
+      announcement_group_sonos: false, announcement_resume: false })[key],
+    getStoreValue: key => key === helpers.defaultSpeakerKey ? { id: 'all' } : undefined,
+    setCapabilityValue: async () => {}
+  };
+  await runs.announce_translation({ device, text: '{[ greeting ]}' });
+  assert.deepEqual(events, [['play', 'Bonjour']]);
+  enabled = true;
+  await runs.announce_translation({ device, text: '{[ greeting ]}', targetlanguagecode: { id: 'de' } });
+  assert.deepEqual(requests, [['Hello', 'en', 'fr'], ['Hello', 'en', 'de']]);
+  assert.deepEqual(events[2], ['trigger', {
+    url: 'http://local/translation.mp3', text: 'Hello', translation: 'Hallo',
+    sourcelanguagecode: 'en', targetlanguagecode: 'de'
+  }]);
+  const tokens = await runs.action_translate_af_oc({ device, translate: '{[ greeting ]}' });
+  assert.deepEqual(tokens, { text: 'Hello', translation: 'Bonjour', sourcelanguagecode: 'en', targetlanguagecode: 'fr' });
 });
 
 test('the speaker picker discovers Cast, Sonos, DLNA and UPnP transport services', async t => {
@@ -390,6 +625,7 @@ test('the speaker picker discovers Cast, Sonos, DLNA and UPnP transport services
   const filtered = playback.autocomplete('cast');
   t.mock.timers.tick(2500);
   assert.deepEqual(await picker, [
+    { id: 'all', name: 'All speakers', description: 'All currently discoverable speakers' },
     { id: 'dlna:uuid:def', name: 'Den', description: 'UPnP / DLNA' },
     { id: 'cast:abc', name: 'Kitchen', description: 'Google Cast' },
     { id: 'dlna:uuid:rincon_test', name: 'Living Room', description: 'Sonos' },
@@ -740,6 +976,7 @@ test('Maps selected place IDs are used for routing and Google Maps links', async
 test('Maps only reads its own key, and a one-off calculation returns tags without touching the device', async () => {
   const { exports: Driver } = compile('../drivers/maps/driver', {
     homey: { Driver: class {} },
+    betterlogiclibrary: { BL: { decode: async text => text } },
     '../../lib/maps': {
       parseRoute: require('../lib/maps').parseRoute,
       computeRoute: async (key, input, includeMap) => {
@@ -757,6 +994,7 @@ test('Maps only reads its own key, and a one-off calculation returns tags withou
   const autocomplete = {};
   const driver = new Driver();
   driver.homey = {
+    i18n: { getLanguage: () => 'en' },
     settings: { get: name => { assert.equal(name, 'MapsApiKey'); return ' fake-maps-key '; } },
     flow: {
       getActionCard: id => ({
@@ -774,7 +1012,7 @@ test('Maps only reads its own key, and a one-off calculation returns tags withou
   }), { minutes: 5 });
   await assert.rejects(() => listeners.maps_calculate_route({
     device, from: { name: 'No selected value' }, to: 'B', mode: 'WALK'
-  }), /origin and destination/);
+  }), /Choose an address/);
   driver.searchAddresses = async query => [{ id: query, name: query }];
   assert.deepEqual(await autocomplete.from('Typed origin'), [{ id: 'Typed origin', name: 'Typed origin' }]);
   assert.deepEqual(await autocomplete.to('Typed destination'), [{ id: 'Typed destination', name: 'Typed destination' }]);
@@ -784,10 +1022,12 @@ test('Maps only reads its own key, and a one-off calculation returns tags withou
 });
 
 test('Maps conditions check saved results without requests and handle missing readings and threshold equality', async () => {
-  const Driver = compile('../drivers/maps/driver', { homey: { Driver: class {} } }).exports;
+  const Driver = compile('../drivers/maps/driver', { homey: { Driver: class {} },
+    betterlogiclibrary: { BL: { decode: async text => text } } }).exports;
   const driver = new Driver();
   const conditions = {};
   driver.homey = {
+    i18n: { getLanguage: () => 'en' },
     __: key => key,
     flow: {
       getActionCard: () => ({
@@ -1342,8 +1582,9 @@ test('Cloud TTS Pair and Repair validate, preview and save a voice without repla
   const session = () => ({ setHandler(event, fn) { this[event] = fn; } });
   const driver = new Driver();
   const pair = session();
+  driver.homey = { i18n: { getLanguage: () => 'en' }, __: () => 'en' };
   driver.onPair(pair);
-  assert.equal((await pair.list_devices())[0].store, undefined);
+  assert.equal((await pair.list_devices())[0].store.cloud_voice, undefined);
   await assert.rejects(() => pair.save_voice({ ...voice, languageCode: 'en-GB' }), /available Cloud voice/);
   await pair.save_voice(voice);
   assert.deepEqual((await pair.list_devices())[0].store.cloud_voice, voice);
@@ -1351,6 +1592,7 @@ test('Cloud TTS Pair and Repair validate, preview and save a voice without repla
   const repair = session();
   const store = new Map();
   driver.onRepair(repair, {
+    getSetting: () => undefined,
     getStoreValue: key => store.get(key), setStoreValue: (key, value) => store.set(key, value),
     unsetStoreValue: key => store.delete(key)
   });
@@ -1371,7 +1613,8 @@ test('Translate Cloud speech resolves voices for the selected target only', asyn
   }).exports;
   const config = await validateTranslationSpeech({ enabled: true, voices: [{ target: 'nl', voice }] });
   assert.deepEqual(await resolveTranslationVoice(config, 'nl'), voice);
-  assert.deepEqual(await resolveTranslationVoice(config, 'nl-NL'), { languageCode: 'nl-NL' });
+  assert.deepEqual(await resolveTranslationVoice(config, 'nl-NL'), voice);
+  await assert.rejects(resolveTranslationVoice(config, 'nl-BE'), /no voice for nl-BE/);
   assert.deepEqual(await resolveTranslationVoice(config, 'en'), { name: 'en-GB-App', languageCode: 'en-GB' });
   await assert.rejects(resolveTranslationVoice(config, 'fr'), /no voice for fr/);
   await assert.rejects(validateTranslationSpeech({ enabled: true, voices: [{ target: 'fr', voice }] }), /for this language/);

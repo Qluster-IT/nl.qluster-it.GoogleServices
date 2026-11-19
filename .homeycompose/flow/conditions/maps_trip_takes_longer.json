@@ -1,20 +1,76 @@
 {
-  "title": { "en": "A new route estimate !{{takes|does not take}} longer than a limit", "nl": "Een nieuwe routeschatting !{{duurt|duurt niet}} langer dan een grens" },
-  "titleFormatted": { "en": "A trip by [[mode]] from [[from]] to [[to]] !{{takes|does not take}} longer than [[minutes]] minutes", "nl": "Een rit met [[mode]] van [[from]] naar [[to]] !{{duurt|duurt niet}} langer dan [[minutes]] minuten" },
-  "hint": { "en": "Requests a fresh Google Maps estimate each time this card runs. It does not update a Maps device or request an image.", "nl": "Vraagt telkens een nieuwe schatting op bij Google Maps. Werkt geen Maps-apparaat bij en vraagt geen afbeelding op." },
+  "title": {
+    "en": "A new route estimate !{{takes|does not take}} longer than a limit",
+    "nl": "Een nieuwe routeschatting !{{duurt|duurt niet}} langer dan een grens"
+  },
+  "titleFormatted": {
+    "en": "A trip by [[mode]] from [[from]] to [[to]] !{{takes|does not take}} longer than [[minutes]] minutes",
+    "nl": "Een rit met [[mode]] van [[from]] naar [[to]] !{{duurt|duurt niet}} langer dan [[minutes]] minuten"
+  },
+  "hint": {
+    "en": "Requests a fresh Google Maps estimate each time this card runs. It does not update a Maps device or request an image.",
+    "nl": "Vraagt telkens een nieuwe schatting op bij Google Maps. Werkt geen Maps-apparaat bij en vraagt geen afbeelding op."
+  },
   "args": [
-    { "name": "from", "type": "autocomplete", "placeholder": { "en": "Search or type origin", "nl": "Zoek of typ vertrekpunt" } },
-    { "name": "to", "type": "autocomplete", "placeholder": { "en": "Search or type destination", "nl": "Zoek of typ bestemming" } },
+    {
+      "name": "from",
+      "type": "autocomplete",
+      "placeholder": {
+        "en": "Search or type origin (* BLL supported)",
+        "nl": "Zoek of typ vertrekpunt (* BLL ondersteund)"
+      }
+    },
+    {
+      "name": "to",
+      "type": "autocomplete",
+      "placeholder": {
+        "en": "Search or type destination (* BLL supported)",
+        "nl": "Zoek of typ bestemming (* BLL ondersteund)"
+      }
+    },
     {
       "name": "mode",
       "type": "dropdown",
       "values": [
-        { "id": "DRIVE", "label": { "en": "Car (with traffic)", "nl": "Auto (met verkeer)" } },
-        { "id": "TRANSIT", "label": { "en": "Public transit", "nl": "Openbaar vervoer" } },
-        { "id": "WALK", "label": { "en": "Foot", "nl": "Te voet" } },
-        { "id": "BICYCLE", "label": { "en": "Bicycle", "nl": "Fiets" } }
+        {
+          "id": "DRIVE",
+          "label": {
+            "en": "Car (with traffic)",
+            "nl": "Auto (met verkeer)"
+          }
+        },
+        {
+          "id": "TRANSIT",
+          "label": {
+            "en": "Public transit",
+            "nl": "Openbaar vervoer"
+          }
+        },
+        {
+          "id": "WALK",
+          "label": {
+            "en": "Foot",
+            "nl": "Te voet"
+          }
+        },
+        {
+          "id": "BICYCLE",
+          "label": {
+            "en": "Bicycle",
+            "nl": "Fiets"
+          }
+        }
       ]
     },
-    { "name": "minutes", "type": "number", "min": 0, "step": 0.1, "placeholder": { "en": "Minutes", "nl": "Minuten" } }
+    {
+      "name": "minutes",
+      "type": "number",
+      "min": 0,
+      "step": 0.1,
+      "placeholder": {
+        "en": "Minutes",
+        "nl": "Minuten"
+      }
+    }
   ]
 }

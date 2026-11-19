@@ -8,6 +8,7 @@ let TranslationServiceClient;
 const { Defer, jsonEqual } = require('./../../lib/proto');
 const { BL } = require('betterlogiclibrary');
 const TtsServer = require('../../lib/tts-server');
+const registerSpeechSettings = require('../../lib/speech-setup');
 const { translationSpeechKey, registerVoicePicker, validateTranslationSpeech,
     resolveTranslationVoice } = require('../../lib/speech-voices');
 
@@ -28,24 +29,20 @@ class GoogleTranslateDriver extends Homey.Driver {
         }).bind(this));
         await this.setCloudJSON();
         await this.setCloudProject();
-        const { registerAnnouncement, basicSpeech } = require('../../lib/speaker-announcements');
+        const { registerAnnouncement } = require('../../lib/speaker-announcements');
+        this.announcementTrigger = this.homey.flow.getDeviceTriggerCard('translation_announced');
+        this.announcementTrigger.registerRunListener(async () => true);
         const announcement = registerAnnouncement(this.homey, 'announce_translation', async ({ device, text, targetlanguagecode }) => {
-            const target = targetlanguagecode?.id;
+            const target = targetlanguagecode?.id || device.getSetting('defaulttargetlanguagecode');
             const source = device.getSetting('languagecode');
             if (typeof target !== 'string' || !target || !source) throw new Error('Choose a target language and configure the source language.');
             const input = await BL.decode(text);
             if (typeof input !== 'string' || !input.trim()) throw new Error('Enter text to translate.');
             const translated = await this.translate(input, source, target);
             if (!translated) throw new Error('Google Translate did not return a translation.');
-            const config = device.getStoreValue(translationSpeechKey);
-            if (config?.enabled !== true) return basicSpeech(this.homey, translated, target);
-            if (Buffer.byteLength(translated, 'utf8') > 5000) throw new Error('The translation exceeds the Cloud Text-to-Speech limit of 5,000 bytes.');
-            const voice = await resolveTranslationVoice(config, target);
-            const audio = await TtsServer.getResponse({
-                text: translated, voice, audioConfig: { audioEncoding: 'MP3' }, plainText: true
-            });
-            return { url: await TtsServer.hostMp3(this.homey, audio), type: 'audio/mpeg' };
-        });
+            return { ...await this.translationMedia(device, translated, target), text: input, translation: translated,
+                sourcelanguagecode: source, targetlanguagecode: target };
+        }, (device, media) => this.triggerAnnouncement(device, media));
         announcement.getArgument('targetlanguagecode').registerAutocompleteListener(async query => {
             if (this.languagesError) throw new Error(this.languagesError);
             const filter = query.toLowerCase();
@@ -62,15 +59,19 @@ class GoogleTranslateDriver extends Homey.Driver {
         for (let i = 0; i < conditions.length; i++) {
             const condition = conditions[i];
             const conditionCard = this.homey.flow.getConditionCard(condition.id);
-            conditionCard.registerRunListener(((args, state) => {
+            conditionCard.registerRunListener((async (args, state) => {
                 console.log(condition.id + '.registerRunListener args: ');
                 var defer = new Defer();
                 try {
-                    if (!args.device || !args.translate || !args.targetlanguagecode) return Promise.resolve(false);
+                    if (!args.device || !args.translate) throw new Error('Enter text and choose a Translate device.');
+                    const target = args.targetlanguagecode || args.device.getSetting('defaulttargetlanguagecode');
+                    if (!target) throw new Error('Choose a target language or configure a device default.');
+                    args.translate = await BL.decode(args.translate);
+                    if (typeof args.translate !== 'string' || !args.translate.trim()) throw new Error('Enter text to translate.');
                     var promises = [];
                     promises.push(args.device.setCapabilityValue('device_translate', args.translate));
 
-                    this.translate(args.translate, args.device.getSetting('languagecode'), args.targetlanguagecode).then((translation) => {
+                    this.translate(args.translate, args.device.getSetting('languagecode'), target).then((translation) => {
                         if (!translation) {
                             defer.reject("Could not translate");
                             return;
@@ -107,22 +108,31 @@ class GoogleTranslateDriver extends Homey.Driver {
                 console.log(action.id + '.registerRunListener args: ');
                 var defer = new Defer();
                 try {
-                    if (!args.device || !args.translate) return Promise.resolve(false);
+                    if (!args.device || !args.translate) throw new Error('Enter text and choose a Translate device.');
                     args.translate = await BL.decode(args.translate);
+                    if (typeof args.translate !== 'string' || !args.translate.trim()) throw new Error('Enter text to translate.');
 
                     var promises = [];
                     promises.push(args.device.setCapabilityValue('device_translate', args.translate));
 
                     const targetlanguagecode = (action.oc ? (args.targetlanguagecode ? args.targetlanguagecode.id : null) :args.targetlanguagecode) || args.device.getSetting('defaulttargetlanguagecode');
-                    if (!targetlanguagecode) defer.reject("Targetlanguagecode not set.");
+                    if (!targetlanguagecode) throw new Error("Targetlanguagecode not set.");
                     const sourcelanguagecode =  (action.oc ? (args.sourcelanguagecode ? args.sourcelanguagecode.id : null) :args.sourcelanguagecode)  || args.device.getSetting('languagecode');
-                    if (!sourcelanguagecode) defer.reject("Sourcelanguagecode not set.");
-                    this.translate(args.translate, sourcelanguagecode, targetlanguagecode).then((translation) => {
+                    if (!sourcelanguagecode) throw new Error("Sourcelanguagecode not set.");
+                    const { selectSpeaker, playAnnouncement } = require('../../lib/speaker-announcements');
+                    const speaker = await selectSpeaker(this.homey, args.device);
+                    this.translate(args.translate, sourcelanguagecode, targetlanguagecode).then(async (translation) => {
                         if (!translation) {
                             defer.reject("Could not translate");
                             return;
                         }
                         promises.push(args.device.setCapabilityValue('device_translation', translation));
+                        if (speaker) {
+                            const media = { ...await this.translationMedia(args.device, translation, targetlanguagecode),
+                                text: args.translate, translation, sourcelanguagecode, targetlanguagecode };
+                            await playAnnouncement(this.homey, args.device, speaker, media,
+                                (device, media) => this.triggerAnnouncement(device, media));
+                        }
 
                         var all = Promise.all(promises);
                         all.then(() => {
@@ -156,6 +166,21 @@ class GoogleTranslateDriver extends Homey.Driver {
         }
     }
 
+    async translationMedia(device, translated, target) {
+        const { basicSpeech } = require('../../lib/speaker-announcements');
+        const config = device.getStoreValue(translationSpeechKey);
+        if (config?.enabled !== true) return basicSpeech(this.homey, translated, target);
+        if (Buffer.byteLength(translated, 'utf8') > 5000) throw new Error('The translation exceeds the Cloud Text-to-Speech limit of 5,000 bytes.');
+        const voice = await resolveTranslationVoice(config, target);
+        const audio = await TtsServer.getResponse({
+            text: translated, voice, audioConfig: { audioEncoding: 'MP3' }, plainText: true
+        });
+        return { url: await TtsServer.hostMp3(this.homey, audio), type: 'audio/mpeg' };
+    }
+
+    triggerAnnouncement(device, { url, text, translation, sourcelanguagecode, targetlanguagecode }) {
+        return this.announcementTrigger.trigger(device, { url, text, translation, sourcelanguagecode, targetlanguagecode });
+    }
 
     // onPairListDevices(data, callback) {
     //     this.onPairListDevicesAsync(data).then(function(l) { callback(null, l); });
@@ -163,6 +188,7 @@ class GoogleTranslateDriver extends Homey.Driver {
     // }
 
     onRepair(session, device) {
+        registerSpeechSettings(this, session, 'translate', device);
         registerVoicePicker(session);
         session.setHandler('get_voice_config', () => ({
             translate: true, languages: this.languages || [],
@@ -171,6 +197,17 @@ class GoogleTranslateDriver extends Homey.Driver {
         session.setHandler('save_translation_voices', async config => {
             await device.setStoreValue(translationSpeechKey, await validateTranslationSpeech(config));
         });
+    }
+
+    onPair(session) {
+        const configure = registerSpeechSettings(this, session, 'translate');
+        let config = { enabled: false, voices: [] };
+        registerVoicePicker(session);
+        session.setHandler('get_voice_config', () => ({ translate: true, pair: true,
+            languages: this.languages || [], ...config }));
+        session.setHandler('save_translation_voices', async input => { config = await validateTranslationSpeech(input); });
+        session.setHandler('list_devices', async () => configure((await this.onPairListDevices()).map(device =>
+            ({ ...device, store: { [translationSpeechKey]: config } }))));
     }
 
     async onPairListDevices(data) {
