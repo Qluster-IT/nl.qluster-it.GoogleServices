@@ -73,7 +73,7 @@
     "speaker_help": "Used by speech and translation actions. An explicit speaker on an announcement card overrides this choice. All speakers includes every discovered target; only compatible Sonos rooms can be synchronized.",
     "reload_speakers": "Find speakers again",
     "settings_saved": "Settings saved",
-    "release_notice": "New: Maps routes, voice selection and whole-house announcements with Sonos grouping, resume and volume.",
+    "release_notice": "Google Services has major new features:\n- Announce text on Google Cast, Sonos and compatible UPnP/DLNA speakers, including all speakers or your own speaker groups. Previous playback and volume are restored afterwards.\n- Google Maps: travel times and routes with traffic.\n- Choose and preview Cloud voices per device.\n\nSee the wiki for the user manual and the Google Services topic on the Community Forum for help.",
     "speaker_all_no_tvs": "All speakers (no TVs)",
     "speaker_all_no_tvs_help": "Skip recognized TVs and video Cast receivers",
     "speaker_all_no_tv_speakers": "All speakers (no TVs or TV speakers)",

@@ -1,3 +1,6 @@
 {
-    "languagecode":"ko-KR"
+  "languagecode": "ko-KR",
+  "speech": {
+    "release_notice": "Google Services에 주요 새 기능이 추가되었습니다.\n- Google Cast, Sonos 및 호환 UPnP/DLNA 스피커에서 텍스트를 안내합니다. 모든 스피커나 직접 만든 스피커 그룹도 선택할 수 있으며, 이후 이전 재생과 볼륨이 복원됩니다.\n- Google Maps: 교통 상황을 반영한 이동 시간과 경로.\n- 기기별로 Cloud 음성을 선택하고 미리 들어 보세요.\n\n사용 설명서는 위키에서, 도움말은 Community Forum의 Google Services 주제에서 확인하세요."
+  }
 }

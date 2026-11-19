@@ -120,26 +120,26 @@
             "pl": "Tekst",
             "ru": "Текст",
             "ko": "텍스트",
-            "ar": "نص"
+            "ar": "النص"
           }
         },
         {
           "name": "targetlanguagecode",
           "type": "dropdown",
           "title": {
-            "en": "Translate",
-            "nl": "Vertaal",
-            "da": "Oversæt",
-            "de": "Übersetzen",
-            "es": "Traducir",
-            "fr": "Traduire",
-            "it": "Traduci",
-            "no": "Sure, please provide the text you would like me to translate.",
-            "sv": "Översätt",
-            "pl": "Tłumacz",
-            "ru": "Перевести",
-            "ko": "번역",
-            "ar": "ترجم"
+            "en": "Target language",
+            "nl": "Doeltaal",
+            "da": "Målsprog",
+            "de": "Zielsprache",
+            "es": "Idioma de destino",
+            "fr": "Langue cible",
+            "it": "Lingua di destinazione",
+            "no": "Målspråk",
+            "sv": "Målspråk",
+            "pl": "Język docelowy",
+            "ru": "Целевой язык",
+            "ko": "대상 언어",
+            "ar": "اللغة الهدف"
           },
           "hint": {
             "en": "The language to translate into",
@@ -399,12 +399,12 @@
         "nl": "Vertaal tekst en spreek die uit op een luidspreker"
       },
       "titleFormatted": {
-        "en": "Translate [[text]] to [[targetlanguagecode]] and announce it on [[speaker]] with volume [[volume]]%",
-        "nl": "Vertaal [[text]] naar [[targetlanguagecode]] en spreek het uit op [[speaker]] met volume [[volume]]%"
+        "en": "Translate [[text]] to [[targetlanguagecode]] and announce it on [[speaker]] with volume [[volume]]% and [[completion]]",
+        "nl": "Vertaal [[text]] naar [[targetlanguagecode]] en spreek het uit op [[speaker]] met volume [[volume]]% en [[completion]]"
       },
       "hint": {
-        "en": "Uses the source language of this device. Basic speech supports up to 200 characters. Configure optional Cloud voices in Repair. Supports BLL coding in the text field.",
-        "nl": "Gebruikt de brontaal van dit apparaat. Gewone spraak ondersteunt maximaal 200 tekens. Stel optionele Cloud-stemmen in via Repareren. BLL-codering wordt ondersteund in het tekstveld."
+        "en": "Uses the source language of this device. Basic speech supports up to 200 characters. Configure optional Cloud voices in Repair. Supports BLL coding in the text field. Choose Wait to finish to continue the Flow only after the speakers have finished and been restored.",
+        "nl": "Gebruikt de brontaal van dit apparaat. Gewone spraak ondersteunt maximaal 200 tekens. Stel optionele Cloud-stemmen in via Repareren. BLL-codering wordt ondersteund in het tekstveld. Kies Wachten tot klaar om de Flow pas verder te laten gaan als de luidsprekers klaar en hersteld zijn."
       },
       "args": [
         {
@@ -413,6 +413,10 @@
           "placeholder": {
             "en": "Text to translate (* BLL supported)",
             "nl": "Te vertalen tekst (* BLL ondersteund)"
+          },
+          "title": {
+            "en": "Text",
+            "nl": "Tekst"
           }
         },
         {
@@ -422,7 +426,11 @@
             "en": "Target language",
             "nl": "Doeltaal"
           },
-          "required": false
+          "required": false,
+          "title": {
+            "en": "Target language",
+            "nl": "Doeltaal"
+          }
         },
         {
           "name": "speaker",
@@ -431,7 +439,11 @@
             "en": "Choose a speaker",
             "nl": "Kies een luidspreker"
           },
-          "required": false
+          "required": false,
+          "title": {
+            "en": "Speaker",
+            "nl": "Luidspreker"
+          }
         },
         {
           "name": "volume",
@@ -443,7 +455,36 @@
             "en": "Speaker volume (%) (optional)",
             "nl": "Luidsprekervolume (%) (optioneel)"
           },
-          "required": false
+          "required": false,
+          "title": {
+            "en": "Speaker volume (%)",
+            "nl": "Luidsprekervolume (%)"
+          }
+        },
+        {
+          "name": "completion",
+          "type": "dropdown",
+          "required": false,
+          "values": [
+            {
+              "id": "continue",
+              "label": {
+                "en": "continue",
+                "nl": "doorgaan"
+              }
+            },
+            {
+              "id": "wait",
+              "label": {
+                "en": "wait to finish",
+                "nl": "wachten tot klaar"
+              }
+            }
+          ],
+          "title": {
+            "en": "continue",
+            "nl": "doorgaan"
+          }
         }
       ]
     },
@@ -512,26 +553,26 @@
             "pl": "Tekst",
             "ru": "Текст",
             "ko": "텍스트",
-            "ar": "نص"
+            "ar": "النص"
           }
         },
         {
           "name": "targetlanguagecode",
           "type": "dropdown",
           "title": {
-            "en": "Translate",
-            "nl": "Vertaal",
-            "da": "Oversæt",
-            "de": "Übersetzen",
-            "es": "Traducir",
-            "fr": "Traduire",
-            "it": "Traduci",
-            "no": "Sure, please provide the text you would like me to translate.",
-            "sv": "Översätt",
-            "pl": "Tłumacz",
-            "ru": "Перевести",
-            "ko": "번역",
-            "ar": "ترجم"
+            "en": "Target language",
+            "nl": "Doeltaal",
+            "da": "Målsprog",
+            "de": "Zielsprache",
+            "es": "Idioma de destino",
+            "fr": "Langue cible",
+            "it": "Lingua di destinazione",
+            "no": "Målspråk",
+            "sv": "Målspråk",
+            "pl": "Język docelowy",
+            "ru": "Целевой язык",
+            "ko": "대상 언어",
+            "ar": "اللغة الهدف"
           },
           "hint": {
             "en": "The language to translate into",
@@ -845,7 +886,7 @@
             "pl": "Tekst",
             "ru": "Текст",
             "ko": "텍스트",
-            "ar": "نص"
+            "ar": "النص"
           }
         },
         {
@@ -853,8 +894,8 @@
           "type": "autocomplete",
           "required": false,
           "title": {
-            "en": "Source Language",
-            "nl": "Bron taal",
+            "en": "Source language",
+            "nl": "Brontaal",
             "da": "Kildesprog",
             "de": "Quellsprache",
             "es": "Idioma de origen",
@@ -864,7 +905,7 @@
             "sv": "Källspråk",
             "pl": "Język źródłowy",
             "ru": "Исходный язык",
-            "ko": "출처 언어",
+            "ko": "원본 언어",
             "ar": "اللغة المصدر"
           },
           "placeholder": {
@@ -888,19 +929,19 @@
           "type": "autocomplete",
           "required": false,
           "title": {
-            "en": "Target Language",
-            "nl": "Doel taal",
+            "en": "Target language",
+            "nl": "Doeltaal",
             "da": "Målsprog",
             "de": "Zielsprache",
-            "es": "Español",
+            "es": "Idioma de destino",
             "fr": "Langue cible",
             "it": "Lingua di destinazione",
-            "no": "Norwegian (no)",
-            "sv": "Svenska",
+            "no": "Målspråk",
+            "sv": "Målspråk",
             "pl": "Język docelowy",
             "ru": "Целевой язык",
             "ko": "대상 언어",
-            "ar": "اللغة المستهدفة"
+            "ar": "اللغة الهدف"
           },
           "hint": {
             "en": "The language to translate into",
@@ -985,7 +1026,7 @@
             "pl": "Tekst",
             "ru": "Текст",
             "ko": "텍스트",
-            "ar": "نص"
+            "ar": "النص"
           }
         },
         {
@@ -993,8 +1034,8 @@
           "type": "dropdown",
           "required": false,
           "title": {
-            "en": "Source Language",
-            "nl": "Bron taal",
+            "en": "Source language",
+            "nl": "Brontaal",
             "da": "Kildesprog",
             "de": "Quellsprache",
             "es": "Idioma de origen",
@@ -1004,7 +1045,7 @@
             "sv": "Källspråk",
             "pl": "Język źródłowy",
             "ru": "Исходный язык",
-            "ko": "출발 언어",
+            "ko": "원본 언어",
             "ar": "اللغة المصدر"
           },
           "placeholder": {
@@ -1258,19 +1299,19 @@
           "type": "dropdown",
           "required": false,
           "title": {
-            "en": "Target Language",
-            "nl": "Doel taal",
-            "da": "Mål Sprog",
+            "en": "Target language",
+            "nl": "Doeltaal",
+            "da": "Målsprog",
             "de": "Zielsprache",
-            "es": "Idioma objetivo",
+            "es": "Idioma de destino",
             "fr": "Langue cible",
             "it": "Lingua di destinazione",
-            "no": "Norwegian (no)",
+            "no": "Målspråk",
             "sv": "Målspråk",
             "pl": "Język docelowy",
             "ru": "Целевой язык",
             "ko": "대상 언어",
-            "ar": "اللغة المستهدفة"
+            "ar": "اللغة الهدف"
           },
           "hint": {
             "en": "The language to translate into",
@@ -1662,7 +1703,7 @@
             "pl": "Tekst",
             "ru": "Текст",
             "ko": "텍스트",
-            "ar": "نص"
+            "ar": "النص"
           }
         },
         {
@@ -1670,8 +1711,8 @@
           "type": "autocomplete",
           "required": false,
           "title": {
-            "en": "Source Language",
-            "nl": "Bron taal",
+            "en": "Source language",
+            "nl": "Brontaal",
             "da": "Kildesprog",
             "de": "Quellsprache",
             "es": "Idioma de origen",
@@ -1681,7 +1722,7 @@
             "sv": "Källspråk",
             "pl": "Język źródłowy",
             "ru": "Исходный язык",
-            "ko": "출발 언어",
+            "ko": "원본 언어",
             "ar": "اللغة المصدر"
           },
           "placeholder": {
@@ -1705,19 +1746,19 @@
           "type": "autocomplete",
           "required": false,
           "title": {
-            "en": "Target Language",
-            "nl": "Doel taal",
+            "en": "Target language",
+            "nl": "Doeltaal",
             "da": "Målsprog",
             "de": "Zielsprache",
             "es": "Idioma de destino",
             "fr": "Langue cible",
             "it": "Lingua di destinazione",
-            "no": "Norwegian (no)",
-            "sv": "Svenska",
+            "no": "Målspråk",
+            "sv": "Målspråk",
             "pl": "Język docelowy",
             "ru": "Целевой язык",
             "ko": "대상 언어",
-            "ar": "اللغة المستهدفة"
+            "ar": "اللغة الهدف"
           },
           "hint": {
             "en": "The language to translate into",

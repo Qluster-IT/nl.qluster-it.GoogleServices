@@ -1,3 +1,6 @@
 {
-    "languagecode":"nb-NO"
+  "languagecode": "nb-NO",
+  "speech": {
+    "release_notice": "Google Services har store nye funksjoner:\n- Les opp tekst på Google Cast-, Sonos- og kompatible UPnP/DLNA-høyttalere, også på alle høyttalere eller dine egne høyttalergrupper. Tidligere avspilling og volum gjenopprettes etterpå.\n- Google Maps: reisetider og ruter med trafikk.\n- Velg og forhåndslytt Cloud-stemmer for hver enhet.\n\nSe wikien for brukerveiledningen og Google Services-emnet på Community Forum for hjelp."
+  }
 }

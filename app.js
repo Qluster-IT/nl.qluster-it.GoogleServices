@@ -288,7 +288,7 @@ class GoogleServicesApp extends Homey.App {
   }
   
   async _notifyReleaseFeatures() {
-    const key = 'servicesFeaturesNotificationAttempted';
+    const key = 'servicesReleaseNoticeAttempted';
     if (this.homey.settings.get(key)) return;
     try {
       this.homey.settings.set(key, true);

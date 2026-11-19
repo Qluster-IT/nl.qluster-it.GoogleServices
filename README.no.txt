@@ -11,10 +11,12 @@ FUNKSJONER
 
 KUNNGJØRINGER PÅ HØYTTALERE
 
-Velg en Google Cast-høyttaler (Chromecast), en Sonos-høyttaler eller en kompatibel UPnP/DLNA-høyttaler på Homeys lokale nettverk i et eget handlingskort:
+Spill av kunngjøringer på Google Cast-enheter (blant annet Google Nest og Chromecast), Sonos-høyttalere og lydplanker eller kompatible UPnP/DLNA-avspillere på Homeys lokale nettverk med et eget handlingskort:
 * Google TTS: Les opp tekst på språket som er satt på enheten.
 * Google Cloud Text-to-Speech: Les opp tekst eller SSML med den valgte stemmen og lydinnstillingene.
 * Google Oversetter: Oversett teksten til valgt språk og les opp oversettelsen.
+
+Kunngjøringskort kan fortsette med en gang eller vente til høyttalerne er ferdige.
 
 Bruk lyd-URL-ene i automatiseringene dine. Du kan for eksempel spille dem av på Sonos med valgt lydstyrke, åpne dem i nettleseren på Samsung Smart TV-en din eller sende dem videre til IFTTT.
 

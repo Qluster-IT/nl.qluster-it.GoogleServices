@@ -22,7 +22,7 @@ function load(fetch, cast) {
 function fixture({ count = 2, failJoin, unsupportedVolume = false, changeVolume = false, changeSource = false,
   bondLag = 0, resetCoordinatorOnJoin = false, nestedBond = false, startupStates = [], failAnnouncementAt = 0,
   failDetach, returnToInput = false, detachOnInput, staleDetachObserver = false, omitFollower = false,
-  loseJoinReply = false, missingBondAfterDetach = false, resumeTransitions = 0 } = {}) {
+  loseJoinReply = false, loseDetachReply, missingBondAfterDetach = false, resumeTransitions = 0, missingSnapshot } = {}) {
   const calls = [], reports = [];
   let announcements = 0;
   let staleDetachReads = 1;
@@ -69,7 +69,10 @@ function fixture({ count = 2, failJoin, unsupportedVolume = false, changeVolume 
             return nestedBond ? `<ZoneGroupMember ${attrs}>${bond}</ZoneGroupMember>` : `<ZoneGroupMember ${attrs}/>${bond}`;
           }).join('')}</ZoneGroup>`).join('')}</ZoneGroups></ZoneGroupState>` });
     }
-    if (action === 'GetMediaInfo') return result(action, { CurrentURI: state.uri, CurrentURIMetaData: '<metadata/>' });
+    if (action === 'GetMediaInfo') {
+      if (id === missingSnapshot) return response('<Envelope><Body><Fault><detail><UPnPError><errorCode>401</errorCode></UPnPError></detail></Fault></Body></Envelope>', 500);
+      return result(action, { CurrentURI: state.uri, CurrentURIMetaData: '<metadata/>' });
+    }
     if (action === 'GetTransportInfo') {
       if (id === 'B' && state.state === 'TRANSITIONING' && pendingResume > 0) {
         if (--pendingResume === 0) state.state = 'PLAYING';
@@ -107,6 +110,8 @@ function fixture({ count = 2, failJoin, unsupportedVolume = false, changeVolume 
       if (id === failDetach) throw new Error('network failure while leaving');
       if (id !== detachOnInput) state.coordinator = id;
       state.uri = '';
+      state.state = 'STOPPED';
+      if (id === loseDetachReply) throw new Error('network failure after leaving');
     }
     if (action === 'Seek' && body.Unit === 'REL_TIME') positions[id] = body.Target;
     if (action === 'Play') {
@@ -266,13 +271,13 @@ test('a failed queued announcement still restores the original Sonos sources and
   assert.deepEqual(reports, []);
 });
 
-test('a queued announcement with different settings waits for the restored Sonos stream before taking a new snapshot', async t => {
+test('a queued announcement that disables grouping waits for the restored Sonos stream before taking a new snapshot', async t => {
   t.mock.timers.enable({ apis: ['setTimeout'] });
   const { controls, states, speakers, calls, reports } = fixture({ resumeTransitions: 3 });
   const source = 'x-rincon-mp3radio://media.invalid/audio.mp3';
   states.B.uri = source;
   await controls.start(speakers, announcement, { group: true, resume: true });
-  const next = controls.start(speakers, announcement, { group: true, resume: true, volume: 25 });
+  const next = controls.start(speakers, announcement, { group: false, resume: true, volume: 25 });
   t.mock.timers.tick(1000);
   await new Promise(resolve => setImmediate(resolve));
   assert.equal(states.B.state, 'TRANSITIONING');
@@ -288,12 +293,188 @@ test('unverified Sonos restoration rejects queued announcements without playing 
   t.mock.timers.enable({ apis: ['setTimeout'] });
   const { controls, speakers, calls, reports } = fixture({ resumeTransitions: 100 });
   await controls.start(speakers, announcement, { group: true, resume: true });
-  const rejected = assert.rejects(controls.start(speakers, announcement, { group: true, resume: true, volume: 25 }),
+  const rejected = assert.rejects(controls.start(speakers, announcement, { group: false, resume: true, volume: 25 }),
     /previous speaker playback could not be restored/);
   await finish(t, controls);
   await rejected;
   assert.equal(calls.filter(([, action]) => action === 'announcement').length, 1);
   assert.match(reports[0]?.message, /did not confirm that the original source resumed/);
+});
+
+test('waiting announcements finish only after queued playback has restored the original sources and groups', async t => {
+  t.mock.timers.enable({ apis: ['setTimeout'] });
+  const { controls, states, speakers, reports } = fixture();
+  const finishedAt = [];
+  const finished = label => error => finishedAt.push({ label, error, a: states.A.uri, b: states.B.uri, coordinator: states.B.coordinator });
+  await controls.start(speakers, announcement, { group: true, resume: true, finished: finished('first') });
+  const next = controls.start(speakers, { ...announcement, url: 'http://homey.invalid/tts/second.mp3' },
+    { group: true, resume: true, finished: finished('second') });
+  t.mock.timers.tick(1000);
+  await next;
+  assert.deepEqual(finishedAt, []);
+  await finish(t, controls);
+  assert.deepEqual(finishedAt.map(item => item.label), ['first', 'second']);
+  for (const item of finishedAt) {
+    assert.equal(item.error, null);
+    assert.equal(item.a, 'x-rincon-queue:A#0');
+    assert.equal(item.b, 'x-rincon-queue:B#0');
+    assert.equal(item.coordinator, 'B');
+  }
+  assert.deepEqual(reports, []);
+});
+
+test('waiting announcements skipped after a failed restoration finish with an error', async t => {
+  t.mock.timers.enable({ apis: ['setTimeout'] });
+  const { controls, speakers } = fixture({ resumeTransitions: 100 });
+  const results = [];
+  await controls.start(speakers, announcement, { group: true, resume: true, finished: error => results.push(error) });
+  const rejected = assert.rejects(controls.start(speakers, announcement,
+    { group: false, resume: true, volume: 25, finished: error => results.push(error) }), /could not be restored/);
+  await finish(t, controls);
+  await rejected;
+  assert.equal(results.length, 2);
+  assert.match(results[0]?.message, /did not confirm that the original source resumed/);
+  assert.match(results[1]?.message, /could not be restored/);
+});
+
+test('queued Sonos handoff restores a dropped room, keeps shared rooms, and adds a new room without resnapshotting', async t => {
+  t.mock.timers.enable({ apis: ['setTimeout'] });
+  const { controls, speakers, states, calls, reports } = fixture({ count: 4 });
+  const second = { ...announcement, url: 'http://homey.invalid/tts/second.mp3' };
+  await controls.start(speakers.slice(0, 3), announcement, { group: true, resume: true, volume: 50 });
+  const next = controls.start([speakers[0], speakers[2], speakers[3]], second, { group: true, resume: true, volume: 25 });
+  t.mock.timers.tick(1000);
+  await next;
+  assert.equal(states.A.uri, second.url);
+  assert.equal(states.A.volume, 16);
+  assert.equal(states.B.coordinator, 'B');
+  assert.equal(states.B.uri, 'x-rincon-queue:B#0');
+  assert.equal(states.B.state, 'PLAYING');
+  assert.equal(states.C.coordinator, 'A');
+  assert.equal(states.D.coordinator, 'A');
+  assert.equal(calls.filter(([room, command]) => room === 'C' && command === 'BecomeCoordinatorOfStandaloneGroup').length, 0);
+  assert.equal(calls.filter(([room, command]) => room === 'A' && command === 'GetPositionInfo').length, 1);
+  await finish(t, controls);
+  for (const id of ['A', 'B', 'C', 'D']) {
+    assert.equal(states[id].coordinator, id);
+    assert.equal(states[id].uri, `x-rincon-queue:${id}#0`);
+    assert.equal(states[id].volume, 12);
+  }
+  assert.deepEqual(reports, []);
+});
+
+test('a room that needs a busy original Sonos coordinator waits silently until the second announcement ends', async t => {
+  t.mock.timers.enable({ apis: ['setTimeout'] });
+  const { controls, speakers, states, calls, reports } = fixture({ count: 3 });
+  Object.assign(states.B, { coordinator: 'A', uri: 'x-rincon:A' });
+  const options = { group: true, resume: true, restrictSonosToTargets: true };
+  await controls.start(speakers, announcement, options);
+  const next = controls.start([speakers[0], speakers[2]], { ...announcement, url: 'http://homey.invalid/tts/second.mp3' }, options);
+  t.mock.timers.tick(1000);
+  await next;
+  assert.equal(states.B.coordinator, 'B');
+  assert.equal(states.B.uri, '');
+  assert.equal(states.C.coordinator, 'A');
+  assert.ok(!calls.some(([room, command]) => room === 'A' && command === 'Play'));
+  await finish(t, controls);
+  assert.equal(states.B.coordinator, 'A');
+  assert.equal(states.C.coordinator, 'C');
+  assert.equal(states.A.uri, 'x-rincon-queue:A#0');
+  assert.ok(calls.findLastIndex(([room, command]) => room === 'B' && command === 'SetAVTransportURI') <
+    calls.findIndex(([room, command]) => room === 'A' && command === 'Play'));
+  assert.deepEqual(reports, []);
+});
+
+test('a failed handoff join restores the still-owned rooms without replaying a successfully released room', async t => {
+  t.mock.timers.enable({ apis: ['setTimeout'] });
+  const { controls, speakers, states, calls, reports } = fixture({ count: 4, failJoin: 'D', loseJoinReply: true });
+  const options = { group: true, resume: true };
+  await controls.start(speakers.slice(0, 3), announcement, options);
+  const next = assert.rejects(controls.start([speakers[0], speakers[2], speakers[3]], announcement, options), /joining/);
+  t.mock.timers.tick(1000);
+  await next;
+  await finish(t, controls);
+  assert.equal(calls.filter(([room, command]) => room === 'B' && command === 'Play').length, 1);
+  assert.equal(calls.filter(([, command]) => command === 'announcement').length, 1);
+  for (const id of ['A', 'B', 'C', 'D']) {
+    assert.equal(states[id].coordinator, id);
+    assert.equal(states[id].uri, `x-rincon-queue:${id}#0`);
+    assert.equal(states[id].state, 'PLAYING');
+  }
+  assert.match(reports[0]?.message, /Sonos handoff failed/);
+});
+
+test('a confirmed detach with a lost reply lets the next clip play without the waiting room', async t => {
+  t.mock.timers.enable({ apis: ['setTimeout'] });
+  const { controls, speakers, states, calls, reports } = fixture({ count: 3, loseDetachReply: 'B' });
+  Object.assign(states.B, { coordinator: 'A', uri: 'x-rincon:A' });
+  const options = { group: true, resume: true };
+  await controls.start(speakers, announcement, options);
+  const next = controls.start([speakers[0], speakers[2]], announcement, options);
+  t.mock.timers.tick(1000);
+  await next;
+  assert.equal(states.B.coordinator, 'B');
+  assert.equal(states.B.state, 'STOPPED');
+  await finish(t, controls);
+  assert.equal(states.B.coordinator, 'A');
+  assert.equal(states.A.state, 'PLAYING');
+  assert.equal(states.C.coordinator, 'C');
+  assert.equal(calls.filter(([, command]) => command === 'announcement').length, 2);
+  assert.deepEqual(reports, []);
+});
+
+test('a confirmed detach with a lost reply during final cleanup restores the original follower and music', async t => {
+  t.mock.timers.enable({ apis: ['setTimeout'] });
+  const { controls, speakers, states, calls, reports } = fixture({ count: 3, loseDetachReply: 'C' });
+  Object.assign(states.C, { coordinator: 'B', uri: 'x-rincon:B' });
+  await controls.start(speakers, announcement, { group: true, resume: true });
+  await finish(t, controls);
+  assert.equal(states.C.coordinator, 'B');
+  assert.equal(states.B.coordinator, 'B');
+  assert.equal(states.B.state, 'PLAYING');
+  assert.ok(calls.findLastIndex(([room, command]) => room === 'C' && command === 'SetAVTransportURI') <
+    calls.findIndex(([room, command]) => room === 'B' && command === 'Play'));
+  assert.deepEqual(reports, []);
+});
+
+test('a waiting Sonos room can return for a third clip without taking a new snapshot', async t => {
+  t.mock.timers.enable({ apis: ['setTimeout'] });
+  const { controls, speakers, states, calls, reports } = fixture({ count: 3 });
+  Object.assign(states.B, { coordinator: 'A', uri: 'x-rincon:A' });
+  const options = { group: true, resume: true, volume: 50 };
+  await controls.start(speakers, announcement, options);
+  const second = controls.start([speakers[0], speakers[2]], announcement, options);
+  const third = controls.start(speakers, announcement, options);
+  t.mock.timers.tick(1000);
+  await second;
+  assert.equal(states.B.coordinator, 'B');
+  assert.equal(states.B.volume, 12);
+  t.mock.timers.tick(1000);
+  await third;
+  assert.equal(states.B.coordinator, 'A');
+  assert.equal(states.B.volume, 30);
+  assert.equal(calls.filter(([room, command]) => room === 'B' && command === 'GetPositionInfo').length, 1);
+  assert.ok(!calls.some(([, command]) => command === 'Play'));
+  await finish(t, controls);
+  assert.equal(states.B.coordinator, 'A');
+  assert.equal(states.B.volume, 12);
+  assert.equal(states.A.uri, 'x-rincon-queue:A#0');
+  assert.deepEqual(reports, []);
+});
+
+test('a queued blank volume removes the override without restarting the original source', async t => {
+  t.mock.timers.enable({ apis: ['setTimeout'] });
+  const { controls, speakers, states, calls, reports } = fixture();
+  const options = { group: true, resume: true };
+  await controls.start(speakers, announcement, { ...options, volume: 50 });
+  const next = controls.start(speakers, announcement, options);
+  t.mock.timers.tick(1000);
+  await next;
+  assert.deepEqual([states.A.volume, states.B.volume], [12, 12]);
+  assert.equal(states.B.coordinator, 'A');
+  assert.equal(calls.filter(([, command]) => command === 'Play').length, 0);
+  await finish(t, controls);
+  assert.deepEqual(reports, []);
 });
 
 test('an initially stopped speaker does not let the next announcement interrupt startup', async () => {
@@ -427,6 +608,15 @@ test('inconsistent Sonos membership does not play an existing follower independe
   await assert.rejects(controls.start(speakers, announcement, { group: true, resume: true }), /group includes a room/);
   await controls.tail;
   assert.ok(!calls.some(([room, action]) => room === 'B' && action === 'announcement'));
+  assert.equal(states.B.coordinator, 'A');
+});
+
+test('a Sonos follower with no playback snapshot is not played independently', async () => {
+  const { controls, speakers, states, calls } = fixture({ missingSnapshot: 'B' });
+  Object.assign(states.B, { coordinator: 'A', uri: 'x-rincon:A' });
+  await assert.rejects(controls.start(speakers, announcement, { group: true, resume: true }), /save the Sonos playback state/);
+  await controls.tail;
+  assert.ok(!calls.some(([, action]) => action === 'announcement'));
   assert.equal(states.B.coordinator, 'A');
 });
 

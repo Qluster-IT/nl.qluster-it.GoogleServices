@@ -11,10 +11,12 @@ FUNKTIONER
 
 MEDDELANDEN I HÖGTALARE
 
-Välj en Google Cast-högtalare (Chromecast), en Sonos-högtalare eller en kompatibel UPnP/DLNA-högtalare på Homeys lokala nätverk i ett separat åtgärdskort:
+Spela upp meddelanden på Google Cast-enheter (som Google Nest och Chromecast), Sonos-högtalare och soundbars eller kompatibla UPnP/DLNA-spelare på Homeys lokala nätverk med ett separat åtgärdskort:
 * Google TTS: Läs upp text på språket som är inställt på enheten.
 * Google Cloud Text-to-Speech: Läs upp text eller SSML med vald röst och valda ljudinställningar.
 * Google Översätt: Översätt texten till valt språk och läs upp översättningen.
+
+Meddelandekort kan fortsätta direkt eller vänta tills högtalarna är klara.
 
 Använd ljud-URL:erna i dina automatiseringar. Du kan till exempel spela upp dem på Sonos med vald volym, öppna dem i webbläsaren på din Samsung Smart TV eller skicka dem vidare till IFTTT.
 

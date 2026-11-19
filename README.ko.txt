@@ -11,10 +11,12 @@ Homey Flow에서 Google Maps, 텍스트 음성 변환, Google 번역, YouTube를
 
 스피커 음성 안내
 
-전용 실행 카드에서 Homey의 로컬 네트워크에 있는 Google Cast(Chromecast), Sonos 또는 UPnP/DLNA 호환 스피커를 선택하세요.
+전용 실행 카드로 Homey의 로컬 네트워크에 있는 Google Cast 기기(Google Nest 및 Chromecast 포함), Sonos 스피커와 사운드바 또는 호환 UPnP/DLNA 플레이어에서 안내를 재생하세요.
 * Google TTS: 기기에 설정된 언어로 텍스트를 읽어 줍니다.
 * Google Cloud Text-to-Speech: 설정한 음성과 오디오 설정으로 텍스트 또는 SSML을 읽어 줍니다.
 * Google 번역: 선택한 언어로 텍스트를 번역하고 번역문을 읽어 줍니다.
+
+안내 카드는 바로 계속하거나 스피커가 끝날 때까지 기다릴 수 있습니다.
 
 자동화에서 오디오 URL을 활용하세요. 예를 들어 Sonos에서 원하는 볼륨으로 재생하거나, Samsung Smart TV의 브라우저에서 열거나, IFTTT로 전달할 수 있습니다.
 

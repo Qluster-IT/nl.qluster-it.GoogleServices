@@ -1,3 +1,6 @@
 {
-    "languagecode":"es-ES"
+  "languagecode": "es-ES",
+  "speech": {
+    "release_notice": "Google Services tiene importantes novedades:\n- Anuncia texto en altavoces Google Cast, Sonos y UPnP/DLNA compatibles, también en todos los altavoces o en tus propios grupos. Después se restauran la reproducción y el volumen anteriores.\n- Google Maps: tiempos de viaje y rutas con tráfico.\n- Elige y escucha voces de Cloud para cada dispositivo.\n\nConsulta la wiki para el manual de usuario y el tema de Google Services en el Community Forum para obtener ayuda."
+  }
 }

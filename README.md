@@ -71,7 +71,13 @@ For playing it on Homey itself, see Media Url Converter.
 
 ### Speaker announcements
 
-Google TTS, Google Cloud TTS, and Google Translate each have a separate **Then** card for announcements. Choose **All speakers**, a Google Cast speaker, Sonos speaker, or compatible UPnP/DLNA renderer from the card's picker. No separate Chromecast or Sonos Homey app is needed. The speaker must be discoverable over IPv4 on Homey's local network and able to fetch audio from Homey (TCP port 47333). Generic UPnP devices need an AVTransport service and must support the audio format; UPnP media servers alone cannot play announcements.
+Google TTS, Google Cloud TTS, and Google Translate each have a separate **Then** card for announcements. Choose **All speakers** or an individual device from the card's picker:
+
+- **Google Cast:** Google Nest speakers and displays, Chromecast, and Chromecast Audio.
+- **Sonos:** speakers, bonded stereo pairs, and soundbars.
+- **UPnP/DLNA:** compatible speakers and AV receivers that offer AVTransport and support the announcement audio format. UPnP media servers alone cannot play announcements.
+
+No separate Chromecast or Sonos Homey app is needed. Devices must be discoverable over IPv4 on Homey's local network and able to fetch audio from Homey (TCP port 47333).
 
 The three **All speakers** options discover available targets for each announcement:
 
@@ -81,9 +87,7 @@ The three **All speakers** options discover available targets for each announcem
 
 The exclusions depend on the metadata devices advertise; an unrecognized device may still be included. Sonos discovery also checks the household's room list for reachable rooms that missed the network scan. **Temporarily group Sonos rooms** is on by default: the app pauses the group's existing audio before joining more rooms so it doesn't play on those rooms before the announcement. Compatible Sonos rooms play synchronized speech, then their original groups are restored. Bonded stereo members stay together. Other speakers and protocols play independently; universal UPnP/DLNA grouping is not supported.
 
-Audio-only Cast targets such as Nest Mini and Chromecast Audio can still receive announcements with TV exclusions. Video-capable Cast targets such as Chromecast Ultra and Nest Hub are skipped. The app cannot determine what a Cast dongle is physically connected to or filter individual members of a Cast speaker group. HomePod and Apple TV are not supported as AirPlay targets.
-
-For development, the AirPlay lab (`npm ci --prefix tools/airplay`, then `npm run smoke --prefix tools/airplay`) verifies an AirPlay 1 audio round trip with a software receiver. It is not part of the Homey package and does not verify AirPlay 2, Apple pairing, or playback restoration.
+Audio-only Cast targets such as Nest Mini and Chromecast Audio can still receive announcements with TV exclusions. Video-capable Cast targets such as Chromecast Ultra and Nest Hub are skipped. The app cannot determine what a Cast dongle is physically connected to or filter individual members of a Cast speaker group.
 
 In **Pair** or **Repair**, choose a default speaker (including any of the **All speakers** options) and edit the device's settings. With a default output selected, ordinary speech and translation actions also play there. An explicit announcement-card speaker overrides the default; leaving it empty uses the device default. Without a default, the existing URL and translation cards keep their previous behavior.
 
@@ -103,7 +107,7 @@ The three announcement cards have an optional **Speaker volume (%)** argument (0
 
 In **Groups**, use **Volume adjustment** to balance speakers and **Maximum volume** to cap each speaker's announcement volume. The adjustment adds or subtracts percentage points from the Flow volume, then the result is limited to zero and the member's maximum. For example, a Flow at 25% with a +15 adjustment and a 35% maximum plays at no more than 35%. If the Flow volume is blank, neither setting changes the speaker's volume.
 
-Announcement actions return after playback starts; cleanup runs in the background. Compatible queued announcements share the original snapshot. Before taking a new Sonos snapshot for the next announcement, the app checks that any source it restarted is playing again. If restoration fails, pending announcements are skipped rather than treating an incomplete restoration as the new baseline. Completion uses speaker status where supported and an estimated duration otherwise. Changing the source or group during speech can prevent restoration to avoid overwriting your changes. Restoration cannot be guaranteed if Homey restarts or loses power during the announcement. Existing Cloud **Say and wait** conditions still wait for the estimated duration and device delay. Optional voice, speed, pitch, volume gain and translation-language arguments use the device defaults when omitted; an explicit pitch or volume gain of zero remains an override.
+Announcement actions continue the Flow after playback starts by default; cleanup runs in the background. Set the optional last argument to **wait to finish** to continue only after all announced speakers are finished and restored. The card fails if playback or restoration fails. When queued announcements can keep the same Sonos group leader, shared rooms stay grouped and keep their original playback snapshot. Other rooms return to their original groups as soon as possible. If one of those rooms needs a speaker still in use, it waits silently and rejoins before its original audio resumes. If the next announcement needs a different group leader, the app restores the original setup first. Before taking a new Sonos snapshot, the app checks that any source it restarted is playing again. If restoration fails, pending announcements are skipped rather than treating an incomplete restoration as the new baseline. Completion uses speaker status where supported and an estimated duration otherwise. Changing the source or group during speech can prevent restoration to avoid overwriting your changes. Restoration cannot be guaranteed if Homey restarts or loses power during the announcement. Existing Cloud **Say and wait** conditions still wait for the estimated duration and device delay. Optional voice, speed, pitch, volume gain and translation-language arguments use the device defaults when omitted; an explicit pitch or volume gain of zero remains an override.
 
 Direct announcements do not fire **When** cards by default. In **Pair**, **Repair** or **Advanced Settings**, enable **Run When cards for speaker announcements** to also fire the audio URL card after playback starts successfully, or **Translation announced** on Translate devices. This toggle applies to Google Cast, Sonos and UPnP/DLNA playback. Cloud TTS also fires **Finished** based on the audio duration and configured delay, not a signal from the speaker. With the toggle off, direct playback does not fire these cards. An **All speakers** announcement that reports a failure does not fire them, even if some speakers started.
 
@@ -150,8 +154,9 @@ BLL coding is optional in supported text fields. When Better Logic Library is un
 ### 2.2.1
 
 - Create reusable speaker groups for Flows or as the default output, with volume adjustments and limits for each speaker.
-- Choose All speakers, All speakers (no TVs), or All speakers (no TVs or TV speakers).
+- For Google Cast, Sonos, and compatible UPnP/DLNA devices, choose All speakers, All speakers (no TVs), or All speakers (no TVs or TV speakers).
 - Sonos announcements play in order and restore original groups and playback, including TV and line-in where supported.
+- Announcement cards can continue right away or wait until the speakers have finished.
 - Maps has clearer reading names and is now included in the app images. Flow cards identify text fields that support Better Logic Library coding.
 
 ### 2.2.0

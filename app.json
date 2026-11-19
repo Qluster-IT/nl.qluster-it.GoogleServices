@@ -255,6 +255,10 @@
             "placeholder": {
               "en": "Search or type origin (* BLL supported)",
               "nl": "Zoek of typ vertrekpunt (* BLL ondersteund)"
+            },
+            "title": {
+              "en": "From",
+              "nl": "Van"
             }
           },
           {
@@ -263,6 +267,10 @@
             "placeholder": {
               "en": "Search or type destination (* BLL supported)",
               "nl": "Zoek of typ bestemming (* BLL ondersteund)"
+            },
+            "title": {
+              "en": "To",
+              "nl": "Naar"
             }
           },
           {
@@ -297,7 +305,11 @@
                   "nl": "Fiets"
                 }
               }
-            ]
+            ],
+            "title": {
+              "en": "Travel mode",
+              "nl": "Vervoerswijze"
+            }
           },
           {
             "name": "minutes",
@@ -305,6 +317,10 @@
             "min": 0,
             "step": 0.1,
             "placeholder": {
+              "en": "Minutes",
+              "nl": "Minuten"
+            },
+            "title": {
               "en": "Minutes",
               "nl": "Minuten"
             }
@@ -382,7 +398,7 @@
               "pl": "Tekst",
               "ru": "Текст",
               "ko": "텍스트",
-              "ar": "نص"
+              "ar": "النص"
             }
           },
           {
@@ -403,6 +419,21 @@
               "ru": "Голос",
               "ko": "음성",
               "ar": "صوت"
+            },
+            "title": {
+              "en": "Voice",
+              "nl": "Stem",
+              "da": "Stemme",
+              "de": "Stimme",
+              "es": "Voz",
+              "fr": "Voix",
+              "it": "Voce",
+              "no": "Stemme",
+              "sv": "Röst",
+              "pl": "Głos",
+              "ru": "Голос",
+              "ko": "음성",
+              "ar": "الصوت"
             }
           },
           {
@@ -426,7 +457,22 @@
             },
             "min": 0.25,
             "max": 4,
-            "step": 0.01
+            "step": 0.01,
+            "title": {
+              "en": "Speed",
+              "nl": "Snelheid",
+              "da": "Hastighed",
+              "de": "Geschwindigkeit",
+              "es": "Velocidad",
+              "fr": "Vitesse",
+              "it": "Velocità",
+              "no": "Hastighet",
+              "sv": "Hastighet",
+              "pl": "Szybkość",
+              "ru": "Скорость",
+              "ko": "속도",
+              "ar": "السرعة"
+            }
           },
           {
             "name": "pitch",
@@ -449,7 +495,22 @@
             },
             "min": -20,
             "max": 20,
-            "step": 0.1
+            "step": 0.1,
+            "title": {
+              "en": "Pitch",
+              "nl": "Toonhoogte",
+              "da": "Toneleje",
+              "de": "Tonhöhe",
+              "es": "Tono",
+              "fr": "Hauteur",
+              "it": "Tono",
+              "no": "Tonehøyde",
+              "sv": "Tonhöjd",
+              "pl": "Wysokość tonu",
+              "ru": "Высота тона",
+              "ko": "피치",
+              "ar": "طبقة الصوت"
+            }
           },
           {
             "name": "volumeGainDb",
@@ -472,7 +533,22 @@
             },
             "min": -96,
             "max": 16,
-            "step": 0.1
+            "step": 0.1,
+            "title": {
+              "en": "Volume gain (dB)",
+              "nl": "Volumeversterking (dB)",
+              "da": "Lydstyrkeforøgelse (dB)",
+              "de": "Lautstärkeverstärkung (dB)",
+              "es": "Ganancia de volumen (dB)",
+              "fr": "Gain de volume (dB)",
+              "it": "Guadagno di volume (dB)",
+              "no": "Volumforsterkning (dB)",
+              "sv": "Volymförstärkning (dB)",
+              "pl": "Wzmocnienie głośności (dB)",
+              "ru": "Усиление громкости (дБ)",
+              "ko": "볼륨 게인(dB)",
+              "ar": "كسب مستوى الصوت (ديسيبل)"
+            }
           }
         ]
       },
@@ -545,7 +621,7 @@
               "pl": "Tekst",
               "ru": "Текст",
               "ko": "텍스트",
-              "ar": "نص"
+              "ar": "النص"
             }
           }
         ]
@@ -619,7 +695,7 @@
               "pl": "Tekst",
               "ru": "Текст",
               "ko": "텍스트",
-              "ar": "نص"
+              "ar": "النص"
             }
           },
           {
@@ -643,7 +719,22 @@
             "min": 0.25,
             "max": 4,
             "step": 0.01,
-            "required": false
+            "required": false,
+            "title": {
+              "en": "Speed",
+              "nl": "Snelheid",
+              "da": "Hastighed",
+              "de": "Geschwindigkeit",
+              "es": "Velocidad",
+              "fr": "Vitesse",
+              "it": "Velocità",
+              "no": "Hastighet",
+              "sv": "Hastighet",
+              "pl": "Szybkość",
+              "ru": "Скорость",
+              "ko": "속도",
+              "ar": "السرعة"
+            }
           }
         ]
       },
@@ -716,7 +807,7 @@
               "pl": "Tekst",
               "ru": "Текст",
               "ko": "텍스트",
-              "ar": "نص"
+              "ar": "النص"
             }
           },
           {
@@ -740,7 +831,22 @@
             "min": 0.25,
             "max": 4,
             "step": 0.01,
-            "required": false
+            "required": false,
+            "title": {
+              "en": "Speed",
+              "nl": "Snelheid",
+              "da": "Hastighed",
+              "de": "Geschwindigkeit",
+              "es": "Velocidad",
+              "fr": "Vitesse",
+              "it": "Velocità",
+              "no": "Hastighet",
+              "sv": "Hastighet",
+              "pl": "Szybkość",
+              "ru": "Скорость",
+              "ko": "속도",
+              "ar": "السرعة"
+            }
           },
           {
             "name": "pitch",
@@ -763,7 +869,22 @@
             "min": -20,
             "max": 20,
             "step": 0.1,
-            "required": false
+            "required": false,
+            "title": {
+              "en": "Pitch",
+              "nl": "Toonhoogte",
+              "da": "Toneleje",
+              "de": "Tonhöhe",
+              "es": "Tono",
+              "fr": "Hauteur",
+              "it": "Tono",
+              "no": "Tonehøyde",
+              "sv": "Tonhöjd",
+              "pl": "Wysokość tonu",
+              "ru": "Высота тона",
+              "ko": "피치",
+              "ar": "طبقة الصوت"
+            }
           }
         ]
       },
@@ -836,7 +957,7 @@
               "pl": "Tekst",
               "ru": "Текст",
               "ko": "텍스트",
-              "ar": "نص"
+              "ar": "النص"
             }
           }
         ]
@@ -925,7 +1046,7 @@
               "pl": "Tekst",
               "ru": "Текст",
               "ko": "텍스트",
-              "ar": "نص"
+              "ar": "النص"
             }
           },
           {
@@ -949,7 +1070,22 @@
             "min": -96,
             "max": 16,
             "step": 0.1,
-            "required": false
+            "required": false,
+            "title": {
+              "en": "Volume gain (dB)",
+              "nl": "Volumeversterking (dB)",
+              "da": "Lydstyrkeforøgelse (dB)",
+              "de": "Lautstärkeverstärkung (dB)",
+              "es": "Ganancia de volumen (dB)",
+              "fr": "Gain de volume (dB)",
+              "it": "Guadagno di volume (dB)",
+              "no": "Volumforsterkning (dB)",
+              "sv": "Volymförstärkning (dB)",
+              "pl": "Wzmocnienie głośności (dB)",
+              "ru": "Усиление громкости (дБ)",
+              "ko": "볼륨 게인(dB)",
+              "ar": "كسب مستوى الصوت (ديسيبل)"
+            }
           }
         ]
       },
@@ -1022,7 +1158,7 @@
               "pl": "Tekst",
               "ru": "Текст",
               "ko": "텍스트",
-              "ar": "نص"
+              "ar": "النص"
             }
           },
           {
@@ -1046,7 +1182,22 @@
             "min": 0.25,
             "max": 4,
             "step": 0.01,
-            "required": false
+            "required": false,
+            "title": {
+              "en": "Speed",
+              "nl": "Snelheid",
+              "da": "Hastighed",
+              "de": "Geschwindigkeit",
+              "es": "Velocidad",
+              "fr": "Vitesse",
+              "it": "Velocità",
+              "no": "Hastighet",
+              "sv": "Hastighet",
+              "pl": "Szybkość",
+              "ru": "Скорость",
+              "ko": "속도",
+              "ar": "السرعة"
+            }
           }
         ]
       },
@@ -1119,7 +1270,7 @@
               "pl": "Tekst",
               "ru": "Текст",
               "ko": "텍스트",
-              "ar": "نص"
+              "ar": "النص"
             }
           },
           {
@@ -1143,7 +1294,22 @@
             "min": 0.25,
             "max": 4,
             "step": 0.01,
-            "required": false
+            "required": false,
+            "title": {
+              "en": "Speed",
+              "nl": "Snelheid",
+              "da": "Hastighed",
+              "de": "Geschwindigkeit",
+              "es": "Velocidad",
+              "fr": "Vitesse",
+              "it": "Velocità",
+              "no": "Hastighet",
+              "sv": "Hastighet",
+              "pl": "Szybkość",
+              "ru": "Скорость",
+              "ko": "속도",
+              "ar": "السرعة"
+            }
           },
           {
             "name": "pitch",
@@ -1166,7 +1332,22 @@
             "min": -20,
             "max": 20,
             "step": 0.1,
-            "required": false
+            "required": false,
+            "title": {
+              "en": "Pitch",
+              "nl": "Toonhoogte",
+              "da": "Toneleje",
+              "de": "Tonhöhe",
+              "es": "Tono",
+              "fr": "Hauteur",
+              "it": "Tono",
+              "no": "Tonehøyde",
+              "sv": "Tonhöjd",
+              "pl": "Wysokość tonu",
+              "ru": "Высота тона",
+              "ko": "피치",
+              "ar": "طبقة الصوت"
+            }
           }
         ]
       },
@@ -1239,7 +1420,7 @@
               "pl": "Tekst",
               "ru": "Текст",
               "ko": "텍스트",
-              "ar": "نص"
+              "ar": "النص"
             }
           },
           {
@@ -1263,7 +1444,22 @@
             "min": 0.25,
             "max": 4,
             "step": 0.01,
-            "required": false
+            "required": false,
+            "title": {
+              "en": "Speed",
+              "nl": "Snelheid",
+              "da": "Hastighed",
+              "de": "Geschwindigkeit",
+              "es": "Velocidad",
+              "fr": "Vitesse",
+              "it": "Velocità",
+              "no": "Hastighet",
+              "sv": "Hastighet",
+              "pl": "Szybkość",
+              "ru": "Скорость",
+              "ko": "속도",
+              "ar": "السرعة"
+            }
           },
           {
             "name": "pitch",
@@ -1286,7 +1482,22 @@
             "min": -20,
             "max": 20,
             "step": 0.1,
-            "required": false
+            "required": false,
+            "title": {
+              "en": "Pitch",
+              "nl": "Toonhoogte",
+              "da": "Toneleje",
+              "de": "Tonhöhe",
+              "es": "Tono",
+              "fr": "Hauteur",
+              "it": "Tono",
+              "no": "Tonehøyde",
+              "sv": "Tonhöjd",
+              "pl": "Wysokość tonu",
+              "ru": "Высота тона",
+              "ko": "피치",
+              "ar": "طبقة الصوت"
+            }
           },
           {
             "name": "volumeGainDb",
@@ -1309,7 +1520,22 @@
             "min": -96,
             "max": 16,
             "step": 0.1,
-            "required": false
+            "required": false,
+            "title": {
+              "en": "Volume gain (dB)",
+              "nl": "Volumeversterking (dB)",
+              "da": "Lydstyrkeforøgelse (dB)",
+              "de": "Lautstärkeverstärkung (dB)",
+              "es": "Ganancia de volumen (dB)",
+              "fr": "Gain de volume (dB)",
+              "it": "Guadagno di volume (dB)",
+              "no": "Volumforsterkning (dB)",
+              "sv": "Volymförstärkning (dB)",
+              "pl": "Wzmocnienie głośności (dB)",
+              "ru": "Усиление громкости (дБ)",
+              "ko": "볼륨 게인(dB)",
+              "ar": "كسب مستوى الصوت (ديسيبل)"
+            }
           }
         ]
       },
@@ -1382,7 +1608,7 @@
               "pl": "Tekst",
               "ru": "Текст",
               "ko": "텍스트",
-              "ar": "نص"
+              "ar": "النص"
             }
           },
           {
@@ -1403,7 +1629,22 @@
               "ko": "음성",
               "ar": "صوت"
             },
-            "required": false
+            "required": false,
+            "title": {
+              "en": "Voice",
+              "nl": "Stem",
+              "da": "Stemme",
+              "de": "Stimme",
+              "es": "Voz",
+              "fr": "Voix",
+              "it": "Voce",
+              "no": "Stemme",
+              "sv": "Röst",
+              "pl": "Głos",
+              "ru": "Голос",
+              "ko": "음성",
+              "ar": "الصوت"
+            }
           }
         ]
       },
@@ -1491,7 +1732,7 @@
               "pl": "Tekst",
               "ru": "Текст",
               "ko": "텍스트",
-              "ar": "نص"
+              "ar": "النص"
             }
           },
           {
@@ -1512,7 +1753,22 @@
               "ko": "음성",
               "ar": "صوت"
             },
-            "required": false
+            "required": false,
+            "title": {
+              "en": "Voice",
+              "nl": "Stem",
+              "da": "Stemme",
+              "de": "Stimme",
+              "es": "Voz",
+              "fr": "Voix",
+              "it": "Voce",
+              "no": "Stemme",
+              "sv": "Röst",
+              "pl": "Głos",
+              "ru": "Голос",
+              "ko": "음성",
+              "ar": "الصوت"
+            }
           },
           {
             "name": "volumeGainDb",
@@ -1535,7 +1791,22 @@
             "min": -96,
             "max": 16,
             "step": 0.1,
-            "required": false
+            "required": false,
+            "title": {
+              "en": "Volume gain (dB)",
+              "nl": "Volumeversterking (dB)",
+              "da": "Lydstyrkeforøgelse (dB)",
+              "de": "Lautstärkeverstärkung (dB)",
+              "es": "Ganancia de volumen (dB)",
+              "fr": "Gain de volume (dB)",
+              "it": "Guadagno di volume (dB)",
+              "no": "Volumforsterkning (dB)",
+              "sv": "Volymförstärkning (dB)",
+              "pl": "Wzmocnienie głośności (dB)",
+              "ru": "Усиление громкости (дБ)",
+              "ko": "볼륨 게인(dB)",
+              "ar": "كسب مستوى الصوت (ديسيبل)"
+            }
           }
         ]
       },
@@ -1608,7 +1879,7 @@
               "pl": "Tekst",
               "ru": "Текст",
               "ko": "텍스트",
-              "ar": "نص"
+              "ar": "النص"
             }
           },
           {
@@ -1629,7 +1900,22 @@
               "ko": "음성",
               "ar": "صوت"
             },
-            "required": false
+            "required": false,
+            "title": {
+              "en": "Voice",
+              "nl": "Stem",
+              "da": "Stemme",
+              "de": "Stimme",
+              "es": "Voz",
+              "fr": "Voix",
+              "it": "Voce",
+              "no": "Stemme",
+              "sv": "Röst",
+              "pl": "Głos",
+              "ru": "Голос",
+              "ko": "음성",
+              "ar": "الصوت"
+            }
           },
           {
             "name": "speakingRate",
@@ -1652,7 +1938,22 @@
             "min": 0.25,
             "max": 4,
             "step": 0.01,
-            "required": false
+            "required": false,
+            "title": {
+              "en": "Speed",
+              "nl": "Snelheid",
+              "da": "Hastighed",
+              "de": "Geschwindigkeit",
+              "es": "Velocidad",
+              "fr": "Vitesse",
+              "it": "Velocità",
+              "no": "Hastighet",
+              "sv": "Hastighet",
+              "pl": "Szybkość",
+              "ru": "Скорость",
+              "ko": "속도",
+              "ar": "السرعة"
+            }
           }
         ]
       },
@@ -1725,7 +2026,7 @@
               "pl": "Tekst",
               "ru": "Текст",
               "ko": "텍스트",
-              "ar": "نص"
+              "ar": "النص"
             }
           },
           {
@@ -1746,7 +2047,22 @@
               "ko": "음성",
               "ar": "صوت"
             },
-            "required": false
+            "required": false,
+            "title": {
+              "en": "Voice",
+              "nl": "Stem",
+              "da": "Stemme",
+              "de": "Stimme",
+              "es": "Voz",
+              "fr": "Voix",
+              "it": "Voce",
+              "no": "Stemme",
+              "sv": "Röst",
+              "pl": "Głos",
+              "ru": "Голос",
+              "ko": "음성",
+              "ar": "الصوت"
+            }
           },
           {
             "name": "speakingRate",
@@ -1769,7 +2085,22 @@
             "min": 0.25,
             "max": 4,
             "step": 0.01,
-            "required": false
+            "required": false,
+            "title": {
+              "en": "Speed",
+              "nl": "Snelheid",
+              "da": "Hastighed",
+              "de": "Geschwindigkeit",
+              "es": "Velocidad",
+              "fr": "Vitesse",
+              "it": "Velocità",
+              "no": "Hastighet",
+              "sv": "Hastighet",
+              "pl": "Szybkość",
+              "ru": "Скорость",
+              "ko": "속도",
+              "ar": "السرعة"
+            }
           },
           {
             "name": "pitch",
@@ -1792,7 +2123,22 @@
             "min": -20,
             "max": 20,
             "step": 0.1,
-            "required": false
+            "required": false,
+            "title": {
+              "en": "Pitch",
+              "nl": "Toonhoogte",
+              "da": "Toneleje",
+              "de": "Tonhöhe",
+              "es": "Tono",
+              "fr": "Hauteur",
+              "it": "Tono",
+              "no": "Tonehøyde",
+              "sv": "Tonhöjd",
+              "pl": "Wysokość tonu",
+              "ru": "Высота тона",
+              "ko": "피치",
+              "ar": "طبقة الصوت"
+            }
           }
         ]
       },
@@ -1822,6 +2168,10 @@
             "min": 0,
             "step": 0.1,
             "placeholder": {
+              "en": "Minutes",
+              "nl": "Minuten"
+            },
+            "title": {
               "en": "Minutes",
               "nl": "Minuten"
             }
@@ -1915,26 +2265,26 @@
               "pl": "Tekst",
               "ru": "Текст",
               "ko": "텍스트",
-              "ar": "نص"
+              "ar": "النص"
             }
           },
           {
             "name": "targetlanguagecode",
             "type": "dropdown",
             "title": {
-              "en": "Translate",
-              "nl": "Vertaal",
-              "da": "Oversæt",
-              "de": "Übersetzen",
-              "es": "Traducir",
-              "fr": "Traduire",
-              "it": "Traduci",
-              "no": "Sure, please provide the text you would like me to translate.",
-              "sv": "Översätt",
-              "pl": "Tłumacz",
-              "ru": "Перевести",
-              "ko": "번역",
-              "ar": "ترجم"
+              "en": "Target language",
+              "nl": "Doeltaal",
+              "da": "Målsprog",
+              "de": "Zielsprache",
+              "es": "Idioma de destino",
+              "fr": "Langue cible",
+              "it": "Lingua di destinazione",
+              "no": "Målspråk",
+              "sv": "Målspråk",
+              "pl": "Język docelowy",
+              "ru": "Целевой язык",
+              "ko": "대상 언어",
+              "ar": "اللغة الهدف"
             },
             "hint": {
               "en": "The language to translate into",
@@ -2742,12 +3092,12 @@
           "nl": "Spreek tekst uit op een luidspreker"
         },
         "titleFormatted": {
-          "en": "Announce [[text]] on [[speaker]] with volume [[volume]]%",
-          "nl": "Spreek [[text]] uit op [[speaker]] met volume [[volume]]%"
+          "en": "Announce [[text]] on [[speaker]] with volume [[volume]]% and [[completion]]",
+          "nl": "Spreek [[text]] uit op [[speaker]] met volume [[volume]]% en [[completion]]"
         },
         "hint": {
-          "en": "Uses your Cloud Text-to-Speech settings to play an announcement on a Google Cast, Sonos, or compatible UPnP/DLNA speaker. Supports BLL coding in the text field.",
-          "nl": "Gebruikt je Cloud Text-to-Speech-instellingen om een aankondiging af te spelen op een Google Cast-, Sonos- of compatibele UPnP/DLNA-luidspreker. BLL-codering wordt ondersteund in het tekstveld."
+          "en": "Uses your Cloud Text-to-Speech settings to play an announcement on a Google Cast, Sonos, or compatible UPnP/DLNA speaker. Supports BLL coding in the text field. Choose Wait to finish to continue the Flow only after the speakers have finished and been restored.",
+          "nl": "Gebruikt je Cloud Text-to-Speech-instellingen om een aankondiging af te spelen op een Google Cast-, Sonos- of compatibele UPnP/DLNA-luidspreker. BLL-codering wordt ondersteund in het tekstveld. Kies Wachten tot klaar om de Flow pas verder te laten gaan als de luidsprekers klaar en hersteld zijn."
         },
         "args": [
           {
@@ -2761,6 +3111,10 @@
             "placeholder": {
               "en": "Text or SSML (* BLL supported)",
               "nl": "Tekst of SSML (* BLL ondersteund)"
+            },
+            "title": {
+              "en": "Text",
+              "nl": "Tekst"
             }
           },
           {
@@ -2770,7 +3124,11 @@
               "en": "Choose a speaker",
               "nl": "Kies een luidspreker"
             },
-            "required": false
+            "required": false,
+            "title": {
+              "en": "Speaker",
+              "nl": "Luidspreker"
+            }
           },
           {
             "name": "volume",
@@ -2782,7 +3140,36 @@
               "en": "Speaker volume (%) (optional)",
               "nl": "Luidsprekervolume (%) (optioneel)"
             },
-            "required": false
+            "required": false,
+            "title": {
+              "en": "Speaker volume (%)",
+              "nl": "Luidsprekervolume (%)"
+            }
+          },
+          {
+            "name": "completion",
+            "type": "dropdown",
+            "required": false,
+            "values": [
+              {
+                "id": "continue",
+                "label": {
+                  "en": "continue",
+                  "nl": "doorgaan"
+                }
+              },
+              {
+                "id": "wait",
+                "label": {
+                  "en": "wait to finish",
+                  "nl": "wachten tot klaar"
+                }
+              }
+            ],
+            "title": {
+              "en": "continue",
+              "nl": "doorgaan"
+            }
           }
         ]
       },
@@ -2856,7 +3243,7 @@
               "pl": "Tekst",
               "ru": "Текст",
               "ko": "텍스트",
-              "ar": "نص"
+              "ar": "النص"
             }
           },
           {
@@ -2877,6 +3264,21 @@
               "ru": "Голос",
               "ko": "음성",
               "ar": "صوت"
+            },
+            "title": {
+              "en": "Voice",
+              "nl": "Stem",
+              "da": "Stemme",
+              "de": "Stimme",
+              "es": "Voz",
+              "fr": "Voix",
+              "it": "Voce",
+              "no": "Stemme",
+              "sv": "Röst",
+              "pl": "Głos",
+              "ru": "Голос",
+              "ko": "음성",
+              "ar": "الصوت"
             }
           },
           {
@@ -2900,7 +3302,22 @@
             },
             "min": 0.25,
             "max": 4,
-            "step": 0.01
+            "step": 0.01,
+            "title": {
+              "en": "Speed",
+              "nl": "Snelheid",
+              "da": "Hastighed",
+              "de": "Geschwindigkeit",
+              "es": "Velocidad",
+              "fr": "Vitesse",
+              "it": "Velocità",
+              "no": "Hastighet",
+              "sv": "Hastighet",
+              "pl": "Szybkość",
+              "ru": "Скорость",
+              "ko": "속도",
+              "ar": "السرعة"
+            }
           },
           {
             "name": "pitch",
@@ -2923,7 +3340,22 @@
             },
             "min": -20,
             "max": 20,
-            "step": 0.1
+            "step": 0.1,
+            "title": {
+              "en": "Pitch",
+              "nl": "Toonhoogte",
+              "da": "Toneleje",
+              "de": "Tonhöhe",
+              "es": "Tono",
+              "fr": "Hauteur",
+              "it": "Tono",
+              "no": "Tonehøyde",
+              "sv": "Tonhöjd",
+              "pl": "Wysokość tonu",
+              "ru": "Высота тона",
+              "ko": "피치",
+              "ar": "طبقة الصوت"
+            }
           },
           {
             "name": "volumeGainDb",
@@ -2946,7 +3378,22 @@
             },
             "min": -96,
             "max": 16,
-            "step": 0.1
+            "step": 0.1,
+            "title": {
+              "en": "Volume gain (dB)",
+              "nl": "Volumeversterking (dB)",
+              "da": "Lydstyrkeforøgelse (dB)",
+              "de": "Lautstärkeverstärkung (dB)",
+              "es": "Ganancia de volumen (dB)",
+              "fr": "Gain de volume (dB)",
+              "it": "Guadagno di volume (dB)",
+              "no": "Volumforsterkning (dB)",
+              "sv": "Volymförstärkning (dB)",
+              "pl": "Wzmocnienie głośności (dB)",
+              "ru": "Усиление громкости (дБ)",
+              "ko": "볼륨 게인(dB)",
+              "ar": "كسب مستوى الصوت (ديسيبل)"
+            }
           }
         ],
         "tokens": [
@@ -3079,7 +3526,7 @@
               "pl": "Tekst",
               "ru": "Текст",
               "ko": "텍스트",
-              "ar": "نص"
+              "ar": "النص"
             }
           },
           {
@@ -3100,6 +3547,21 @@
               "ru": "Голос",
               "ko": "음성",
               "ar": "صوت"
+            },
+            "title": {
+              "en": "Voice",
+              "nl": "Stem",
+              "da": "Stemme",
+              "de": "Stimme",
+              "es": "Voz",
+              "fr": "Voix",
+              "it": "Voce",
+              "no": "Stemme",
+              "sv": "Röst",
+              "pl": "Głos",
+              "ru": "Голос",
+              "ko": "음성",
+              "ar": "الصوت"
             }
           },
           {
@@ -3123,7 +3585,22 @@
             },
             "min": 0.25,
             "max": 4,
-            "step": 0.01
+            "step": 0.01,
+            "title": {
+              "en": "Speed",
+              "nl": "Snelheid",
+              "da": "Hastighed",
+              "de": "Geschwindigkeit",
+              "es": "Velocidad",
+              "fr": "Vitesse",
+              "it": "Velocità",
+              "no": "Hastighet",
+              "sv": "Hastighet",
+              "pl": "Szybkość",
+              "ru": "Скорость",
+              "ko": "속도",
+              "ar": "السرعة"
+            }
           },
           {
             "name": "pitch",
@@ -3146,7 +3623,22 @@
             },
             "min": -20,
             "max": 20,
-            "step": 0.1
+            "step": 0.1,
+            "title": {
+              "en": "Pitch",
+              "nl": "Toonhoogte",
+              "da": "Toneleje",
+              "de": "Tonhöhe",
+              "es": "Tono",
+              "fr": "Hauteur",
+              "it": "Tono",
+              "no": "Tonehøyde",
+              "sv": "Tonhöjd",
+              "pl": "Wysokość tonu",
+              "ru": "Высота тона",
+              "ko": "피치",
+              "ar": "طبقة الصوت"
+            }
           },
           {
             "name": "volumeGainDb",
@@ -3169,7 +3661,22 @@
             },
             "min": -96,
             "max": 16,
-            "step": 0.1
+            "step": 0.1,
+            "title": {
+              "en": "Volume gain (dB)",
+              "nl": "Volumeversterking (dB)",
+              "da": "Lydstyrkeforøgelse (dB)",
+              "de": "Lautstärkeverstärkung (dB)",
+              "es": "Ganancia de volumen (dB)",
+              "fr": "Gain de volume (dB)",
+              "it": "Guadagno di volume (dB)",
+              "no": "Volumforsterkning (dB)",
+              "sv": "Volymförstärkning (dB)",
+              "pl": "Wzmocnienie głośności (dB)",
+              "ru": "Усиление громкости (дБ)",
+              "ko": "볼륨 게인(dB)",
+              "ar": "كسب مستوى الصوت (ديسيبل)"
+            }
           }
         ]
       },
@@ -3237,12 +3744,12 @@
               "es": "Texto",
               "fr": "Texte",
               "it": "Testo",
-              "no": "Google Services",
+              "no": "Tekst",
               "sv": "Text",
               "pl": "Tekst",
               "ru": "Текст",
               "ko": "텍스트",
-              "ar": "نص"
+              "ar": "النص"
             }
           }
         ]
@@ -3331,7 +3838,7 @@
               "pl": "Tekst",
               "ru": "Текст",
               "ko": "텍스트",
-              "ar": "نص"
+              "ar": "النص"
             }
           },
           {
@@ -3355,7 +3862,22 @@
             "min": -96,
             "max": 16,
             "step": 0.1,
-            "required": false
+            "required": false,
+            "title": {
+              "en": "Volume gain (dB)",
+              "nl": "Volumeversterking (dB)",
+              "da": "Lydstyrkeforøgelse (dB)",
+              "de": "Lautstärkeverstärkung (dB)",
+              "es": "Ganancia de volumen (dB)",
+              "fr": "Gain de volume (dB)",
+              "it": "Guadagno di volume (dB)",
+              "no": "Volumforsterkning (dB)",
+              "sv": "Volymförstärkning (dB)",
+              "pl": "Wzmocnienie głośności (dB)",
+              "ru": "Усиление громкости (дБ)",
+              "ko": "볼륨 게인(dB)",
+              "ar": "كسب مستوى الصوت (ديسيبل)"
+            }
           }
         ]
       },
@@ -3428,7 +3950,7 @@
               "pl": "Tekst",
               "ru": "Текст",
               "ko": "텍스트",
-              "ar": "نص"
+              "ar": "النص"
             }
           },
           {
@@ -3452,7 +3974,22 @@
             "min": 0.25,
             "max": 4,
             "step": 0.01,
-            "required": false
+            "required": false,
+            "title": {
+              "en": "Speed",
+              "nl": "Snelheid",
+              "da": "Hastighed",
+              "de": "Geschwindigkeit",
+              "es": "Velocidad",
+              "fr": "Vitesse",
+              "it": "Velocità",
+              "no": "Hastighet",
+              "sv": "Hastighet",
+              "pl": "Szybkość",
+              "ru": "Скорость",
+              "ko": "속도",
+              "ar": "السرعة"
+            }
           }
         ]
       },
@@ -3525,7 +4062,7 @@
               "pl": "Tekst",
               "ru": "Текст",
               "ko": "텍스트",
-              "ar": "نص"
+              "ar": "النص"
             }
           },
           {
@@ -3549,7 +4086,22 @@
             "min": 0.25,
             "max": 4,
             "step": 0.01,
-            "required": false
+            "required": false,
+            "title": {
+              "en": "Speed",
+              "nl": "Snelheid",
+              "da": "Hastighed",
+              "de": "Geschwindigkeit",
+              "es": "Velocidad",
+              "fr": "Vitesse",
+              "it": "Velocità",
+              "no": "Hastighet",
+              "sv": "Hastighet",
+              "pl": "Szybkość",
+              "ru": "Скорость",
+              "ko": "속도",
+              "ar": "السرعة"
+            }
           },
           {
             "name": "pitch",
@@ -3572,7 +4124,22 @@
             "min": -20,
             "max": 20,
             "step": 0.1,
-            "required": false
+            "required": false,
+            "title": {
+              "en": "Pitch",
+              "nl": "Toonhoogte",
+              "da": "Toneleje",
+              "de": "Tonhöhe",
+              "es": "Tono",
+              "fr": "Hauteur",
+              "it": "Tono",
+              "no": "Tonehøyde",
+              "sv": "Tonhöjd",
+              "pl": "Wysokość tonu",
+              "ru": "Высота тона",
+              "ko": "피치",
+              "ar": "طبقة الصوت"
+            }
           }
         ]
       },
@@ -3645,7 +4212,7 @@
               "pl": "Tekst",
               "ru": "Текст",
               "ko": "텍스트",
-              "ar": "نص"
+              "ar": "النص"
             }
           },
           {
@@ -3666,7 +4233,22 @@
               "ko": "음성",
               "ar": "صوت"
             },
-            "required": false
+            "required": false,
+            "title": {
+              "en": "Voice",
+              "nl": "Stem",
+              "da": "Stemme",
+              "de": "Stimme",
+              "es": "Voz",
+              "fr": "Voix",
+              "it": "Voce",
+              "no": "Stemme",
+              "sv": "Röst",
+              "pl": "Głos",
+              "ru": "Голос",
+              "ko": "음성",
+              "ar": "الصوت"
+            }
           }
         ]
       },
@@ -3754,7 +4336,7 @@
               "pl": "Tekst",
               "ru": "Текст",
               "ko": "텍스트",
-              "ar": "نص"
+              "ar": "النص"
             }
           },
           {
@@ -3775,7 +4357,22 @@
               "ko": "음성",
               "ar": "صوت"
             },
-            "required": false
+            "required": false,
+            "title": {
+              "en": "Voice",
+              "nl": "Stem",
+              "da": "Stemme",
+              "de": "Stimme",
+              "es": "Voz",
+              "fr": "Voix",
+              "it": "Voce",
+              "no": "Stemme",
+              "sv": "Röst",
+              "pl": "Głos",
+              "ru": "Голос",
+              "ko": "음성",
+              "ar": "الصوت"
+            }
           },
           {
             "name": "volumeGainDb",
@@ -3798,7 +4395,22 @@
             "min": -96,
             "max": 16,
             "step": 0.1,
-            "required": false
+            "required": false,
+            "title": {
+              "en": "Volume gain (dB)",
+              "nl": "Volumeversterking (dB)",
+              "da": "Lydstyrkeforøgelse (dB)",
+              "de": "Lautstärkeverstärkung (dB)",
+              "es": "Ganancia de volumen (dB)",
+              "fr": "Gain de volume (dB)",
+              "it": "Guadagno di volume (dB)",
+              "no": "Volumforsterkning (dB)",
+              "sv": "Volymförstärkning (dB)",
+              "pl": "Wzmocnienie głośności (dB)",
+              "ru": "Усиление громкости (дБ)",
+              "ko": "볼륨 게인(dB)",
+              "ar": "كسب مستوى الصوت (ديسيبل)"
+            }
           }
         ]
       },
@@ -3866,12 +4478,12 @@
               "es": "Texto",
               "fr": "Texte",
               "it": "Testo",
-              "no": "Vennligst gi meg teksten du vil ha oversatt.",
+              "no": "Tekst",
               "sv": "Text",
               "pl": "Tekst",
               "ru": "Текст",
               "ko": "텍스트",
-              "ar": "نص"
+              "ar": "النص"
             }
           },
           {
@@ -3892,7 +4504,22 @@
               "ko": "음성",
               "ar": "صوت"
             },
-            "required": false
+            "required": false,
+            "title": {
+              "en": "Voice",
+              "nl": "Stem",
+              "da": "Stemme",
+              "de": "Stimme",
+              "es": "Voz",
+              "fr": "Voix",
+              "it": "Voce",
+              "no": "Stemme",
+              "sv": "Röst",
+              "pl": "Głos",
+              "ru": "Голос",
+              "ko": "음성",
+              "ar": "الصوت"
+            }
           },
           {
             "name": "speakingRate",
@@ -3915,7 +4542,22 @@
             "min": 0.25,
             "max": 4,
             "step": 0.01,
-            "required": false
+            "required": false,
+            "title": {
+              "en": "Speed",
+              "nl": "Snelheid",
+              "da": "Hastighed",
+              "de": "Geschwindigkeit",
+              "es": "Velocidad",
+              "fr": "Vitesse",
+              "it": "Velocità",
+              "no": "Hastighet",
+              "sv": "Hastighet",
+              "pl": "Szybkość",
+              "ru": "Скорость",
+              "ko": "속도",
+              "ar": "السرعة"
+            }
           }
         ]
       },
@@ -3988,7 +4630,7 @@
               "pl": "Tekst",
               "ru": "Текст",
               "ko": "텍스트",
-              "ar": "نص"
+              "ar": "النص"
             }
           },
           {
@@ -4009,7 +4651,22 @@
               "ko": "음성",
               "ar": "صوت"
             },
-            "required": false
+            "required": false,
+            "title": {
+              "en": "Voice",
+              "nl": "Stem",
+              "da": "Stemme",
+              "de": "Stimme",
+              "es": "Voz",
+              "fr": "Voix",
+              "it": "Voce",
+              "no": "Stemme",
+              "sv": "Röst",
+              "pl": "Głos",
+              "ru": "Голос",
+              "ko": "음성",
+              "ar": "الصوت"
+            }
           },
           {
             "name": "speakingRate",
@@ -4032,7 +4689,22 @@
             "min": 0.25,
             "max": 4,
             "step": 0.01,
-            "required": false
+            "required": false,
+            "title": {
+              "en": "Speed",
+              "nl": "Snelheid",
+              "da": "Hastighed",
+              "de": "Geschwindigkeit",
+              "es": "Velocidad",
+              "fr": "Vitesse",
+              "it": "Velocità",
+              "no": "Hastighet",
+              "sv": "Hastighet",
+              "pl": "Szybkość",
+              "ru": "Скорость",
+              "ko": "속도",
+              "ar": "السرعة"
+            }
           },
           {
             "name": "pitch",
@@ -4055,7 +4727,22 @@
             "min": -20,
             "max": 20,
             "step": 0.1,
-            "required": false
+            "required": false,
+            "title": {
+              "en": "Pitch",
+              "nl": "Toonhoogte",
+              "da": "Toneleje",
+              "de": "Tonhöhe",
+              "es": "Tono",
+              "fr": "Hauteur",
+              "it": "Tono",
+              "no": "Tonehøyde",
+              "sv": "Tonhöjd",
+              "pl": "Wysokość tonu",
+              "ru": "Высота тона",
+              "ko": "피치",
+              "ar": "طبقة الصوت"
+            }
           }
         ]
       },
@@ -4128,7 +4815,7 @@
               "pl": "Tekst",
               "ru": "Текст",
               "ko": "텍스트",
-              "ar": "نص"
+              "ar": "النص"
             }
           },
           {
@@ -4149,6 +4836,21 @@
               "ru": "Голос",
               "ko": "음성",
               "ar": "صوت"
+            },
+            "title": {
+              "en": "Voice",
+              "nl": "Stem",
+              "da": "Stemme",
+              "de": "Stimme",
+              "es": "Voz",
+              "fr": "Voix",
+              "it": "Voce",
+              "no": "Stemme",
+              "sv": "Röst",
+              "pl": "Głos",
+              "ru": "Голос",
+              "ko": "음성",
+              "ar": "الصوت"
             }
           },
           {
@@ -4172,7 +4874,22 @@
             },
             "min": 0.25,
             "max": 4,
-            "step": 0.01
+            "step": 0.01,
+            "title": {
+              "en": "Speed",
+              "nl": "Snelheid",
+              "da": "Hastighed",
+              "de": "Geschwindigkeit",
+              "es": "Velocidad",
+              "fr": "Vitesse",
+              "it": "Velocità",
+              "no": "Hastighet",
+              "sv": "Hastighet",
+              "pl": "Szybkość",
+              "ru": "Скорость",
+              "ko": "속도",
+              "ar": "السرعة"
+            }
           },
           {
             "name": "pitch",
@@ -4195,7 +4912,22 @@
             },
             "min": -20,
             "max": 20,
-            "step": 0.1
+            "step": 0.1,
+            "title": {
+              "en": "Pitch",
+              "nl": "Toonhoogte",
+              "da": "Toneleje",
+              "de": "Tonhöhe",
+              "es": "Tono",
+              "fr": "Hauteur",
+              "it": "Tono",
+              "no": "Tonehøyde",
+              "sv": "Tonhöjd",
+              "pl": "Wysokość tonu",
+              "ru": "Высота тона",
+              "ko": "피치",
+              "ar": "طبقة الصوت"
+            }
           }
         ],
         "tokens": [
@@ -4265,12 +4997,12 @@
           "nl": "Spreek tekst uit op een luidspreker"
         },
         "titleFormatted": {
-          "en": "Announce [[text]] on [[speaker]] with volume [[volume]]%",
-          "nl": "Spreek [[text]] uit op [[speaker]] met volume [[volume]]%"
+          "en": "Announce [[text]] on [[speaker]] with volume [[volume]]% and [[completion]]",
+          "nl": "Spreek [[text]] uit op [[speaker]] met volume [[volume]]% en [[completion]]"
         },
         "hint": {
-          "en": "Plays up to 200 characters on a Google Cast, Sonos, or compatible UPnP/DLNA speaker on your local network. Supports BLL coding in the text field.",
-          "nl": "Speelt maximaal 200 tekens af op een Google Cast-, Sonos- of compatibele UPnP/DLNA-luidspreker op je lokale netwerk. BLL-codering wordt ondersteund in het tekstveld."
+          "en": "Plays up to 200 characters on a Google Cast, Sonos, or compatible UPnP/DLNA speaker on your local network. Supports BLL coding in the text field. Choose Wait to finish to continue the Flow only after the speakers have finished and been restored.",
+          "nl": "Speelt maximaal 200 tekens af op een Google Cast-, Sonos- of compatibele UPnP/DLNA-luidspreker op je lokale netwerk. BLL-codering wordt ondersteund in het tekstveld. Kies Wachten tot klaar om de Flow pas verder te laten gaan als de luidsprekers klaar en hersteld zijn."
         },
         "args": [
           {
@@ -4284,6 +5016,10 @@
             "placeholder": {
               "en": "Text to announce (* BLL supported)",
               "nl": "Tekst om uit te spreken (* BLL ondersteund)"
+            },
+            "title": {
+              "en": "Text",
+              "nl": "Tekst"
             }
           },
           {
@@ -4293,7 +5029,11 @@
               "en": "Choose a speaker",
               "nl": "Kies een luidspreker"
             },
-            "required": false
+            "required": false,
+            "title": {
+              "en": "Speaker",
+              "nl": "Luidspreker"
+            }
           },
           {
             "name": "volume",
@@ -4305,7 +5045,36 @@
               "en": "Speaker volume (%) (optional)",
               "nl": "Luidsprekervolume (%) (optioneel)"
             },
-            "required": false
+            "required": false,
+            "title": {
+              "en": "Speaker volume (%)",
+              "nl": "Luidsprekervolume (%)"
+            }
+          },
+          {
+            "name": "completion",
+            "type": "dropdown",
+            "required": false,
+            "values": [
+              {
+                "id": "continue",
+                "label": {
+                  "en": "continue",
+                  "nl": "doorgaan"
+                }
+              },
+              {
+                "id": "wait",
+                "label": {
+                  "en": "wait to finish",
+                  "nl": "wachten tot klaar"
+                }
+              }
+            ],
+            "title": {
+              "en": "continue",
+              "nl": "doorgaan"
+            }
           }
         ]
       },
@@ -4364,6 +5133,21 @@
               "ru": "Текст (* поддерживается BLL)",
               "ko": "텍스트 (* BLL 지원)",
               "ar": "النص (* مدعوم من BLL)"
+            },
+            "title": {
+              "en": "Text",
+              "nl": "Tekst",
+              "da": "Tekst",
+              "de": "Text",
+              "es": "Texto",
+              "fr": "Texte",
+              "it": "Testo",
+              "no": "Tekst",
+              "sv": "Text",
+              "pl": "Tekst",
+              "ru": "Текст",
+              "ko": "텍스트",
+              "ar": "النص"
             }
           }
         ]
@@ -4423,6 +5207,21 @@
               "ru": "Текст (* поддерживается BLL)",
               "ko": "텍스트 (* BLL 지원)",
               "ar": "النص (* مدعوم من BLL)"
+            },
+            "title": {
+              "en": "Text",
+              "nl": "Tekst",
+              "da": "Tekst",
+              "de": "Text",
+              "es": "Texto",
+              "fr": "Texte",
+              "it": "Testo",
+              "no": "Tekst",
+              "sv": "Text",
+              "pl": "Tekst",
+              "ru": "Текст",
+              "ko": "텍스트",
+              "ar": "النص"
             }
           }
         ]
@@ -4482,6 +5281,21 @@
               "ru": "Текст (* поддерживается BLL)",
               "ko": "텍스트 (* BLL 지원)",
               "ar": "النص (* مدعوم من BLL)"
+            },
+            "title": {
+              "en": "Text",
+              "nl": "Tekst",
+              "da": "Tekst",
+              "de": "Text",
+              "es": "Texto",
+              "fr": "Texte",
+              "it": "Testo",
+              "no": "Tekst",
+              "sv": "Text",
+              "pl": "Tekst",
+              "ru": "Текст",
+              "ko": "텍스트",
+              "ar": "النص"
             }
           }
         ],
@@ -4581,6 +5395,21 @@
               "ru": "Текст (* поддерживается BLL)",
               "ko": "텍스트 (* BLL 지원)",
               "ar": "النص (* مدعوم من BLL)"
+            },
+            "title": {
+              "en": "Text",
+              "nl": "Tekst",
+              "da": "Tekst",
+              "de": "Text",
+              "es": "Texto",
+              "fr": "Texte",
+              "it": "Testo",
+              "no": "Tekst",
+              "sv": "Text",
+              "pl": "Tekst",
+              "ru": "Текст",
+              "ko": "텍스트",
+              "ar": "النص"
             }
           }
         ],
@@ -4648,6 +5477,10 @@
             "placeholder": {
               "en": "From",
               "nl": "Vertrekpunt"
+            },
+            "title": {
+              "en": "From",
+              "nl": "Van"
             }
           }
         ],
@@ -4722,6 +5555,10 @@
             "placeholder": {
               "en": "Search or type origin (* BLL supported)",
               "nl": "Zoek of typ vertrekpunt (* BLL ondersteund)"
+            },
+            "title": {
+              "en": "From",
+              "nl": "Van"
             }
           },
           {
@@ -4730,6 +5567,10 @@
             "placeholder": {
               "en": "Search or type destination (* BLL supported)",
               "nl": "Zoek of typ bestemming (* BLL ondersteund)"
+            },
+            "title": {
+              "en": "To",
+              "nl": "Naar"
             }
           },
           {
@@ -4764,7 +5605,11 @@
                   "nl": "Fiets"
                 }
               }
-            ]
+            ],
+            "title": {
+              "en": "Travel mode",
+              "nl": "Vervoerswijze"
+            }
           }
         ],
         "tokens": [
@@ -4809,12 +5654,12 @@
           "nl": "Vertaal tekst en spreek die uit op een luidspreker"
         },
         "titleFormatted": {
-          "en": "Translate [[text]] to [[targetlanguagecode]] and announce it on [[speaker]] with volume [[volume]]%",
-          "nl": "Vertaal [[text]] naar [[targetlanguagecode]] en spreek het uit op [[speaker]] met volume [[volume]]%"
+          "en": "Translate [[text]] to [[targetlanguagecode]] and announce it on [[speaker]] with volume [[volume]]% and [[completion]]",
+          "nl": "Vertaal [[text]] naar [[targetlanguagecode]] en spreek het uit op [[speaker]] met volume [[volume]]% en [[completion]]"
         },
         "hint": {
-          "en": "Uses the source language of this device. Basic speech supports up to 200 characters. Configure optional Cloud voices in Repair. Supports BLL coding in the text field.",
-          "nl": "Gebruikt de brontaal van dit apparaat. Gewone spraak ondersteunt maximaal 200 tekens. Stel optionele Cloud-stemmen in via Repareren. BLL-codering wordt ondersteund in het tekstveld."
+          "en": "Uses the source language of this device. Basic speech supports up to 200 characters. Configure optional Cloud voices in Repair. Supports BLL coding in the text field. Choose Wait to finish to continue the Flow only after the speakers have finished and been restored.",
+          "nl": "Gebruikt de brontaal van dit apparaat. Gewone spraak ondersteunt maximaal 200 tekens. Stel optionele Cloud-stemmen in via Repareren. BLL-codering wordt ondersteund in het tekstveld. Kies Wachten tot klaar om de Flow pas verder te laten gaan als de luidsprekers klaar en hersteld zijn."
         },
         "args": [
           {
@@ -4828,6 +5673,10 @@
             "placeholder": {
               "en": "Text to translate (* BLL supported)",
               "nl": "Te vertalen tekst (* BLL ondersteund)"
+            },
+            "title": {
+              "en": "Text",
+              "nl": "Tekst"
             }
           },
           {
@@ -4837,7 +5686,11 @@
               "en": "Target language",
               "nl": "Doeltaal"
             },
-            "required": false
+            "required": false,
+            "title": {
+              "en": "Target language",
+              "nl": "Doeltaal"
+            }
           },
           {
             "name": "speaker",
@@ -4846,7 +5699,11 @@
               "en": "Choose a speaker",
               "nl": "Kies een luidspreker"
             },
-            "required": false
+            "required": false,
+            "title": {
+              "en": "Speaker",
+              "nl": "Luidspreker"
+            }
           },
           {
             "name": "volume",
@@ -4858,7 +5715,36 @@
               "en": "Speaker volume (%) (optional)",
               "nl": "Luidsprekervolume (%) (optioneel)"
             },
-            "required": false
+            "required": false,
+            "title": {
+              "en": "Speaker volume (%)",
+              "nl": "Luidsprekervolume (%)"
+            }
+          },
+          {
+            "name": "completion",
+            "type": "dropdown",
+            "required": false,
+            "values": [
+              {
+                "id": "continue",
+                "label": {
+                  "en": "continue",
+                  "nl": "doorgaan"
+                }
+              },
+              {
+                "id": "wait",
+                "label": {
+                  "en": "wait to finish",
+                  "nl": "wachten tot klaar"
+                }
+              }
+            ],
+            "title": {
+              "en": "continue",
+              "nl": "doorgaan"
+            }
           }
         ]
       },
@@ -4932,26 +5818,26 @@
               "pl": "Tekst",
               "ru": "Текст",
               "ko": "텍스트",
-              "ar": "نص"
+              "ar": "النص"
             }
           },
           {
             "name": "targetlanguagecode",
             "type": "dropdown",
             "title": {
-              "en": "Translate",
-              "nl": "Vertaal",
-              "da": "Oversæt",
-              "de": "Übersetzen",
-              "es": "Traducir",
-              "fr": "Traduire",
-              "it": "Traduci",
-              "no": "Sure, please provide the text you would like me to translate.",
-              "sv": "Översätt",
-              "pl": "Tłumacz",
-              "ru": "Перевести",
-              "ko": "번역",
-              "ar": "ترجم"
+              "en": "Target language",
+              "nl": "Doeltaal",
+              "da": "Målsprog",
+              "de": "Zielsprache",
+              "es": "Idioma de destino",
+              "fr": "Langue cible",
+              "it": "Lingua di destinazione",
+              "no": "Målspråk",
+              "sv": "Målspråk",
+              "pl": "Język docelowy",
+              "ru": "Целевой язык",
+              "ko": "대상 언어",
+              "ar": "اللغة الهدف"
             },
             "hint": {
               "en": "The language to translate into",
@@ -5270,7 +6156,7 @@
               "pl": "Tekst",
               "ru": "Текст",
               "ko": "텍스트",
-              "ar": "نص"
+              "ar": "النص"
             }
           },
           {
@@ -5278,8 +6164,8 @@
             "type": "autocomplete",
             "required": false,
             "title": {
-              "en": "Source Language",
-              "nl": "Bron taal",
+              "en": "Source language",
+              "nl": "Brontaal",
               "da": "Kildesprog",
               "de": "Quellsprache",
               "es": "Idioma de origen",
@@ -5289,7 +6175,7 @@
               "sv": "Källspråk",
               "pl": "Język źródłowy",
               "ru": "Исходный язык",
-              "ko": "출처 언어",
+              "ko": "원본 언어",
               "ar": "اللغة المصدر"
             },
             "placeholder": {
@@ -5313,19 +6199,19 @@
             "type": "autocomplete",
             "required": false,
             "title": {
-              "en": "Target Language",
-              "nl": "Doel taal",
+              "en": "Target language",
+              "nl": "Doeltaal",
               "da": "Målsprog",
               "de": "Zielsprache",
-              "es": "Español",
+              "es": "Idioma de destino",
               "fr": "Langue cible",
               "it": "Lingua di destinazione",
-              "no": "Norwegian (no)",
-              "sv": "Svenska",
+              "no": "Målspråk",
+              "sv": "Målspråk",
               "pl": "Język docelowy",
               "ru": "Целевой язык",
               "ko": "대상 언어",
-              "ar": "اللغة المستهدفة"
+              "ar": "اللغة الهدف"
             },
             "hint": {
               "en": "The language to translate into",
@@ -5415,7 +6301,7 @@
               "pl": "Tekst",
               "ru": "Текст",
               "ko": "텍스트",
-              "ar": "نص"
+              "ar": "النص"
             }
           },
           {
@@ -5423,8 +6309,8 @@
             "type": "dropdown",
             "required": false,
             "title": {
-              "en": "Source Language",
-              "nl": "Bron taal",
+              "en": "Source language",
+              "nl": "Brontaal",
               "da": "Kildesprog",
               "de": "Quellsprache",
               "es": "Idioma de origen",
@@ -5434,7 +6320,7 @@
               "sv": "Källspråk",
               "pl": "Język źródłowy",
               "ru": "Исходный язык",
-              "ko": "출발 언어",
+              "ko": "원본 언어",
               "ar": "اللغة المصدر"
             },
             "placeholder": {
@@ -5688,19 +6574,19 @@
             "type": "dropdown",
             "required": false,
             "title": {
-              "en": "Target Language",
-              "nl": "Doel taal",
-              "da": "Mål Sprog",
+              "en": "Target language",
+              "nl": "Doeltaal",
+              "da": "Målsprog",
               "de": "Zielsprache",
-              "es": "Idioma objetivo",
+              "es": "Idioma de destino",
               "fr": "Langue cible",
               "it": "Lingua di destinazione",
-              "no": "Norwegian (no)",
+              "no": "Målspråk",
               "sv": "Målspråk",
               "pl": "Język docelowy",
               "ru": "Целевой язык",
               "ko": "대상 언어",
-              "ar": "اللغة المستهدفة"
+              "ar": "اللغة الهدف"
             },
             "hint": {
               "en": "The language to translate into",
@@ -6097,7 +6983,7 @@
               "pl": "Tekst",
               "ru": "Текст",
               "ko": "텍스트",
-              "ar": "نص"
+              "ar": "النص"
             }
           },
           {
@@ -6105,8 +6991,8 @@
             "type": "autocomplete",
             "required": false,
             "title": {
-              "en": "Source Language",
-              "nl": "Bron taal",
+              "en": "Source language",
+              "nl": "Brontaal",
               "da": "Kildesprog",
               "de": "Quellsprache",
               "es": "Idioma de origen",
@@ -6116,7 +7002,7 @@
               "sv": "Källspråk",
               "pl": "Język źródłowy",
               "ru": "Исходный язык",
-              "ko": "출발 언어",
+              "ko": "원본 언어",
               "ar": "اللغة المصدر"
             },
             "placeholder": {
@@ -6140,19 +7026,19 @@
             "type": "autocomplete",
             "required": false,
             "title": {
-              "en": "Target Language",
-              "nl": "Doel taal",
+              "en": "Target language",
+              "nl": "Doeltaal",
               "da": "Målsprog",
               "de": "Zielsprache",
               "es": "Idioma de destino",
               "fr": "Langue cible",
               "it": "Lingua di destinazione",
-              "no": "Norwegian (no)",
-              "sv": "Svenska",
+              "no": "Målspråk",
+              "sv": "Målspråk",
               "pl": "Język docelowy",
               "ru": "Целевой язык",
               "ko": "대상 언어",
-              "ar": "اللغة المستهدفة"
+              "ar": "اللغة الهدف"
             },
             "hint": {
               "en": "The language to translate into",
@@ -6305,6 +7191,21 @@
               "ru": "Текст (* Поддерживается BLL)",
               "ko": "텍스트 (* BLL 지원됨)",
               "ar": "نص (* مدعوم من BLL)"
+            },
+            "title": {
+              "en": "Text",
+              "nl": "Tekst",
+              "da": "Tekst",
+              "de": "Text",
+              "es": "Texto",
+              "fr": "Texte",
+              "it": "Testo",
+              "no": "Tekst",
+              "sv": "Text",
+              "pl": "Tekst",
+              "ru": "Текст",
+              "ko": "텍스트",
+              "ar": "النص"
             }
           }
         ]
@@ -6364,6 +7265,21 @@
               "ru": "Текст (* Поддерживается BLL)",
               "ko": "텍스트 (* BLL 지원됨)",
               "ar": "نص (* مدعوم من BLL)"
+            },
+            "title": {
+              "en": "Text",
+              "nl": "Tekst",
+              "da": "Tekst",
+              "de": "Text",
+              "es": "Texto",
+              "fr": "Texte",
+              "it": "Testo",
+              "no": "Tekst",
+              "sv": "Text",
+              "pl": "Tekst",
+              "ru": "Текст",
+              "ko": "텍스트",
+              "ar": "النص"
             }
           }
         ],

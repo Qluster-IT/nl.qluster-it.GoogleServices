@@ -1,5 +1,5 @@
 {
-  "release_notice": "New: Maps routes, voice selection and whole-house announcements with Sonos grouping, resume and volume.",
+  "release_notice": "Google Services has major new features:\n- Announce text on Google Cast, Sonos and compatible UPnP/DLNA speakers, including all speakers or your own speaker groups. Previous playback and volume are restored afterwards.\n- Google Maps: travel times and routes with traffic.\n- Choose and preview Cloud voices per device.\n\nSee the wiki for the user manual and the Google Services topic on the Community Forum for help.",
   "title": "Configure speech voice",
   "voice": "Voice",
   "app_default": "Use the app's default voice",

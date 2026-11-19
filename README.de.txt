@@ -11,10 +11,12 @@ FUNKTIONEN
 
 DURCHSAGEN ÜBER LAUTSPRECHER
 
-Wähle in einer eigenen Dann-Karte einen Google-Cast-Lautsprecher (Chromecast), einen Sonos-Lautsprecher oder einen kompatiblen UPnP/DLNA-Lautsprecher in Homeys lokalem Netzwerk:
+Spiele Durchsagen über eine eigene Dann-Karte auf Google-Cast-Geräten (darunter Google Nest und Chromecast), Sonos-Lautsprechern und -Soundbars oder kompatiblen UPnP/DLNA-Playern in Homeys lokalem Netzwerk ab:
 * Google TTS: Lies Text in der am Gerät eingestellten Sprache vor.
 * Google Cloud Text-to-Speech: Lies Text oder SSML mit der eingestellten Stimme und den gewählten Audioeinstellungen vor.
 * Google Übersetzer: Übersetze Text in die ausgewählte Sprache und lies die Übersetzung vor.
+
+Durchsagekarten können sofort fortfahren oder warten, bis die Lautsprecher fertig sind.
 
 Nutze die Audio-URLs in deinen Automatisierungen. Spiele sie zum Beispiel auf Sonos mit einer festgelegten Lautstärke ab, öffne sie im Browser deines Samsung Smart TV oder gib sie an IFTTT weiter.
 

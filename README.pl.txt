@@ -11,10 +11,12 @@ FUNKCJE
 
 KOMUNIKATY GŁOSOWE NA GŁOŚNIKACH
 
-W osobnej karcie akcji wybierz głośnik Google Cast (Chromecast), głośnik Sonos lub urządzenie zgodne z UPnP/DLNA w sieci lokalnej Homey:
+Odtwarzaj komunikaty na urządzeniach Google Cast (m.in. Google Nest i Chromecast), głośnikach i soundbarach Sonos lub zgodnych odtwarzaczach UPnP/DLNA w sieci lokalnej Homey za pomocą osobnej karty akcji:
 * Google TTS: Odczytaj tekst w języku ustawionym na urządzeniu.
 * Google Cloud Text-to-Speech: Odczytaj tekst lub SSML z wybranym głosem i ustawieniami dźwięku.
 * Tłumacz Google: Przetłumacz tekst na wybrany język i odczytaj tłumaczenie.
+
+Karty komunikatów mogą kontynuować od razu lub czekać, aż głośniki skończą.
 
 Korzystaj z adresów URL dźwięku w automatyzacjach. Na przykład odtwarzaj dźwięk na Sonos z wybraną głośnością, otwieraj adresy w przeglądarce telewizora Samsung Smart TV lub przekazuj je do IFTTT.
 

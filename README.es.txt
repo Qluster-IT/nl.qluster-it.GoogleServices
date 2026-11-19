@@ -11,10 +11,12 @@ FUNCIONES
 
 ANUNCIOS POR ALTAVOZ
 
-Elige un altavoz Google Cast (Chromecast), Sonos o compatible con UPnP/DLNA en la red local de Homey desde una tarjeta de acción específica:
+Reproduce anuncios en dispositivos Google Cast (como Google Nest y Chromecast), altavoces y barras de sonido Sonos o reproductores compatibles con UPnP/DLNA en la red local de Homey mediante una tarjeta de acción específica:
 * Google TTS: Lee el texto en voz alta en el idioma configurado en el dispositivo.
 * Google Cloud Text-to-Speech: Lee texto o SSML con la voz y los ajustes de audio configurados.
 * Google Translate: Traduce el texto al idioma elegido y lee la traducción en voz alta.
+
+Las tarjetas de anuncio pueden continuar de inmediato o esperar a que terminen los altavoces.
 
 Usa las URL de audio en tus automatizaciones. Por ejemplo, reprodúcelas en Sonos al volumen que elijas, ábrelas en el navegador de tu Samsung Smart TV o envíalas a IFTTT.
 

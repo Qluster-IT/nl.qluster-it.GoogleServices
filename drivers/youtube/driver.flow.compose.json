@@ -145,6 +145,21 @@
             "ru": "Текст (* Поддерживается BLL)",
             "ko": "텍스트 (* BLL 지원됨)",
             "ar": "نص (* مدعوم من BLL)"
+          },
+          "title": {
+            "en": "Text",
+            "nl": "Tekst",
+            "da": "Tekst",
+            "de": "Text",
+            "es": "Texto",
+            "fr": "Texte",
+            "it": "Testo",
+            "no": "Tekst",
+            "sv": "Text",
+            "pl": "Tekst",
+            "ru": "Текст",
+            "ko": "텍스트",
+            "ar": "النص"
           }
         }
       ]
@@ -199,6 +214,21 @@
             "ru": "Текст (* Поддерживается BLL)",
             "ko": "텍스트 (* BLL 지원됨)",
             "ar": "نص (* مدعوم من BLL)"
+          },
+          "title": {
+            "en": "Text",
+            "nl": "Tekst",
+            "da": "Tekst",
+            "de": "Text",
+            "es": "Texto",
+            "fr": "Texte",
+            "it": "Testo",
+            "no": "Tekst",
+            "sv": "Text",
+            "pl": "Tekst",
+            "ru": "Текст",
+            "ko": "텍스트",
+            "ar": "النص"
           }
         }
       ],

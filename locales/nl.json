@@ -73,7 +73,7 @@
     "speaker_help": "Gebruikt door spraak- en vertaalacties. Een expliciete luidspreker op een aankondigingskaart gaat voor. Alle luidsprekers omvat elk gevonden doel; alleen compatibele Sonos-kamers kunnen worden gesynchroniseerd.",
     "reload_speakers": "Zoek luidsprekers opnieuw",
     "settings_saved": "Instellingen opgeslagen",
-    "release_notice": "Nieuw: Maps-routes, stemkeuze en spraak door het hele huis met Sonos-groepen, hervatten en volume.",
+    "release_notice": "Google Services heeft grote nieuwe functies:\n- Spreek tekst uit op Google Cast-, Sonos- en compatibele UPnP/DLNA-luidsprekers, ook op alle luidsprekers of je eigen luidsprekergroepen. Eerdere weergave en volume worden daarna hersteld.\n- Google Maps: reistijden en routes met verkeer.\n- Kies en beluister Cloud-stemmen per apparaat.\n\nZie de wiki voor de handleiding en het Google Services-topic op het Community Forum voor hulp.",
     "speaker_all_no_tvs": "Alle luidsprekers (geen tv’s)",
     "speaker_all_no_tvs_help": "Sla herkenbare tv’s en Cast-ontvangers met video over",
     "speaker_all_no_tv_speakers": "Alle luidsprekers (geen tv’s of tv-luidsprekers)",

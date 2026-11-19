@@ -1,3 +1,6 @@
 {
-    "languagecode":"de-DE"
+  "languagecode": "de-DE",
+  "speech": {
+    "release_notice": "Google Services hat wichtige neue Funktionen:\n- Sage Text auf Google-Cast-, Sonos- und kompatiblen UPnP/DLNA-Lautsprechern durch, auch auf allen Lautsprechern oder eigenen Lautsprechergruppen. Vorherige Wiedergabe und Lautstärke werden danach wiederhergestellt.\n- Google Maps: Reisezeiten und Routen mit Verkehr.\n- Wähle Cloud-Stimmen pro Gerät und höre sie vorab an.\n\nIm Wiki findest du das Benutzerhandbuch, Hilfe im Google-Services-Thema im Community Forum."
+  }
 }

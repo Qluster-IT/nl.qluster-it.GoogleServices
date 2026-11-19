@@ -131,6 +131,10 @@
           "placeholder": {
             "en": "Minutes",
             "nl": "Minuten"
+          },
+          "title": {
+            "en": "Minutes",
+            "nl": "Minuten"
           }
         }
       ]
@@ -167,6 +171,10 @@
           "placeholder": {
             "en": "From",
             "nl": "Vertrekpunt"
+          },
+          "title": {
+            "en": "From",
+            "nl": "Van"
           }
         }
       ],
@@ -230,6 +238,10 @@
           "placeholder": {
             "en": "Search or type origin (* BLL supported)",
             "nl": "Zoek of typ vertrekpunt (* BLL ondersteund)"
+          },
+          "title": {
+            "en": "From",
+            "nl": "Van"
           }
         },
         {
@@ -238,6 +250,10 @@
           "placeholder": {
             "en": "Search or type destination (* BLL supported)",
             "nl": "Zoek of typ bestemming (* BLL ondersteund)"
+          },
+          "title": {
+            "en": "To",
+            "nl": "Naar"
           }
         },
         {
@@ -272,7 +288,11 @@
                 "nl": "Fiets"
               }
             }
-          ]
+          ],
+          "title": {
+            "en": "Travel mode",
+            "nl": "Vervoerswijze"
+          }
         }
       ],
       "tokens": [

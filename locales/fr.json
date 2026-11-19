@@ -1,3 +1,6 @@
 {
-    "languagecode":"fr-FR"
+  "languagecode": "fr-FR",
+  "speech": {
+    "release_notice": "Google Services propose d’importantes nouveautés :\n- Diffusez des annonces sur des enceintes Google Cast, Sonos et UPnP/DLNA compatibles, y compris sur toutes les enceintes ou vos propres groupes. La lecture et le volume précédents sont ensuite rétablis.\n- Google Maps : temps de trajet et itinéraires avec le trafic.\n- Choisissez et écoutez les voix Cloud pour chaque appareil.\n\nConsultez le wiki pour le manuel d’utilisation et le sujet Google Services sur le Community Forum pour obtenir de l’aide."
+  }
 }

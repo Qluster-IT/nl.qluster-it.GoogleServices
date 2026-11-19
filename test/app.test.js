@@ -72,6 +72,19 @@ test('the release notification is attempted once across restarts and failures ar
   }
 });
 
+test('the release notification is localized and points to the wiki and forum', () => {
+  const fs = require('fs');
+  const path = require('path');
+  const dir = path.join(__dirname, '..', 'locales');
+  for (const file of fs.readdirSync(dir)) {
+    const notice = JSON.parse(fs.readFileSync(path.join(dir, file), 'utf8')).speech?.release_notice;
+    assert.ok(notice, file);
+    assert.match(notice, /Community Forum/, file);
+    assert.match(notice, /wiki|ويكي|위키|вики/i, file);
+    assert.doesNotMatch(notice, /[?\uFFFD]/, file);
+  }
+});
+
 test('voice autocomplete resolves to an empty list when voices cannot be loaded', async () => {
   const App = loadApp({ getVoices: async () => { throw new Error('no credentials'); } });
   const app = new App();
@@ -630,6 +643,32 @@ test('Translate announcements use the default target, respect explicit overrides
   }]);
   const tokens = await runs.action_translate_af_oc({ device, translate: '{[ greeting ]}' });
   assert.deepEqual(tokens, { text: 'Hello', translation: 'Bonjour', sourcelanguagecode: 'en', targetlanguagecode: 'fr' });
+});
+
+test('announcement cards continue by default, or wait until the speakers are finished and restored', async () => {
+  let finished;
+  const helpers = compile('../lib/speaker-announcements', {
+    './speaker-playback': class extends require('../lib/speaker-playback') {
+      async play(_, __, options) { finished = options.finished; }
+    },
+    './tts-server': { hostedDuration: async () => 1500 }
+  }).exports;
+  const homey = { app: { error() {} } };
+  const device = { getSetting: () => undefined };
+  const media = { url: 'http://local/speech.mp3', duration: 1500 };
+  await helpers.playAnnouncement(homey, device, { id: 'speaker' }, media);
+  assert.equal(finished, undefined);
+  let done = false;
+  const waiting = helpers.playAnnouncement(homey, device, { id: 'speaker' }, media, undefined, undefined, 'wait')
+    .then(() => { done = true; });
+  await new Promise(resolve => setImmediate(resolve));
+  assert.equal(done, false);
+  finished(null);
+  await waiting;
+  const failing = helpers.playAnnouncement(homey, device, { id: 'speaker' }, media, undefined, undefined, 'wait');
+  await new Promise(resolve => setImmediate(resolve));
+  finished(new Error('Restoring failed'));
+  await assert.rejects(failing, /Restoring failed/);
 });
 
 test('the speaker picker discovers Cast, Sonos, DLNA and UPnP transport services', async t => {

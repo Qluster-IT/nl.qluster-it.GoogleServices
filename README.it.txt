@@ -11,10 +11,12 @@ FUNZIONI
 
 ANNUNCI SUGLI ALTOPARLANTI
 
-In una scheda di azione dedicata, scegli un altoparlante Google Cast (Chromecast), Sonos o compatibile con UPnP/DLNA sulla rete locale di Homey:
+Riproduci annunci su dispositivi Google Cast (tra cui Google Nest e Chromecast), altoparlanti e soundbar Sonos o lettori compatibili con UPnP/DLNA sulla rete locale di Homey con una scheda di azione dedicata:
 * Google TTS: leggi il testo ad alta voce nella lingua impostata sul dispositivo.
 * Google Cloud Text-to-Speech: leggi testo o SSML con la voce e le impostazioni audio configurate.
 * Google Traduttore: traduci il testo nella lingua scelta e leggi la traduzione ad alta voce.
+
+Le schede di annuncio possono proseguire subito o attendere che gli altoparlanti abbiano finito.
 
 Usa gli URL audio nelle tue automazioni. Ad esempio, riproducili su Sonos al volume che preferisci, aprili nel browser della tua Samsung Smart TV o passali a IFTTT.
 

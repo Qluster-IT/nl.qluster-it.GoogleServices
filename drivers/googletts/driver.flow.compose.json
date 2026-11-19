@@ -69,12 +69,12 @@
         "nl": "Spreek tekst uit op een luidspreker"
       },
       "titleFormatted": {
-        "en": "Announce [[text]] on [[speaker]] with volume [[volume]]%",
-        "nl": "Spreek [[text]] uit op [[speaker]] met volume [[volume]]%"
+        "en": "Announce [[text]] on [[speaker]] with volume [[volume]]% and [[completion]]",
+        "nl": "Spreek [[text]] uit op [[speaker]] met volume [[volume]]% en [[completion]]"
       },
       "hint": {
-        "en": "Plays up to 200 characters on a Google Cast, Sonos, or compatible UPnP/DLNA speaker on your local network. Supports BLL coding in the text field.",
-        "nl": "Speelt maximaal 200 tekens af op een Google Cast-, Sonos- of compatibele UPnP/DLNA-luidspreker op je lokale netwerk. BLL-codering wordt ondersteund in het tekstveld."
+        "en": "Plays up to 200 characters on a Google Cast, Sonos, or compatible UPnP/DLNA speaker on your local network. Supports BLL coding in the text field. Choose Wait to finish to continue the Flow only after the speakers have finished and been restored.",
+        "nl": "Speelt maximaal 200 tekens af op een Google Cast-, Sonos- of compatibele UPnP/DLNA-luidspreker op je lokale netwerk. BLL-codering wordt ondersteund in het tekstveld. Kies Wachten tot klaar om de Flow pas verder te laten gaan als de luidsprekers klaar en hersteld zijn."
       },
       "args": [
         {
@@ -83,6 +83,10 @@
           "placeholder": {
             "en": "Text to announce (* BLL supported)",
             "nl": "Tekst om uit te spreken (* BLL ondersteund)"
+          },
+          "title": {
+            "en": "Text",
+            "nl": "Tekst"
           }
         },
         {
@@ -92,7 +96,11 @@
             "en": "Choose a speaker",
             "nl": "Kies een luidspreker"
           },
-          "required": false
+          "required": false,
+          "title": {
+            "en": "Speaker",
+            "nl": "Luidspreker"
+          }
         },
         {
           "name": "volume",
@@ -104,7 +112,36 @@
             "en": "Speaker volume (%) (optional)",
             "nl": "Luidsprekervolume (%) (optioneel)"
           },
-          "required": false
+          "required": false,
+          "title": {
+            "en": "Speaker volume (%)",
+            "nl": "Luidsprekervolume (%)"
+          }
+        },
+        {
+          "name": "completion",
+          "type": "dropdown",
+          "required": false,
+          "values": [
+            {
+              "id": "continue",
+              "label": {
+                "en": "continue",
+                "nl": "doorgaan"
+              }
+            },
+            {
+              "id": "wait",
+              "label": {
+                "en": "wait to finish",
+                "nl": "wachten tot klaar"
+              }
+            }
+          ],
+          "title": {
+            "en": "continue",
+            "nl": "doorgaan"
+          }
         }
       ]
     },
@@ -158,6 +195,21 @@
             "ru": "Текст (* поддерживается BLL)",
             "ko": "텍스트 (* BLL 지원)",
             "ar": "النص (* مدعوم من BLL)"
+          },
+          "title": {
+            "en": "Text",
+            "nl": "Tekst",
+            "da": "Tekst",
+            "de": "Text",
+            "es": "Texto",
+            "fr": "Texte",
+            "it": "Testo",
+            "no": "Tekst",
+            "sv": "Text",
+            "pl": "Tekst",
+            "ru": "Текст",
+            "ko": "텍스트",
+            "ar": "النص"
           }
         }
       ]
@@ -212,6 +264,21 @@
             "ru": "Текст (* поддерживается BLL)",
             "ko": "텍스트 (* BLL 지원)",
             "ar": "النص (* مدعوم من BLL)"
+          },
+          "title": {
+            "en": "Text",
+            "nl": "Tekst",
+            "da": "Tekst",
+            "de": "Text",
+            "es": "Texto",
+            "fr": "Texte",
+            "it": "Testo",
+            "no": "Tekst",
+            "sv": "Text",
+            "pl": "Tekst",
+            "ru": "Текст",
+            "ko": "텍스트",
+            "ar": "النص"
           }
         }
       ]
@@ -266,6 +333,21 @@
             "ru": "Текст (* поддерживается BLL)",
             "ko": "텍스트 (* BLL 지원)",
             "ar": "النص (* مدعوم من BLL)"
+          },
+          "title": {
+            "en": "Text",
+            "nl": "Tekst",
+            "da": "Tekst",
+            "de": "Text",
+            "es": "Texto",
+            "fr": "Texte",
+            "it": "Testo",
+            "no": "Tekst",
+            "sv": "Text",
+            "pl": "Tekst",
+            "ru": "Текст",
+            "ko": "텍스트",
+            "ar": "النص"
           }
         }
       ],
@@ -360,6 +442,21 @@
             "ru": "Текст (* поддерживается BLL)",
             "ko": "텍스트 (* BLL 지원)",
             "ar": "النص (* مدعوم من BLL)"
+          },
+          "title": {
+            "en": "Text",
+            "nl": "Tekst",
+            "da": "Tekst",
+            "de": "Text",
+            "es": "Texto",
+            "fr": "Texte",
+            "it": "Testo",
+            "no": "Tekst",
+            "sv": "Text",
+            "pl": "Tekst",
+            "ru": "Текст",
+            "ko": "텍스트",
+            "ar": "النص"
           }
         }
       ],
