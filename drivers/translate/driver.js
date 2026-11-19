@@ -7,6 +7,9 @@ let TranslationServiceClient;
 
 const { Defer, jsonEqual } = require('./../../lib/proto');
 const { BL } = require('betterlogiclibrary');
+const TtsServer = require('../../lib/tts-server');
+const { translationSpeechKey, registerVoicePicker, validateTranslationSpeech,
+    resolveTranslationVoice } = require('../../lib/speech-voices');
 
 class GoogleTranslateDriver extends Homey.Driver {
     clientCalls = new Map();
@@ -25,6 +28,29 @@ class GoogleTranslateDriver extends Homey.Driver {
         }).bind(this));
         await this.setCloudJSON();
         await this.setCloudProject();
+        const { registerAnnouncement, basicSpeech } = require('../../lib/speaker-announcements');
+        const announcement = registerAnnouncement(this.homey, 'announce_translation', async ({ device, text, targetlanguagecode }) => {
+            const target = targetlanguagecode?.id;
+            const source = device.getSetting('languagecode');
+            if (typeof target !== 'string' || !target || !source) throw new Error('Choose a target language and configure the source language.');
+            const input = await BL.decode(text);
+            if (typeof input !== 'string' || !input.trim()) throw new Error('Enter text to translate.');
+            const translated = await this.translate(input, source, target);
+            if (!translated) throw new Error('Google Translate did not return a translation.');
+            const config = device.getStoreValue(translationSpeechKey);
+            if (config?.enabled !== true) return basicSpeech(this.homey, translated, target);
+            if (Buffer.byteLength(translated, 'utf8') > 5000) throw new Error('The translation exceeds the Cloud Text-to-Speech limit of 5,000 bytes.');
+            const voice = await resolveTranslationVoice(config, target);
+            const audio = await TtsServer.getResponse({
+                text: translated, voice, audioConfig: { audioEncoding: 'MP3' }, plainText: true
+            });
+            return { url: await TtsServer.hostMp3(this.homey, audio), type: 'audio/mpeg' };
+        });
+        announcement.getArgument('targetlanguagecode').registerAutocompleteListener(async query => {
+            if (this.languagesError) throw new Error(this.languagesError);
+            const filter = query.toLowerCase();
+            return (this.languages || []).filter(language => language.name.toLowerCase().includes(filter));
+        });
         // this.on("credentialsUpdated", (credentials)=> {
         //     console.log("on.credentialsUpdated");
         //     console.log(credentials);
@@ -135,6 +161,17 @@ class GoogleTranslateDriver extends Homey.Driver {
     //     this.onPairListDevicesAsync(data).then(function(l) { callback(null, l); });
 
     // }
+
+    onRepair(session, device) {
+        registerVoicePicker(session);
+        session.setHandler('get_voice_config', () => ({
+            translate: true, languages: this.languages || [],
+            ...(device.getStoreValue(translationSpeechKey) || { enabled: false, voices: [] })
+        }));
+        session.setHandler('save_translation_voices', async config => {
+            await device.setStoreValue(translationSpeechKey, await validateTranslationSpeech(config));
+        });
+    }
 
     async onPairListDevices(data) {
         return [{

@@ -64,6 +64,24 @@ class GoogleServicesApp extends Homey.App {
       TtsServer.init({homey: this.homey});
       await this.setCloudJSON();
       await this.setDefaultCloudVoice();   
+      const { registerAnnouncement, basicSpeech } = require('./lib/speaker-announcements');
+      registerAnnouncement(this.homey, 'announce_googletts', async ({ device, text }) => {
+        const language = device.getSettings().languagecode || 'en-GB';
+        const decoded = await BL.decode(text, language);
+        return { ...await basicSpeech(this.homey, decoded, language), text: decoded };
+      }, (device, { url, text }) => {
+        return this.Triggers.urlTrigger.Card.trigger(device, { url, text });
+      });
+      registerAnnouncement(this.homey, 'announce_googlecloudtts', async args => {
+        const speechArgs = { ...args };
+        const audio = await TtsServer.getUrl({ args: speechArgs });
+        return { url: audio.url, type: audio.audioConfig.audioEncoding === 'MP3' ? 'audio/mpeg' : 'audio/wav',
+          text: speechArgs.text, duration: Number.isFinite(audio.duration) ? audio.duration : -1 };
+      }, async (device, { url, text, duration }) => {
+        const tokens = { url, text, duration };
+        await this.Triggers.cloudurlTrigger.Card.trigger(device, tokens);
+        if (duration >= 0) this.SetFinishedTimer(device, tokens);
+      });
       //await this.setDefaultCloudLanguageCode();
 
 
@@ -230,20 +248,9 @@ class GoogleServicesApp extends Homey.App {
         }).bind(this)) ;
       }
 
-      var starts = [
-        {id:'finished_trigger'}
-      ];
-      for (let i = 0; i < starts.length; i++) {
-          const start = starts[i];        
-          const trigger =  this.homey.flow.getDeviceTriggerCard(start.id);
-          this.Triggers[start.id].Card = trigger;
-          trigger.registerRunListener(( args, state ) => {  
-              // console.log( start.id + '.registerRunListener (args, state)');         
-              // console.log(args);
-              // console.log(state);
-              return Promise.resolve( args.id && args.id.id && state.id && state.id.id && args.id.id === state.id.id );        
-          });
-      }
+      const finished = this.homey.flow.getDeviceTriggerCard('finished_trigger');
+      this.Triggers.finished_trigger.Card = finished;
+      finished.registerRunListener(async () => true);
     
     } catch (error) {
       let err = error;
@@ -264,11 +271,18 @@ class GoogleServicesApp extends Homey.App {
     const defer = new Defer();
     device.finishedDefer = defer;
     var delay = device.getSetting('delay');
-    device.finishedTimer = setTimeout((()=> {        
+    device.finishedTimer = setTimeout(async () => {
         device.finishedTimer = null;
         device.finishedDefer = null;
-        defer.resolve(!!this.Triggers.finished_trigger.Card.trigger(device, tokens));
-    }).bind(this), tokens.duration + (delay || 1000));
+        try {
+          const triggered = this.Triggers.finished_trigger.Card.trigger(device, tokens);
+          await triggered;
+          defer.resolve(!!triggered);
+        } catch (error) {
+          this.error('Could not trigger the Cloud TTS Finished card', error);
+          defer.resolve(false);
+        }
+    }, tokens.duration + (delay || 1000));
     return defer.promise;
   }
   // Settles a superseded wait so its Flow does not hang when newer speech replaces it.

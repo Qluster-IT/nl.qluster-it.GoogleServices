@@ -165,23 +165,21 @@ class MapsDevice extends Homey.Device {
       const showMap = route_image !== false && this.driver.routeImagesEnabled();
       const { tokens, map, delayMinutes } = await this.driver.calculateRoute(input, showMap, showMap && route_traffic !== false);
       if (this.changingSettings || this.closed) throw new Error('The route changed during refresh. Try again.');
+      const formatLocalTime = new Intl.DateTimeFormat(this.homey.i18n.getLanguage(), {
+        timeZone: this.homey.clock.getTimezone(), month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit'
+      });
       await this.setStoreValue(routeStoreKey, { version: 1, map, image: null });
       await Promise.all([
         this.setCapabilityValue('maps_minutes', tokens.minutes),
         this.setCapabilityValue('maps_distance', tokens.kilometers),
         this.setCapabilityValue('maps_traffic_delay', delayMinutes ?? null),
-        this.setCapabilityValue('maps_eta', new Intl.DateTimeFormat(this.homey.i18n.getLanguage(), {
-          timeZone: this.homey.clock.getTimezone(), month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit'
-        }).format(new Date(tokens.eta)))
+        this.setCapabilityValue('maps_eta', formatLocalTime.format(new Date(tokens.eta)))
       ]);
       this.routeMap = map;
       this.routeImage = null;
       await this.image.update();
       await this.setWarning(showMap && !map ? this.homey.__('maps.image_missing') : null);
-      await this.setCapabilityValue('maps_last_refreshed', new Intl.DateTimeFormat(this.homey.i18n.getLanguage(), {
-        timeZone: this.homey.clock.getTimezone(), year: 'numeric', month: 'short', day: 'numeric',
-        hour: 'numeric', minute: '2-digit', second: '2-digit'
-      }).format(new Date()));
+      await this.setCapabilityValue('maps_last_refreshed', formatLocalTime.format(new Date()));
       this.triggerRouteEvent('maps_route_updated', tokens);
       if (Number.isFinite(previousMinutes) && previousMinutes !== tokens.minutes) {
         this.triggerRouteEvent('maps_travel_time_changed', {

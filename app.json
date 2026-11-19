@@ -1,7 +1,7 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "nl.qluster-it.GoogleServices",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "compatibility": ">=5.0.0",
   "sdk": 3,
   "brandColor": "#8DB000",
@@ -41,91 +41,130 @@
       "url",
       "tts",
       "translate",
-      "youtube"
+      "youtube",
+      "dlna",
+      "chrome",
+      "chromecast"
     ],
     "nl": [
       "spraak",
       "url",
       "tts",
       "translate",
-      "youtube"
+      "youtube",
+      "dlna",
+      "chrome",
+      "chromecast"
     ],
     "da": [
       "speech",
       "url",
       "tts",
       "translate",
-      "youtube"
+      "youtube",
+      "dlna",
+      "chrome",
+      "chromecast"
     ],
     "de": [
       "speech",
       "url",
       "tts",
       "translate",
-      "youtube"
+      "youtube",
+      "dlna",
+      "chrome",
+      "chromecast"
     ],
     "es": [
       "speech",
       "url",
       "tts",
       "translate",
-      "youtube"
+      "youtube",
+      "dlna",
+      "chrome",
+      "chromecast"
     ],
     "fr": [
       "speech",
       "url",
       "tts",
       "translate",
-      "youtube"
+      "youtube",
+      "dlna",
+      "chrome",
+      "chromecast"
     ],
     "it": [
       "speech",
       "url",
       "tts",
       "translate",
-      "youtube"
+      "youtube",
+      "dlna",
+      "chrome",
+      "chromecast"
     ],
     "no": [
       "speech",
       "url",
       "tts",
       "translate",
-      "youtube"
+      "youtube",
+      "dlna",
+      "chrome",
+      "chromecast"
     ],
     "sv": [
       "speech",
       "url",
       "tts",
       "translate",
-      "youtube"
+      "youtube",
+      "dlna",
+      "chrome",
+      "chromecast"
     ],
     "pl": [
       "speech",
       "url",
       "tts",
       "translate",
-      "youtube"
+      "youtube",
+      "dlna",
+      "chrome",
+      "chromecast"
     ],
     "ru": [
       "speech",
       "url",
       "tts",
       "translate",
-      "youtube"
+      "youtube",
+      "dlna",
+      "chrome",
+      "chromecast"
     ],
     "ko": [
       "speech",
       "url",
       "tts",
       "translate",
-      "youtube"
+      "youtube",
+      "dlna",
+      "chrome",
+      "chromecast"
     ],
     "ar": [
       "speech",
       "url",
       "tts",
       "translate",
-      "youtube"
+      "youtube",
+      "dlna",
+      "chrome",
+      "chromecast"
     ]
   },
   "category": [
@@ -2602,6 +2641,44 @@
     ],
     "actions": [
       {
+        "id": "announce_googlecloudtts",
+        "title": {
+          "en": "Announce text on a speaker",
+          "nl": "Spreek tekst uit op een luidspreker"
+        },
+        "titleFormatted": {
+          "en": "Announce [[text]] on [[speaker]]",
+          "nl": "Spreek [[text]] uit op [[speaker]]"
+        },
+        "hint": {
+          "en": "Uses your Cloud Text-to-Speech settings to play an announcement on a Google Cast, Sonos, or compatible UPnP/DLNA speaker.",
+          "nl": "Gebruikt je Cloud Text-to-Speech-instellingen om een aankondiging af te spelen op een Google Cast-, Sonos- of compatibele UPnP/DLNA-luidspreker."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=googlecloudtts"
+          },
+          {
+            "name": "text",
+            "type": "text",
+            "placeholder": {
+              "en": "Text or SSML",
+              "nl": "Tekst of SSML"
+            }
+          },
+          {
+            "name": "speaker",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "Choose a local speaker",
+              "nl": "Kies een lokale luidspreker"
+            }
+          }
+        ]
+      },
+      {
         "id": "start_googlecloudtts_voice_speed_pitch_volume_af",
         "highlight": true,
         "title": {
@@ -4066,6 +4143,44 @@
         ]
       },
       {
+        "id": "announce_googletts",
+        "title": {
+          "en": "Announce text on a speaker",
+          "nl": "Spreek tekst uit op een luidspreker"
+        },
+        "titleFormatted": {
+          "en": "Announce [[text]] on [[speaker]]",
+          "nl": "Spreek [[text]] uit op [[speaker]]"
+        },
+        "hint": {
+          "en": "Plays up to 200 characters on a Google Cast, Sonos, or compatible UPnP/DLNA speaker on your local network.",
+          "nl": "Speelt maximaal 200 tekens af op een Google Cast-, Sonos- of compatibele UPnP/DLNA-luidspreker op je lokale netwerk."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=googletts"
+          },
+          {
+            "name": "text",
+            "type": "text",
+            "placeholder": {
+              "en": "Text to announce",
+              "nl": "Tekst om uit te spreken"
+            }
+          },
+          {
+            "name": "speaker",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "Choose a local speaker",
+              "nl": "Kies een lokale luidspreker"
+            }
+          }
+        ]
+      },
+      {
         "id": "start_googletts",
         "title": {
           "en": "Start TTS",
@@ -4554,6 +4669,52 @@
             "title": {
               "en": "Open in Google Maps",
               "nl": "Openen in Google Maps"
+            }
+          }
+        ]
+      },
+      {
+        "id": "announce_translation",
+        "title": {
+          "en": "Translate and announce text on a speaker",
+          "nl": "Vertaal tekst en spreek die uit op een luidspreker"
+        },
+        "titleFormatted": {
+          "en": "Translate [[text]] to [[targetlanguagecode]] and announce it on [[speaker]]",
+          "nl": "Vertaal [[text]] naar [[targetlanguagecode]] en spreek het uit op [[speaker]]"
+        },
+        "hint": {
+          "en": "Uses the source language of this device. Basic speech supports up to 200 characters. Configure optional Cloud voices in Repair.",
+          "nl": "Gebruikt de brontaal van dit apparaat. Gewone spraak ondersteunt maximaal 200 tekens. Stel optionele Cloud-stemmen in via Repareren."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=translate"
+          },
+          {
+            "name": "text",
+            "type": "text",
+            "placeholder": {
+              "en": "Text to translate",
+              "nl": "Te vertalen tekst"
+            }
+          },
+          {
+            "name": "targetlanguagecode",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "Target language",
+              "nl": "Doeltaal"
+            }
+          },
+          {
+            "name": "speaker",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "Choose a local speaker",
+              "nl": "Kies een lokale luidspreker"
             }
           }
         ]
@@ -6155,6 +6316,9 @@
       },
       "pair": [
         {
+          "id": "choose_voice"
+        },
+        {
           "id": "list_devices",
           "template": "list_devices",
           "navigation": {
@@ -6171,21 +6335,45 @@
       ],
       "repair": [
         {
-          "id": "fix_list_devices",
-          "template": "list_devices",
-          "navigation": {
-            "next": "done_fix_my_devices"
-          },
-          "options": {
-            "singular": true
-          }
-        },
-        {
-          "id": "done_fix_my_devices",
-          "template": "done"
+          "id": "configure_voice"
         }
       ],
       "settings": [
+        {
+          "type": "group",
+          "label": {
+            "en": "Speech voice",
+            "nl": "Spraakstem"
+          },
+          "children": [
+            {
+              "id": "voice_repair_help",
+              "type": "label",
+              "label": {
+                "en": "Choose a voice in Repair",
+                "nl": "Kies een stem via Repareren"
+              },
+              "value": "",
+              "hint": {
+                "en": "Open Repair on this device to choose and preview its Cloud TTS voice.",
+                "nl": "Open Repareren op dit apparaat om zijn Cloud TTS-stem te kiezen en te beluisteren."
+              }
+            }
+          ]
+        },
+        {
+          "id": "trigger_when_announcing",
+          "type": "checkbox",
+          "label": {
+            "en": "Run When cards for speaker announcements",
+            "nl": "Activeer Wanneer-kaarten bij luidsprekeraankondigingen"
+          },
+          "hint": {
+            "en": "Also trigger the audio URL and timed Finished When cards for direct Google Cast or DLNA announcements.",
+            "nl": "Activeer ook de Wanneer-kaarten voor de audio-URL en de geschatte eindtijd bij directe aankondigingen via Google Cast of DLNA."
+          },
+          "value": false
+        },
         {
           "id": "speakingRate",
           "type": "number",
@@ -6731,6 +6919,19 @@
       ],
       "settings": [
         {
+          "id": "trigger_when_announcing",
+          "type": "checkbox",
+          "label": {
+            "en": "Run When cards for speaker announcements",
+            "nl": "Activeer Wanneer-kaarten bij luidsprekeraankondigingen"
+          },
+          "hint": {
+            "en": "Also trigger the audio URL When card after a direct Google Cast or DLNA announcement starts.",
+            "nl": "Activeer ook de Wanneer-kaart voor de audio-URL als een directe aankondiging via Google Cast of DLNA start."
+          },
+          "value": false
+        },
+        {
           "id": "languagecode",
           "type": "dropdown",
           "label": {
@@ -7215,7 +7416,34 @@
           "template": "add_devices"
         }
       ],
+      "repair": [
+        {
+          "id": "configure_voice"
+        }
+      ],
       "settings": [
+        {
+          "type": "group",
+          "label": {
+            "en": "Announcement voices",
+            "nl": "Stemmen voor aankondigingen"
+          },
+          "children": [
+            {
+              "id": "voice_repair_help",
+              "type": "label",
+              "label": {
+                "en": "Configure voices in Repair",
+                "nl": "Stel stemmen in via Repareren"
+              },
+              "value": "",
+              "hint": {
+                "en": "Open Repair on this device to enable Cloud TTS and choose a voice per announcement language.",
+                "nl": "Open Repareren op dit apparaat om Cloud TTS in te schakelen en per aankondigingstaal een stem te kiezen."
+              }
+            }
+          ]
+        },
         {
           "id": "languagecode",
           "type": "dropdown",
@@ -7884,8 +8112,8 @@
       "type": "number",
       "icon": "/assets/capabilities/maps-distance.svg",
       "title": {
-        "en": "Google Maps distance",
-        "nl": "Google Maps-afstand"
+        "en": "Distance",
+        "nl": "Afstand"
       },
       "units": "km",
       "decimals": 2,
@@ -7898,8 +8126,8 @@
       "type": "string",
       "icon": "/assets/capabilities/maps-eta.svg",
       "title": {
-        "en": "Google Maps estimated arrival",
-        "nl": "Google Maps-verwachte aankomst"
+        "en": "Estimated arrival",
+        "nl": "Verwachte aankomst"
       },
       "getable": true,
       "setable": false,
@@ -7922,8 +8150,8 @@
       "type": "number",
       "icon": "/assets/capabilities/maps-minutes.svg",
       "title": {
-        "en": "Google Maps travel time",
-        "nl": "Google Maps-reistijd"
+        "en": "Travel time",
+        "nl": "Reistijd"
       },
       "units": "min",
       "decimals": 1,

@@ -8,6 +8,13 @@ FUNCIONES
 * Google Translate: Traduce texto en un Flow y usa la traducción en tarjetas posteriores.
 * YouTube: Busca un vídeo y usa su ID o enlace en un Flow.
 
+ANUNCIOS POR ALTAVOZ
+
+Elige un altavoz Google Cast (Chromecast), Sonos o compatible con UPnP/DLNA en la red local de Homey desde una tarjeta de acción específica:
+* Google TTS: Lee el texto en voz alta en el idioma configurado en el dispositivo.
+* Google Cloud Text-to-Speech: Lee texto o SSML con la voz y los ajustes de audio configurados.
+* Google Translate: Traduce el texto al idioma elegido y lee la traducción en voz alta.
+
 Usa las URL de audio en tus automatizaciones. Por ejemplo, reprodúcelas en Sonos al volumen que elijas, ábrelas en el navegador de tu Samsung Smart TV o envíalas a IFTTT.
 
 Configura en la aplicación las credenciales de los servicios de Google que utilices.

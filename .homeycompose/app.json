@@ -1,6 +1,6 @@
 {
   "id": "nl.qluster-it.GoogleServices",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "compatibility": ">=5.0.0",
   "sdk": 3,
   "brandColor": "#8DB000",
@@ -40,91 +40,130 @@
       "url",
       "tts",
       "translate",
-      "youtube"
+      "youtube",
+      "dlna",
+      "chrome",
+      "chromecast"
     ],
     "nl": [
       "spraak",
       "url",
       "tts",
       "translate",
-      "youtube"
+      "youtube",
+      "dlna",
+      "chrome",
+      "chromecast"
     ],
     "da": [
       "speech",
       "url",
       "tts",
       "translate",
-      "youtube"
+      "youtube",
+      "dlna",
+      "chrome",
+      "chromecast"
     ],
     "de": [
       "speech",
       "url",
       "tts",
       "translate",
-      "youtube"
+      "youtube",
+      "dlna",
+      "chrome",
+      "chromecast"
     ],
     "es": [
       "speech",
       "url",
       "tts",
       "translate",
-      "youtube"
+      "youtube",
+      "dlna",
+      "chrome",
+      "chromecast"
     ],
     "fr": [
       "speech",
       "url",
       "tts",
       "translate",
-      "youtube"
+      "youtube",
+      "dlna",
+      "chrome",
+      "chromecast"
     ],
     "it": [
       "speech",
       "url",
       "tts",
       "translate",
-      "youtube"
+      "youtube",
+      "dlna",
+      "chrome",
+      "chromecast"
     ],
     "no": [
       "speech",
       "url",
       "tts",
       "translate",
-      "youtube"
+      "youtube",
+      "dlna",
+      "chrome",
+      "chromecast"
     ],
     "sv": [
       "speech",
       "url",
       "tts",
       "translate",
-      "youtube"
+      "youtube",
+      "dlna",
+      "chrome",
+      "chromecast"
     ],
     "pl": [
       "speech",
       "url",
       "tts",
       "translate",
-      "youtube"
+      "youtube",
+      "dlna",
+      "chrome",
+      "chromecast"
     ],
     "ru": [
       "speech",
       "url",
       "tts",
       "translate",
-      "youtube"
+      "youtube",
+      "dlna",
+      "chrome",
+      "chromecast"
     ],
     "ko": [
       "speech",
       "url",
       "tts",
       "translate",
-      "youtube"
+      "youtube",
+      "dlna",
+      "chrome",
+      "chromecast"
     ],
     "ar": [
       "speech",
       "url",
       "tts",
       "translate",
-      "youtube"
+      "youtube",
+      "dlna",
+      "chrome",
+      "chromecast"
     ]
   },
   "category": [

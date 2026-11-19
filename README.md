@@ -69,6 +69,22 @@ Norwegian (NO)
 
 For playing it on Homey itself, see Media Url Converter.
 
+### Speaker announcements
+
+Google TTS, Google Cloud TTS, and Google Translate each have a separate **Then** card for announcements. Choose a Google Cast speaker, Sonos speaker, or compatible UPnP/DLNA renderer from the card's picker. No separate Chromecast or Sonos Homey app is needed. The speaker must be discoverable over IPv4 on Homey's local network and able to fetch audio from Homey (TCP port 47333). Generic UPnP devices need an AVTransport service and must support the audio format; UPnP media servers alone cannot play announcements. The cards don't change speaker groups. If a grouped Sonos speaker rejects playback, select its group coordinator or ungroup it first.
+
+A confirmed Sonos stereo pair appears as one **(Stereo)** target, with the left and right speaker models when available. Sonos plays the announcement through the bonded pair and handles synchronization. The card does not play through either side independently, and unrelated speakers with the same room name are not merged.
+
+- **Google TTS — Announce text on a speaker:** Uses the device's language and supports up to 200 characters.
+- **Google Cloud TTS — Announce text on a speaker:** Uses the existing Cloud TTS voice and audio settings and accepts SSML.
+- **Google Translate — Translate and announce text on a speaker:** Uses the device's source language and the selected target language. Basic Google TTS supports up to 200 characters of translated text. Open **Repair** to opt into Cloud Text-to-Speech for this device and choose preferred voices by announcement language. If no voice is saved for the selected language, the app uses a matching Cloud voice or reports that the language isn't supported.
+
+On a **Google Cloud TTS** device, choose and preview a voice when pairing or in **Repair**. Existing devices keep the app-wide voice unless you choose a device voice. A voice selected explicitly in a Flow card overrides both. **Advanced Settings** points to Repair for voice selection on both drivers. Generating a preview uses the Cloud Text-to-Speech API.
+
+The cards start playback; they don't wait for it to finish or restore previous playback. Existing URL and translation cards work as before.
+
+Direct announcements do not fire **When** cards by default. In the Google TTS or Google Cloud TTS device's **Advanced Settings**, enable **Run When cards for speaker announcements** to also fire the audio URL card when playback starts. Cloud TTS also fires **Finished** based on the audio duration and configured delay, not a signal from the speaker. Google Translate has no **When** cards.
+
 YouTube
 Search YouTube using a Flow and use the returned video ID or link in other Flow cards.
 
@@ -100,12 +116,20 @@ Maps also provides these device Flow cards:
 - **And — Travel time exceeds a limit:** compares the last successful reading against a number of minutes. Reports an error if no reading exists.
 - **And — Saved route results are available:** checks whether a successful reading exists. Results persist after a failed refresh or app restart; changing route settings clears them.
 
-The When cards do not refresh routes automatically, and the And cards do not contact Google. **Refresh route** is a momentary button: it stays active during an update, ignores additional presses until the update completes, and does not enable automatic refreshing. **Last refreshed** shows the last successful saved-route refresh in Homey's local time, including seconds. Readings, refresh time, and the last loaded route image are retained across app restarts. Failed refreshes leave the previous results unchanged; changing route settings clears them.
+The When cards do not refresh routes automatically, and the And cards do not contact Google. **Refresh route** is a momentary button: it stays active during an update, ignores additional presses until the update completes, and does not enable automatic refreshing. **Last refreshed** uses the same format as **Estimated arrival**: the date and time in Homey's time zone, without the year or seconds. Readings, refresh time, and the last loaded route image are retained across app restarts. Failed refreshes leave the previous results unchanged; changing route settings clears them.
 
 Better Logic Library
 BLL coding is optional in supported text fields. When Better Logic Library is unavailable, text is passed through unchanged and BLL expressions are not evaluated.
 
 ## Changelog
+
+### 2.2.0
+
+- Announce text or translations directly on Google Cast, Sonos, and compatible UPnP/DLNA speakers. Sonos stereo pairs appear as one target with left and right details when available. Choose and preview Cloud voices per device. Google Maps can use Homey's location and show estimated traffic delays.
+
+### 2.1.1
+
+- Google Maps now retains route results and the last loaded route image across app restarts. The refresh button ignores additional presses while an update is in progress.
 
 ### 2.1.0
 
@@ -113,4 +137,379 @@ BLL coding is optional in supported text fields. When Better Logic Library is un
 - Use **Refresh route** or a Flow to update a saved route. **Last refreshed** shows when it last succeeded. There is no automatic polling.
 - Calculate one-off routes in Advanced Flow, react to route updates or failures, and check saved travel times in Flow conditions.
 
-See the [Homey changelog](./.homeychangelog.json) for previous releases.
+### 2.0.4
+
+- Fixed Google Translate language lookup and translation. Improved speech reliability, device pairing and memory usage.
+
+### 2.0.3
+
+- Changed sourcecode and issues from Bitbucket to GitHub.
+
+### 2.0.2
+
+- Improved: New design, images and logo's.
+
+### 1.11.0
+
+- Translated: Translated into all supported languages.
+
+### 1.10.2
+
+- Resolved: Non-Cloud TTS could not be created on the HP2023.
+
+### 1.10.1
+
+- Improved: Default flowcard now also contains an option source-language.
+
+### 1.10.0
+
+- Bugfixed: Translate AF flowcard.
+- Languages added to Translate (all supported language by Google).
+
+### 1.9.52
+
+- Dependencies update.
+
+### 1.9.51
+
+- Bugfixed: Solved another potential HP2023 startup bug.
+
+### 1.9.50
+
+- Bugfixed: Another startup issue resolved.
+
+### 1.9.49
+
+- Improved: Memory performance.
+
+### 1.9.48
+
+- Improved: Memory performance.
+
+### 1.9.47
+
+- Improved: Memory performance.
+
+### 1.9.46
+
+- Bugfixed: Startup issues finally resolved.
+
+### 1.9.45
+
+- Bugfixed: Working on startup issues on older models.
+
+### 1.9.44
+
+- Bugfixed: Working on startup issues on older models.
+
+### 1.9.43
+
+- Bugfixed: Working on startup issues on older models.
+
+### 1.9.42
+
+- Bugfixed: Working on startup issues on older models.
+
+### 1.9.41
+
+- Bugfixed: No more startup issues!
+
+### 1.9.40
+
+- Bugfixed: TEST VERSION: might contain a bug!
+
+### 1.9.39
+
+- Bugfixed: Startup issues.
+
+### 1.9.38
+
+- Bugfixed: Startup issues.
+
+### 1.9.37
+
+- Improved: Bll updates while running.
+
+### 1.9.36
+
+- Resolved a bug (normal version again): No start-up.
+
+### 1.9.35
+
+- Resolving a bug (test version): No start-up.
+
+### 1.9.34
+
+- Resolving a bug: No start-up.
+
+### 1.9.33
+
+- Resolving a bug: No start-up.
+
+### 1.9.32
+
+- Resolved: One-time notification about BLL coding back.
+
+### 1.9.31
+
+- Improved: Removed some useless logging.
+
+### 1.9.30
+
+- Improved: Works with all Homey Pro's again.
+
+### 1.9.29
+
+- Improved: Works with Early 2023 (i hope)!
+
+### 1.9.28
+
+- Improved: Works with Early 2023!
+
+### 1.9.27
+
+- Bugfixed: Startup fault when the old Better Logic is installed.
+
+### 1.9.26
+
+- Improved: Startup Error message.
+
+### 1.9.25
+
+- Bugfixed: Error when Better Logic Library was not installed.
+
+### 1.9.24
+
+- Supported: Better Logic Library coding can now be used within Translate flowcards.
+
+### 1.9.23
+
+- Supported: Better Logic Library coding can now be used within Translate flowcards.
+
+### 1.9.22
+
+- Supported: Better Logic Library coding can now be used within flowcards.
+
+### 1.9.21
+
+- Support added: Better Logic Library coding can now be used within flowcards.
+
+### 1.9.20
+
+- Support added: Better Logic Library coding can now be used within flowcards.
+
+### 1.9.19
+
+- Added: Contribution options: Patreon and GithubSponsors (with PayPal already available).
+
+### 1.9.18
+
+- Added: Added Audio Encoding on Google TTS Device Settings.
+
+### 1.9.17
+
+- Improved: Added Google AND and THEN card with text, speed, pitch and volume.
+
+### 1.9.16
+
+- Improved: Store Tags.
+
+### 1.9.15
+
+- Improved: More notifications about why the json is not working.
+
+### 1.9.14
+
+- Removed startup.
+
+### 1.9.13
+
+- Improved startup.
+
+### 1.9.12
+
+- Improved Error handling.
+
+### 1.9.11
+
+- Improved Store tags.
+
+### 1.9.10
+
+- Bug fixed missing capabilities for older devices.
+
+### 1.9.9
+
+- Bug fixed tokens.
+
+### 1.9.7
+
+- Advanced Flows supported: Then cards with tokens are added.
+
+### 1.9.2
+
+- Bug fixed
+
+### 1.9.1
+
+- Improved hints
+
+### 1.9.0
+
+- Improved flowcard descriptions
+
+### 1.8.9
+
+- Added a YouTube device for searching YouTube
+
+### 1.8.8
+
+- Fixes App startup
+
+### 1.8.7
+
+- Fixes
+
+### 1.8.4
+
+- Fixed debugging issue
+
+### 1.8.3
+
+- Added volume-gain (including voice/language) to flowcards
+
+### 1.8.2
+
+- Added volume-gain to flowcards
+
+### 1.8.1
+
+- Added device-setting for always using SSML, so you wont need to write the <speak> element
+
+### 1.8.0
+
+- Added device-setting for adding <speak> by default to speechoutput, so you won't need to anymore
+
+### 1.7.9
+
+- Updated readme
+
+### 1.7.8
+
+- changed Readme
+
+### 1.7.7
+
+- Added prefix and suffix pause to TTS Device settings, particularly useful for Chromecast users
+
+### 1.7.6
+
+- Added prefix and suffix pause to TTS Device settings, particularly useful for Chromecast users
+
+### 1.7.4
+
+- Added Volume Gain and Device Profile to CloudTTS device settings and SDK3
+
+### 1.7.3
+
+- Added Volume Gain and Device Profile to CloudTTS device settings
+
+### 1.7.2
+
+- Added Volume Gain and Device Profile to CloudTTS device settings
+
+### 1.7.1
+
+- Added Volume Gain and Device Profile to CloudTTS device settings
+
+### 1.6.6
+
+- Improved json
+
+### 1.6.5
+
+- Flow arg title fixed
+
+### 1.6.4
+
+- added word example to setting JSON placeholder
+
+### 1.6.3
+
+- Added notification if Google response with an error (like Bandwidth excausted, meaning quota reached)
+
+### 1.6.2
+
+- Fix flow title uniqueness
+
+### 1.6.1
+
+- Added projectname to settings
+
+### 1.6.0
+
+- Google Cloud Translate added as device with a condition card
+
+### 1.4.3
+
+- condition returns true if succesfull
+
+### 1.4.2
+
+- Bugfixed
+
+### 1.4.1
+
+- Added conditions with waiting for speech to complete
+
+### 1.4.0
+
+- Added Get URL as conditions so the url and duration are available in the Then part of the same flow
+
+### 1.3.2
+
+- Added url and duration as capability so its available as tokens
+
+### 1.3.0
+
+- Added finished trigger (you can use it to for example shutdown Sonos Repeat)
+
+### 1.2.4
+
+- smaller in size (MB)
+
+### 1.2.3
+
+- trash coding removed
+
+### 1.2.2
+
+- Settings work on phone
+
+### 1.2.1
+
+- Bugfixed
+
+### 1.2.0
+
+- Ready for the world to speak to
+
+### 1.1.4
+
+- Fixed Settingsscreen so no restart of app is necessary
+
+### 1.1.3
+
+- Fixes and added duration as tokens to flowactions for Sonos Say
+
+### 1.1.1
+
+- SSML coding is accepted now, like: <speak>Here are <say-as interpret-as="characters">SSML</say-as> samples.<break time="3s" />. And continue</speak>
+
+### 1.1.0
+
+- Google Cloud Added, and everything that cames with it.
+
+### 1.0.0
+
+- First published version

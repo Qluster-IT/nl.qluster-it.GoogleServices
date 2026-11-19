@@ -8,6 +8,13 @@ FUNKTIONEN
 * Google Übersetzer: Übersetze Text in einem Flow und verwende die Übersetzung in nachfolgenden Karten.
 * YouTube: Suche ein Video und nutze seine ID oder seinen Link in einem Flow.
 
+DURCHSAGEN ÜBER LAUTSPRECHER
+
+Wähle in einer eigenen Dann-Karte einen Google-Cast-Lautsprecher (Chromecast), einen Sonos-Lautsprecher oder einen kompatiblen UPnP/DLNA-Lautsprecher in Homeys lokalem Netzwerk:
+* Google TTS: Lies Text in der am Gerät eingestellten Sprache vor.
+* Google Cloud Text-to-Speech: Lies Text oder SSML mit der eingestellten Stimme und den gewählten Audioeinstellungen vor.
+* Google Übersetzer: Übersetze Text in die ausgewählte Sprache und lies die Übersetzung vor.
+
 Nutze die Audio-URLs in deinen Automatisierungen. Spiele sie zum Beispiel auf Sonos mit einer festgelegten Lautstärke ab, öffne sie im Browser deines Samsung Smart TV oder gib sie an IFTTT weiter.
 
 Hinterlege die Zugangsdaten für die verwendeten Google-Dienste in den App-Einstellungen.

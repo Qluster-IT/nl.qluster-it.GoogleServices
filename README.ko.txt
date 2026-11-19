@@ -8,6 +8,13 @@ Homey Flow에서 Google Maps, 텍스트 음성 변환, Google 번역, YouTube를
 * Google 번역: Flow에서 텍스트를 번역하고 다음 카드에서 번역 결과를 사용하세요.
 * YouTube: 동영상을 검색하고 ID나 링크를 Flow에서 사용하세요.
 
+스피커 음성 안내
+
+전용 실행 카드에서 Homey의 로컬 네트워크에 있는 Google Cast(Chromecast), Sonos 또는 UPnP/DLNA 호환 스피커를 선택하세요.
+* Google TTS: 기기에 설정된 언어로 텍스트를 읽어 줍니다.
+* Google Cloud Text-to-Speech: 설정한 음성과 오디오 설정으로 텍스트 또는 SSML을 읽어 줍니다.
+* Google 번역: 선택한 언어로 텍스트를 번역하고 번역문을 읽어 줍니다.
+
 자동화에서 오디오 URL을 활용하세요. 예를 들어 Sonos에서 원하는 볼륨으로 재생하거나, Samsung Smart TV의 브라우저에서 열거나, IFTTT로 전달할 수 있습니다.
 
 앱 설정에서 사용하는 Google 서비스의 인증 정보를 설정하세요.

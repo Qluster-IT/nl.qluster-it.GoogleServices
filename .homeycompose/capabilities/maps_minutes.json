@@ -1,7 +1,7 @@
 {
   "type": "number",
   "icon": "/assets/capabilities/maps-minutes.svg",
-  "title": { "en": "Google Maps travel time", "nl": "Google Maps-reistijd" },
+  "title": { "en": "Travel time", "nl": "Reistijd" },
   "units": "min",
   "decimals": 1,
   "getable": true,

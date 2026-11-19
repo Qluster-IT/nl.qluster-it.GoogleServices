@@ -8,6 +8,13 @@ FONCTIONNALITÉS
 * Google Traduction : traduisez du texte dans un Flow et utilisez la traduction dans les cartes suivantes.
 * YouTube : recherchez une vidéo et utilisez son identifiant ou son lien dans un Flow.
 
+ANNONCES SUR HAUT-PARLEUR
+
+Dans une carte d’action dédiée, choisissez un haut-parleur Google Cast (Chromecast), Sonos ou compatible UPnP/DLNA sur le réseau local de Homey :
+* Google TTS : lisez le texte à voix haute dans la langue configurée sur l’appareil.
+* Google Cloud Text-to-Speech : lisez du texte ou du SSML avec la voix et les réglages audio configurés.
+* Google Traduction : traduisez le texte dans la langue choisie et lisez la traduction à voix haute.
+
 Utilisez les URL audio dans vos automatisations. Par exemple, lisez-les sur Sonos au volume de votre choix, ouvrez-les dans le navigateur de votre Samsung Smart TV ou transmettez-les à IFTTT.
 
 Renseignez les identifiants des services Google utilisés dans les paramètres de l’application.

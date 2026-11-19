@@ -8,6 +8,13 @@ FUNZIONI
 * Google Traduttore: traduci un testo in un Flow e usa la traduzione nelle schede successive.
 * YouTube: cerca un video e usa il suo ID o il suo link in un Flow.
 
+ANNUNCI SUGLI ALTOPARLANTI
+
+In una scheda di azione dedicata, scegli un altoparlante Google Cast (Chromecast), Sonos o compatibile con UPnP/DLNA sulla rete locale di Homey:
+* Google TTS: leggi il testo ad alta voce nella lingua impostata sul dispositivo.
+* Google Cloud Text-to-Speech: leggi testo o SSML con la voce e le impostazioni audio configurate.
+* Google Traduttore: traduci il testo nella lingua scelta e leggi la traduzione ad alta voce.
+
 Usa gli URL audio nelle tue automazioni. Ad esempio, riproducili su Sonos al volume che preferisci, aprili nel browser della tua Samsung Smart TV o passali a IFTTT.
 
 Imposta le credenziali dei servizi Google che usi nelle impostazioni dell’app.

@@ -1,0 +1,54 @@
+<form class="homey-form" id="speech-form">
+  <div class="homey-form-group">
+    <label class="homey-form-label" for="speech-voice" data-i18n="speech.voice"></label>
+    <select class="homey-form-select" id="speech-voice"></select>
+  </div>
+  <input class="homey-form-input" id="speech-sample" maxlength="200" aria-label="Sample text" />
+  <button class="homey-button-secondary hy-nostyle" type="button" id="speech-preview" data-i18n="speech.preview"></button>
+  <audio id="speech-audio" controls hidden></audio>
+  <p role="status" id="speech-status"></p>
+  <button class="homey-button-primary hy-nostyle" type="submit" data-i18n="speech.continue"></button>
+</form>
+<script>
+(() => {
+  Homey.setTitle(Homey.__('speech.title'));
+  const form = document.getElementById('speech-form');
+  const select = document.getElementById('speech-voice');
+  const sample = document.getElementById('speech-sample');
+  const preview = document.getElementById('speech-preview');
+  const audio = document.getElementById('speech-audio');
+  const status = document.getElementById('speech-status');
+  sample.setAttribute('aria-label', Homey.__('speech.sample'));
+  sample.placeholder = Homey.__('speech.sample');
+  select.add(new Option(Homey.__('speech.app_default'), ''));
+  let voices = [];
+  Homey.emit('list_voices').then(list => {
+    voices = list;
+    for (const [i, voice] of voices.entries()) select.add(new Option(`${voice.languageCode} — ${voice.name}`, i));
+    if (!voices.length) status.textContent = Homey.__('speech.no_voices');
+  }).catch(error => { status.textContent = error.message; });
+  let busy = false;
+  async function perform(action) {
+    if (busy) return;
+    busy = true;
+    status.textContent = '';
+    try { await action(select.value === '' ? null : voices[select.value]); }
+    catch (error) { status.textContent = error.message; }
+    finally { busy = false; }
+  }
+  preview.onclick = () => perform(async voice => {
+    audio.pause();
+    audio.hidden = true;
+    audio.src = 'data:audio/mpeg;base64,' + await Homey.emit('preview_voice', { voice, text: sample.value });
+    audio.hidden = false;
+  });
+  form.onsubmit = event => {
+    event.preventDefault();
+    perform(async voice => {
+      await Homey.emit('save_voice', voice);
+      audio.pause();
+      await Homey.showView('list_devices');
+    });
+  };
+})();
+</script>

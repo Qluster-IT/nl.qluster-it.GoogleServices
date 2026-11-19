@@ -40,6 +40,13 @@
   ],
   "settings": [
     {
+      "id": "trigger_when_announcing",
+      "type": "checkbox",
+      "label": { "en": "Run When cards for speaker announcements", "nl": "Activeer Wanneer-kaarten bij luidsprekeraankondigingen" },
+      "hint": { "en": "Also trigger the audio URL When card after a direct Google Cast or DLNA announcement starts.", "nl": "Activeer ook de Wanneer-kaart voor de audio-URL als een directe aankondiging via Google Cast of DLNA start." },
+      "value": false
+    },
+    {
       "id": "languagecode",
       "type": "dropdown",
       "label": {

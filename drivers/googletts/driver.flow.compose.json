@@ -63,6 +63,16 @@
   "conditions": [],
   "actions": [
     {
+      "id": "announce_googletts",
+      "title": { "en": "Announce text on a speaker", "nl": "Spreek tekst uit op een luidspreker" },
+      "titleFormatted": { "en": "Announce [[text]] on [[speaker]]", "nl": "Spreek [[text]] uit op [[speaker]]" },
+      "hint": { "en": "Plays up to 200 characters on a Google Cast, Sonos, or compatible UPnP/DLNA speaker on your local network.", "nl": "Speelt maximaal 200 tekens af op een Google Cast-, Sonos- of compatibele UPnP/DLNA-luidspreker op je lokale netwerk." },
+      "args": [
+        { "name": "text", "type": "text", "placeholder": { "en": "Text to announce", "nl": "Tekst om uit te spreken" } },
+        { "name": "speaker", "type": "autocomplete", "placeholder": { "en": "Choose a local speaker", "nl": "Kies een lokale luidspreker" } }
+      ]
+    },
+    {
       "id": "start_googletts",
       "title": {
         "en": "Start TTS",

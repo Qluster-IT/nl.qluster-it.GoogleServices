@@ -54,7 +54,9 @@ test('voice autocomplete resolves to an empty list when voices cannot be loaded'
   const autocompletes = [];
   const card = {
     registerRunListener() { return card; },
-    getArgument: () => ({ registerAutocompleteListener: listener => autocompletes.push(listener) })
+    getArgument: name => ({ registerAutocompleteListener: listener => {
+      if (name === 'voice') autocompletes.push(listener);
+    } })
   };
   app.log = () => {};
   app.homey = {
@@ -268,6 +270,249 @@ test('Maps traffic settings, estimated delay, and colored route images', async t
     ] }), /invalid traffic interval/);
     assert.equal(urls.length, 2);
   });
+});
+
+test('speaker announcements resolve the selected speaker before synthesizing', async () => {
+  const calls = [];
+  let run;
+  let autocomplete;
+  let playbackError;
+  const { registerAnnouncement, basicSpeech } = compile('../lib/speaker-announcements', {
+    './speaker-playback': class {
+      async select({ id }) {
+        calls.push(id);
+        if (id === 'missing') throw new Error('Speaker unavailable');
+        return { id };
+      }
+      async play(speaker, media) {
+        if (playbackError) throw playbackError;
+        calls.push([speaker.id, media]);
+      }
+      async autocomplete(query) { return [{ id: 'cast:abc', name: query }]; }
+    },
+    'google-tts-api': { getAudioUrl: (text, { lang }) => {
+      assert.deepEqual([text, lang], ['Hallo', 'nl']);
+      return 'https://example.com/audio';
+    } },
+    'node-fetch': async () => new (require('node-fetch').Response)(Buffer.from('test audio'), {
+      headers: { 'content-type': 'audio/mpeg' }
+    }),
+    './tts-server': { hostMp3: async (_, audio) => {
+      assert.equal(audio.toString(), 'test audio');
+      return 'http://192.168.1.1:47333/tts/test.mp3';
+    } }
+  }).exports;
+  const homey = { flow: { getActionCard: () => ({
+    registerRunListener: listener => { run = listener; },
+    getArgument: () => ({ registerAutocompleteListener: listener => { autocomplete = listener; } })
+  }) } };
+  registerAnnouncement(homey, 'example', ({ text }) => basicSpeech(homey, text, 'nl'),
+    (device, media) => calls.push(['when', device, media]));
+  assert.deepEqual(await autocomplete('Kitchen'), [{ id: 'cast:abc', name: 'Kitchen' }]);
+  await assert.rejects(run({ text: 'Not synthesized', speaker: { id: 'missing' } }), /unavailable/);
+  await assert.rejects(run({ text: 'x'.repeat(201), speaker: { id: 'cast:abc' } }), /200 characters/);
+  const speaker = { id: 'cast:abc' };
+  const args = { text: 'Hallo', speaker };
+  const media = { url: 'http://192.168.1.1:47333/tts/test.mp3', type: 'audio/mpeg' };
+  assert.equal(await run({ ...args, device: { getSetting: () => undefined } }), true);
+  assert.deepEqual(calls, ['missing', 'cast:abc', 'cast:abc',
+    ['cast:abc', media]]);
+  calls.length = 0;
+  const device = { getSetting: key => key === 'trigger_when_announcing' };
+  playbackError = new Error('Speaker unavailable');
+  await assert.rejects(run({ ...args, device }), /unavailable/);
+  assert.deepEqual(calls.splice(0), ['cast:abc']);
+  playbackError = null;
+  assert.equal(await run({ ...args, device }), true);
+  assert.deepEqual(calls, ['cast:abc', ['cast:abc', media], ['when', device, media]]);
+});
+
+test('the speaker picker discovers Cast, Sonos, DLNA and UPnP transport services', async t => {
+  const { EventEmitter } = require('node:events');
+  t.mock.timers.enable({ apis: ['setTimeout'] });
+  let closed = 0;
+  const Playback = compile('../lib/speaker-playback', {
+    'bonjour-service': { Bonjour: class {
+      find({ type }, callback) {
+        assert.equal(type, 'googlecast');
+        callback({ addresses: ['192.168.1.2'], txt: { id: 'abc', fn: 'Kitchen' }, port: 8009 });
+        return { stop() {} };
+      }
+      destroy() { closed++; }
+    } },
+    dgram: { createSocket() {
+      const socket = new EventEmitter();
+      socket.close = () => closed++;
+      socket.send = query => {
+        const responses = query.includes('ZonePlayer:1')
+          ? [['rincon_test', '192.168.1.4', '192.168.1.4:1400']]
+          : query.includes('AVTransport:1') ? [['receiver', '192.168.1.5', '192.168.1.5']]
+          : [['external', '192.168.1.3', 'example.com'], ['def', '192.168.1.3', '192.168.1.3'],
+            ['rincon_test_mr', '192.168.1.4', '192.168.1.4:1400']];
+        for (const [id, address, host] of responses) {
+          socket.emit('message', Buffer.from(`HTTP/1.1 200 OK\r\nUSN: uuid:${id}::renderer\r\nLOCATION: http://${host}/desc\r\n`),
+            { address });
+        }
+      };
+      return socket;
+    } },
+    'node-fetch': async (url, options) => {
+      if (options.method === 'POST') {
+        assert.equal(url, 'http://192.168.1.4:1400/MediaRenderer/AVTransport/Control');
+        sonosActions.push(options.headers.SOAPAction);
+        return { ok: true };
+      }
+      if (url === 'http://192.168.1.4:1400/desc') {
+        return { ok: true, text: async () => `<root><device>
+          <deviceType>urn:schemas-upnp-org:device:ZonePlayer:1</deviceType>
+          <manufacturer>Sonos, Inc.</manufacturer><friendlyName>Sonos product</friendlyName>
+          <roomName>Living Room</roomName><UDN>uuid:RINCON_TEST</UDN>
+          <deviceList><device><serviceList><service>
+          <serviceType>urn:schemas-upnp-org:service:AVTransport:1</serviceType>
+          <controlURL>/MediaRenderer/AVTransport/Control</controlURL>
+          </service></serviceList></device></deviceList></device></root>` };
+      }
+      if (url === 'http://192.168.1.5/desc') {
+        return { ok: true, text: async () => `<root><device><friendlyName>UPnP Hub</friendlyName>
+          <deviceList><device><UDN>uuid:receiver</UDN><friendlyName>Office Receiver</friendlyName>
+          <serviceList><service><serviceType>urn:schemas-upnp-org:service:AVTransport:2</serviceType>
+          <controlURL>/av</controlURL></service></serviceList></device></deviceList></device></root>` };
+      }
+      assert.equal(url, 'http://192.168.1.3/desc');
+      return { ok: true, text: async () => `<root><device><friendlyName>Den</friendlyName><serviceList><service>
+        <serviceType>urn:schemas-upnp-org:service:AVTransport:1</serviceType>
+        <controlURL>/control</controlURL></service></serviceList></device></root>` };
+    }
+  }).exports;
+  const sonosActions = [];
+  const playback = new Playback(() => {});
+  const picker = playback.autocomplete('');
+  const filtered = playback.autocomplete('cast');
+  t.mock.timers.tick(2500);
+  assert.deepEqual(await picker, [
+    { id: 'dlna:uuid:def', name: 'Den', description: 'UPnP / DLNA' },
+    { id: 'cast:abc', name: 'Kitchen', description: 'Google Cast' },
+    { id: 'dlna:uuid:rincon_test', name: 'Living Room', description: 'Sonos' },
+    { id: 'dlna:uuid:receiver', name: 'Office Receiver', description: 'UPnP / DLNA' }
+  ]);
+  assert.deepEqual(await filtered, [{ id: 'cast:abc', name: 'Kitchen', description: 'Google Cast' }]);
+  assert.equal((await playback.select({ id: 'dlna:uuid:def' })).endpoint, 'http://192.168.1.3/control');
+  assert.equal((await playback.select({ id: 'dlna:uuid:receiver' })).endpoint, 'http://192.168.1.5/av');
+  const sonos = await playback.select({ id: 'dlna:uuid:rincon_test_mr' });
+  assert.equal(sonos.id, 'dlna:uuid:rincon_test');
+  await playback.play(sonos, { url: 'http://192.168.1.1:47333/tts/test.mp3', type: 'audio/mpeg' });
+  assert.deepEqual(sonosActions, [
+    `"${sonos.service}#SetAVTransportURI"`, `"${sonos.service}#Play"`
+  ]);
+  assert.equal(closed, 2);
+});
+
+test('confirmed Sonos stereo pairs are one target and keep both saved speaker IDs', async t => {
+  const { EventEmitter } = require('node:events');
+  t.mock.timers.enable({ apis: ['setTimeout'] });
+  const ids = ['RINCON_LEFT', 'RINCON_RIGHT', 'RINCON_OTHER', 'RINCON_OFFLINE'];
+  const zone = 'urn:schemas-upnp-org:service:ZoneGroupTopology:1';
+  const map = `${ids[0]}:LF,LF;${ids[1]}:RF,RF`;
+  // The stereo primary need not be the left speaker or the playback-group coordinator.
+  const state = `<ZoneGroupState><ZoneGroups><ZoneGroup Coordinator="${ids[2]}">
+    <ZoneGroupMember UUID="${ids[0]}" Invisible="1" ChannelMapSet="${map}"/>
+    <ZoneGroupMember UUID="${ids[1]}" ChannelMapSet="${map}"/>
+    <ZoneGroupMember UUID="${ids[2]}"/>
+  </ZoneGroup></ZoneGroups></ZoneGroupState>`;
+  const escaped = state.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  const logs = [];
+  const playUrls = [];
+  const Playback = compile('../lib/speaker-playback', {
+    'bonjour-service': { Bonjour: class {
+      find() { return { stop() {} }; }
+      destroy() {}
+    } },
+    dgram: { createSocket() {
+      const socket = new EventEmitter();
+      socket.close = () => {};
+      socket.send = query => {
+        if (!query.includes('ZonePlayer:1')) return;
+        [...ids, `${ids[0]}_MR`].forEach((id, i) => {
+          const address = `192.168.1.${i === 4 ? 10 : 10 + i}`;
+          socket.emit('message', Buffer.from(`HTTP/1.1 200 OK\r\nUSN: uuid:${id}::renderer\r\nLOCATION: http://${address}:1400/desc\r\n`), { address });
+        });
+      };
+      return socket;
+    } },
+    'node-fetch': async (url, options) => {
+      const i = Number(new URL(url).hostname.split('.').pop()) - 10;
+      if (url.endsWith('/av')) {
+        playUrls.push(url);
+        return { ok: true };
+      }
+      if (url.endsWith('/topology')) {
+        assert.equal(options.headers.SOAPAction, `"${zone}#GetZoneGroupState"`);
+        assert.equal(options.redirect, 'error');
+        if (i === 3) return { ok: false, status: 503 };
+        return { ok: true, text: async () => `<s:Envelope><s:Body><u:GetZoneGroupStateResponse>
+          <ZoneGroupState>${escaped}</ZoneGroupState></u:GetZoneGroupStateResponse></s:Body></s:Envelope>` };
+      }
+      return { ok: true, text: async () => `<root><device>
+        <deviceType>urn:schemas-upnp-org:device:ZonePlayer:1</deviceType>
+        <manufacturer>Sonos</manufacturer><modelName>${i < 2 ? 'Sonos Roam SL' : 'Sonos One'}</modelName>
+        <roomName>Keuken</roomName><UDN>uuid:${ids[i]}</UDN>
+        <serviceList><service><serviceType>${zone}</serviceType><controlURL>/topology</controlURL></service>
+        <service><serviceType>urn:schemas-upnp-org:service:AVTransport:1</serviceType>
+        <controlURL>/av</controlURL></service></serviceList></device></root>` };
+    }
+  }).exports;
+  const playback = new Playback((...args) => logs.push(args));
+  const picker = playback.autocomplete('Keuken');
+  t.mock.timers.tick(2500);
+  assert.deepEqual(await picker, [
+    { id: 'dlna:uuid:rincon_other', name: 'Keuken', description: 'Sonos' },
+    { id: 'dlna:uuid:rincon_offline', name: 'Keuken', description: 'Sonos' },
+    { id: 'dlna:uuid:rincon_right', name: 'Keuken (Stereo)', description: 'Sonos · Left: Sonos Roam SL · Right: Sonos Roam SL' }
+  ]);
+  assert.match(logs[0].join(' '), /topology.*HTTP 503/);
+  const primary = await playback.select({ id: 'dlna:uuid:rincon_right' });
+  assert.equal(await playback.select({ id: 'dlna:uuid:rincon_left' }), primary);
+  assert.equal(await playback.select({ id: 'dlna:uuid:rincon_left_mr' }), primary);
+  await playback.play(primary, { url: 'http://192.168.1.1:47333/tts/test.mp3', type: 'audio/mpeg' });
+  assert.deepEqual(playUrls, Array(2).fill('http://192.168.1.11:1400/av'));
+});
+
+test('speaker playback loads Cast audio and sends DLNA commands in order', async () => {
+  const { EventEmitter } = require('node:events');
+  const commands = [];
+  class Client extends EventEmitter {
+    connect(options, callback) { commands.push(options); callback(); }
+    launch(_, callback) {
+      callback(null, { load: (media, options, done) => { commands.push({ media, options }); done(null, [{}]); } });
+    }
+    close() { commands.push('closed'); this.emit('close'); }
+  }
+  let rejectDlna = false;
+  const Playback = compile('../lib/speaker-playback', {
+    'castv2-client': { Client },
+    'node-fetch': async (url, options) => {
+      commands.push({ url, ...options });
+      return { ok: !rejectDlna, status: 500 };
+    }
+  }).exports;
+  const playback = new Playback(() => {});
+  const media = { url: 'http://192.168.1.1:47333/tts/test.mp3?a=1&b=2', type: 'audio/mpeg' };
+  await playback.play({ host: '192.168.1.2', port: 8009, protocol: 'cast' }, media);
+  assert.deepEqual(commands.splice(0), [
+    { host: '192.168.1.2', port: 8009 },
+    { media: { contentId: media.url, contentType: media.type, streamType: 'BUFFERED' }, options: { autoplay: true } },
+    'closed'
+  ]);
+  const renderer = { protocol: 'dlna', endpoint: 'http://192.168.1.3/control', service: 'urn:schemas-upnp-org:service:AVTransport:1' };
+  await playback.play(renderer, media);
+  assert.deepEqual(commands.map(command => command.headers.SOAPAction), [
+    `"${renderer.service}#SetAVTransportURI"`, `"${renderer.service}#Play"`
+  ]);
+  assert.match(commands[0].body, /<CurrentURI>[^<]+a=1&amp;b=2<\/CurrentURI>/);
+  commands.length = 0;
+  rejectDlna = true;
+  await assert.rejects(playback.play(renderer, media), /rejected SetAVTransportURI/);
+  assert.equal(commands.length, 1);
 });
 
 test('Maps pairing validates the route and keeps settings isolated between sessions', async () => {
@@ -608,7 +853,7 @@ test('Maps resolves each Homey endpoint on demand and validates missing coordina
 });
 
 test('Maps device button refreshes the saved route and streams its camera image on demand', async t => {
-  const now = Date.UTC(2026, 10, 18, 12, 0, 0);
+  const now = Date.UTC(2026, 10, 18, 12, 0, 42);
   t.mock.timers.enable({ apis: ['Date'], now });
   const Device = compile('../drivers/maps/device', { homey: { Device: class {} } }).exports;
   const device = new Device();
@@ -668,7 +913,8 @@ test('Maps device button refreshes the saved route and streams its camera image 
   values.maps_refresh = true;
   await refresh();
   assert.equal(values.maps_refresh, false);
-  assert.equal(values.maps_last_refreshed, '18 nov 2026, 13:00:00');
+  assert.equal(values.maps_last_refreshed, '18 nov, 13:00');
+  assert.equal(values.maps_last_refreshed, values.maps_eta);
   assert.deepEqual(events, [{ id: 'maps_route_updated', tokens }]);
   await assert.rejects(() => source(new Writable()), /image_unavailable/);
   assert.equal(imageFetches, 0);
@@ -707,7 +953,7 @@ test('Maps device button refreshes the saved route and streams its camera image 
   tokens.minutes = 24.7;
   t.mock.timers.tick(60 * 1000);
   await refresh();
-  assert.equal(values.maps_last_refreshed, '18 nov 2026, 13:01:00');
+  assert.equal(values.maps_last_refreshed, '18 nov, 13:01');
   assert.deepEqual(events.at(-1), {
     id: 'maps_travel_time_changed',
     tokens: { minutes: 24.7, previous_minutes: 25, change_minutes: -0.3 }
@@ -716,7 +962,7 @@ test('Maps device button refreshes the saved route and streams its camera image 
   values.maps_refresh = true;
   t.mock.timers.tick(60 * 1000);
   await assert.rejects(() => refresh(), /quota exceeded/);
-  assert.equal(values.maps_last_refreshed, '18 nov 2026, 13:01:00');
+  assert.equal(values.maps_last_refreshed, '18 nov, 13:01');
   assert.equal(values.maps_refresh, false);
   assert.deepEqual(events.at(-1), { id: 'maps_refresh_failed', tokens: { error: 'Routes API quota exceeded.' } });
   assert.equal(values.maps_minutes, 24.7);
@@ -1078,17 +1324,55 @@ test('pairing another YouTube or Maps device gets a new id instead of failing', 
   }
 });
 
-test('repairing a Cloud TTS device lists it and adds only its missing capabilities', async () => {
-  const { exports: Driver } = compile('../drivers/googlecloudtts/driver', { homey: { Driver: class {} } });
-  const handlers = {};
-  // The SDK 3 pair session only offers setHandler and emit.
-  const session = { setHandler(event, handler) { handlers[event] = handler; return this; }, emit: async () => {} };
-  const added = [];
-  const device = { getName: () => 'Kitchen', hasCapability: id => id === 'device_url', addCapability: async id => { added.push(id); } };
-  await new Driver().onRepair(session, device);
-  const devices = await handlers.list_devices();
-  assert.equal(devices.length, 1);
-  assert.equal(devices[0].name, 'Kitchen');
-  assert.ok(devices[0].data.id);
-  assert.deepEqual(added, ['device_duration']);
+test('Cloud TTS Pair and Repair validate, preview and save a voice without replacing the device', async () => {
+  const voice = { name: 'nl-NL-Test-A', languageCode: 'nl-NL', ssmlGender: 'FEMALE' };
+  const voices = compile('../lib/speech-voices', {
+    './tts-server': {
+      getVoices: async () => [{ ...voice, languageCodes: ['nl-NL'] }],
+      getResponse: async request => {
+        assert.deepEqual(request.voice, voice);
+        assert.equal(request.plainText, true);
+        return Buffer.from('preview');
+      }
+    }
+  }).exports;
+  const Driver = compile('../drivers/googlecloudtts/driver', {
+    homey: { Driver: class {} }, '../../lib/speech-voices': voices
+  }).exports;
+  const session = () => ({ setHandler(event, fn) { this[event] = fn; } });
+  const driver = new Driver();
+  const pair = session();
+  driver.onPair(pair);
+  assert.equal((await pair.list_devices())[0].store, undefined);
+  await assert.rejects(() => pair.save_voice({ ...voice, languageCode: 'en-GB' }), /available Cloud voice/);
+  await pair.save_voice(voice);
+  assert.deepEqual((await pair.list_devices())[0].store.cloud_voice, voice);
+  assert.equal(Buffer.from(await pair.preview_voice({ voice, text: 'Hallo' }), 'base64').toString(), 'preview');
+  const repair = session();
+  const store = new Map();
+  driver.onRepair(repair, {
+    getStoreValue: key => store.get(key), setStoreValue: (key, value) => store.set(key, value),
+    unsetStoreValue: key => store.delete(key)
+  });
+  assert.deepEqual(await repair.get_voice_config(), { voice: null });
+  await repair.save_voice(voice);
+  assert.deepEqual(await repair.get_voice_config(), { voice });
+  await repair.save_voice(null);
+  assert.deepEqual(await repair.get_voice_config(), { voice: null });
+});
+
+test('Translate Cloud speech resolves voices for the selected target only', async () => {
+  const voice = { name: 'nl-NL-Test-A', languageCode: 'nl-NL', ssmlGender: 'FEMALE' };
+  const { validateTranslationSpeech, resolveTranslationVoice } = compile('../lib/speech-voices', {
+    './tts-server': {
+      getVoices: async () => [{ ...voice, languageCodes: ['nl-NL'] }],
+      applicationVoice: () => ({ name: 'en-GB-App', languageCode: 'en-GB' })
+    }
+  }).exports;
+  const config = await validateTranslationSpeech({ enabled: true, voices: [{ target: 'nl', voice }] });
+  assert.deepEqual(await resolveTranslationVoice(config, 'nl'), voice);
+  assert.deepEqual(await resolveTranslationVoice(config, 'nl-NL'), { languageCode: 'nl-NL' });
+  assert.deepEqual(await resolveTranslationVoice(config, 'en'), { name: 'en-GB-App', languageCode: 'en-GB' });
+  await assert.rejects(resolveTranslationVoice(config, 'fr'), /no voice for fr/);
+  await assert.rejects(validateTranslationSpeech({ enabled: true, voices: [{ target: 'fr', voice }] }), /for this language/);
 });

@@ -1,0 +1,19 @@
+{
+  "title": "Spraakstem instellen",
+  "voice": "Stem",
+  "app_default": "Gebruik de standaardstem van de app",
+  "language_default": "Gebruik de standaardstem voor deze taal",
+  "sample": "Voorbeeldtekst (optioneel)",
+  "preview": "Voorbeeld genereren",
+  "continue": "Verder",
+  "save": "Steminstellingen opslaan",
+  "cloud": "Gebruik Cloud Tekst-naar-spraak voor aankondigingen",
+  "translation_help": "Kies een voorkeursstem per taal waarin je aankondigingen afspeelt. Talen zonder voorkeur gebruiken een passende Cloud-stem. Als deze optie uitstaat, gebruiken aankondigingen gewone Google TTS.",
+  "target": "Taal van de aankondiging",
+  "remove": "Verwijder",
+  "no_voices": "Er zijn geen Cloud-stemmen beschikbaar. Controleer de configuratie van Cloud Tekst-naar-spraak in de app-instellingen.",
+  "choose_language": "Kies een aankondigingstaal voor het voorbeeld.",
+  "speaker_stereo": "Stereo",
+  "speaker_left": "Links",
+  "speaker_right": "Rechts"
+}

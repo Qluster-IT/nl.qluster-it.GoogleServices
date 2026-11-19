@@ -26,6 +26,7 @@
     "small": "{{driverAssetsPath}}/images/small.png"
   },
   "pair": [
+    { "id": "choose_voice", "$template": "speech_voice" },
     {
       "id": "list_devices",
       "template": "list_devices",
@@ -42,22 +43,27 @@
     }
   ],
   "repair": [
-    {
-      "id": "fix_list_devices",
-      "template": "list_devices",
-      "navigation": {
-        "next": "done_fix_my_devices"
-      },
-      "options": {
-        "singular": true
-      }
-    },
-    {
-      "id": "done_fix_my_devices",
-      "template": "done"
-    }
+    { "id": "configure_voice", "$template": "speech_voice" }
   ],
   "settings": [
+    {
+      "type": "group",
+      "label": { "en": "Speech voice", "nl": "Spraakstem" },
+      "children": [{
+        "id": "voice_repair_help",
+        "type": "label",
+        "label": { "en": "Choose a voice in Repair", "nl": "Kies een stem via Repareren" },
+        "value": "",
+        "hint": { "en": "Open Repair on this device to choose and preview its Cloud TTS voice.", "nl": "Open Repareren op dit apparaat om zijn Cloud TTS-stem te kiezen en te beluisteren." }
+      }]
+    },
+    {
+      "id": "trigger_when_announcing",
+      "type": "checkbox",
+      "label": { "en": "Run When cards for speaker announcements", "nl": "Activeer Wanneer-kaarten bij luidsprekeraankondigingen" },
+      "hint": { "en": "Also trigger the audio URL and timed Finished When cards for direct Google Cast or DLNA announcements.", "nl": "Activeer ook de Wanneer-kaarten voor de audio-URL en de geschatte eindtijd bij directe aankondigingen via Google Cast of DLNA." },
+      "value": false
+    },
     {
       "id": "speakingRate",
       "type": "number",

@@ -46,5 +46,24 @@
     },
     "homey_location_unavailable": "Homey's location is unavailable. Check Homey's location settings or use an address instead.",
     "use_readable_address": "Enter an address or coordinates instead of a place ID, or use Repair to choose an address."
+  },
+  "speech": {
+    "title": "Configure speech voice",
+    "voice": "Voice",
+    "app_default": "Use the app's default voice",
+    "language_default": "Use the default voice for this language",
+    "sample": "Sample text (optional)",
+    "preview": "Generate preview",
+    "continue": "Continue",
+    "save": "Save voice settings",
+    "cloud": "Use Cloud Text-to-Speech for announcements",
+    "translation_help": "Pick a preferred voice for each language you announce in. Languages without a preference use a matching Cloud voice. If this option is off, announcements use basic Google TTS.",
+    "target": "Announcement language",
+    "remove": "Remove",
+    "no_voices": "No Cloud voices are available. Check the Cloud Text-to-Speech configuration in the app settings.",
+    "choose_language": "Choose an announcement language to preview.",
+    "speaker_stereo": "Stereo",
+    "speaker_left": "Left",
+    "speaker_right": "Right"
   }
 }

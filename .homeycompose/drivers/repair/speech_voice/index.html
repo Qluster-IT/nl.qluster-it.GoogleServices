@@ -1,0 +1,131 @@
+<form class="homey-form" id="speech-form">
+  <fieldset id="speech-fields" disabled style="border: 0; margin: 0; padding: 0;">
+    <div id="speech-translate" hidden>
+      <label><input id="speech-cloud" type="checkbox" /> <span data-i18n="speech.cloud"></span></label>
+      <p class="homey-text-small" data-i18n="speech.translation_help"></p>
+    </div>
+    <div id="speech-picker">
+      <div class="homey-form-group" id="speech-target-group" hidden>
+        <label class="homey-form-label" for="speech-target" data-i18n="speech.target"></label>
+        <select class="homey-form-select" id="speech-target"></select>
+      </div>
+      <div class="homey-form-group">
+        <label class="homey-form-label" for="speech-voice" data-i18n="speech.voice"></label>
+        <select class="homey-form-select" id="speech-voice"></select>
+      </div>
+      <ul id="speech-preferences" hidden></ul>
+      <input class="homey-form-input" id="speech-sample" maxlength="200" />
+      <button class="homey-button-secondary hy-nostyle" type="button" id="speech-preview" data-i18n="speech.preview"></button>
+      <audio id="speech-audio" controls hidden></audio>
+    </div>
+    <button class="homey-button-primary hy-nostyle" type="submit" data-i18n="speech.save"></button>
+  </fieldset>
+  <p role="status" id="speech-status"></p>
+</form>
+<script>
+(async () => {
+  Homey.setTitle(Homey.__('speech.title'));
+  const get = name => document.getElementById('speech-' + name);
+  const fields = get('fields');
+  const cloud = get('cloud');
+  const target = get('target');
+  const select = get('voice');
+  const sample = get('sample');
+  const audio = get('audio');
+  const status = get('status');
+  sample.setAttribute('aria-label', Homey.__('speech.sample'));
+  sample.placeholder = Homey.__('speech.sample');
+  let config;
+  try { config = await Homey.emit('get_voice_config'); }
+  catch (error) { status.textContent = error.message; return; }
+  let catalog = [];
+  const preferences = new Map((config.voices || []).map(({ target, voice }) => [target, voice]));
+  const matches = (code, language) => code.toLowerCase() === language ||
+    (!language.includes('-') && code.toLowerCase().startsWith(language + '-'));
+  let options = [];
+  const sameVoice = (a, b) => a?.name === b?.name && a?.languageCode === b?.languageCode;
+  const voiceLabel = voice => `${voice.languageCode} — ${voice.name}`;
+  function showPreferences() {
+    const list = get('preferences');
+    list.replaceChildren();
+    for (const [language, voice] of preferences) {
+      const item = document.createElement('li');
+      item.textContent = `${language} → ${voiceLabel(voice)} `;
+      const remove = document.createElement('button');
+      remove.type = 'button';
+      remove.className = 'homey-button-secondary hy-nostyle';
+      remove.textContent = Homey.__('speech.remove');
+      remove.onclick = () => { preferences.delete(language); showVoices(); };
+      item.append(remove);
+      list.append(item);
+    }
+  }
+  function showVoices() {
+    const saved = config.translate ? preferences.get(target.value) : config.voice;
+    options = config.translate ? catalog.filter(voice => matches(voice.languageCode, target.value)) : catalog;
+    if (saved && !options.some(voice => sameVoice(voice, saved))) options = [...options, saved];
+    select.replaceChildren(new Option(Homey.__(config.translate ? 'speech.language_default' : 'speech.app_default'), ''));
+    for (const [i, voice] of options.entries()) select.add(new Option(voiceLabel(voice), i, false, sameVoice(voice, saved)));
+    if (config.translate) showPreferences();
+  }
+  const selection = () => select.value === '' ? null : options[select.value];
+  if (config.translate) {
+    get('translate').hidden = false;
+    get('target-group').hidden = false;
+    get('preferences').hidden = false;
+    cloud.checked = config.enabled;
+    get('picker').hidden = !cloud.checked;
+    cloud.onchange = () => { audio.pause(); get('picker').hidden = !cloud.checked; };
+    target.onchange = showVoices;
+    select.onchange = () => {
+      if (selection()) preferences.set(target.value, selection());
+      else preferences.delete(target.value);
+      showPreferences();
+    };
+  }
+  try {
+    catalog = await Homey.emit('list_voices');
+    if (!catalog.length) status.textContent = Homey.__('speech.no_voices');
+  } catch (error) { status.textContent = error.message; }
+  if (config.translate) {
+    const codes = new Set([...preferences.keys(), ...catalog.flatMap(({ languageCode }) =>
+      [languageCode.toLowerCase(), languageCode.split('-')[0].toLowerCase()])]);
+    const languages = new Map((config.languages || []).map(({ id, name }) => [id.toLowerCase(), name]));
+    for (const code of [...codes].sort()) {
+      if (languages.size && !languages.has(code) && !preferences.has(code)) continue;
+      target.add(new Option(languages.has(code) ? `${languages.get(code)} (${code})` : code, code));
+    }
+  }
+  showVoices();
+  fields.disabled = false;
+  async function perform(action) {
+    if (fields.disabled) return;
+    fields.disabled = true;
+    status.textContent = '';
+    try { await action(); }
+    catch (error) { status.textContent = error.message; }
+    finally { fields.disabled = false; }
+  }
+  get('preview').onclick = () => perform(async () => {
+    audio.pause();
+    audio.hidden = true;
+    if (config.translate && !target.value) throw new Error(Homey.__('speech.choose_language'));
+    const data = await Homey.emit('preview_voice', { voice: selection(), target: target.value, text: sample.value });
+    audio.src = 'data:audio/mpeg;base64,' + data;
+    audio.hidden = false;
+  });
+  get('form').onsubmit = event => {
+    event.preventDefault();
+    perform(async () => {
+      if (config.translate) {
+        await Homey.emit('save_translation_voices', { enabled: cloud.checked,
+          voices: [...preferences].map(([target, voice]) => ({ target, voice })) });
+      } else {
+        await Homey.emit('save_voice', selection());
+      }
+      audio.pause();
+      await Homey.done();
+    });
+  };
+})();
+</script>

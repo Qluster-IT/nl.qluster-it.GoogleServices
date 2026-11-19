@@ -8,6 +8,13 @@ FUNCTIES
 * Google Translate: Vertaal tekst in een Flow en gebruik de vertaling in volgende kaarten.
 * YouTube: Zoek een video en gebruik het video-ID of de link in een Flow.
 
+AANKONDIGINGEN VIA LUIDSPREKERS
+
+Kies in een aparte Dan-kaart een Google Cast- (Chromecast), Sonos- of compatibele UPnP/DLNA-luidspreker op het lokale netwerk van Homey:
+* Google TTS: Lees tekst voor in de taal die op het apparaat is ingesteld.
+* Google Cloud Tekst-naar-spraak: Lees tekst of SSML voor met je ingestelde stem en audio-instellingen.
+* Google Translate: Vertaal tekst naar de gekozen taal en lees de vertaling voor.
+
 Gebruik de audio-URL’s in je automatiseringen. Speel ze bijvoorbeeld af op Sonos met een ingesteld volume, open ze in de browser van je Samsung Smart TV of geef ze door aan IFTTT.
 
 Stel bij de app-instellingen de toegangsgegevens in voor de Google-diensten die je gebruikt.

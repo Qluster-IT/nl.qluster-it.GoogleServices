@@ -2,6 +2,7 @@
 
 const Homey = require('homey');
 const { v4: uuidv4 } = require('uuid');
+const { deviceVoiceKey, registerVoicePicker, validateVoice } = require('../../lib/speech-voices');
 
 class GoogleCloudTTSDriver extends Homey.Driver
 {
@@ -35,13 +36,23 @@ class GoogleCloudTTSDriver extends Homey.Driver
 
     }
 
-    // Repair lists the device and adds the capabilities that older devices miss.
-    async onRepair(session, device) {
+    onPair(session) {
+        let voice = null;
+        registerVoicePicker(session);
+        session.setHandler('save_voice', async selection => { voice = await validateVoice(selection); });
         session.setHandler('list_devices', async () => {
-            for (const capability of ['device_url', 'device_duration']) {
-                if (!device.hasCapability(capability)) await device.addCapability(capability);
-            }
-            return [{ name: device.getName(), data: { id: uuidv4() } }];
+            const devices = await this.onPairListDevices();
+            return devices.map(device => voice ? { ...device, store: { [deviceVoiceKey]: voice } } : device);
+        });
+    }
+
+    onRepair(session, device) {
+        registerVoicePicker(session);
+        session.setHandler('get_voice_config', () => ({ voice: device.getStoreValue(deviceVoiceKey) ?? null }));
+        session.setHandler('save_voice', async selection => {
+            const voice = await validateVoice(selection);
+            if (voice) await device.setStoreValue(deviceVoiceKey, voice);
+            else await device.unsetStoreValue(deviceVoiceKey);
         });
     }
 

@@ -8,6 +8,13 @@ FEATURES
 * Google Translate: Translate text in a Flow and use the translation in later cards.
 * YouTube: Search for a video and use its ID or link in a Flow.
 
+SPEAKER ANNOUNCEMENTS
+
+Choose a Google Cast (Chromecast), Sonos, or compatible UPnP/DLNA speaker on Homey’s local network in a dedicated Then card:
+* Google TTS: Read text aloud in the device’s configured language.
+* Google Cloud Text-to-Speech: Read text or SSML aloud with your configured voice and audio settings.
+* Google Translate: Translate text to the selected language and read it aloud.
+
 Use speech audio URLs in your automations. For instance, play them on Sonos at a set volume, open them in the Samsung Smart TV browser, or pass them to IFTTT.
 
 Configure credentials for the Google services you use in app settings.

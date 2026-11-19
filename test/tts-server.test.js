@@ -72,6 +72,28 @@ test('TTS duration parsing reuses the audio buffer and failures do not poison th
   assert.equal(server.Urls.length, 2);
 });
 
+test('Cloud TTS uses an explicit Flow voice before the device and app defaults', async () => {
+  const { server, binary } = createServer();
+  const requests = [];
+  server.client.synthesizeSpeech = async request => {
+    requests.push(request);
+    return [{ audioContent: binary }];
+  };
+  let stored = { name: 'nl-NL-Device', languageCode: 'nl-NL', ssmlGender: 'FEMALE' };
+  const device = {
+    homey: { cloud: { getLocalAddress: async () => '127.0.0.1' } },
+    getSettings: () => ({}), getStoreValue: () => stored
+  };
+  const args = { text: 'Sample', device };
+  await server.getUrl({ args });
+  await server.getUrl({ args, voice: { id: 'fr-FR-Flow', languagecode: 'fr-FR', gender: 'NEUTRAL' } });
+  stored = null;
+  await server.getUrl({ args });
+  assert.deepEqual(requests.map(({ voice }) => [voice.name, voice.languageCode]), [
+    ['nl-NL-Device', 'nl-NL'], ['fr-FR-Flow', 'fr-FR'], ['test', 'en-GB']
+  ]);
+});
+
 test('TTS entries are not exposed while synthesis is still pending', async () => {
   const { server, get, binary } = createServer();
   let complete;

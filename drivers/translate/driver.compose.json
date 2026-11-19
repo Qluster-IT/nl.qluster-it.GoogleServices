@@ -41,7 +41,21 @@
       "template": "add_devices"
     }
   ],
+  "repair": [
+    { "id": "configure_voice", "$template": "speech_voice" }
+  ],
   "settings": [
+    {
+      "type": "group",
+      "label": { "en": "Announcement voices", "nl": "Stemmen voor aankondigingen" },
+      "children": [{
+        "id": "voice_repair_help",
+        "type": "label",
+        "label": { "en": "Configure voices in Repair", "nl": "Stel stemmen in via Repareren" },
+        "value": "",
+        "hint": { "en": "Open Repair on this device to enable Cloud TTS and choose a voice per announcement language.", "nl": "Open Repareren op dit apparaat om Cloud TTS in te schakelen en per aankondigingstaal een stem te kiezen." }
+      }]
+    },
     {
       "id": "languagecode",
       "type": "dropdown",

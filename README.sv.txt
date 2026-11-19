@@ -8,6 +8,13 @@ FUNKTIONER
 * Google Översätt: Översätt text i ett Flow och använd översättningen i efterföljande kort.
 * YouTube: Sök efter en video och använd dess ID eller länk i ett Flow.
 
+MEDDELANDEN I HÖGTALARE
+
+Välj en Google Cast-högtalare (Chromecast), en Sonos-högtalare eller en kompatibel UPnP/DLNA-högtalare på Homeys lokala nätverk i ett separat åtgärdskort:
+* Google TTS: Läs upp text på språket som är inställt på enheten.
+* Google Cloud Text-to-Speech: Läs upp text eller SSML med vald röst och valda ljudinställningar.
+* Google Översätt: Översätt texten till valt språk och läs upp översättningen.
+
 Använd ljud-URL:erna i dina automatiseringar. Du kan till exempel spela upp dem på Sonos med vald volym, öppna dem i webbläsaren på din Samsung Smart TV eller skicka dem vidare till IFTTT.
 
 Ange autentiseringsuppgifter för de Google-tjänster du använder i appinställningarna.
