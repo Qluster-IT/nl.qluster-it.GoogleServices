@@ -1469,7 +1469,7 @@
     "ko": "Google Maps 측정값 이름이 더 명확해졌고 앱 이미지에 Maps가 추가되었습니다. 또한 Flow 카드에서 Better Logic Library 코딩을 지원하는 텍스트 필드를 표시합니다.",
     "ar": "أصبحت أسماء قراءات خرائط Google أوضح، وأُضيفت الخرائط إلى صور التطبيق، وتوضح بطاقات Flow حقول النص التي تدعم ترميز Better Logic Library."
   },
-  "2.2.2": {
+  "3.0.0": {
     "en": "Create reusable speaker groups in app settings and select them in Flows or as the default output. Set a volume adjustment and maximum for each speaker.\nChoose All speakers, All speakers (no TVs), or All speakers (no TVs or TV speakers).\nSonos announcements play in order and restore original groups and playback, including TV and line-in where supported.\nAnnouncement cards can continue right away or wait until the speakers have finished.",
     "nl": "Maak luidsprekergroepen in de appinstellingen en kies ze in Flows of als standaarduitvoer. Stel per luidspreker een volumeaanpassing en maximumvolume in.\nKies Alle luidsprekers, Alle luidsprekers (geen tv’s) of Alle luidsprekers (geen tv’s of tv-luidsprekers).\nSonos-aankondigingen spelen op volgorde af. De oorspronkelijke groepen en weergave, waaronder tv en lijningang, worden waar mogelijk hersteld.\nAankondigingskaarten kunnen direct doorgaan of wachten tot de luidsprekers klaar zijn.",
     "da": "Opret højttalergrupper i appindstillingerne, og vælg dem i Flows eller som standardudgang. Indstil en lydstyrkejustering og en maksimal lydstyrke for hver højttaler.\nVælg alle højttalere, alle uden tv eller alle uden tv og tv-højttalere.\nSonos-meddelelser afspilles i rækkefølge. Grupper og afspilning gendannes, herunder tv og linjeindgang, hvor det understøttes.\nMeddelelseskort kan fortsætte med det samme eller vente, til højttalerne er færdige.",

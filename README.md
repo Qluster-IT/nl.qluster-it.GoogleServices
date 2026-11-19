@@ -151,7 +151,7 @@ BLL coding is optional in supported text fields. When Better Logic Library is un
 
 ## Changelog
 
-### 2.2.2
+### 3.0.0
 
 - Create reusable speaker groups for Flows or as the default output, with volume adjustments and limits for each speaker.
 - For Google Cast, Sonos, and compatible UPnP/DLNA devices, choose All speakers, All speakers (no TVs), or All speakers (no TVs or TV speakers).
