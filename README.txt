@@ -2,6 +2,7 @@ Use Google Maps, Text-to-Speech, Translate and YouTube in your Homey Flows.
 
 FEATURES
 
+* Create reusable speaker groups in app settings and select them in Flows or as the default output. Set a volume adjustment and maximum for each speaker. Choose All speakers, All speakers (no TVs), or All speakers (no TVs or TV speakers).
 * Google Maps: Save a trip with address suggestions or enter addresses or coordinates yourself. See travel time, distance, estimated arrival and when the route was last refreshed. Refresh with a button or Flow and view the route map on demand. Advanced Flow can calculate a one-off route without changing the saved trip.
 * Text-to-Speech: Turn text into an audio URL for a compatible player.
 * Google Cloud Text-to-Speech: Choose a voice and adjust speaking speed, pitch and volume. Use SSML markup to add pauses or control pronunciation.

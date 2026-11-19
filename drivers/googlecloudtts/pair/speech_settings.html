@@ -2,6 +2,7 @@
   #settings-form { padding-bottom: calc(100px + env(safe-area-inset-bottom, 0px)); }
   .setup-actions { position: fixed; bottom: 0; left: 0; right: 0; z-index: 10; padding: 12px 20px calc(12px + env(safe-area-inset-bottom, 0px)); background: var(--homey-background-color, #fff); border-top: 1px solid var(--homey-line-color, #ddd); }
   .setup-actions button { width: 100%; margin: 0; }
+  form input, form select, form [role="status"], form [role="alert"] { scroll-margin-bottom: calc(100px + env(safe-area-inset-bottom, 0px)); }
   input[role="switch"] { appearance: none; width: 44px; height: 26px; border: 1px solid var(--homey-line-color, #888); border-radius: 20px; background: var(--homey-color-mono-400, #888); cursor: pointer; vertical-align: middle; }
   input[role="switch"]::before { content: ""; display: block; width: 20px; height: 20px; margin: 2px; border-radius: 50%; background: #fff; }
   input[role="switch"]:checked { background: var(--homey-color-blue, #0082fa); }
@@ -87,7 +88,7 @@
     get('fields').disabled = true;
     status.textContent = '';
     try { await action(); }
-    catch (error) { status.textContent = error.message; }
+    catch (error) { status.textContent = error.message; status.scrollIntoView({ block: 'nearest' }); }
     finally { get('fields').disabled = false; busy = false; }
   }
   const selected = () => speaker.value === '' ? null : choices[Number(speaker.value)];

@@ -49,6 +49,29 @@ test('replacing speech settles the previous finished wait instead of leaving its
   app.ClearFinishedTimer(device);
 });
 
+test('the release notification is attempted once across restarts and failures are logged without retry spam', async () => {
+  const App = loadApp();
+  for (const fail of [false, true]) {
+    const settings = new Map(), excerpts = [], errors = [];
+    const homey = {
+      settings: { get: key => settings.get(key), set: (key, value) => settings.set(key, value) },
+      __: key => `translated ${key}`,
+      notifications: { createNotification: async ({ excerpt }) => {
+        excerpts.push(excerpt);
+        if (fail) throw new Error('offline');
+      } }
+    };
+    for (let restart = 0; restart < 2; restart++) {
+      const app = new App();
+      app.homey = homey;
+      app.error = (...args) => errors.push(args);
+      await app._notifyReleaseFeatures();
+    }
+    assert.deepEqual(excerpts, ['translated speech.release_notice']);
+    assert.equal(errors.length, fail ? 1 : 0);
+  }
+});
+
 test('voice autocomplete resolves to an empty list when voices cannot be loaded', async () => {
   const App = loadApp({ getVoices: async () => { throw new Error('no credentials'); } });
   const app = new App();
@@ -279,7 +302,7 @@ test('speaker announcements resolve the selected speaker before synthesizing', a
   let autocomplete;
   let playbackError;
   const { registerAnnouncement, basicSpeech } = compile('../lib/speaker-announcements', {
-    './speaker-playback': class {
+    './speaker-playback': class extends require('../lib/speaker-playback') {
       async select({ id }) {
         calls.push(id);
         if (id === 'missing') throw new Error('Speaker unavailable');
@@ -298,7 +321,7 @@ test('speaker announcements resolve the selected speaker before synthesizing', a
     'node-fetch': async () => new (require('node-fetch').Response)(Buffer.from('test audio'), {
       headers: { 'content-type': 'audio/mpeg' }
     }),
-    './tts-server': { hostMp3: async (_, audio) => {
+    './tts-server': { hostedDuration: async () => 1500, hostMp3: async (_, audio) => {
       assert.equal(audio.toString(), 'test audio');
       return 'http://192.168.1.1:47333/tts/test.mp3';
     } }
@@ -314,7 +337,7 @@ test('speaker announcements resolve the selected speaker before synthesizing', a
   await assert.rejects(run({ text: 'x'.repeat(201), speaker: { id: 'cast:abc' } }), /200 characters/);
   const speaker = { id: 'cast:abc' };
   const args = { text: 'Hallo', speaker };
-  const media = { url: 'http://192.168.1.1:47333/tts/test.mp3', type: 'audio/mpeg' };
+  const media = { url: 'http://192.168.1.1:47333/tts/test.mp3', type: 'audio/mpeg', duration: 1500 };
   assert.equal(await run({ ...args, device: { getSetting: () => false } }), true);
   assert.deepEqual(calls, ['missing', 'cast:abc', 'cast:abc',
     ['cast:abc', media]]);
@@ -332,13 +355,14 @@ test('default speakers are used only when there is no explicit selection, and fa
   const played = [], triggered = [];
   let run, generated = 0, fail = false;
   const helpers = compile('../lib/speaker-announcements', {
-    './speaker-playback': class {
+    './speaker-playback': class extends require('../lib/speaker-playback') {
       async select(value) { return value; }
       async play(speaker, media) {
         played.push([speaker.id, media.url]);
         if (fail) throw new Error('one speaker unavailable');
       }
-    }
+    },
+    './tts-server': { hostedDuration: async () => 1500 }
   }).exports;
   const homey = { flow: { getActionCard: () => ({
     getArgument: () => ({ registerAutocompleteListener() {} }),
@@ -371,7 +395,7 @@ test('direct playback defaults grouping and resume on, preserves opt-outs and va
   const played = [];
   let run, generated = 0;
   const helpers = compile('../lib/speaker-announcements', {
-    './speaker-playback': class {
+    './speaker-playback': class extends require('../lib/speaker-playback') {
       async select(value) { return value; }
       async play(speaker, media, options) { played.push({ speaker, media, options }); }
     },
@@ -396,10 +420,16 @@ test('direct playback defaults grouping and resume on, preserves opt-outs and va
   await run({ device, text: 'Explicit opt-outs' });
   assert.equal(played[2].options.group, false);
   assert.equal(played[2].options.resume, false);
-  assert.equal(played[2].media.duration, undefined);
+  assert.equal(played[2].media.duration, 1500);
+  settings.announcement_group_sonos = true;
+  for (const id of ['all_no_tvs', 'all_no_tv_speakers']) {
+    await run({ device: { ...device, getStoreValue: () => ({ id }) }, text: 'Filtered default' });
+    assert.equal(played.at(-1).speaker.id, id);
+    assert.equal(played.at(-1).options.group, true);
+  }
   await assert.rejects(run({ device, text: 'Invalid', volume: 101 }), /volume/);
   await assert.rejects(run({ device, text: 'Invalid', volume: NaN }), /volume/);
-  assert.equal(generated, 3);
+  assert.equal(generated, 5);
 });
 
 test('All snapshots fresh discovery, attempts every target in bounded batches and reports failures after playback', async () => {
@@ -428,6 +458,45 @@ test('All snapshots fresh discovery, attempts every target in bounded batches an
   assert.deepEqual(attempted, ['0', '1', '2', '3', '4', '5', '6']);
   assert.equal(peak, 4);
   assert.equal(errors.length, 0, 'start failures are returned to the caller, not reported twice');
+});
+
+test('saved speaker groups retain their picker ID after edits and resolve only available members', async () => {
+  const { listGroups, writeGroup, deleteGroup } = require('../lib/speaker-groups');
+  const Playback = require('../lib/speaker-playback');
+  const values = new Map();
+  const settings = { get: key => values.get(key), set: (key, value) => values.set(key, value) };
+  const kitchen = { id: 'dlna:uuid:kitchen', name: 'Kitchen', protocol: 'dlna' };
+  const bedroom = { id: 'cast:bedroom', name: 'Bedroom', protocol: 'cast' };
+  const tv = { id: 'dlna:uuid:tv', name: 'TV', protocol: 'dlna' };
+  const group = await writeGroup(settings, { name: ' Downstairs ', members: [kitchen.id, bedroom.id, kitchen.id] }, [kitchen, bedroom]);
+  assert.equal(group.name, 'Downstairs');
+  assert.deepEqual(group.members.map(item => item.id), [kitchen.id, bedroom.id]);
+  await assert.rejects(writeGroup(settings, { name: 'Nested', members: [group.id] }, []), /individual speakers/);
+  await assert.rejects(writeGroup(settings, { name: 'DOWNSTAIRS', members: [tv.id] }, [tv]), /already uses/);
+
+  const playback = new Playback(() => {}, undefined, undefined, () => listGroups(settings));
+  playback.refresh = async () => [kitchen, tv];
+  const [picked] = await playback.autocomplete('downstairs');
+  assert.deepEqual(picked, { id: group.id, name: group.name, description: 'Saved speaker group' });
+  assert.equal(Playback.isSpeakerGroup(picked.id), true);
+  assert.deepEqual((await playback.select(picked)).targets, [kitchen]);
+
+  await assert.rejects(writeGroup(settings, { id: group.id, name: 'Bedrooms',
+    members: [{ id: bedroom.id, maxVolume: 101 }] }, []), /maximum volume/);
+  const latest = await writeGroup(settings, { id: group.id, name: 'Bedrooms',
+    members: [{ id: bedroom.id, volumeOffset: 15, maxVolume: 0 }] }, []);
+  assert.equal(latest.id, group.id);
+  assert.deepEqual(latest.members, [{ id: bedroom.id, name: bedroom.name, volumeOffset: 15, maxVolume: 0 }]);
+  await assert.rejects(playback.select(picked), /No speakers in "Bedrooms"/);
+  const renamedBedroom = { ...bedroom, id: 'cast:new-bedroom', aliases: [bedroom.id] };
+  playback.refresh = async () => [renamedBedroom, tv];
+  assert.deepEqual((await playback.select(picked)).targets, [{ ...renamedBedroom, volumeOffset: 15, maxVolume: 0 }]);
+  const attempted = [];
+  playback.playSingle = async target => attempted.push(target.id);
+  await playback.play(await playback.select(picked), { url: 'http://homey.invalid/tts/example.mp3' });
+  assert.deepEqual(attempted, [renamedBedroom.id]);
+  await deleteGroup(settings, group.id);
+  await assert.rejects(playback.select(picked), /no longer exists/);
 });
 
 test('speech setup saves complete settings per session and preserves an offline default during repair', async () => {
@@ -514,10 +583,11 @@ test('Cloud default output waits without emitting URL or Finished when the check
 test('Translate announcements use the default target, respect explicit overrides and emit translated tokens only when enabled', async () => {
   const events = [], requests = [], runs = {};
   const helpers = compile('../lib/speaker-announcements', {
-    './speaker-playback': class {
+    './speaker-playback': class extends require('../lib/speaker-playback') {
       async select(value) { return value; }
       async play(_, media) { events.push(['play', media.translation]); }
-    }
+    },
+    './tts-server': { hostedDuration: async () => 1500 }
   }).exports;
   const Driver = compile('../drivers/translate/driver', {
     homey: { Driver: class {} },
@@ -571,6 +641,7 @@ test('the speaker picker discovers Cast, Sonos, DLNA and UPnP transport services
       find({ type }, callback) {
         assert.equal(type, 'googlecast');
         callback({ addresses: ['192.168.1.2'], txt: { id: 'abc', fn: 'Kitchen' }, port: 8009 });
+        callback({ addresses: ['192.168.1.6'], txt: { id: 'video', fn: 'Den Display', ca: '5' }, port: 8009 });
         return { stop() {} };
       }
       destroy() { closed++; }
@@ -581,7 +652,7 @@ test('the speaker picker discovers Cast, Sonos, DLNA and UPnP transport services
       socket.send = query => {
         const responses = query.includes('ZonePlayer:1')
           ? [['rincon_test', '192.168.1.4', '192.168.1.4:1400']]
-          : query.includes('AVTransport:1') ? [['receiver', '192.168.1.5', '192.168.1.5']]
+          : query.includes('AVTransport:1') ? [['receiver', '192.168.1.5', '192.168.1.5'], ['tv', '192.168.1.7', '192.168.1.7']]
           : [['external', '192.168.1.3', 'example.com'], ['def', '192.168.1.3', '192.168.1.3'],
             ['rincon_test_mr', '192.168.1.4', '192.168.1.4:1400']];
         for (const [id, address, host] of responses) {
@@ -600,7 +671,7 @@ test('the speaker picker discovers Cast, Sonos, DLNA and UPnP transport services
       if (url === 'http://192.168.1.4:1400/desc') {
         return { ok: true, text: async () => `<root><device>
           <deviceType>urn:schemas-upnp-org:device:ZonePlayer:1</deviceType>
-          <manufacturer>Sonos, Inc.</manufacturer><friendlyName>Sonos product</friendlyName>
+          <manufacturer>Sonos, Inc.</manufacturer><friendlyName>Sonos product</friendlyName><modelName>Sonos Beam (Gen 2)</modelName>
           <roomName>Living Room</roomName><UDN>uuid:RINCON_TEST</UDN>
           <deviceList><device><serviceList><service>
           <serviceType>urn:schemas-upnp-org:service:AVTransport:1</serviceType>
@@ -609,9 +680,15 @@ test('the speaker picker discovers Cast, Sonos, DLNA and UPnP transport services
       }
       if (url === 'http://192.168.1.5/desc') {
         return { ok: true, text: async () => `<root><device><friendlyName>UPnP Hub</friendlyName>
-          <deviceList><device><UDN>uuid:receiver</UDN><friendlyName>Office Receiver</friendlyName>
+          <deviceList><device><UDN>uuid:receiver</UDN><friendlyName>Office Receiver</friendlyName><manufacturer>Samsung</manufacturer>
           <serviceList><service><serviceType>urn:schemas-upnp-org:service:AVTransport:2</serviceType>
           <controlURL>/av</controlURL></service></serviceList></device></deviceList></device></root>` };
+      }
+      if (url === 'http://192.168.1.7/desc') {
+        return { ok: true, text: async () => `<root><device><friendlyName>Living Room Display</friendlyName>
+          <modelName>Samsung DTV DMR</modelName><serviceList><service>
+          <serviceType>urn:schemas-upnp-org:service:AVTransport:1</serviceType>
+          <controlURL>/av</controlURL></service></serviceList></device></root>` };
       }
       assert.equal(url, 'http://192.168.1.3/desc');
       return { ok: true, text: async () => `<root><device><friendlyName>Den</friendlyName><serviceList><service>
@@ -622,25 +699,86 @@ test('the speaker picker discovers Cast, Sonos, DLNA and UPnP transport services
   const sonosActions = [];
   const playback = new Playback(() => {});
   const picker = playback.autocomplete('');
-  const filtered = playback.autocomplete('cast');
+  const filtered = playback.autocomplete('google cast');
   t.mock.timers.tick(2500);
   assert.deepEqual(await picker, [
     { id: 'all', name: 'All speakers', description: 'All currently discoverable speakers' },
+    { id: 'all_no_tvs', name: 'All speakers (no TVs)', description: 'Skip recognized TVs and video Cast receivers' },
+    { id: 'all_no_tv_speakers', name: 'All speakers (no TVs or TV speakers)', description: 'Also skip recognized soundbars and home theater speakers' },
     { id: 'dlna:uuid:def', name: 'Den', description: 'UPnP / DLNA' },
+    { id: 'cast:video', name: 'Den Display', description: 'Google Cast' },
     { id: 'cast:abc', name: 'Kitchen', description: 'Google Cast' },
     { id: 'dlna:uuid:rincon_test', name: 'Living Room', description: 'Sonos' },
+    { id: 'dlna:uuid:tv', name: 'Living Room Display', description: 'UPnP / DLNA' },
     { id: 'dlna:uuid:receiver', name: 'Office Receiver', description: 'UPnP / DLNA' }
   ]);
-  assert.deepEqual(await filtered, [{ id: 'cast:abc', name: 'Kitchen', description: 'Google Cast' }]);
+  assert.deepEqual((await filtered).map(item => item.id), ['cast:video', 'cast:abc']);
   assert.equal((await playback.select({ id: 'dlna:uuid:def' })).endpoint, 'http://192.168.1.3/control');
   assert.equal((await playback.select({ id: 'dlna:uuid:receiver' })).endpoint, 'http://192.168.1.5/av');
+  const tv = await playback.select({ id: 'dlna:uuid:tv' });
+  assert.equal(tv.kind, 'tv');
   const sonos = await playback.select({ id: 'dlna:uuid:rincon_test_mr' });
   assert.equal(sonos.id, 'dlna:uuid:rincon_test');
+  assert.equal(sonos.kind, 'tvSpeaker');
+  assert.equal(closed, 2);
+  const attempts = [];
+  playback.playSingle = async target => attempts.push(target.id);
+  for (const [id, expected] of [
+    ['all_no_tvs', ['cast:abc', 'dlna:uuid:def', sonos.id, 'dlna:uuid:receiver']],
+    ['all_no_tv_speakers', ['cast:abc', 'dlna:uuid:def', 'dlna:uuid:receiver']]
+  ]) {
+    const pending = playback.select({ id });
+    t.mock.timers.tick(2500);
+    // Verify the exact targets dispatched; the Sonos topology guard has its own integration test.
+    const selection = await pending;
+    await playback.play(selection, {});
+    assert.deepEqual(attempts.splice(0).sort(), expected.sort());
+  }
+  playback.refresh = async () => [tv, sonos];
+  await assert.rejects(playback.select({ id: 'all_no_tv_speakers' }), /No speakers match/);
+  delete playback.playSingle;
   await playback.play(sonos, { url: 'http://192.168.1.1:47333/tts/test.mp3', type: 'audio/mpeg' });
   assert.deepEqual(sonosActions, [
     `"${sonos.service}#SetAVTransportURI"`, `"${sonos.service}#Play"`
   ]);
-  assert.equal(closed, 2);
+});
+
+test('Cast TV exclusions distinguish video receivers, audio speakers and soundbars', async t => {
+  const { EventEmitter } = require('node:events');
+  t.mock.timers.enable({ apis: ['setTimeout'] });
+  const receivers = [
+    { id: 'stick', fn: 'Living room', md: 'Chromecast Ultra' },
+    { id: 'hub', fn: 'Office display', md: 'Google Nest Hub', ca: '13' },
+    { id: 'mini', fn: 'Bedroom', md: 'Google Nest Mini', ca: '12' },
+    { id: 'audio', fn: 'Kitchen', md: 'Chromecast Audio' },
+    { id: 'bar', fn: 'Den', md: 'Bose Smart Ultra Soundbar', ca: '12' }
+  ];
+  const Playback = compile('../lib/speaker-playback', {
+    'bonjour-service': { Bonjour: class {
+      find({ type }, callback) {
+        assert.equal(type, 'googlecast');
+        receivers.forEach((txt, i) => callback({ txt, addresses: [`192.168.1.${i + 2}`], port: 8009 }));
+        return { stop() {} };
+      }
+      destroy() {}
+    } },
+    dgram: { createSocket() {
+      return Object.assign(new EventEmitter(), { send() {}, close() {} });
+    } }
+  }).exports;
+  const playback = new Playback(() => {});
+  const dispatched = [];
+  playback.playSingle = async target => dispatched.push(target.id);
+  for (const [group, expected] of [
+    ['all', ['stick', 'hub', 'mini', 'audio', 'bar']],
+    ['all_no_tvs', ['mini', 'audio', 'bar']],
+    ['all_no_tv_speakers', ['mini', 'audio']]
+  ]) {
+    const pending = playback.select({ id: group });
+    t.mock.timers.tick(2500);
+    await playback.play(await pending, { url: 'http://homey.invalid/tts/test.mp3' });
+    assert.deepEqual(dispatched.splice(0), expected.map(id => `cast:${id}`));
+  }
 });
 
 test('confirmed Sonos stereo pairs are one target and keep both saved speaker IDs', async t => {
@@ -650,14 +788,15 @@ test('confirmed Sonos stereo pairs are one target and keep both saved speaker ID
   const zone = 'urn:schemas-upnp-org:service:ZoneGroupTopology:1';
   const map = `${ids[0]}:LF,LF;${ids[1]}:RF,RF`;
   // The stereo primary need not be the left speaker or the playback-group coordinator.
-  const state = `<ZoneGroupState><ZoneGroups><ZoneGroup Coordinator="${ids[2]}">
+  let state = `<ZoneGroupState><ZoneGroups><ZoneGroup Coordinator="${ids[2]}">
     <ZoneGroupMember UUID="${ids[0]}" Invisible="1" ChannelMapSet="${map}"/>
     <ZoneGroupMember UUID="${ids[1]}" ChannelMapSet="${map}"/>
     <ZoneGroupMember UUID="${ids[2]}"/>
   </ZoneGroup></ZoneGroups></ZoneGroupState>`;
-  const escaped = state.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   const logs = [];
   const playUrls = [];
+  let includePrimary = true;
+  let includeOther = true;
   const Playback = compile('../lib/speaker-playback', {
     'bonjour-service': { Bonjour: class {
       find() { return { stop() {} }; }
@@ -669,6 +808,8 @@ test('confirmed Sonos stereo pairs are one target and keep both saved speaker ID
       socket.send = query => {
         if (!query.includes('ZonePlayer:1')) return;
         [...ids, `${ids[0]}_MR`].forEach((id, i) => {
+          if (!includePrimary && id === ids[1]) return;
+          if (!includeOther && id === ids[2]) return;
           const address = `192.168.1.${i === 4 ? 10 : 10 + i}`;
           socket.emit('message', Buffer.from(`HTTP/1.1 200 OK\r\nUSN: uuid:${id}::renderer\r\nLOCATION: http://${address}:1400/desc\r\n`), { address });
         });
@@ -685,6 +826,7 @@ test('confirmed Sonos stereo pairs are one target and keep both saved speaker ID
         assert.equal(options.headers.SOAPAction, `"${zone}#GetZoneGroupState"`);
         assert.equal(options.redirect, 'error');
         if (i === 3) return { ok: false, status: 503 };
+        const escaped = state.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
         return { ok: true, text: async () => `<s:Envelope><s:Body><u:GetZoneGroupStateResponse>
           <ZoneGroupState>${escaped}</ZoneGroupState></u:GetZoneGroupStateResponse></s:Body></s:Envelope>` };
       }
@@ -711,6 +853,29 @@ test('confirmed Sonos stereo pairs are one target and keep both saved speaker ID
   assert.equal(await playback.select({ id: 'dlna:uuid:rincon_left_mr' }), primary);
   await playback.play(primary, { url: 'http://192.168.1.1:47333/tts/test.mp3', type: 'audio/mpeg' });
   assert.deepEqual(playUrls, Array(2).fill('http://192.168.1.11:1400/av'));
+  includePrimary = false;
+  const refreshed = playback.refresh();
+  t.mock.timers.tick(2500);
+  const available = await refreshed;
+  assert.equal(available.some(speaker => speaker.id === 'dlna:uuid:rincon_left'), false,
+    'a hidden bonded speaker cannot become an independent target when the visible partner is unavailable');
+  includePrimary = true;
+  state = `<ZoneGroupState><ZoneGroups><ZoneGroup Coordinator="${ids[2]}">
+    <ZoneGroupMember UUID="${ids[1]}" ChannelMapSet="${map}"><Satellite UUID="${ids[0]}"/></ZoneGroupMember>
+    <ZoneGroupMember UUID="${ids[2]}"/>
+  </ZoneGroup></ZoneGroups></ZoneGroupState>`;
+  const nested = playback.refresh();
+  t.mock.timers.tick(2500);
+  const nestedSpeakers = await nested;
+  assert.equal(nestedSpeakers.some(speaker => speaker.id === 'dlna:uuid:rincon_left'), false);
+  const nestedPrimary = await playback.select({ id: 'dlna:uuid:rincon_right' });
+  assert.equal(await playback.select({ id: 'dlna:uuid:rincon_left' }), nestedPrimary);
+  includeOther = false;
+  state = state.replace(`<ZoneGroupMember UUID="${ids[2]}"/>`,
+    `<ZoneGroupMember UUID="${ids[2]}" Location="http://192.168.1.12:1400/xml/device_description.xml"/>`);
+  const all = playback.select({ id: 'all' });
+  t.mock.timers.tick(2500);
+  assert.ok((await all).targets.some(speaker => speaker.id === 'dlna:uuid:rincon_other'));
 });
 
 test('speaker playback loads Cast audio and sends DLNA commands in order', async () => {
@@ -1339,6 +1504,87 @@ test('Maps image settings default to enabled and save an explicit opt-out', asyn
     await fields.save.click();
     assert.deepEqual(writes, [['MapsRouteImagesEnabled', value === false], ['MapsRouteTrafficEnabled', value === false]]);
   }
+});
+
+test('Groups settings creates a named group and keeps an undiscovered member selected when editing', async () => {
+  const vm = require('node:vm');
+  class Element {
+    children = [];
+    attrs = {};
+    events = {};
+    value = '';
+    get valueAsNumber() { return Number(this.value); }
+    set textContent(value) { this.text = value; this.children = []; }
+    setAttribute(key, value) { this.attrs[key] = value; }
+    getAttribute(key) { return this.attrs[key]; }
+    addEventListener(event, listener) { this.events[event] = listener; }
+    append(...children) { this.children.push(...children); }
+    add(option) { this.append(option); }
+    focus() {}
+  }
+  const elements = new Map();
+  const el = id => {
+    if (!elements.has(id)) elements.set(id, new Element());
+    return elements.get(id);
+  };
+  el('generalTab').setAttribute('aria-controls', 'generalPanel');
+  el('groupsTab').setAttribute('aria-controls', 'groupsPanel');
+  const context = vm.createContext({
+    document: { getElementById: el, querySelectorAll: () => [], createElement: () => new Element() },
+    Option: class { constructor(text, value) { Object.assign(this, { text, value }); } }
+  });
+  const speaker = { id: 'cast:bedroom', name: 'Bedroom' };
+  const requests = [];
+  let groups = [];
+  let online = true;
+  const settled = () => new Promise(resolve => setImmediate(resolve));
+  vm.runInContext(fs.readFileSync(require.resolve('../settings/speaker-groups.js'), 'utf8'), context);
+  context.initSpeakerGroups({ __: key => key }, async (bridge, method, url, body) => {
+    assert.equal(bridge, 'api');
+    requests.push([method, url]);
+    if (url === '/api-ready') return { ready: true };
+    if (url === '/announcement-speakers') return online ? [speaker] : [];
+    if (method === 'GET') return groups;
+    assert.equal(url, '/speaker-groups');
+    assert.equal(body.name, 'Upstairs');
+    const [member] = body.members;
+    assert.equal(member.id, speaker.id);
+    assert.equal(member.volumeOffset, 15);
+    assert.equal(member.maxVolume, 35);
+    const saved = { id: 'group:fixture', name: body.name, members: [{ ...speaker, ...member }] };
+    groups = [saved];
+    return saved;
+  });
+  assert.deepEqual(requests, [], 'opening General does not scan for speakers');
+  el('groupsTab').events.click();
+  await settled();
+  assert.equal(el('groupsPanel').hidden, false);
+  assert.equal(el('generalActions').hidden, true);
+  el('speakerGroupAdd').events.click();
+  await settled();
+  el('speakerGroupName').value = 'Upstairs';
+  el('speakerGroupName').events.input();
+  const row = () => el('speakerGroupMembers').children[0];
+  const checkbox = () => row().children[0].children[0];
+  checkbox().checked = true;
+  checkbox().events.change();
+  for (const [i, value] of [15, 35].entries()) {
+    const [heading, input] = row().children[1].children[i].children;
+    assert.equal(input.type, 'range');
+    input.value = String(value);
+    input.events.input();
+    assert.equal(heading.children[1].text, i === 0 ? '+15' : '35%');
+  }
+  assert.equal(el('speakerGroupSave').disabled, false);
+  el('speakerGroupSave').events.click();
+  await settled();
+  assert.equal(el('speakerGroupSelect').value, 'group:fixture');
+  online = false;
+  el('speakerGroupRefresh').events.click();
+  await settled();
+  assert.equal(checkbox().checked, true);
+  assert.equal(row().children[1].children[1].children[1].value, '35');
+  assert.equal(el('speakerGroupSave').disabled, true, 'a scan does not change saved membership');
 });
 
 test('Maps images default to enabled, respect opt-outs and have no refresh quota', async () => {

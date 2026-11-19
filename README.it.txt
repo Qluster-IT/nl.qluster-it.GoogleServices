@@ -2,6 +2,7 @@ Usa Google Maps, la sintesi vocale, Google Traduttore e YouTube nei tuoi Flow di
 
 FUNZIONI
 
+* Crea gruppi di altoparlanti nelle impostazioni e selezionali nei Flow o come uscita predefinita. Imposta una variazione di volume e un volume massimo per ogni altoparlante. Scegli tutti gli altoparlanti, tutti tranne i TV oppure tutti tranne i TV e gli altoparlanti per TV.
 * Google Maps: salva un tragitto con i suggerimenti per gli indirizzi oppure inserisci indirizzi o coordinate. Consulta durata, distanza, orario di arrivo previsto e ultimo aggiornamento. Aggiorna il tragitto con un pulsante o un Flow e apri la mappa quando serve. Advanced Flow può calcolare un percorso singolo senza modificare il tragitto salvato.
 * Sintesi vocale: converti il testo in un URL audio per un lettore compatibile.
 * Google Cloud Text-to-Speech: scegli una voce e regola velocità di lettura, tono e volume. Usa il codice SSML per aggiungere pause o controllare la pronuncia.

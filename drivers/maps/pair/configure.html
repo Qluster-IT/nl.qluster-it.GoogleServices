@@ -2,6 +2,7 @@
   #routeForm { padding-bottom: calc(100px + env(safe-area-inset-bottom, 0px)); }
   .setup-actions { position: fixed; bottom: 0; left: 0; right: 0; z-index: 10; padding: 12px 20px calc(12px + env(safe-area-inset-bottom, 0px)); background: var(--homey-background-color, #fff); border-top: 1px solid var(--homey-line-color, #ddd); }
   .setup-actions button { width: 100%; margin: 0; }
+  form input, form select, form [role="status"], form [role="alert"] { scroll-margin-bottom: calc(100px + env(safe-area-inset-bottom, 0px)); }
   .route-field { margin-bottom: 20px; }
   .route-field label { display: block; margin-bottom: 8px; }
   .route-field input[type="text"], .route-field select { width: 100%; box-sizing: border-box; }

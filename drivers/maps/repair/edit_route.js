@@ -103,6 +103,7 @@
       await Homey.done();
     } catch (error) {
       errorLabel.textContent = error.message;
+      errorLabel.scrollIntoView({ block: 'nearest' });
       fields.disabled = false;
     }
   });

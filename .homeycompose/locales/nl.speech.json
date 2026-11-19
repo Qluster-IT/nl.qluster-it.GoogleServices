@@ -1,4 +1,5 @@
 {
+  "release_notice": "Nieuw: Maps-routes, stemkeuze en spraak door het hele huis met Sonos-groepen, hervatten en volume.",
   "title": "Spraakstem instellen",
   "voice": "Stem",
   "app_default": "Gebruik de standaardstem van de app",
@@ -18,6 +19,11 @@
   "speaker_right": "Rechts",
   "speaker_all": "Alle luidsprekers",
   "speaker_all_help": "Alle momenteel vindbare luidsprekers",
+  "speaker_saved_group": "Opgeslagen luidsprekergroep",
+  "speaker_all_no_tvs": "Alle luidsprekers (geen tv’s)",
+  "speaker_all_no_tvs_help": "Sla herkenbare tv’s en Cast-ontvangers met video over",
+  "speaker_all_no_tv_speakers": "Alle luidsprekers (geen tv’s of tv-luidsprekers)",
+  "speaker_all_no_tv_speakers_help": "Sla ook herkenbare soundbars en thuisbioscoopluidsprekers over",
   "settings_title": "Spraak- en luidsprekerinstellingen",
   "default_speaker": "Standaardluidspreker",
   "no_speaker": "Geen directe weergave (gebruik Flow-kaarten)",

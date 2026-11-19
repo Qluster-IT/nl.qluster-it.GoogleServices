@@ -2,6 +2,7 @@ Nutze Google Maps, Text-to-Speech, Google Übersetzer und YouTube in deinen Home
 
 FUNKTIONEN
 
+* Erstelle Lautsprechergruppen in den App-Einstellungen und wähle sie in Flows oder als Standardausgabe. Lege für jeden Lautsprecher eine Lautstärkeanpassung und eine maximale Lautstärke fest. Wähle alle Lautsprecher, alle ohne Fernseher oder alle ohne Fernseher und TV-Lautsprecher.
 * Google Maps: Speichere eine Fahrt mit Adressvorschlägen oder gib Adressen oder Koordinaten selbst ein. Sieh Fahrzeit, Entfernung, voraussichtliche Ankunft und den Zeitpunkt der letzten Aktualisierung. Aktualisiere per Taste oder Flow und öffne die Routenkarte bei Bedarf. Advanced Flow kann eine einmalige Route berechnen, ohne die gespeicherte Fahrt zu ändern.
 * Text-to-Speech: Wandle Text in eine Audio-URL für einen kompatiblen Player um.
 * Google Cloud Text-to-Speech: Wähle eine Stimme und passe Sprechtempo, Tonhöhe und Lautstärke an. Nutze SSML-Code, um Pausen einzufügen oder die Aussprache zu steuern.

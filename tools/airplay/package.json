@@ -1,0 +1,10 @@
+{
+  "name": "google-services-airplay-lab",
+  "private": true,
+  "scripts": {
+    "smoke": "node smoke.mjs"
+  },
+  "dependencies": {
+    "@sonn-audio/node-airplay": "0.1.3"
+  }
+}

@@ -2,6 +2,7 @@ Korzystaj z Google Maps, syntezy mowy, Tłumacza Google i YouTube w swoich Flow 
 
 FUNKCJE
 
+* Twórz grupy głośników w ustawieniach aplikacji i wybieraj je w Flow lub jako wyjście domyślne. Ustaw korektę głośności i maksymalną głośność dla każdego głośnika. Wybierz wszystkie głośniki, wszystkie bez telewizorów albo wszystkie bez telewizorów i głośników TV.
 * Google Maps: Zapisz trasę, korzystając z podpowiedzi adresów, lub wpisz adresy albo współrzędne. Sprawdzaj czas podróży, odległość, przewidywaną godzinę przyjazdu i czas ostatniego odświeżenia. Odświeżaj przyciskiem lub przez Flow i otwieraj mapę trasy na żądanie. Advanced Flow oblicza też jednorazową trasę bez zmiany zapisanej podróży.
 * Synteza mowy: Zamień tekst na adres URL dźwięku dla zgodnego odtwarzacza.
 * Google Cloud Text-to-Speech: Wybierz głos i dostosuj tempo mowy, wysokość głosu i głośność. Użyj znaczników SSML, aby dodawać pauzy lub sterować wymową.

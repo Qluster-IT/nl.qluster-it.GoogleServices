@@ -106,6 +106,7 @@
       await Homey.showView('list_devices');
     } catch (error) {
       errorLabel.textContent = error.message;
+      errorLabel.scrollIntoView({ block: 'nearest' });
       submitting = false;
       button.disabled = false;
     }

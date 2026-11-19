@@ -50,6 +50,7 @@ async function onHomeyReady(Homey) {
     }
 
     Homey.ready();
+    if (document.getElementById('settingsTabs')) initSpeakerGroups(Homey, call);
     status.textContent = 'Loading settings...';
     for (const field of Object.values(fields)) field.disabled = true;
     try {

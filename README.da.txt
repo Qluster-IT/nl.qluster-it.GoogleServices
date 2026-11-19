@@ -2,6 +2,7 @@ Brug Google Maps, tekst-til-tale, Google Translate og YouTube i dine Homey Flows
 
 FUNKTIONER
 
+* Opret højttalergrupper i appindstillingerne, og vælg dem i Flows eller som standardudgang. Indstil en lydstyrkejustering og en maksimal lydstyrke for hver højttaler. Vælg alle højttalere, alle uden tv eller alle uden tv og tv-højttalere.
 * Google Maps: Gem en tur med adresseforslag, eller indtast selv adresser eller koordinater. Se rejsetid, afstand, forventet ankomst og tidspunktet for seneste opdatering. Opdater med en knap eller et Flow, og se rutekortet efter behov. Advanced Flow kan beregne en enkelt rute uden at ændre den gemte tur.
 * Tekst-til-tale: Omdan tekst til en lyd-URL til en kompatibel afspiller.
 * Google Cloud Text-to-Speech: Vælg en stemme, og juster talehastighed, tonehøjde og lydstyrke. Brug SSML-kode til at tilføje pauser eller styre udtalen.

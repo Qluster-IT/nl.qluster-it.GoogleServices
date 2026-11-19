@@ -1,4 +1,5 @@
 {
+  "release_notice": "New: Maps routes, voice selection and whole-house announcements with Sonos grouping, resume and volume.",
   "title": "Configure speech voice",
   "voice": "Voice",
   "app_default": "Use the app's default voice",
@@ -18,6 +19,11 @@
   "speaker_right": "Right",
   "speaker_all": "All speakers",
   "speaker_all_help": "All currently discoverable speakers",
+  "speaker_saved_group": "Saved speaker group",
+  "speaker_all_no_tvs": "All speakers (no TVs)",
+  "speaker_all_no_tvs_help": "Skip recognized TVs and video Cast receivers",
+  "speaker_all_no_tv_speakers": "All speakers (no TVs or TV speakers)",
+  "speaker_all_no_tv_speakers_help": "Also skip recognized soundbars and home theater speakers",
   "settings_title": "Speech and speaker settings",
   "default_speaker": "Default speaker",
   "no_speaker": "No direct playback (use Flow cards)",

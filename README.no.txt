@@ -2,6 +2,7 @@ Bruk Google Maps, tekst til tale, Google Oversetter og YouTube i Homey Flow.
 
 FUNKSJONER
 
+* Opprett høyttalergrupper i appinnstillingene, og velg dem i Flows eller som standardutgang. Angi en volumjustering og et maksimalt volum for hver høyttaler. Velg alle høyttalere, alle uten TV-er eller alle uten TV-er og TV-høyttalere.
 * Google Maps: Lagre en tur med adresseforslag, eller skriv inn adresser eller koordinater selv. Se reisetid, avstand, forventet ankomst og når ruten sist ble oppdatert. Oppdater med en knapp eller en Flow, og åpne rutekartet ved behov. Advanced Flow kan beregne en engangsrute uten å endre den lagrede turen.
 * Tekst til tale: Gjør tekst om til en lyd-URL for en kompatibel avspiller.
 * Google Cloud Text-to-Speech: Velg stemme og juster talehastighet, tonehøyde og volum. Bruk SSML-kode til å legge inn pauser eller styre uttalen.

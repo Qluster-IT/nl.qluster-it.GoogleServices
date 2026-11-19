@@ -2,6 +2,7 @@
   #translation-form { padding-bottom: calc(100px + env(safe-area-inset-bottom, 0px)); }
   .setup-actions { position: fixed; bottom: 0; left: 0; right: 0; z-index: 10; padding: 12px 20px calc(12px + env(safe-area-inset-bottom, 0px)); background: var(--homey-background-color, #fff); border-top: 1px solid var(--homey-line-color, #ddd); }
   .setup-actions button { width: 100%; margin: 0; }
+  form input, form select, form [role="status"], form [role="alert"] { scroll-margin-bottom: calc(100px + env(safe-area-inset-bottom, 0px)); }
 </style>
 <form class="homey-form" id="translation-form">
   <fieldset id="translation-fields" disabled style="border:0;margin:0;padding:0">
@@ -34,7 +35,7 @@
   const preferences = new Map((config.voices || []).map(({ target, voice }) => [target, voice]));
   let catalog = [];
   try { catalog = await Homey.emit('list_voices'); }
-  catch (error) { status.textContent = error.message; }
+  catch (error) { status.textContent = error.message; status.scrollIntoView({ block: 'nearest' }); }
   const target = get('target');
   const select = get('voice');
   const languages = new Map((config.languages || []).map(({ id, name }) => [id.toLowerCase(), name]));

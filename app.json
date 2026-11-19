@@ -211,6 +211,26 @@
     "getVoices": {
       "method": "get",
       "path": "/getVoices"
+    },
+    "getApiReady": {
+      "method": "get",
+      "path": "/api-ready"
+    },
+    "getSpeakerGroups": {
+      "method": "get",
+      "path": "/speaker-groups"
+    },
+    "getAnnouncementSpeakers": {
+      "method": "get",
+      "path": "/announcement-speakers"
+    },
+    "saveSpeakerGroup": {
+      "method": "post",
+      "path": "/speaker-groups"
+    },
+    "removeSpeakerGroup": {
+      "method": "delete",
+      "path": "/speaker-groups/:id"
     }
   },
   "flow": {
@@ -2747,8 +2767,8 @@
             "name": "speaker",
             "type": "autocomplete",
             "placeholder": {
-              "en": "Choose a local speaker",
-              "nl": "Kies een lokale luidspreker"
+              "en": "Choose a speaker",
+              "nl": "Kies een luidspreker"
             },
             "required": false
           },
@@ -4270,8 +4290,8 @@
             "name": "speaker",
             "type": "autocomplete",
             "placeholder": {
-              "en": "Choose a local speaker",
-              "nl": "Kies een lokale luidspreker"
+              "en": "Choose a speaker",
+              "nl": "Kies een luidspreker"
             },
             "required": false
           },
@@ -4823,8 +4843,8 @@
             "name": "speaker",
             "type": "autocomplete",
             "placeholder": {
-              "en": "Choose a local speaker",
-              "nl": "Kies een lokale luidspreker"
+              "en": "Choose a speaker",
+              "nl": "Kies een luidspreker"
             },
             "required": false
           },

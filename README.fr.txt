@@ -2,6 +2,7 @@ Utilisez Google Maps, la synthèse vocale, Google Traduction et YouTube dans vos
 
 FONCTIONNALITÉS
 
+* Créez des groupes d’enceintes dans les paramètres et sélectionnez-les dans les Flows ou comme sortie par défaut. Réglez l’écart de volume et le volume maximal de chaque enceinte. Choisissez toutes les enceintes, toutes sauf les téléviseurs, ou toutes sauf les téléviseurs et les enceintes TV.
 * Google Maps : enregistrez un trajet avec des suggestions d’adresses ou saisissez des adresses ou des coordonnées. Consultez la durée, la distance, l’heure d’arrivée estimée et la dernière actualisation. Actualisez le trajet avec un bouton ou un Flow et ouvrez sa carte à la demande. Advanced Flow permet de calculer un trajet ponctuel sans modifier celui qui est enregistré.
 * Synthèse vocale : convertissez du texte en une URL audio pour un lecteur compatible.
 * Google Cloud Text-to-Speech : choisissez une voix et réglez le débit, la hauteur et le volume. Utilisez le balisage SSML pour ajouter des pauses ou régler la prononciation.

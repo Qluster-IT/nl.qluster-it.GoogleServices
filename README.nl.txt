@@ -2,6 +2,7 @@ Gebruik Google Maps, Tekst-naar-spraak, Google Translate en YouTube in je Homey 
 
 FUNCTIES
 
+* Maak luidsprekergroepen in de appinstellingen en kies ze in Flows of als standaarduitvoer. Stel per luidspreker een volumeaanpassing en maximumvolume in. Kies Alle luidsprekers, Alle luidsprekers (geen tv’s) of Alle luidsprekers (geen tv’s of tv-luidsprekers).
 * Google Maps: Sla een rit op met adressuggesties of voer zelf adressen of coördinaten in. Bekijk reistijd, afstand, verwachte aankomst en wanneer de route voor het laatst is ververst. Ververs met een knop of Flow en bekijk de routekaart op aanvraag. Met Advanced Flow bereken je ook een eenmalige route zonder de opgeslagen rit te wijzigen.
 * Tekst-naar-spraak: Zet tekst om in een audio-URL voor een geschikte speler.
 * Google Cloud Tekst-naar-spraak: Kies een stem en pas spreeksnelheid, toonhoogte en volume aan. Gebruik SSML-code om pauzes toe te voegen of de uitspraak aan te passen.

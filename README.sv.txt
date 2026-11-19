@@ -2,6 +2,7 @@ Använd Google Maps, text-till-tal, Google Översätt och YouTube i dina Homey F
 
 FUNKTIONER
 
+* Skapa högtalargrupper i appinställningarna och välj dem i Flows eller som standardutgång. Ställ in en volymjustering och en högsta volym för varje högtalare. Välj alla högtalare, alla utan tv-apparater eller alla utan tv-apparater och tv-högtalare.
 * Google Maps: Spara en resa med adressförslag eller skriv in adresser eller koordinater själv. Se restid, avstånd, beräknad ankomst och senaste uppdatering. Uppdatera med en knapp eller ett Flow och öppna ruttkartan vid behov. Advanced Flow kan beräkna en engångsrutt utan att ändra den sparade resan.
 * Text-till-tal: Omvandla text till en ljud-URL för en kompatibel spelare.
 * Google Cloud Text-to-Speech: Välj röst och justera talhastighet, tonhöjd och volym. Använd SSML-kod för att lägga in pauser eller styra uttalet.

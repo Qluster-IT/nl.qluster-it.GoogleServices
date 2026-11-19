@@ -25,6 +25,7 @@ class GoogleServicesApp extends Homey.App {
   };
 
   async onInit() {
+    this.apiReady = false;
     
     let loadingErrors = [];
     try {
@@ -268,6 +269,9 @@ class GoogleServicesApp extends Homey.App {
       const finished = this.homey.flow.getDeviceTriggerCard('finished_trigger');
       this.Triggers.finished_trigger.Card = finished;
       finished.registerRunListener(async () => true);
+      this.apiReady = true;
+      this.homey.api?.realtime('api-ready', { ready: true }).catch(error => this.error('Signaling API readiness failed', error));
+      await this._notifyReleaseFeatures();
     
     } catch (error) {
       let err = error;
@@ -283,6 +287,17 @@ class GoogleServicesApp extends Homey.App {
     
   }
   
+  async _notifyReleaseFeatures() {
+    const key = 'servicesFeaturesNotificationAttempted';
+    if (this.homey.settings.get(key)) return;
+    try {
+      this.homey.settings.set(key, true);
+      await this.homey.notifications.createNotification({ excerpt: this.homey.__('speech.release_notice') });
+    } catch (error) {
+      this.error('Unable to deliver release notification', error);
+    }
+  }
+
   async sayCloudOnSpeaker(args, wait = false) {
     const { selectSpeaker, playAnnouncement } = require('./lib/speaker-announcements');
     const speaker = await selectSpeaker(this.homey, args.device);

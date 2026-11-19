@@ -2,6 +2,7 @@ Usa Google Maps, texto a voz, Google Translate y YouTube en tus Flows de Homey.
 
 FUNCIONES
 
+* Crea grupos de altavoces en los ajustes de la aplicación y selecciónalos en tus Flows o como salida predeterminada. Ajusta el volumen y fija un máximo para cada altavoz. Elige todos los altavoces, todos excepto los televisores o todos excepto los televisores y los altavoces de TV.
 * Google Maps: Guarda un trayecto con sugerencias de direcciones o introduce direcciones o coordenadas. Consulta la duración, la distancia, la hora estimada de llegada y la última actualización. Actualiza con un botón o un Flow y abre el mapa de la ruta cuando lo necesites. Advanced Flow permite calcular una ruta puntual sin modificar el trayecto guardado.
 * Texto a voz: Convierte texto en una URL de audio para un reproductor compatible.
 * Google Cloud Text-to-Speech: Elige una voz y ajusta la velocidad de locución, el tono y el volumen. Usa código SSML para añadir pausas o controlar la pronunciación.
