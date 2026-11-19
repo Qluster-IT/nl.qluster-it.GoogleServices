@@ -151,12 +151,15 @@ BLL coding is optional in supported text fields. When Better Logic Library is un
 
 ## Changelog
 
-### 2.2.1
+### 2.2.2
 
 - Create reusable speaker groups for Flows or as the default output, with volume adjustments and limits for each speaker.
 - For Google Cast, Sonos, and compatible UPnP/DLNA devices, choose All speakers, All speakers (no TVs), or All speakers (no TVs or TV speakers).
 - Sonos announcements play in order and restore original groups and playback, including TV and line-in where supported.
 - Announcement cards can continue right away or wait until the speakers have finished.
+
+### 2.2.1
+
 - Maps has clearer reading names and is now included in the app images. Flow cards identify text fields that support Better Logic Library coding.
 
 ### 2.2.0
