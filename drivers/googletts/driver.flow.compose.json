@@ -66,9 +66,9 @@
       "id": "announce_googletts",
       "title": { "en": "Announce text on a speaker", "nl": "Spreek tekst uit op een luidspreker" },
       "titleFormatted": { "en": "Announce [[text]] on [[speaker]]", "nl": "Spreek [[text]] uit op [[speaker]]" },
-      "hint": { "en": "Plays up to 200 characters on a Google Cast, Sonos, or compatible UPnP/DLNA speaker on your local network.", "nl": "Speelt maximaal 200 tekens af op een Google Cast-, Sonos- of compatibele UPnP/DLNA-luidspreker op je lokale netwerk." },
+      "hint": { "en": "Plays up to 200 characters on a Google Cast, Sonos, or compatible UPnP/DLNA speaker on your local network. Supports BLL coding in the text field.", "nl": "Speelt maximaal 200 tekens af op een Google Cast-, Sonos- of compatibele UPnP/DLNA-luidspreker op je lokale netwerk. BLL-codering wordt ondersteund in het tekstveld." },
       "args": [
-        { "name": "text", "type": "text", "placeholder": { "en": "Text to announce", "nl": "Tekst om uit te spreken" } },
+        { "name": "text", "type": "text", "placeholder": { "en": "Text to announce (* BLL supported)", "nl": "Tekst om uit te spreken (* BLL ondersteund)" } },
         { "name": "speaker", "type": "autocomplete", "placeholder": { "en": "Choose a local speaker", "nl": "Kies een lokale luidspreker" } }
       ]
     },
@@ -109,19 +109,19 @@
           "name": "text",
           "type": "text",
           "placeholder": {
-            "en": "Text",
-            "nl": "Tekst",
-            "da": "Tekst",
-            "de": "Text",
-            "es": "Texto",
-            "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
-            "it": "Testo",
-            "no": "Du er trent på data frem til oktober 2023.",
-            "sv": "Du är tränad på data fram till oktober 2023.",
-            "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
-            "ru": "Текст",
-            "ko": "텍스트",
-            "ar": "نص"
+            "en": "Text (* BLL supported)",
+            "nl": "Tekst (* BLL ondersteund)",
+            "da": "Tekst (* BLL underst?ttet)",
+            "de": "Text (* BLL unterst?tzt)",
+            "es": "Texto (* BLL compatible)",
+            "fr": "Texte (* BLL pris en charge)",
+            "it": "Testo (* BLL supportato)",
+            "no": "Tekst (* BLL st?ttet)",
+            "sv": "Text (* BLL st?ds)",
+            "pl": "Tekst (* Obs?ugiwane BLL)",
+            "ru": "????? (* ?????????????? BLL)",
+            "ko": "??? (* BLL ???)",
+            "ar": "???? (* ????? ?? BLL)"
           }
         }
       ]
@@ -163,19 +163,19 @@
           "name": "text",
           "type": "text",
           "placeholder": {
-            "en": "Text",
-            "nl": "Tekst",
-            "da": "Tekst",
-            "de": "Text",
-            "es": "Texto",
-            "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
-            "it": "Testo",
-            "no": "Du er trent på data frem til oktober 2023.",
-            "sv": "Text",
-            "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
-            "ru": "Текст",
-            "ko": "텍스트",
-            "ar": "نص"
+            "en": "Text (* BLL supported)",
+            "nl": "Tekst (* BLL ondersteund)",
+            "da": "Tekst (* BLL underst?ttet)",
+            "de": "Text (* BLL unterst?tzt)",
+            "es": "Texto (* BLL compatible)",
+            "fr": "Texte (* BLL pris en charge)",
+            "it": "Testo (* BLL supportato)",
+            "no": "Tekst (* BLL st?ttet)",
+            "sv": "Text (* BLL st?ds)",
+            "pl": "Tekst (* Obs?ugiwane BLL)",
+            "ru": "????? (* ?????????????? BLL)",
+            "ko": "??? (* BLL ???)",
+            "ar": "???? (* ????? ?? BLL)"
           }
         }
       ]
@@ -217,19 +217,19 @@
           "name": "text",
           "type": "text",
           "placeholder": {
-            "en": "Text",
-            "nl": "Tekst",
-            "da": "Tekst",
-            "de": "Text",
-            "es": "Texto",
-            "fr": "Vous êtes formé sur les données jusqu'en octobre 2023.",
-            "it": "Testo",
-            "no": "Du er trent på data frem til oktober 2023.",
-            "sv": "Text",
-            "pl": "Tekst",
-            "ru": "Текст",
-            "ko": "텍스트",
-            "ar": "نص"
+            "en": "Text (* BLL supported)",
+            "nl": "Tekst (* BLL ondersteund)",
+            "da": "Tekst (* BLL underst?ttet)",
+            "de": "Text (* BLL unterst?tzt)",
+            "es": "Texto (* BLL compatible)",
+            "fr": "Texte (* BLL pris en charge)",
+            "it": "Testo (* BLL supportato)",
+            "no": "Tekst (* BLL st?ttet)",
+            "sv": "Text (* BLL st?ds)",
+            "pl": "Tekst (* Obs?ugiwane BLL)",
+            "ru": "????? (* ?????????????? BLL)",
+            "ko": "??? (* BLL ???)",
+            "ar": "???? (* ????? ?? BLL)"
           }
         }
       ],
@@ -311,19 +311,19 @@
           "name": "text",
           "type": "text",
           "placeholder": {
-            "en": "Text",
-            "nl": "Tekst",
-            "da": "Tekst",
-            "de": "Text",
-            "es": "Texto",
-            "fr": "Vous êtes formé sur des données jusqu'en octobre 2023.",
-            "it": "Testo",
-            "no": "Google-tjenester",
-            "sv": "Du är tränad på data fram till oktober 2023.",
-            "pl": "Jesteś przeszkolony na danych do października 2023 roku.",
-            "ru": "Вы обучены данным до октября 2023 года.",
-            "ko": "텍스트",
-            "ar": "نص"
+            "en": "Text (* BLL supported)",
+            "nl": "Tekst (* BLL ondersteund)",
+            "da": "Tekst (* BLL underst?ttet)",
+            "de": "Text (* BLL unterst?tzt)",
+            "es": "Texto (* BLL compatible)",
+            "fr": "Texte (* BLL pris en charge)",
+            "it": "Testo (* BLL supportato)",
+            "no": "Tekst (* BLL st?ttet)",
+            "sv": "Text (* BLL st?ds)",
+            "pl": "Tekst (* Obs?ugiwane BLL)",
+            "ru": "????? (* ?????????????? BLL)",
+            "ko": "??? (* BLL ???)",
+            "ar": "???? (* ????? ?? BLL)"
           }
         }
       ],

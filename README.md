@@ -123,6 +123,10 @@ BLL coding is optional in supported text fields. When Better Logic Library is un
 
 ## Changelog
 
+### 2.2.1
+
+- Maps has clearer reading names and is now included in the app images. Flow cards identify text fields that support Better Logic Library coding.
+
 ### 2.2.0
 
 - Announce text or translations directly on Google Cast, Sonos, and compatible UPnP/DLNA speakers. Sonos stereo pairs appear as one target with left and right details when available. Choose and preview Cloud voices per device. Google Maps can use Homey's location and show estimated traffic delays.

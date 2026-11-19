@@ -1599,9 +1599,9 @@
       "id": "announce_googlecloudtts",
       "title": { "en": "Announce text on a speaker", "nl": "Spreek tekst uit op een luidspreker" },
       "titleFormatted": { "en": "Announce [[text]] on [[speaker]]", "nl": "Spreek [[text]] uit op [[speaker]]" },
-      "hint": { "en": "Uses your Cloud Text-to-Speech settings to play an announcement on a Google Cast, Sonos, or compatible UPnP/DLNA speaker.", "nl": "Gebruikt je Cloud Text-to-Speech-instellingen om een aankondiging af te spelen op een Google Cast-, Sonos- of compatibele UPnP/DLNA-luidspreker." },
+      "hint": { "en": "Uses your Cloud Text-to-Speech settings to play an announcement on a Google Cast, Sonos, or compatible UPnP/DLNA speaker. Supports BLL coding in the text field.", "nl": "Gebruikt je Cloud Text-to-Speech-instellingen om een aankondiging af te spelen op een Google Cast-, Sonos- of compatibele UPnP/DLNA-luidspreker. BLL-codering wordt ondersteund in het tekstveld." },
       "args": [
-        { "name": "text", "type": "text", "placeholder": { "en": "Text or SSML", "nl": "Tekst of SSML" } },
+        { "name": "text", "type": "text", "placeholder": { "en": "Text or SSML (* BLL supported)", "nl": "Tekst of SSML (* BLL ondersteund)" } },
         { "name": "speaker", "type": "autocomplete", "placeholder": { "en": "Choose a local speaker", "nl": "Kies een lokale luidspreker" } }
       ]
     },

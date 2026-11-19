@@ -1453,5 +1453,20 @@
     "ru": "Озвучивайте текст и переводы на колонках Google Cast, Sonos и совместимых устройствах UPnP/DLNA. Стереопара Sonos отображается как одно устройство с данными о левом и правом каналах, если они доступны. Выбирайте и прослушивайте голоса Cloud для каждого устройства. Google Maps может использовать местоположение Homey и показывать примерные задержки из-за трафика.",
     "ko": "Google Cast, Sonos 및 호환 UPnP/DLNA 스피커에서 텍스트 또는 번역을 바로 재생합니다. Sonos 스테레오 페어는 하나의 대상으로 표시되며, 가능한 경우 왼쪽 및 오른쪽 스피커 정보를 보여 줍니다. 기기별 Cloud 음성을 선택하고 미리 들어 보세요. Google Maps는 Homey 위치를 사용하고 예상 교통 지연을 표시할 수 있습니다.",
     "ar": "شغّل النصوص أو الترجمات مباشرةً على مكبرات Google Cast وSonos ومكبرات UPnP/DLNA المتوافقة. يظهر زوج Sonos الاستريو كوجهة واحدة مع تفاصيل اليسار واليمين عند توفرها. اختر أصوات Cloud واستمع إليها لكل جهاز. يمكن لخرائط Google استخدام موقع Homey وعرض التأخير المروري المقدّر."
+  },
+  "2.2.1": {
+    "en": "Google Maps readings have clearer names, Maps is included in the app images, and Flow cards identify text fields that support Better Logic Library coding.",
+    "nl": "De namen van Google Maps-metingen zijn duidelijker, Maps is toegevoegd aan de appafbeeldingen en Flow-kaarten geven aan welke tekstvelden Better Logic Library-codering ondersteunen.",
+    "da": "Google Maps-aflæsninger har tydeligere navne, Maps er med i appens billeder, og Flow-kort viser, hvilke tekstfelter der understøtter Better Logic Library-kodning.",
+    "de": "Google-Maps-Messwerte haben klarere Namen, Maps ist jetzt in den App-Bildern enthalten und Flow-Karten kennzeichnen Textfelder, die Better-Logic-Library-Codierung unterstützen.",
+    "es": "Las lecturas de Google Maps tienen nombres más claros, Maps se incluye en las imágenes de la aplicación y las tarjetas de Flow indican qué campos de texto admiten codificación de Better Logic Library.",
+    "fr": "Les mesures Google Maps ont des noms plus clairs, Maps figure dans les images de l’application et les cartes Flow indiquent les champs texte compatibles avec le codage Better Logic Library.",
+    "it": "Le letture di Google Maps hanno nomi più chiari, Maps è incluso nelle immagini dell’app e le schede Flow indicano i campi di testo che supportano il codice Better Logic Library.",
+    "no": "Google Maps-avlesningene har tydeligere navn, Maps er inkludert i appbildene, og Flow-kort viser hvilke tekstfelt som støtter Better Logic Library-koding.",
+    "sv": "Google Maps-avläsningarna har tydligare namn, Maps ingår i appbilderna och Flow-korten visar vilka textfält som stöder Better Logic Library-kodning.",
+    "pl": "Odczyty Google Maps mają teraz jaśniejsze nazwy, Maps został uwzględniony w grafikach aplikacji, a karty Flow wskazują pola tekstowe obsługujące kodowanie Better Logic Library.",
+    "ru": "Показатели Google Maps получили более понятные названия, Maps добавлен на изображения приложения, а карточки Flow отмечают текстовые поля с поддержкой кодирования Better Logic Library.",
+    "ko": "Google Maps 측정값 이름이 더 명확해졌고 앱 이미지에 Maps가 추가되었습니다. 또한 Flow 카드에서 Better Logic Library 코딩을 지원하는 텍스트 필드를 표시합니다.",
+    "ar": "أصبحت أسماء قراءات خرائط Google أوضح، وأُضيفت الخرائط إلى صور التطبيق، وتوضح بطاقات Flow حقول النص التي تدعم ترميز Better Logic Library."
   }
 }

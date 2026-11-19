@@ -340,9 +340,9 @@
       "id": "announce_translation",
       "title": { "en": "Translate and announce text on a speaker", "nl": "Vertaal tekst en spreek die uit op een luidspreker" },
       "titleFormatted": { "en": "Translate [[text]] to [[targetlanguagecode]] and announce it on [[speaker]]", "nl": "Vertaal [[text]] naar [[targetlanguagecode]] en spreek het uit op [[speaker]]" },
-      "hint": { "en": "Uses the source language of this device. Basic speech supports up to 200 characters. Configure optional Cloud voices in Repair.", "nl": "Gebruikt de brontaal van dit apparaat. Gewone spraak ondersteunt maximaal 200 tekens. Stel optionele Cloud-stemmen in via Repareren." },
+      "hint": { "en": "Uses the source language of this device. Basic speech supports up to 200 characters. Configure optional Cloud voices in Repair. Supports BLL coding in the text field.", "nl": "Gebruikt de brontaal van dit apparaat. Gewone spraak ondersteunt maximaal 200 tekens. Stel optionele Cloud-stemmen in via Repareren. BLL-codering wordt ondersteund in het tekstveld." },
       "args": [
-        { "name": "text", "type": "text", "placeholder": { "en": "Text to translate", "nl": "Te vertalen tekst" } },
+        { "name": "text", "type": "text", "placeholder": { "en": "Text to translate (* BLL supported)", "nl": "Te vertalen tekst (* BLL ondersteund)" } },
         { "name": "targetlanguagecode", "type": "autocomplete", "placeholder": { "en": "Target language", "nl": "Doeltaal" } },
         { "name": "speaker", "type": "autocomplete", "placeholder": { "en": "Choose a local speaker", "nl": "Kies een lokale luidspreker" } }
       ]
