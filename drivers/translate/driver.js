@@ -253,11 +253,11 @@ class GoogleTranslateDriver extends Homey.Driver {
     }
 
     // A replaced client is closed only after its running requests finish.
-    async callClient(method, request) {
+    async callClient(method, request, options) {
         const client = this.translateClient;
         this.clientCalls.set(client, (this.clientCalls.get(client) || 0) + 1);
         try {
-            return await client[method](request);
+            return await client[method](request, options);
         } finally {
             const calls = this.clientCalls.get(client) - 1;
             if (calls) this.clientCalls.set(client, calls);

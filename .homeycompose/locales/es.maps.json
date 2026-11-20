@@ -1,0 +1,4 @@
+{
+  "invalid_deadline": "Introduce una fecha y hora inequívocas en la zona horaria de Homey (AAAA-MM-DD HH:mm, formato de 24 horas) o deja el campo vacío.",
+  "invalid_buffer": "Introduce un número entero entre 0 y 1440 minutos."
+}

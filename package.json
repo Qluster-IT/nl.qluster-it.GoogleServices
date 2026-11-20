@@ -24,6 +24,7 @@
     "music-metadata": "^7.8.3",
     "node-fetch": "^2.6.1",
     "uuid": "^8.3.2",
+    "ws": "^8.21.0",
     "youtube-search": "^1.1.6"
   }
 }

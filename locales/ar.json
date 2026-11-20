@@ -2,5 +2,38 @@
   "languagecode": "ar-XR",
   "speech": {
     "release_notice": "يتضمن Google Services ميزات جديدة مهمة:\n- شغّل الإعلانات على مكبرات الصوت Google Cast وSonos ومكبرات UPnP/DLNA المتوافقة، بما في ذلك كل مكبرات الصوت أو مجموعاتك الخاصة. ويُستعاد التشغيل ومستوى الصوت السابقان بعد ذلك.\n- خرائط Google: أوقات السفر والمسارات مع حركة المرور.\n- اختر أصوات Cloud واستمع إليها لكل جهاز.\n\nراجع الويكي للاطلاع على دليل المستخدم، وموضوع Google Services في Community Forum للحصول على المساعدة."
+  },
+  "settings": {
+    "speakers_tab": "مكبرات الصوت",
+    "sonos_mode": "وضع إعلانات Sonos",
+    "sonos_app_default": "الإعداد الافتراضي للتطبيق",
+    "sonos_selected": "تشغيل منفصل",
+    "sonos_sync": "تشغيل متزامن",
+    "sonos_saved": "تم حفظ وضع Sonos.",
+    "sonos_save_error": "تعذر حفظ وضع Sonos.",
+    "sonos_load_error": "تعذر تحميل وضع Sonos.",
+    "check_help": "تستخدم الاختبارات الإعدادات المحفوظة وترسل طلبًا تجريبيًا إلى Google. قد يُحتسب الطلب من الحصة أو تترتب عليه رسوم.",
+    "check_tts": "اختبار Cloud Text-to-Speech",
+    "check_translate": "اختبار Translate",
+    "check_youtube": "اختبار البحث في YouTube",
+    "check_routes": "اختبار Routes API",
+    "check_places": "اختبار اقتراحات العناوين (اختياري)",
+    "check_static": "اختبار صور المسارات (اختياري)",
+    "check_running": "جارٍ اختبار الإعدادات المحفوظة…",
+    "check_result_ok": "نجح الاختبار.",
+    "check_result_missing": "أدخل بيانات الاعتماد والإعدادات المطلوبة واحفظها أولًا.",
+    "check_result_busy": "الاختبار جارٍ بالفعل. حاول مرة أخرى بعد قليل.",
+    "check_result_billing": "أبلغت Google عن مشكلة في الفوترة. تحقّق من الفوترة في Google Cloud Console.",
+    "check_result_disabled": "أبلغت Google بأن واجهة API غير مفعّلة. فعّلها في Google Cloud Console.",
+    "check_result_credentials": "بيانات اعتماد Google غير صالحة أو تعذّر تحميلها. تحقّق منها واحفظها مجددًا.",
+    "check_result_quota": "أبلغت Google عن بلوغ حد الحصة أو معدل الطلبات. تحقّق من الاستخدام والحصص في Google Cloud Console.",
+    "check_result_access": "رفضت Google الوصول. تحقّق من تفعيل واجهة API والفوترة وقيود المفتاح أو أذونات حساب الخدمة.",
+    "check_result_unreachable": "لم تستجب Google في الوقت المحدد أو أن الخدمة غير متاحة. حاول مجددًا لاحقًا.",
+    "check_result_failed": "فشل الاختبار. تحقّق من الإعدادات المحفوظة وحاول مجددًا.",
+    "group_ip_help": "احجز عناوين IP ثابتة لمكبرات صوت Sonos في جهاز التوجيه. عند استخدام «تشغيل منفصل»، يمكن لـ Homey إعادة استخدام العناوين المعروفة بدلًا من فحص الشبكة، فتبدأ الإعلانات بشكل أسرع."
+  },
+  "maps": {
+    "invalid_deadline": "أدخل تاريخًا ووقتًا غير ملتبسين بالتنسيق YYYY-MM-DD HH:mm حسب المنطقة الزمنية في Homey (نظام 24 ساعة)، أو اترك الحقل فارغًا.",
+    "invalid_buffer": "أدخل عددًا صحيحًا بين 0 و1440 دقيقة."
   }
 }

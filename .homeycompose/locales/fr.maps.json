@@ -1,0 +1,4 @@
+{
+  "invalid_deadline": "Saisissez une date et une heure non ambiguës dans le fuseau horaire de Homey (AAAA-MM-JJ HH:mm, format 24 h), ou laissez vide.",
+  "invalid_buffer": "Saisissez un nombre entier de minutes entre 0 et 1440."
+}

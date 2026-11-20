@@ -6,6 +6,8 @@
   "image_unavailable": "No image is available. Enable route images and refresh the saved route.",
   "route_unavailable": "No route results are available. Refresh the saved route first.",
   "invalid_minutes": "Enter a non-negative number of minutes.",
+  "invalid_deadline": "Enter an unambiguous date and time in Homey's time zone (YYYY-MM-DD HH:mm, 24-hour clock), or leave it blank.",
+  "invalid_buffer": "Enter a whole number between 0 and 1440 minutes.",
   "use_readable_address": "Enter an address or coordinates instead of a place ID, or use Repair to choose an address.",
   "homey_location_unavailable": "Homey's location is unavailable. Check Homey's location settings or use an address instead.",
   "settings_busy": "Route settings are already being changed. Try again.",

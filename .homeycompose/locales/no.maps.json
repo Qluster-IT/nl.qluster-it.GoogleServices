@@ -1,0 +1,4 @@
+{
+  "invalid_deadline": "Angi en entydig dato og tid i Homeys tidssone (ÅÅÅÅ-MM-DD TT:mm, 24-timersformat), eller la feltet stå tomt.",
+  "invalid_buffer": "Oppgi et helt tall mellom 0 og 1440 minutter."
+}

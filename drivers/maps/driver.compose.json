@@ -16,7 +16,7 @@
     "ar": "خرائط"
   },
   "class": "other",
-  "capabilities": ["maps_refresh", "maps_minutes", "maps_distance", "maps_eta", "maps_last_refreshed", "maps_traffic_delay"],
+  "capabilities": ["maps_refresh", "maps_minutes", "maps_distance", "maps_eta", "maps_last_refreshed", "maps_traffic_delay", "maps_leave_by"],
   "images": {
     "xlarge": "{{driverAssetsPath}}/images/xlarge.png",
     "large": "{{driverAssetsPath}}/images/large.png",
@@ -84,6 +84,22 @@
         { "id": "WALK", "label": { "en": "Walking", "nl": "Lopen" } },
         { "id": "BICYCLE", "label": { "en": "Cycling", "nl": "Fietsen" } }
       ]
+    },
+    {
+      "id": "arrival_deadline",
+      "type": "text",
+      "label": { "en": "Arrive by", "nl": "Aankomen om", "da": "Ankomst senest", "de": "Ankunft spätestens um", "es": "Llegar antes de", "fr": "Arriver au plus tard à", "it": "Arrivo entro le", "no": "Ankomst senest", "sv": "Framme senast", "pl": "Dotrzyj najpóźniej o", "ru": "Прибыть не позднее", "ko": "도착 기한", "ar": "آخر موعد للوصول" },
+      "hint": { "en": "Enter YYYY-MM-DD HH:mm in Homey's time zone (24-hour clock), or leave blank to hide the leave-by time.", "nl": "Vul JJJJ-MM-DD UU:mm in de tijdzone van Homey in (24-uursklok), of laat leeg om de vertrektijd te verbergen.", "da": "Angiv ÅÅÅÅ-MM-DD TT:mm i Homeys tidszone (24-timers ur), eller lad feltet stå tomt for at skjule afgangstidspunktet.", "de": "Gib JJJJ-MM-TT HH:mm in Homeys Zeitzone ein (24-Stunden-Format) oder lass das Feld leer, um die späteste Abfahrt auszublenden.", "es": "Introduce AAAA-MM-DD HH:mm en la zona horaria de Homey (formato de 24 horas) o deja el campo vacío para ocultar la hora límite de salida.", "fr": "Saisissez AAAA-MM-JJ HH:mm dans le fuseau horaire de Homey (format 24 h), ou laissez vide pour masquer l’heure limite de départ.", "it": "Inserisci AAAA-MM-GG HH:mm nel fuso orario di Homey (formato 24 ore) o lascia il campo vuoto per nascondere l’ora limite di partenza.", "no": "Angi ÅÅÅÅ-MM-DD TT:mm i Homeys tidssone (24-timersformat), eller la feltet stå tomt for å skjule avreisetiden.", "sv": "Ange ÅÅÅÅ-MM-DD TT:mm i Homeys tidszon (24-timmarsformat), eller lämna tomt för att dölja senaste avfärdstid.", "pl": "Wpisz RRRR-MM-DD GG:mm w strefie czasowej Homey (format 24-godzinny) lub pozostaw puste, aby ukryć najpóźniejszą godzinę wyjazdu.", "ru": "Введите ГГГГ-ММ-ДД ЧЧ:mm в часовом поясе Homey (24-часовой формат) или оставьте поле пустым, чтобы скрыть время выезда.", "ko": "Homey의 시간대로 YYYY-MM-DD HH:mm을 입력하세요(24시간제). 출발 마감 시간을 숨기려면 비워 두세요.", "ar": "أدخل التاريخ والوقت بالتنسيق YYYY-MM-DD HH:mm حسب المنطقة الزمنية في Homey (نظام 24 ساعة)، أو اترك الحقل فارغًا لإخفاء موعد المغادرة." },
+      "value": ""
+    },
+    {
+      "id": "departure_buffer",
+      "type": "number",
+      "label": { "en": "Departure buffer (minutes)", "nl": "Vertrekmarge (minuten)", "da": "Ekstra tid før afgang (minutter)", "de": "Zeitpuffer für die Abfahrt (Minuten)", "es": "Margen para la salida (minutos)", "fr": "Marge avant le départ (minutes)", "it": "Margine per la partenza (minuti)", "no": "Tidsmargin for avreise (minutter)", "sv": "Tidsmarginal för avfärd (minuter)", "pl": "Zapas czasu na wyjazd (minuty)", "ru": "Запас времени перед выездом (минуты)", "ko": "출발 여유 시간(분)", "ar": "الوقت الاحتياطي للمغادرة (بالدقائق)" },
+      "hint": { "en": "Extra time to set aside before the arrival deadline, in addition to the estimated travel time.", "nl": "Extra tijd vóór de gewenste aankomsttijd, boven op de geschatte reistijd.", "da": "Ekstra tid ud over den anslåede rejsetid.", "de": "Zusätzliche Zeit neben der geschätzten Fahrzeit.", "es": "Tiempo adicional al tiempo de viaje estimado.", "fr": "Temps supplémentaire à ajouter à la durée estimée du trajet.", "it": "Tempo aggiuntivo oltre alla durata stimata del viaggio.", "no": "Ekstra tid i tillegg til beregnet reisetid.", "sv": "Extra tid utöver den beräknade restiden.", "pl": "Dodatkowy czas oprócz szacowanego czasu podróży.", "ru": "Дополнительное время сверх расчётной длительности поездки.", "ko": "예상 이동 시간에 더할 여유 시간입니다.", "ar": "وقت إضافي يُضاف إلى مدة الرحلة التقديرية." },
+      "min": 0,
+      "max": 1440,
+      "value": 0
     },
     {
       "id": "route_image",

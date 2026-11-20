@@ -1,12 +1,17 @@
 const TtsServer = require("./lib/tts-server");
 const { listGroups, writeGroup, deleteGroup, getMemberId } = require('./lib/speaker-groups');
 const { getPlayback } = require('./lib/speaker-announcements');
+const { checkGoogleService } = require('./lib/google-service-checks');
 
 function requireReady(homey) {
   if (!homey.app.apiReady) throw new Error('Google Services is still starting.');
 }
 
 module.exports = {
+  async checkGoogleService({ homey, body }) {
+    requireReady(homey);
+    return checkGoogleService(homey, body?.service);
+  },
   async getVoices({ homey, query }) {
     const result = await TtsServer.getVoices();
     return result;
@@ -18,9 +23,10 @@ module.exports = {
     requireReady(homey);
     return listGroups(homey.settings);
   },
-  async getAnnouncementSpeakers({ homey }) {
+  async getAnnouncementSpeakers({ homey, query }) {
     requireReady(homey);
-    return getPlayback(homey).listSpeakers(true);
+    const mode = query?.refresh === 'force' ? 'force' : query?.refresh === 'wait' ? 'wait' : 'cached';
+    return getPlayback(homey).listSpeakers(mode, false);
   },
   async saveSpeakerGroup({ homey, body }) {
     requireReady(homey);

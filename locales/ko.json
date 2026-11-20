@@ -2,5 +2,38 @@
   "languagecode": "ko-KR",
   "speech": {
     "release_notice": "Google Services에 주요 새 기능이 추가되었습니다.\n- Google Cast, Sonos 및 호환 UPnP/DLNA 스피커에서 텍스트를 안내합니다. 모든 스피커나 직접 만든 스피커 그룹도 선택할 수 있으며, 이후 이전 재생과 볼륨이 복원됩니다.\n- Google Maps: 교통 상황을 반영한 이동 시간과 경로.\n- 기기별로 Cloud 음성을 선택하고 미리 들어 보세요.\n\n사용 설명서는 위키에서, 도움말은 Community Forum의 Google Services 주제에서 확인하세요."
+  },
+  "settings": {
+    "speakers_tab": "스피커",
+    "sonos_mode": "Sonos 안내 방송 모드",
+    "sonos_app_default": "앱 기본값",
+    "sonos_selected": "개별 재생",
+    "sonos_sync": "동기 재생",
+    "sonos_saved": "Sonos 모드를 저장했습니다.",
+    "sonos_save_error": "Sonos 모드를 저장하지 못했습니다.",
+    "sonos_load_error": "Sonos 모드를 불러오지 못했습니다.",
+    "check_help": "저장한 설정으로 Google에 테스트 요청을 보냅니다. 할당량이 소모되거나 요금이 발생할 수 있습니다.",
+    "check_tts": "Cloud Text-to-Speech 테스트",
+    "check_translate": "Translate 테스트",
+    "check_youtube": "YouTube 검색 테스트",
+    "check_routes": "Routes API 테스트",
+    "check_places": "주소 추천 테스트(선택 사항)",
+    "check_static": "경로 이미지 테스트(선택 사항)",
+    "check_running": "저장한 설정을 테스트하는 중…",
+    "check_result_ok": "테스트에 성공했습니다.",
+    "check_result_missing": "먼저 필요한 사용자 인증 정보와 설정을 입력하고 저장하세요.",
+    "check_result_busy": "이미 테스트 중입니다. 잠시 후 다시 시도하세요.",
+    "check_result_billing": "Google에서 결제 문제가 보고되었습니다. Google Cloud Console에서 결제 설정을 확인하세요.",
+    "check_result_disabled": "Google에서 API가 사용 중지되었다고 응답했습니다. Google Cloud Console에서 API를 사용 설정하세요.",
+    "check_result_credentials": "Google 사용자 인증 정보가 잘못되었거나 불러오지 못했습니다. 확인한 후 다시 저장하세요.",
+    "check_result_quota": "Google에서 할당량 또는 요청 한도에 도달했다고 응답했습니다. Google Cloud Console에서 사용량과 할당량을 확인하세요.",
+    "check_result_access": "Google에서 액세스를 거부했습니다. API 사용 설정, 결제 설정, 키 제한사항이나 서비스 계정 권한을 확인하세요.",
+    "check_result_unreachable": "Google이 제시간에 응답하지 않았거나 서비스를 이용할 수 없습니다. 나중에 다시 시도하세요.",
+    "check_result_failed": "테스트에 실패했습니다. 저장한 설정을 확인하고 다시 시도하세요.",
+    "group_ip_help": "공유기에서 Sonos 스피커에 고정 IP 주소를 예약하세요. 개별 재생을 사용하면 Homey가 네트워크를 검색하는 대신 기존 주소를 다시 사용하므로 알림을 더 빨리 시작할 수 있습니다."
+  },
+  "maps": {
+    "invalid_deadline": "Homey의 시간대로 중복되지 않는 날짜와 시간을 YYYY-MM-DD HH:mm 형식으로 입력하거나 비워 두세요(24시간제).",
+    "invalid_buffer": "0~1440 사이의 정수(분)를 입력하세요."
   }
 }

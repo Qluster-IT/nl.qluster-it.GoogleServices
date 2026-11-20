@@ -1,4 +1,6 @@
 {
+  "invalid_deadline": "Vul een eenduidige datum en tijd in de tijdzone van Homey in (JJJJ-MM-DD UU:mm, 24-uursklok), of laat het veld leeg.",
+  "invalid_buffer": "Vul een geheel getal tussen 0 en 1440 minuten in.",
   "image_title": "Google Maps-route",
   "setup_needed": "Stel het vertrekpunt en de bestemming in bij de apparaatinstellingen.",
   "refresh_needed": "Druk op Ververs route om de opgeslagen route te berekenen.",

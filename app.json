@@ -1,7 +1,7 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "nl.qluster-it.GoogleServices",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "compatibility": ">=5.0.0",
   "sdk": 3,
   "brandColor": "#8DB000",
@@ -208,6 +208,10 @@
     "email": "arie@qluster-it.nl"
   },
   "api": {
+    "checkGoogleService": {
+      "method": "post",
+      "path": "/check-google-service"
+    },
     "getVoices": {
       "method": "get",
       "path": "/getVoices"
@@ -3092,12 +3096,12 @@
           "nl": "Spreek tekst uit op een luidspreker"
         },
         "titleFormatted": {
-          "en": "Announce [[text]] on [[speaker]] with volume [[volume]]% and [[completion]]",
-          "nl": "Spreek [[text]] uit op [[speaker]] met volume [[volume]]% en [[completion]]"
+          "en": "Announce [[text]] on [[speaker]] with volume [[volume]]%, Sonos: [[sonos_mode]], then [[completion]]",
+          "nl": "Spreek [[text]] uit op [[speaker]] met volume [[volume]]%, Sonos: [[sonos_mode]], daarna [[completion]]"
         },
         "hint": {
-          "en": "Uses your Cloud Text-to-Speech settings to play an announcement on a Google Cast, Sonos, or compatible UPnP/DLNA speaker. Supports BLL coding in the text field. Choose Wait to finish to continue the Flow only after the speakers have finished and been restored.",
-          "nl": "Gebruikt je Cloud Text-to-Speech-instellingen om een aankondiging af te spelen op een Google Cast-, Sonos- of compatibele UPnP/DLNA-luidspreker. BLL-codering wordt ondersteund in het tekstveld. Kies Wachten tot klaar om de Flow pas verder te laten gaan als de luidsprekers klaar en hersteld zijn."
+          "en": "Uses your Cloud Text-to-Speech settings to play an announcement on a Google Cast, Sonos, or compatible UPnP/DLNA speaker. Supports BLL coding in the text field. Choose Wait to finish to continue the Flow only after the speakers have finished and been restored. For Sonos, Play Separately plays only in the selected rooms without changing their groups. Play in Sync temporarily groups the selected rooms so they play together, then restores the original groups.",
+          "nl": "Gebruikt je Cloud Text-to-Speech-instellingen om een aankondiging af te spelen op een Google Cast-, Sonos- of compatibele UPnP/DLNA-luidspreker. BLL-codering wordt ondersteund in het tekstveld. Kies Wachten tot klaar om de Flow pas verder te laten gaan als de luidsprekers klaar en hersteld zijn. Bij Sonos speelt Apart afspelen alleen in de gekozen kamers zonder de groepen te wijzigen. Synchroon afspelen groepeert de gekozen kamers tijdelijk zodat ze tegelijk afspelen en herstelt daarna de oorspronkelijke groepen."
         },
         "args": [
           {
@@ -3145,6 +3149,82 @@
               "en": "Speaker volume (%)",
               "nl": "Luidsprekervolume (%)"
             }
+          },
+          {
+            "name": "sonos_mode",
+            "type": "dropdown",
+            "required": false,
+            "title": {
+              "en": "Use device default",
+              "nl": "Gebruik apparaatstandaard",
+              "da": "Brug enhedsstandard",
+              "de": "Gerätestandard verwenden",
+              "es": "Usar el valor del dispositivo",
+              "fr": "Utiliser le réglage de l’appareil",
+              "it": "Usa il valore del dispositivo",
+              "no": "Bruk enhetsstandard",
+              "sv": "Använd enhetens standard",
+              "pl": "Użyj ustawienia urządzenia",
+              "ru": "Использовать настройку устройства",
+              "ko": "기기 기본값 사용",
+              "ar": "استخدام إعداد الجهاز"
+            },
+            "values": [
+              {
+                "id": "default",
+                "label": {
+                  "en": "Use device default",
+                  "nl": "Gebruik apparaatstandaard",
+                  "da": "Brug enhedsstandard",
+                  "de": "Gerätestandard verwenden",
+                  "es": "Usar el valor del dispositivo",
+                  "fr": "Utiliser le réglage de l’appareil",
+                  "it": "Usa il valore del dispositivo",
+                  "no": "Bruk enhetsstandard",
+                  "sv": "Använd enhetens standard",
+                  "pl": "Użyj ustawienia urządzenia",
+                  "ru": "Использовать настройку устройства",
+                  "ko": "기기 기본값 사용",
+                  "ar": "استخدام إعداد الجهاز"
+                }
+              },
+              {
+                "id": "selected",
+                "label": {
+                  "en": "Play Separately",
+                  "nl": "Apart afspelen",
+                  "da": "Afspil separat",
+                  "de": "Getrennt abspielen",
+                  "es": "Reproducir por separado",
+                  "fr": "Lire séparément",
+                  "it": "Riproduci separatamente",
+                  "no": "Spill av separat",
+                  "sv": "Spela separat",
+                  "pl": "Odtwarzaj osobno",
+                  "ru": "Воспроизводить отдельно",
+                  "ko": "개별 재생",
+                  "ar": "تشغيل منفصل"
+                }
+              },
+              {
+                "id": "sync",
+                "label": {
+                  "en": "Play in Sync",
+                  "nl": "Synchroon afspelen",
+                  "da": "Afspil synkront",
+                  "de": "Synchron abspielen",
+                  "es": "Reproducir en sincronía",
+                  "fr": "Lecture synchronisée",
+                  "it": "Riproduci in sincronia",
+                  "no": "Spill av synkront",
+                  "sv": "Spela synkront",
+                  "pl": "Odtwarzaj synchronicznie",
+                  "ru": "Воспроизводить синхронно",
+                  "ko": "동기 재생",
+                  "ar": "تشغيل متزامن"
+                }
+              }
+            ]
           },
           {
             "name": "completion",
@@ -4997,12 +5077,12 @@
           "nl": "Spreek tekst uit op een luidspreker"
         },
         "titleFormatted": {
-          "en": "Announce [[text]] on [[speaker]] with volume [[volume]]% and [[completion]]",
-          "nl": "Spreek [[text]] uit op [[speaker]] met volume [[volume]]% en [[completion]]"
+          "en": "Announce [[text]] on [[speaker]] with volume [[volume]]%, Sonos: [[sonos_mode]], then [[completion]]",
+          "nl": "Spreek [[text]] uit op [[speaker]] met volume [[volume]]%, Sonos: [[sonos_mode]], daarna [[completion]]"
         },
         "hint": {
-          "en": "Plays up to 200 characters on a Google Cast, Sonos, or compatible UPnP/DLNA speaker on your local network. Supports BLL coding in the text field. Choose Wait to finish to continue the Flow only after the speakers have finished and been restored.",
-          "nl": "Speelt maximaal 200 tekens af op een Google Cast-, Sonos- of compatibele UPnP/DLNA-luidspreker op je lokale netwerk. BLL-codering wordt ondersteund in het tekstveld. Kies Wachten tot klaar om de Flow pas verder te laten gaan als de luidsprekers klaar en hersteld zijn."
+          "en": "Plays up to 200 characters on a Google Cast, Sonos, or compatible UPnP/DLNA speaker on your local network. Supports BLL coding in the text field. Choose Wait to finish to continue the Flow only after the speakers have finished and been restored. For Sonos, Play Separately plays only in the selected rooms without changing their groups. Play in Sync temporarily groups the selected rooms so they play together, then restores the original groups.",
+          "nl": "Speelt maximaal 200 tekens af op een Google Cast-, Sonos- of compatibele UPnP/DLNA-luidspreker op je lokale netwerk. BLL-codering wordt ondersteund in het tekstveld. Kies Wachten tot klaar om de Flow pas verder te laten gaan als de luidsprekers klaar en hersteld zijn. Bij Sonos speelt Apart afspelen alleen in de gekozen kamers zonder de groepen te wijzigen. Synchroon afspelen groepeert de gekozen kamers tijdelijk zodat ze tegelijk afspelen en herstelt daarna de oorspronkelijke groepen."
         },
         "args": [
           {
@@ -5050,6 +5130,82 @@
               "en": "Speaker volume (%)",
               "nl": "Luidsprekervolume (%)"
             }
+          },
+          {
+            "name": "sonos_mode",
+            "type": "dropdown",
+            "required": false,
+            "title": {
+              "en": "Use device default",
+              "nl": "Gebruik apparaatstandaard",
+              "da": "Brug enhedsstandard",
+              "de": "Gerätestandard verwenden",
+              "es": "Usar el valor del dispositivo",
+              "fr": "Utiliser le réglage de l’appareil",
+              "it": "Usa il valore del dispositivo",
+              "no": "Bruk enhetsstandard",
+              "sv": "Använd enhetens standard",
+              "pl": "Użyj ustawienia urządzenia",
+              "ru": "Использовать настройку устройства",
+              "ko": "기기 기본값 사용",
+              "ar": "استخدام إعداد الجهاز"
+            },
+            "values": [
+              {
+                "id": "default",
+                "label": {
+                  "en": "Use device default",
+                  "nl": "Gebruik apparaatstandaard",
+                  "da": "Brug enhedsstandard",
+                  "de": "Gerätestandard verwenden",
+                  "es": "Usar el valor del dispositivo",
+                  "fr": "Utiliser le réglage de l’appareil",
+                  "it": "Usa il valore del dispositivo",
+                  "no": "Bruk enhetsstandard",
+                  "sv": "Använd enhetens standard",
+                  "pl": "Użyj ustawienia urządzenia",
+                  "ru": "Использовать настройку устройства",
+                  "ko": "기기 기본값 사용",
+                  "ar": "استخدام إعداد الجهاز"
+                }
+              },
+              {
+                "id": "selected",
+                "label": {
+                  "en": "Play Separately",
+                  "nl": "Apart afspelen",
+                  "da": "Afspil separat",
+                  "de": "Getrennt abspielen",
+                  "es": "Reproducir por separado",
+                  "fr": "Lire séparément",
+                  "it": "Riproduci separatamente",
+                  "no": "Spill av separat",
+                  "sv": "Spela separat",
+                  "pl": "Odtwarzaj osobno",
+                  "ru": "Воспроизводить отдельно",
+                  "ko": "개별 재생",
+                  "ar": "تشغيل منفصل"
+                }
+              },
+              {
+                "id": "sync",
+                "label": {
+                  "en": "Play in Sync",
+                  "nl": "Synchroon afspelen",
+                  "da": "Afspil synkront",
+                  "de": "Synchron abspielen",
+                  "es": "Reproducir en sincronía",
+                  "fr": "Lecture synchronisée",
+                  "it": "Riproduci in sincronia",
+                  "no": "Spill av synkront",
+                  "sv": "Spela synkront",
+                  "pl": "Odtwarzaj synchronicznie",
+                  "ru": "Воспроизводить синхронно",
+                  "ko": "동기 재생",
+                  "ar": "تشغيل متزامن"
+                }
+              }
+            ]
           },
           {
             "name": "completion",
@@ -5654,12 +5810,12 @@
           "nl": "Vertaal tekst en spreek die uit op een luidspreker"
         },
         "titleFormatted": {
-          "en": "Translate [[text]] to [[targetlanguagecode]] and announce it on [[speaker]] with volume [[volume]]% and [[completion]]",
-          "nl": "Vertaal [[text]] naar [[targetlanguagecode]] en spreek het uit op [[speaker]] met volume [[volume]]% en [[completion]]"
+          "en": "Translate [[text]] to [[targetlanguagecode]] and announce it on [[speaker]] with volume [[volume]]%, Sonos: [[sonos_mode]], then [[completion]]",
+          "nl": "Vertaal [[text]] naar [[targetlanguagecode]] en spreek het uit op [[speaker]] met volume [[volume]]%, Sonos: [[sonos_mode]], daarna [[completion]]"
         },
         "hint": {
-          "en": "Uses the source language of this device. Basic speech supports up to 200 characters. Configure optional Cloud voices in Repair. Supports BLL coding in the text field. Choose Wait to finish to continue the Flow only after the speakers have finished and been restored.",
-          "nl": "Gebruikt de brontaal van dit apparaat. Gewone spraak ondersteunt maximaal 200 tekens. Stel optionele Cloud-stemmen in via Repareren. BLL-codering wordt ondersteund in het tekstveld. Kies Wachten tot klaar om de Flow pas verder te laten gaan als de luidsprekers klaar en hersteld zijn."
+          "en": "Uses the source language of this device. Basic speech supports up to 200 characters. Configure optional Cloud voices in Repair. Supports BLL coding in the text field. Choose Wait to finish to continue the Flow only after the speakers have finished and been restored. For Sonos, Play Separately plays only in the selected rooms without changing their groups. Play in Sync temporarily groups the selected rooms so they play together, then restores the original groups.",
+          "nl": "Gebruikt de brontaal van dit apparaat. Gewone spraak ondersteunt maximaal 200 tekens. Stel optionele Cloud-stemmen in via Repareren. BLL-codering wordt ondersteund in het tekstveld. Kies Wachten tot klaar om de Flow pas verder te laten gaan als de luidsprekers klaar en hersteld zijn. Bij Sonos speelt Apart afspelen alleen in de gekozen kamers zonder de groepen te wijzigen. Synchroon afspelen groepeert de gekozen kamers tijdelijk zodat ze tegelijk afspelen en herstelt daarna de oorspronkelijke groepen."
         },
         "args": [
           {
@@ -5720,6 +5876,82 @@
               "en": "Speaker volume (%)",
               "nl": "Luidsprekervolume (%)"
             }
+          },
+          {
+            "name": "sonos_mode",
+            "type": "dropdown",
+            "required": false,
+            "title": {
+              "en": "Use device default",
+              "nl": "Gebruik apparaatstandaard",
+              "da": "Brug enhedsstandard",
+              "de": "Gerätestandard verwenden",
+              "es": "Usar el valor del dispositivo",
+              "fr": "Utiliser le réglage de l’appareil",
+              "it": "Usa il valore del dispositivo",
+              "no": "Bruk enhetsstandard",
+              "sv": "Använd enhetens standard",
+              "pl": "Użyj ustawienia urządzenia",
+              "ru": "Использовать настройку устройства",
+              "ko": "기기 기본값 사용",
+              "ar": "استخدام إعداد الجهاز"
+            },
+            "values": [
+              {
+                "id": "default",
+                "label": {
+                  "en": "Use device default",
+                  "nl": "Gebruik apparaatstandaard",
+                  "da": "Brug enhedsstandard",
+                  "de": "Gerätestandard verwenden",
+                  "es": "Usar el valor del dispositivo",
+                  "fr": "Utiliser le réglage de l’appareil",
+                  "it": "Usa il valore del dispositivo",
+                  "no": "Bruk enhetsstandard",
+                  "sv": "Använd enhetens standard",
+                  "pl": "Użyj ustawienia urządzenia",
+                  "ru": "Использовать настройку устройства",
+                  "ko": "기기 기본값 사용",
+                  "ar": "استخدام إعداد الجهاز"
+                }
+              },
+              {
+                "id": "selected",
+                "label": {
+                  "en": "Play Separately",
+                  "nl": "Apart afspelen",
+                  "da": "Afspil separat",
+                  "de": "Getrennt abspielen",
+                  "es": "Reproducir por separado",
+                  "fr": "Lire séparément",
+                  "it": "Riproduci separatamente",
+                  "no": "Spill av separat",
+                  "sv": "Spela separat",
+                  "pl": "Odtwarzaj osobno",
+                  "ru": "Воспроизводить отдельно",
+                  "ko": "개별 재생",
+                  "ar": "تشغيل منفصل"
+                }
+              },
+              {
+                "id": "sync",
+                "label": {
+                  "en": "Play in Sync",
+                  "nl": "Synchroon afspelen",
+                  "da": "Afspil synkront",
+                  "de": "Synchron abspielen",
+                  "es": "Reproducir en sincronía",
+                  "fr": "Lecture synchronisée",
+                  "it": "Riproduci in sincronia",
+                  "no": "Spill av synkront",
+                  "sv": "Spela synkront",
+                  "pl": "Odtwarzaj synchronicznie",
+                  "ru": "Воспроизводить синхронно",
+                  "ko": "동기 재생",
+                  "ar": "تشغيل متزامن"
+                }
+              }
+            ]
           },
           {
             "name": "completion",
@@ -7440,6 +7672,82 @@
           "value": false
         },
         {
+          "id": "announcement_sonos_mode",
+          "type": "dropdown",
+          "label": {
+            "en": "Sonos announcement mode",
+            "nl": "Sonos-aankondigingsmodus",
+            "da": "Sonos-meddelelsestilstand",
+            "de": "Sonos-Durchsagemodus",
+            "es": "Modo de anuncios de Sonos",
+            "fr": "Mode d’annonce Sonos",
+            "it": "Modalità annunci Sonos",
+            "no": "Sonos-kunngjøringsmodus",
+            "sv": "Sonos-meddelandeläge",
+            "pl": "Tryb komunikatów Sonos",
+            "ru": "Режим объявлений Sonos",
+            "ko": "Sonos 안내 방송 모드",
+            "ar": "وضع إعلانات Sonos"
+          },
+          "value": "default",
+          "values": [
+            {
+              "id": "default",
+              "label": {
+                "en": "Use app default",
+                "nl": "Gebruik appstandaard",
+                "da": "Brug appstandard",
+                "de": "App-Standard verwenden",
+                "es": "Usar el valor de la app",
+                "fr": "Utiliser le réglage de l’app",
+                "it": "Usa il valore dell’app",
+                "no": "Bruk appstandard",
+                "sv": "Använd appens standard",
+                "pl": "Użyj ustawienia aplikacji",
+                "ru": "Использовать настройку приложения",
+                "ko": "앱 기본값 사용",
+                "ar": "استخدام إعداد التطبيق"
+              }
+            },
+            {
+              "id": "selected",
+              "label": {
+                "en": "Play Separately",
+                "nl": "Apart afspelen",
+                "da": "Afspil separat",
+                "de": "Getrennt abspielen",
+                "es": "Reproducir por separado",
+                "fr": "Lire séparément",
+                "it": "Riproduci separatamente",
+                "no": "Spill av separat",
+                "sv": "Spela separat",
+                "pl": "Odtwarzaj osobno",
+                "ru": "Воспроизводить отдельно",
+                "ko": "개별 재생",
+                "ar": "تشغيل منفصل"
+              }
+            },
+            {
+              "id": "sync",
+              "label": {
+                "en": "Play in Sync",
+                "nl": "Synchroon afspelen",
+                "da": "Afspil synkront",
+                "de": "Synchron abspielen",
+                "es": "Reproducir en sincronía",
+                "fr": "Lecture synchronisée",
+                "it": "Riproduci in sincronia",
+                "no": "Spill av synkront",
+                "sv": "Spela synkront",
+                "pl": "Odtwarzaj synchronicznie",
+                "ru": "Воспроизводить синхронно",
+                "ko": "동기 재생",
+                "ar": "تشغيل متزامن"
+              }
+            }
+          ]
+        },
+        {
           "id": "announcement_group_sonos",
           "type": "checkbox",
           "label": {
@@ -8026,6 +8334,82 @@
           "value": false
         },
         {
+          "id": "announcement_sonos_mode",
+          "type": "dropdown",
+          "label": {
+            "en": "Sonos announcement mode",
+            "nl": "Sonos-aankondigingsmodus",
+            "da": "Sonos-meddelelsestilstand",
+            "de": "Sonos-Durchsagemodus",
+            "es": "Modo de anuncios de Sonos",
+            "fr": "Mode d’annonce Sonos",
+            "it": "Modalità annunci Sonos",
+            "no": "Sonos-kunngjøringsmodus",
+            "sv": "Sonos-meddelandeläge",
+            "pl": "Tryb komunikatów Sonos",
+            "ru": "Режим объявлений Sonos",
+            "ko": "Sonos 안내 방송 모드",
+            "ar": "وضع إعلانات Sonos"
+          },
+          "value": "default",
+          "values": [
+            {
+              "id": "default",
+              "label": {
+                "en": "Use app default",
+                "nl": "Gebruik appstandaard",
+                "da": "Brug appstandard",
+                "de": "App-Standard verwenden",
+                "es": "Usar el valor de la app",
+                "fr": "Utiliser le réglage de l’app",
+                "it": "Usa il valore dell’app",
+                "no": "Bruk appstandard",
+                "sv": "Använd appens standard",
+                "pl": "Użyj ustawienia aplikacji",
+                "ru": "Использовать настройку приложения",
+                "ko": "앱 기본값 사용",
+                "ar": "استخدام إعداد التطبيق"
+              }
+            },
+            {
+              "id": "selected",
+              "label": {
+                "en": "Play Separately",
+                "nl": "Apart afspelen",
+                "da": "Afspil separat",
+                "de": "Getrennt abspielen",
+                "es": "Reproducir por separado",
+                "fr": "Lire séparément",
+                "it": "Riproduci separatamente",
+                "no": "Spill av separat",
+                "sv": "Spela separat",
+                "pl": "Odtwarzaj osobno",
+                "ru": "Воспроизводить отдельно",
+                "ko": "개별 재생",
+                "ar": "تشغيل منفصل"
+              }
+            },
+            {
+              "id": "sync",
+              "label": {
+                "en": "Play in Sync",
+                "nl": "Synchroon afspelen",
+                "da": "Afspil synkront",
+                "de": "Synchron abspielen",
+                "es": "Reproducir en sincronía",
+                "fr": "Lecture synchronisée",
+                "it": "Riproduci in sincronia",
+                "no": "Spill av synkront",
+                "sv": "Spela synkront",
+                "pl": "Odtwarzaj synchronicznie",
+                "ru": "Воспроизводить синхронно",
+                "ko": "동기 재생",
+                "ar": "تشغيل متزامن"
+              }
+            }
+          ]
+        },
+        {
           "id": "announcement_group_sonos",
           "type": "checkbox",
           "label": {
@@ -8347,7 +8731,8 @@
         "maps_distance",
         "maps_eta",
         "maps_last_refreshed",
-        "maps_traffic_delay"
+        "maps_traffic_delay",
+        "maps_leave_by"
       ],
       "images": {
         "xlarge": "/drivers/maps/assets/images/xlarge.png",
@@ -8471,6 +8856,78 @@
           ]
         },
         {
+          "id": "arrival_deadline",
+          "type": "text",
+          "label": {
+            "en": "Arrive by",
+            "nl": "Aankomen om",
+            "da": "Ankomst senest",
+            "de": "Ankunft spätestens um",
+            "es": "Llegar antes de",
+            "fr": "Arriver au plus tard à",
+            "it": "Arrivo entro le",
+            "no": "Ankomst senest",
+            "sv": "Framme senast",
+            "pl": "Dotrzyj najpóźniej o",
+            "ru": "Прибыть не позднее",
+            "ko": "도착 기한",
+            "ar": "آخر موعد للوصول"
+          },
+          "hint": {
+            "en": "Enter YYYY-MM-DD HH:mm in Homey's time zone (24-hour clock), or leave blank to hide the leave-by time.",
+            "nl": "Vul JJJJ-MM-DD UU:mm in de tijdzone van Homey in (24-uursklok), of laat leeg om de vertrektijd te verbergen.",
+            "da": "Angiv ÅÅÅÅ-MM-DD TT:mm i Homeys tidszone (24-timers ur), eller lad feltet stå tomt for at skjule afgangstidspunktet.",
+            "de": "Gib JJJJ-MM-TT HH:mm in Homeys Zeitzone ein (24-Stunden-Format) oder lass das Feld leer, um die späteste Abfahrt auszublenden.",
+            "es": "Introduce AAAA-MM-DD HH:mm en la zona horaria de Homey (formato de 24 horas) o deja el campo vacío para ocultar la hora límite de salida.",
+            "fr": "Saisissez AAAA-MM-JJ HH:mm dans le fuseau horaire de Homey (format 24 h), ou laissez vide pour masquer l’heure limite de départ.",
+            "it": "Inserisci AAAA-MM-GG HH:mm nel fuso orario di Homey (formato 24 ore) o lascia il campo vuoto per nascondere l’ora limite di partenza.",
+            "no": "Angi ÅÅÅÅ-MM-DD TT:mm i Homeys tidssone (24-timersformat), eller la feltet stå tomt for å skjule avreisetiden.",
+            "sv": "Ange ÅÅÅÅ-MM-DD TT:mm i Homeys tidszon (24-timmarsformat), eller lämna tomt för att dölja senaste avfärdstid.",
+            "pl": "Wpisz RRRR-MM-DD GG:mm w strefie czasowej Homey (format 24-godzinny) lub pozostaw puste, aby ukryć najpóźniejszą godzinę wyjazdu.",
+            "ru": "Введите ГГГГ-ММ-ДД ЧЧ:mm в часовом поясе Homey (24-часовой формат) или оставьте поле пустым, чтобы скрыть время выезда.",
+            "ko": "Homey의 시간대로 YYYY-MM-DD HH:mm을 입력하세요(24시간제). 출발 마감 시간을 숨기려면 비워 두세요.",
+            "ar": "أدخل التاريخ والوقت بالتنسيق YYYY-MM-DD HH:mm حسب المنطقة الزمنية في Homey (نظام 24 ساعة)، أو اترك الحقل فارغًا لإخفاء موعد المغادرة."
+          },
+          "value": ""
+        },
+        {
+          "id": "departure_buffer",
+          "type": "number",
+          "label": {
+            "en": "Departure buffer (minutes)",
+            "nl": "Vertrekmarge (minuten)",
+            "da": "Ekstra tid før afgang (minutter)",
+            "de": "Zeitpuffer für die Abfahrt (Minuten)",
+            "es": "Margen para la salida (minutos)",
+            "fr": "Marge avant le départ (minutes)",
+            "it": "Margine per la partenza (minuti)",
+            "no": "Tidsmargin for avreise (minutter)",
+            "sv": "Tidsmarginal för avfärd (minuter)",
+            "pl": "Zapas czasu na wyjazd (minuty)",
+            "ru": "Запас времени перед выездом (минуты)",
+            "ko": "출발 여유 시간(분)",
+            "ar": "الوقت الاحتياطي للمغادرة (بالدقائق)"
+          },
+          "hint": {
+            "en": "Extra time to set aside before the arrival deadline, in addition to the estimated travel time.",
+            "nl": "Extra tijd vóór de gewenste aankomsttijd, boven op de geschatte reistijd.",
+            "da": "Ekstra tid ud over den anslåede rejsetid.",
+            "de": "Zusätzliche Zeit neben der geschätzten Fahrzeit.",
+            "es": "Tiempo adicional al tiempo de viaje estimado.",
+            "fr": "Temps supplémentaire à ajouter à la durée estimée du trajet.",
+            "it": "Tempo aggiuntivo oltre alla durata stimata del viaggio.",
+            "no": "Ekstra tid i tillegg til beregnet reisetid.",
+            "sv": "Extra tid utöver den beräknade restiden.",
+            "pl": "Dodatkowy czas oprócz szacowanego czasu podróży.",
+            "ru": "Дополнительное время сверх расчётной длительности поездки.",
+            "ko": "예상 이동 시간에 더할 여유 시간입니다.",
+            "ar": "وقت إضافي يُضاف إلى مدة الرحلة التقديرية."
+          },
+          "min": 0,
+          "max": 1440,
+          "value": 0
+        },
+        {
           "id": "route_image",
           "type": "checkbox",
           "label": {
@@ -8568,6 +9025,82 @@
             "en": "For direct Google Cast, Sonos and UPnP/DLNA playback: turn on to run Translation announced with the translated audio URL after playback starts successfully. Turn off to play without triggering that card.",
             "nl": "Bij direct afspelen via Google Cast, Sonos en UPnP/DLNA: schakel in om Vertaling aangekondigd met de vertaalde audio-URL te activeren na een succesvolle start. Schakel uit om zonder die Wanneer-kaart af te spelen."
           }
+        },
+        {
+          "id": "announcement_sonos_mode",
+          "type": "dropdown",
+          "label": {
+            "en": "Sonos announcement mode",
+            "nl": "Sonos-aankondigingsmodus",
+            "da": "Sonos-meddelelsestilstand",
+            "de": "Sonos-Durchsagemodus",
+            "es": "Modo de anuncios de Sonos",
+            "fr": "Mode d’annonce Sonos",
+            "it": "Modalità annunci Sonos",
+            "no": "Sonos-kunngjøringsmodus",
+            "sv": "Sonos-meddelandeläge",
+            "pl": "Tryb komunikatów Sonos",
+            "ru": "Режим объявлений Sonos",
+            "ko": "Sonos 안내 방송 모드",
+            "ar": "وضع إعلانات Sonos"
+          },
+          "value": "default",
+          "values": [
+            {
+              "id": "default",
+              "label": {
+                "en": "Use app default",
+                "nl": "Gebruik appstandaard",
+                "da": "Brug appstandard",
+                "de": "App-Standard verwenden",
+                "es": "Usar el valor de la app",
+                "fr": "Utiliser le réglage de l’app",
+                "it": "Usa il valore dell’app",
+                "no": "Bruk appstandard",
+                "sv": "Använd appens standard",
+                "pl": "Użyj ustawienia aplikacji",
+                "ru": "Использовать настройку приложения",
+                "ko": "앱 기본값 사용",
+                "ar": "استخدام إعداد التطبيق"
+              }
+            },
+            {
+              "id": "selected",
+              "label": {
+                "en": "Play Separately",
+                "nl": "Apart afspelen",
+                "da": "Afspil separat",
+                "de": "Getrennt abspielen",
+                "es": "Reproducir por separado",
+                "fr": "Lire séparément",
+                "it": "Riproduci separatamente",
+                "no": "Spill av separat",
+                "sv": "Spela separat",
+                "pl": "Odtwarzaj osobno",
+                "ru": "Воспроизводить отдельно",
+                "ko": "개별 재생",
+                "ar": "تشغيل منفصل"
+              }
+            },
+            {
+              "id": "sync",
+              "label": {
+                "en": "Play in Sync",
+                "nl": "Synchroon afspelen",
+                "da": "Afspil synkront",
+                "de": "Synchron abspielen",
+                "es": "Reproducir en sincronía",
+                "fr": "Lecture synchronisée",
+                "it": "Riproduci in sincronia",
+                "no": "Spill av synkront",
+                "sv": "Spela synkront",
+                "pl": "Odtwarzaj synchronicznie",
+                "ru": "Воспроизводить синхронно",
+                "ko": "동기 재생",
+                "ar": "تشغيل متزامن"
+              }
+            }
+          ]
         },
         {
           "id": "announcement_group_sonos",
@@ -9313,6 +9846,29 @@
       "title": {
         "en": "Last refreshed",
         "nl": "Laatst ververst"
+      },
+      "getable": true,
+      "setable": false,
+      "insights": false,
+      "uiComponent": "sensor"
+    },
+    "maps_leave_by": {
+      "type": "string",
+      "icon": "/assets/capabilities/maps-last-refreshed.svg",
+      "title": {
+        "en": "Leave by",
+        "nl": "Vertrek uiterlijk om",
+        "da": "Afgang senest",
+        "de": "Abfahrt spätestens um",
+        "es": "Salir a más tardar a las",
+        "fr": "Partir au plus tard à",
+        "it": "Partenza entro le",
+        "no": "Avreise senest",
+        "sv": "Åk senast",
+        "pl": "Wyjedź najpóźniej o",
+        "ru": "Выехать не позднее",
+        "ko": "출발 마감 시간",
+        "ar": "آخر موعد للمغادرة"
       },
       "getable": true,
       "setable": false,

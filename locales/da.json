@@ -2,5 +2,38 @@
   "languagecode": "da-DK",
   "speech": {
     "release_notice": "Google Services har store nye funktioner:\n- Læs tekst op på Google Cast-, Sonos- og kompatible UPnP/DLNA-højttalere, også på alle højttalere eller dine egne højttalergrupper. Tidligere afspilning og lydstyrke gendannes bagefter.\n- Google Maps: rejsetider og ruter med trafik.\n- Vælg og afprøv Cloud-stemmer for hver enhed.\n\nSe wikien for brugervejledningen og Google Services-emnet på Community Forum for hjælp."
+  },
+  "settings": {
+    "speakers_tab": "Højttalere",
+    "sonos_mode": "Sonos-meddelelsestilstand",
+    "sonos_app_default": "Appstandard",
+    "sonos_selected": "Afspil separat",
+    "sonos_sync": "Afspil synkront",
+    "sonos_saved": "Sonos-tilstanden er gemt.",
+    "sonos_save_error": "Sonos-tilstanden kunne ikke gemmes.",
+    "sonos_load_error": "Sonos-tilstanden kunne ikke indlæses.",
+    "check_help": "Testene bruger de gemte indstillinger og sender en prøveforespørgsel til Google. Det kan påvirke kvoten eller koste penge.",
+    "check_tts": "Test Cloud Text-to-Speech",
+    "check_translate": "Test Translate",
+    "check_youtube": "Test YouTube-søgning",
+    "check_routes": "Test Routes API",
+    "check_places": "Test adresseforslag (valgfrit)",
+    "check_static": "Test rutebilleder (valgfrit)",
+    "check_running": "Tester gemte indstillinger…",
+    "check_result_ok": "Testen lykkedes.",
+    "check_result_missing": "Indtast og gem først de nødvendige legitimationsoplysninger og indstillinger.",
+    "check_result_busy": "Testen kører allerede. Prøv igen om lidt.",
+    "check_result_billing": "Google meldte et faktureringsproblem. Kontrollér faktureringen i Google Cloud Console.",
+    "check_result_disabled": "Google meldte, at API'en er deaktiveret. Aktivér den i Google Cloud Console.",
+    "check_result_credentials": "Google-legitimationsoplysningerne er ugyldige eller kunne ikke indlæses. Kontrollér og gem dem igen.",
+    "check_result_quota": "Google meldte en kvote- eller hastighedsgrænse. Kontrollér forbrug og kvoter i Google Cloud Console.",
+    "check_result_access": "Google afviste adgangen. Kontrollér API-aktivering, fakturering og nøglebegrænsninger eller tjenestekontoens tilladelser.",
+    "check_result_unreachable": "Google svarede ikke i tide eller er utilgængelig. Prøv igen senere.",
+    "check_result_failed": "Testen mislykkedes. Kontrollér de gemte indstillinger, og prøv igen.",
+    "group_ip_help": "Reservér faste IP-adresser til Sonos-højttalerne i routeren. Med Afspil separat kan Homey genbruge kendte adresser i stedet for at scanne netværket, så meddelelser starter hurtigere."
+  },
+  "maps": {
+    "invalid_deadline": "Angiv en entydig dato og tid i Homeys tidszone (ÅÅÅÅ-MM-DD TT:mm, 24-timers ur), eller lad feltet stå tomt.",
+    "invalid_buffer": "Indtast et helt tal fra 0 til 1440 minutter."
   }
 }

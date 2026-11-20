@@ -178,7 +178,7 @@
             <path fill-rule="evenodd" d="M3 4a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4Zm4.75 3.5a2.25 2.25 0 1 0 4.5 0 2.25 2.25 0 0 0-4.5 0ZM6 15a4 4 0 1 0 8 0 4 4 0 0 0-8 0Z"/>
             <path d="M19 5h1a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-1V5Z"/>
           </svg>
-          <span data-i18n="settings.groups_tab">Groups</span>
+          <span data-i18n="settings.speakers_tab">Speakers</span>
         </button>
       </nav>
       <main class="settings-scroll" id="generalPanel" role="tabpanel" aria-labelledby="generalTab">
@@ -252,6 +252,9 @@
                 <input class="settings-control hy-nostyle" type="text" id="cloudProject" placeholder="Project ID" aria-describedby="cloudProjectHelp" />
                 <p class="field-help" id="cloudProjectHelp">Enter the project ID exactly as it appears in Google Cloud Console.</p>
             </div>
+            <p class="field-help" data-i18n="settings.check_help">Tests use saved settings and make a sample request to Google. Quota or charges may apply.</p>
+            <div class="field"><button type="button" class="hy-nostyle group-button" data-service-check="tts" data-i18n="settings.check_tts" disabled>Test Cloud Text-to-Speech</button><p class="field-help" role="status" id="check-tts"></p></div>
+            <div class="field"><button type="button" class="hy-nostyle group-button" data-service-check="translate" data-i18n="settings.check_translate" disabled>Test Translate</button><p class="field-help" role="status" id="check-translate"></p></div>
           </div>
         </section>
 
@@ -262,6 +265,8 @@
                 <label for="cloudApiKey">YouTube API key</label>
                 <input class="settings-control hy-nostyle" type="password" id="cloudApiKey" autocomplete="off" spellcheck="false" />
             </div>
+            <p class="field-help" data-i18n="settings.check_help">Tests use saved settings and make a sample request to Google. Quota or charges may apply.</p>
+            <div class="field"><button type="button" class="hy-nostyle group-button" data-service-check="youtube" data-i18n="settings.check_youtube" disabled>Test YouTube search</button><p class="field-help" role="status" id="check-youtube"></p></div>
           </div>
         </section>
 
@@ -293,6 +298,10 @@
                     aria-describedby="mapsKeyHelp" disabled />
                 <p class="field-help" id="mapsKeyHelp">Keep your existing Maps key if it meets the requirements above.</p>
             </div>
+            <p class="field-help" data-i18n="settings.check_help">Tests use saved settings and make a sample request to Google. Quota or charges may apply.</p>
+            <div class="field"><button type="button" class="hy-nostyle group-button" data-service-check="routes" data-i18n="settings.check_routes" disabled>Test Routes API</button><p class="field-help" role="status" id="check-routes"></p></div>
+            <div class="field"><button type="button" class="hy-nostyle group-button" data-service-check="places" data-i18n="settings.check_places" disabled>Test address suggestions (optional)</button><p class="field-help" role="status" id="check-places"></p></div>
+            <div class="field"><button type="button" class="hy-nostyle group-button" data-service-check="static-map" data-i18n="settings.check_static" disabled>Test route images (optional)</button><p class="field-help" role="status" id="check-static-map"></p></div>
             <div class="field">
                 <label class="checkbox-label" for="mapsRouteImages">
                     <input type="checkbox" class="hy-nostyle" id="mapsRouteImages" aria-describedby="mapsImagesHelp" disabled />
@@ -335,9 +344,23 @@
       <main class="settings-scroll" id="groupsPanel" role="tabpanel" aria-labelledby="groupsTab" hidden>
         <div class="settings-shell">
           <header class="settings-intro">
-            <h1 data-i18n="settings.groups_tab">Groups</h1>
+            <h1 data-i18n="settings.speakers_tab">Speakers</h1>
             <p data-i18n="settings.groups_intro">Create named groups of announcement speakers to use in Flows or as a device default.</p>
+            <p class="field-help" data-i18n="settings.group_ip_help">Reserve fixed IP addresses for your Sonos speakers in your router. With Play Separately, Homey can reuse known addresses instead of scanning the network, so announcements can start faster.</p>
           </header>
+          <section class="settings-card" aria-labelledby="sonosModeHeading">
+            <h2 class="card-heading" id="sonosModeHeading" data-i18n="settings.sonos_mode">Sonos announcement mode</h2>
+            <div class="card-body">
+              <div class="field">
+                <label for="sonosAnnouncementMode" data-i18n="settings.sonos_app_default">App default</label>
+                <select class="settings-control hy-nostyle" id="sonosAnnouncementMode" disabled>
+                  <option value="sync" data-i18n="settings.sonos_sync">Play in Sync</option>
+                  <option value="selected" data-i18n="settings.sonos_selected">Play Separately</option>
+                </select>
+                <p id="sonosModeStatus" class="save-status" role="status"></p>
+              </div>
+            </div>
+          </section>
           <section class="settings-card" aria-labelledby="speakerGroupsHeading">
             <h2 class="card-heading" id="speakerGroupsHeading" data-i18n="settings.saved_groups">Saved groups</h2>
             <div class="card-body">

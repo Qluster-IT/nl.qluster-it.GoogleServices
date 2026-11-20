@@ -1,0 +1,9 @@
+{
+  "type": "string",
+  "icon": "/assets/capabilities/maps-last-refreshed.svg",
+  "title": { "en": "Leave by", "nl": "Vertrek uiterlijk om", "da": "Afgang senest", "de": "Abfahrt spätestens um", "es": "Salir a más tardar a las", "fr": "Partir au plus tard à", "it": "Partenza entro le", "no": "Avreise senest", "sv": "Åk senast", "pl": "Wyjedź najpóźniej o", "ru": "Выехать не позднее", "ko": "출발 마감 시간", "ar": "آخر موعد للمغادرة" },
+  "getable": true,
+  "setable": false,
+  "insights": false,
+  "uiComponent": "sensor"
+}

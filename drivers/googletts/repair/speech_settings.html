@@ -92,13 +92,13 @@
     finally { get('fields').disabled = false; busy = false; }
   }
   const selected = () => speaker.value === '' ? null : choices[Number(speaker.value)];
-  async function reload() {
+  function applyChoices(updated) {
     const previous = selected();
-    choices = await Homey.emit('list_speakers');
+    choices = updated;
     if (previous && !choices.some(choice => choice.id === previous.id)) choices.push(previous);
     showSpeakers(previous);
   }
-  get('reload').onclick = () => perform(reload);
+  get('reload').onclick = () => perform(async () => applyChoices(await Homey.emit('list_speakers', 'force')));
   get('form').onsubmit = event => {
     event.preventDefault();
     if (!get('form').reportValidity()) return;
@@ -114,6 +114,13 @@
       else await Homey.done();
     });
   };
-  await perform(reload);
+  get('reload').disabled = true;
+  try {
+    applyChoices(await Homey.emit('list_speakers', 'cached'));
+    const updated = await Homey.emit('list_speakers', 'wait');
+    if (!busy) applyChoices(updated);
+  } catch (error) {
+    if (!busy) status.textContent = error.message;
+  } finally { get('reload').disabled = false; }
 })();
 </script>

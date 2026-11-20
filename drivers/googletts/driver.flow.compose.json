@@ -69,12 +69,12 @@
         "nl": "Spreek tekst uit op een luidspreker"
       },
       "titleFormatted": {
-        "en": "Announce [[text]] on [[speaker]] with volume [[volume]]% and [[completion]]",
-        "nl": "Spreek [[text]] uit op [[speaker]] met volume [[volume]]% en [[completion]]"
+        "en": "Announce [[text]] on [[speaker]] with volume [[volume]]%, Sonos: [[sonos_mode]], then [[completion]]",
+        "nl": "Spreek [[text]] uit op [[speaker]] met volume [[volume]]%, Sonos: [[sonos_mode]], daarna [[completion]]"
       },
       "hint": {
-        "en": "Plays up to 200 characters on a Google Cast, Sonos, or compatible UPnP/DLNA speaker on your local network. Supports BLL coding in the text field. Choose Wait to finish to continue the Flow only after the speakers have finished and been restored.",
-        "nl": "Speelt maximaal 200 tekens af op een Google Cast-, Sonos- of compatibele UPnP/DLNA-luidspreker op je lokale netwerk. BLL-codering wordt ondersteund in het tekstveld. Kies Wachten tot klaar om de Flow pas verder te laten gaan als de luidsprekers klaar en hersteld zijn."
+        "en": "Plays up to 200 characters on a Google Cast, Sonos, or compatible UPnP/DLNA speaker on your local network. Supports BLL coding in the text field. Choose Wait to finish to continue the Flow only after the speakers have finished and been restored. For Sonos, Play Separately plays only in the selected rooms without changing their groups. Play in Sync temporarily groups the selected rooms so they play together, then restores the original groups.",
+        "nl": "Speelt maximaal 200 tekens af op een Google Cast-, Sonos- of compatibele UPnP/DLNA-luidspreker op je lokale netwerk. BLL-codering wordt ondersteund in het tekstveld. Kies Wachten tot klaar om de Flow pas verder te laten gaan als de luidsprekers klaar en hersteld zijn. Bij Sonos speelt Apart afspelen alleen in de gekozen kamers zonder de groepen te wijzigen. Synchroon afspelen groepeert de gekozen kamers tijdelijk zodat ze tegelijk afspelen en herstelt daarna de oorspronkelijke groepen."
       },
       "args": [
         {
@@ -117,6 +117,82 @@
             "en": "Speaker volume (%)",
             "nl": "Luidsprekervolume (%)"
           }
+        },
+        {
+          "name": "sonos_mode",
+          "type": "dropdown",
+          "required": false,
+          "title": {
+            "en": "Use device default",
+            "nl": "Gebruik apparaatstandaard",
+            "da": "Brug enhedsstandard",
+            "de": "Gerätestandard verwenden",
+            "es": "Usar el valor del dispositivo",
+            "fr": "Utiliser le réglage de l’appareil",
+            "it": "Usa il valore del dispositivo",
+            "no": "Bruk enhetsstandard",
+            "sv": "Använd enhetens standard",
+            "pl": "Użyj ustawienia urządzenia",
+            "ru": "Использовать настройку устройства",
+            "ko": "기기 기본값 사용",
+            "ar": "استخدام إعداد الجهاز"
+          },
+          "values": [
+            {
+              "id": "default",
+              "label": {
+                "en": "Use device default",
+                "nl": "Gebruik apparaatstandaard",
+                "da": "Brug enhedsstandard",
+                "de": "Gerätestandard verwenden",
+                "es": "Usar el valor del dispositivo",
+                "fr": "Utiliser le réglage de l’appareil",
+                "it": "Usa il valore del dispositivo",
+                "no": "Bruk enhetsstandard",
+                "sv": "Använd enhetens standard",
+                "pl": "Użyj ustawienia urządzenia",
+                "ru": "Использовать настройку устройства",
+                "ko": "기기 기본값 사용",
+                "ar": "استخدام إعداد الجهاز"
+              }
+            },
+            {
+              "id": "selected",
+              "label": {
+                "en": "Play Separately",
+                "nl": "Apart afspelen",
+                "da": "Afspil separat",
+                "de": "Getrennt abspielen",
+                "es": "Reproducir por separado",
+                "fr": "Lire séparément",
+                "it": "Riproduci separatamente",
+                "no": "Spill av separat",
+                "sv": "Spela separat",
+                "pl": "Odtwarzaj osobno",
+                "ru": "Воспроизводить отдельно",
+                "ko": "개별 재생",
+                "ar": "تشغيل منفصل"
+              }
+            },
+            {
+              "id": "sync",
+              "label": {
+                "en": "Play in Sync",
+                "nl": "Synchroon afspelen",
+                "da": "Afspil synkront",
+                "de": "Synchron abspielen",
+                "es": "Reproducir en sincronía",
+                "fr": "Lecture synchronisée",
+                "it": "Riproduci in sincronia",
+                "no": "Spill av synkront",
+                "sv": "Spela synkront",
+                "pl": "Odtwarzaj synchronicznie",
+                "ru": "Воспроизводить синхронно",
+                "ko": "동기 재생",
+                "ar": "تشغيل متزامن"
+              }
+            }
+          ]
         },
         {
           "name": "completion",

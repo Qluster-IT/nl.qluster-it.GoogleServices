@@ -57,6 +57,82 @@
       "value": false
     },
     {
+      "id": "announcement_sonos_mode",
+      "type": "dropdown",
+      "label": {
+        "en": "Sonos announcement mode",
+        "nl": "Sonos-aankondigingsmodus",
+        "da": "Sonos-meddelelsestilstand",
+        "de": "Sonos-Durchsagemodus",
+        "es": "Modo de anuncios de Sonos",
+        "fr": "Mode d’annonce Sonos",
+        "it": "Modalità annunci Sonos",
+        "no": "Sonos-kunngjøringsmodus",
+        "sv": "Sonos-meddelandeläge",
+        "pl": "Tryb komunikatów Sonos",
+        "ru": "Режим объявлений Sonos",
+        "ko": "Sonos 안내 방송 모드",
+        "ar": "وضع إعلانات Sonos"
+      },
+      "value": "default",
+      "values": [
+        {
+          "id": "default",
+          "label": {
+            "en": "Use app default",
+            "nl": "Gebruik appstandaard",
+            "da": "Brug appstandard",
+            "de": "App-Standard verwenden",
+            "es": "Usar el valor de la app",
+            "fr": "Utiliser le réglage de l’app",
+            "it": "Usa il valore dell’app",
+            "no": "Bruk appstandard",
+            "sv": "Använd appens standard",
+            "pl": "Użyj ustawienia aplikacji",
+            "ru": "Использовать настройку приложения",
+            "ko": "앱 기본값 사용",
+            "ar": "استخدام إعداد التطبيق"
+          }
+        },
+        {
+          "id": "selected",
+          "label": {
+            "en": "Play Separately",
+            "nl": "Apart afspelen",
+            "da": "Afspil separat",
+            "de": "Getrennt abspielen",
+            "es": "Reproducir por separado",
+            "fr": "Lire séparément",
+            "it": "Riproduci separatamente",
+            "no": "Spill av separat",
+            "sv": "Spela separat",
+            "pl": "Odtwarzaj osobno",
+            "ru": "Воспроизводить отдельно",
+            "ko": "개별 재생",
+            "ar": "تشغيل منفصل"
+          }
+        },
+        {
+          "id": "sync",
+          "label": {
+            "en": "Play in Sync",
+            "nl": "Synchroon afspelen",
+            "da": "Afspil synkront",
+            "de": "Synchron abspielen",
+            "es": "Reproducir en sincronía",
+            "fr": "Lecture synchronisée",
+            "it": "Riproduci in sincronia",
+            "no": "Spill av synkront",
+            "sv": "Spela synkront",
+            "pl": "Odtwarzaj synchronicznie",
+            "ru": "Воспроизводить синхронно",
+            "ko": "동기 재생",
+            "ar": "تشغيل متزامن"
+          }
+        }
+      ]
+    },
+    {
       "id": "announcement_group_sonos",
       "type": "checkbox",
       "label": {

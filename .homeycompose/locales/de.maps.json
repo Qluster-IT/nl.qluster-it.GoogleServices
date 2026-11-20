@@ -1,0 +1,4 @@
+{
+  "invalid_deadline": "Gib ein eindeutiges Datum mit Uhrzeit in Homeys Zeitzone ein (JJJJ-MM-TT HH:mm, 24-Stunden-Format) oder lass das Feld leer.",
+  "invalid_buffer": "Gib eine ganze Zahl zwischen 0 und 1440 Minuten ein."
+}

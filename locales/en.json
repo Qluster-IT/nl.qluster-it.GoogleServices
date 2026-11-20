@@ -45,7 +45,9 @@
       "address_lookup_failed": "A previously saved location could not be looked up. Enter or select its address before saving."
     },
     "homey_location_unavailable": "Homey's location is unavailable. Check Homey's location settings or use an address instead.",
-    "use_readable_address": "Enter an address or coordinates instead of a place ID, or use Repair to choose an address."
+    "use_readable_address": "Enter an address or coordinates instead of a place ID, or use Repair to choose an address.",
+    "invalid_deadline": "Enter an unambiguous date and time in Homey's time zone (YYYY-MM-DD HH:mm, 24-hour clock), or leave it blank.",
+    "invalid_buffer": "Enter a whole number between 0 and 1440 minutes."
   },
   "speech": {
     "title": "Configure speech voice",
@@ -112,6 +114,33 @@
     "group_save_failed": "Could not save the group.",
     "group_volume_help": "The adjustment and maximum apply only when the Flow sets a speaker volume.",
     "group_volume_offset": "Volume adjustment (percentage points)",
-    "group_max_volume": "Maximum volume (%)"
+    "group_max_volume": "Maximum volume (%)",
+    "speakers_tab": "Speakers",
+    "sonos_mode": "Sonos announcement mode",
+    "sonos_app_default": "App default",
+    "sonos_selected": "Play Separately",
+    "sonos_sync": "Play in Sync",
+    "sonos_saved": "Sonos mode saved.",
+    "sonos_save_error": "Could not save the Sonos mode.",
+    "sonos_load_error": "Could not load the Sonos mode.",
+    "group_ip_help": "Reserve fixed IP addresses for your Sonos speakers in your router. With Play Separately, Homey can reuse known addresses instead of scanning the network, so announcements can start faster.",
+    "check_help": "Tests use saved settings and make a sample request to Google. Quota or charges may apply.",
+    "check_tts": "Test Cloud Text-to-Speech",
+    "check_translate": "Test Translate",
+    "check_youtube": "Test YouTube search",
+    "check_routes": "Test Routes API",
+    "check_places": "Test address suggestions (optional)",
+    "check_static": "Test route images (optional)",
+    "check_running": "Testing saved settings…",
+    "check_result_ok": "Test passed.",
+    "check_result_missing": "Enter and save the required credentials and settings first.",
+    "check_result_busy": "This test is already running. Try again shortly.",
+    "check_result_billing": "Google reported a billing problem. Check billing in Google Cloud Console.",
+    "check_result_disabled": "Google reported that the API is disabled. Enable it in Google Cloud Console.",
+    "check_result_credentials": "Google credentials are invalid or could not be loaded. Check and save them again.",
+    "check_result_quota": "Google reported a quota or rate limit. Check usage and quotas in Google Cloud Console.",
+    "check_result_access": "Google denied access. Check API enablement, billing, and key restrictions or service account permissions.",
+    "check_result_unreachable": "Google did not respond in time or is unavailable. Try again later.",
+    "check_result_failed": "The test failed. Check the saved settings and try again."
   }
 }

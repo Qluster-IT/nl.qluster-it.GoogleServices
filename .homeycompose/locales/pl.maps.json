@@ -1,0 +1,4 @@
+{
+  "invalid_deadline": "Wpisz jednoznaczną datę i godzinę w strefie czasowej Homey (RRRR-MM-DD GG:mm, format 24-godzinny) lub pozostaw puste.",
+  "invalid_buffer": "Podaj liczbę całkowitą od 0 do 1440 minut."
+}

@@ -51,6 +51,31 @@ async function onHomeyReady(Homey) {
 
     Homey.ready();
     if (document.getElementById('settingsTabs')) initSpeakerGroups(Homey, call);
+    const sonosMode = document.getElementById('sonosAnnouncementMode');
+    if (sonosMode) {
+        const modeStatus = document.getElementById('sonosModeStatus');
+        const key = 'sonosAnnouncementMode';
+        call('get', key).then(value => {
+            let current = value === 'selected' ? 'selected' : 'sync';
+            sonosMode.value = current;
+            sonosMode.disabled = false;
+            sonosMode.addEventListener('change', async () => {
+                const next = sonosMode.value;
+                sonosMode.disabled = true;
+                modeStatus.textContent = '';
+                try {
+                    await call('set', key, next);
+                    current = next;
+                    modeStatus.textContent = Homey.__('settings.sonos_saved');
+                } catch {
+                    sonosMode.value = current;
+                    modeStatus.textContent = Homey.__('settings.sonos_save_error');
+                } finally {
+                    sonosMode.disabled = false;
+                }
+            });
+        }, () => { modeStatus.textContent = Homey.__('settings.sonos_load_error'); });
+    }
     status.textContent = 'Loading settings...';
     for (const field of Object.values(fields)) field.disabled = true;
     try {
@@ -66,7 +91,32 @@ async function onHomeyReady(Homey) {
     }
     renderVoices([], saved.DefaultCloudVoice);
     for (const field of Object.values(fields)) field.disabled = false;
+    const probes = Array.from(document.querySelectorAll('[data-service-check]'));
+    const probeStatuses = ['ok', 'missing', 'busy', 'billing', 'disabled', 'credentials', 'quota', 'access', 'unreachable', 'failed'];
+    const pending = new Set();
+    const refreshProbeButtons = () => {
+        probes.forEach(probe => { probe.disabled = button.disabled || pending.has(probe); });
+    };
+    for (const probe of probes) {
+        const service = probe.dataset.serviceCheck;
+        const result = document.getElementById(`check-${service}`);
+        probe.addEventListener('click', async () => {
+            pending.add(probe);
+            refreshProbeButtons();
+            result.textContent = Homey.__('settings.check_running');
+            try {
+                const { status: code } = await call('api', 'POST', '/check-google-service', { service });
+                result.textContent = Homey.__(`settings.check_result_${probeStatuses.includes(code) ? code : 'failed'}`);
+            } catch {
+                result.textContent = Homey.__('settings.check_result_failed');
+            } finally {
+                pending.delete(probe);
+                refreshProbeButtons();
+            }
+        });
+    }
     button.disabled = false;
+    refreshProbeButtons();
     status.textContent = '';
     if (saved.CloudJSON) void refreshVoices();
 
@@ -81,6 +131,7 @@ async function onHomeyReady(Homey) {
             ...toggles.filter(key => next[key])
         ];
         button.disabled = true;
+        refreshProbeButtons();
         status.textContent = 'Saving settings...';
         let currentKey;
         let reloadVoices = false;
@@ -98,6 +149,7 @@ async function onHomeyReady(Homey) {
             status.textContent = `Could not save ${label}. Earlier changes may already be saved; try again.`;
         } finally {
             button.disabled = false;
+            refreshProbeButtons();
             if (reloadVoices && saved.CloudJSON && fields.DefaultCloudVoice.value === (saved.DefaultCloudVoice || '')) void refreshVoices();
         }
     });

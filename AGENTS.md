@@ -12,6 +12,7 @@ This is a Homey app. Before making changes, follow `C:\Users\Qlustrator\.copilot
 
 ## Speech testing
 
+- Use Cloud TTS by default for new speech and announcement test Flows unless a different speech service is explicitly requested or the test specifically covers that service.
 - Reuse saved Advanced Flows under Google Services, in the relevant device subfolder for single-device scenarios and at the app level for shared scenarios. Test Google TTS, Cloud TTS and Translate with a saved speaker, an explicit picker override and All speakers; obtain selections from the app's actual autocomplete.
 - Check both states of Run When cards for speaker announcements. With direct playback, the disabled setting suppresses URL, translation and timed Finished triggers. Failed playback must not emit successful-announcement triggers.
 - Include omitted device-backed Flow arguments, explicit zero pitch and volume gain, BLL coding with changed variable values, and preferred translation voices with regional default language codes.

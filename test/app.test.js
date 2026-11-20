@@ -325,7 +325,10 @@ test('speaker announcements resolve the selected speaker before synthesizing', a
         if (playbackError) throw playbackError;
         calls.push([speaker.id, media]);
       }
-      async autocomplete(query) { return [{ id: 'cast:abc', name: query }]; }
+      async autocomplete(query, mode) {
+        assert.equal(mode, 'live');
+        return [{ id: 'cast:abc', name: query }];
+      }
     },
     'google-tts-api': { getAudioUrl: (text, { lang }) => {
       assert.deepEqual([text, lang], ['Hallo', 'nl']);
@@ -351,11 +354,11 @@ test('speaker announcements resolve the selected speaker before synthesizing', a
   const speaker = { id: 'cast:abc' };
   const args = { text: 'Hallo', speaker };
   const media = { url: 'http://192.168.1.1:47333/tts/test.mp3', type: 'audio/mpeg', duration: 1500 };
-  assert.equal(await run({ ...args, device: { getSetting: () => false } }), true);
+  assert.equal(await run({ ...args, device: { getSetting: key => key === 'announcement_sonos_mode' ? undefined : false } }), true);
   assert.deepEqual(calls, ['missing', 'cast:abc', 'cast:abc',
     ['cast:abc', media]]);
   calls.length = 0;
-  const device = { getSetting: key => key === 'trigger_when_announcing' };
+  const device = { getSetting: key => key === 'trigger_when_announcing' ? true : undefined };
   playbackError = new Error('Speaker unavailable');
   await assert.rejects(run({ ...args, device }), /unavailable/);
   assert.deepEqual(calls.splice(0), ['cast:abc']);
@@ -384,7 +387,7 @@ test('default speakers are used only when there is no explicit selection, and fa
   let trigger = false;
   const device = {
     getStoreValue: key => key === helpers.defaultSpeakerKey ? { id: 'all' } : undefined,
-    getSetting: key => key === 'trigger_when_announcing' && trigger
+    getSetting: key => key === 'trigger_when_announcing' ? trigger : undefined
   };
   helpers.registerAnnouncement(homey, 'example', async () => {
     generated++;
@@ -510,6 +513,62 @@ test('saved speaker groups retain their picker ID after edits and resolve only a
   assert.deepEqual(attempted, [renamedBedroom.id]);
   await deleteGroup(settings, group.id);
   await assert.rejects(playback.select(picked), /no longer exists/);
+});
+
+test('Play Separately resolves a saved Sonos group by verified addresses and rediscovers changed addresses', async () => {
+  const primary = 'RINCON_00112233445501400';
+  const satellite = 'RINCON_00112233446601400';
+  const id = uuid => `dlna:uuid:${uuid.toLowerCase()}`;
+  const host = '192.168.1.10';
+  const group = {
+    id: 'group:00000000-0000-0000-0000-000000000001', name: 'Downstairs',
+    members: [{ id: id(satellite), maxVolume: 25 }, { id: id(primary) }]
+  };
+  const values = new Map();
+  const settings = { get: key => values.get(key), set: (key, value) => values.set(key, value) };
+  const requests = [];
+  let actual = primary;
+  const zone = 'urn:schemas-upnp-org:service:ZoneGroupTopology:1';
+  const Playback = compile('../lib/speaker-playback', {
+    'node-fetch': async url => {
+      requests.push(url);
+      if (url.endsWith('/topology')) {
+        return { ok: true, text: async () => `<Envelope><Body><GetZoneGroupStateResponse><ZoneGroupState>
+          &lt;ZoneGroupState&gt;&lt;ZoneGroups&gt;&lt;ZoneGroup&gt;
+          &lt;ZoneGroupMember UUID="${primary}" ChannelMapSet="${primary}:LF;${satellite}:RF"&gt;
+          &lt;Satellite UUID="${satellite}"/&gt;&lt;/ZoneGroupMember&gt;
+          &lt;/ZoneGroup&gt;&lt;/ZoneGroups&gt;&lt;/ZoneGroupState&gt;
+          </ZoneGroupState></GetZoneGroupStateResponse></Body></Envelope>` };
+      }
+      return { ok: true, text: async () => `<root><device>
+        <deviceType>urn:schemas-upnp-org:device:ZonePlayer:1</deviceType>
+        <manufacturer>Sonos</manufacturer><roomName>Kitchen</roomName><UDN>uuid:${actual}</UDN>
+        <serviceList><service><serviceType>${zone}</serviceType><controlURL>/topology</controlURL></service>
+        <service><serviceType>urn:schemas-upnp-org:service:AVTransport:1</serviceType>
+        <controlURL>/av</controlURL></service></serviceList></device></root>` };
+    }
+  }).exports;
+  const makePlayback = () => new Playback(() => {}, undefined, undefined, () => [group], settings);
+  await makePlayback().rememberSonosAddresses([{ id: id(primary), protocol: 'sonos', host, aliases: [id(satellite)] }]);
+  // A new playback instance has no in-memory discovery results.
+  const playback = makePlayback();
+  let scans = 0;
+  playback.refresh = async () => {
+    scans++;
+    return [{ id: id(primary), protocol: 'sonos', host: '192.168.1.11', aliases: [id(satellite)] }];
+  };
+  assert.deepEqual((await playback.select(group, true)).targets.map(target => target.host), [host]);
+  assert.equal((await playback.select({ id: id(satellite) }, true)).id, id(primary));
+  assert.equal(scans, 0);
+  assert.deepEqual(requests.splice(0), [1, 2].flatMap(() => [
+    `http://${host}:1400/xml/device_description.xml`, `http://${host}:1400/topology`
+  ]));
+  actual = 'RINCON_00112233447701400'; // DHCP gave the saved address to a different Sonos room.
+  assert.equal((await playback.select(group, true)).targets[0].host, '192.168.1.11');
+  assert.equal(scans, 1);
+  assert.deepEqual(requests, [`http://${host}:1400/xml/device_description.xml`]);
+  await playback.select({ id: 'all' }, true);
+  assert.equal(scans, 2);
 });
 
 test('speech setup saves complete settings per session and preserves an offline default during repair', async () => {
@@ -671,6 +730,61 @@ test('announcement cards continue by default, or wait until the speakers are fin
   await assert.rejects(failing, /Restoring failed/);
 });
 
+test('speaker lists survive restart, refresh once in the background, and recover a moved Cast address before playing', async t => {
+  const { EventEmitter } = require('node:events');
+  t.mock.timers.enable({ apis: ['setTimeout'] });
+  let host = '192.168.1.2';
+  let name = 'Kitchen';
+  let scans = 0;
+  const Playback = compile('../lib/speaker-playback', {
+    'bonjour-service': { Bonjour: class {
+      find(_, callback) {
+        scans++;
+        callback({ addresses: [host], txt: { id: 'abc', fn: name }, port: 8009 });
+        return { stop() {} };
+      }
+      destroy() {}
+    } },
+    dgram: { createSocket() {
+      return Object.assign(new EventEmitter(), { send() {}, close() {} });
+    } },
+    net: { isIPv4: require('node:net').isIPv4, createConnection({ host: address }) {
+      const socket = Object.assign(new EventEmitter(), { setTimeout() {}, destroy() {} });
+      queueMicrotask(() => socket.emit(address === host ? 'connect' : 'error', new Error('address moved')));
+      return socket;
+    } }
+  }).exports;
+  const values = new Map();
+  const settings = { get: key => values.get(key), set: (key, value) => values.set(key, value) };
+  const makePlayback = () => new Playback(() => {}, undefined, undefined, undefined, settings);
+  const first = makePlayback().listSpeakers();
+  t.mock.timers.tick(2500);
+  const [speaker] = await first;
+  assert.deepEqual(speaker, { id: 'cast:abc', name: 'Kitchen', description: 'Google Cast' });
+  assert.equal(JSON.stringify([...values.values()]).includes(host), false);
+  const restarted = makePlayback();
+  name = 'Dining room';
+  assert.deepEqual(await restarted.listSpeakers(), [speaker], 'cached list resolves before the scan timer');
+  assert.deepEqual(await restarted.autocomplete('Kitchen'), [speaker]);
+  const fresh = restarted.listSpeakers('wait');
+  const livePicker = restarted.autocomplete('Dining room', 'live');
+  const selected = restarted.select(speaker);
+  assert.equal(scans, 2, 'opening, filtering and selecting share one scan after restart');
+  t.mock.timers.tick(2500);
+  const updated = [{ ...speaker, name }];
+  assert.deepEqual(await fresh, updated);
+  assert.deepEqual(await livePicker, updated, 'the first Flow response uses the completed scan, not the persisted list');
+  assert.deepEqual(await restarted.autocomplete('Dining room', 'live'), updated);
+  assert.equal(scans, 2, 'another Flow lookup reuses the recent scan');
+  assert.equal((await selected).host, host);
+  host = '192.168.1.9';
+  const moved = restarted.select(speaker);
+  await new Promise(resolve => setImmediate(resolve));
+  assert.equal(scans, 3, 'an unreachable live address triggers one new scan');
+  t.mock.timers.tick(2500);
+  assert.equal((await moved).host, host);
+});
+
 test('the speaker picker discovers Cast, Sonos, DLNA and UPnP transport services', async t => {
   const { EventEmitter } = require('node:events');
   t.mock.timers.enable({ apis: ['setTimeout'] });
@@ -725,12 +839,12 @@ test('the speaker picker discovers Cast, Sonos, DLNA and UPnP transport services
       }
       if (url === 'http://192.168.1.7/desc') {
         return { ok: true, text: async () => `<root><device><friendlyName>Living Room Display</friendlyName>
-          <modelName>Samsung DTV DMR</modelName><serviceList><service>
+          <modelName>Samsung DTV DMR</modelName><UDN>uuid:tv</UDN><serviceList><service>
           <serviceType>urn:schemas-upnp-org:service:AVTransport:1</serviceType>
           <controlURL>/av</controlURL></service></serviceList></device></root>` };
       }
       assert.equal(url, 'http://192.168.1.3/desc');
-      return { ok: true, text: async () => `<root><device><friendlyName>Den</friendlyName><serviceList><service>
+      return { ok: true, text: async () => `<root><device><friendlyName>Den</friendlyName><UDN>uuid:def</UDN><serviceList><service>
         <serviceType>urn:schemas-upnp-org:service:AVTransport:1</serviceType>
         <controlURL>/control</controlURL></service></serviceList></device></root>` };
     }
@@ -1095,7 +1209,7 @@ test('Maps repair updates route settings on the existing device without refreshi
     travel_mode: 'DRIVE', route_image: true, route_traffic: false });
   assert.deepEqual(writes[1], { destination: suggestion.name, origin_homey: true, travel_mode: 'DRIVE', route_image: true });
   assert.deepEqual({ ...settings, destination_homey: false }, { ...migrated, ...writes[1], route_traffic: false });
-  assert.deepEqual(cleared.sort(), ['maps_distance', 'maps_eta', 'maps_last_refreshed', 'maps_minutes', 'maps_route_state', 'maps_traffic_delay']);
+  assert.deepEqual(cleared.sort(), ['maps_distance', 'maps_eta', 'maps_last_refreshed', 'maps_leave_by', 'maps_minutes', 'maps_route_state', 'maps_traffic_delay']);
   assert.equal(device.routeMap, null);
   assert.equal(device.routeImage, null);
   assert.equal(imageUpdates, 1);
@@ -1495,7 +1609,7 @@ test('Maps refresh ignores overlapping button presses and restores saved reading
   assert.equal(routeRequests, 1);
   assert.equal(values.maps_refresh, true);
 
-  resolveRoute({ tokens, map });
+  resolveRoute({ tokens, map, durationSeconds: 28 * 60 });
   await firstPress;
   assert.equal(values.maps_minutes, 28);
   assert.equal(values.maps_distance, 39);
@@ -1503,6 +1617,15 @@ test('Maps refresh ignores overlapping button presses and restores saved reading
   await imageSource(writeImage());
   assert.equal(imageRequests, 1);
   assert.equal(store.maps_route_state.image, imageBytes.toString('base64'));
+  assert.equal(store.maps_route_state.durationSeconds, 28 * 60);
+  const plan = { arrival_deadline: '2026-11-20 09:00', departure_buffer: 7 };
+  await device.onSettings({ newSettings: { ...settings, ...plan }, changedKeys: Object.keys(plan) });
+  Object.assign(settings, plan);
+  const expectedLeaveBy = new Intl.DateTimeFormat('en', {
+    timeZone: 'Europe/Amsterdam', year: 'numeric', month: 'short',
+    day: 'numeric', hour: 'numeric', minute: '2-digit'
+  }).format(new Date('2026-11-20T07:25:00Z'));
+  assert.equal(values.maps_leave_by, expectedLeaveBy);
 
   const savedReadings = { ...values };
   await device.onUninit();
@@ -1525,7 +1648,7 @@ test('Maps image settings default to enabled and save an explicit opt-out', asyn
     ].map(id => [id, { value: '', add() {}, addEventListener(_, listener) { this.click = listener; } }]));
     const writes = [];
     const context = vm.createContext({
-      document: { getElementById: id => fields[id] },
+      document: { getElementById: id => fields[id], querySelectorAll: () => [] },
       Option: class {}
     });
     vm.runInContext(fs.readFileSync(require.resolve('../settings/settings.js'), 'utf8'), context);
@@ -1582,7 +1705,7 @@ test('Groups settings creates a named group and keeps an undiscovered member sel
     assert.equal(bridge, 'api');
     requests.push([method, url]);
     if (url === '/api-ready') return { ready: true };
-    if (url === '/announcement-speakers') return online ? [speaker] : [];
+    if (url.startsWith('/announcement-speakers')) return online ? [speaker] : [];
     if (method === 'GET') return groups;
     assert.equal(url, '/speaker-groups');
     assert.equal(body.name, 'Upstairs');

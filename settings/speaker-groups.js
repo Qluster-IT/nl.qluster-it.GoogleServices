@@ -153,14 +153,22 @@ function initSpeakerGroups(Homey, call) {
         }
     }
 
-    async function refreshSpeakers() {
+    async function refreshSpeakers(force = false) {
+        if (discovering) return;
         discovering = true;
         updateButtons();
         discoveryStatus.textContent = translate('group_scanning');
         try {
-            speakers = await api('GET', '/announcement-speakers');
+            if (!force) {
+                speakers = await api('GET', '/announcement-speakers');
+                renderMembers();
+            }
+            const updated = await api('GET', `/announcement-speakers?refresh=${force ? 'force' : 'wait'}`);
+            if (JSON.stringify(updated) !== JSON.stringify(speakers)) {
+                speakers = updated;
+                renderMembers();
+            }
             discoveryStatus.textContent = speakers.length ? '' : translate('group_no_speakers');
-            renderMembers();
         } catch (error) {
             discoveryStatus.textContent = `${translate('group_scan_failed')} ${error.message || error}`;
         } finally {
@@ -203,7 +211,7 @@ function initSpeakerGroups(Homey, call) {
 
     selector.addEventListener('change', () => void switchEditor(groups.find(group => group.id === selector.value)));
     el('speakerGroupAdd').addEventListener('click', () => void switchEditor(null, true));
-    el('speakerGroupRefresh').addEventListener('click', () => void refreshSpeakers());
+    el('speakerGroupRefresh').addEventListener('click', () => void refreshSpeakers(true));
     name.addEventListener('input', () => {
         draft.name = name.value;
         updateButtons();
