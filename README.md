@@ -98,7 +98,7 @@ In **Pair**, **Repair**, and **Saved groups**, speaker lists show the last disco
 
 Set the **Sonos announcement mode** under **App settings → Speakers**. A speech device's **Advanced Settings** can override the app default, and an **Announce** Flow card can override both:
 
-- **Play Separately:** Uses Sonos AudioClip on supported rooms. Only the selected rooms are targeted, even when they are already grouped with other rooms. Sonos manages the background level itself. The optional **Speaker volume (%)** sets the clip volume, subject to Sonos limits; it does not set how much the background audio is lowered. Playback across rooms is not guaranteed to be synchronized. If a selected Sonos room rejects AudioClip, the Flow reports the error without regrouping.
+- **Play Separately:** Sends a native Sonos announcement directly to each selected room on supported speakers. It can start quickly and play over what’s already playing. Other rooms in the same Sonos group don’t hear it, and the group stays as it is. Sonos manages the background level; **Speaker volume (%)** only sets the announcement volume, subject to Sonos limits. The selected rooms may not start at exactly the same time. If a room can’t play the native announcement, the Flow reports an error instead of switching modes.
 - **Play in Sync:** Compatible selected Sonos rooms play together and then return to their original groups. Existing devices and Flows keep their previous behavior, including the **Temporarily group Sonos rooms** setting, until a mode is explicitly changed. Existing groups that include excluded rooms may be left alone to avoid playing outside the selection.
 
 For **Play Separately** on a single Sonos room or a saved group of Sonos rooms, Homey checks the last known addresses first and scans again if it can't verify them. Reserving fixed IP addresses for the speakers in your router helps avoid repeat scans.
@@ -162,10 +162,14 @@ BLL coding is optional in supported text fields. When Better Logic Library is un
 
 ## Changelog
 
+### 3.1.1
+
+- Clarified the Sonos announcement options: **Play Separately** sends a native announcement to the chosen rooms, while **Play in Sync** plays it across rooms together.
+
 ### 3.1.0
 
-- Choose **Play Separately** to announce only in selected Sonos rooms without regrouping, or **Play in Sync** to play together.
-- Speaker lists open faster in Pair, Repair, and Saved groups, and refresh in the background. Sonos announcements can also start faster using known addresses.
+- Use **Play Separately** for quick, native Sonos announcements that play over your current audio in the rooms you choose. Use **Play in Sync** when the rooms need to play together.
+- Speaker lists open faster in Pair, Repair, and Saved groups, and refresh in the background.
 - Test Cloud Text-to-Speech, Translate, YouTube, and Maps from app settings, with separate checks for optional Maps features.
 - Set **Arrive by** and a **Departure buffer** on a Maps device to see **Leave by**.
 

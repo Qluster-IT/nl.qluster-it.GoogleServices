@@ -1,7 +1,7 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "nl.qluster-it.GoogleServices",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "compatibility": ">=5.0.0",
   "sdk": 3,
   "brandColor": "#8DB000",
@@ -3100,8 +3100,8 @@
           "nl": "Spreek [[text]] uit op [[speaker]] met volume [[volume]]%, Sonos: [[sonos_mode]], daarna [[completion]]"
         },
         "hint": {
-          "en": "Uses your Cloud Text-to-Speech settings to play an announcement on a Google Cast, Sonos, or compatible UPnP/DLNA speaker. Supports BLL coding in the text field. Choose Wait to finish to continue the Flow only after the speakers have finished and been restored. For Sonos, Play Separately plays only in the selected rooms without changing their groups. Play in Sync temporarily groups the selected rooms so they play together, then restores the original groups.",
-          "nl": "Gebruikt je Cloud Text-to-Speech-instellingen om een aankondiging af te spelen op een Google Cast-, Sonos- of compatibele UPnP/DLNA-luidspreker. BLL-codering wordt ondersteund in het tekstveld. Kies Wachten tot klaar om de Flow pas verder te laten gaan als de luidsprekers klaar en hersteld zijn. Bij Sonos speelt Apart afspelen alleen in de gekozen kamers zonder de groepen te wijzigen. Synchroon afspelen groepeert de gekozen kamers tijdelijk zodat ze tegelijk afspelen en herstelt daarna de oorspronkelijke groepen."
+          "en": "Uses your Cloud Text-to-Speech settings to play an announcement on a Google Cast, Sonos, or compatible UPnP/DLNA speaker. Supports BLL coding in the text field. Choose Wait to finish to continue the Flow only after the announcement finishes and previous playback is restored where applicable. For Sonos, Play Separately sends a native announcement directly to the selected rooms. It can play over current audio and leaves groups untouched. Choose Play in Sync when the rooms need to play together.",
+          "nl": "Gebruikt je Cloud Text-to-Speech-instellingen om een aankondiging af te spelen op een Google Cast-, Sonos- of compatibele UPnP/DLNA-luidspreker. BLL-codering wordt ondersteund in het tekstveld. Kies Wachten tot klaar om de Flow pas verder te laten gaan als de aankondiging is afgelopen en de vorige weergave waar nodig is hersteld. Bij Sonos stuurt Apart afspelen een ingebouwde aankondiging rechtstreeks naar de gekozen kamers. De aankondiging kan over het huidige geluid heen spelen en laat groepen intact. Kies Synchroon afspelen als de kamers tegelijk moeten afspelen."
         },
         "args": [
           {
@@ -5081,8 +5081,8 @@
           "nl": "Spreek [[text]] uit op [[speaker]] met volume [[volume]]%, Sonos: [[sonos_mode]], daarna [[completion]]"
         },
         "hint": {
-          "en": "Plays up to 200 characters on a Google Cast, Sonos, or compatible UPnP/DLNA speaker on your local network. Supports BLL coding in the text field. Choose Wait to finish to continue the Flow only after the speakers have finished and been restored. For Sonos, Play Separately plays only in the selected rooms without changing their groups. Play in Sync temporarily groups the selected rooms so they play together, then restores the original groups.",
-          "nl": "Speelt maximaal 200 tekens af op een Google Cast-, Sonos- of compatibele UPnP/DLNA-luidspreker op je lokale netwerk. BLL-codering wordt ondersteund in het tekstveld. Kies Wachten tot klaar om de Flow pas verder te laten gaan als de luidsprekers klaar en hersteld zijn. Bij Sonos speelt Apart afspelen alleen in de gekozen kamers zonder de groepen te wijzigen. Synchroon afspelen groepeert de gekozen kamers tijdelijk zodat ze tegelijk afspelen en herstelt daarna de oorspronkelijke groepen."
+          "en": "Plays up to 200 characters on a Google Cast, Sonos, or compatible UPnP/DLNA speaker on your local network. Supports BLL coding in the text field. Choose Wait to finish to continue the Flow only after the announcement finishes and previous playback is restored where applicable. For Sonos, Play Separately sends a native announcement directly to the selected rooms. It can play over current audio and leaves groups untouched. Choose Play in Sync when the rooms need to play together.",
+          "nl": "Speelt maximaal 200 tekens af op een Google Cast-, Sonos- of compatibele UPnP/DLNA-luidspreker op je lokale netwerk. BLL-codering wordt ondersteund in het tekstveld. Kies Wachten tot klaar om de Flow pas verder te laten gaan als de aankondiging is afgelopen en de vorige weergave waar nodig is hersteld. Bij Sonos stuurt Apart afspelen een ingebouwde aankondiging rechtstreeks naar de gekozen kamers. De aankondiging kan over het huidige geluid heen spelen en laat groepen intact. Kies Synchroon afspelen als de kamers tegelijk moeten afspelen."
         },
         "args": [
           {
@@ -5814,8 +5814,8 @@
           "nl": "Vertaal [[text]] naar [[targetlanguagecode]] en spreek het uit op [[speaker]] met volume [[volume]]%, Sonos: [[sonos_mode]], daarna [[completion]]"
         },
         "hint": {
-          "en": "Uses the source language of this device. Basic speech supports up to 200 characters. Configure optional Cloud voices in Repair. Supports BLL coding in the text field. Choose Wait to finish to continue the Flow only after the speakers have finished and been restored. For Sonos, Play Separately plays only in the selected rooms without changing their groups. Play in Sync temporarily groups the selected rooms so they play together, then restores the original groups.",
-          "nl": "Gebruikt de brontaal van dit apparaat. Gewone spraak ondersteunt maximaal 200 tekens. Stel optionele Cloud-stemmen in via Repareren. BLL-codering wordt ondersteund in het tekstveld. Kies Wachten tot klaar om de Flow pas verder te laten gaan als de luidsprekers klaar en hersteld zijn. Bij Sonos speelt Apart afspelen alleen in de gekozen kamers zonder de groepen te wijzigen. Synchroon afspelen groepeert de gekozen kamers tijdelijk zodat ze tegelijk afspelen en herstelt daarna de oorspronkelijke groepen."
+          "en": "Uses the source language of this device. Basic speech supports up to 200 characters. Configure optional Cloud voices in Repair. Supports BLL coding in the text field. Choose Wait to finish to continue the Flow only after the announcement finishes and previous playback is restored where applicable. For Sonos, Play Separately sends a native announcement directly to the selected rooms. It can play over current audio and leaves groups untouched. Choose Play in Sync when the rooms need to play together.",
+          "nl": "Gebruikt de brontaal van dit apparaat. Gewone spraak ondersteunt maximaal 200 tekens. Stel optionele Cloud-stemmen in via Repareren. BLL-codering wordt ondersteund in het tekstveld. Kies Wachten tot klaar om de Flow pas verder te laten gaan als de aankondiging is afgelopen en de vorige weergave waar nodig is hersteld. Bij Sonos stuurt Apart afspelen een ingebouwde aankondiging rechtstreeks naar de gekozen kamers. De aankondiging kan over het huidige geluid heen spelen en laat groepen intact. Kies Synchroon afspelen als de kamers tegelijk moeten afspelen."
         },
         "args": [
           {
