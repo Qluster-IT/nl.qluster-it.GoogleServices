@@ -101,7 +101,7 @@ Set the **Sonos announcement mode** under **App settings → Speakers**. A speec
 - **Play Separately:** Sends a native Sonos announcement directly to each selected room on supported speakers. It can start quickly and play over what’s already playing. Other rooms in the same Sonos group don’t hear it, and the group stays as it is. Sonos manages the background level; **Speaker volume (%)** only sets the announcement volume, subject to Sonos limits. The selected rooms may not start at exactly the same time. If a room can’t play the native announcement, the Flow reports an error instead of switching modes.
 - **Play in Sync:** Compatible selected Sonos rooms play together and then return to their original groups. Existing devices and Flows keep their previous behavior, including the **Temporarily group Sonos rooms** setting, until a mode is explicitly changed. Existing groups that include excluded rooms may be left alone to avoid playing outside the selection.
 
-For **Play Separately** on a single Sonos room or a saved group of Sonos rooms, Homey checks the last known addresses first and scans again if it can't verify them. Reserving fixed IP addresses for the speakers in your router helps avoid repeat scans.
+For an individual Sonos room, Homey can reuse its verified address without waiting for a background scan. On first use after a restart, it checks the last known address directly. For **Play Separately** on a saved group of Sonos rooms, Homey still verifies the selected rooms before playing. Reserving fixed IP addresses for your speakers helps avoid repeat scans. If the connection fails before anything was sent to change playback, Homey can find the individual room again and try once in the same run. If a command may already have reached the speaker, Homey reports the failure and refreshes the address for the next run rather than risking playing the same announcement twice.
 
 A confirmed Sonos stereo pair appears as one **(Stereo)** target, with the left and right speaker models when available. Sonos plays the announcement through the bonded pair and handles synchronization. The card does not play through either side independently, and unrelated speakers with the same room name are not merged.
 
@@ -161,6 +161,10 @@ Better Logic Library
 BLL coding is optional in supported text fields. When Better Logic Library is unavailable, text is passed through unchanged and BLL expressions are not evaluated.
 
 ## Changelog
+
+### 3.1.2
+
+- Announcements to an individual Sonos room can start faster. If Homey cannot reach the room before sending the announcement, it finds the room again and tries once without risking duplicate playback.
 
 ### 3.1.1
 

@@ -553,6 +553,7 @@ test('Play Separately resolves a saved Sonos group by verified addresses and red
   // A new playback instance has no in-memory discovery results.
   const playback = makePlayback();
   let scans = 0;
+  playback.refreshInBackground = () => {};
   playback.refresh = async () => {
     scans++;
     return [{ id: id(primary), protocol: 'sonos', host: '192.168.1.11', aliases: [id(satellite)] }];
@@ -569,6 +570,31 @@ test('Play Separately resolves a saved Sonos group by verified addresses and red
   assert.deepEqual(requests, [`http://${host}:1400/xml/device_description.xml`]);
   await playback.select({ id: 'all' }, true);
   assert.equal(scans, 2);
+  requests.length = 0;
+
+  const restarted = makePlayback();
+  actual = primary;
+  let endScan;
+  restarted.pending = new Promise(resolve => { endScan = resolve; });
+  const selected = { id: id(primary) };
+  const [first, concurrent] = await Promise.all([restarted.select(selected), restarted.select(selected, true)]);
+  assert.equal(first.host, host);
+  assert.equal(concurrent, first);
+  assert.equal(await restarted.select(selected), first, 'warm lookup does not wait for the pending scan');
+  assert.deepEqual(requests.splice(0), [
+    `http://${host}:1400/xml/device_description.xml`, `http://${host}:1400/topology`
+  ]);
+  const moved = { ...first, host: '192.168.1.11' };
+  restarted.updateSonosEndpoint(moved.id, moved, ++restarted.sonosRevision);
+  const error = Object.assign(new Error('Connection reset'), { code: 'ECONNRESET' });
+  restarted.invalidateSonosEndpoint(first, error);
+  assert.equal(await restarted.select(selected), moved, 'failure on the old room object cannot invalidate the new one');
+  restarted.invalidateSonosEndpoint(moved, error);
+  const afterFailure = restarted.select(selected);
+  endScan([]);
+  await assert.rejects(afterFailure, /not available/);
+  assert.equal(requests.length, 0, 'does not try the invalidated address while discovery is pending');
+  assert.equal(restarted.knownSonosAddresses()[0].host, host, 'a scan miss does not erase the persisted address hint');
 });
 
 test('speech setup saves complete settings per session and preserves an offline default during repair', async () => {

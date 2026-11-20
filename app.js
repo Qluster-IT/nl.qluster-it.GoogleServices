@@ -65,7 +65,7 @@ class GoogleServicesApp extends Homey.App {
       TtsServer.init({homey: this.homey});
       await this.setCloudJSON();
       await this.setDefaultCloudVoice();   
-      const { registerAnnouncement, basicSpeech, selectSpeaker, playAnnouncement } = require('./lib/speaker-announcements');
+      const { registerAnnouncement, basicSpeech, selectSpeaker, playAnnouncement, getPlayback } = require('./lib/speaker-announcements');
       registerAnnouncement(this.homey, 'announce_googletts', async ({ device, text }) => {
         const language = device.getSettings().languagecode || 'en-GB';
         const decoded = await BL.decode(text, language);
@@ -270,6 +270,7 @@ class GoogleServicesApp extends Homey.App {
       this.Triggers.finished_trigger.Card = finished;
       finished.registerRunListener(async () => true);
       this.apiReady = true;
+      if (this.homey.settings.get('AnnouncementSonosAddresses')?.length) getPlayback(this.homey).refreshInBackground();
       this.homey.api?.realtime('api-ready', { ready: true }).catch(error => this.error('Signaling API readiness failed', error));
       await this._notifyReleaseFeatures();
     

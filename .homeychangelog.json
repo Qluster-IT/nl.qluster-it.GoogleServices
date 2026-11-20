@@ -1513,5 +1513,20 @@
     "ru": "Уточнено описание режимов Sonos: «Воспроизводить отдельно» отправляет встроенное объявление в выбранные комнаты, а «Воспроизводить синхронно» воспроизводит его во всех этих комнатах одновременно.",
     "ko": "Sonos 안내 옵션 설명을 개선했습니다. 개별 재생은 선택한 방에 Sonos 기본 안내를 보내고, 동기 재생은 여러 방에서 안내를 동시에 재생합니다.",
     "ar": "أصبحت خيارات إعلانات Sonos أوضح: يرسل «تشغيل منفصل» إعلانًا مدمجًا إلى الغرف المختارة، بينما يشغّله «تشغيل متزامن» في الغرف في الوقت نفسه."
+  },
+  "3.1.2": {
+    "en": "Announcements to an individual Sonos room can start faster. If Homey cannot reach the room before sending, it finds the room again and tries once.",
+    "nl": "Aankondigingen in één Sonos-kamer kunnen sneller starten. Kan Homey de kamer vóór het verzenden niet bereiken, dan zoekt het de kamer opnieuw en probeert het nog één keer.",
+    "da": "Meddelelser til ét Sonos-rum kan starte hurtigere. Hvis Homey ikke kan nå rummet, inden meddelelsen sendes, finder den rummet igen og prøver én gang til.",
+    "de": "Durchsagen in einem einzelnen Sonos-Raum können schneller starten. Ist der Raum vor dem Senden nicht erreichbar, sucht Homey ihn erneut und versucht es noch einmal.",
+    "es": "Los avisos a una sola habitación Sonos pueden empezar antes. Si Homey no puede conectarse a la habitación antes de enviarlos, vuelve a buscarla y lo intenta una vez más.",
+    "fr": "Les annonces dans une seule pièce Sonos peuvent démarrer plus vite. Si Homey ne parvient pas à joindre la pièce avant l’envoi, il la recherche et réessaie une fois.",
+    "it": "Gli annunci in una singola stanza Sonos possono partire più rapidamente. Se Homey non riesce a raggiungere la stanza prima dell’invio, la cerca di nuovo e riprova una sola volta.",
+    "no": "Kunngjøringer i ett Sonos-rom kan starte raskere. Hvis Homey ikke får kontakt før sending, finner den rommet på nytt og prøver én gang til.",
+    "sv": "Meddelanden i ett enskilt Sonos-rum kan starta snabbare. Om Homey inte når rummet före sändningen söker den efter rummet igen och gör ett nytt försök.",
+    "pl": "Komunikaty w jednym pokoju Sonos mogą rozpoczynać się szybciej. Jeśli Homey nie może połączyć się z pokojem przed wysłaniem, wyszukuje go ponownie i próbuje jeszcze raz.",
+    "ru": "Объявления в одной комнате Sonos могут начинаться быстрее. Если Homey не удаётся связаться с комнатой до отправки, он находит её заново и повторяет попытку один раз.",
+    "ko": "Sonos 방 한 곳에서 안내가 더 빨리 시작될 수 있습니다. 안내를 보내기 전에 Homey가 방에 연결하지 못하면 방을 다시 찾아 한 번 더 시도합니다.",
+    "ar": "يمكن أن تبدأ الإعلانات في غرفة Sonos واحدة بسرعة أكبر. إذا تعذّر على Homey الوصول إلى الغرفة قبل إرسال الإعلان، فإنه يبحث عنها مجددًا ويحاول مرة أخرى."
   }
 }

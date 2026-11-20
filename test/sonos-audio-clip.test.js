@@ -51,3 +51,65 @@ test('unsupported selected Sonos rooms fail without falling back to transport pl
   assert.match((await done).message, /Kitchen.*rejected/);
   assert.equal(played, false);
 });
+
+test('a lost load acknowledgement reports the connection failure without sending the clip twice', async t => {
+  t.mock.timers.enable({ apis: ['setTimeout'] });
+  const socket = new EventEmitter();
+  socket.terminate = () => {};
+  const sent = [];
+  socket.send = (text, callback) => { sent.push(JSON.parse(text)[0].command); callback(); };
+  const failures = [];
+  const controls = new SpeakerControls(assert.fail, assert.fail, () => {},
+    (...args) => playClip(...args, () => socket));
+  const done = controls.start([speaker], media, {
+    sonosClip: true, onConnectionFailure: (_, error) => failures.push(error),
+    rediscoverBeforePlayback: assert.fail
+  });
+  const rejected = assert.rejects(done, /did not confirm the AudioClip request/);
+  await Promise.resolve();
+  socket.emit('open');
+  const subscribed = JSON.stringify([{ response: 'subscribe', cmdId: '1', success: true }, {}]);
+  socket.emit('message', subscribed);
+  socket.emit('message', subscribed);
+  t.mock.timers.tick(6000);
+  await rejected;
+  assert.deepEqual(sent, ['subscribe', 'loadAudioClip']);
+  assert.equal(failures[0]?.code, 'SONOS_CONNECTION');
+});
+
+test('a connection failure before the load recovers in the same queued announcement', async () => {
+  const moved = { ...speaker, host: '192.168.1.11' };
+  const addresses = [];
+  const commands = [];
+  let recoveries = 0;
+  const controls = new SpeakerControls(assert.fail, assert.fail, assert.fail, (target, audio, volume, active) =>
+    playClip(target, audio, volume, active, url => {
+      addresses.push(new URL(url).hostname);
+      const socket = new EventEmitter();
+      socket.terminate = () => {};
+      socket.send = (text, callback) => {
+        const [header] = JSON.parse(text);
+        commands.push(header.command);
+        callback();
+        const body = header.command === 'loadAudioClip' ? { id: 'clip', status: 'DONE' } : {};
+        queueMicrotask(() => socket.emit('message', JSON.stringify([{
+          response: header.command, cmdId: header.cmdId, success: true
+        }, body])));
+      };
+      queueMicrotask(() => socket.emit(target === speaker ? 'error' : 'open', new Error('address moved')));
+      return socket;
+    }));
+  await controls.start([speaker], media, {
+    sonosClip: true,
+    rediscoverBeforePlayback: async (target, error) => {
+      assert.equal(target, speaker);
+      assert.equal(error.beforePlayback, true);
+      recoveries++;
+      return moved;
+    }
+  });
+  await controls.tail;
+  assert.equal(recoveries, 1);
+  assert.deepEqual(addresses, [speaker.host, moved.host]);
+  assert.deepEqual(commands, ['subscribe', 'loadAudioClip']);
+});
