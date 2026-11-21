@@ -76,7 +76,7 @@ Google TTS, Google Cloud TTS, and Google Translate each have a separate **Then**
 
 - **Google Cast:** Google Nest speakers and displays, Chromecast, and Chromecast Audio.
 - **Sonos:** speakers, bonded stereo pairs, and soundbars.
-- **UPnP/DLNA:** compatible speakers and AV receivers that offer AVTransport and support the announcement audio format. UPnP media servers alone cannot play announcements.
+- **UPnP/DLNA:** compatible speakers, AV receivers and Windows Digital Media Renderers that offer AVTransport and support the announcement audio format. UPnP media servers alone cannot play announcements.
 
 No separate Chromecast or Sonos Homey app is needed. Devices must be discoverable over IPv4 on Homey's local network and able to fetch audio from Homey (TCP port 47333).
 
@@ -114,6 +114,8 @@ On a **Google Cloud TTS** device, choose and preview a voice when pairing or in 
 **Resume previous playback** is on by default. Previous sources, including Sonos TV/HDMI and line-in, and positions are restored where the speaker supports this; audio that was paused or stopped is not automatically played. After temporary Sonos grouping, the app verifies the original coordinator and speaker membership before resuming; if it cannot verify them, it reports an error instead of resuming on the wrong group. Non-seekable Sonos streams reconnect to the source rather than returning to an exact position. Sonos cloud queues may not be restorable, and Google Cast restoration supports the Default Media Receiver, not arbitrary Cast apps. Unsupported features are skipped without a warning; actual playback or restoration errors are reported. Grouping and resume can be switched off in Pair, Repair or Advanced Settings and only affect direct speaker playback, not URL-only Flows without a saved speaker.
 
 The three announcement cards have an optional **Speaker volume (%)** argument (0–100). Leave it empty to keep the speaker's volume; zero is a valid override. Supported physical speaker volume is restored afterward unless it was changed during speech. Mute is not changed. This is separate from Cloud TTS volume gain.
+
+For managed UPnP/DLNA announcements, the app waits for changing playback to settle before saving the previous source. If a renderer stays **TRANSITIONING**, check or restart it before trying again. A renderer stuck during an announcement reports an error and pending announcements are skipped rather than reloading its source. Windows renderers can report the end of speech as paused at zero; the app checks recent playback progress before treating that as completion. An ordinary pause does not qualify.
 
 In **Speakers → Saved groups**, use **Volume adjustment** to balance speakers and **Maximum volume** to cap the volume requested for each announcement. The adjustment adds or subtracts percentage points from the Flow volume, then the result is limited to zero and the member's maximum. For example, a Flow at 25% with a +15 adjustment and a 35% maximum requests 35%. If the Flow volume is blank, neither setting changes the speaker's volume.
 
@@ -161,6 +163,11 @@ Better Logic Library
 BLL coding is optional in supported text fields. When Better Logic Library is unavailable, text is passed through unchanged and BLL expressions are not evaluated.
 
 ## Changelog
+
+### 3.1.3
+
+- Improved announcements on Windows and UPnP/DLNA speakers, including playback restoration and completion detection.
+- Stuck speakers now report a clearer error without reloading their source or running pending announcements.
 
 ### 3.1.2
 

@@ -1528,5 +1528,20 @@
     "ru": "Объявления в одной комнате Sonos могут начинаться быстрее. Если Homey не удаётся связаться с комнатой до отправки, он находит её заново и повторяет попытку один раз.",
     "ko": "Sonos 방 한 곳에서 안내가 더 빨리 시작될 수 있습니다. 안내를 보내기 전에 Homey가 방에 연결하지 못하면 방을 다시 찾아 한 번 더 시도합니다.",
     "ar": "يمكن أن تبدأ الإعلانات في غرفة Sonos واحدة بسرعة أكبر. إذا تعذّر على Homey الوصول إلى الغرفة قبل إرسال الإعلان، فإنه يبحث عنها مجددًا ويحاول مرة أخرى."
+  },
+  "3.1.3": {
+    "en": "Improved announcements on Windows and UPnP/DLNA speakers, including playback restoration and completion detection.\nStuck speakers now report a clearer error without reloading their source or running pending announcements.",
+    "nl": "Aankondigingen op Windows- en UPnP/DLNA-speakers verbeterd, inclusief het herstellen van de weergave en het herkennen van het einde.\nVastgelopen speakers geven nu een duidelijkere foutmelding zonder de bron opnieuw te laden of wachtende aankondigingen af te spelen.",
+    "da": "Forbedrede meddelelser på Windows- og UPnP/DLNA-højttalere, herunder gendannelse af afspilning og registrering af afslutning.\nHøjttalere, der sidder fast, viser nu en tydeligere fejl uden at genindlæse kilden eller afspille ventende meddelelser.",
+    "de": "Durchsagen auf Windows- und UPnP/DLNA-Lautsprechern verbessert, einschließlich der Wiederherstellung der Wiedergabe und der Erkennung des Endes.\nFestgefahrene Lautsprecher melden jetzt einen klareren Fehler, ohne ihre Quelle neu zu laden oder wartende Durchsagen abzuspielen.",
+    "es": "Mejorados los avisos en altavoces Windows y UPnP/DLNA, incluida la restauración de la reproducción y la detección del final.\nLos altavoces bloqueados ahora muestran un error más claro sin recargar la fuente ni reproducir avisos pendientes.",
+    "fr": "Annonces améliorées sur les enceintes Windows et UPnP/DLNA, notamment la restauration de la lecture et la détection de la fin.\nLes enceintes bloquées signalent désormais une erreur plus claire sans recharger leur source ni diffuser les annonces en attente.",
+    "it": "Migliorati gli annunci sugli altoparlanti Windows e UPnP/DLNA, incluso il ripristino della riproduzione e il rilevamento della fine.\nGli altoparlanti bloccati ora segnalano un errore più chiaro senza ricaricare la sorgente o riprodurre gli annunci in attesa.",
+    "no": "Forbedrede kunngjøringer på Windows- og UPnP/DLNA-høyttalere, inkludert gjenoppretting av avspilling og registrering av avslutning.\nHøyttalere som har låst seg, gir nå en tydeligere feil uten å laste kilden på nytt eller spille av ventende kunngjøringer.",
+    "sv": "Förbättrade meddelanden på Windows- och UPnP/DLNA-högtalare, inklusive återställning av uppspelning och identifiering av slutet.\nHögtalare som har fastnat visar nu ett tydligare fel utan att ladda om källan eller spela upp väntande meddelanden.",
+    "pl": "Ulepszono komunikaty na głośnikach Windows i UPnP/DLNA, w tym przywracanie odtwarzania i wykrywanie zakończenia.\nZablokowane głośniki zgłaszają teraz czytelniejszy błąd bez ponownego ładowania źródła ani odtwarzania oczekujących komunikatów.",
+    "ru": "Улучшены объявления на устройствах Windows и UPnP/DLNA, включая восстановление воспроизведения и определение завершения.\nЗависшие устройства теперь сообщают о более понятной ошибке без повторной загрузки источника или воспроизведения ожидающих объявлений.",
+    "ko": "Windows 및 UPnP/DLNA 스피커의 안내 재생을 개선했습니다. 재생 복원과 종료 감지도 개선했습니다.\n멈춘 스피커는 소스를 다시 불러오거나 대기 중인 안내를 재생하지 않고 더 명확한 오류를 표시합니다.",
+    "ar": "تم تحسين الإعلانات على مكبرات صوت Windows وUPnP/DLNA، بما في ذلك استعادة التشغيل واكتشاف انتهاء الإعلان.\nتعرض مكبرات الصوت العالقة الآن خطأً أوضح دون إعادة تحميل المصدر أو تشغيل الإعلانات المنتظرة."
   }
 }

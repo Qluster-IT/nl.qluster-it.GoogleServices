@@ -22,7 +22,9 @@ function load(fetch, cast) {
 function fixture({ count = 2, failJoin, unsupportedVolume = false, changeVolume = false, changeSource = false,
   bondLag = 0, resetCoordinatorOnJoin = false, nestedBond = false, startupStates = [], failAnnouncementAt = 0,
   failDetach, returnToInput = false, detachOnInput, staleDetachObserver = false, omitFollower = false,
-  loseJoinReply = false, loseDetachReply, missingBondAfterDetach = false, resumeTransitions = 0, missingSnapshot } = {}) {
+  loseJoinReply = false, loseDetachReply, missingBondAfterDetach = false, resumeTransitions = 0, missingSnapshot,
+  typedResponses = false, originalUri, autoPlayRestoredSource = false, playbackPositions = [],
+  restoreTransitions = 0, changeOnPause = false, losePauseReply = false, prepareTransitions } = {}) {
   const calls = [], reports = [];
   let announcements = 0;
   let staleDetachReads = 1;
@@ -30,7 +32,7 @@ function fixture({ count = 2, failJoin, unsupportedVolume = false, changeVolume 
   const positions = {};
   const rooms = Array.from({ length: count }, (_, i) => String.fromCharCode(65 + i));
   const states = Object.fromEntries(rooms.map(id => [id, {
-    uri: `x-rincon-queue:${id}#0`, state: 'PLAYING', volume: 12, coordinator: id
+    uri: originalUri ?? `x-rincon-queue:${id}#0`, state: 'PLAYING', volume: 12, coordinator: id
   }]));
   const speakers = rooms.map(id => ({
     id: `dlna:uuid:${id}`, name: id, protocol: 'sonos', endpoint: `http://${id}/transport`,
@@ -39,12 +41,13 @@ function fixture({ count = 2, failJoin, unsupportedVolume = false, changeVolume 
   }));
   const response = (body, status = 200) => ({ ok: status === 200, status, text: async () => body });
   const result = (action, fields) => response(`<Envelope><Body><${action}Response>${Object.entries(fields)
-    .map(([key, value]) => `<${key}>${escape(value)}</${key}>`).join('')}</${action}Response></Body></Envelope>`);
+    .map(([key, value]) => `<${key}${typedResponses ? ' dt:dt="string"' : ''}>${escape(value)}</${key}>`).join('')}</${action}Response></Body></Envelope>`);
   const fetch = async (address, options) => {
     const url = new URL(address), id = url.hostname.toUpperCase(), state = states[id];
     if (!options?.method) {
       const actions = url.pathname.includes('rendering') ? ['GetVolume', 'SetVolume'] :
-        ['GetMediaInfo', 'GetTransportInfo', 'GetPositionInfo', 'SetAVTransportURI', 'Play', 'Seek', 'BecomeCoordinatorOfStandaloneGroup'];
+        ['GetMediaInfo', 'GetTransportInfo', 'GetPositionInfo', 'SetAVTransportURI', 'Play', 'Seek', 'BecomeCoordinatorOfStandaloneGroup',
+          ...(autoPlayRestoredSource ? ['Pause'] : [])];
       return response(`<scpd><actionList>${actions.map(name => `<action><name>${name}</name></action>`).join('')}</actionList>
         <serviceStateTable><stateVariable><name>Volume</name><allowedValueRange><minimum>0</minimum><maximum>60</maximum><step>2</step></allowedValueRange></stateVariable></serviceStateTable></scpd>`);
     }
@@ -74,6 +77,11 @@ function fixture({ count = 2, failJoin, unsupportedVolume = false, changeVolume 
       return result(action, { CurrentURI: state.uri, CurrentURIMetaData: '<metadata/>' });
     }
     if (action === 'GetTransportInfo') {
+      if (prepareTransitions !== undefined && !state.uri.startsWith('http://homey.invalid/tts/') &&
+        state.state === 'TRANSITIONING' && prepareTransitions-- <= 0) state.state = 'PLAYING';
+      if (autoPlayRestoredSource && state.uri === originalUri && state.state === 'TRANSITIONING' && restoreTransitions-- <= 0) {
+        state.state = 'PLAYING';
+      }
       if (id === 'B' && state.state === 'TRANSITIONING' && pendingResume > 0) {
         if (--pendingResume === 0) state.state = 'PLAYING';
       }
@@ -85,7 +93,9 @@ function fixture({ count = 2, failJoin, unsupportedVolume = false, changeVolume 
       }
       return result(action, { CurrentTransportState: state.state });
     }
-    if (action === 'GetPositionInfo') return result(action, { Track: '3', RelTime: '0:01:23' });
+    if (action === 'GetPositionInfo') return result(action, state.uri.startsWith('http://homey.invalid/tts/')
+      ? playbackPositions.shift() ?? { Track: '3', RelTime: '0:01:23' }
+      : { Track: '3', RelTime: '0:01:23' });
     if (action === 'GetVolume') return result(action, { CurrentVolume: state.volume });
     if (action === 'SetVolume') {
       if (unsupportedVolume) return response('<Envelope><Body><Fault><detail><UPnPError><errorCode>401</errorCode></UPnPError></detail></Fault></Body></Envelope>', 500);
@@ -102,7 +112,8 @@ function fixture({ count = 2, failJoin, unsupportedVolume = false, changeVolume 
         if (resetCoordinatorOnJoin) positions[state.coordinator] = '0:00:00';
       } else {
         state.uri = body.CurrentURI;
-        state.state = 'STOPPED';
+        state.state = autoPlayRestoredSource && body.CurrentURI === originalUri
+          ? restoreTransitions ? 'TRANSITIONING' : 'PLAYING' : 'STOPPED';
         if (id === detachOnInput && state.uri.startsWith('x-sonos-htastream:')) state.coordinator = id;
       }
     }
@@ -118,7 +129,11 @@ function fixture({ count = 2, failJoin, unsupportedVolume = false, changeVolume 
       pendingResume = id === 'B' ? resumeTransitions : 0;
       state.state = pendingResume ? 'TRANSITIONING' : 'PLAYING';
     }
-    if (action === 'Pause') state.state = 'PAUSED_PLAYBACK';
+    if (action === 'Pause') {
+      state.state = 'PAUSED_PLAYBACK';
+      if (changeOnPause) { state.uri = 'http://user.invalid/new-source'; state.state = 'PLAYING'; }
+      if (losePauseReply) throw new Error('lost Pause acknowledgement');
+    }
     return result(action, {});
   };
   const Controls = load(fetch);
@@ -140,6 +155,177 @@ async function finish(t, controls) {
   assert.ok(finished, 'speaker cleanup finished');
   await completion;
 }
+
+test('typed SOAP volume, transport and position values restore the prior DLNA source', async t => {
+  t.mock.timers.enable({ apis: ['setTimeout'] });
+  const uri = 'http://music.invalid/track.mp3?a=1&b=2';
+  const { controls, states, speakers, calls, positions } = fixture({ count: 1, typedResponses: true, originalUri: uri });
+  speakers[0].protocol = 'dlna';
+  await controls.start(speakers, announcement, { resume: true, volume: 20 });
+  await finish(t, controls);
+  assert.equal(states.A.uri, uri);
+  assert.equal(states.A.state, 'PLAYING');
+  assert.equal(states.A.volume, 12);
+  assert.equal(positions.A, '0:01:23');
+  assert.ok(calls.some(([, action, args]) => action === 'SetAVTransportURI' && args.CurrentURIMetaData === '<metadata/>'));
+});
+
+test('managed restoration does not reload another hosted announcement', async t => {
+  t.mock.timers.enable({ apis: ['setTimeout'] });
+  const originalUri = 'http://homey.invalid/tts/01234567-89ab-cdef-0123-456789abcdef.wav';
+  const { controls, states, speakers, calls } = fixture({ count: 1, originalUri });
+  speakers[0].protocol = 'dlna';
+  await controls.start(speakers, announcement, { resume: true, volume: 20 });
+  await finish(t, controls);
+  assert.ok(!calls.some(([, action]) => action === 'SetAVTransportURI' || action === 'Play'));
+  assert.equal(states.A.volume, 12);
+});
+
+test('Windows restoration pauses a previously paused source when reloading starts it', async t => {
+  t.mock.timers.enable({ apis: ['setTimeout'] });
+  const uri = 'http://music.invalid/track.mp3';
+  const { controls, states, speakers, calls } = fixture({ count: 1, originalUri: uri, autoPlayRestoredSource: true });
+  Object.assign(speakers[0], { protocol: 'dlna', windowsRenderer: true });
+  states.A.state = 'PAUSED_PLAYBACK';
+  await controls.start(speakers, announcement, { resume: true });
+  await finish(t, controls);
+  assert.equal(states.A.uri, uri);
+  assert.equal(states.A.state, 'PAUSED_PLAYBACK');
+  assert.equal(calls.filter(([, action]) => action === 'Pause').length, 1);
+});
+
+test('Windows restoration waits for the source to settle and never repeats an uncertain Pause', async t => {
+  t.mock.timers.enable({ apis: ['setTimeout'] });
+  for (const lost of [false, true]) {
+    const uri = 'http://music.invalid/track.mp3';
+    const { controls, states, speakers, calls, reports } = fixture({
+      count: 1, originalUri: uri, autoPlayRestoredSource: true, restoreTransitions: 2, losePauseReply: lost
+    });
+    Object.assign(speakers[0], { protocol: 'dlna', windowsRenderer: true });
+    states.A.state = 'PAUSED_PLAYBACK';
+    await controls.start(speakers, announcement, { resume: true });
+    await finish(t, controls);
+    assert.equal(states.A.state, 'PAUSED_PLAYBACK');
+    assert.equal(calls.filter(([, action]) => action === 'Pause').length, 1);
+    assert.equal(reports.length, lost ? 1 : 0);
+    if (lost) assert.match(reports[0].message, /lost Pause acknowledgement/);
+  }
+});
+
+test('Windows paused-source restoration leaves a source changed during Pause alone', async t => {
+  t.mock.timers.enable({ apis: ['setTimeout'] });
+  const { controls, states, speakers, calls } = fixture({
+    count: 1, originalUri: 'http://music.invalid/track.mp3', autoPlayRestoredSource: true, changeOnPause: true
+  });
+  Object.assign(speakers[0], { protocol: 'dlna', windowsRenderer: true });
+  states.A.state = 'PAUSED_PLAYBACK';
+  await controls.start(speakers, announcement, { resume: true });
+  await finish(t, controls);
+  assert.equal(states.A.uri, 'http://user.invalid/new-source');
+  assert.equal(states.A.state, 'PLAYING');
+  assert.equal(calls.filter(([, action]) => action === 'Pause').length, 1);
+});
+
+test('a DLNA renderer stuck before preparation receives no playback or volume writes', async t => {
+  t.mock.timers.enable({ apis: ['setTimeout', 'Date'] });
+  for (const resume of [false, true]) {
+    const { controls, states, speakers, calls } = fixture({ count: 1 });
+    speakers[0].protocol = 'dlna';
+    states.A.state = 'TRANSITIONING';
+    const rejected = assert.rejects(controls.start(speakers, announcement, { resume, volume: 15 }), /TRANSITIONING.*restart/);
+    await finish(t, controls);
+    await rejected;
+    assert.ok(calls.every(([, action]) => action.startsWith('Get')));
+    assert.equal(states.A.volume, 12);
+  }
+});
+
+test('a DLNA renderer that settles during preparation still announces and restores its source', async t => {
+  t.mock.timers.enable({ apis: ['setTimeout'] });
+  const { controls, states, speakers, calls, reports } = fixture({ count: 1, prepareTransitions: 2 });
+  speakers[0].protocol = 'dlna';
+  states.A.state = 'TRANSITIONING';
+  const started = controls.start(speakers, announcement, { resume: true });
+  await finish(t, controls);
+  await started;
+  assert.equal(calls.filter(([, action]) => action === 'announcement').length, 1);
+  assert.equal(states.A.uri, 'x-rincon-queue:A#0');
+  assert.equal(states.A.state, 'PLAYING');
+  assert.deepEqual(reports, []);
+});
+
+test('a stuck DLNA announcement fails completion and skips the pending queue without reloading', async t => {
+  t.mock.timers.enable({ apis: ['setTimeout', 'Date'] });
+  const { controls, speakers, calls, reports } = fixture({ count: 1, startupStates: Array(40).fill('TRANSITIONING') });
+  speakers[0].protocol = 'dlna';
+  let completed;
+  await controls.start(speakers, announcement, { resume: true, finished: error => { completed = error; } });
+  const rejected = assert.rejects(controls.start(speakers, announcement, { resume: true }), /skipped/);
+  await finish(t, controls);
+  await rejected;
+  assert.match(completed.message, /TRANSITIONING.*restart/);
+  assert.equal(reports.length, 1);
+  assert.equal(calls.filter(([, action]) => action === 'announcement').length, 1);
+  assert.ok(!calls.some(([, action]) => ['SetAVTransportURI', 'Play', 'Seek'].includes(action)));
+});
+
+test('Windows announcement EOF needs recent exact-URL near-end proof before retaining the queued session', async t => {
+  t.mock.timers.enable({ apis: ['setTimeout', 'Date'] });
+  for (const scenario of ['eof', 'shorter-track', 'early-pause', 'foreign-track', 'longer-track', 'missing-position', 'nonzero-pause', 'missing-playing']) {
+    const speech = { ...announcement, url: 'http://homey.invalid/tts/01234567-89ab-cdef-0123-456789abcdef.mp3', duration: 5000 };
+    const track = scenario === 'foreign-track' ? 'http://other.invalid/track.mp3' : speech.url;
+    const position = scenario === 'missing-position' ? {} : {
+      TrackURI: track, RelTime: ['early-pause', 'shorter-track'].includes(scenario) ? '0:00:01' : '0:00:04',
+      TrackDuration: scenario === 'longer-track' ? '0:00:30' : scenario === 'shorter-track' ? '0:00:02' : '0:00:05'
+    };
+    const { controls, states, speakers, calls, reports } = fixture({
+      count: 1, startupStates: [...Array(scenario === 'shorter-track' ? 1 : 4)
+        .fill(scenario === 'missing-playing' ? 'TRANSITIONING' : 'PLAYING'), 'PAUSED_PLAYBACK'],
+      playbackPositions: scenario === 'missing-playing' ? [{ TrackURI: track, RelTime: '0:00:00' }]
+        : [...Array(scenario === 'shorter-track' ? 1 : 4).fill(position),
+          { TrackURI: track, RelTime: scenario === 'nonzero-pause' ? '0:00:04' : '0:00:00' }]
+    });
+    Object.assign(speakers[0], { protocol: 'dlna', windowsRenderer: true });
+    const options = { resume: true };
+    await controls.start(speakers, speech, options);
+    const next = controls.start(speakers, { ...announcement, url: 'http://homey.invalid/tts/second.mp3' }, options);
+    await finish(t, controls);
+    await next;
+    assert.equal(calls.filter(([, action]) => action === 'announcement').length, 2);
+    assert.equal(states.A.uri, ['eof', 'shorter-track'].includes(scenario)
+      ? 'x-rincon-queue:A#0' : 'http://homey.invalid/tts/second.mp3', scenario);
+    assert.deepEqual(reports, []);
+  }
+});
+
+test('stale Windows near-end proof cannot restore previous audio after a paused zero reset', async t => {
+  t.mock.timers.enable({ apis: ['setTimeout', 'Date'] });
+  const speech = { ...announcement, url: 'http://homey.invalid/tts/01234567-89ab-cdef-0123-456789abcdef.mp3', duration: 5000 };
+  const { controls, states, speakers, calls } = fixture({
+    count: 1, startupStates: ['PLAYING', 'PAUSED_PLAYBACK'],
+    playbackPositions: [{ TrackURI: speech.url, RelTime: '0:00:04', TrackDuration: '0:00:05' },
+      { TrackURI: speech.url, RelTime: '0:00:00' }]
+  });
+  Object.assign(speakers[0], { protocol: 'dlna', windowsRenderer: true });
+  await controls.start(speakers, speech, { resume: true });
+  t.mock.timers.tick(1000);
+  await new Promise(resolve => setImmediate(resolve));
+  t.mock.timers.tick(15000);
+  await finish(t, controls);
+  assert.equal(states.A.uri, speech.url);
+  assert.ok(!calls.some(([, action]) => ['SetAVTransportURI', 'Play', 'Seek'].includes(action)));
+});
+
+test('SOAP normalization preserves structured nodes, empty typed values and faults', () => {
+  const readSoapBody = require('../lib/speaker-soap');
+  const body = readSoapBody(`<s:Envelope><s:Body><u:ReadResponse>
+    <Volume dt:dt="ui2">100</Volume><URI dt:dt="string"/>
+    <Node id="1">label<Track dt:dt="ui4">01</Track><Track>2</Track></Node>
+    </u:ReadResponse><s:Fault><detail><UPnPError><errorCode dt:dt="ui4">716</errorCode></UPnPError></detail></s:Fault>
+    </s:Body></s:Envelope>`);
+  assert.deepEqual(body.ReadResponse, { Volume: '100', URI: '', Node: { _: 'label', Track: ['01', '2'], $: { '@_id': '1' } } });
+  assert.equal(body.Fault.detail.UPnPError.errorCode, '716');
+});
 
 test('TV speaker exclusions leave existing mixed Sonos groups alone even without grouping or resume', async () => {
   const { controls, states, speakers, calls } = fixture({ count: 3 });

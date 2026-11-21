@@ -845,7 +845,8 @@ test('the speaker picker discovers Cast, Sonos, DLNA and UPnP transport services
       if (options.method === 'POST') {
         assert.equal(url, 'http://192.168.1.4:1400/MediaRenderer/AVTransport/Control');
         sonosActions.push(options.headers.SOAPAction);
-        return { ok: true };
+        const action = /#([^"]+)/.exec(options.headers.SOAPAction)[1];
+        return { ok: true, text: async () => `<Envelope><Body><${action}Response/></Body></Envelope>` };
       }
       if (url === 'http://192.168.1.4:1400/desc') {
         return { ok: true, text: async () => `<root><device>
@@ -999,7 +1000,8 @@ test('confirmed Sonos stereo pairs are one target and keep both saved speaker ID
       const i = Number(new URL(url).hostname.split('.').pop()) - 10;
       if (url.endsWith('/av')) {
         playUrls.push(url);
-        return { ok: true };
+        const action = /#([^"]+)/.exec(options.headers.SOAPAction)[1];
+        return { ok: true, text: async () => `<Envelope><Body><${action}Response/></Body></Envelope>` };
       }
       if (url.endsWith('/topology')) {
         assert.equal(options.headers.SOAPAction, `"${zone}#GetZoneGroupState"`);
@@ -1068,11 +1070,16 @@ test('speaker playback loads Cast audio and sends DLNA commands in order', async
     close() { commands.push('closed'); this.emit('close'); }
   }
   let rejectDlna = false;
+  let soapFault = false, missingResponse = false;
   const Playback = compile('../lib/speaker-playback', {
     'castv2-client': { Client },
     'node-fetch': async (url, options) => {
       commands.push({ url, ...options });
-      return { ok: !rejectDlna, status: 500 };
+      const action = /#([^"]+)/.exec(options.headers.SOAPAction)[1];
+      return { ok: !rejectDlna, status: rejectDlna ? 500 : 200, text: async () => missingResponse
+        ? '<Envelope><Body/></Envelope>' : rejectDlna || soapFault
+        ? '<Envelope><Body><Fault><detail><UPnPError><errorCode dt:dt="string">716</errorCode></UPnPError></detail></Fault></Body></Envelope>'
+        : `<Envelope><Body><${action}Response/></Body></Envelope>` };
     }
   }).exports;
   const playback = new Playback(() => {});
@@ -1089,10 +1096,22 @@ test('speaker playback loads Cast audio and sends DLNA commands in order', async
     `"${renderer.service}#SetAVTransportURI"`, `"${renderer.service}#Play"`
   ]);
   assert.match(commands[0].body, /<CurrentURI>[^<]+a=1&amp;b=2<\/CurrentURI>/);
+  const { XMLParser } = require('fast-xml-parser');
+  const parser = new XMLParser({ removeNSPrefix: true });
+  const metadata = parser.parse(commands[0].body).Envelope.Body.SetAVTransportURI.CurrentURIMetaData;
+  assert.equal(parser.parse(metadata)['DIDL-Lite'].item.class, 'object.item.audioItem.musicTrack');
   commands.length = 0;
   rejectDlna = true;
-  await assert.rejects(playback.play(renderer, media), /rejected SetAVTransportURI/);
+  await assert.rejects(playback.play(renderer, media), /rejected SetAVTransportURI \(HTTP 500, UPnP 716\)/);
   assert.equal(commands.length, 1);
+  rejectDlna = false;
+  for (const fault of [true, false]) {
+    commands.length = 0;
+    soapFault = fault;
+    missingResponse = !fault;
+    await assert.rejects(playback.play(renderer, media), fault ? /HTTP 200, UPnP 716/ : /did not return SetAVTransportURI/);
+    assert.equal(commands.length, 1, 'a failed load must not dispatch Play');
+  }
 });
 
 test('Maps pairing validates the route and keeps settings isolated between sessions', async () => {
